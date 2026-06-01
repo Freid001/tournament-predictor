@@ -1,0 +1,105 @@
+type,stage,match_id,notes
+placeholder,GROUP,A1,Group A
+placeholder,GROUP,A2,Group A
+placeholder,GROUP,A3,Group A
+placeholder,GROUP,A4,Group A
+placeholder,GROUP,B1,Group B
+placeholder,GROUP,B2,Group B
+placeholder,GROUP,B3,Group B
+placeholder,GROUP,B4,Group B
+placeholder,GROUP,C1,Group C
+placeholder,GROUP,C2,Group C
+placeholder,GROUP,C3,Group C
+placeholder,GROUP,C4,Group C
+placeholder,GROUP,D1,Group D
+placeholder,GROUP,D2,Group D
+placeholder,GROUP,D3,Group D
+placeholder,GROUP,D4,Group D
+placeholder,GROUP,E1,Group E
+placeholder,GROUP,E2,Group E
+placeholder,GROUP,E3,Group E
+placeholder,GROUP,E4,Group E
+placeholder,GROUP,F1,Group F
+placeholder,GROUP,F2,Group F
+placeholder,GROUP,F3,Group F
+placeholder,GROUP,F4,Group F
+placeholder,GROUP,G1,Group G
+placeholder,GROUP,G2,Group G
+placeholder,GROUP,G3,Group G
+placeholder,GROUP,G4,Group G
+placeholder,GROUP,H1,Group H
+placeholder,GROUP,H2,Group H
+placeholder,GROUP,H3,Group H
+placeholder,GROUP,H4,Group H
+placeholder,GROUP,I1,Group I
+placeholder,GROUP,I2,Group I
+placeholder,GROUP,I3,Group I
+placeholder,GROUP,I4,Group I
+placeholder,GROUP,J1,Group J
+placeholder,GROUP,J2,Group J
+placeholder,GROUP,J3,Group J
+placeholder,GROUP,J4,Group J
+placeholder,GROUP,K1,Group K
+placeholder,GROUP,K2,Group K
+placeholder,GROUP,K3,Group K
+placeholder,GROUP,K4,Group K
+placeholder,GROUP,L1,Group L
+placeholder,GROUP,L2,Group L
+placeholder,GROUP,L3,Group L
+placeholder,GROUP,L4,Group L
+qualify,QUALIFY,A1,A2
+qualify,QUALIFY,B1,B2
+qualify,QUALIFY,C1,C2
+qualify,QUALIFY,D1,D2
+qualify,QUALIFY,E1,E2
+qualify,QUALIFY,F1,F2
+qualify,QUALIFY,G1,G2
+qualify,QUALIFY,H1,H2
+qualify,QUALIFY,I1,I2
+qualify,QUALIFY,J1,J2
+qualify,QUALIFY,K1,K2
+qualify,QUALIFY,L1,L2
+placeholder,BEST_THIRD,3A,Best 12 third-placed pool
+placeholder,BEST_THIRD,3B,
+placeholder,BEST_THIRD,3C,
+placeholder,BEST_THIRD,3D,
+placeholder,BEST_THIRD,3E,
+placeholder,BEST_THIRD,3F,
+placeholder,BEST_THIRD,3G,
+placeholder,BEST_THIRD,3H,
+placeholder,BEST_THIRD,3I,
+placeholder,BEST_THIRD,3J,
+placeholder,BEST_THIRD,3K,
+placeholder,BEST_THIRD,3L,
+match,LAST_32,M73,A2,B2
+match,LAST_32,M74,E1,ABCDF3
+match,LAST_32,M75,F1,C2
+match,LAST_32,M76,C1,F2
+match,LAST_32,M77,I1,CDFGH3
+match,LAST_32,M78,E2,I2
+match,LAST_32,M79,A1,CEFHI3
+match,LAST_32,M80,L1,EHIJK3
+match,LAST_32,M81,D1,BEFIJ3
+match,LAST_32,M82,G1,AEHIJ3
+match,LAST_32,M83,K2,L2
+match,LAST_32,M84,H1,J2
+match,LAST_32,M85,B1,EFGIJ3
+match,LAST_32,M86,J1,H2
+match,LAST_32,M87,K1,DEIJL3
+match,LAST_32,M88,D2,G2
+match,LAST_16,M89,W77,W74
+match,LAST_16,M90,W75,W73
+match,LAST_16,M91,W76,W78
+match,LAST_16,M92,W80,W79
+match,LAST_16,M93,W84,W83
+match,LAST_16,M94,W81,W82
+match,LAST_16,M95,W86,W88
+match,LAST_16,M96,W87,W85
+match,QUARTER,M97,W89,W90
+match,QUARTER,M98,W93,W94
+match,QUARTER,M99,W91,W92
+match,QUARTER,M100,W95,W96
+match,SEMI,M101,W97,W98
+match,SEMI,M102,W99,W100
+match,FINAL,M103,W101,W102
+winner,FINAL,W103,

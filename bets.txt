@@ -1,0 +1,413 @@
+=== FIFA 2026 World Cup ===
+Bet       	= A placed bet.
+Hedge     	= Opposes a placed bet.
+Weak Candidate  = ELO >=40% AND Profit >£5 AND Profit <£10
+Candidate       = ELO >=40% AND Profit >=£10
+Risky Candidate = ELO >=30% AND ELO <40% AND Profit >=£10
+Moonshot        = ELO <30% AND Profit >=£20
+Threat          = A bet or candidate whose success causes one or more existing bets to lose.
+KO		= Knocks out a team to reach position. 
+Brackets 	= https://theworldcupguide.com/wp-content/uploads/2024/07/schedule-2048x1448.jpeg
+Matches 	= https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf
+=== 1st Stage ===
+=== Top Group ===
+A1: Mexico	        => Stake: £10   Odds: 5/6    Profit: £8.33   	ELO: 55% 	 <= Bet
+-   South Korea     => Stake: £0    Odds: 7/2    Profit: £35.00		ELO: 30% 	 <= Hedge/Risky Candidate
+B1: Switzerland     => Stake: £0    Odds: 8/11   Profit: £7.27	ELO: 45%	<= Weak Candidate
+-    Canada         => Stake: £0    Odds: 7/4    Profit: £17.50  	ELO: 40%	<= Candidate
+C1: Morocco         => Stake: £10   Odds: 7/2    Profit: £35.00  	ELO: 25%	<= Bet/Moonshot
+-   Brazil          => Stake: £0    Odds: 1/4    Profit: £2.50    ELO: 76%    <= Hedge/Threat
+D1: Turkey          => Stake: £10   Odds: 7/4    Profit: £17.50	ELO: 50%	<= Bet
+-   USA             => Stake: £0    Odds: 5/4    Profit: £12.50   ELO: 30%    <= Hedge/Threat
+E1: Germany         => Stake: £0    Odds: 2/5    Profit: £4.00	ELO: 55%
+-   Ecuador         => Stake: £0    Odds: 7/2    Profit: £35.00   ELO: 30%    <= Risky Candidate
+F1: Netherlands	    => Stake: £0    Odds: 4/5    Profit: £8.00	ELO: 45%	<= Weak Candidate
+-   Japan           => Stake: £0    Odds: 11/4   Profit: £27.50   ELO: 35%    <= Risky Candidate/Threat
+G1: Belgium         => Stake: £0    Odds: 2/5    Profit: £4.00	ELO: 50%
+-   Egypt           => Stake: £0    Odds: 7/2    Profit: £35.00   ELO: 30%    <= Risky Candidate
+H1: Spain           => Stake: £0    Odds: 1/5    Profit: £2.00	ELO: 75%
+-   Uruguay         => Stake: £0    Odds: 4/1    Profit: £40.00   ELO: 20%    <= Moonshot
+I1: France          => Stake: £0    Odds: 4/9    Profit: £4.44	ELO: 65%
+I1: Senegal         => Stake: £0    Odds: 7/1    Profit: £70.00   ELO: 10%    <= Hedge/Moonshot
+-   Norway          => Stake: £0    Odds: 11/4   Profit: £27.50   ELO: 20%    <= Hedge/Moonshot/Threat
+J1: Argentina       => Stake: £0    Odds: 4/11   Profit: £3.64	ELO: 70%
+-   Austria         => Stake: £0    Odds: 7/2    Profit: £35.00   ELO: 20%    <= Moonshot
+K1: Portugal        => Stake: £0    Odds: 4/9    Profit: £4.44    ELO: 55%
+-   Colombia        => Stake: £0    Odds: 2/1    Profit: £20.00   ELO: 30%    <= Risky Candidate/Threat
+L1: England         => Stake: £0    Odds: 4/11   Profit: £3.64    ELO: 55%
+-   Croatia         => Stake: £0    Odds: 16/5   Profit: £32.00	ELO: 25%    <= Hedge/Moonshot/Threat
+=== Qualify From Group =
+A2: South Korea	    => Stake: £10  Odds: 4/11   Profit: £3.64	ELO: 75%	<= Bet/Remove (When Cash out)
+A3: Czech Republic  => Stake: £0   Odds: 4/11   Profit: £3.64	ELO: 65%
+A4:   South Africa    => Stake: £0   Odds: 11/8   Profit: £13.75	ELO: 30%    <= Risky Candidate
+B2: Canada          => Stake: £0   Odds: 1/10   Profit: £1.00	ELO: 85%
+B3: Bosnia & H.     => Stake: £0   Odds: 4/7    Profit: £5.71	ELO: 60%    <= Weak Candidate
+B4: Qatar           => Stake: £0   Odds: 9/4    Profit: £22.50	ELO: 30%    <= Risky Candidate
+C2: Brazil          => Stake: £0   Odds: 1/200  Profit: £0.05	ELO: 99%
+C3: Scotland        => Stake: £10  Odds: 1/3    Profit: £3.33 	ELO: 80%    <= Bet
+C4: Haiti       	    => Stake: £0   Odds: 7/1    Profit: £70.00	ELO: 15%    <= Moonshot
+D2: USA             => Stake: £0   Odds: 1/8    Profit: £1.25 	ELO: 80%
+D3: Australia       => Stake: £0   Odds: 11/10  Profit: £11.00  ELO: 45%    <= Candidate
+D4: Paraguay        => Stake: £0   Odds: 1/2    Profit: £5.00	ELO: 65%
+E2: Ecuador         => Stake: £0   Odds: 1/10   Profit: £1.00	ELO: 90%
+E3: Ivory Coast     => Stake: £0   Odds: 1/6    Profit: £1.67	ELO: 85%
+E4  Curacao         => Stake: £0   Odds: 8/1    Profit: £80.00	ELO: 25%    <= Moonshot
+F2: Japan           => Stake: £0   Odds: 2/7    Profit: £2.86	ELO: 85%
+F3: Sweden          => Stake: £0   Odds: 4/9    Profit: £4.44	ELO: 75%
+F4  Tunisia         => Stake: £0   Odds: 5/4    Profit: £12.50	ELO: 35%    <= Risky Candidate
+G2: Egypt           => Stake: £0   Odds: 2/7    Profit: £2.86	ELO: 85%
+G3: New Zealand     => Stake: £0   Odds: 7/4    Profit: £17.50	ELO: 35%    <= Risky Candidate
+G4  Iran            => Stake: £0   Odds: 1/2    Profit: £5.00	ELO: 70%
+H2: Uruguay         => Stake: £0   Odds: 1/8    Profit: £1.25	ELO: 90%    
+H3: Saudi Arabia    => Stake: £0   Odds: 11/10  Profit: £11.00	ELO: 45%    <= Candidate
+H4  Cape Verde      => Stake: £0   Odds: 2/1    Profit: £20.00	ELO: 35%    <= Risky Candidate
+I2: Senegal	    => Stake: £0   Odds: 2/5    Profit: £4.00	ELO: 75%
+I3: Norway          => Stake: £0   Odds: 1/8    Profit: £1.25 	ELO: 90%
+I4   Iraq	    => Stake: £0   Odds: 4/1    Profit: £40.00	ELO: 25%    <= Moonshot
+J2: Austria         => Stake: £0   Odds: 1/6    Profit: £1.67	ELO: 90%
+J3: Algeria         => Stake: £0   Odds: 2/5    Profit: £4.00	ELO: 75%
+J4  Jordan          => Stake: £0   Odds: 11/4   Profit: £27.50	ELO: 25%    <= Moonshot
+K2: Colombia	    => Stake: £0   Odds: 1/12   Profit: £0.83	ELO: 95%
+K3: Uzbekistan      => Stake: £0   Odds: 2/1    Profit: £20.00 	ELO: 45%    <= Candidate
+K4  DR Congo        => Stake: £0   Odds: 6/5    Profit: £12.00	ELO: 25%
+L2: Croatia         => Stake: £0   Odds: 1/6    Profit: £1.67	ELO: 90%
+L3: Ghana           => Stake: £0   Odds: 8/13   Profit: £6.15	ELO: 70%    <= Weak Candidate
+L4  Panama          => Stake: £0   Odds: 9/4    Profit: £22.50	ELO: 25%    <= Moonshot
+=== 2nd Stage ===
+Below are my World Cup predictions from the Round of 16 through to the tournament winner.
+It is based on the teams I expect to qualify from the group stage. 
+I've included the current odds and bets I've placed with Sky Bet.
+=== To Reach Last 16 ===
+ELO: https://www.eloratings.net 
+ELO: _% likely opponent/alternative opponent (_% avg opponent)
+=== To Reach Last 16 ===
+ELO: https://www.eloratings.net
+ELO: _% likely opponent/alternative opponent (_% avg opponent)
+M  : Country (Group)   / last 32 vs (likely opponent / alternative opponent if group winner & runner up swap)
+M73: South Korea (A2)  / last 32 vs B2(Canada) / B1(Switzerland)     => Stake: £0   Odds: 2/1    Profit: £20.00  ELO: 52%/40% (46%)  <= Candidate
+M74: Germany (E1)      / last 32 vs ABCDF3(Scotland)                 => Stake: £0   Odds: 3/10   Profit: £3.00   ELO: 74%
+M75: Netherlands (F1)  / last 32 vs C2(Brazil) / C1(Morocco)         => Stake: £0   Odds: 8/11   Profit: £7.27   ELO: 47%/60% (54%)  <= Weak Candidate
+M76: Japan (F2)        / last 32 vs C1(Morocco) / C2(Brazil)         => Stake: £0   Odds: 13/10  Profit: £13.00  ELO: 56%/34% (45%)  <= Bet
+M76: Morocco (C1)      / last 32 vs F2(Japan) / F1(Netherlands)      => Stake: £0   Odds: 10/3   Profit: £33.33  ELO: 44%/40% (42%)  <= Candidate/Threat(Japan QF)
+M77: France (I1)       / last 32 vs CDFGH3(Sweden)                   => Stake: £0   Odds: 1/5    Profit: £2.00   ELO: 87%
+M78: Ecuador (E2)      / last 32 vs I2(Senegal) / I1(France)         => Stake: £0   Odds: 5/4    Profit: £12.50  ELO: 47%/24% (36%)  <= Risky Candidate
+M79: Mexico (A1)       / last 32 vs CEFHI3(Saudi Arabia)             => Stake: £0   Odds: 8/11   Profit: £7.27   ELO: 82%            <= Weak Candidate
+M80: England (L1)      / last 32 vs EHIJK3(Norway)                   => Stake: £0   Odds: 1/4    Profit: £2.50   ELO: 67%
+M81: Turkey (D1)       / last 32 vs BEFIJ3(Bosnia & H.)              => Stake: £10  Odds: 6/5    Profit: £12.00  ELO: 91%            <= Bet
+M82: Belgium (G1)      / last 32 vs AEHIJ3(Czech Republic)           => Stake: £0   Odds: 4/11   Profit: £3.64   ELO: 73%
+M83: Colombia (K2)     / last 32 vs L2(Croatia) / L1(England)        => Stake: £0   Odds: 10/11  Profit: £9.09   ELO: 58%/36% (47%)  <= Weak Candidate
+M84: Spain (H1)        / last 32 vs J2(Austria) / J1(Argentina)      => Stake: £0   Odds: 2/9    Profit: £2.22   ELO: 79%/53% (66%)
+M85: Switzerland (B1)  / last 32 vs EFGIJ3(Algeria)                  => Stake: £0   Odds: 4/7    Profit: £5.71   ELO: 66%            <= Weak Candidate
+M86: Argentina (J1)    / last 32 vs H2(Uruguay) / H1(Spain)          => Stake: £0   Odds: 4/9    Profit: £4.44   ELO: 64%/43% (54%)
+M87: Portugal (K1)     / last 32 vs DEIJL3(Ghana)                    => Stake: £0   Odds: 1/3    Profit: £3.33   ELO: 83%
+M88: USA (D2)          / last 32 vs G2(Egypt) / G1(Belgium)          => Stake: £0   Odds: 5/6    Profit: £8.33   ELO: 72%/29% (51%)  <= Weak Candidate
+=== To Reach QF ===
+ELO: https://www.eloratings.net
+ELO: _% likely opponent (_% avg opponent)
+=== To Reach QF ===
+ELO: https://www.eloratings.net
+ELO: _% likely opponent (_% avg opponent)
+M  : Country (Group)   / last 16 vs (likely opponent / alternative opponent)
+M89: France (W77)      / last 16 vs W74(Germany/Scotland)                => Stake: £10  Odds: 4/7    Profit: £5.71   ELO: 58% (74%)   <= Bet(KO Sweden in 32)
+M89: Germany (W74)     / last 16 vs W77(France/Sweden)                   => Stake: £0   Odds: 6/4    Profit: £15.00  ELO: 42% (26%)
+M90: Brazil (W75)      / last 16 vs W73(South Korea/Canada/Switzerland)  => Stake: £10  Odds: 1/1    Profit: £10.00  ELO: 65% (70%)   <= Bet(KO Netherlands in 32)
+M90: Netherlands (W75) / last 16 vs W73(South Korea/Canada/Switzerland)  => Stake: £0   Odds: 7/5    Profit: £14.00  ELO: 55% (60%)   <= Threat(Brazil QF)
+M90: South Korea (W73) / last 16 vs W75(Netherlands/Brazil/Morocco)      => Stake: £0   Odds: 15/2   Profit: £75.00  ELO: 45% (34%)   <= Candidate(KO Canada/Switzerland in 32)/Threat(Brazil QF)
+M90: Canada (W73)      / last 16 vs W75(Netherlands/Morocco/Brazil)      => Stake: £0   Odds: 9/2    Profit: £45.00  ELO: 28% (28%)   <= Risky Candidate(KO South Korea/Switzerland in 32)/Threat(Brazil QF)
+M91: Japan (W76)       / last 16 vs W78(Ecuador/Senegal/France)          => Stake: £10  Odds: 9/2    Profit: £45.00  ELO: 55% (39%)   <= Bet(KO Morocco in 32)
+M91: Senegal (W78)     / last 16 vs W76(Japan/Netherlands/Morocco)       => Stake: £0   Odds: 6/1    Profit: £60.00  ELO: 45% (43%)   <= Candidate(KO Ecuador/France in 32)
+M91: Ecuador (W78)     / last 16 vs W76(Japan/Netherlands/Morocco)       => Stake: £0   Odds: 9/2    Profit: £45.00  ELO: 42% (34%)   <= Candidate(KO Senegal/France in 32)
+M92: England (W80)     / last 16 vs W79(Mexico/Saudi Arabia)             => Stake: £10  Odds: 8/11   Profit: £7.27   ELO: 66% (69%)   <= Bet(KO Norway in 32)
+M92: Mexico (W79)      / last 16 vs W80(England/Norway)                  => Stake: £0   Odds: 11/4   Profit: £27.50  ELO: 34% (31%)   <= Threat(England SF)
+M93: Spain (W84)       / last 16 vs W83(Colombia/Croatia/England)        => Stake: £10  Odds: 4/6    Profit: £6.67   ELO: 70% (63%)   <= Bet(KO Austria/Argentina in 32)
+M93: Colombia (W83)    / last 16 vs W84(Spain/Austria/Argentina)         => Stake: £0   Odds: 11/4   Profit: £27.50  ELO: 30% (34%)   <= Risky Candidate/Threat(Spain SF)
+M93: Croatia (W83)     / last 16 vs W84(Spain/Austria/Argentina)         => Stake: £0   Odds: 4/1    Profit: £40.00  ELO: 28% (31%)   <= Moonshot(KO Colombia/England in 32)/Threat(Spain SF)
+M94: Turkey (W81)      / last 16 vs W82(Belgium/Czech Republic)          => Stake: £10  Odds: 4/1    Profit: £40.00  ELO: 52% (60%)   <= Bet(KO Bosnia & H. in 32)
+M94: Belgium (W82)     / last 16 vs W81(Turkey/Bosnia & H.)              => Stake: £0   Odds: 6/5    Profit: £12.00  ELO: 48% (40%)   <= Threat(Turkey QF)
+M95: Argentina (W86)   / last 16 vs W88(USA/Egypt/Belgium)               => Stake: £0   Odds: 10/11  Profit: £9.09   ELO: 68% (63%)   <= Weak Candidate
+M95: Uruguay (W86)     / last 16 vs W88(USA/Egypt/Belgium)               => Stake: £0   Odds: 16/5   Profit: £32.00  ELO: 52% (47%)   <= Candidate(KO Argentina/Spain in 32)
+M95: USA (W88)         / last 16 vs W86(Argentina/Uruguay/Spain)         => Stake: £0   Odds: 13/5   Profit: £26.00  ELO: 32% (29%)   <= Risky Candidate(KO Egypt/Belgium in 32)
+M95: Egypt (W88)       / last 16 vs W86(Argentina/Uruguay/Spain)         => Stake: £0   Odds: 13/2   Profit: £65.00  ELO: 18% (15%)   <= Moonshot(KO USA/Belgium in 32)
+M96: Portugal (W87)    / last 16 vs W85(Switzerland/Algeria)             => Stake: £10  Odds: 10/22  Profit: £4.55   ELO: 64% (72%)   <= Bet(KO Ghana in 32)
+M96: Switzerland (W85) / last 16 vs W87(Portugal/Croatia/Ghana)          => Stake: £0   Odds: 11/4   Profit: £27.50  ELO: 36% (43%)   <= Candidate(KO Algeria in 32)/Threat(Portugal SF)
+=== To Reach SF ===
+ELO: https://www.eloratings.net
+ELO: _% likely opponent (_% avg opponent)
+M97: France (W89)      / quarter vs W90(Brazil/Netherlands/South Korea/Canada) => Stake: £20  Odds: 5/4    Profit: £25.00   ELO: 58% (65%)   <= Bet
+M97: Brazil (W90)      / quarter vs W89(France/Germany)                        => Stake: £0   Odds: 11/5   Profit: £22.00   ELO: 42% (46%)   <= Threat(France SF)
+M98: Spain (W93)       / quarter vs W94(Turkey/Belgium)                        => Stake: £10  Odds: 6/5    Profit: £12.00   ELO: 70% (65%)   <= Bet
+M98: Turkey (W94)      / quarter vs W93(Spain/Colombia/Croatia)                => Stake: £0   Odds: 4/1    Profit: £40.00   ELO: 30% (38%)   <= Moonshot/Threat(Spain SF)
+M99: Japan (W91)       / quarter vs W92(England/Mexico)                        => Stake: £0   Odds: 11/1   Profit: £110.00  ELO: 38% (42%)   <= Risky Candidate/Threat(England SF)
+M99: England (W92)     / quarter vs W91(Japan/Senegal/Ecuador)                 => Stake: £10  Odds: 17/10  Profit: £17.00   ELO: 62% (60%)   <= Bet
+M100: Argentina (W95)  / quarter vs W96(Portugal/Switzerland)                  => Stake: £0   Odds: 2/1    Profit: £20.00   ELO: 52% (58%)   <= Threat(Portugal SF)
+M100: Portugal (W96)   / quarter vs W95(Argentina/Uruguay/USA/Egypt)           => Stake: £10  Odds: 21/10  Profit: £21.00   ELO: 48% (56%)   <= Bet
+=== To Reach Final ===
+M101: 
+M101: 
+M102: 
+M102: 
+Argentina  / semi vs France/Brazil/Turkey/USA             	=> Stake: £0   Odds: 9/2    Profit: £45.00 	<= Hedge/Threat
+Brazil     / semi vs Spain/Portugal/Argentina/Uruguay     	=> Stake: £0   Odds: 7/2    Profit: £35.00 	<= Hedge/Threat
+England    / semi vs Portugal/Argentina/Spain/Uruguay      	=> Stake: £10  Odds: 3/1    Profit: £30.00 	<= Bet
+Portugal   / semi vs England/Japan/Mexico/Uruguay         	=> Stake: £0   Odds: 9/2    Profit: £45.00	<= Hedge/Threat
+France     / semi vs Spain/Portugal/Argentina/Uruguay     	=> Stake: £0   Odds: 5/2    Profit: £25.00 	<= Candidate
+Spain      / semi vs France/Brazil/Turkey/USA             	=> Stake: £0   Odds: 5/2    Profit: £5.00 	<= Candidate
+=== Winner ===
+England              	=> Stake: £10  Odds: 6/1    Profit: £60.00 	ELO: 8% to 12%         	<= Bet/Moonshot
+France OR Portugal   	=> Stake: £10  Odds: 11/4   Profit: £27.50 	ELO: 20% to 28% (Combined)	<= Bet/Hedge
+France OR Argentina  	=> Stake: £0   Odds: 13/5   Profit: £26.00 	ELO: 20% to 28%    (Combined)	<= Hedge
+Spain OR Argentina   	=> Stake: £0   Odds: 13/5   Profit: £26.00 	ELO: 24% to 30%    (Combined)	<= Hedge
+Spain OR Portugal    	=> Stake: £0   Odds: 13/5   Profit: £26.00 	ELO: 22% to 30% (Combined) 	<= Hedge
+=== Risks ===
+Below are starting scenarios that impact my bets negatively!
+1. Brazil path replaces Morocco/Japan/England route
+2. USA top/strong route damaging Turkey
+3. England not topping Group L
+4. Portugal running into Argentina/Spain rather than easier route
+5. Third-place allocation changing England/Norway or Portugal/Ghana assumptions
+6. France vs Brazil quarter being much closer than expected
+=== Actions ===
+IF South Korea A1
+THEN 
+PATH Saudi Arabia => England 			=> Japan/Senegal/Ecuador 
+FROM Canada 	  => Brazil/Netherlands/Morocco => France/Germany
+KEEP South Korea qualify bet
+KEEP South Korea last 16 bet
+CONSIDER BUY South Korea QF bet
+IF Canada B1
+THEN
+PATH Algeria 	 => Portugal 			=> Argentina/Uruguay/USA/Egypt 
+FROM South Korea => Brazil/Netherlands/Morocco  => France/Germany
+KEEP South Korea last 16 bet
+BUY Canada last 16 bet
+CONSIDER BUY Canada QF bet
+IF Morocco C2
+THEN
+PATH Netherlands => South Korea/Canada/Switzerland => France/Germany 
+FROM Japan 	 => Ecuador/Senegal/France 	   => England/Mexico
+CONSIDER CASH OUT Japan last 16 bet
+CONSIDER CASH OUT Japan QF bet
+CONSIDER Morocco last 16 bet
+IF Brazil C1
+THEN
+PATH Japan 	 => Ecuador/Senegal/France 	   => England/Mexico 
+FROM Netherlands => South Korea/Canada/Switzerland => France/Germany
+CASH OUT Japan last 16 bet
+CASH OUT Japan last QF bet
+KEEP Brazil QF bet
+IF Norway I1
+THEN
+PATH Sweden  => Germany/Scotland    => Brazil/Netherlands/South Korea/Canada
+FROM England => Mexico/Saudi Arabia => Japan/Senegal/Ecuador
+CONSIDER BUY Senegal last 16
+CONSIDER BUY Senegal QF
+CONSIDER BUY Senegal SF
+IF Norway I2
+THEN
+PATH Ecuador => Japan/Morocco/Netherlands => England/Mexico
+FROM England => Mexico/Saudi Arabia 	  => Japan/Senegal/Ecuador
+CONSIDER BUY Norway last 16
+CONSIDER BUY Norway QF
+KEEP England bets
+IF Senegal I2
+THEN
+PATH Ecuador => Japan/Morocco/Netherlands => England/Mexico
+FROM England => Mexico/Saudi Arabia 	  => Japan/Senegal/Ecuador
+CONSIDER BUY Senegal last 16
+CONSIDER BUY Senegal QF
+IF Senegal I3
+THEN
+PATH England => Mexico/Saudi Arabia 	  => Japan/Senegal/Ecuador
+FROM Ecuador => Japan/Morocco/Netherlands => England/Mexico
+REDUCE confidence in England last 16
+IF USA G1
+THEN
+PATH Egypt   => Argentina/Uruguay => Portugal/Switzerland
+FROM Belgium => Argentina/Uruguay => Portugal/Switzerland
+CONSIDER BUY USA last 16 bet
+CONSIDER USA SF
+AVOID adding Turkey bets
+IF England runner up Group L
+THEN
+PATH 
+FROM
+=== Outcome ===
+Total Bet = £300
+Bad (25% => -£180 to -£250)
+* England lose before QF/SF.
+* France fail before SF.
+* Japan fail before QF.
+* Turkey fail before QF.
+* Brazil or Netherlands block France’s SF route.
+* Morocco group-winner bet fails and Japan route becomes harder.
+Average (45% => -£30 to £50)
+* Most favourites progress as expected.
+* France reaches SF.
+* England reaches QF, maybe SF.
+* Portugal reaches QF/SF.
+* One of Japan or Turkey performs, but not both.
+* Morocco either lands group winner or Japan offsets that branch.
+Good (25% => £100 to £250)
+* France reaches SF or final.
+* England reaches SF.
+* Portugal reaches SF.
+* Japan reaches QF.
+* Turkey reaches QF or better.
+* Morocco group winner lands or another outsider candidate offsets losses.
+Dream (5% => +£300 to £600+)
+* England wins World Cup or reaches final.
+* France or Portugal win/reach final on the opposite side.
+* Japan reaches QF/SF.
+* Turkey reaches SF.
+* Morocco wins group and your bracket shape largely holds.
+=== Scenarios ===
+Canada win Group B		=> last 32 vs 			/ last 16 vs 		/ quarter vs 	/ semi vs 	/ final vs 
+Turkey runner up Group B	=> last 32 vs 			/ last 16 vs 		/ quarter vs 	/ semi vs 	/ final vs 
+Colombia win Group K		=> last 32 vs Ghana 		/ last 16 vs Switzerland 	/ quarter vs Argentina 	/ semi vs England	/ final vs France OR Portugal OR Brazil 
+Portugal runner up Group K	=> last 32 vs Croatia 		/ last 16 vs Spain 		/ quarter vs Turkey 	/ semi vs Brazil 	/ final vs England OR Colombia OR Argentina
+IF Brazil win Group C  	
+=> last 32 vs Japan 	
+=> last 16 vs Senegal 	
+=> quarter vs England 	
+=> semi vs Portugal 	
+=> final vs Spain OR Germany OR Netherlands
+THEN Japan lose last 32 vs Brazil 	-£20 stake 	/ -£62 profit	
+THEN England lose quarter vs Brazil 	-£30 stake 	/ -£107 profit 	
+THEN Total			-£50 stake	/ -£169 profit	(likely outcome)
+IF Morocco runner up Group C 	
+=> last 32 vs Netherlands	
+=> last 16 vs South Korea	
+=> quarter vs France	
+=> semi vs Spain 	
+=> final vs Brazil OR Portugal OR Argentina
+THEN Morocco runner up		-£10 stake 	/ -£35 profit	
+THEN France win quarter vs Morocco 	+£10 stake	/ +£25 profit 	
+THEN Total			-£0 stake	/ -£10 profit	(likely outcome)
+IF USA win Group D
+=> last 32 vs Bosnia & Herzegovina
+=> last 16 vs Belgium
+=> quarter vs Spain
+=> semi vs France
+=> final vs England OR Japan OR Argentina
+THEN 
+IF Turkey runner up Group D
+=> last 32 vs Egypt
+=> last 16 vs Argentina
+=> quarter vs Colombia
+=> semi vs England
+=> final vs France OR Spain OR Brazil
+THEN Turkey runner up                 -£10 stake  / -£17.50 profit
+THEN Turkey win last 32 Egypt         +£10 stake   / +£0 profit
+THEN Turkey lose last 16 vs Argentina -£10 stake  / -£40.00 profit
+THEN Total                            -£10 stake  / -£57.50 profit (likely outcome)
+OR
+THEN Turkey runner up                 -£10 stake  / -£17.50 profit
+THEN Turkey lose last 32 vs Egypt     -£20 stake  / -£52.00 profit
+THEN Total                            -£30 stake  / -£69.50 profit 
+OR
+THEN Turkey runner up                 -£10 stake  / -£17.50 profit
+THEN Turkey beat Egypt                +£0 stake   / +£0 profit
+THEN Turkey beat Argentina            +£10 stake  / +£40.00 profit
+THEN Total                            +£0 stake   / +£22.50 profit 
+IF Japan win Group F	
+=> last 32 vs Brazil 	
+=> last 16 vs South Korea 	
+=> quarter vs France 	
+=> semi vs Spain	
+=> final vs England OR Portugal OR Argentina
+THEN Japan lose last 16 vs France	-£10 stake	/ -£45 profit	
+THEN France win quarter vs Morocco 	+£10 stake	/ +£25 profit 	
+THEN Total 			+£0 stake	/ -£20 profit 	(likely outcome
+IF Japan win Group F	
+=> last 32 vs Morocco 	
+=> last 16 vs South Korea 	
+=> quarter vs France 	
+=> semi vs Spain	
+=> final vs England OR Portugal OR Brazil
+AND Brazil win Group C 	
+=> last 32 vs Netherlands 	
+=> last 16 vs Senegal 	
+=> quarter vs England 	
+=> semi vs Portugal 	
+=> final vs France OR Spain OR Japan
+THEN Morocco runner up		-£10 stake 	/ -£35 profit	
+THEN Japan lose last 16 vs France	-£10 stake	/ -£45 profit	
+THEN France win quarter vs Morocco 	+£10 stake	/ +£25 profit 	
+THEN Total			-£20 stake	/ -£65 profit 	(likely outcome)
+IF Sweden runner up Group F	
+=> last 32 vs Morocco 	
+=> last 16 vs Ecuador 	
+=> quarter vs England 	
+=> semi vs Portugal
+=> final vs France OR Spain OR Brazil
+AND Japan 3rd place Group F 	
+=> last 32 vs France 	
+=> last 16 vs Germany 	
+=> quarter vs Brazil 	
+=> semi vs Spain	
+=> final vs England OR Portugal OR Argentina
+THEN England win quarter vs Sweden	+£10 stake	/ +£17 profit	
+THEN Japan lose last 32 vs France	-£10 stake	/ -£45 profit	
+THEN Total			+£0 stake	/ -£28 profit 	(likely outcome) 
+IF Norway win Group I 	
+=> last 32 vs Sweden 	
+=> last 16 vs Germany 	
+=> quarter vs Brazil 	
+=> semi vs Spain
+=> final vs England OR Portugal OR Argentina 
+AND France runner up Group I	
+=> last 32 vs Ecuador 	
+=> last 16 vs Japan 	
+=> quarter vs England 	
+=> semi vs Portugal
+=> final vs Spain OR Brazil OR Norway
+THEN Japan lose last 16 vs France	-£10 stake	/ -£45 profit	
+THEN England lose quarter vs France	-£30 stake	/ -£107 profit	
+THEN Total			-£40 stake	/ -£152 profit 	(likely outcome)
+IF Norway runner up Group I 	
+=> last 32 vs Ecuador 	
+=> last 16 vs Japan 	
+=> quarter vs England 	
+=> semi vs Portugal
+=> final vs France OR Spain OR Brazil
+THEN Japan lose last 16 vs Norway	-£10 stake	/ -£45 profit	(likely outcome) 	
+OR
+THEN Japan win last 16 vs Norway	+£10 stake	/ +£45 profit	
+THEN England win quarter vs Japan	+£10 stake	/ +£17 profit	
+THEN Total			+£20 stake	/ +£62 profit
+OR
+THEN Japan win last 16 vs Norway 	+£10 stake	/ +£45 profit	
+THEN England lose quarter vs Japan	-£30 stake	/ -£107 profit 	
+THEN Total			-£20 stake	/ -£62 profit	(unlikely, but I should have placed that bet on Japan reaching semi final!) 
+IF Croatia win Group L	
+=> last 32 vs Norway   	
+=> last 16 vs Mexico	
+=> quarter vs Japan 	
+=> semi vs Portugal	
+=> final vs France OR England OR Belgium
+THEN Croatia lose quarter vs Japan 	+£10 stake 	/ +£45 profit
+OR
+Then Croatia win quarter vs Japan	-£10 stake 	/ -£45 profit	
+Then Croatia lose semi vs Portugal	+£10 stake	/ +£21 profit
+THEN Total			+£0 stake  	/ -£24 profit
+OR
+Then Croatia win quarter vs Japan	-£10 stake 	/ -£45 profit
+Then Croatia win semi vs Portugal	-£10 stake 	/ -£21 profit
+THEN Total			-£0 stake  	/ -£66 profit
+IF England runner up Group L	
+=> last 32 vs Colombia  	
+=> last 16 vs Spain 	
+=> quarter vs Belgium  	
+=> semi vs France
+=> final vs Portugal OR Argentina OR Croatia
+THEN England lose last 16 vs Spain 	-£40 stake 	/ -£114.27 profit
+=== Results ===
+Below are the actual results, this will help me to decide if I should cash out early or make more bets!
+=== Groups ===
+=== Qualify From Group ===
+=== Last 16 ===
+=== Quarter Final ===
+=== Semi Final ===
+=== Final ===
+=== Winner ===
+
