@@ -13,7 +13,7 @@ Examples:
   java -jar target/tournament-predictor-0.0.1-SNAPSHOT.jar --tournament=world_cup_2026
 
 Outputs:
-  csv/matchups/{tournament}/last_32_matchups.csv  (expanded permutations)
+  csv/matchups/{tournament}/last_32.csv  (expanded permutations)
 
 What it does now:
 - Reads predictions/groups.csv (position,team)

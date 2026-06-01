@@ -18,10 +18,87 @@ public class CsvLoader {
         Map<String,String> map = new HashMap<>();
         for(String line : lines.stream().skip(1).collect(Collectors.toList())){
             if(line.trim().isEmpty()) continue;
-            String[] parts = line.split(",",2);
+            // expect: position,team[,group_winner,qualifies]
+            String[] parts = line.split(",",4);
             String pos = parts[0].trim();
             String team = parts.length>1 ? parts[1].trim() : "";
             if(!pos.isEmpty()) map.put(pos, team);
+        }
+        return map;
+    }
+
+    // New: load qualifies column (position -> qualifies value: yes/maybe/no)
+    public Map<String,String> loadGroupQualifies(String tournament) throws IOException {
+        Path p = projectRoot.resolve("csv").resolve("predictions").resolve(tournament).resolve("groups.csv");
+        if(!Files.exists(p)){
+            throw new IOException("Groups file not found: " + p.toAbsolutePath() + ". Expected csv/predictions/" + tournament + "/groups.csv");
+        }
+        List<String> lines = Files.readAllLines(p);
+        Map<String,String> map = new HashMap<>();
+        for(String line : lines.stream().skip(1).collect(Collectors.toList())){
+            if(line.trim().isEmpty()) continue;
+            String[] parts = line.split(",",4);
+            String pos = parts[0].trim();
+            String qualifies = "";
+            if(parts.length>3) qualifies = parts[3].trim().toLowerCase();
+            if(!pos.isEmpty()) map.put(pos, qualifies);
+        }
+        return map;
+    }
+
+    // New: load group_winner column (position -> group_winner value: yes/maybe/no)
+    public Map<String,String> loadGroupWinner(String tournament) throws IOException {
+        Path p = projectRoot.resolve("csv").resolve("predictions").resolve(tournament).resolve("groups.csv");
+        if(!Files.exists(p)){
+            throw new IOException("Groups file not found: " + p.toAbsolutePath() + ". Expected csv/predictions/" + tournament + "/groups.csv");
+        }
+        List<String> lines = Files.readAllLines(p);
+        Map<String,String> map = new HashMap<>();
+        for(String line : lines.stream().skip(1).collect(Collectors.toList())){
+            if(line.trim().isEmpty()) continue;
+            String[] parts = line.split(",",6);
+            String pos = parts[0].trim();
+            String gw = "";
+            if(parts.length>2) gw = parts[2].trim().toLowerCase();
+            if(!pos.isEmpty()) map.put(pos, gw);
+        }
+        return map;
+    }
+
+    // New: load runner_up column (position -> runner_up value: yes/maybe/no)
+    public Map<String,String> loadRunnerUp(String tournament) throws IOException {
+        Path p = projectRoot.resolve("csv").resolve("predictions").resolve(tournament).resolve("groups.csv");
+        if(!Files.exists(p)){
+            throw new IOException("Groups file not found: " + p.toAbsolutePath() + ". Expected csv/predictions/" + tournament + "/groups.csv");
+        }
+        List<String> lines = Files.readAllLines(p);
+        Map<String,String> map = new HashMap<>();
+        for(String line : lines.stream().skip(1).collect(Collectors.toList())){
+            if(line.trim().isEmpty()) continue;
+            String[] parts = line.split(",",6);
+            String pos = parts[0].trim();
+            String ru = "";
+            if(parts.length>3) ru = parts[3].trim().toLowerCase();
+            if(!pos.isEmpty()) map.put(pos, ru);
+        }
+        return map;
+    }
+
+    // New: load third_place column (position -> third_place value: yes/maybe/no)
+    public Map<String,String> loadThirdPlace(String tournament) throws IOException {
+        Path p = projectRoot.resolve("csv").resolve("predictions").resolve(tournament).resolve("groups.csv");
+        if(!Files.exists(p)){
+            throw new IOException("Groups file not found: " + p.toAbsolutePath() + ". Expected csv/predictions/" + tournament + "/groups.csv");
+        }
+        List<String> lines = Files.readAllLines(p);
+        Map<String,String> map = new HashMap<>();
+        for(String line : lines.stream().skip(1).collect(Collectors.toList())){
+            if(line.trim().isEmpty()) continue;
+            String[] parts = line.split(",",6);
+            String pos = parts[0].trim();
+            String tp = "";
+            if(parts.length>4) tp = parts[4].trim().toLowerCase();
+            if(!pos.isEmpty()) map.put(pos, tp);
         }
         return map;
     }

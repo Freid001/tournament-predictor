@@ -1,4 +1,1 @@
-com\predictor\service\MatchResolver.class
 com\predictor\WorldCupPredictorApplication.class
-com\predictor\loader\CsvLoader$BracketEntry.class
-com\predictor\loader\CsvLoader.class

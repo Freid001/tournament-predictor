@@ -1,0 +1,618 @@
+match_id,team1,team2,prediction
+M73,A2(Mexico),B2(Switzerland),
+M73,A2(Mexico),B2(Canada),maybe
+M73,A2(Mexico),B2(Bosnia & H.),
+M73,A2(South Korea),B2(Switzerland),maybe
+M73,A2(South Korea),B2(Canada),maybe
+M73,A2(South Korea),B2(Bosnia & H.),maybe
+M73,A2(Czech Republic),B2(Switzerland),
+M73,A2(Czech Republic),B2(Canada),maybe
+M73,A2(Czech Republic),B2(Bosnia & H.),
+M73,A2(South Africa),B2(Switzerland),
+M73,A2(South Africa),B2(Canada),maybe
+M73,A2(South Africa),B2(Bosnia & H.),
+M74,E1(Germany),ABCDF3(Mexico),yes
+M74,E1(Germany),ABCDF3(South Korea),maybe
+M74,E1(Germany),ABCDF3(Czech Republic),maybe
+M74,E1(Germany),ABCDF3(South Africa),maybe
+M74,E1(Germany),ABCDF3(Switzerland),yes
+M74,E1(Germany),ABCDF3(Canada),maybe
+M74,E1(Germany),ABCDF3(Bosnia & H.),maybe
+M74,E1(Germany),ABCDF3(Morocco),yes
+M74,E1(Germany),ABCDF3(Brazil),maybe
+M74,E1(Germany),ABCDF3(Scotland),maybe
+M74,E1(Germany),ABCDF3(Haiti),maybe
+M74,E1(Germany),ABCDF3(Turkey),yes
+M74,E1(Germany),ABCDF3(USA),maybe
+M74,E1(Germany),ABCDF3(Australia),maybe
+M74,E1(Germany),ABCDF3(Paraguay),maybe
+M74,E1(Germany),ABCDF3(Netherlands),yes
+M74,E1(Germany),ABCDF3(Japan),maybe
+M74,E1(Germany),ABCDF3(Sweden),maybe
+M74,E1(Germany),ABCDF3(Tunisia),maybe
+M74,E1(Ecuador),ABCDF3(Mexico),
+M74,E1(Ecuador),ABCDF3(South Korea),maybe
+M74,E1(Ecuador),ABCDF3(Czech Republic),maybe
+M74,E1(Ecuador),ABCDF3(South Africa),maybe
+M74,E1(Ecuador),ABCDF3(Switzerland),
+M74,E1(Ecuador),ABCDF3(Canada),maybe
+M74,E1(Ecuador),ABCDF3(Bosnia & H.),maybe
+M74,E1(Ecuador),ABCDF3(Morocco),
+M74,E1(Ecuador),ABCDF3(Brazil),maybe
+M74,E1(Ecuador),ABCDF3(Scotland),maybe
+M74,E1(Ecuador),ABCDF3(Haiti),maybe
+M74,E1(Ecuador),ABCDF3(Turkey),
+M74,E1(Ecuador),ABCDF3(USA),maybe
+M74,E1(Ecuador),ABCDF3(Australia),maybe
+M74,E1(Ecuador),ABCDF3(Paraguay),maybe
+M74,E1(Ecuador),ABCDF3(Netherlands),
+M74,E1(Ecuador),ABCDF3(Japan),maybe
+M74,E1(Ecuador),ABCDF3(Sweden),maybe
+M74,E1(Ecuador),ABCDF3(Tunisia),maybe
+M74,E1(Ivory Coast),ABCDF3(Mexico),
+M74,E1(Ivory Coast),ABCDF3(South Korea),maybe
+M74,E1(Ivory Coast),ABCDF3(Czech Republic),maybe
+M74,E1(Ivory Coast),ABCDF3(South Africa),maybe
+M74,E1(Ivory Coast),ABCDF3(Switzerland),
+M74,E1(Ivory Coast),ABCDF3(Canada),maybe
+M74,E1(Ivory Coast),ABCDF3(Bosnia & H.),maybe
+M74,E1(Ivory Coast),ABCDF3(Morocco),
+M74,E1(Ivory Coast),ABCDF3(Brazil),maybe
+M74,E1(Ivory Coast),ABCDF3(Scotland),maybe
+M74,E1(Ivory Coast),ABCDF3(Haiti),maybe
+M74,E1(Ivory Coast),ABCDF3(Turkey),
+M74,E1(Ivory Coast),ABCDF3(USA),maybe
+M74,E1(Ivory Coast),ABCDF3(Australia),maybe
+M74,E1(Ivory Coast),ABCDF3(Paraguay),maybe
+M74,E1(Ivory Coast),ABCDF3(Netherlands),
+M74,E1(Ivory Coast),ABCDF3(Japan),maybe
+M74,E1(Ivory Coast),ABCDF3(Sweden),maybe
+M74,E1(Ivory Coast),ABCDF3(Tunisia),maybe
+M75,F1(Netherlands),C2(Morocco),yes
+M75,F1(Netherlands),C2(Brazil),maybe
+M75,F1(Netherlands),C2(Scotland),yes
+M75,F1(Netherlands),C2(Haiti),yes
+M75,F1(Japan),C2(Morocco),
+M75,F1(Japan),C2(Brazil),maybe
+M75,F1(Japan),C2(Scotland),
+M75,F1(Japan),C2(Haiti),
+M75,F1(Sweden),C2(Morocco),
+M75,F1(Sweden),C2(Brazil),maybe
+M75,F1(Sweden),C2(Scotland),
+M75,F1(Sweden),C2(Haiti),
+M75,F1(Tunisia),C2(Morocco),
+M75,F1(Tunisia),C2(Brazil),maybe
+M75,F1(Tunisia),C2(Scotland),
+M75,F1(Tunisia),C2(Haiti),
+M76,C1(Morocco),F2(Netherlands),yes
+M76,C1(Morocco),F2(Japan),maybe
+M76,C1(Morocco),F2(Sweden),yes
+M76,C1(Morocco),F2(Tunisia),yes
+M76,C1(Brazil),F2(Netherlands),
+M76,C1(Brazil),F2(Japan),maybe
+M76,C1(Brazil),F2(Sweden),
+M76,C1(Brazil),F2(Tunisia),
+M76,C1(Scotland),F2(Netherlands),
+M76,C1(Scotland),F2(Japan),maybe
+M76,C1(Scotland),F2(Sweden),
+M76,C1(Scotland),F2(Tunisia),
+M76,C1(Haiti),F2(Netherlands),
+M76,C1(Haiti),F2(Japan),maybe
+M76,C1(Haiti),F2(Sweden),
+M76,C1(Haiti),F2(Tunisia),
+M77,I1(France),CDFGH3(Morocco),yes
+M77,I1(France),CDFGH3(Brazil),maybe
+M77,I1(France),CDFGH3(Scotland),maybe
+M77,I1(France),CDFGH3(Haiti),maybe
+M77,I1(France),CDFGH3(Turkey),yes
+M77,I1(France),CDFGH3(USA),maybe
+M77,I1(France),CDFGH3(Australia),maybe
+M77,I1(France),CDFGH3(Paraguay),maybe
+M77,I1(France),CDFGH3(Netherlands),yes
+M77,I1(France),CDFGH3(Japan),maybe
+M77,I1(France),CDFGH3(Sweden),maybe
+M77,I1(France),CDFGH3(Tunisia),maybe
+M77,I1(France),CDFGH3(Belgium),yes
+M77,I1(France),CDFGH3(Egypt),maybe
+M77,I1(France),CDFGH3(New Zealand),maybe
+M77,I1(France),CDFGH3(Iran),maybe
+M77,I1(France),CDFGH3(Spain),yes
+M77,I1(France),CDFGH3(Uruguay),maybe
+M77,I1(France),CDFGH3(Saudi Arabia),maybe
+M77,I1(France),CDFGH3(Cape Verde),maybe
+M77,I1(Senegal),CDFGH3(Morocco),
+M77,I1(Senegal),CDFGH3(Brazil),maybe
+M77,I1(Senegal),CDFGH3(Scotland),maybe
+M77,I1(Senegal),CDFGH3(Haiti),maybe
+M77,I1(Senegal),CDFGH3(Turkey),
+M77,I1(Senegal),CDFGH3(USA),maybe
+M77,I1(Senegal),CDFGH3(Australia),maybe
+M77,I1(Senegal),CDFGH3(Paraguay),maybe
+M77,I1(Senegal),CDFGH3(Netherlands),
+M77,I1(Senegal),CDFGH3(Japan),maybe
+M77,I1(Senegal),CDFGH3(Sweden),maybe
+M77,I1(Senegal),CDFGH3(Tunisia),maybe
+M77,I1(Senegal),CDFGH3(Belgium),
+M77,I1(Senegal),CDFGH3(Egypt),maybe
+M77,I1(Senegal),CDFGH3(New Zealand),maybe
+M77,I1(Senegal),CDFGH3(Iran),maybe
+M77,I1(Senegal),CDFGH3(Spain),
+M77,I1(Senegal),CDFGH3(Uruguay),maybe
+M77,I1(Senegal),CDFGH3(Saudi Arabia),maybe
+M77,I1(Senegal),CDFGH3(Cape Verde),maybe
+M77,I1(Norway),CDFGH3(Morocco),
+M77,I1(Norway),CDFGH3(Brazil),maybe
+M77,I1(Norway),CDFGH3(Scotland),maybe
+M77,I1(Norway),CDFGH3(Haiti),maybe
+M77,I1(Norway),CDFGH3(Turkey),
+M77,I1(Norway),CDFGH3(USA),maybe
+M77,I1(Norway),CDFGH3(Australia),maybe
+M77,I1(Norway),CDFGH3(Paraguay),maybe
+M77,I1(Norway),CDFGH3(Netherlands),
+M77,I1(Norway),CDFGH3(Japan),maybe
+M77,I1(Norway),CDFGH3(Sweden),maybe
+M77,I1(Norway),CDFGH3(Tunisia),maybe
+M77,I1(Norway),CDFGH3(Belgium),
+M77,I1(Norway),CDFGH3(Egypt),maybe
+M77,I1(Norway),CDFGH3(New Zealand),maybe
+M77,I1(Norway),CDFGH3(Iran),maybe
+M77,I1(Norway),CDFGH3(Spain),
+M77,I1(Norway),CDFGH3(Uruguay),maybe
+M77,I1(Norway),CDFGH3(Saudi Arabia),maybe
+M77,I1(Norway),CDFGH3(Cape Verde),maybe
+M78,E2(Germany),I2(France),
+M78,E2(Germany),I2(Senegal),maybe
+M78,E2(Germany),I2(Norway),
+M78,E2(Ecuador),I2(France),maybe
+M78,E2(Ecuador),I2(Senegal),maybe
+M78,E2(Ecuador),I2(Norway),maybe
+M78,E2(Ivory Coast),I2(France),
+M78,E2(Ivory Coast),I2(Senegal),maybe
+M78,E2(Ivory Coast),I2(Norway),
+M79,A1(Mexico),CEFHI3(Morocco),yes
+M79,A1(Mexico),CEFHI3(Brazil),maybe
+M79,A1(Mexico),CEFHI3(Scotland),maybe
+M79,A1(Mexico),CEFHI3(Haiti),maybe
+M79,A1(Mexico),CEFHI3(Germany),yes
+M79,A1(Mexico),CEFHI3(Ecuador),maybe
+M79,A1(Mexico),CEFHI3(Ivory Coast),yes
+M79,A1(Mexico),CEFHI3(Netherlands),yes
+M79,A1(Mexico),CEFHI3(Japan),maybe
+M79,A1(Mexico),CEFHI3(Sweden),maybe
+M79,A1(Mexico),CEFHI3(Tunisia),maybe
+M79,A1(Mexico),CEFHI3(Spain),yes
+M79,A1(Mexico),CEFHI3(Uruguay),maybe
+M79,A1(Mexico),CEFHI3(Saudi Arabia),maybe
+M79,A1(Mexico),CEFHI3(Cape Verde),maybe
+M79,A1(Mexico),CEFHI3(France),yes
+M79,A1(Mexico),CEFHI3(Senegal),maybe
+M79,A1(Mexico),CEFHI3(Norway),maybe
+M79,A1(South Korea),CEFHI3(Morocco),
+M79,A1(South Korea),CEFHI3(Brazil),maybe
+M79,A1(South Korea),CEFHI3(Scotland),maybe
+M79,A1(South Korea),CEFHI3(Haiti),maybe
+M79,A1(South Korea),CEFHI3(Germany),
+M79,A1(South Korea),CEFHI3(Ecuador),maybe
+M79,A1(South Korea),CEFHI3(Ivory Coast),
+M79,A1(South Korea),CEFHI3(Netherlands),
+M79,A1(South Korea),CEFHI3(Japan),maybe
+M79,A1(South Korea),CEFHI3(Sweden),maybe
+M79,A1(South Korea),CEFHI3(Tunisia),maybe
+M79,A1(South Korea),CEFHI3(Spain),
+M79,A1(South Korea),CEFHI3(Uruguay),maybe
+M79,A1(South Korea),CEFHI3(Saudi Arabia),maybe
+M79,A1(South Korea),CEFHI3(Cape Verde),maybe
+M79,A1(South Korea),CEFHI3(France),
+M79,A1(South Korea),CEFHI3(Senegal),maybe
+M79,A1(South Korea),CEFHI3(Norway),maybe
+M79,A1(Czech Republic),CEFHI3(Morocco),
+M79,A1(Czech Republic),CEFHI3(Brazil),maybe
+M79,A1(Czech Republic),CEFHI3(Scotland),maybe
+M79,A1(Czech Republic),CEFHI3(Haiti),maybe
+M79,A1(Czech Republic),CEFHI3(Germany),
+M79,A1(Czech Republic),CEFHI3(Ecuador),maybe
+M79,A1(Czech Republic),CEFHI3(Ivory Coast),
+M79,A1(Czech Republic),CEFHI3(Netherlands),
+M79,A1(Czech Republic),CEFHI3(Japan),maybe
+M79,A1(Czech Republic),CEFHI3(Sweden),maybe
+M79,A1(Czech Republic),CEFHI3(Tunisia),maybe
+M79,A1(Czech Republic),CEFHI3(Spain),
+M79,A1(Czech Republic),CEFHI3(Uruguay),maybe
+M79,A1(Czech Republic),CEFHI3(Saudi Arabia),maybe
+M79,A1(Czech Republic),CEFHI3(Cape Verde),maybe
+M79,A1(Czech Republic),CEFHI3(France),
+M79,A1(Czech Republic),CEFHI3(Senegal),maybe
+M79,A1(Czech Republic),CEFHI3(Norway),maybe
+M79,A1(South Africa),CEFHI3(Morocco),
+M79,A1(South Africa),CEFHI3(Brazil),maybe
+M79,A1(South Africa),CEFHI3(Scotland),maybe
+M79,A1(South Africa),CEFHI3(Haiti),maybe
+M79,A1(South Africa),CEFHI3(Germany),
+M79,A1(South Africa),CEFHI3(Ecuador),maybe
+M79,A1(South Africa),CEFHI3(Ivory Coast),
+M79,A1(South Africa),CEFHI3(Netherlands),
+M79,A1(South Africa),CEFHI3(Japan),maybe
+M79,A1(South Africa),CEFHI3(Sweden),maybe
+M79,A1(South Africa),CEFHI3(Tunisia),maybe
+M79,A1(South Africa),CEFHI3(Spain),
+M79,A1(South Africa),CEFHI3(Uruguay),maybe
+M79,A1(South Africa),CEFHI3(Saudi Arabia),maybe
+M79,A1(South Africa),CEFHI3(Cape Verde),maybe
+M79,A1(South Africa),CEFHI3(France),
+M79,A1(South Africa),CEFHI3(Senegal),maybe
+M79,A1(South Africa),CEFHI3(Norway),maybe
+M80,L1(England),EHIJK3(Germany),yes
+M80,L1(England),EHIJK3(Ecuador),maybe
+M80,L1(England),EHIJK3(Ivory Coast),yes
+M80,L1(England),EHIJK3(Spain),yes
+M80,L1(England),EHIJK3(Uruguay),maybe
+M80,L1(England),EHIJK3(Saudi Arabia),maybe
+M80,L1(England),EHIJK3(Cape Verde),maybe
+M80,L1(England),EHIJK3(France),yes
+M80,L1(England),EHIJK3(Senegal),maybe
+M80,L1(England),EHIJK3(Norway),maybe
+M80,L1(England),EHIJK3(Argentina),yes
+M80,L1(England),EHIJK3(Austria),yes
+M80,L1(England),EHIJK3(Algeria),yes
+M80,L1(England),EHIJK3(Portugal),yes
+M80,L1(England),EHIJK3(Colombia),maybe
+M80,L1(England),EHIJK3(Uzbekistan),maybe
+M80,L1(England),EHIJK3(DR Congo),maybe
+M80,L1(Croatia),EHIJK3(Germany),
+M80,L1(Croatia),EHIJK3(Ecuador),maybe
+M80,L1(Croatia),EHIJK3(Ivory Coast),
+M80,L1(Croatia),EHIJK3(Spain),
+M80,L1(Croatia),EHIJK3(Uruguay),maybe
+M80,L1(Croatia),EHIJK3(Saudi Arabia),maybe
+M80,L1(Croatia),EHIJK3(Cape Verde),maybe
+M80,L1(Croatia),EHIJK3(France),
+M80,L1(Croatia),EHIJK3(Senegal),maybe
+M80,L1(Croatia),EHIJK3(Norway),maybe
+M80,L1(Croatia),EHIJK3(Argentina),
+M80,L1(Croatia),EHIJK3(Austria),
+M80,L1(Croatia),EHIJK3(Algeria),
+M80,L1(Croatia),EHIJK3(Portugal),
+M80,L1(Croatia),EHIJK3(Colombia),maybe
+M80,L1(Croatia),EHIJK3(Uzbekistan),maybe
+M80,L1(Croatia),EHIJK3(DR Congo),maybe
+M80,L1(Ghana),EHIJK3(Germany),
+M80,L1(Ghana),EHIJK3(Ecuador),maybe
+M80,L1(Ghana),EHIJK3(Ivory Coast),
+M80,L1(Ghana),EHIJK3(Spain),
+M80,L1(Ghana),EHIJK3(Uruguay),maybe
+M80,L1(Ghana),EHIJK3(Saudi Arabia),maybe
+M80,L1(Ghana),EHIJK3(Cape Verde),maybe
+M80,L1(Ghana),EHIJK3(France),
+M80,L1(Ghana),EHIJK3(Senegal),maybe
+M80,L1(Ghana),EHIJK3(Norway),maybe
+M80,L1(Ghana),EHIJK3(Argentina),
+M80,L1(Ghana),EHIJK3(Austria),
+M80,L1(Ghana),EHIJK3(Algeria),
+M80,L1(Ghana),EHIJK3(Portugal),
+M80,L1(Ghana),EHIJK3(Colombia),maybe
+M80,L1(Ghana),EHIJK3(Uzbekistan),maybe
+M80,L1(Ghana),EHIJK3(DR Congo),maybe
+M80,L1(Panama),EHIJK3(Germany),
+M80,L1(Panama),EHIJK3(Ecuador),maybe
+M80,L1(Panama),EHIJK3(Ivory Coast),
+M80,L1(Panama),EHIJK3(Spain),
+M80,L1(Panama),EHIJK3(Uruguay),maybe
+M80,L1(Panama),EHIJK3(Saudi Arabia),maybe
+M80,L1(Panama),EHIJK3(Cape Verde),maybe
+M80,L1(Panama),EHIJK3(France),
+M80,L1(Panama),EHIJK3(Senegal),maybe
+M80,L1(Panama),EHIJK3(Norway),maybe
+M80,L1(Panama),EHIJK3(Argentina),
+M80,L1(Panama),EHIJK3(Austria),
+M80,L1(Panama),EHIJK3(Algeria),
+M80,L1(Panama),EHIJK3(Portugal),
+M80,L1(Panama),EHIJK3(Colombia),maybe
+M80,L1(Panama),EHIJK3(Uzbekistan),maybe
+M80,L1(Panama),EHIJK3(DR Congo),maybe
+M81,D1(Turkey),BEFIJ3(Switzerland),yes
+M81,D1(Turkey),BEFIJ3(Canada),maybe
+M81,D1(Turkey),BEFIJ3(Bosnia & H.),maybe
+M81,D1(Turkey),BEFIJ3(Germany),yes
+M81,D1(Turkey),BEFIJ3(Ecuador),maybe
+M81,D1(Turkey),BEFIJ3(Ivory Coast),yes
+M81,D1(Turkey),BEFIJ3(Netherlands),yes
+M81,D1(Turkey),BEFIJ3(Japan),maybe
+M81,D1(Turkey),BEFIJ3(Sweden),maybe
+M81,D1(Turkey),BEFIJ3(Tunisia),maybe
+M81,D1(Turkey),BEFIJ3(France),yes
+M81,D1(Turkey),BEFIJ3(Senegal),maybe
+M81,D1(Turkey),BEFIJ3(Norway),maybe
+M81,D1(Turkey),BEFIJ3(Argentina),yes
+M81,D1(Turkey),BEFIJ3(Austria),yes
+M81,D1(Turkey),BEFIJ3(Algeria),yes
+M81,D1(USA),BEFIJ3(Switzerland),
+M81,D1(USA),BEFIJ3(Canada),maybe
+M81,D1(USA),BEFIJ3(Bosnia & H.),maybe
+M81,D1(USA),BEFIJ3(Germany),
+M81,D1(USA),BEFIJ3(Ecuador),maybe
+M81,D1(USA),BEFIJ3(Ivory Coast),
+M81,D1(USA),BEFIJ3(Netherlands),
+M81,D1(USA),BEFIJ3(Japan),maybe
+M81,D1(USA),BEFIJ3(Sweden),maybe
+M81,D1(USA),BEFIJ3(Tunisia),maybe
+M81,D1(USA),BEFIJ3(France),
+M81,D1(USA),BEFIJ3(Senegal),maybe
+M81,D1(USA),BEFIJ3(Norway),maybe
+M81,D1(USA),BEFIJ3(Argentina),
+M81,D1(USA),BEFIJ3(Austria),
+M81,D1(USA),BEFIJ3(Algeria),
+M81,D1(Australia),BEFIJ3(Switzerland),
+M81,D1(Australia),BEFIJ3(Canada),maybe
+M81,D1(Australia),BEFIJ3(Bosnia & H.),maybe
+M81,D1(Australia),BEFIJ3(Germany),
+M81,D1(Australia),BEFIJ3(Ecuador),maybe
+M81,D1(Australia),BEFIJ3(Ivory Coast),
+M81,D1(Australia),BEFIJ3(Netherlands),
+M81,D1(Australia),BEFIJ3(Japan),maybe
+M81,D1(Australia),BEFIJ3(Sweden),maybe
+M81,D1(Australia),BEFIJ3(Tunisia),maybe
+M81,D1(Australia),BEFIJ3(France),
+M81,D1(Australia),BEFIJ3(Senegal),maybe
+M81,D1(Australia),BEFIJ3(Norway),maybe
+M81,D1(Australia),BEFIJ3(Argentina),
+M81,D1(Australia),BEFIJ3(Austria),
+M81,D1(Australia),BEFIJ3(Algeria),
+M81,D1(Paraguay),BEFIJ3(Switzerland),
+M81,D1(Paraguay),BEFIJ3(Canada),maybe
+M81,D1(Paraguay),BEFIJ3(Bosnia & H.),maybe
+M81,D1(Paraguay),BEFIJ3(Germany),
+M81,D1(Paraguay),BEFIJ3(Ecuador),maybe
+M81,D1(Paraguay),BEFIJ3(Ivory Coast),
+M81,D1(Paraguay),BEFIJ3(Netherlands),
+M81,D1(Paraguay),BEFIJ3(Japan),maybe
+M81,D1(Paraguay),BEFIJ3(Sweden),maybe
+M81,D1(Paraguay),BEFIJ3(Tunisia),maybe
+M81,D1(Paraguay),BEFIJ3(France),
+M81,D1(Paraguay),BEFIJ3(Senegal),maybe
+M81,D1(Paraguay),BEFIJ3(Norway),maybe
+M81,D1(Paraguay),BEFIJ3(Argentina),
+M81,D1(Paraguay),BEFIJ3(Austria),
+M81,D1(Paraguay),BEFIJ3(Algeria),
+M82,G1(Belgium),AEHIJ3(Mexico),yes
+M82,G1(Belgium),AEHIJ3(South Korea),maybe
+M82,G1(Belgium),AEHIJ3(Czech Republic),maybe
+M82,G1(Belgium),AEHIJ3(South Africa),maybe
+M82,G1(Belgium),AEHIJ3(Germany),yes
+M82,G1(Belgium),AEHIJ3(Ecuador),maybe
+M82,G1(Belgium),AEHIJ3(Ivory Coast),yes
+M82,G1(Belgium),AEHIJ3(Spain),yes
+M82,G1(Belgium),AEHIJ3(Uruguay),maybe
+M82,G1(Belgium),AEHIJ3(Saudi Arabia),maybe
+M82,G1(Belgium),AEHIJ3(Cape Verde),maybe
+M82,G1(Belgium),AEHIJ3(France),yes
+M82,G1(Belgium),AEHIJ3(Senegal),maybe
+M82,G1(Belgium),AEHIJ3(Norway),maybe
+M82,G1(Belgium),AEHIJ3(Argentina),yes
+M82,G1(Belgium),AEHIJ3(Austria),yes
+M82,G1(Belgium),AEHIJ3(Algeria),yes
+M82,G1(Egypt),AEHIJ3(Mexico),
+M82,G1(Egypt),AEHIJ3(South Korea),maybe
+M82,G1(Egypt),AEHIJ3(Czech Republic),maybe
+M82,G1(Egypt),AEHIJ3(South Africa),maybe
+M82,G1(Egypt),AEHIJ3(Germany),
+M82,G1(Egypt),AEHIJ3(Ecuador),maybe
+M82,G1(Egypt),AEHIJ3(Ivory Coast),
+M82,G1(Egypt),AEHIJ3(Spain),
+M82,G1(Egypt),AEHIJ3(Uruguay),maybe
+M82,G1(Egypt),AEHIJ3(Saudi Arabia),maybe
+M82,G1(Egypt),AEHIJ3(Cape Verde),maybe
+M82,G1(Egypt),AEHIJ3(France),
+M82,G1(Egypt),AEHIJ3(Senegal),maybe
+M82,G1(Egypt),AEHIJ3(Norway),maybe
+M82,G1(Egypt),AEHIJ3(Argentina),
+M82,G1(Egypt),AEHIJ3(Austria),
+M82,G1(Egypt),AEHIJ3(Algeria),
+M82,G1(New Zealand),AEHIJ3(Mexico),
+M82,G1(New Zealand),AEHIJ3(South Korea),maybe
+M82,G1(New Zealand),AEHIJ3(Czech Republic),maybe
+M82,G1(New Zealand),AEHIJ3(South Africa),maybe
+M82,G1(New Zealand),AEHIJ3(Germany),
+M82,G1(New Zealand),AEHIJ3(Ecuador),maybe
+M82,G1(New Zealand),AEHIJ3(Ivory Coast),
+M82,G1(New Zealand),AEHIJ3(Spain),
+M82,G1(New Zealand),AEHIJ3(Uruguay),maybe
+M82,G1(New Zealand),AEHIJ3(Saudi Arabia),maybe
+M82,G1(New Zealand),AEHIJ3(Cape Verde),maybe
+M82,G1(New Zealand),AEHIJ3(France),
+M82,G1(New Zealand),AEHIJ3(Senegal),maybe
+M82,G1(New Zealand),AEHIJ3(Norway),maybe
+M82,G1(New Zealand),AEHIJ3(Argentina),
+M82,G1(New Zealand),AEHIJ3(Austria),
+M82,G1(New Zealand),AEHIJ3(Algeria),
+M82,G1(Iran),AEHIJ3(Mexico),
+M82,G1(Iran),AEHIJ3(South Korea),maybe
+M82,G1(Iran),AEHIJ3(Czech Republic),maybe
+M82,G1(Iran),AEHIJ3(South Africa),maybe
+M82,G1(Iran),AEHIJ3(Germany),
+M82,G1(Iran),AEHIJ3(Ecuador),maybe
+M82,G1(Iran),AEHIJ3(Ivory Coast),
+M82,G1(Iran),AEHIJ3(Spain),
+M82,G1(Iran),AEHIJ3(Uruguay),maybe
+M82,G1(Iran),AEHIJ3(Saudi Arabia),maybe
+M82,G1(Iran),AEHIJ3(Cape Verde),maybe
+M82,G1(Iran),AEHIJ3(France),
+M82,G1(Iran),AEHIJ3(Senegal),maybe
+M82,G1(Iran),AEHIJ3(Norway),maybe
+M82,G1(Iran),AEHIJ3(Argentina),
+M82,G1(Iran),AEHIJ3(Austria),
+M82,G1(Iran),AEHIJ3(Algeria),
+M83,K2(Portugal),L2(England),
+M83,K2(Portugal),L2(Croatia),maybe
+M83,K2(Portugal),L2(Ghana),
+M83,K2(Portugal),L2(Panama),
+M83,K2(Colombia),L2(England),maybe
+M83,K2(Colombia),L2(Croatia),maybe
+M83,K2(Colombia),L2(Ghana),maybe
+M83,K2(Colombia),L2(Panama),maybe
+M83,K2(Uzbekistan),L2(England),
+M83,K2(Uzbekistan),L2(Croatia),maybe
+M83,K2(Uzbekistan),L2(Ghana),
+M83,K2(Uzbekistan),L2(Panama),
+M83,K2(DR Congo),L2(England),
+M83,K2(DR Congo),L2(Croatia),maybe
+M83,K2(DR Congo),L2(Ghana),
+M83,K2(DR Congo),L2(Panama),
+M84,H1(Spain),J2(Argentina),yes
+M84,H1(Spain),J2(Austria),yes
+M84,H1(Spain),J2(Algeria),yes
+M84,H1(Uruguay),J2(Argentina),
+M84,H1(Uruguay),J2(Austria),yes
+M84,H1(Uruguay),J2(Algeria),
+M84,H1(Saudi Arabia),J2(Argentina),
+M84,H1(Saudi Arabia),J2(Austria),yes
+M84,H1(Saudi Arabia),J2(Algeria),
+M84,H1(Cape Verde),J2(Argentina),
+M84,H1(Cape Verde),J2(Austria),yes
+M84,H1(Cape Verde),J2(Algeria),
+M85,B1(Switzerland),EFGIJ3(Germany),yes
+M85,B1(Switzerland),EFGIJ3(Ecuador),maybe
+M85,B1(Switzerland),EFGIJ3(Ivory Coast),yes
+M85,B1(Switzerland),EFGIJ3(Netherlands),yes
+M85,B1(Switzerland),EFGIJ3(Japan),maybe
+M85,B1(Switzerland),EFGIJ3(Sweden),maybe
+M85,B1(Switzerland),EFGIJ3(Tunisia),maybe
+M85,B1(Switzerland),EFGIJ3(Belgium),yes
+M85,B1(Switzerland),EFGIJ3(Egypt),maybe
+M85,B1(Switzerland),EFGIJ3(New Zealand),maybe
+M85,B1(Switzerland),EFGIJ3(Iran),maybe
+M85,B1(Switzerland),EFGIJ3(France),yes
+M85,B1(Switzerland),EFGIJ3(Senegal),maybe
+M85,B1(Switzerland),EFGIJ3(Norway),maybe
+M85,B1(Switzerland),EFGIJ3(Argentina),yes
+M85,B1(Switzerland),EFGIJ3(Austria),yes
+M85,B1(Switzerland),EFGIJ3(Algeria),yes
+M85,B1(Canada),EFGIJ3(Germany),
+M85,B1(Canada),EFGIJ3(Ecuador),maybe
+M85,B1(Canada),EFGIJ3(Ivory Coast),
+M85,B1(Canada),EFGIJ3(Netherlands),
+M85,B1(Canada),EFGIJ3(Japan),maybe
+M85,B1(Canada),EFGIJ3(Sweden),maybe
+M85,B1(Canada),EFGIJ3(Tunisia),maybe
+M85,B1(Canada),EFGIJ3(Belgium),
+M85,B1(Canada),EFGIJ3(Egypt),maybe
+M85,B1(Canada),EFGIJ3(New Zealand),maybe
+M85,B1(Canada),EFGIJ3(Iran),maybe
+M85,B1(Canada),EFGIJ3(France),
+M85,B1(Canada),EFGIJ3(Senegal),maybe
+M85,B1(Canada),EFGIJ3(Norway),maybe
+M85,B1(Canada),EFGIJ3(Argentina),
+M85,B1(Canada),EFGIJ3(Austria),
+M85,B1(Canada),EFGIJ3(Algeria),
+M85,B1(Bosnia & H.),EFGIJ3(Germany),
+M85,B1(Bosnia & H.),EFGIJ3(Ecuador),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Ivory Coast),
+M85,B1(Bosnia & H.),EFGIJ3(Netherlands),
+M85,B1(Bosnia & H.),EFGIJ3(Japan),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Sweden),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Tunisia),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Belgium),
+M85,B1(Bosnia & H.),EFGIJ3(Egypt),maybe
+M85,B1(Bosnia & H.),EFGIJ3(New Zealand),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Iran),maybe
+M85,B1(Bosnia & H.),EFGIJ3(France),
+M85,B1(Bosnia & H.),EFGIJ3(Senegal),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Norway),maybe
+M85,B1(Bosnia & H.),EFGIJ3(Argentina),
+M85,B1(Bosnia & H.),EFGIJ3(Austria),
+M85,B1(Bosnia & H.),EFGIJ3(Algeria),
+M86,J1(Argentina),H2(Spain),yes
+M86,J1(Argentina),H2(Uruguay),maybe
+M86,J1(Argentina),H2(Saudi Arabia),yes
+M86,J1(Argentina),H2(Cape Verde),yes
+M86,J1(Austria),H2(Spain),
+M86,J1(Austria),H2(Uruguay),maybe
+M86,J1(Austria),H2(Saudi Arabia),
+M86,J1(Austria),H2(Cape Verde),
+M86,J1(Algeria),H2(Spain),
+M86,J1(Algeria),H2(Uruguay),maybe
+M86,J1(Algeria),H2(Saudi Arabia),
+M86,J1(Algeria),H2(Cape Verde),
+M87,K1(Portugal),DEIJL3(Turkey),yes
+M87,K1(Portugal),DEIJL3(USA),maybe
+M87,K1(Portugal),DEIJL3(Australia),maybe
+M87,K1(Portugal),DEIJL3(Paraguay),maybe
+M87,K1(Portugal),DEIJL3(Germany),yes
+M87,K1(Portugal),DEIJL3(Ecuador),maybe
+M87,K1(Portugal),DEIJL3(Ivory Coast),yes
+M87,K1(Portugal),DEIJL3(France),yes
+M87,K1(Portugal),DEIJL3(Senegal),maybe
+M87,K1(Portugal),DEIJL3(Norway),maybe
+M87,K1(Portugal),DEIJL3(Argentina),yes
+M87,K1(Portugal),DEIJL3(Austria),yes
+M87,K1(Portugal),DEIJL3(Algeria),yes
+M87,K1(Portugal),DEIJL3(England),yes
+M87,K1(Portugal),DEIJL3(Croatia),maybe
+M87,K1(Portugal),DEIJL3(Ghana),maybe
+M87,K1(Portugal),DEIJL3(Panama),maybe
+M87,K1(Colombia),DEIJL3(Turkey),
+M87,K1(Colombia),DEIJL3(USA),maybe
+M87,K1(Colombia),DEIJL3(Australia),maybe
+M87,K1(Colombia),DEIJL3(Paraguay),maybe
+M87,K1(Colombia),DEIJL3(Germany),
+M87,K1(Colombia),DEIJL3(Ecuador),maybe
+M87,K1(Colombia),DEIJL3(Ivory Coast),
+M87,K1(Colombia),DEIJL3(France),
+M87,K1(Colombia),DEIJL3(Senegal),maybe
+M87,K1(Colombia),DEIJL3(Norway),maybe
+M87,K1(Colombia),DEIJL3(Argentina),
+M87,K1(Colombia),DEIJL3(Austria),
+M87,K1(Colombia),DEIJL3(Algeria),
+M87,K1(Colombia),DEIJL3(England),
+M87,K1(Colombia),DEIJL3(Croatia),maybe
+M87,K1(Colombia),DEIJL3(Ghana),maybe
+M87,K1(Colombia),DEIJL3(Panama),maybe
+M87,K1(Uzbekistan),DEIJL3(Turkey),
+M87,K1(Uzbekistan),DEIJL3(USA),maybe
+M87,K1(Uzbekistan),DEIJL3(Australia),maybe
+M87,K1(Uzbekistan),DEIJL3(Paraguay),maybe
+M87,K1(Uzbekistan),DEIJL3(Germany),
+M87,K1(Uzbekistan),DEIJL3(Ecuador),maybe
+M87,K1(Uzbekistan),DEIJL3(Ivory Coast),
+M87,K1(Uzbekistan),DEIJL3(France),
+M87,K1(Uzbekistan),DEIJL3(Senegal),maybe
+M87,K1(Uzbekistan),DEIJL3(Norway),maybe
+M87,K1(Uzbekistan),DEIJL3(Argentina),
+M87,K1(Uzbekistan),DEIJL3(Austria),
+M87,K1(Uzbekistan),DEIJL3(Algeria),
+M87,K1(Uzbekistan),DEIJL3(England),
+M87,K1(Uzbekistan),DEIJL3(Croatia),maybe
+M87,K1(Uzbekistan),DEIJL3(Ghana),maybe
+M87,K1(Uzbekistan),DEIJL3(Panama),maybe
+M87,K1(DR Congo),DEIJL3(Turkey),
+M87,K1(DR Congo),DEIJL3(USA),maybe
+M87,K1(DR Congo),DEIJL3(Australia),maybe
+M87,K1(DR Congo),DEIJL3(Paraguay),maybe
+M87,K1(DR Congo),DEIJL3(Germany),
+M87,K1(DR Congo),DEIJL3(Ecuador),maybe
+M87,K1(DR Congo),DEIJL3(Ivory Coast),
+M87,K1(DR Congo),DEIJL3(France),
+M87,K1(DR Congo),DEIJL3(Senegal),maybe
+M87,K1(DR Congo),DEIJL3(Norway),maybe
+M87,K1(DR Congo),DEIJL3(Argentina),
+M87,K1(DR Congo),DEIJL3(Austria),
+M87,K1(DR Congo),DEIJL3(Algeria),
+M87,K1(DR Congo),DEIJL3(England),
+M87,K1(DR Congo),DEIJL3(Croatia),maybe
+M87,K1(DR Congo),DEIJL3(Ghana),maybe
+M87,K1(DR Congo),DEIJL3(Panama),maybe
+M88,D2(Turkey),G2(Belgium),
+M88,D2(Turkey),G2(Egypt),maybe
+M88,D2(Turkey),G2(New Zealand),
+M88,D2(Turkey),G2(Iran),
+M88,D2(USA),G2(Belgium),maybe
+M88,D2(USA),G2(Egypt),maybe
+M88,D2(USA),G2(New Zealand),maybe
+M88,D2(USA),G2(Iran),maybe
+M88,D2(Australia),G2(Belgium),
+M88,D2(Australia),G2(Egypt),maybe
+M88,D2(Australia),G2(New Zealand),
+M88,D2(Australia),G2(Iran),
+M88,D2(Paraguay),G2(Belgium),
+M88,D2(Paraguay),G2(Egypt),maybe
+M88,D2(Paraguay),G2(New Zealand),
+M88,D2(Paraguay),G2(Iran),

@@ -20,6 +20,10 @@ public class MatchResolver {
 
     public void resolveAndWriteLast32(String tournament) throws IOException{
         Map<String,String> groups = loader.loadGroups(tournament);
+        Map<String,String> qualifies = loader.loadGroupQualifies(tournament);
+        Map<String,String> groupWinner = loader.loadGroupWinner(tournament);
+        Map<String,String> runnerUp = loader.loadRunnerUp(tournament);
+        Map<String,String> thirdPlace = loader.loadThirdPlace(tournament);
         List<CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
         // keep existing prediction output
@@ -30,20 +34,39 @@ public class MatchResolver {
         Path matchupDir = projectRoot.resolve("csv").resolve("matchups").resolve(tournament);
         Files.createDirectories(matchupDir);
         List<String> detailed = new ArrayList<>();
-        detailed.add("match_id,team1,team2");
+        detailed.add("match_id,team1,team2,prediction");
 
         for(CsvLoader.BracketEntry be : brackets){
             if(!"LAST_32".equalsIgnoreCase(be.stage)) continue;
-            List<String> d1List = buildDisplays(be.token1, groups);
-            List<String> d2List = buildDisplays(be.token2, groups);
+            List<String> d1List = buildDisplays(be.token1, groups, thirdPlace);
+            List<String> d2List = buildDisplays(be.token2, groups, thirdPlace);
             for(String d1 : d1List){
                 for(String d2 : d2List){
-                    detailed.add(String.join(",", be.matchId, safe(d1), safe(d2)));
+                    // mark 'yes' only when the opponent (token2) matches the predicted team for token2
+                    String pred = "";
+                    // If either side is 'maybe', treat the row as maybe (overrides a definite prediction)
+                    if(isDisplayMaybe(be.token1, d1, groups, qualifies, groupWinner, runnerUp, thirdPlace) || isDisplayMaybe(be.token2, d2, groups, qualifies, groupWinner, runnerUp, thirdPlace)) pred = "maybe";
+                    // Otherwise require BOTH sides to be definite predictions for 'yes'
+                    else if(isDisplayPredicted(be.token1, d1, groups, groupWinner, runnerUp) && isDisplayPredicted(be.token2, d2, groups, groupWinner, runnerUp)) pred = "yes";
+                    detailed.add(String.join(",", be.matchId, safe(d1), safe(d2), pred));
                 }
             }
         }
 
-        Files.write(matchupDir.resolve("matchups.csv"), detailed);
+        Files.write(matchupDir.resolve("last_32.csv"), detailed);
+
+        // Generate a predictions template for Last 16: match_id,predicted_team1,predicted_team2,predicted_winner
+        List<String> last16 = new ArrayList<>();
+        last16.add("match_id,predicted_team1,predicted_team2,predicted_winner");
+        for(CsvLoader.BracketEntry be : brackets){
+            if(!"LAST_16".equalsIgnoreCase(be.stage)) continue;
+            String p1resolved = resolveTokenWithBrackets(be.token1, groups, brackets);
+            String p2resolved = resolveTokenWithBrackets(be.token2, groups, brackets);
+            String p1 = displayTokenWithName(be.token1, p1resolved);
+            String p2 = displayTokenWithName(be.token2, p2resolved);
+            last16.add(String.join(",", be.matchId, safe(p1), safe(p2), ""));
+        }
+        Files.write(matchupDir.resolve("last_16_predictions.csv"), last16);
     }
 
     public void resolveAndWrite(String mode, String tournament) throws IOException{
@@ -106,7 +129,7 @@ public class MatchResolver {
         Files.write(outDir.resolve("world.csv"), out);
     }
 
-    private List<String> buildDisplays(String token, Map<String,String> groups){
+    private List<String> buildDisplays(String token, Map<String,String> groups, Map<String,String> thirdPlace){
         List<String> out = new ArrayList<>();
         if(token==null || token.isEmpty()){ out.add(""); return out; }
 
@@ -116,6 +139,8 @@ public class MatchResolver {
             Set<String> seen = new LinkedHashSet<>();
             for(int i=1;i<=4;i++){
                 String slot = ""+g+i;
+                String q = qualifies.getOrDefault(slot, "");
+                if("no".equalsIgnoreCase(q)) continue; // skip teams marked 'no'
                 String team = groups.getOrDefault(slot, "");
                 if(team==null || team.isEmpty()) team = slot;
                 if(!seen.contains(team)){
@@ -134,6 +159,8 @@ public class MatchResolver {
                 Set<String> seen = new LinkedHashSet<>();
                 for(int i=1;i<=4;i++){
                     String slot = ""+c+i;
+                    String q = qualifies.getOrDefault(slot, "");
+                    if("no".equalsIgnoreCase(q)) continue; // skip teams marked 'no'
                     String team = groups.getOrDefault(slot, "");
                     if(team==null || team.isEmpty()) team = slot;
                     if(!seen.contains(team)){
@@ -159,6 +186,79 @@ public class MatchResolver {
 
     private String safe(String s){ return s==null?"":s.replaceAll(","," "); }
 
+    private boolean isDisplayPredicted(String token, String display, Map<String,String> groups, Map<String,String> groupWinner, Map<String,String> runnerUp){
+        if(token==null || token.isEmpty() || display==null) return false;
+        String name = "";
+        int p = display.indexOf('(');
+        if(p>=0){
+            int q = display.indexOf(')', p+1);
+            if(q>p) name = display.substring(p+1,q);
+        } else {
+            name = display;
+        }
+        if(name==null || name.isEmpty()) return false;
+        token = token.trim();
+        // Only mark predictions for 1st and 2nd place slots (A1/A2..)
+        if(token.matches("^[A-L][1-4]$")){
+            String slot = token;
+            String team = groups.getOrDefault(slot, "");
+            if(slot.endsWith("1")){
+                return "yes".equalsIgnoreCase(groupWinner.getOrDefault(slot, "")) && name.equals(team);
+            }
+            if(slot.endsWith("2")){
+                return "yes".equalsIgnoreCase(runnerUp.getOrDefault(slot, "")) && name.equals(team);
+            }
+            // do not mark predictions for 3rd/4th slots
+            return false;
+        }
+        // Do not mark predictions for third-place composites or other unresolved tokens
+        return false;
+    }
+
+    private boolean isDisplayMaybe(String token, String display, Map<String,String> groups, Map<String,String> qualifies, Map<String,String> groupWinner, Map<String,String> runnerUp, Map<String,String> thirdPlace){
+        if(token==null || token.isEmpty() || display==null) return false;
+        String name = "";
+        int p = display.indexOf('(');
+        if(p>=0){
+            int q = display.indexOf(')', p+1);
+            if(q>p) name = display.substring(p+1,q);
+        } else {
+            name = display;
+        }
+        if(name==null || name.isEmpty()) return false;
+        token = token.trim();
+        // For simple slots, check if that slot has runner_up/group_winner == "maybe" depending on slot index
+        if(token.matches("^[A-L][1-4]$")){
+            String slot = token;
+            String team = groups.getOrDefault(slot, "");
+            if(!name.equals(team)) return false;
+            if(slot.endsWith("1")){
+                return "maybe".equalsIgnoreCase(groupWinner.getOrDefault(slot, ""));
+            }
+            if(slot.endsWith("2")){
+                return "maybe".equalsIgnoreCase(runnerUp.getOrDefault(slot, ""));
+            }
+            if(slot.endsWith("3")){
+                return "maybe".equalsIgnoreCase(thirdPlace.getOrDefault(slot, ""));
+            }
+            return false;
+        }
+        // For composite tokens (like ABC3), find any slot among involved groups matching this name that has third_place==maybe
+        if(token.matches("^[A-L]+3$")){
+            for(char c : token.toCharArray()){
+                if(c=='3') break;
+                for(int i=1;i<=4;i++){
+                    String slot = ""+c+i;
+                    String team = groups.getOrDefault(slot,"");
+                    String tp = thirdPlace.getOrDefault(slot,"");
+                    if(name.equals(team) && "maybe".equalsIgnoreCase(tp)) return true;
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
     private boolean isSimpleSlot(String token){ return token!=null && token.matches("^[A-L][12]"); }
     private String swapSlot(String token){ if(token==null) return token; if(token.matches("^[A-L]1$")==true) return token.charAt(0)+"2"; if(token.matches("^[A-L]2$")==true) return token.charAt(0)+"1"; return token; }
 
@@ -182,5 +282,27 @@ public class MatchResolver {
         }
         // winners (Wxx) or unresolved — return token as-is
         return token;
+    }
+
+    private String resolveTokenWithBrackets(String token, Map<String,String> groups, List<CsvLoader.BracketEntry> brackets){
+        if(token==null) return "";
+        token = token.trim();
+        // If winner reference like W77, find match M77 and resolve its tokens
+        if(token.matches("^W\\d+$")){
+            String num = token.substring(1);
+            String matchId = "M" + num;
+            for(CsvLoader.BracketEntry be : brackets){
+                if(matchId.equalsIgnoreCase(be.matchId)){
+                    String r1 = resolveToken(be.token1, groups);
+                    String r2 = resolveToken(be.token2, groups);
+                    List<String> parts = new ArrayList<>();
+                    if(r1!=null && !r1.isEmpty()) parts.add(r1);
+                    if(r2!=null && !r2.isEmpty()) parts.add(r2);
+                    return String.join("/", parts);
+                }
+            }
+            return token; // no match found, return token as-is
+        }
+        return resolveToken(token, groups);
     }
 }
