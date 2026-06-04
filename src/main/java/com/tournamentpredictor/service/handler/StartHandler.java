@@ -26,7 +26,7 @@ public class StartHandler {
 
     final int HOME_ADVANTAGE;
     final int[] INJURY_PENALTIES;
-    final int[] HEAT_BONUSES;
+    final int[] HEAT_ADVANTAGES;
     final int[] SQUAD_DROPOUT_PENALTIES;
 
     private final int CONFIDENCE_GAP;
@@ -49,14 +49,14 @@ public class StartHandler {
     public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                         HeadToHeadCalculator headToHeadCalculator, PredictionConfig config) {
         this(loader, projectRoot, csvHelper, headToHeadCalculator,
-                config.getHomeAdvantageElo(), config.getInjuryPenalties(), config.getHeatBonuses(),
+                config.getHomeAdvantageElo(), config.getInjuryPenalties(), config.getHeatAdvantages(),
                 config.getSquadDropoutPenalties(), config.getConfidenceGap(),
                 config.getEloWeight(), config.getQualFormWeight());
     }
 
     private StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                          HeadToHeadCalculator headToHeadCalculator,
-                         int homeAdvantageElo, int[] injuryPenalties, int[] heatBonuses,
+                         int homeAdvantageElo, int[] injuryPenalties, int[] heatAdvantages,
                          int[] squadDropoutPenalties, int confidenceGap,
                          double eloBaseWeight, double qualFormWeight) {
         this.loader = loader;
@@ -65,7 +65,7 @@ public class StartHandler {
         this.headToHeadCalculator = headToHeadCalculator;
         this.HOME_ADVANTAGE = homeAdvantageElo;
         this.INJURY_PENALTIES = injuryPenalties;
-        this.HEAT_BONUSES = heatBonuses;
+        this.HEAT_ADVANTAGES = heatAdvantages;
         this.SQUAD_DROPOUT_PENALTIES = squadDropoutPenalties;
         this.CONFIDENCE_GAP = confidenceGap;
         this.eloBaseWeight = eloBaseWeight;
@@ -123,7 +123,7 @@ public class StartHandler {
                     elo += HOME_ADVANTAGE;
                 }
                 elo -= INJURY_PENALTIES[injuryLevel];
-                elo += HEAT_BONUSES[heatLevel];
+                elo += HEAT_ADVANTAGES[heatLevel];
                 elo -= SQUAD_DROPOUT_PENALTIES[squadDropoutLevel];
             }
             groups.computeIfAbsent(group, k -> new ArrayList<>()).add(new String[]{team, String.valueOf(elo)});
@@ -313,7 +313,7 @@ public class StartHandler {
             }
             validateLevel(cols, i, teamIdx, injuryIdx, "injury_impact", INJURY_PENALTIES.length, errors);
             if (heatIdx >= 0 && cols.length > heatIdx && !cols[heatIdx].trim().isEmpty()) {
-                validateLevel(cols, i, teamIdx, heatIdx, "heat_impact", HEAT_BONUSES.length, errors);
+                validateLevel(cols, i, teamIdx, heatIdx, "heat_impact", HEAT_ADVANTAGES.length, errors);
             }
             if (squadDropoutIdx >= 0 && cols.length > squadDropoutIdx && !cols[squadDropoutIdx].trim().isEmpty()) {
                 validateLevel(cols, i, teamIdx, squadDropoutIdx, "squad_dropouts", SQUAD_DROPOUT_PENALTIES.length, errors);

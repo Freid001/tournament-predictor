@@ -34,14 +34,14 @@ public class PredictionConfig {
     @Value("${group.injury.penalty.critical:100}")
     private int injuryPenaltyCritical;
 
-    @Value("${group.heat.bonus.mild:8}")
-    private int heatBonusMild;
+    @Value("${group.heat.advantage.mild:8}")
+    private int heatAdvanttageMild;
 
-    @Value("${group.heat.bonus.moderate:15}")
-    private int heatBonusModerate;
+    @Value("${group.heat.advantage.moderate:15}")
+    private int heatAdvanttageModerate;
 
-    @Value("${group.heat.bonus.strong:25}")
-    private int heatBonusStrong;
+    @Value("${group.heat.advantage.strong:25}")
+    private int heatAdvanttageStrong;
 
     @Value("${group.squad.dropout.penalty.minor:20}")
     private int squadDropoutPenaltyMinor;
@@ -79,7 +79,7 @@ public class PredictionConfig {
     public double getHalfLifeYears() { return halfLifeYears; }
     public int getHomeAdvantageElo() { return homeAdvantageElo; }
     public int[] getInjuryPenalties() { return new int[]{0, injuryPenaltyMinor, injuryPenaltySignificant, injuryPenaltyCritical}; }
-    public int[] getHeatBonuses() { return new int[]{0, heatBonusMild, heatBonusModerate, heatBonusStrong}; }
+    public int[] getHeatAdvantages() { return new int[]{0, heatAdvanttageMild, heatAdvanttageModerate, heatAdvanttageStrong}; }
     public int[] getSquadDropoutPenalties() { return new int[]{0, squadDropoutPenaltyMinor, squadDropoutPenaltySignificant, squadDropoutPenaltyCritical}; }
     public int getConfidenceGap() { return confidenceGap; }
     public double getBettingStrongCandidateMinProfit() { return bettingStrongCandidateMinProfit; }
