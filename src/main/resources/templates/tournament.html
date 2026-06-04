@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament Predictor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark mb-4">
+    <div class="container"><a class="navbar-brand" href="/">🏆 Tournament Predictor</a></div>
+</nav>
+<div class="container pb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h1 class="h3 mb-1" th:text="${tournament.name}">world_cup_2026</h1>
+            <p class="text-muted mb-0" th:text="${tournament.stage}">Group Setup complete</p>
+        </div>
+        <a class="btn btn-outline-secondary" href="/">Back</a>
+    </div>
+
+    <div class="list-group shadow-sm">
+        <div class="list-group-item" th:each="stage : ${stages}">
+            <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-center">
+                <div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <span th:text="${stage.status.icon}">✅</span>
+                        <strong th:text="${stage.label}">Last 32</strong>
+                        <span class="badge" th:classappend="${' text-bg-' + stage.status.badge}" th:text="${stage.status.text}">Ready</span>
+                    </div>
+                    <div class="text-muted small" th:text="${stage.description}">Description</div>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <form th:if="${stage.canRun}" th:action="@{/run/{mode}(mode=${stage.runMode}, tournament=${tournament.name})}" method="post" class="d-inline">
+                        <button class="btn btn-primary btn-sm" type="submit">Run</button>
+                    </form>
+                    <a th:if="${stage.canView}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl}">View</a>
+                    <a th:if="${stage.canEdit}" class="btn btn-outline-secondary btn-sm" th:href="${stage.editUrl}">Edit</a>
+                    <a th:if="${stage.canReset}" class="btn btn-outline-danger btn-sm" th:href="${stage.resetUrl}">Reset</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft') location.href = '/';
+  });
+</script>
+</body>
+</html>

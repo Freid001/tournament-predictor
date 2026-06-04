@@ -1,0 +1,82 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1998	03	22	US Virgin Islands	British Virgin Islands	1	0	F		10	710	790	−	0	210	204
+1999	02	26	Turks and Caicos Islands	US Virgin Islands	2	2	FCQ	BS	-4	775	714	0	0	206	211
+1999	02	28	Bahamas	US Virgin Islands	0	0	FCQ		-13	856	727	0	+1	202	210
+2000	01	28	US Virgin Islands	Saint Lucia	0	9	F		-4	723	1255	0	+1	210	142
+2000	01	30	US Virgin Islands	Saint Lucia	0	2	F		-2	721	1257	0	0	211	142
+2000	03	05	Saint Vincent and the Grenadines	US Virgin Islands	9	0	WQ		3	1246	718	+1	0	145	211
+2000	03	19	US Virgin Islands	Saint Vincent and the Grenadines	1	5	WQ		-6	712	1252	0	+2	211	143
+2001	03	24	British Virgin Islands	US Virgin Islands	2	0	F		5	877	707	0	−1	200	214
+2001	04	10	Haiti	US Virgin Islands	12	1	FCQ		1	1396	706	0	0	110	213
+2001	04	12	Guadeloupe	US Virgin Islands	11	0	FCQ	HT	4	1302	702	+2	0	129	213
+2001	04	14	Saint Lucia	US Virgin Islands	14	1	FCQ	HT	5	1257	697	+1	−2	144	215
+2002	08	16	Dominican Republic	US Virgin Islands	6	1	CCQ		4	1131	693	+1	0	166	216
+2002	08	18	Dominican Republic	US Virgin Islands	5	1	CCQ		3	1134	690	0	0	166	216
+2004	01	30	British Virgin Islands	US Virgin Islands	5	0	FT		11	859	679	+2	−2	201	219
+2004	01	31	Dominica	US Virgin Islands	5	0	FT	VG	6	1061	673	+2	−1	181	220
+2004	02	18	US Virgin Islands	Saint Kitts and Nevis	0	4	WQ		-3	670	1356	0	+1	220	120
+2004	03	31	Saint Kitts and Nevis	US Virgin Islands	7	0	WQ		1	1341	669	+1	0	124	220
+2004	09	25	British Virgin Islands	US Virgin Islands	2	1	F		4	840	665	0	0	203	222
+2004	11	24	Haiti	US Virgin Islands	11	0	FCQ	JM	1	1453	664	+1	0	93	222
+2004	11	26	Jamaica	US Virgin Islands	11	1	FCQ		0	1623	664	0	0	54	222
+2004	11	28	Saint Martin	US Virgin Islands	0	0	FCQ	JM	-16	1016	680	−2	+2	187	220
+2006	09	27	US Virgin Islands	Bermuda	0	6	FCQ		-8	672	1175	−1	+1	220	166
+2006	10	01	US Virgin Islands	Dominican Republic	1	6	FCQ		-14	658	1055	−3	+3	223	179
+2008	03	14	British Virgin Islands	US Virgin Islands	0	0	F		-8	906	666	−2	0	198	221
+2008	03	15	British Virgin Islands	US Virgin Islands	1	1	F		-8	898	674	−1	+1	199	220
+2008	03	26	Grenada	US Virgin Islands	10	0	WQ		3	1218	671	+2	−1	151	221
+2011	06	19	Anguilla	US Virgin Islands	0	0	F		0	560	671	0	0	231	221
+2011	07	03	US Virgin Islands	British Virgin Islands	2	0	WQ		35	706	791	+7	−2	214	207
+2011	07	10	British Virgin Islands	US Virgin Islands	1	2	WQ		-30	761	736	−3	+2	210	212
+2011	09	02	Haiti	US Virgin Islands	6	0	WQ		1	1428	735	0	−1	101	213
+2011	09	06	US Virgin Islands	Antigua and Barbuda	1	8	WQ		-7	728	1281	0	+2	212	135
+2011	10	07	US Virgin Islands	Haiti	0	7	WQ		-3	725	1443	−1	+1	213	100
+2011	10	11	Antigua and Barbuda	US Virgin Islands	10	0	WQ		2	1295	723	+2	−1	133	214
+2011	11	11	US Virgin Islands	Curaçao	0	3	WQ		-13	710	1096	0	+1	214	176
+2011	11	15	Curaçao	US Virgin Islands	6	1	WQ		5	1101	705	0	0	176	214
+2014	05	30	Montserrat	US Virgin Islands	1	0	FBQ		20	617	685	0	−3	230	218
+2014	06	01	Bonaire	US Virgin Islands	2	1	FBQ	MS	5	1033	680	0	−1	185	219
+2015	03	08	Antigua and Barbuda	US Virgin Islands	2	0	F		1	1269	679	+1	0	139	222
+2015	03	22	Barbados	US Virgin Islands	0	1	WQ		-39	1115	718	−3	+5	173	217
+2015	03	26	US Virgin Islands	Barbados	0	4	WQ		-11	707	1126	0	+1	217	172
+2016	03	26	Sint Maarten	US Virgin Islands	1	2	FBQ		-34	880	741	−5	+3	204	215
+2016	03	29	US Virgin Islands	Grenada	1	2	FBQ		-6	735	1147	0	+1	215	171
+2016	06	04	US Virgin Islands	Guyana	0	7	FBQ		-9	726	1221	0	+5	216	154
+2016	06	07	Curaçao	US Virgin Islands	7	0	FBQ		4	1166	722	+1	−1	168	217
+2018	09	09	Canada	US Virgin Islands	8	0	CLQ	US	1	1534	721	−1	0	73	216
+2018	10	12	Curaçao	US Virgin Islands	5	0	CLQ	US	3	1310	718	+2	0	129	216
+2018	11	18	Barbados	US Virgin Islands	3	0	CLQ		3	1133	715	0	0	173	216
+2019	03	22	Anguilla	US Virgin Islands	0	3	CLQ		-33	559	748	−4	0	236	216
+2019	09	05	US Virgin Islands	Cayman Islands	0	2	CLC		-24	724	937	−2	+1	217	197
+2019	09	08	US Virgin Islands	Saint Martin	2	1	CLC	AI	23	747	755	+2	−4	215	214
+2019	10	12	Barbados	US Virgin Islands	1	0	CLC		3	1114	744	0	−1	178	215
+2019	10	15	US Virgin Islands	Barbados	0	4	CLC		-13	731	1127	−1	+1	216	178
+2019	11	16	Cayman Islands	US Virgin Islands	1	0	CLC		6	925	725	+1	0	196	217
+2019	11	19	US Virgin Islands	Saint Martin	1	2	CLC		-19	706	853	−1	+1	218	206
+2021	03	21	Anguilla	US Virgin Islands	0	0	F	US	4	550	702	0	0	236	218
+2021	03	27	US Virgin Islands	Antigua and Barbuda	0	3	WQ		-9	693	1152	−2	+1	220	172
+2021	03	30	Grenada	US Virgin Islands	1	0	WQ		1	1206	692	0	−1	159	221
+2021	05	23	Anguilla	US Virgin Islands	1	0	F	DO	14	560	678	0	−2	236	223
+2021	06	02	Montserrat	US Virgin Islands	4	0	WQ	DO	17	910	661	+3	−4	199	227
+2021	06	05	US Virgin Islands	El Salvador	0	7	WQ		-2	659	1468	0	0	227	88
+2022	06	03	Sint Maarten	US Virgin Islands	1	1	CLC	CW	-6	758	665	0	0	212	227
+2022	06	06	US Virgin Islands	Turks and Caicos Islands	3	2	CLC		19	684	732	+5	−1	222	215
+2022	06	11	US Virgin Islands	Bonaire	0	2	CLC		-15	669	988	−5	0	227	190
+2022	06	14	Bonaire	US Virgin Islands	2	0	CLC	CW	8	996	661	+2	0	188	227
+2023	03	25	Turks and Caicos Islands	US Virgin Islands	1	0	CLC		11	745	650	+1	−1	214	227
+2023	03	28	US Virgin Islands	Sint Maarten	1	2	CLC		-16	634	837	0	+2	227	207
+2023	09	07	US Virgin Islands	Cayman Islands	2	2	CLC		5	639	825	0	+1	227	207
+2023	10	14	Aruba	US Virgin Islands	3	1	CLC		5	974	634	0	0	191	228
+2023	10	17	Cayman Islands	US Virgin Islands	2	1	CLC		7	813	627	0	−1	209	229
+2023	11	16	US Virgin Islands	Aruba	1	4	CLC		-14	613	988	−1	+2	230	188
+2024	03	22	US Virgin Islands	British Virgin Islands	1	1	WQ		-3	610	661	−1	0	231	227
+2024	03	26	British Virgin Islands	US Virgin Islands	0	0	WQ		-8	653	618	0	0	227	230
+2024	09	04	US Virgin Islands	Bahamas	3	3	CLC		5	623	804	−1	0	231	209
+2024	09	10	US Virgin Islands	Barbados	0	3	CLC		-15	608	958	−2	+3	233	189
+2024	10	09	Barbados	US Virgin Islands	5	0	CLC		6	964	602	0	0	189	233
+2024	10	12	Bahamas	US Virgin Islands	3	1	CLC	BB	15	806	587	+1	0	209	233
+2025	08	13	Turks and Caicos Islands	US Virgin Islands	1	1	OCH	US	-3	645	590	0	0	226	233
+2025	08	14	US Virgin Islands	Marshall Islands	4	0	OCH	US	29	619	571	+2	−	231	235
+2025	11	14	Grenada	US Virgin Islands	4	1	F		1	1122	618	0	0	170	231
+2026	03	25	US Virgin Islands	Eastern Samoa	5	2	FFS	PR	11	629	377	+2	0	229	244
+2026	03	28	Puerto Rico	US Virgin Islands	2	0	FFS		1	1138	628	0	−1	165	230

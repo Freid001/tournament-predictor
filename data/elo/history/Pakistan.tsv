@@ -1,0 +1,285 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1950	10	27	Iran	Pakistan	5	1	F		7	1561	1393	0	−	45	69
+1952	03	18	Ceylon	Pakistan	0	2	CLM		-7	990	1400	−1	0	116	72
+1952	03	20	Pakistan	Burma	1	0	CLM	CE	10	1410	1273	0	−1	72	98
+1952	03	23	India	Pakistan	0	0	CLM	CE	-10	1675	1420	−2	+1	28	71
+1952	04	02	Pakistan	Iran	0	0	F		1	1421	1556	0	0	71	47
+1952	05	01	Pakistan	Iran	0	0	F		1	1422	1555	0	0	71	47
+1953	10	23	India	Pakistan	1	0	CLM	BU	7	1650	1415	+3	0	28	78
+1953	10	28	Burma	Pakistan	1	1	CLM		2	1278	1413	+1	0	102	78
+1953	11	02	Pakistan	Ceylon	6	0	CLM	BU	5	1418	981	0	−1	78	125
+1953	11	03	Pakistan	India	1	0	F	BU	16	1434	1643	+3	−2	75	30
+1954	04	25	Singapore	Pakistan	2	2	F		1	1310	1433	+1	0	97	77
+1954	05	02	Pakistan	Singapore	6	2	ASG	PH	25	1458	1285	+4	−10	74	108
+1954	05	05	Burma	Pakistan	2	1	ASG	PH	31	1276	1427	+5	−9	110	83
+1954	12	19	Burma	Pakistan	1	1	CLM	IN	4	1328	1423	+1	0	94	81
+1954	12	21	Pakistan	Ceylon	2	1	CLM	IN	3	1426	1019	0	0	81	129
+1954	12	26	India	Pakistan	3	1	CLM		8	1589	1418	+1	−1	44	82
+1955	12	14	East Pakistan	Pakistan	1	3	F		-4	996	1422	−	0	−	81
+1955	12	17	Pakistan	Burma	4	2	CLM		9	1431	1279	0	−4	81	109
+1955	12	21	Pakistan	Ceylon	2	1	CLM		2	1433	1041	0	0	81	129
+1955	12	24	Pakistan	India	1	2	CLM		-15	1418	1539	0	+4	81	56
+1955	12	25	Pakistan	India	1	0	F		11	1429	1528	0	−4	81	60
+1956	03	12	Singapore	Pakistan	1	1	F		1	1288	1428	+1	0	106	81
+1958	05	14	Malaya	Pakistan	4	2	F		15	1341	1413	+1	−4	100	86
+1958	05	17	Singapore	Pakistan	4	4	F		2	1229	1411	0	−1	120	87
+1958	05	25	Pakistan	South Vietnam	1	1	ASG	JP	-1	1410	1395	0	0	87	90
+1958	05	27	Taiwan	Pakistan	3	1	ASG	JP	11	1689	1399	+2	−2	30	89
+1959	12	07	India	Pakistan	1	0	SQ		9	1521	1390	+2	−2	60	95
+1959	12	09	Pakistan	Iran	4	1	SQ	IN	47	1437	1471	+12	−14	83	75
+1959	12	10	Israel	Pakistan	2	0	SQ	IN	25	1526	1412	+7	−6	60	89
+1959	12	13	India	Pakistan	0	1	SQ		-30	1469	1442	−7	+8	75	81
+1959	12	15	Iran	Pakistan	4	1	SQ	IN	34	1488	1408	+7	−11	71	91
+1959	12	17	Israel	Pakistan	2	2	SQ	IN	-8	1537	1416	−1	+2	57	89
+1960	08	05	Pakistan	Thailand	7	0	MRD	AY	14	1430	1173	+4	0	84	130
+1960	08	12	Malaya	Pakistan	1	0	MRD		12	1411	1418	+2	−5	92	88
+1960	08	14	Indonesia	Pakistan	4	0	MRD	AY	20	1543	1398	+5	−6	55	94
+1960	08	18	Pakistan	South Vietnam	2	2	F	SG	2	1400	1468	0	0	94	77
+1960	08	19	Singapore	Pakistan	4	1	F		25	1172	1375	+3	−6	130	100
+1960	08	21	Indonesia	Pakistan	5	2	F		6	1547	1369	0	−1	55	101
+1962	09	09	Pakistan	Burma	1	0	MRD	AY	9	1378	1207	+2	0	101	126
+1962	09	12	Japan	Pakistan	1	1	MRD	AY	2	1336	1376	0	−1	105	102
+1962	09	16	Malaya	Pakistan	0	0	MRD		-8	1470	1384	−1	+1	78	101
+1962	09	19	Indonesia	Pakistan	2	1	MRD	AY	10	1523	1374	0	0	66	101
+1963	01	26	Pakistan	China	0	0	F		2	1376	1529	0	−1	99	63
+1963	01	30	Pakistan	China	3	2	F		12	1388	1517	+2	−3	97	67
+1963	02	03	Pakistan	China	1	1	F		1	1389	1516	+2	0	95	67
+1963	02	06	Pakistan	China	0	2	F		-14	1375	1530	−4	+5	99	62
+1963	10	04	Iran	Pakistan	4	1	OQ		15	1520	1360	0	−1	67	104
+1963	11	01	Pakistan	Iran	1	0	OQ		23	1383	1497	+3	−2	102	69
+1964	10	03	China	Pakistan	0	2	F		-25	1550	1408	−7	+11	58	90
+1965	02	28	Ceylon	Pakistan	3	1	F		25	1034	1383	+2	−11	148	100
+1965	03	07	Ceylon	Pakistan	0	0	F		6	1040	1377	0	−2	148	102
+1965	07	21	Turkey	Pakistan	3	1	RCD	IR	9	1631	1368	+2	−1	40	100
+1965	07	23	Iran	Pakistan	4	1	RCD		7	1602	1361	−1	−1	50	101
+1967	03	18	Pakistan	Saudi Arabia	3	1	F		8	1369	1287	+1	−1	102	117
+1967	03	21	Pakistan	Saudi Arabia	2	4	F		-22	1347	1309	−2	+2	104	115
+1967	03	25	Pakistan	Saudi Arabia	2	2	F		-4	1343	1313	0	0	104	116
+1967	03	29	Pakistan	Saudi Arabia	1	1	F		-4	1339	1317	−1	+3	106	112
+1967	11	13	Cambodia	Pakistan	1	0	SQ	BU	32	1133	1307	+4	−9	145	114
+1967	11	15	India	Pakistan	1	1	SQ	BU	-6	1417	1313	−1	0	91	114
+1967	11	19	Burma	Pakistan	2	0	SQ		7	1575	1306	+1	0	55	114
+1967	11	25	Pakistan	Iran	0	2	RCD		-12	1294	1590	0	+2	114	53
+1967	11	28	Pakistan	Turkey	4	7	RCD		-9	1285	1677	−2	+2	116	35
+1969	03	10	Pakistan	Iraq	2	1	FRC	IR	26	1311	1575	+2	−6	114	54
+1969	03	12	Iran	Pakistan	9	1	FRC		5	1651	1306	+2	0	40	114
+1969	09	10	Turkey	Pakistan	4	2	RCD		5	1588	1301	+1	0	50	114
+1969	09	13	Iran	Pakistan	4	2	RCD	TR	5	1656	1296	+3	0	38	114
+1970	09	06	Iran	Pakistan	7	0	RCD		5	1635	1291	+3	−1	40	118
+1970	09	09	Turkey	Pakistan	3	1	RCD	IR	6	1617	1285	+1	−1	47	119
+1973	06	10	China	Pakistan	7	4	F		3	1632	1282	+1	−2	41	123
+1974	01	17	Pakistan	Iran	1	2	RCD		-7	1275	1607	0	+1	122	47
+1974	01	18	Pakistan	Turkey	2	2	RCD		10	1285	1665	+3	−3	119	35
+1974	09	03	Iran	Pakistan	7	0	ASG		8	1602	1277	0	−2	47	121
+1974	09	05	Pakistan	Bahrain	5	1	ASG	IR	21	1298	1092	+4	−4	117	153
+1974	09	07	Burma	Pakistan	5	1	ASG	IR	12	1601	1286	+2	−1	46	118
+1976	07	19	Afghanistan	Pakistan	1	0	RDC		25	910	1261	+3	−5	171	122
+1976	07	21	India	Pakistan	1	1	RDC	AF	-3	1335	1264	0	+1	109	121
+1976	10	12	Pakistan	Afghanistan	1	0	GLT		2	1266	919	0	0	121	168
+1978	05	03	Saudi Arabia	Pakistan	6	0	SAT		17	1360	1249	+5	−4	99	125
+1978	05	09	Kenya	Pakistan	8	3	SAT	SA	22	1362	1227	+7	−3	98	128
+1981	11	11	Thailand	Pakistan	1	0	KNG		5	1423	1222	0	0	89	130
+1981	11	13	Pakistan	Malaysia	3	2	KNG	TH	18	1240	1277	+6	−6	124	117
+1981	11	17	Pakistan	Singapore	1	0	KNG	TH	17	1257	1273	+2	−4	122	116
+1982	02	12	Pakistan	Nepal	2	0	GLT		3	1260	918	0	0	121	170
+1982	02	16	Pakistan	Iran	0	1	GLT		-3	1257	1751	0	0	121	28
+1982	02	18	Pakistan	Bangladesh	2	1	GLT		3	1260	955	0	0	121	166
+1982	02	24	Pakistan	Oman	0	0	GLT		-14	1246	849	−3	+1	124	180
+1982	08	00	Malaysia	Pakistan	4	1	PRG	BD	25	1293	1221	+6	−7	112	133
+1984	10	11	Malaysia	Pakistan	5	0	SQ	IN	24	1397	1197	+1	−8	91	140
+1984	10	13	South Korea	Pakistan	6	0	SQ	IN	7	1620	1190	+3	0	41	140
+1984	10	15	Pakistan	North Yemen	4	1	SQ	IN	8	1198	834	0	0	140	181
+1984	10	17	India	Pakistan	2	0	SQ		18	1268	1180	+6	−2	120	142
+1985	04	30	Pakistan	Nepal	1	0	GLT		2	1182	822	0	−1	142	182
+1985	05	02	Pakistan	Bangladesh	1	3	GLT		-36	1146	1066	−5	+5	147	159
+1985	12	21	Bangladesh	Pakistan	2	1	SAG		19	1085	1127	+2	−2	157	149
+1985	12	22	Pakistan	Maldives	3	1	SAG	BD	6	1133	727	+1	0	148	186
+1985	12	25	Nepal	Pakistan	2	2	SAG	BD	14	841	1119	+1	−2	182	150
+1986	02	16	Iran	Pakistan	2	0	RVA		1	1671	1118	0	−1	34	151
+1986	03	15	Pakistan	Bangladesh	0	1	PRG		-20	1098	1113	−3	+3	154	151
+1986	04	25	Pakistan	Sri Lanka	1	0	GLT		6	1104	933	0	0	154	171
+1986	04	28	Pakistan	China	0	3	GLT		-5	1099	1590	0	+2	153	53
+1986	05	02	Pakistan	Nepal	5	0	GLT		7	1106	837	+1	0	152	182
+1986	09	21	United Arab Emirates	Pakistan	1	0	ASG	KR	5	1447	1101	0	−1	82	153
+1986	09	23	Iraq	Pakistan	5	1	ASG	KR	5	1567	1096	+1	0	58	153
+1986	09	27	Oman	Pakistan	3	1	ASG	KR	42	996	1054	+5	−7	165	160
+1986	09	29	Thailand	Pakistan	6	0	ASG	KR	25	1232	1029	+6	−4	126	164
+1987	04	25	Nepal	Pakistan	2	2	OQ		4	861	1025	+1	0	180	165
+1987	04	28	Nepal	Pakistan	1	0	OQ		24	885	1001	+3	0	177	165
+1987	11	21	India	Pakistan	0	0	SAG		-14	1184	1015	−1	+1	139	165
+1987	11	22	Pakistan	Maldives	1	0	SAG	IN	6	1021	715	0	0	165	187
+1987	11	25	Pakistan	Bangladesh	1	0	SAG	IN	22	1043	1036	+5	−4	160	163
+1988	04	07	Malaysia	Pakistan	4	0	SQ		10	1288	1033	+4	−3	111	163
+1988	04	10	Jordan	Pakistan	1	0	SQ	MY	11	1209	1022	+4	−2	134	165
+1988	04	15	Kuwait	Pakistan	3	0	SQ	MY	4	1529	1018	0	0	65	165
+1988	04	18	Japan	Pakistan	4	1	SQ	MY	5	1459	1013	0	0	79	165
+1989	01	06	Pakistan	Kuwait	0	1	WQ		-4	1009	1481	−1	+1	167	73
+1989	01	20	United Arab Emirates	Pakistan	5	0	WQ		3	1456	1006	−1	−1	80	168
+1989	01	27	Kuwait	Pakistan	2	0	WQ		2	1497	1004	0	0	68	168
+1989	02	10	Pakistan	United Arab Emirates	1	4	WQ		-7	997	1480	0	+1	168	74
+1989	10	22	Pakistan	Nepal	0	0	SAG		-11	986	883	−1	+1	170	181
+1989	10	24	Pakistan	Maldives	2	0	SAG		7	993	714	+1	0	169	189
+1989	10	26	Pakistan	Bangladesh	1	0	SAG		20	1013	1071	+3	−4	166	161
+1990	09	23	China	Pakistan	3	0	ASG		2	1542	1011	0	0	61	168
+1990	09	25	South Korea	Pakistan	7	0	ASG	CN	1	1722	1010	0	0	31	168
+1990	09	27	Singapore	Pakistan	6	1	ASG	CN	18	1242	992	+4	−2	129	170
+1991	12	22	India	Pakistan	0	0	SAG	LK	-9	1160	1001	0	+1	155	180
+1991	12	24	Pakistan	Bangladesh	1	0	SAG	LK	23	1024	1034	+2	−2	178	175
+1991	12	29	Pakistan	Maldives	2	0	SAG	LK	12	1036	763	+2	0	176	197
+1992	05	09	India	Pakistan	2	0	SQ		15	1148	1021	0	−2	159	177
+1992	05	11	Iran	Pakistan	7	0	SQ	IN	3	1640	1018	+1	0	43	177
+1992	08	18	Moldova	Pakistan	5	0	FT	JO	4	1492	1014	0	−1	76	182
+1992	08	20	Jordan	Pakistan	2	0	FT		4	1333	1010	+4	0	116	182
+1992	08	22	Sudan	Pakistan	4	0	FT	JO	8	1337	1002	+4	−2	116	184
+1993	05	22	China	Pakistan	5	0	WQ	JO	5	1478	997	0	−1	85	188
+1993	05	24	Yemen	Pakistan	5	1	WQ	JO	18	1209	979	+3	−1	152	189
+1993	05	28	Iraq	Pakistan	8	0	WQ	JO	2	1659	977	+1	0	34	189
+1993	05	30	Jordan	Pakistan	3	1	WQ		3	1368	974	0	0	113	189
+1993	06	06	Iran	Pakistan	5	0	ECO		1	1622	973	+1	0	46	189
+1993	06	07	Turkmenistan	Pakistan	4	0	ECO	IR	2	1528	971	0	0	71	189
+1993	06	12	China	Pakistan	3	0	WQ		2	1473	969	0	0	87	189
+1993	06	14	Yemen	Pakistan	3	0	WQ	CN	12	1256	957	+2	−2	140	191
+1993	06	18	Iraq	Pakistan	4	0	WQ	CN	1	1688	956	0	0	32	191
+1993	06	20	Jordan	Pakistan	5	0	WQ	CN	8	1343	948	0	−2	118	193
+1993	07	16	Pakistan	Nepal	1	1	SFF		-11	937	850	0	+1	194	202
+1993	07	18	Pakistan	Sri Lanka	0	4	SFF		-59	878	873	−4	+4	198	200
+1993	07	23	Pakistan	India	1	1	SFF		10	888	1169	+1	−2	197	161
+1993	12	11	Sri Lanka	Pakistan	2	1	SAG	BD	21	893	867	+3	−4	198	202
+1993	12	15	India	Pakistan	2	2	SAG	BD	-14	1165	881	−1	+3	162	199
+1995	03	25	Pakistan	Bangladesh	1	0	SFF	LK	28	909	1005	+4	−5	196	189
+1995	03	29	Nepal	Pakistan	2	0	SFF	LK	34	897	875	+5	−5	197	201
+1996	08	09	Jordan	Pakistan	4	0	SQ		3	1345	872	+1	0	119	200
+1996	08	13	Iraq	Pakistan	3	0	SQ	JO	1	1665	871	0	−1	39	201
+1997	05	11	Kazakhstan	Pakistan	3	0	WQ		1	1472	870	0	0	83	202
+1997	05	23	Pakistan	Iraq	2	6	WQ		-2	868	1645	0	0	202	48
+1997	06	11	Pakistan	Kazakhstan	0	7	WQ		-4	864	1509	0	+4	202	73
+1997	06	20	Iraq	Pakistan	6	1	WQ		1	1613	863	0	0	54	202
+1997	09	04	Nepal	Pakistan	0	2	SFF		-34	773	897	0	+4	206	198
+1997	09	06	Sri Lanka	Pakistan	2	0	SFF	NP	23	1001	874	+3	−3	188	201
+1997	09	11	India	Pakistan	2	0	SFF	NP	13	1102	861	+5	−1	169	202
+1997	09	13	Pakistan	Sri Lanka	1	0	SFF	NP	27	888	960	+3	−5	199	194
+1999	04	24	Bangladesh	Pakistan	4	0	SFF	IN	26	1023	862	+2	−3	185	202
+1999	04	26	India	Pakistan	2	0	SFF		8	1098	854	+1	−1	174	203
+1999	09	26	India	Pakistan	5	2	SAG	NP	13	1131	841	+1	−1	165	204
+1999	09	28	Nepal	Pakistan	3	1	SAG		29	777	812	+3	−1	206	205
+1999	09	30	Pakistan	Bhutan	2	1	SAG	NP	9	821	583	0	0	205	223
+2000	04	02	Palestine	Pakistan	2	0	SQ	QA	4	1294	817	0	0	132	206
+2000	04	04	Qatar	Pakistan	5	0	SQ		1	1465	816	−1	0	87	206
+2000	04	06	Jordan	Pakistan	5	0	SQ	QA	2	1485	814	−1	0	81	206
+2000	04	08	Kazakhstan	Pakistan	4	0	SQ	QA	2	1490	812	0	0	78	206
+2001	05	13	Lebanon	Pakistan	6	0	WQ		1	1423	811	0	0	98	207
+2001	05	15	Thailand	Pakistan	3	0	WQ	LB	1	1498	810	0	0	75	207
+2001	05	17	Pakistan	Sri Lanka	3	3	WQ	LB	5	815	888	0	0	207	195
+2001	05	26	Lebanon	Pakistan	8	1	WQ	TH	3	1406	812	0	0	104	206
+2001	05	28	Thailand	Pakistan	6	0	WQ		1	1522	811	0	0	69	206
+2001	05	30	Sri Lanka	Pakistan	3	1	WQ	TH	24	907	787	+6	−1	193	207
+2002	03	17	Sri Lanka	Pakistan	1	1	F		-6	901	793	−2	0	196	208
+2002	03	19	Sri Lanka	Pakistan	0	0	F		-5	896	798	0	0	196	208
+2002	03	23	Sri Lanka	Pakistan	1	0	F		5	901	793	0	0	196	208
+2002	03	25	Sri Lanka	Pakistan	2	1	F		5	906	788	+2	0	194	208
+2003	01	10	Pakistan	India	1	0	SFF	BD	35	823	1097	+1	−10	207	175
+2003	01	12	Pakistan	Sri Lanka	2	1	SFF	BD	26	849	909	+2	−2	205	194
+2003	01	14	Pakistan	Afghanistan	1	0	SFF	BD	19	868	821	+4	0	201	207
+2003	01	18	Maldives	Pakistan	1	0	SFF	BD	17	934	851	+3	−5	192	205
+2003	01	20	India	Pakistan	2	1	SFF	BD	8	1092	843	+1	0	175	205
+2003	03	21	Pakistan	Macao	3	0	SQ	SG	41	884	865	+7	−7	198	203
+2003	03	25	Singapore	Pakistan	3	0	SQ		6	1204	878	0	0	155	198
+2003	11	29	Pakistan	Kyrgyzstan	0	2	WQ		-16	862	1168	−3	+4	201	161
+2003	12	03	Kyrgyzstan	Pakistan	4	0	WQ		7	1175	855	+2	0	159	201
+2005	04	13	Malaysia	Pakistan	2	0	ILG	SA	7	1217	848	+3	−1	150	202
+2005	06	12	Pakistan	India	1	1	F		6	854	1176	+1	−2	201	161
+2005	06	16	Pakistan	India	0	1	F		-4	850	1180	−1	0	202	161
+2005	06	18	Pakistan	India	3	0	F		28	878	1152	+2	−3	200	164
+2005	12	07	Pakistan	Sri Lanka	1	0	SFF		20	898	966	+3	−3	197	192
+2005	12	09	Pakistan	Afghanistan	1	0	SFF		10	908	787	+1	0	196	207
+2005	12	11	Pakistan	Maldives	0	0	SFF		2	910	1045	0	0	196	181
+2005	12	14	Pakistan	Bangladesh	0	1	SFF		-18	892	1069	−2	+2	198	179
+2005	12	22	Bangladesh	Pakistan	0	0	SQ		-13	1034	905	−2	+2	183	196
+2005	12	26	Pakistan	Bangladesh	0	1	SQ		-18	887	1052	−2	+2	198	181
+2006	02	18	Palestine	Pakistan	3	0	F	BH	3	1286	884	+1	0	135	198
+2006	02	22	Jordan	Pakistan	3	0	SQ		1	1534	883	−1	0	73	198
+2006	03	01	Pakistan	United Arab Emirates	1	4	SQ		-4	879	1498	−2	+1	200	82
+2006	04	02	Pakistan	Kyrgyzstan	1	0	ACH	BD	34	913	1159	+4	−7	196	165
+2006	04	04	Tajikistan	Pakistan	2	0	ACH	BD	5	1354	908	0	0	114	196
+2006	04	06	Macao	Pakistan	2	2	ACH	BD	5	823	903	0	0	205	196
+2006	08	16	Pakistan	Oman	1	4	SQ		-2	901	1579	0	+1	197	65
+2006	09	06	Oman	Pakistan	5	0	SQ		1	1589	900	0	0	64	197
+2006	10	11	Pakistan	Jordan	0	3	SQ		-3	897	1527	−1	−1	198	77
+2006	11	15	United Arab Emirates	Pakistan	3	2	SQ		1	1506	896	−1	0	83	198
+2007	10	22	Pakistan	Iraq	0	7	WQ		-2	894	1663	0	+2	198	44
+2007	10	28	Iraq	Pakistan	0	0	WQ	SY	-20	1643	914	−8	+1	52	197
+2008	03	25	Nepal	Pakistan	2	1	F		8	899	906	+1	−1	199	197
+2008	03	27	Nepal	Pakistan	0	2	F		-19	880	925	−2	+2	201	195
+2008	04	02	Taiwan	Pakistan	1	2	SCQ		-29	962	954	−3	+1	190	194
+2008	04	04	Sri Lanka	Pakistan	7	1	SCQ	TW	42	999	912	+6	−2	187	196
+2008	04	06	Pakistan	Guam	9	2	SCQ	TW	10	922	548	0	0	196	230
+2008	06	03	Maldives	Pakistan	3	0	SFF		16	1055	906	+4	−1	180	197
+2008	06	05	India	Pakistan	2	1	SFF	MV	8	1154	898	+2	−1	168	198
+2008	06	07	Nepal	Pakistan	4	1	SFF	MV	37	920	861	+5	−6	196	204
+2008	10	10	Malaysia	Pakistan	4	1	F		3	1162	858	+1	0	165	203
+2009	03	11	Nepal	Pakistan	1	0	PMC		8	941	850	+1	0	191	203
+2009	04	04	Pakistan	Taiwan	1	1	SCQ	LK	6	856	957	0	0	203	190
+2009	04	06	Pakistan	Brunei	6	0	SCQ	LK	24	880	668	+2	−2	201	221
+2009	04	08	Sri Lanka	Pakistan	2	2	SCQ		-9	948	889	−2	0	192	201
+2009	07	18	Thailand	Pakistan	4	0	F		1	1464	888	0	0	92	201
+2009	12	04	Sri Lanka	Pakistan	1	0	SFF	BD	16	970	872	+2	−1	189	202
+2009	12	06	Bangladesh	Pakistan	0	0	SFF		-9	929	881	−1	+1	193	201
+2009	12	08	Pakistan	Bhutan	7	0	SFF	BD	16	897	601	+2	0	199	223
+2011	03	21	Turkmenistan	Pakistan	3	0	SCQ	MY	4	1383	893	+3	0	112	199
+2011	03	23	India	Pakistan	3	1	SCQ	MY	11	1163	882	+1	−2	165	201
+2011	03	25	Pakistan	Taiwan	2	0	SCQ	MY	34	916	890	+6	−6	195	200
+2011	06	29	Bangladesh	Pakistan	3	0	WQ		23	958	893	+1	−4	191	199
+2011	07	03	Pakistan	Bangladesh	0	0	WQ		-2	891	960	−2	0	202	191
+2011	12	02	Bangladesh	Pakistan	0	0	SFF	IN	-6	988	897	0	+3	188	198
+2011	12	04	Maldives	Pakistan	0	0	SFF	IN	-11	1109	908	−1	+2	175	196
+2011	12	06	Nepal	Pakistan	1	1	SFF	IN	-6	1002	914	0	0	187	196
+2012	11	19	Singapore	Pakistan	4	0	F		3	1219	911	+2	0	150	200
+2013	02	06	Nepal	Pakistan	0	1	F		-13	919	924	−4	+3	200	197
+2013	02	09	Nepal	Pakistan	0	1	F		-13	906	937	0	+2	200	195
+2013	02	12	Maldives	Pakistan	1	1	F		-7	1115	944	−2	0	177	195
+2013	02	14	Maldives	Pakistan	3	0	F		6	1121	938	+2	0	175	195
+2013	03	17	Tajikistan	Pakistan	1	0	SCQ	KG	6	1255	932	0	−1	143	197
+2013	03	19	Kyrgyzstan	Pakistan	1	0	SCQ		6	1131	926	+1	0	174	197
+2013	03	21	Pakistan	Macao	2	0	SCQ	KG	9	935	619	+1	−1	196	229
+2013	08	20	Afghanistan	Pakistan	3	0	F		12	963	923	+2	−3	193	199
+2013	09	01	India	Pakistan	1	0	SFF	NP	10	1130	913	+1	−1	175	200
+2013	09	03	Nepal	Pakistan	1	1	SFF		-6	913	919	−1	+1	200	199
+2013	09	05	Pakistan	Bangladesh	2	1	SFF	NP	23	942	948	+3	−3	196	195
+2013	10	13	Pakistan	Taiwan	1	0	PCC	PH	11	953	845	+1	−1	195	207
+2013	10	15	Philippines	Pakistan	3	1	PCC		6	1201	947	+3	−1	156	196
+2014	02	19	Lebanon	Pakistan	3	1	F		1	1377	946	0	0	118	195
+2014	06	21	Indonesia	Pakistan	4	0	F		4	1228	942	0	0	153	195
+2014	10	12	Pakistan	Palestine	0	2	F		-5	937	1327	0	+2	195	125
+2015	02	06	Pakistan	Afghanistan	2	1	F		12	949	1090	0	0	196	178
+2015	03	12	Yemen	Pakistan	3	1	WQS	QA	11	1223	938	+3	0	154	196
+2015	03	23	Pakistan	Yemen	0	0	WQS	BH	14	952	1209	+1	−3	195	158
+2018	09	04	Pakistan	Nepal	2	1	SFF	BD	17	969	882	+2	−1	194	202
+2018	09	06	Bangladesh	Pakistan	1	0	SFF		24	829	945	+1	−4	207	198
+2018	09	08	Pakistan	Bhutan	3	0	SFF	BD	7	952	561	+1	−2	196	236
+2018	09	12	India	Pakistan	3	1	SFF	BD	10	1241	942	+3	−2	151	199
+2018	11	16	Palestine	Pakistan	2	1	F		1	1384	941	+1	+1	112	197
+2018	12	16	Palestine	Pakistan	2	0	F	QA	2	1392	939	0	0	107	198
+2019	06	06	Cambodia	Pakistan	2	0	WQS		35	817	904	+3	−2	207	199
+2019	06	11	Cambodia	Pakistan	2	1	WQS	QA	25	842	879	+3	−2	204	201
+2022	11	16	Nepal	Pakistan	1	0	F		6	943	873	+1	0	194	202
+2023	03	21	Maldives	Pakistan	1	0	F		6	935	867	0	0	196	203
+2023	06	11	Mauritius	Pakistan	3	0	FT		14	964	853	+1	−2	191	205
+2023	06	14	Kenya	Pakistan	1	0	FT	MU	1	1371	852	0	0	115	205
+2023	06	17	Djibouti	Pakistan	3	1	FT	MU	20	914	832	+4	−1	196	207
+2023	06	21	India	Pakistan	4	0	SFF		3	1269	829	0	−2	143	209
+2023	06	24	Kuwait	Pakistan	4	0	SFF	IN	3	1385	826	+1	0	109	209
+2023	06	27	Nepal	Pakistan	1	0	SFF	IN	14	939	812	0	0	194	209
+2023	10	12	Cambodia	Pakistan	0	0	WQS		-9	865	821	0	+1	203	207
+2023	10	17	Pakistan	Cambodia	1	0	WQS		17	838	848	0	−2	207	205
+2023	11	16	Saudi Arabia	Pakistan	4	0	WQS		1	1547	837	−1	0	70	207
+2023	11	21	Pakistan	Tajikistan	1	6	WQS		-6	831	1375	0	−2	207	111
+2024	03	21	Pakistan	Jordan	0	3	WQS		-1	830	1598	0	+1	207	63
+2024	03	26	Jordan	Pakistan	7	0	WQS		1	1599	829	0	0	64	207
+2024	06	06	Pakistan	Saudi Arabia	0	3	WQS		-1	828	1614	0	+1	206	59
+2024	06	11	Tajikistan	Pakistan	3	0	WQS		2	1380	826	−1	0	111	206
+2025	03	25	Syria	Pakistan	2	0	SQ	SA	2	1439	824	0	0	94	209
+2025	06	10	Myanmar	Pakistan	1	0	SQ		9	951	815	+3	−1	190	209
+2025	10	09	Pakistan	Afghanistan	0	0	SQ		8	823	1046	+1	−1	208	180
+2025	10	14	Afghanistan	Pakistan	1	1	SQ	KW	-11	1035	834	−2	+1	183	207
+2025	11	18	Pakistan	Syria	0	5	SQ		-4	830	1448	−1	+2	207	90
+2026	03	31	Pakistan	Myanmar	1	2	SQ		-18	812	982	−1	+4	209	188

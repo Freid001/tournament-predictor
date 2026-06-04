@@ -1,0 +1,226 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1951	10	04	New Zealand	New Hebrides	9	0	F	NC	9	1380	1091	0	−	79	111
+1953	09	00	New Hebrides	Tahiti	2	4	F		-6	1085	1436	0	−9	118	73
+1953	09	00	New Hebrides	Tahiti	2	4	F		-6	1079	1442	0	−9	118	73
+1957	09	09	Tahiti	New Hebrides	2	1	F		1	1455	1078	0	0	77	131
+1963	08	30	Solomon Islands	New Hebrides	6	3	SPG	FJ	23	1223	1055	−	−1	127	145
+1966	12	12	New Caledonia	New Hebrides	5	0	SPG		4	1489	1051	+1	0	71	154
+1966	12	13	New Hebrides	Solomon Islands	4	4	SPG	NC	5	1056	1139	0	0	154	143
+1966	12	15	Tahiti	New Hebrides	3	0	SPG	NC	8	1412	1048	+2	0	93	154
+1966	12	17	New Hebrides	Papua New Guinea	5	2	SPG	NC	38	1086	1044	+2	−2	152	154
+1969	08	14	New Hebrides	Tahiti	3	3	SPG	PG	16	1102	1457	+1	−2	151	76
+1969	08	15	Fiji	New Hebrides	5	2	SPG	PG	25	1227	1077	+6	−2	128	153
+1969	08	16	New Caledonia	New Hebrides	2	0	SPG	PG	5	1492	1072	0	0	72	153
+1969	08	18	Papua New Guinea	New Hebrides	2	1	SPG		15	1080	1057	+4	−2	151	155
+1969	08	20	Solomon Islands	New Hebrides	7	2	SPG	PG	38	1114	1019	+5	−2	148	157
+1971	00	00	New Hebrides	New Caledonia	2	0	F		27	1046	1481	+3	−3	156	70
+1971	00	00	New Hebrides	New Caledonia	2	3	F		-3	1043	1484	+3	−3	156	70
+1971	00	00	New Hebrides	New Caledonia	0	0	F		8	1051	1476	+3	−3	156	70
+1971	09	11	New Hebrides	Fiji	6	4	SPG	TI	39	1090	1122	+4	−5	153	147
+1971	09	13	New Caledonia	New Hebrides	0	0	SPG	TI	-17	1485	1107	−3	+2	69	151
+1971	09	16	Tahiti	New Hebrides	1	2	SPG		-37	1414	1144	−11	+8	87	143
+1971	09	18	New Caledonia	New Hebrides	7	1	SPG	TI	10	1504	1134	+2	−2	66	145
+1973	02	18	New Caledonia	New Hebrides	4	1	OC	NZ	12	1474	1122	+2	−1	68	148
+1973	02	20	Tahiti	New Hebrides	1	0	OC	NZ	7	1453	1115	+3	0	73	148
+1973	02	21	New Hebrides	Fiji	2	1	OC	NZ	25	1140	1089	+4	−5	144	154
+1973	02	23	New Zealand	New Hebrides	3	1	OC		6	1476	1134	+1	−3	67	147
+1973	02	24	New Caledonia	New Hebrides	2	1	OC	NZ	7	1470	1127	+2	0	69	147
+1975	08	02	New Hebrides	Papua New Guinea	3	0	SPG	GU	34	1161	1079	+6	−7	138	155
+1975	08	04	New Caledonia	New Hebrides	3	1	SPG	GU	7	1513	1154	+1	−1	65	139
+1975	08	05	Tahiti	New Hebrides	3	0	SPG	GU	13	1422	1141	+1	−2	89	141
+1978	08	07	New Hebrides	Tahiti	2	4	F		-7	1134	1467	−3	+1	144	74
+1979	07	05	Solomon Islands	New Hebrides	3	1	IND		18	1117	1116	+6	−4	145	148
+1979	07	06	Solomon Islands	New Hebrides	3	0	IND		19	1136	1097	+2	−3	143	151
+1979	08	29	New Hebrides	Guam	4	0	SPG	FJ	6	1103	665	+2	−1	149	185
+1979	08	31	New Caledonia	New Hebrides	3	0	SPG	FJ	9	1443	1094	+2	−2	84	151
+1979	09	03	Tahiti	New Hebrides	1	0	SPG	FJ	4	1475	1090	+3	−1	74	152
+1979	09	05	New Hebrides	Papua New Guinea	2	0	SPG	FJ	27	1117	1029	+5	−6	147	160
+1979	09	06	New Hebrides	Tonga	7	1	SPG	FJ	7	1124	692	0	−1	147	183
+1980	02	24	Papua New Guinea	New Hebrides	4	3	OC	NC	32	1061	1092	+6	−4	154	151
+1980	02	26	New Caledonia	New Hebrides	4	3	OC		6	1346	1086	+2	−1	100	152
+1980	02	28	Australia	New Hebrides	1	0	OC	NC	2	1652	1084	0	0	43	152
+1980	03	00	Tahiti	New Hebrides	1	0	F		1	1574	1083	+1	0	54	152
+1981	07	07	Vanuatu	Western Samoa	13	1	SPM	SB	8	1091	623	0	−1	152	190
+1981	07	08	New Caledonia	Vanuatu	2	2	SPM	SB	-13	1343	1104	−1	+1	102	151
+1981	07	09	Tahiti	Vanuatu	1	1	SPM	SB	-17	1521	1121	−5	+3	66	148
+1981	07	10	Fiji	Vanuatu	1	1	SPM	SB	-5	1202	1126	0	+1	137	147
+1981	07	11	Solomon Islands	Vanuatu	2	1	SPM		15	1123	1111	+4	−4	147	151
+1981	07	13	Papua New Guinea	Vanuatu	3	2	SPM	SB	23	1085	1088	+3	−1	153	152
+1981	07	15	Papua New Guinea	Vanuatu	1	0	SPM	SB	19	1131	1069	+4	−4	145	156
+1983	08	00	Vanuatu	Tahiti	1	1	F		8	1077	1549	0	0	158	59
+1983	08	00	Vanuatu	Tahiti	1	5	F		-4	1073	1553	0	0	158	59
+1983	08	00	Vanuatu	Tahiti	1	6	F		-4	1069	1557	0	0	158	59
+1983	08	26	Fiji	Vanuatu	6	0	SPG	WM	25	1251	1044	+8	−4	123	161
+1983	09	00	New Caledonia	Vanuatu	6	2	SPG	WM	13	1327	1031	−9	−1	103	162
+1987	12	09	Vanuatu	Wallis and Futuna	6	1	SPG	NC	10	1041	685	+3	0	161	188
+1987	12	10	Vanuatu	Eastern Samoa	7	0	SPG	NC	7	1048	602	+1	−1	160	195
+1987	12	12	Papua New Guinea	Vanuatu	1	1	SPG	NC	-7	1171	1055	−1	+1	143	159
+1987	12	15	Tahiti	Vanuatu	2	1	SPG	NC	2	1580	1053	+2	0	53	159
+1987	12	17	New Caledonia	Vanuatu	6	0	SPG		9	1331	1044	0	−1	101	160
+1987	12	19	Papua New Guinea	Vanuatu	3	1	SPG	NC	19	1199	1025	+3	−5	138	165
+1988	10	23	New Caledonia	Vanuatu	6	1	MLN	SB	10	1369	1015	+1	−1	99	165
+1988	10	24	Fiji	Vanuatu	8	0	MLN	SB	17	1301	998	+8	−3	108	168
+1988	10	25	Solomon Islands	Vanuatu	5	0	MLN		21	1101	977	+3	−2	154	170
+1988	10	26	Vanuatu	New Caledonia	1	0	MLN	SB	35	1012	1270	+3	−9	167	117
+1989	10	28	Solomon Islands	Vanuatu	2	0	MLN	FJ	24	1106	988	+3	−3	155	170
+1989	10	30	Fiji	Vanuatu	2	1	MLN		2	1417	986	0	0	88	170
+1989	10	31	Papua New Guinea	Vanuatu	3	0	MLN	FJ	16	1209	970	+4	−1	136	171
+1989	11	03	New Caledonia	Vanuatu	5	1	MLN	FJ	11	1283	959	0	0	114	171
+1990	11	01	New Caledonia	Vanuatu	0	1	MLN		-37	1261	996	−10	+3	123	170
+1990	11	03	Solomon Islands	Vanuatu	1	1	MLN	NC	-7	1120	1003	−2	0	155	170
+1990	11	05	Vanuatu	Papua New Guinea	1	0	MLN	NC	29	1032	1147	+3	−6	167	149
+1990	11	06	Fiji	Vanuatu	1	1	MLN	NC	-16	1383	1048	−3	+2	93	165
+1991	09	09	Vanuatu	Wallis and Futuna	4	0	SPG	PG	9	1057	700	+2	0	170	197
+1991	09	11	Papua New Guinea	Vanuatu	0	1	SPG		-28	1085	1085	−5	+4	166	166
+1991	09	13	Solomon Islands	Vanuatu	3	0	SPG	PG	29	1170	1056	+4	−5	152	171
+1991	09	17	Fiji	Vanuatu	3	1	SPG	PG	5	1466	1051	+2	0	77	171
+1991	09	19	New Caledonia	Vanuatu	3	0	SPG	PG	18	1257	1033	+5	−2	130	173
+1992	06	27	Vanuatu	New Zealand	1	4	WQ		-7	1026	1534	0	0	180	70
+1992	07	01	New Zealand	Vanuatu	8	0	WQ		3	1537	1023	+1	0	70	181
+1992	07	13	Vanuatu	Tahiti	2	1	F		18	1041	1472	+1	−6	180	83
+1992	07	20	Vanuatu	Tahiti	1	2	F		-3	1038	1475	−1	+2	181	81
+1992	07	25	Vanuatu	New Caledonia	0	1	MLN		-14	1024	1258	0	+3	181	139
+1992	07	27	Vanuatu	Solomon Islands	1	3	MLN		-21	1003	1248	−4	+5	185	141
+1992	07	30	Vanuatu	Fiji	0	2	MLN		-8	995	1441	−1	+2	186	91
+1992	09	12	Fiji	Vanuatu	3	0	WQ		3	1444	992	+2	0	90	187
+1992	09	26	Vanuatu	Fiji	0	3	WQ		-8	984	1452	−1	0	188	89
+1993	12	07	Vanuatu	Tonga	3	0	SPM		6	990	672	0	0	190	213
+1993	12	10	Vanuatu	New Caledonia	1	1	SPM		10	1000	1267	0	−2	190	139
+1993	12	13	Vanuatu	Papua New Guinea	1	0	SPM		20	1020	1085	+4	−5	186	177
+1993	12	14	Vanuatu	Fiji	0	2	SPM		-9	1011	1425	−2	+2	188	96
+1993	12	16	Vanuatu	New Caledonia	1	2	SPM		-12	999	1274	−2	+2	190	137
+1994	07	05	New Caledonia	Vanuatu	3	2	OCM	SB	8	1236	991	+2	0	144	191
+1994	07	06	Solomon Islands	Vanuatu	4	0	OCM		10	1224	981	+1	0	150	191
+1994	07	07	Papua New Guinea	Vanuatu	1	1	OCM	SB	-6	1089	987	−3	0	177	191
+1994	07	08	Fiji	Vanuatu	4	2	OCM	SB	5	1418	982	+1	0	96	191
+1995	08	16	Vanuatu	Guam	6	0	SPG	TI	13	995	670	+1	−2	190	213
+1995	08	20	Vanuatu	Papua New Guinea	3	0	SPG	TI	46	1041	1057	+9	−9	181	180
+1995	08	22	Fiji	Vanuatu	3	1	SPG	TI	7	1398	1034	+2	−2	105	183
+1995	08	24	Tahiti	Vanuatu	3	0	SPG		2	1546	1032	0	0	69	183
+1995	08	26	Fiji	Vanuatu	3	0	SPG	TI	8	1400	1024	+3	−2	104	185
+1996	09	18	Solomon Islands	Vanuatu	1	1	WQ	PG	-12	1260	1036	−3	+2	140	182
+1996	09	20	Papua New Guinea	Vanuatu	2	1	WQ		12	1085	1024	+3	−2	173	184
+1998	09	07	Vanuatu	Fiji	1	2	OCM		-7	1017	1401	−1	+6	185	102
+1998	09	08	Vanuatu	Papua New Guinea	1	1	OCM		-1	1016	1108	0	0	185	173
+1998	09	10	Vanuatu	Solomon Islands	3	1	OCM		48	1064	1308	+6	−8	179	127
+1998	09	12	Vanuatu	New Caledonia	3	2	OCM		18	1082	1117	+2	−6	177	169
+1998	09	28	New Zealand	Vanuatu	8	1	OC	AU	12	1469	1070	+4	0	85	177
+1998	09	30	Tahiti	Vanuatu	5	1	OC	AU	11	1424	1059	+1	−2	99	179
+2000	04	10	Solomon Islands	Vanuatu	2	1	OCM	FJ	9	1280	1050	+1	−2	135	183
+2000	04	11	Fiji	Vanuatu	4	1	OCM		4	1436	1046	0	−1	96	184
+2000	04	13	Vanuatu	New Caledonia	6	0	OCM	FJ	59	1105	1132	+11	−7	173	166
+2000	04	15	Vanuatu	Papua New Guinea	4	1	OCM	FJ	29	1134	1016	+8	−3	165	187
+2000	06	12	New Caledonia	Vanuatu	3	1	F		11	1143	1123	+3	−3	165	169
+2000	06	15	New Caledonia	Vanuatu	1	0	F		7	1150	1116	0	−2	165	171
+2000	06	21	New Zealand	Vanuatu	3	1	OC	TI	7	1531	1109	+2	−1	68	172
+2000	06	23	Tahiti	Vanuatu	2	3	OC		-44	1298	1153	−11	+7	132	165
+2000	06	25	Australia	Vanuatu	1	0	OC	TI	2	1757	1151	0	0	25	165
+2000	06	28	Solomon Islands	Vanuatu	2	1	OC	TI	16	1300	1135	+7	−2	130	167
+2001	06	04	Tahiti	Vanuatu	6	1	WQ	NZ	22	1320	1113	+7	−3	125	170
+2001	06	06	Vanuatu	Cook Islands	8	1	WQ	NZ	8	1121	705	+1	−1	169	212
+2001	06	08	Solomon Islands	Vanuatu	7	2	WQ	NZ	21	1324	1100	+5	−5	125	174
+2001	06	13	New Zealand	Vanuatu	7	0	WQ		4	1527	1096	+1	−2	68	176
+2002	07	06	Australia	Vanuatu	2	0	OC	NZ	1	1821	1095	0	0	22	176
+2002	07	08	Vanuatu	Fiji	1	0	OC	NZ	44	1139	1384	+11	−12	164	113
+2002	07	10	Vanuatu	New Caledonia	1	0	OC	NZ	23	1162	1089	+3	−5	161	176
+2002	07	12	New Zealand	Vanuatu	3	0	OC		5	1546	1157	+1	0	66	161
+2002	07	14	Tahiti	Vanuatu	1	0	OC	NZ	12	1368	1145	+4	−2	115	163
+2003	06	30	Fiji	Vanuatu	0	0	SPG		-15	1361	1160	−3	+4	117	161
+2003	07	01	Solomon Islands	Vanuatu	2	2	SPG	FJ	-5	1246	1165	−1	+1	147	160
+2003	07	03	Vanuatu	Tuvalu	1	0	SPG	FJ	4	1169	758	+1	0	159	210
+2003	07	07	Vanuatu	Kiribati	18	0	SPG	FJ	5	1174	579	+1	0	160	225
+2003	07	09	New Caledonia	Vanuatu	1	1	SPG	FJ	-1	1189	1175	0	0	155	160
+2003	07	11	Vanuatu	Tahiti	1	0	SPG	FJ	27	1202	1281	+6	−3	154	135
+2004	04	03	Vanuatu	Solomon Islands	1	2	F		-12	1190	1255	0	+3	155	143
+2004	04	06	Vanuatu	Solomon Islands	1	2	F		-11	1179	1266	−3	+4	158	139
+2004	05	10	Papua New Guinea	Vanuatu	1	1	WOQ	WS	8	1032	1171	0	−1	187	158
+2004	05	12	Vanuatu	Eastern Samoa	9	1	WOQ	WS	1	1172	375	0	0	158	235
+2004	05	15	Samoa	Vanuatu	0	3	WOQ		-8	700	1180	−2	+2	215	156
+2004	05	19	Vanuatu	Fiji	3	0	WOQ	WS	55	1235	1347	+8	−14	148	122
+2004	05	29	Solomon Islands	Vanuatu	1	0	WQO	AU	22	1301	1213	+3	−4	132	152
+2004	05	31	Fiji	Vanuatu	1	0	WQO	AU	16	1359	1197	+8	−3	118	155
+2004	06	02	Vanuatu	New Zealand	4	2	WQO	AU	66	1263	1468	+13	−12	142	85
+2004	06	04	Australia	Vanuatu	3	0	WQO		2	1808	1261	+1	0	19	142
+2004	06	06	Tahiti	Vanuatu	2	1	WQO	AU	29	1239	1232	+8	−6	145	148
+2007	07	17	New Caledonia	Vanuatu	5	3	F		13	1195	1219	+3	−5	158	151
+2007	07	19	New Caledonia	Vanuatu	0	2	F		-18	1177	1237	−3	+5	161	146
+2007	08	25	Samoa	Vanuatu	0	4	WOS		-5	678	1242	0	+1	218	145
+2007	08	29	Vanuatu	Eastern Samoa	15	0	WOS	WS	1	1243	364	0	0	145	236
+2007	09	01	Solomon Islands	Vanuatu	2	0	WOS	WS	21	1371	1222	+2	−5	114	150
+2007	09	03	Vanuatu	Tonga	4	1	WOS	WS	3	1225	704	+1	−1	149	217
+2007	09	05	Fiji	Vanuatu	3	0	WOS	WS	24	1364	1201	+5	−6	116	155
+2007	09	07	Vanuatu	Solomon Islands	2	0	WOS	WS	42	1243	1303	+9	−15	146	133
+2007	11	17	Vanuatu	New Zealand	1	2	WQO		-13	1230	1534	−4	−1	147	78
+2007	11	21	New Zealand	Vanuatu	4	1	WQO		8	1542	1222	+3	−3	74	151
+2008	06	14	Vanuatu	New Caledonia	1	1	WQO		0	1222	1316	0	−1	150	124
+2008	06	21	New Caledonia	Vanuatu	3	0	WQO		22	1338	1200	+4	−5	120	155
+2008	07	07	Solomon Islands	Vanuatu	1	2	WTK		-23	1280	1223	−4	+4	132	151
+2008	09	06	Fiji	Vanuatu	2	0	WQO		23	1283	1200	+8	−4	132	155
+2008	09	10	Vanuatu	Fiji	2	1	WQO		24	1224	1259	+3	−10	152	142
+2011	01	24	Vanuatu	New Caledonia	0	0	F		-1	1223	1286	0	0	150	136
+2011	07	07	Solomon Islands	Vanuatu	2	1	F		6	1286	1217	0	−1	135	153
+2011	07	09	Solomon Islands	Vanuatu	0	0	F		-5	1281	1222	0	+1	135	152
+2011	07	13	Fiji	Vanuatu	2	0	F		7	1325	1215	0	−1	127	153
+2011	07	15	Fiji	Vanuatu	1	2	F		-15	1310	1230	−2	+3	129	150
+2011	07	27	Vanuatu	Solomon Islands	0	0	F		-1	1229	1282	0	0	150	135
+2011	07	30	Vanuatu	Solomon Islands	2	0	F		13	1242	1269	+5	−1	145	135
+2011	08	27	New Caledonia	Vanuatu	5	0	PG		27	1283	1215	+8	−6	134	152
+2011	08	30	Vanuatu	Tuvalu	5	1	PG	NC	5	1220	738	+1	0	151	212
+2011	09	01	Vanuatu	Solomon Islands	1	0	PG	NC	23	1243	1248	+6	−7	145	143
+2011	09	03	Vanuatu	Guam	4	1	PG	NC	2	1245	606	0	0	144	225
+2011	09	05	Vanuatu	Eastern Samoa	8	0	PG	NC	1	1246	334	0	0	144	238
+2012	06	01	New Caledonia	Vanuatu	5	2	WQO	SB	37	1334	1209	+8	−8	124	154
+2012	06	03	Vanuatu	Samoa	5	0	WQO	SB	5	1214	681	+1	−1	153	220
+2012	06	05	Tahiti	Vanuatu	4	1	WQO	SB	44	1256	1170	+8	−7	147	160
+2015	11	07	Vanuatu	Fiji	1	1	F		0	1170	1276	0	0	166	136
+2015	11	10	Vanuatu	Fiji	2	1	F		10	1180	1266	+1	−3	165	139
+2016	03	26	Vanuatu	New Caledonia	2	1	F		12	1192	1341	+4	−5	162	122
+2016	05	28	Solomon Islands	Vanuatu	1	0	WQO	PG	27	1188	1165	+5	−5	164	169
+2016	05	31	New Zealand	Vanuatu	5	0	WQO	PG	11	1544	1154	+1	0	74	169
+2016	06	04	Vanuatu	Fiji	3	2	WQO	PG	33	1187	1239	+4	−8	166	148
+2017	07	28	Solomon Islands	Vanuatu	0	0	F		-2	1165	1189	0	0	168	167
+2017	11	23	Vanuatu	Estonia	0	1	F		-4	1185	1508	0	0	167	80
+2017	12	02	Vanuatu	New Caledonia	2	1	PMG		23	1208	1307	+5	−5	162	127
+2017	12	06	Vanuatu	Tonga	5	0	PMG		1	1209	558	0	0	161	236
+2017	12	09	Vanuatu	Fiji	1	1	PMG		-6	1203	1212	−1	+2	162	160
+2017	12	12	Vanuatu	Tuvalu	10	0	PMG		4	1207	747	−1	0	163	215
+2017	12	15	Vanuatu	Solomon Islands	3	2	PMG		15	1222	1195	+7	−3	156	165
+2018	11	14	Vanuatu	New Caledonia	0	1	F		-13	1209	1215	−7	+3	161	159
+2018	11	17	Vanuatu	New Caledonia	2	2	F		-3	1206	1218	−1	+3	162	156
+2019	03	18	Solomon Islands	Vanuatu	3	1	F		11	1213	1195	+2	−4	158	163
+2019	06	04	Vanuatu	Tahiti	2	0	FT		18	1213	1201	+1	−6	160	161
+2019	06	10	Vanuatu	Fiji	0	0	FT		-3	1210	1235	0	0	158	148
+2019	06	15	Indonesia	Vanuatu	6	0	F		15	1226	1195	+4	−3	152	160
+2019	07	10	Papua New Guinea	Vanuatu	2	0	PG	WS	38	1142	1157	+9	−8	169	167
+2019	07	15	Vanuatu	Tonga	14	0	PG	WS	3	1160	530	0	0	166	238
+2019	07	18	Samoa	Vanuatu	0	11	PG		-12	677	1172	−2	0	225	166
+2022	03	10	Fiji	Vanuatu	3	0	F	QA	15	1242	1157	+2	−4	151	167
+2022	03	28	Fiji	Vanuatu	2	1	F	QA	8	1233	1149	+1	−2	151	171
+2022	09	24	Vanuatu	Papua New Guinea	0	1	MLN		-24	1125	1200	−2	+3	171	161
+2023	03	20	Fiji	Vanuatu	1	2	FT		-23	1224	1148	−5	+4	155	168
+2023	03	23	Solomon Islands	Vanuatu	2	0	FT	FJ	19	1224	1129	+5	−5	155	173
+2023	06	09	Lebanon	Vanuatu	3	1	INL	IN	12	1325	1117	+4	−3	127	174
+2023	06	12	India	Vanuatu	1	0	INL		6	1248	1111	+3	0	149	174
+2023	06	15	Vanuatu	Mongolia	1	0	INL	IN	5	1116	811	0	0	174	210
+2023	10	08	New Caledonia	Vanuatu	4	0	MLN		21	1200	1095	+5	−2	159	176
+2023	10	11	Solomon Islands	Vanuatu	1	0	MLN	NC	11	1278	1084	+4	−2	144	178
+2023	10	14	Papua New Guinea	Vanuatu	0	1	MLN	NC	-24	1136	1108	−2	+2	168	175
+2023	11	20	Vanuatu	Tuvalu	6	0	PG	SB	9	1117	728	0	0	171	214
+2023	11	23	Papua New Guinea	Vanuatu	1	1	PG	SB	-1	1135	1118	0	0	169	170
+2023	11	28	New Caledonia	Vanuatu	1	0	PG	SB	15	1220	1103	+1	−2	159	172
+2023	12	01	Fiji	Vanuatu	4	2	PG	SB	24	1203	1079	+1	−3	162	175
+2024	03	21	Guinea	Vanuatu	6	0	FFS	SA	6	1468	1073	+1	−1	91	177
+2024	03	26	Brunei	Vanuatu	3	2	FFS	SA	28	624	1045	+3	−5	229	183
+2024	06	15	Vanuatu	Solomon Islands	1	0	OC		35	1080	1252	+4	−10	177	153
+2024	06	21	Vanuatu	New Zealand	0	4	OC		-10	1070	1550	−1	+1	177	73
+2024	06	27	Vanuatu	Fiji	2	1	OC		31	1101	1227	+4	−5	173	157
+2024	06	30	Vanuatu	New Zealand	0	3	OC		-10	1091	1570	0	+2	173	66
+2024	10	12	Vanuatu	Samoa	4	1	WQ		5	1096	733	0	−1	175	215
+2024	11	15	New Zealand	Vanuatu	8	1	WQ		3	1583	1093	+2	−1	65	176
+2024	11	18	Tahiti	Vanuatu	2	0	WQ	NZ	22	1206	1071	+1	−2	160	177
+2024	12	09	Solomon Islands	Vanuatu	4	1	MLN		16	1194	1055	0	−1	162	179
+2024	12	12	Fiji	Vanuatu	1	1	MLN	SB	-9	1206	1064	0	+2	159	177
+2024	12	21	Papua New Guinea	Vanuatu	2	1	MLN	SB	19	1104	1045	+4	−4	172	182
+2025	11	17	Vanuatu	Fiji	2	0	MLN	PG	41	1086	1131	+3	−8	177	169
+2025	11	20	Vanuatu	Solomon Islands	2	1	MLN	PG	21	1107	1089	+3	−3	175	178
+2025	11	23	Papua New Guinea	Vanuatu	2	2	MLN		-7	1135	1114	−2	+1	166	174

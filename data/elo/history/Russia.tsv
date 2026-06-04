@@ -1,0 +1,814 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1912	06	30	Finland	Russia	2	1	OG	SE	29	1637	1571	+1	−	14	17
+1912	07	01	Germany	Russia	16	0	OG	SE	81	1723	1490	+1	−3	12	20
+1912	07	05	Norway	Russia	2	1	F	SE	13	1377	1477	0	−1	24	21
+1912	07	14	Russia	Hungary	0	12	F		-6	1471	1949	−1	+1	22	4
+1913	05	04	Russia	Sweden	1	4	F		-14	1457	1663	0	0	23	13
+1913	09	14	Russia	Norway	1	1	F		-5	1452	1374	0	0	23	25
+1914	07	05	Sweden	Russia	2	2	F		-7	1641	1459	0	0	13	23
+1914	07	10	Norway	Russia	2	1	F		10	1383	1449	0	0	25	23
+1914	07	12	Norway	Russia	1	1	F		-1	1382	1450	0	0	25	23
+1923	09	19	Estonia	Russia	2	4	F		-17	1370	1467	−2	0	45	40
+1924	11	16	Soviet Union	Turkey	3	0	F		16	1483	1515	+1	0	42	39
+1925	05	15	Turkey	Soviet Union	1	2	F		-14	1519	1497	0	+1	39	41
+1931	08	20	Soviet Union	Turkey	3	2	F		6	1503	1427	+1	0	43	50
+1932	10	21	Turkey	Soviet Union	2	2	F		-1	1431	1504	0	0	53	41
+1932	10	23	Turkey	Soviet Union	0	4	F		-20	1411	1524	−2	+1	55	40
+1932	10	27	Turkey	Soviet Union	0	1	F		-10	1401	1534	−1	0	56	40
+1932	10	30	Turkey	Soviet Union	2	3	F		-9	1392	1543	0	0	56	40
+1933	07	30	Soviet Union	Turkey	1	2	F		-16	1527	1398	0	0	42	59
+1934	08	07	Soviet Union	Turkey	2	1	F		4	1531	1394	+1	0	43	61
+1935	10	13	Turkey	Soviet Union	1	2	F		-9	1382	1540	−1	0	61	42
+1935	10	15	Turkey	Soviet Union	2	2	F		2	1384	1538	0	0	61	42
+1935	10	19	Turkey	Soviet Union	3	3	F		2	1386	1536	0	0	61	42
+1935	10	21	Turkey	Soviet Union	2	3	F		-9	1377	1545	−1	+1	62	41
+1935	10	25	Turkey	Soviet Union	1	2	F		-8	1369	1553	0	0	62	41
+1935	10	27	Turkey	Soviet Union	3	3	F		2	1371	1551	0	0	62	41
+1952	05	11	Soviet Union	Poland	0	1	F		-12	1539	1592	−1	0	49	42
+1952	05	14	Soviet Union	Poland	2	1	F		9	1548	1583	+1	0	48	42
+1952	05	24	Soviet Union	Hungary	1	1	F		7	1555	1941	+1	−2	47	6
+1952	05	27	Soviet Union	Hungary	2	1	F		17	1572	1924	+4	0	43	6
+1952	07	15	Soviet Union	Bulgaria	2	1	OG	FI	26	1598	1498	+4	−6	39	59
+1952	07	20	Soviet Union	Yugoslavia	5	5	OG	FI	22	1620	1914	+4	−1	35	8
+1952	07	22	Yugoslavia	Soviet Union	3	1	OG	FI	14	1928	1606	+1	−2	6	37
+1954	09	08	Soviet Union	Sweden	7	0	F		31	1637	1805	+5	−3	37	13
+1954	09	26	Soviet Union	Hungary	1	1	F		9	1646	2182	+4	0	32	1
+1955	02	06	India	Soviet Union	0	4	F		-21	1568	1667	−4	+6	48	26
+1955	02	27	India	Soviet Union	0	3	F		-18	1550	1685	−6	+2	54	24
+1955	03	06	India	Soviet Union	0	3	F		-16	1534	1701	−2	+2	56	22
+1955	06	26	Sweden	Soviet Union	0	6	F		-33	1781	1734	−1	+3	14	21
+1955	08	21	Soviet Union	West Germany	3	2	F		15	1749	2009	+3	−1	18	4
+1955	09	16	Soviet Union	India	11	1	F		7	1756	1511	+1	−3	16	63
+1955	09	25	Hungary	Soviet Union	1	1	F		-9	2194	1765	0	0	1	17
+1955	10	23	Soviet Union	France	2	2	F		0	1765	1850	0	0	17	9
+1956	05	23	Soviet Union	Denmark	5	1	F		9	1774	1646	+1	−2	16	35
+1956	07	01	Denmark	Soviet Union	2	5	F		-15	1610	1789	−3	+1	43	15
+1956	07	11	Soviet Union	Israel	5	0	OQ		6	1795	1438	0	−1	15	81
+1956	07	31	Israel	Soviet Union	1	2	OQ		-7	1431	1802	−1	0	82	15
+1956	08	05	Russia	China	1	0	F		2	1804	1542	0	0	15	56
+1956	09	15	West Germany	Soviet Union	1	2	F		-16	1939	1820	0	+3	6	12
+1956	09	23	Soviet Union	Hungary	0	1	F		-5	1815	2123	−1	0	13	1
+1956	10	21	France	Soviet Union	2	1	F		7	1845	1808	0	−1	11	14
+1956	11	15	Australia	Soviet Union	1	15	F		-26	1619	1834	−4	+2	42	12
+1956	11	29	Indonesia	Soviet Union	0	0	OG	AU	23	1501	1811	+3	−1	67	14
+1956	12	01	Soviet Union	Indonesia	4	0	OG	AU	16	1827	1485	+1	−2	13	69
+1956	12	05	Soviet Union	Bulgaria	2	1	OG	AU	11	1838	1549	0	−5	13	57
+1956	12	08	Soviet Union	Yugoslavia	1	0	OG	AU	37	1875	1886	+4	−2	9	8
+1957	06	01	Soviet Union	Romania	1	1	F		-8	1867	1630	0	+1	9	40
+1957	06	23	Soviet Union	Poland	3	0	WQ		6	1873	1536	+1	0	9	57
+1957	07	21	Bulgaria	Soviet Union	0	4	F		-12	1629	1885	−2	0	41	9
+1957	07	27	Soviet Union	Finland	2	1	WQ		1	1886	1357	0	0	9	94
+1957	08	15	Finland	Soviet Union	0	10	WQ		-8	1349	1894	−1	+2	95	7
+1957	09	22	Hungary	Soviet Union	1	2	F		-17	2085	1911	−1	+2	2	5
+1957	10	20	Poland	Soviet Union	2	1	WQ		32	1597	1879	+4	−4	48	9
+1957	11	24	Soviet Union	Poland	2	0	WQ	DD	10	1889	1595	0	−3	9	49
+1958	05	11	Soviet Union	East Germany	4	0	F		2	1891	1482	0	0	10	71
+1958	05	18	Soviet Union	England	1	1	F		1	1892	2015	0	0	10	3
+1958	06	08	England	Soviet Union	2	2	WC	SE	-10	2005	1902	0	+2	3	8
+1958	06	11	Soviet Union	Austria	2	0	WC	SE	40	1942	1824	+2	−2	6	13
+1958	06	15	Brazil	Soviet Union	2	0	WC	SE	35	2052	1907	+1	−3	1	9
+1958	06	17	Soviet Union	England	1	0	WC	SE	37	1944	1955	+4	−1	5	4
+1958	06	19	Sweden	Soviet Union	2	0	WC		43	1902	1901	+4	−4	8	9
+1958	08	30	Czechoslovakia	Soviet Union	1	2	F		-13	1888	1914	−2	+2	10	6
+1958	09	28	Soviet Union	Hungary	3	1	EQ		28	1942	1963	+2	0	5	2
+1958	10	22	England	Soviet Union	5	0	F		14	1964	1928	+1	0	3	5
+1959	07	18	Russia	China	0	1	F		-19	1909	1506	−3	+5	8	67
+1959	09	06	Soviet Union	Czechoslovakia	3	1	F		9	1918	1843	+2	−1	6	12
+1959	09	27	Hungary	Soviet Union	0	1	EQ		-29	1966	1947	0	+2	3	4
+1959	10	03	China	Soviet Union	0	1	FT		-4	1502	1951	−2	0	69	4
+1959	11	29	Cambodia	Russia	0	7	F		-1	1087	1952	0	0	136	4
+1959	12	04	Burma	Russia	2	6	F		-1	1268	1953	−1	0	114	4
+1960	03	04	East Germany	Soviet Union	1	2	F		-2	1468	1955	0	0	75	4
+1960	03	06	East Germany	Soviet Union	1	0	F		18	1486	1937	+2	−1	73	5
+1960	03	09	East Germany	Soviet Union	1	2	F		-2	1484	1939	0	+1	73	4
+1960	05	19	Soviet Union	Poland	7	1	F		3	1942	1606	0	0	5	43
+1960	07	06	Soviet Union	Czechoslovakia	3	0	EC	FR	39	1981	1863	+1	−2	4	11
+1960	07	10	Soviet Union	Yugoslavia	2	1	EC	FR	21	2002	1899	+2	−1	2	9
+1960	08	17	East Germany	Soviet Union	0	1	F		-2	1478	2004	−1	−1	73	3
+1960	09	04	Austria	Soviet Union	3	1	F		19	1825	1985	+1	0	13	3
+1961	05	21	Poland	Soviet Union	1	0	F		16	1666	1969	+3	0	35	4
+1961	06	18	Soviet Union	Turkey	1	0	WQ		5	1974	1722	0	0	4	22
+1961	06	24	Soviet Union	Argentina	0	0	F		-3	1971	1985	0	0	4	3
+1961	07	01	Soviet Union	Norway	5	2	WQ		2	1973	1486	0	−1	4	73
+1961	08	23	Norway	Soviet Union	0	3	WQ		-7	1479	1980	−1	0	74	4
+1961	09	10	Soviet Union	Austria	0	1	F		-15	1965	1909	0	0	4	11
+1961	11	12	Turkey	Soviet Union	1	2	WQ		-12	1705	1977	−3	0	26	4
+1961	11	18	Argentina	Soviet Union	1	2	F		-13	1975	1990	−2	+2	4	2
+1961	11	22	Chile	Soviet Union	0	1	F		-5	1710	1995	0	0	23	2
+1961	11	29	Uruguay	Soviet Union	1	2	F		-11	1923	2006	0	0	9	2
+1962	04	11	Luxembourg	Soviet Union	1	3	F		-1	1313	2007	−1	0	110	2
+1962	04	18	Sweden	Soviet Union	0	2	F		-14	1878	2021	0	0	13	2
+1962	04	27	Soviet Union	Uruguay	5	0	F		9	2030	1892	0	−3	2	12
+1962	05	03	Soviet Union	East Germany	2	1	F		1	2031	1508	0	0	2	68
+1962	05	31	Soviet Union	Yugoslavia	2	0	WC	CL	39	2070	1943	0	−2	2	6
+1962	06	03	Colombia	Soviet Union	4	4	WC	CL	28	1464	2042	+4	0	79	2
+1962	06	06	Soviet Union	Uruguay	2	1	WC	CL	16	2058	1852	0	0	2	13
+1962	06	10	Chile	Soviet Union	2	1	WC		45	1814	2013	+1	−1	16	3
+1962	06	18	Russia	Indonesia	3	1	F		1	2014	1501	0	0	2	70
+1963	05	22	Soviet Union	Sweden	0	1	F		-16	1998	1902	0	+1	1	10
+1963	09	22	Soviet Union	Hungary	1	1	F		-3	1995	1986	0	0	1	2
+1963	10	13	Soviet Union	Italy	2	0	EQ		17	2012	1914	0	−1	1	8
+1963	11	10	Italy	Soviet Union	1	1	EQ		0	1914	2012	0	0	8	1
+1963	12	01	Morocco	Soviet Union	1	1	F		6	1649	2006	+2	0	36	1
+1964	05	13	Sweden	Soviet Union	1	1	EQ		0	1910	2006	0	0	9	1
+1964	05	20	Soviet Union	Uruguay	1	0	F		4	2010	1862	0	0	1	13
+1964	05	27	Soviet Union	Sweden	3	1	EQ		14	2024	1896	0	−2	1	11
+1964	06	17	Soviet Union	Denmark	3	0	EC	ES	10	2034	1666	0	−1	1	34
+1964	06	21	Spain	Soviet Union	2	1	EC		27	1940	2007	+5	0	4	1
+1964	07	13	Russia	Algeria	3	1	F		3	2010	1749	0	−1	1	24
+1964	07	24	Russia	Japan	0	0	F		-10	2000	1410	0	+6	1	89
+1964	08	02	Russia	Iran	1	0	F		1	2001	1611	0	0	1	44
+1964	10	11	Austria	Soviet Union	1	0	F		13	1818	1988	+1	0	14	2
+1964	11	04	Algeria	Soviet Union	2	2	F		4	1753	1984	0	0	23	2
+1964	11	22	Yugoslavia	Soviet Union	1	1	F		1	1859	1983	0	0	15	2
+1964	11	29	Bulgaria	Soviet Union	0	0	F		4	1723	1979	+1	0	24	1
+1965	05	16	Soviet Union	Austria	0	0	F		-6	1973	1817	−1	0	2	17
+1965	05	23	Soviet Union	Greece	3	1	WQ		3	1976	1531	+1	0	1	61
+1965	05	30	Soviet Union	Wales	2	1	WQ		5	1981	1733	0	0	1	26
+1965	06	27	Soviet Union	Denmark	6	0	WQ		7	1988	1648	0	−1	1	36
+1965	07	04	Soviet Union	Brazil	0	3	F		-23	1965	1996	−3	+2	4	1
+1965	07	20	Russia	Japan	2	1	F		1	1966	1439	0	0	4	83
+1965	09	04	Soviet Union	Yugoslavia	0	0	F		-6	1960	1818	0	+1	4	14
+1965	10	03	Greece	Soviet Union	1	4	WQ		-9	1522	1969	−2	0	64	4
+1965	10	17	Denmark	Soviet Union	1	3	WQ		-13	1640	1982	0	0	39	4
+1965	10	27	Wales	Soviet Union	2	1	WQ		28	1768	1954	+4	0	22	4
+1965	11	11	India	Russia	1	2	F		-3	1516	1957	−1	0	66	4
+1965	11	14	India	Russia	0	2	F		-4	1512	1961	−2	0	68	4
+1965	11	21	Brazil	Soviet Union	2	2	F		-4	2000	1965	0	0	1	4
+1965	11	28	India	Russia	1	3	F		-3	1509	1968	0	0	65	4
+1965	12	01	Argentina	Soviet Union	1	1	F		-4	1996	1972	0	0	2	4
+1965	12	04	Uruguay	Soviet Union	1	3	F		-15	1849	1987	0	+1	13	3
+1965	12	12	India	Russia	0	1	F		-2	1507	1989	0	0	66	3
+1965	12	14	India	Russia	0	3	F		-3	1504	1992	0	0	66	3
+1966	02	23	Chile	Soviet Union	0	2	F		-10	1763	2002	−3	+1	26	2
+1966	03	31	Yugoslavia	Soviet Union	1	0	F		13	1804	1989	+2	−1	16	3
+1966	04	01	Montenegro	Soviet Union	0	1	F		-4	1667	1993	−	0	−	3
+1966	04	20	Switzerland	Soviet Union	2	2	F		6	1656	1987	+1	0	37	3
+1966	04	24	Austria	Soviet Union	0	1	F		-7	1767	1994	−1	0	24	3
+1966	05	18	Czechoslovakia	Soviet Union	1	2	F		-10	1899	2004	0	+1	8	1
+1966	05	22	Belgium	Soviet Union	0	1	F		-6	1763	2010	−2	0	24	1
+1966	06	05	Soviet Union	France	3	3	F		-8	2002	1759	−1	+2	2	23
+1966	07	12	Soviet Union	North Korea	3	0	WC	EN	23	2025	1755	0	−4	2	23
+1966	07	16	Soviet Union	Italy	1	0	WC	EN	27	2052	1966	0	−3	1	6
+1966	07	20	Russia	Japan	4	2	F		0	2052	1439	0	0	1	85
+1966	07	20	Soviet Union	Chile	2	1	WC	EN	8	2060	1725	0	0	1	28
+1966	07	23	Soviet Union	Hungary	2	1	WC	EN	23	2083	1955	0	−1	1	6
+1966	07	25	West Germany	Soviet Union	2	1	WC	EN	34	2073	2049	+1	−1	1	2
+1966	07	28	Portugal	Soviet Union	2	1	WC	EN	36	2018	2013	+2	−2	3	4
+1966	09	18	Yugoslavia	Soviet Union	1	2	F		-7	1786	2020	−1	+1	17	3
+1966	10	16	Soviet Union	Turkey	0	2	F		-28	1992	1653	−1	+2	4	38
+1966	10	23	Soviet Union	East Germany	2	2	F		-7	1985	1788	0	+1	4	17
+1966	11	01	Italy	Soviet Union	1	0	F		9	1929	1976	0	−1	7	5
+1966	11	18	Algeria	Russia	4	1	F		27	1702	1949	+7	−1	30	6
+1966	11	20	Algeria	Russia	0	3	F		-11	1691	1960	−3	+1	33	5
+1967	05	10	Scotland	Soviet Union	0	2	F		-14	1833	1974	−1	0	14	6
+1967	05	28	Soviet Union	Mexico	2	0	F		5	1979	1801	0	−1	6	17
+1967	06	01	Russia	Mexico	0	1	F		-17	1962	1818	0	+2	6	15
+1967	06	03	France	Soviet Union	2	4	F		-10	1721	1972	−2	0	29	6
+1967	06	11	Soviet Union	Austria	4	3	EQ		5	1977	1737	0	0	6	26
+1967	07	16	Soviet Union	Greece	4	0	EQ		3	1980	1549	0	−1	6	56
+1967	07	28	Poland	Soviet Union	0	1	OQ		-10	1685	1990	0	+2	33	4
+1967	08	04	Soviet Union	Poland	2	1	OQ		4	1994	1681	0	0	4	33
+1967	08	22	Russia	Tunisia	3	0	F		2	1996	1592	0	−1	3	48
+1967	08	30	Soviet Union	Finland	2	0	EQ		1	1997	1443	0	0	3	84
+1967	09	06	Finland	Soviet Union	2	5	EQ		-5	1438	2002	0	0	84	3
+1967	10	01	Soviet Union	Switzerland	2	2	F		-8	1994	1676	0	0	4	34
+1967	10	08	Bulgaria	Soviet Union	1	2	F		-7	1780	2001	0	0	18	4
+1967	10	15	Austria	Soviet Union	1	0	EQ		31	1720	1970	+4	−1	28	5
+1967	10	31	Greece	Soviet Union	0	1	EQ		-7	1585	1977	−2	0	53	5
+1967	11	29	Netherlands	Soviet Union	3	1	F		23	1695	1954	+5	−2	32	6
+1967	12	06	England	Soviet Union	2	2	F		-6	2076	1960	0	+1	1	5
+1967	12	17	Chile	Soviet Union	1	4	F		-13	1757	1973	−1	+1	20	4
+1968	03	03	Mexico	Soviet Union	0	0	F		1	1831	1972	0	0	15	4
+1968	03	07	Mexico	Soviet Union	1	1	F		1	1832	1971	0	0	15	4
+1968	03	10	Mexico	Soviet Union	0	0	F		1	1833	1970	0	0	15	4
+1968	04	24	Soviet Union	Belgium	1	0	F		2	1972	1729	0	0	4	26
+1968	05	04	Hungary	Soviet Union	2	0	EQ		20	2008	1952	+1	−1	2	5
+1968	05	11	Soviet Union	Hungary	3	0	EQ		31	1983	1977	+2	−2	3	4
+1968	06	05	Italy	Soviet Union	0	0	EC		-5	1955	1988	0	0	5	3
+1968	06	08	England	Soviet Union	2	0	EC	IT	32	2073	1956	0	−1	1	4
+1968	06	16	Soviet Union	Austria	3	1	F		4	1960	1704	+1	0	5	31
+1968	07	18	Russia	Japan	2	0	F		2	1962	1611	0	−1	6	46
+1968	08	01	Sweden	Soviet Union	2	2	F		4	1735	1958	+2	0	26	6
+1968	11	01	Algeria	Russia	0	0	N1C		8	1648	1950	+1	0	39	6
+1968	11	06	Algeria	Russia	0	0	F		5	1653	1945	+1	−1	38	7
+1969	02	20	Colombia	Soviet Union	1	3	F		-3	1429	1948	0	0	85	6
+1969	07	21	Russia	Egypt	2	2	F		-7	1941	1729	0	+2	6	25
+1969	07	25	East Germany	Soviet Union	2	2	F		-1	1868	1942	0	0	11	6
+1969	08	06	Soviet Union	Sweden	0	1	F		-16	1926	1829	0	+3	6	13
+1969	08	31	Soviet Union	Poland	0	0	F		-7	1919	1729	0	+2	6	26
+1969	09	10	Northern Ireland	Soviet Union	0	0	WQ		4	1750	1915	0	0	24	6
+1969	09	24	Yugoslavia	Soviet Union	1	3	F		-15	1808	1930	−2	0	16	6
+1969	10	15	Soviet Union	Turkey	3	0	WQ		6	1936	1624	0	−2	6	46
+1969	10	22	Soviet Union	Northern Ireland	2	0	WQ		10	1946	1740	0	0	6	25
+1969	11	00	Senegal	Russia	0	4	F		-6	1559	1952	−1	0	57	6
+1969	11	16	Turkey	Soviet Union	1	3	WQ		-13	1611	1965	−3	0	48	6
+1970	00	00	Kuwait	Russia	3	1	F		29	1276	1936	+6	−1	119	6
+1970	00	00	Syria	Russia	1	2	F		-2	1414	1938	−1	−1	91	6
+1970	01	30	Montenegro	Soviet Union	1	1	F		5	1672	1933	−	0	−	6
+1970	02	14	Peru	Soviet Union	0	0	F		3	1712	1930	0	0	31	6
+1970	02	20	Peru	Soviet Union	0	2	F		-10	1702	1940	0	0	30	6
+1970	02	22	El Salvador	Soviet Union	0	2	F		-5	1548	1945	−3	0	62	6
+1970	02	26	Mexico	Soviet Union	0	0	F		4	1698	1941	+1	0	32	6
+1970	04	30	Switzerland	Soviet Union	0	0	F		5	1641	1936	0	0	42	6
+1970	05	05	Bulgaria	Soviet Union	3	3	F		0	1823	1936	0	0	15	6
+1970	05	06	Bulgaria	Soviet Union	0	0	F		0	1823	1936	0	0	15	6
+1970	05	31	Mexico	Soviet Union	0	0	WC		11	1714	1925	+2	0	28	6
+1970	06	06	Soviet Union	Belgium	4	1	WC	MX	34	1959	1766	0	−6	5	22
+1970	06	10	Soviet Union	El Salvador	2	0	WC	MX	6	1965	1491	0	0	5	71
+1970	06	14	Uruguay	Soviet Union	1	0	WC	MX	38	1902	1927	+1	0	7	5
+1970	07	15	Russia	Poland	3	2	F		4	1931	1799	0	−1	5	17
+1970	10	28	Soviet Union	Yugoslavia	4	0	F		9	1940	1834	0	−2	5	13
+1970	11	15	Cyprus	Soviet Union	1	3	EQ		-4	1358	1944	−1	0	101	5
+1971	02	17	Mexico	Soviet Union	0	0	F		3	1735	1941	+1	0	28	5
+1971	02	19	Mexico	Soviet Union	0	0	F		3	1738	1938	0	0	28	5
+1971	02	28	El Salvador	Soviet Union	0	1	F		-2	1489	1940	−1	0	68	5
+1971	04	28	Bulgaria	Soviet Union	1	1	F		3	1746	1937	+1	0	24	5
+1971	05	23	Soviet Union	Algeria	7	0	F		3	1940	1575	0	−3	5	55
+1971	05	30	Soviet Union	Spain	2	1	EQ		11	1951	1863	0	0	5	9
+1971	06	07	Soviet Union	Cyprus	6	1	EQ		1	1952	1335	0	0	5	108
+1971	06	14	Soviet Union	Scotland	1	0	F		3	1955	1727	0	0	5	29
+1971	09	18	Soviet Union	India	5	0	F		1	1956	1355	0	0	5	102
+1971	09	21	Russia	India	2	0	F		1	1957	1354	0	0	5	102
+1971	09	22	Soviet Union	Northern Ireland	1	0	EQ		6	1963	1734	0	0	5	25
+1971	10	13	Northern Ireland	Soviet Union	1	1	EQ		7	1741	1956	−1	0	27	5
+1971	10	27	Spain	Soviet Union	0	0	EQ		0	1863	1956	0	0	11	5
+1972	03	29	Bulgaria	Soviet Union	1	1	F		2	1795	1954	0	0	18	5
+1972	04	19	Soviet Union	Peru	2	0	F		4	1958	1717	0	0	5	30
+1972	04	30	Yugoslavia	Soviet Union	0	0	EQ		0	1865	1958	0	0	10	5
+1972	05	13	Soviet Union	Yugoslavia	3	0	EQ		17	1975	1848	+1	−1	4	11
+1972	05	26	West Germany	Soviet Union	4	1	F		8	2100	1967	0	0	2	4
+1972	06	07	Soviet Union	Bulgaria	1	0	F		3	1970	1785	0	−1	4	20
+1972	06	14	Soviet Union	Hungary	1	0	EC	BE	23	1993	1913	0	0	4	6
+1972	06	18	West Germany	Soviet Union	3	0	EC	BE	29	2144	1964	+1	0	1	4
+1972	06	29	Soviet Union	Uruguay	1	0	BRI	BR	12	1976	1800	0	−1	4	16
+1972	07	02	Argentina	Soviet Union	1	0	BRI	BR	27	1876	1949	+3	−1	10	5
+1972	07	06	Portugal	Soviet Union	1	0	BRI	BR	23	1915	1926	0	0	6	5
+1972	07	16	Finland	Soviet Union	1	1	F		8	1410	1918	+3	0	88	5
+1972	08	06	Sweden	Soviet Union	4	4	F		0	1816	1918	0	0	14	5
+1972	08	28	Soviet Union	Burma	1	0	OG	WG	8	1926	1595	0	−3	5	51
+1972	08	30	Soviet Union	Sudan	2	1	OG	WG	7	1933	1553	0	−1	5	57
+1972	09	03	Soviet Union	Morocco	3	0	OG	WG	26	1959	1718	+1	−2	5	29
+1972	09	05	Poland	Soviet Union	2	1	OG	WG	38	1896	1921	+2	−1	9	6
+1972	09	08	Soviet Union	Denmark	4	0	OG	WG	31	1952	1720	0	−1	6	28
+1972	09	10	East Germany	Soviet Union	2	2	OG	WG	9	1850	1943	0	0	14	6
+1972	10	13	France	Soviet Union	1	0	WQ		23	1821	1920	+3	−1	16	7
+1972	10	18	Ireland	Soviet Union	1	2	WQ		-7	1556	1927	−2	0	57	7
+1973	03	28	Bulgaria	Soviet Union	1	0	F		9	1864	1918	+1	−1	13	8
+1973	04	18	Soviet Union	Romania	2	0	F		6	1924	1781	+1	−1	7	23
+1973	05	13	Soviet Union	Ireland	1	0	WQ		3	1927	1582	0	0	7	52
+1973	05	26	Soviet Union	France	2	0	WQ		11	1938	1758	0	−3	6	26
+1973	06	10	Soviet Union	England	1	2	F		-11	1927	2005	0	0	7	3
+1973	06	21	Soviet Union	Brazil	0	1	F		-7	1920	2144	0	0	7	1
+1973	08	05	Soviet Union	Sweden	0	0	F		-4	1916	1866	0	0	7	12
+1973	09	05	Soviet Union	West Germany	0	1	F		-8	1908	2112	−1	0	8	2
+1973	09	26	Soviet Union	Chile	0	0	WQ		-12	1896	1787	0	+1	8	22
+1973	10	17	East Germany	Soviet Union	1	0	F		8	1888	1888	+2	−1	9	9
+1974	04	17	Yugoslavia	Soviet Union	0	1	F		-15	1946	1903	−1	+2	6	8
+1974	05	20	Soviet Union	Czechoslovakia	0	1	F		-14	1889	1852	−1	0	10	15
+1974	10	30	Ireland	Soviet Union	3	0	EQ		51	1670	1838	+5	−3	36	16
+1975	01	22	Montenegro	Soviet Union	2	3	F		-8	1664	1846	−	+1	−	16
+1975	04	02	Soviet Union	Turkey	3	0	EQ		12	1858	1656	+2	−2	14	38
+1975	05	18	Soviet Union	Ireland	2	1	EQ		7	1865	1683	0	0	13	32
+1975	06	08	Soviet Union	Italy	1	0	F		9	1874	1936	0	0	12	6
+1975	09	03	Soviet Union	East Germany	0	0	F		-3	1871	1859	−1	+1	13	14
+1975	10	12	Switzerland	Soviet Union	0	1	EQ		-15	1674	1886	−2	+1	33	13
+1975	11	12	Soviet Union	Switzerland	4	1	EQ		10	1896	1664	+1	−3	12	37
+1975	11	23	Turkey	Soviet Union	1	0	EQ		28	1672	1868	+4	−2	35	14
+1975	11	29	Romania	Soviet Union	2	2	F		-2	1838	1870	0	0	16	14
+1976	02	07	Montenegro	Soviet Union	2	1	F		13	1677	1857	−	0	−	14
+1976	03	10	Czechoslovakia	Soviet Union	2	2	F		-4	1901	1861	0	0	9	14
+1976	03	20	Soviet Union	Argentina	0	1	F		-13	1848	1884	0	0	14	13
+1976	03	24	Bulgaria	Soviet Union	0	3	F		-20	1782	1868	−3	0	22	14
+1976	04	24	Czechoslovakia	Soviet Union	2	0	EQ		19	1924	1849	+1	0	8	14
+1976	05	22	Soviet Union	Czechoslovakia	2	2	EQ		-1	1848	1925	−1	0	15	9
+1976	05	26	Hungary	Soviet Union	1	1	F		-3	1846	1851	−1	+1	15	14
+1976	06	23	Austria	Soviet Union	1	2	F		-11	1785	1862	0	+2	20	13
+1976	07	23	Soviet Union	North Korea	3	0	OG	CA	24	1886	1624	0	−2	13	45
+1976	07	25	Soviet Union	Iran	2	1	OG	CA	17	1903	1705	+3	−1	10	31
+1976	07	27	East Germany	Soviet Union	2	1	OG	CA	31	1926	1872	+2	−3	9	13
+1976	08	21	Mongolia	Russia	0	4	F		0	894	1872	0	0	173	13
+1976	08	22	Mongolia	Russia	1	5	F		0	894	1872	0	0	173	13
+1976	11	28	Argentina	Soviet Union	0	0	F		-4	1922	1876	0	+2	10	12
+1976	12	01	Brazil	Soviet Union	2	0	F		4	2092	1872	0	−2	2	14
+1977	03	20	Tunisia	Soviet Union	0	3	F		-10	1603	1882	−2	0	47	12
+1977	03	23	Yugoslavia	Soviet Union	2	4	F		-18	1842	1900	0	0	15	12
+1977	04	24	Soviet Union	Greece	2	0	WQ		6	1906	1624	+1	0	11	42
+1977	04	30	Hungary	Soviet Union	2	1	WQ		15	1906	1891	+2	−2	11	13
+1977	05	10	Greece	Soviet Union	1	0	WQ		29	1653	1862	+1	0	40	14
+1977	05	18	Soviet Union	Hungary	2	0	WQ		25	1887	1881	+1	−3	13	14
+1977	07	28	East Germany	Soviet Union	2	1	F		6	1961	1881	0	0	6	14
+1977	09	07	Soviet Union	Poland	4	1	F		15	1896	1911	+1	−1	13	8
+1977	10	05	Netherlands	Soviet Union	0	0	F		-7	2064	1903	0	+1	3	11
+1977	10	08	France	Soviet Union	0	0	F		-1	1837	1904	0	0	17	11
+1978	02	26	Morocco	Soviet Union	2	3	F		-6	1659	1910	−2	+1	38	11
+1978	03	08	West Germany	Soviet Union	1	0	F		3	2137	1907	0	0	1	11
+1978	04	05	Soviet Union	Finland	10	2	F		2	1909	1448	0	−1	12	79
+1978	05	14	Romania	Soviet Union	0	1	F		-11	1843	1920	−1	0	17	12
+1978	09	06	Iran	Soviet Union	0	1	F		-8	1741	1928	0	0	26	10
+1978	09	20	Soviet Union	Greece	2	0	EQ		6	1934	1628	0	0	10	42
+1978	10	05	Turkey	Soviet Union	0	2	F		-8	1642	1942	−2	+1	41	9
+1978	10	11	Hungary	Soviet Union	2	0	EQ		36	1811	1906	+5	−2	17	11
+1978	11	19	Japan	Soviet Union	1	4	F		-4	1422	1910	−2	0	89	11
+1978	11	23	Japan	Soviet Union	1	4	F		-3	1419	1913	0	+1	89	10
+1978	11	26	Japan	Soviet Union	0	3	F		-3	1416	1916	0	0	89	10
+1979	03	28	Soviet Union	Bulgaria	3	1	F		5	1921	1732	0	0	9	27
+1979	04	06	Georgia	Soviet Union	0	3	F		-8	1590	1929	−	0	−	10
+1979	04	19	Soviet Union	Sweden	2	0	F		5	1934	1736	0	−1	9	26
+1979	05	05	Soviet Union	Czechoslovakia	3	0	F		13	1947	1924	+1	−1	9	10
+1979	05	19	Soviet Union	Hungary	2	2	EQ		-13	1934	1804	0	+1	9	21
+1979	06	27	Denmark	Soviet Union	1	2	F		-5	1660	1939	−1	0	38	9
+1979	07	04	Finland	Soviet Union	1	1	EQ		15	1499	1924	+2	0	67	9
+1979	09	05	Soviet Union	East Germany	1	0	F		7	1931	1914	0	0	9	11
+1979	09	12	Greece	Soviet Union	1	0	EQ		28	1706	1903	+3	−4	31	13
+1979	10	14	Soviet Union	Romania	3	1	F		7	1910	1791	+1	0	12	21
+1979	10	31	Soviet Union	Finland	2	2	EQ		-18	1892	1509	−2	+6	14	65
+1979	11	21	Soviet Union	West Germany	1	3	F		-12	1880	2067	−1	0	14	1
+1980	03	26	Bulgaria	Soviet Union	1	3	F		-12	1693	1892	−1	+1	33	14
+1980	04	29	Sweden	Soviet Union	1	5	F		-13	1666	1905	−5	+1	39	13
+1980	05	23	Soviet Union	France	1	0	F		8	1913	1920	+4	−1	10	8
+1980	06	15	Brazil	Soviet Union	1	2	F		-16	2037	1929	0	+5	2	8
+1980	07	12	Soviet Union	Denmark	2	0	F		4	1933	1690	+1	0	9	33
+1980	08	27	Hungary	Soviet Union	1	4	F		-16	1792	1949	−2	+2	20	7
+1980	09	03	Iceland	Soviet Union	1	2	WQ		-2	1363	1951	−1	0	98	7
+1980	10	15	Soviet Union	Iceland	5	0	WQ		2	1953	1416	0	0	7	88
+1980	12	04	Argentina	Soviet Union	1	1	F		-4	1999	1957	−1	0	4	7
+1981	05	30	Wales	Soviet Union	0	0	WQ		-3	1907	1960	0	0	12	6
+1981	09	23	Soviet Union	Turkey	4	0	WQ		4	1964	1541	+1	−1	4	60
+1981	10	07	Turkey	Soviet Union	0	3	WQ		-9	1532	1973	−1	0	62	4
+1981	10	28	Soviet Union	Czechoslovakia	2	0	WQ		16	1989	1885	0	−2	4	13
+1981	11	18	Soviet Union	Wales	3	0	WQ		15	2004	1851	0	0	4	16
+1981	11	29	Czechoslovakia	Soviet Union	1	1	WQ		1	1892	2003	0	0	14	4
+1982	03	10	Greece	Soviet Union	0	2	F		-6	1646	2009	0	0	40	3
+1982	04	14	Argentina	Soviet Union	1	1	F		-3	2000	2012	0	0	4	3
+1982	05	05	Soviet Union	East Germany	1	0	F		5	2017	1911	0	−1	3	10
+1982	06	03	Sweden	Soviet Union	1	1	F		5	1718	2012	0	0	31	3
+1982	06	14	Brazil	Soviet Union	2	1	WC	ES	23	2116	1989	+1	0	1	3
+1982	06	19	Soviet Union	New Zealand	3	0	WC	ES	9	1998	1565	+1	−2	4	56
+1982	06	22	Scotland	Soviet Union	2	2	WC	ES	13	1854	1985	+2	0	15	5
+1982	07	01	Soviet Union	Belgium	1	0	WC	ES	23	2008	1874	0	−2	5	13
+1982	07	04	Poland	Soviet Union	0	0	WC	ES	0	2013	2008	0	0	4	5
+1982	10	13	Soviet Union	Finland	2	0	EQ		1	2009	1461	+1	−1	4	80
+1983	03	23	France	Soviet Union	1	1	F		-1	1937	2010	0	0	8	3
+1983	04	13	Switzerland	Soviet Union	0	1	F		-6	1757	2016	−1	0	24	2
+1983	04	27	Soviet Union	Portugal	5	0	EQ		10	2026	1774	0	−1	2	22
+1983	05	17	Austria	Soviet Union	2	2	F		0	1911	2026	0	0	10	2
+1983	05	22	Poland	Soviet Union	1	1	EQ		-3	1967	2029	0	0	6	2
+1983	06	01	Finland	Soviet Union	0	1	EQ		-3	1476	2032	−1	0	78	2
+1983	07	26	East Germany	Soviet Union	1	3	F		-12	1846	2044	−1	0	16	2
+1983	08	25	Japan	Russia	1	1	F		8	1524	2036	+1	0	64	2
+1983	10	09	Soviet Union	Poland	2	0	EQ		16	2052	1945	0	0	2	5
+1983	11	13	Portugal	Soviet Union	1	0	EQ		28	1835	2024	+1	−1	20	2
+1984	03	28	West Germany	Soviet Union	2	1	F		7	2020	2017	+1	−1	1	2
+1984	05	15	Finland	Soviet Union	1	3	F		-2	1450	2019	−1	0	83	1
+1984	06	02	England	Soviet Union	0	2	F		-17	1952	2036	−2	0	5	1
+1984	08	19	Soviet Union	Mexico	3	0	F		3	2039	1726	0	0	1	32
+1984	09	12	Ireland	Soviet Union	1	0	WQ		31	1761	2008	+4	−1	27	2
+1984	10	10	Norway	Soviet Union	1	1	WQ		14	1619	1994	+3	0	41	2
+1985	01	25	Yugoslavia	Soviet Union	2	1	NGC	IN	29	1852	1965	+6	−2	14	4
+1985	01	28	Soviet Union	Iran	2	0	NGC	IN	9	1974	1665	+2	−2	2	36
+1985	02	02	Soviet Union	Morocco	1	0	NGC	IN	6	1980	1670	0	0	2	34
+1985	02	04	Soviet Union	Yugoslavia	2	1	NGC	IN	13	1993	1839	0	−3	2	16
+1985	03	27	Soviet Union	Austria	2	0	F		5	1998	1794	0	−2	2	25
+1985	04	17	Switzerland	Soviet Union	2	2	WQ		6	1787	1992	+2	0	26	2
+1985	05	02	Soviet Union	Switzerland	4	0	WQ		11	2003	1776	+1	−1	2	27
+1985	06	05	Denmark	Soviet Union	4	2	WQ		31	1918	1972	+3	−1	6	3
+1985	08	07	Soviet Union	Romania	2	0	F		5	1977	1780	0	0	2	25
+1985	08	28	Soviet Union	West Germany	1	0	F		7	1984	1947	0	0	2	4
+1985	09	25	Soviet Union	Denmark	1	0	WQ		10	1994	1883	0	−1	1	8
+1985	10	16	Soviet Union	Ireland	2	0	WQ		7	2001	1740	0	−1	1	30
+1985	10	30	Soviet Union	Norway	1	0	WQ		3	2004	1674	0	0	1	35
+1986	01	22	Spain	Soviet Union	2	0	F		17	1882	1987	+4	−1	9	2
+1986	02	19	Mexico	Soviet Union	1	0	F		12	1837	1975	+2	0	17	2
+1986	03	26	Soviet Union	England	0	1	F		-14	1961	1962	−1	+1	3	2
+1986	04	23	Romania	Soviet Union	2	1	F		12	1798	1949	+1	0	26	3
+1986	05	07	Soviet Union	Finland	0	0	F		-9	1940	1557	0	+1	3	61
+1986	06	02	Soviet Union	Hungary	6	0	WC	MX	55	1995	1836	+2	−10	2	17
+1986	06	05	France	Soviet Union	1	1	WC	MX	-1	2001	1996	0	0	1	2
+1986	06	09	Soviet Union	Canada	2	0	WC	MX	9	2005	1609	0	−2	2	47
+1986	06	15	Belgium	Soviet Union	4	3	WC	MX	45	1864	1960	+7	−2	12	5
+1986	08	08	Philippines	Russia	0	5	PRS		0	826	1960	0	0	183	7
+1986	08	20	Sweden	Soviet Union	0	0	F		0	1860	1960	0	0	12	7
+1986	09	24	Iceland	Soviet Union	1	1	EQ		16	1496	1944	+2	−1	73	7
+1986	10	11	France	Soviet Union	0	2	EQ		-41	1941	1985	−3	+4	7	3
+1986	10	29	Soviet Union	Norway	4	0	EQ		8	1993	1715	0	−1	3	33
+1987	02	18	Wales	Soviet Union	0	0	F		3	1802	1990	+2	−1	17	4
+1987	04	18	Soviet Union	Sweden	1	3	F		-23	1967	1911	−1	+1	5	9
+1987	04	29	Soviet Union	East Germany	2	0	EQ		11	1978	1801	+1	−1	4	18
+1987	06	03	Norway	Soviet Union	0	1	EQ		-11	1697	1989	−1	0	35	4
+1987	08	29	Yugoslavia	Soviet Union	0	1	F		-9	1850	1998	−2	+1	17	1
+1987	09	09	Soviet Union	France	1	1	EQ		-10	1988	1906	0	+2	1	8
+1987	09	23	Soviet Union	Greece	3	0	F		3	1991	1699	0	0	1	34
+1987	10	10	East Germany	Soviet Union	1	1	EQ		4	1822	1987	+1	0	18	1
+1987	10	28	Soviet Union	Iceland	2	0	EQ		3	1990	1549	0	−1	1	64
+1988	02	20	Italy	Soviet Union	4	1	F		15	1953	1975	0	0	6	2
+1988	03	23	Greece	Soviet Union	0	4	F		-9	1663	1984	−2	0	39	2
+1988	03	31	Soviet Union	Argentina	4	2	FT	WG	18	2002	1888	+1	−1	1	11
+1988	04	02	Sweden	Soviet Union	2	0	FT	WG	28	1947	1974	+2	−1	6	2
+1988	04	27	Czechoslovakia	Soviet Union	1	1	F		1	1827	1973	0	0	17	2
+1988	06	01	Soviet Union	Poland	2	1	F		3	1976	1757	0	−1	2	27
+1988	06	12	Soviet Union	Netherlands	1	0	EC	WG	22	1998	1912	+1	−1	1	8
+1988	06	15	Ireland	Soviet Union	1	1	EC	WG	9	1877	1989	+1	0	11	1
+1988	06	18	Soviet Union	England	3	1	EC	WG	30	2019	1889	+2	0	1	7
+1988	06	22	Soviet Union	Italy	2	0	EC	WG	35	2054	1960	0	−3	1	6
+1988	06	25	Netherlands	Soviet Union	2	0	EC	WG	43	2050	2011	+1	−1	1	2
+1988	08	17	Finland	Soviet Union	0	0	F		7	1614	2004	+1	0	45	2
+1988	08	31	Iceland	Soviet Union	1	1	WQ		16	1556	1988	+4	−1	58	3
+1988	09	21	West Germany	Soviet Union	1	0	F		7	1985	1981	+1	−1	3	4
+1988	10	19	Soviet Union	Austria	2	0	WQ		7	1988	1726	+1	0	3	31
+1988	11	21	Syria	Soviet Union	0	2	F		-3	1509	1991	0	0	64	3
+1988	11	23	Kuwait	Soviet Union	0	1	F		-2	1501	1993	0	0	66	3
+1989	02	21	Bulgaria	Soviet Union	1	2	F		-7	1769	2000	0	+1	25	2
+1989	03	22	Netherlands	Soviet Union	2	0	F		9	2060	1991	0	−1	1	3
+1989	04	26	Soviet Union	East Germany	3	0	WQ		8	1999	1715	0	0	3	31
+1989	05	10	Turkey	Soviet Union	0	1	WQ		-8	1639	2007	−2	+1	41	2
+1989	05	31	Soviet Union	Iceland	1	1	WQ		-19	1988	1560	−2	+5	4	58
+1989	08	23	Poland	Soviet Union	1	1	F		2	1808	1986	0	0	20	3
+1989	09	06	Austria	Soviet Union	0	0	WQ		9	1721	1977	−1	−1	31	4
+1989	10	08	East Germany	Soviet Union	2	1	WQ		28	1765	1949	+4	0	24	5
+1989	11	15	Soviet Union	Turkey	2	0	WQ		6	1955	1648	0	−3	6	40
+1990	02	20	Colombia	Soviet Union	0	0	FT	US	6	1807	1949	0	0	18	5
+1990	02	22	Soviet Union	Costa Rica	2	1	FT	US	4	1953	1629	0	−1	5	45
+1990	02	24	United States	Soviet Union	1	3	F		-5	1585	1958	0	0	49	5
+1990	03	28	Soviet Union	Netherlands	2	1	F		10	1968	2033	0	0	5	1
+1990	04	25	Ireland	Soviet Union	1	0	F		9	1901	1959	+2	−1	12	6
+1990	05	16	Israel	Soviet Union	3	2	F		16	1633	1943	+4	−1	41	7
+1990	06	09	Romania	Soviet Union	2	0	WC	IT	51	1945	1892	+4	−6	6	13
+1990	06	13	Argentina	Soviet Union	2	0	WC	IT	62	1813	1830	+8	−4	18	17
+1990	06	18	Soviet Union	Cameroon	4	0	WC	IT	40	1870	1684	+1	−4	16	35
+1990	08	29	Soviet Union	Romania	1	2	F		-12	1858	1900	0	+1	16	9
+1990	09	12	Soviet Union	Norway	2	0	EQ		9	1867	1644	+1	−2	15	41
+1990	10	09	Soviet Union	Israel	3	0	F		4	1871	1620	0	−2	15	48
+1990	11	03	Italy	Soviet Union	0	0	EQ		-13	2015	1884	0	+3	2	11
+1990	11	21	United States	Soviet Union	0	0	FT	TT	11	1586	1873	+1	−3	52	14
+1990	11	23	Trinidad and Tobago	Soviet Union	0	2	FT		-9	1513	1882	−1	+2	65	12
+1990	11	30	Guatemala	Soviet Union	0	3	F		-5	1454	1887	0	+3	74	9
+1991	02	06	Scotland	Soviet Union	0	1	F		-10	1765	1897	−1	−1	24	11
+1991	03	27	Germany	Soviet Union	2	1	F		3	2085	1894	0	+1	1	10
+1991	04	17	Hungary	Soviet Union	0	1	EQ		-19	1760	1913	−2	+2	24	8
+1991	05	21	England	Soviet Union	3	1	CLG		12	2001	1901	0	0	3	9
+1991	05	23	Argentina	Soviet Union	1	1	CLG	EN	1	1884	1900	0	0	13	9
+1991	05	29	Soviet Union	Cyprus	4	0	EQ		1	1901	1254	0	0	9	127
+1991	06	13	Sweden	Soviet Union	2	3	SCN		-16	1811	1917	−2	0	19	9
+1991	06	16	Italy	Soviet Union	1	1	SCN	SE	-4	1999	1921	−1	0	3	9
+1991	08	28	Norway	Soviet Union	0	1	EQ		-14	1706	1935	−4	0	35	9
+1991	09	25	Soviet Union	Hungary	2	2	EQ		-14	1921	1758	0	+1	9	28
+1991	10	12	Soviet Union	Italy	0	0	EQ		-2	1919	1986	0	+1	9	4
+1991	11	13	Cyprus	Soviet Union	0	3	EQ		-3	1257	1922	0	0	130	9
+1992	01	25	United States	Commonwealth of Independent States	0	1	F		-7	1690	1929	+1	0	34	9
+1992	01	29	El Salvador	Commonwealth of Independent States	0	3	F		-3	1403	1932	−1	0	90	9
+1992	02	02	United States	Commonwealth of Independent States	2	1	F		14	1704	1918	0	0	34	9
+1992	02	12	Israel	Commonwealth of Independent States	1	2	F		-5	1615	1923	−1	0	49	9
+1992	02	19	Spain	Commonwealth of Independent States	1	1	F		0	1829	1923	0	0	16	9
+1992	04	29	Commonwealth of Independent States	England	2	2	F		-1	1922	2000	0	0	9	2
+1992	06	03	Denmark	Commonwealth of Independent States	1	1	F		-1	1871	1923	0	0	12	9
+1992	06	12	Commonwealth of Independent States	Germany	1	1	EC	SE	10	1933	2057	+1	0	8	1
+1992	06	15	Commonwealth of Independent States	Netherlands	0	0	EC	SE	3	1936	1976	0	0	8	5
+1992	06	18	Scotland	Commonwealth of Independent States	3	0	EC	SE	65	1816	1871	+8	−5	20	13
+1992	08	16	Russia	Mexico	2	0	F		9	1880	1803	+1	0	10	20
+1992	10	14	Russia	Iceland	1	0	WQ		3	1883	1564	−1	0	12	63
+1992	10	28	Russia	Luxembourg	2	0	WQ		1	1884	1169	0	0	12	160
+1993	02	13	United States	Russia	0	1	F		-7	1683	1891	−1	+1	33	11
+1993	02	17	Russia	El Salvador	2	1	F	US	2	1893	1534	0	−1	11	67
+1993	02	21	United States	Russia	0	0	F		3	1686	1890	0	−1	32	12
+1993	03	24	Israel	Russia	2	2	F		6	1563	1884	0	0	62	12
+1993	04	14	Luxembourg	Russia	0	4	WQ		-2	1165	1886	0	0	162	12
+1993	04	28	Russia	Hungary	3	0	WQ		11	1897	1674	0	0	12	32
+1993	05	23	Russia	Greece	1	1	WQ		-14	1883	1711	0	0	12	31
+1993	06	02	Iceland	Russia	1	1	WQ		12	1567	1871	+1	−1	64	12
+1993	07	28	France	Russia	3	1	F		8	1946	1863	+1	0	5	14
+1993	09	08	Hungary	Russia	1	3	WQ		-22	1645	1885	−6	+1	41	14
+1993	10	06	Saudi Arabia	Russia	4	2	F		22	1644	1863	+5	−1	43	15
+1993	11	17	Greece	Russia	1	0	WQ		23	1739	1840	+1	−4	28	19
+1994	01	29	United States	Russia	1	1	F		3	1641	1837	+1	0	47	18
+1994	02	02	Russia	Mexico	4	1	F	US	19	1856	1849	+3	−2	15	16
+1994	03	23	Ireland	Russia	0	0	F		-2	1840	1858	+1	0	19	16
+1994	04	20	Turkey	Russia	0	1	F		-5	1578	1863	−1	+1	61	15
+1994	05	29	Russia	Slovakia	2	1	F		3	1866	1672	0	0	15	37
+1994	06	20	Brazil	Russia	2	0	WC	US	33	1997	1833	0	−5	3	21
+1994	06	24	Sweden	Russia	3	1	WC	US	38	1926	1795	+3	−2	8	23
+1994	06	28	Russia	Cameroon	6	1	WC	US	42	1837	1643	+2	−13	21	45
+1994	08	17	Austria	Russia	0	3	F		-13	1628	1850	−2	0	48	18
+1994	09	07	Russia	Germany	0	1	F		-9	1841	1994	−1	0	19	3
+1994	10	12	Russia	San Marino	4	0	EQ		0	1841	1013	−2	0	21	187
+1994	11	16	Scotland	Russia	1	1	EQ		-3	1782	1844	0	0	25	21
+1995	03	08	Slovakia	Russia	2	1	F		12	1679	1832	0	0	33	22
+1995	03	29	Russia	Scotland	0	0	EQ		-9	1823	1768	0	+1	22	26
+1995	04	26	Greece	Russia	0	3	EQ		-30	1638	1853	−7	+1	41	21
+1995	05	06	Russia	Faroe Islands	3	0	EQ		1	1854	1163	0	0	21	161
+1995	05	31	Yugoslavia	Russia	1	2	F		-14	1908	1868	−1	+3	7	18
+1995	06	07	San Marino	Russia	0	7	EQ		-1	990	1869	0	+1	190	15
+1995	08	16	Finland	Russia	0	6	EQ		-19	1535	1888	−4	+4	70	9
+1995	09	06	Faroe Islands	Russia	2	5	EQ		-2	1170	1890	0	0	161	9
+1995	10	11	Russia	Greece	2	1	EQ		4	1894	1593	+2	+1	8	52
+1995	11	15	Russia	Finland	3	1	EQ		4	1898	1529	0	0	8	71
+1996	02	07	Malta	Russia	0	2	FT		-3	1312	1901	−1	0	123	9
+1996	02	09	Russia	Iceland	3	0	FT	MT	6	1907	1541	0	0	9	68
+1996	02	11	Russia	Slovenia	3	1	FT	MT	7	1914	1611	0	−2	9	51
+1996	03	27	Ireland	Russia	0	2	F		-12	1727	1926	−2	+1	30	8
+1996	04	24	Belgium	Russia	0	0	F		2	1768	1924	0	0	25	8
+1996	05	25	Qatar	Russia	2	5	F		-3	1427	1927	−1	0	101	8
+1996	05	29	Russia	United Arab Emirates	1	0	F		1	1928	1557	0	+1	7	64
+1996	06	02	Russia	Poland	2	0	F		3	1931	1663	0	0	7	38
+1996	06	11	Italy	Russia	2	1	EC	EN	21	2011	1910	+1	−2	3	9
+1996	06	16	Germany	Russia	3	0	EC	EN	26	2084	1884	+1	−2	1	13
+1996	06	19	Czechia	Russia	3	3	EC	EN	-2	1914	1886	−1	0	10	13
+1996	08	28	Russia	Brazil	2	2	F		2	1888	2067	+1	0	13	2
+1996	09	01	Russia	Cyprus	4	0	WQ		2	1890	1390	−1	−1	14	111
+1996	10	09	Israel	Russia	1	1	WQ		8	1653	1882	+2	0	41	13
+1996	11	10	Luxembourg	Russia	0	4	WQ		-4	1258	1886	−2	0	138	13
+1997	02	07	Russia	Yugoslavia	1	1	CBG	HK	2	1888	1930	0	0	13	9
+1997	02	10	Russia	Switzerland	2	1	CBG	HK	8	1896	1713	+1	0	12	32
+1997	03	12	Yugoslavia	Russia	0	0	F		-4	1926	1900	−1	0	10	11
+1997	03	29	Cyprus	Russia	1	1	WQ		16	1435	1884	+6	−2	95	13
+1997	04	30	Russia	Luxembourg	3	0	WQ		1	1885	1240	−1	0	12	141
+1997	06	08	Russia	Israel	2	0	WQ		7	1892	1620	+2	−1	10	52
+1997	08	20	Russia	Yugoslavia	0	1	F		-11	1881	1954	−1	+1	11	7
+1997	09	10	Bulgaria	Russia	1	0	WQ		18	1842	1863	+1	−2	17	13
+1997	10	11	Russia	Bulgaria	4	2	WQ		20	1883	1822	+1	0	12	18
+1997	10	29	Russia	Italy	1	1	WQ		-1	1882	1965	0	−1	12	7
+1997	11	15	Italy	Russia	1	0	WQ		10	1975	1872	+1	−1	6	13
+1998	02	18	Greece	Russia	1	1	F		1	1733	1871	+1	0	33	12
+1998	03	25	Russia	France	1	0	F		11	1882	2004	0	0	11	4
+1998	04	22	Russia	Turkey	1	0	F		3	1885	1662	0	−1	11	44
+1998	05	27	Poland	Russia	3	1	F		20	1676	1865	+4	−3	42	16
+1998	05	30	Georgia	Russia	1	1	F		3	1667	1862	0	0	44	15
+1998	08	19	Sweden	Russia	1	0	F		8	1844	1854	0	0	18	17
+1998	09	05	Ukraine	Russia	3	2	EQ		24	1713	1830	+8	−1	32	18
+1998	09	23	Spain	Russia	1	0	F		4	1964	1826	+1	0	6	18
+1998	10	10	Russia	France	2	3	EQ		-12	1814	2076	−1	0	19	1
+1998	10	14	Iceland	Russia	1	0	EQ		31	1537	1783	+9	−1	66	20
+1998	11	18	Brazil	Russia	5	1	F		4	2051	1779	0	0	2	20
+1999	03	27	Armenia	Russia	0	3	EQ		-11	1369	1790	−2	+1	115	19
+1999	03	31	Russia	Andorra	6	1	EQ		1	1791	1053	0	0	19	182
+1999	05	19	Russia	Belarus	1	1	F		-9	1782	1427	0	+3	19	99
+1999	06	05	France	Russia	2	3	EQ		-36	2040	1818	0	+2	1	17
+1999	06	09	Russia	Iceland	1	0	EQ		5	1823	1569	−1	0	18	62
+1999	08	18	Belarus	Russia	0	2	F		-5	1420	1828	−1	0	103	18
+1999	09	04	Russia	Armenia	2	0	EQ		2	1830	1355	0	0	18	115
+1999	09	08	Andorra	Russia	1	2	EQ		-1	1049	1831	0	0	182	18
+1999	10	09	Russia	Ukraine	1	1	EQ		-10	1821	1755	0	+4	18	26
+2000	02	23	Israel	Russia	4	1	F		20	1688	1801	+3	−2	42	20
+2000	04	26	Russia	United States	2	0	F		11	1812	1800	0	−2	19	20
+2000	05	31	Russia	Slovakia	1	1	F		-6	1806	1694	0	+1	19	40
+2000	06	04	Moldova	Russia	0	1	F		-3	1425	1809	−1	+1	99	20
+2000	08	16	Russia	Israel	1	0	F		4	1813	1665	0	−2	17	47
+2000	09	02	Switzerland	Russia	0	1	WQ		-21	1707	1834	−5	+1	38	16
+2000	10	11	Russia	Luxembourg	3	0	WQ		1	1835	1177	+1	−1	15	161
+2001	02	28	Greece	Russia	3	3	F		1	1708	1834	+3	0	37	15
+2001	03	24	Russia	Slovenia	1	1	WQ		-14	1820	1662	0	+1	15	49
+2001	03	28	Russia	Faroe Islands	1	0	WQ		1	1821	1249	−2	0	17	144
+2001	04	25	Yugoslavia	Russia	0	1	WQ		-28	1848	1849	−2	+4	14	13
+2001	06	02	Russia	Yugoslavia	1	1	WQ		-6	1843	1854	−2	+1	16	14
+2001	06	06	Luxembourg	Russia	1	2	WQ		-1	1135	1844	0	0	166	15
+2001	08	15	Russia	Greece	0	0	F		-6	1838	1682	−2	0	18	44
+2001	09	01	Slovenia	Russia	2	1	WQ		23	1716	1815	+6	−2	35	20
+2001	09	05	Faroe Islands	Russia	0	3	WQ		-4	1244	1819	−1	0	146	20
+2001	10	06	Russia	Switzerland	4	0	WQ		15	1834	1661	+2	−3	18	48
+2001	11	14	Latvia	Russia	1	3	F		-4	1416	1838	−2	+1	103	16
+2002	02	13	Ireland	Russia	2	0	F		10	1872	1828	0	−3	12	19
+2002	03	27	Estonia	Russia	2	1	F		18	1391	1810	+4	−3	109	22
+2002	04	17	France	Russia	0	0	F		-8	2107	1818	0	+2	1	21
+2002	05	17	Russia	Belarus	1	1	LGC		-12	1806	1546	−1	+2	23	65
+2002	05	19	Russia	Yugoslavia	1	1	LGC		-5	1801	1799	0	0	23	25
+2002	06	05	Russia	Tunisia	2	0	WC	JP	23	1824	1595	+2	−3	21	56
+2002	06	09	Japan	Russia	1	0	WC		20	1859	1804	+3	−1	16	23
+2002	06	14	Belgium	Russia	3	2	WC	JP	28	1855	1776	+4	−5	16	27
+2002	08	21	Russia	Sweden	1	1	F		-1	1775	1859	0	0	28	14
+2002	09	07	Russia	Ireland	4	2	EQ		34	1809	1884	+7	−3	21	12
+2002	10	12	Georgia	Russia	0	0	EQ		7	1585	1802	+3	0	59	21
+2002	10	16	Russia	Albania	4	1	EQ		5	1807	1448	0	−4	21	95
+2003	02	12	Cyprus	Russia	0	1	FT		-7	1487	1814	−1	+1	80	18
+2003	02	13	Russia	Romania	4	2	FT	CY	22	1836	1783	+3	−4	15	24
+2003	03	29	Albania	Russia	3	1	EQ		50	1509	1786	+18	−7	74	22
+2003	04	30	Georgia	Russia	1	0	EQ		26	1598	1760	+1	−5	59	27
+2003	06	07	Switzerland	Russia	2	2	EQ		-3	1716	1763	−1	0	36	29
+2003	08	20	Russia	Israel	1	2	F		-15	1748	1696	−3	+4	29	38
+2003	09	06	Ireland	Russia	1	1	EQ		-12	1866	1760	−1	+2	14	27
+2003	09	10	Russia	Switzerland	4	1	EQ		21	1781	1693	+4	−1	23	38
+2003	10	11	Russia	Georgia	3	1	EQ		9	1790	1567	+1	−1	22	64
+2003	11	15	Russia	Wales	0	0	EQ		-13	1777	1639	−3	+1	25	52
+2003	11	19	Wales	Russia	0	1	EQ		-18	1621	1795	−2	+5	54	21
+2004	03	31	Bulgaria	Russia	2	2	F		-2	1751	1797	+1	+1	28	20
+2004	04	28	Norway	Russia	3	2	F		8	1793	1789	+1	−3	21	23
+2004	05	25	Austria	Russia	0	0	F		0	1680	1789	0	0	43	23
+2004	06	12	Spain	Russia	1	0	EC	PT	11	2026	1778	0	−4	2	26
+2004	06	16	Portugal	Russia	2	0	EC		19	1880	1759	+3	−1	9	27
+2004	06	20	Russia	Greece	2	1	EC	PT	31	1790	1816	+5	−4	22	19
+2004	08	18	Russia	Lithuania	4	3	F		1	1791	1417	−1	0	24	103
+2004	09	04	Russia	Slovakia	1	1	WQ		-12	1779	1650	−2	+1	26	50
+2004	10	09	Luxembourg	Russia	0	4	WQ		-2	1061	1781	−2	+1	180	26
+2004	10	13	Portugal	Russia	7	1	WQ		20	1903	1761	0	−4	9	30
+2004	11	17	Russia	Estonia	4	0	WQ		5	1766	1394	+1	−2	29	105
+2005	02	09	Italy	Russia	2	0	F		6	1913	1760	0	−1	8	30
+2005	03	26	Liechtenstein	Russia	1	2	WQ		-2	1104	1762	0	0	172	30
+2005	03	30	Estonia	Russia	1	1	WQ		14	1381	1748	+4	−2	105	31
+2005	06	04	Russia	Latvia	2	0	WQ		6	1754	1470	−1	−3	31	91
+2005	06	08	Germany	Russia	2	2	F		-6	1887	1760	+1	+1	12	29
+2005	08	17	Latvia	Russia	1	1	WQ		10	1482	1750	+2	−2	88	29
+2005	09	03	Russia	Liechtenstein	2	0	WQ		1	1751	1113	−1	−1	30	170
+2005	09	07	Russia	Portugal	0	0	WQ		3	1754	1905	0	−1	30	10
+2005	10	08	Russia	Luxembourg	5	1	WQ		1	1755	990	−2	0	32	189
+2005	10	12	Slovakia	Russia	0	0	WQ		-2	1680	1757	0	+1	44	32
+2006	03	01	Russia	Brazil	0	1	F		-5	1752	2032	0	0	33	1
+2006	05	27	Spain	Russia	0	0	F		-7	1953	1759	−1	0	6	33
+2006	08	16	Russia	Latvia	1	0	F		2	1761	1480	+1	−2	30	90
+2006	09	06	Russia	Croatia	0	0	EQ		-1	1760	1844	+1	−1	29	16
+2006	10	07	Russia	Israel	1	1	EQ		-8	1752	1731	−3	+1	33	38
+2006	10	11	Russia	Estonia	2	0	EQ		4	1756	1394	+1	−1	32	104
+2006	11	15	Macedonia	Russia	0	2	EQ		-21	1532	1777	−5	+7	78	25
+2007	02	07	Netherlands	Russia	4	1	F		5	1994	1772	0	0	4	26
+2007	03	24	Estonia	Russia	0	2	EQ		-10	1388	1782	−1	+4	105	22
+2007	06	02	Russia	Andorra	4	0	EQ		1	1783	1095	0	0	25	174
+2007	06	06	Croatia	Russia	0	0	EQ		-11	1895	1794	−1	+4	11	22
+2007	08	22	Russia	Poland	2	2	F		-4	1790	1767	−1	0	22	29
+2007	09	08	Russia	Macedonia	3	0	EQ		8	1798	1521	+3	−3	19	78
+2007	09	12	England	Russia	3	0	EQ		14	1958	1784	0	−4	7	23
+2007	10	17	Russia	England	2	1	EQ		24	1808	1935	+6	−1	18	8
+2007	11	17	Israel	Russia	2	1	EQ		19	1737	1789	+3	−4	35	22
+2007	11	21	Andorra	Russia	0	1	EQ		-1	1069	1790	0	0	178	22
+2008	03	26	Romania	Russia	3	0	F		8	1903	1782	0	−1	10	27
+2008	05	23	Russia	Kazakhstan	6	0	F		2	1784	1362	+1	0	26	113
+2008	05	28	Russia	Serbia	2	1	F	DE	9	1793	1731	+3	−5	23	38
+2008	06	04	Russia	Lithuania	4	1	F	DE	8	1801	1567	+2	−1	21	68
+2008	06	10	Spain	Russia	4	1	EC	AT	23	2008	1778	+1	−5	4	25
+2008	06	14	Russia	Greece	1	0	EC	AT	26	1804	1766	+6	−4	19	26
+2008	06	18	Russia	Sweden	2	0	EC	AT	38	1842	1773	+6	−6	14	24
+2008	06	21	Russia	Netherlands	3	1	EC	CH	60	1902	2026	+5	−1	10	2
+2008	06	26	Spain	Russia	3	0	EC	AT	28	2057	1874	0	−2	1	12
+2008	08	20	Russia	Netherlands	1	1	F		1	1875	2025	0	0	12	2
+2008	09	10	Russia	Wales	2	1	WQ		5	1880	1637	0	−3	11	52
+2008	10	11	Germany	Russia	2	1	WQ		10	1976	1870	0	+1	6	10
+2008	10	15	Russia	Finland	3	0	WQ		11	1881	1676	0	−1	10	45
+2009	03	28	Russia	Azerbaijan	2	0	WQ		2	1883	1375	−1	0	10	117
+2009	04	01	Liechtenstein	Russia	0	1	WQ		-1	1178	1884	0	0	160	10
+2009	06	10	Finland	Russia	0	3	WQ		-26	1663	1910	−1	+1	47	7
+2009	08	12	Russia	Argentina	2	3	F		-13	1897	1908	−2	+1	9	7
+2009	09	05	Russia	Liechtenstein	3	0	WQ		1	1898	1175	0	0	9	162
+2009	09	09	Wales	Russia	1	3	WQ		-15	1591	1913	0	+1	59	8
+2009	10	10	Russia	Germany	0	1	WQ		-23	1890	1985	−1	0	8	5
+2009	10	14	Azerbaijan	Russia	1	1	WQ		17	1388	1873	+5	−3	113	11
+2009	11	14	Russia	Slovenia	2	1	WQ		5	1878	1646	+1	0	11	50
+2009	11	18	Slovenia	Russia	1	0	WQ		27	1673	1851	+4	−1	46	13
+2010	03	03	Hungary	Russia	1	1	F		4	1615	1847	0	0	54	13
+2010	08	11	Russia	Bulgaria	1	0	F		4	1851	1721	0	−1	12	35
+2010	09	03	Andorra	Russia	0	2	EQ		-1	1021	1852	0	0	185	12
+2010	09	07	Russia	Slovakia	0	1	EQ		-33	1819	1719	−3	+6	14	36
+2010	10	08	Ireland	Russia	2	3	EQ		-23	1750	1842	−4	+2	27	12
+2010	10	12	Macedonia	Russia	0	1	EQ		-11	1569	1853	0	+1	69	11
+2010	11	17	Russia	Belgium	0	2	F		-27	1826	1618	−2	+7	13	55
+2011	02	09	Iran	Russia	1	0	F	AE	13	1732	1813	+3	−2	32	16
+2011	03	26	Armenia	Russia	0	0	EQ		13	1445	1800	+3	−2	102	18
+2011	03	29	Qatar	Russia	1	1	F		4	1545	1796	+1	0	74	18
+2011	06	04	Russia	Armenia	3	1	EQ		4	1800	1441	0	+1	18	100
+2011	06	07	Cameroon	Russia	0	0	F	AT	4	1637	1796	0	−1	53	19
+2011	08	10	Russia	Serbia	1	0	F		6	1802	1746	+1	−2	18	32
+2011	09	02	Russia	Macedonia	1	0	EQ		4	1806	1533	+1	−2	17	77
+2011	09	06	Russia	Ireland	0	0	EQ		-7	1799	1794	−1	+2	18	20
+2011	10	07	Slovakia	Russia	0	1	EQ		-14	1577	1813	−6	+1	66	17
+2011	10	11	Russia	Andorra	6	0	EQ		0	1813	998	−1	0	18	188
+2011	11	11	Greece	Russia	1	1	F		-3	1803	1816	−3	0	22	18
+2012	02	29	Denmark	Russia	0	2	F		-20	1810	1836	−2	+2	17	15
+2012	05	25	Russia	Uruguay	1	1	F		1	1837	1986	0	0	15	5
+2012	05	29	Lithuania	Russia	0	0	F	CH	7	1509	1830	+3	0	85	15
+2012	06	01	Russia	Italy	3	0	F	CH	19	1849	1850	0	−2	15	14
+2012	06	08	Russia	Czechia	4	1	EC	PL	36	1885	1751	+4	−8	11	30
+2012	06	12	Poland	Russia	1	1	EC		5	1722	1880	+1	0	34	11
+2012	06	16	Greece	Russia	1	0	EC	PL	34	1788	1846	+6	−2	23	14
+2012	08	15	Russia	Ivory Coast	1	1	F		-4	1842	1799	0	+1	15	18
+2012	09	07	Russia	Northern Ireland	2	0	WQ		3	1845	1448	0	0	15	98
+2012	09	11	Israel	Russia	0	4	WQ		-27	1619	1872	−7	+1	54	14
+2012	10	12	Russia	Portugal	1	0	WQ		19	1891	1930	+2	0	12	7
+2012	10	16	Russia	Azerbaijan	1	0	WQ		1	1892	1401	0	0	12	109
+2012	11	14	Russia	United States	2	2	F		-6	1886	1769	−1	+1	13	26
+2013	02	06	Russia	Iceland	2	0	F	ES	3	1889	1481	0	−1	13	92
+2013	03	25	Brazil	Russia	1	1	F	EN	-4	2043	1893	0	+1	3	10
+2013	06	07	Portugal	Russia	1	0	WQ		15	1902	1878	+2	−1	8	10
+2013	08	14	Northern Ireland	Russia	1	0	WQ		36	1454	1842	+7	−7	98	17
+2013	09	06	Russia	Luxembourg	4	1	WQ		1	1843	1190	+1	0	16	161
+2013	09	10	Russia	Israel	3	1	WQ		9	1852	1640	−1	−3	17	52
+2013	10	11	Luxembourg	Russia	0	4	WQ		-3	1215	1855	+1	0	152	17
+2013	10	15	Azerbaijan	Russia	1	1	WQ		14	1454	1841	+5	0	97	17
+2013	11	15	Russia	Serbia	1	1	F	AE	-3	1838	1752	−3	0	20	26
+2013	11	19	Russia	South Korea	2	1	F	AE	6	1844	1686	+5	−1	15	42
+2014	03	05	Russia	Armenia	2	0	F		3	1847	1577	+1	+1	14	63
+2014	05	26	Russia	Slovakia	1	0	F		3	1850	1633	+1	0	13	53
+2014	05	31	Norway	Russia	1	1	F		4	1618	1846	+1	−2	54	15
+2014	06	06	Russia	Morocco	2	0	F		2	1848	1516	0	−2	16	80
+2014	06	17	Russia	South Korea	1	1	WC	BR	-14	1834	1681	−2	+4	18	42
+2014	06	22	Belgium	Russia	1	0	WC	BR	27	1891	1807	+3	−2	10	21
+2014	06	26	Algeria	Russia	1	1	WC	BR	11	1678	1796	+3	0	41	21
+2014	09	03	Russia	Azerbaijan	4	0	F		3	1799	1442	0	0	21	103
+2014	09	08	Russia	Liechtenstein	4	0	EQ		1	1800	1170	0	0	20	163
+2014	10	09	Sweden	Russia	1	1	EQ		-5	1791	1805	0	+1	21	19
+2014	10	12	Russia	Moldova	1	1	EQ		-18	1787	1446	−1	+2	21	100
+2014	11	15	Austria	Russia	1	0	EQ		19	1718	1768	+3	−2	33	24
+2014	11	18	Hungary	Russia	1	2	F		-10	1657	1778	−2	0	47	24
+2015	03	27	Montenegro	Russia	0	0	EQ		5	1598	1773	0	0	63	24
+2015	03	31	Russia	Kazakhstan	0	0	F		-9	1764	1348	−1	+2	25	123
+2015	06	07	Russia	Belarus	4	2	F		5	1769	1563	0	−1	25	65
+2015	06	14	Russia	Austria	0	1	EQ		-28	1741	1747	−5	+7	30	29
+2015	09	05	Russia	Sweden	1	0	EQ		18	1759	1787	+3	−3	26	21
+2015	09	08	Liechtenstein	Russia	0	7	EQ		-6	1208	1765	0	+1	159	25
+2015	10	09	Moldova	Russia	1	2	EQ		-6	1360	1771	0	+1	117	23
+2015	10	12	Russia	Montenegro	2	0	EQ		10	1781	1586	+2	−1	22	63
+2015	11	14	Russia	Portugal	1	0	F		11	1792	1917	+1	−1	22	10
+2015	11	17	Russia	Croatia	1	3	F		-19	1773	1813	−2	+4	24	17
+2016	03	26	Russia	Lithuania	3	0	F		2	1775	1423	+1	−1	24	104
+2016	03	29	France	Russia	4	2	F		5	1969	1770	0	−1	6	25
+2016	06	01	Czechia	Russia	2	1	F	AT	10	1766	1760	+3	−3	26	28
+2016	06	05	Russia	Serbia	1	1	F	MC	-1	1759	1725	0	+1	28	36
+2016	06	11	England	Russia	1	1	EC	FR	-14	1956	1773	0	+3	8	25
+2016	06	15	Slovakia	Russia	2	1	EC	FR	28	1760	1745	+8	−6	27	31
+2016	06	20	Wales	Russia	3	0	EC	FR	52	1729	1693	+10	−12	34	42
+2016	08	31	Turkey	Russia	0	0	F		-6	1809	1699	0	0	19	43
+2016	09	06	Russia	Ghana	1	0	F		5	1704	1618	0	−2	43	56
+2016	10	09	Russia	Costa Rica	3	4	F		-10	1694	1818	−1	0	42	20
+2016	11	10	Qatar	Russia	2	1	F		11	1554	1683	+3	−3	70	44
+2016	11	15	Russia	Romania	1	0	F		7	1690	1681	+4	−3	39	44
+2017	03	24	Russia	Ivory Coast	0	2	F		-20	1670	1695	−7	+6	46	39
+2017	03	28	Russia	Belgium	3	3	F		3	1673	1886	−1	0	48	12
+2017	06	05	Hungary	Russia	0	3	F		-23	1658	1696	−8	+10	51	39
+2017	06	09	Russia	Chile	1	1	F		5	1701	1976	+2	+1	37	5
+2017	06	17	Russia	New Zealand	2	0	CC		15	1716	1538	+2	−3	36	74
+2017	06	21	Russia	Portugal	0	1	CC		-17	1699	1945	−3	0	38	9
+2017	06	24	Russia	Mexico	1	2	CC		-16	1683	1943	−5	0	43	10
+2017	10	07	Russia	South Korea	4	2	F		13	1696	1717	+2	−2	41	36
+2017	10	10	Russia	Iran	1	1	F		0	1696	1784	0	0	42	22
+2017	11	11	Russia	Argentina	0	1	F		-5	1691	2009	0	0	44	4
+2017	11	14	Russia	Spain	3	3	F		6	1697	2030	+1	0	43	3
+2018	03	23	Russia	Brazil	0	3	F		-5	1692	2118	−2	0	45	1
+2018	03	27	Russia	France	1	3	F		-8	1684	1982	0	0	45	5
+2018	05	30	Austria	Russia	1	0	F		6	1732	1678	+1	+1	34	45
+2018	06	05	Russia	Turkey	1	1	F		-1	1677	1727	0	0	44	38
+2018	06	14	Russia	Saudi Arabia	5	0	WC		30	1707	1558	+2	−5	43	69
+2018	06	19	Russia	Egypt	3	1	WC		24	1731	1604	+7	−3	34	57
+2018	06	25	Russia	Uruguay	0	3	WC		-41	1690	1951	−10	+3	44	8
+2018	07	01	Russia	Spain	1	1	WC		18	1708	2009	+4	0	41	3
+2018	07	07	Russia	Croatia	2	2	WC		12	1720	1938	+3	−2	38	8
+2018	09	07	Turkey	Russia	1	2	ENB		-26	1701	1746	−9	+6	42	31
+2018	09	10	Russia	Czechia	5	1	F		11	1757	1677	+3	0	28	45
+2018	10	11	Russia	Sweden	0	0	ENB		-2	1755	1818	0	0	29	19
+2018	10	14	Russia	Turkey	2	0	ENB		20	1775	1711	+2	−8	25	41
+2018	11	15	Germany	Russia	3	0	F		6	1940	1769	0	−1	9	26
+2018	11	20	Sweden	Russia	2	0	ENB		17	1850	1752	0	−4	18	30
+2019	03	21	Belgium	Russia	3	1	EQ		6	2040	1746	0	−2	3	35
+2019	03	24	Kazakhstan	Russia	0	4	EQ		-15	1383	1761	−2	+2	108	32
+2019	06	08	Russia	San Marino	9	0	EQ		0	1761	832	0	0	30	204
+2019	06	11	Russia	Cyprus	1	0	EQ		3	1764	1404	+2	−2	28	104
+2019	09	06	Scotland	Russia	1	2	EQ		-20	1644	1784	−1	+2	51	24
+2019	09	09	Russia	Kazakhstan	1	0	EQ		2	1786	1389	0	−1	23	106
+2019	10	10	Russia	Scotland	4	0	EQ		14	1800	1619	+2	−1	21	53
+2019	10	13	Cyprus	Russia	0	5	EQ		-14	1413	1814	−4	+2	102	20
+2019	11	16	Russia	Belgium	1	4	EQ		-21	1793	2082	−3	+1	23	1
+2019	11	19	San Marino	Russia	0	5	EQ		-1	820	1794	0	+1	209	22
+2020	09	03	Russia	Serbia	3	1	ENB		22	1816	1772	+1	−3	21	25
+2020	09	06	Hungary	Russia	2	3	ENB		-16	1635	1832	−2	+1	50	20
+2020	10	08	Russia	Sweden	1	2	F		-13	1819	1836	−2	+2	21	19
+2020	10	11	Russia	Turkey	1	1	ENB		-9	1810	1768	−2	+1	22	26
+2020	10	14	Russia	Hungary	0	0	ENB		-11	1799	1709	−2	+1	23	39
+2020	11	12	Moldova	Russia	0	0	F		9	1241	1790	0	0	147	23
+2020	11	15	Turkey	Russia	3	2	ENB		16	1779	1774	+3	−5	26	28
+2020	11	18	Serbia	Russia	5	0	ENB		30	1789	1744	+6	−8	25	35
+2021	03	24	Malta	Russia	1	3	WQ		-5	1209	1749	−1	+2	156	34
+2021	03	27	Russia	Slovenia	2	1	WQ		10	1759	1645	+4	0	31	45
+2021	03	30	Slovakia	Russia	2	1	WQ		21	1655	1738	+6	−5	45	37
+2021	06	01	Poland	Russia	1	1	F		-5	1802	1743	0	+1	22	36
+2021	06	05	Russia	Bulgaria	1	0	F		2	1745	1500	0	−1	36	79
+2021	06	12	Russia	Belgium	0	3	EC		-16	1729	2115	−4	0	39	2
+2021	06	16	Russia	Finland	1	0	EC		18	1747	1711	+3	−2	35	40
+2021	06	21	Denmark	Russia	4	1	EC		16	1925	1731	+1	−3	11	37
+2021	09	01	Russia	Croatia	0	0	WQ		0	1731	1825	0	0	37	19
+2021	09	04	Cyprus	Russia	0	2	WQ		-9	1315	1740	−3	+4	131	33
+2021	09	07	Russia	Malta	2	0	WQ		2	1742	1253	−1	−1	34	146
+2021	10	08	Russia	Slovakia	1	0	WQ		10	1752	1650	+1	−4	33	51
+2021	10	11	Slovenia	Russia	1	2	WQ		-18	1604	1770	−4	+3	59	30
+2021	11	11	Russia	Cyprus	6	0	WQ		3	1773	1294	0	−1	28	134
+2021	11	14	Croatia	Russia	1	0	WQ		11	1858	1762	0	−3	17	31
+2022	09	24	Kyrgyzstan	Russia	1	2	F		-2	1267	1764	0	+1	141	31
+2022	11	17	Tajikistan	Russia	0	0	F		8	1327	1756	+4	−3	126	32
+2022	11	20	Uzbekistan	Russia	0	0	F		2	1575	1754	0	+1	65	32
+2023	03	23	Iran	Russia	1	1	F		-3	1777	1757	−1	0	28	31
+2023	03	26	Russia	Iraq	2	0	F		6	1763	1620	0	0	30	55
+2023	09	12	Qatar	Russia	1	1	F		4	1511	1759	+2	−1	77	31
+2023	10	12	Russia	Cameroon	1	0	F		4	1763	1632	+1	0	30	51
+2023	10	16	Kenya	Russia	2	2	F	TR	8	1352	1755	+2	0	116	30
+2023	11	20	Russia	Cuba	8	0	F		2	1757	1290	−1	−2	31	143
+2024	03	21	Russia	Serbia	4	0	F		16	1773	1786	+6	−3	25	24
+2024	06	07	Belarus	Russia	0	4	F		-8	1446	1781	−1	+1	94	25
+2024	09	05	Vietnam	Russia	0	3	VFF		-5	1267	1786	0	+2	148	24
+2024	11	15	Russia	Brunei	11	0	F		0	1786	667	0	0	26	224
+2024	11	19	Russia	Syria	4	0	F		3	1789	1437	+1	−1	25	93
+2025	03	19	Russia	Grenada	5	0	F		0	1789	1072	0	0	25	179
+2025	03	25	Russia	Zambia	5	0	F		2	1791	1406	−1	0	28	101
+2025	06	06	Russia	Nigeria	1	1	F		-7	1784	1576	0	0	28	66
+2025	06	10	Belarus	Russia	1	4	F		-9	1492	1793	0	+1	83	28
+2025	09	04	Russia	Jordan	0	0	F		-6	1787	1630	+1	+3	27	54
+2025	09	07	Qatar	Russia	1	4	F		-9	1487	1796	−2	+2	82	26
+2025	10	10	Russia	Iran	2	1	F		6	1802	1762	0	−1	27	33
+2025	10	14	Russia	Bolivia	3	0	F		8	1810	1689	+2	−2	24	47
+2025	11	12	Russia	Peru	1	1	F		-5	1805	1707	−1	0	25	42
+2025	11	15	Russia	Chile	0	2	F		-23	1782	1721	−2	+4	27	41
+2026	03	27	Russia	Nicaragua	3	1	F		1	1783	1327	0	0	28	126
+2026	03	31	Russia	Mali	0	0	F		-7	1776	1596	−1	−1	27	65
+2026	05	28	Egypt	Russia	1	0	F		10	1699	1766	+5	−3	46	30

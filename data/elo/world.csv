@@ -1,0 +1,245 @@
+rank,team_code,team_name,rating
+1,ES,Spain,2165
+2,AR,Argentina,2113
+3,FR,France,2081
+4,EN,England,2020
+5,BR,Brazil,1988
+6,PT,Portugal,1984
+7,CO,Colombia,1977
+8,NL,Netherlands,1961
+9,EC,Ecuador,1935
+10,DE,Germany,1925
+11,NO,Norway,1917
+12,HR,Croatia,1908
+13,TR,Turkey,1906
+13,JP,Japan,1906
+15,CH,Switzerland,1894
+16,UY,Uruguay,1892
+17,BE,Belgium,1888
+18,DK,Denmark,1870
+19,MX,Mexico,1867
+19,SN,Senegal,1867
+21,IT,Italy,1856
+22,PY,Paraguay,1832
+23,AT,Austria,1830
+24,MA,Morocco,1822
+25,CA,Canada,1793
+26,UA,Ukraine,1785
+27,AU,Australia,1774
+28,SQ,Scotland,1770
+29,NG,Nigeria,1769
+30,RU,Russia,1766
+31,IR,Iran,1764
+32,KR,South Korea,1756
+33,GR,Greece,1752
+34,DZ,Algeria,1743
+35,RS,Serbia,1742
+36,CZ,Czechia,1733
+36,US,United States,1733
+36,PA,Panama,1733
+39,VE,Venezuela,1727
+40,UZ,Uzbekistan,1718
+41,SE,Sweden,1714
+41,KO,Kosovo,1714
+43,PL,Poland,1711
+44,CL,Chile,1710
+45,HU,Hungary,1703
+46,EG,Egypt,1699
+47,WA,Wales,1698
+48,PE,Peru,1695
+49,SI,Slovenia,1694
+49,IE,Ireland,1694
+51,JO,Jordan,1685
+52,CI,Ivory Coast,1676
+53,SK,Slovakia,1674
+54,CD,DR Congo,1655
+55,GE,Georgia,1653
+56,AL,Albania,1646
+57,BO,Bolivia,1645
+58,IL,Israel,1634
+59,TN,Tunisia,1633
+60,RO,Romania,1627
+61,CM,Cameroon,1613
+62,CR,Costa Rica,1611
+63,IQ,Iraq,1608
+64,EI,Northern Ireland,1601
+65,ML,Mali,1596
+66,BA,Bosnia and Herzegovina,1591
+67,NM,North Macedonia,1589
+68,NZ,New Zealand,1585
+69,CV,Cape Verde,1576
+70,HN,Honduras,1571
+71,IS,Iceland,1569
+72,SA,Saudi Arabia,1566
+73,AO,Angola,1543
+74,FI,Finland,1540
+74,AE,United Arab Emirates,1540
+76,HT,Haiti,1532
+77,BF,Burkina Faso,1530
+78,JM,Jamaica,1527
+79,ZA,South Africa,1518
+80,GT,Guatemala,1514
+81,BY,Belarus,1513
+82,GH,Ghana,1503
+83,SY,Syria,1491
+84,OM,Oman,1490
+85,GN,Guinea,1469
+85,PS,Palestine,1469
+87,BG,Bulgaria,1461
+88,NS,Northern Cyprus,1457
+89,ME,Montenegro,1453
+90,LU,Luxembourg,1436
+91,CW,Curaçao,1433
+92,SR,Suriname,1431
+93,KZ,Kazakhstan,1430
+94,BJ,Benin,1429
+95,KD,Kurdistan,1425
+96,CN,China,1423
+96,QA,Qatar,1423
+98,LY,Libya,1420
+99,GM,Gambia,1419
+100,BH,Bahrain,1418
+101,GA,Gabon,1401
+102,UG,Uganda,1394
+103,NE,Niger,1393
+104,GQ,Equatorial Guinea,1391
+105,TT,Trinidad and Tobago,1388
+106,MG,Madagascar,1382
+107,FO,Faroe Islands,1381
+108,AM,Armenia,1379
+109,TH,Thailand,1376
+110,KP,North Korea,1375
+111,ZW,Zimbabwe,1372
+111,MZ,Mozambique,1372
+113,ZM,Zambia,1371
+114,KM,Comoros,1363
+115,TG,Togo,1359
+116,KE,Kenya,1356
+117,VN,Vietnam,1351
+118,SD,Sudan,1350
+119,SL,Sierra Leone,1348
+120,RE,Reunion,1345
+121,SV,El Salvador,1342
+122,AZ,Azerbaijan,1340
+123,EE,Estonia,1339
+124,GP,Guadeloupe,1338
+125,RW,Rwanda,1337
+126,NI,Nicaragua,1334
+127,LB,Lebanon,1332
+128,ID,Indonesia,1331
+129,KW,Kuwait,1327
+130,ZN,Zanzibar,1321
+131,TZ,Tanzania,1313
+132,MQ,Martinique,1312
+133,MR,Mauritania,1311
+134,NA,Namibia,1303
+135,LV,Latvia,1301
+135,CY,Cyprus,1301
+137,LR,Liberia,1297
+138,MY,Malaysia,1293
+139,GY,Guyana,1292
+140,KG,Kyrgyzstan,1291
+141,LT,Lithuania,1290
+142,NC,New Caledonia,1286
+143,BI,Burundi,1285
+143,ET,Ethiopia,1285
+145,TJ,Tajikistan,1284
+145,DO,Dominican Republic,1284
+147,BW,Botswana,1267
+148,MD,Moldova,1262
+149,GW,Guinea-Bissau,1248
+150,MW,Malawi,1241
+151,CU,Cuba,1239
+152,CF,Central African Republic,1238
+153,MT,Malta,1236
+154,GF,French Guiana,1223
+155,YT,Mayotte,1216
+156,TM,Turkmenistan,1209
+157,CG,Congo,1207
+158,LS,Lesotho,1205
+159,ER,Eritrea,1201
+160,TI,Tahiti,1176
+161,PH,Philippines,1167
+162,YE,Yemen,1151
+163,SW,Eswatini,1149
+164,VC,Saint Vincent and the Grenadines,1141
+165,SG,Singapore,1139
+166,PR,Puerto Rico,1138
+167,PG,Papua New Guinea,1135
+168,IN,India,1128
+169,HK,Hong Kong,1120
+170,BM,Bermuda,1119
+171,VU,Vanuatu,1114
+172,SS,South Sudan,1109
+173,FJ,Fiji,1108
+174,GD,Grenada,1098
+175,AD,Andorra,1076
+176,MU,Mauritius,1073
+176,TD,Chad,1073
+176,BZ,Belize,1073
+179,SB,Solomon Islands,1054
+180,MF,Saint Martin,1042
+181,ST,Sao Tome and Principe,1035
+182,KN,Saint Kitts and Nevis,1029
+183,AF,Afghanistan,1023
+184,JS,Somaliland,1005
+185,LC,Saint Lucia,1003
+186,GI,Gibraltar,1002
+187,EH,Western Sahara,996
+188,MM,Myanmar,982
+189,AW,Aruba,979
+189,SO,Somalia,979
+191,SX,Sint Maarten,975
+192,MS,Montserrat,971
+193,GL,Greenland,946
+194,DJ,Djibouti,940
+195,DM,Dominica,934
+196,BD,Bangladesh,932
+197,LI,Liechtenstein,904
+198,MC,Monaco,903
+199,BB,Barbados,898
+200,AG,Antigua and Barbuda,894
+201,NP,Nepal,893
+202,SC,Seychelles,853
+203,KH,Cambodia,844
+204,SM,San Marino,836
+204,MV,Maldives,836
+204,BQ,Bonaire,836
+207,LK,Sri Lanka,827
+208,TW,Taiwan,821
+209,PK,Pakistan,812
+210,KY,Cayman Islands,805
+211,HG,Chagos Islands,782
+212,TV,Tuvalu,756
+213,EU,Sint Eustatius,737
+214,LA,Laos,734
+215,WS,Samoa,728
+216,VG,British Virgin Islands,727
+216,MN,Mongolia,727
+218,BL,Saint Barthelemy,725
+219,GU,Guam,718
+220,TL,East Timor,714
+221,WF,Wallis and Futuna,699
+222,VA,Vatican,692
+223,AB,Saba,691
+224,BS,Bahamas,685
+225,PM,Saint Pierre and Miquelon,677
+226,TC,Turks and Caicos Islands,657
+227,AI,Anguilla,646
+228,BT,Bhutan,636
+229,TE,Tibet,629
+230,VI,US Virgin Islands,628
+231,CK,Cook Islands,622
+232,BN,Brunei,592
+233,MO,Macao,588
+234,CX,Christmas Island,578
+235,FK,Falkland Islands,571
+236,FM,FS Micronesia,563
+237,MH,Marshall Islands,559
+238,KI,Kiribati,544
+239,TO,Tonga,520
+240,NU,Niue,496
+241,MP,Northern Mariana Islands,432
+242,CC,Cocos Islands,422
+243,PW,Palau,402
+244,AS,Eastern Samoa,369

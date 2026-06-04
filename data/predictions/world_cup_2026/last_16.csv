@@ -1,0 +1,17 @@
+match_id,team1,team2,path,elo,do_you_disagree
+M89,W77(I1(France)),W74(E1(Germany)),primary,France (68%),
+
+M90,W75(F1(Netherlands)),W73(B2(Canada)),primary,Netherlands (63%),
+
+M91,W76(C1(Brazil)),W78(E2(Ecuador)),primary,Brazil (50%),
+
+M92,W80(L1(England)),W79(A1(Mexico)),primary,England (54%),
+
+M93,W84(H1(Spain)),W83(K2(Colombia)),primary,Spain (72%),
+
+M94,W81(D1(Turkey)),W82(G1(Belgium)),primary,Belgium (51%),
+
+M95,W86(J1(Argentina)),W88(D2(United States)),primary,Argentina (79%),
+
+M96,W87(K1(Portugal)),W85(B1(Switzerland)),primary,Portugal (63%),
+

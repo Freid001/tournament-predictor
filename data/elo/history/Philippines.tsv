@@ -1,0 +1,396 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1913	02	04	Philippines	China	2	1	FEG		34	1234	1566	−	−	27	18
+1915	05	17	China	Philippines	1	0	FEG		3	1569	1231	+1	0	19	28
+1915	05	18	China	Philippines	0	0	FEG		-17	1552	1248	−1	0	20	28
+1915	05	20	China	Philippines	1	1	FEG		-16	1536	1264	0	0	20	28
+1915	05	00	China	Philippines	3	1	FT		5	1541	1259	0	0	20	28
+1917	05	10	Japan	Philippines	2	15	FEG		-79	1196	1338	−1	+2	31	29
+1917	05	11	China	Philippines	3	0	FEG	JP	15	1581	1323	0	0	20	29
+1919	05	12	Philippines	China	0	2	FEG		-17	1306	1598	0	+1	30	20
+1919	05	13	Philippines	China	2	1	FEG		30	1336	1568	0	−1	30	21
+1919	05	15	Philippines	China	1	2	FEG		-13	1323	1581	0	0	30	21
+1921	05	30	Philippines	Japan	3	1	FEG	CN	19	1342	1177	0	0	35	37
+1921	05	31	China	Philippines	1	0	FEG		5	1586	1337	+1	0	23	35
+1923	05	22	China	Philippines	3	0	FEG	JP	13	1606	1324	0	0	29	47
+1923	05	23	Japan	Philippines	1	2	FEG		-17	1153	1341	0	0	49	47
+1925	05	17	Philippines	Japan	4	0	FEG		11	1352	1133	0	0	51	56
+1925	05	22	Philippines	China	1	5	FEG		-24	1328	1609	0	+3	51	26
+1927	08	29	Japan	Philippines	2	1	FEG	CN	30	1156	1298	0	0	59	54
+1927	08	31	China	Philippines	3	1	FEG		6	1586	1292	0	0	29	54
+1930	05	25	Japan	Philippines	7	2	FEG		44	1200	1248	0	−4	64	63
+1930	05	27	China	Philippines	5	0	FEG	JP	10	1596	1238	+1	0	30	63
+1934	05	12	Philippines	China	0	2	FEG		-12	1226	1594	0	+3	75	36
+1934	05	15	Philippines	Japan	3	4	FEG		-27	1199	1228	−1	+1	76	75
+1934	05	19	Philippines	Dutch East Indies	3	2	FEG		30	1229	1468	+1	−3	75	51
+1940	06	16	Japan	Philippines	1	0	EAM		12	1291	1217	+4	−1	78	90
+1948	02	21	Hong Kong	Philippines	4	1	F		6	1413	1211	+1	0	68	96
+1948	05	05	Philippines	China	0	4	F		-5	1206	1626	0	0	96	36
+1950	02	19	Hong Kong	Philippines	6	1	F		6	1428	1200	0	−1	67	103
+1953	04	04	Philippines	Hong Kong	1	7	F		-13	1187	1456	−1	+5	109	67
+1953	06	20	Singapore	Philippines	3	1	F		7	1303	1180	+2	0	92	110
+1954	05	03	Philippines	South Vietnam	2	3	ASG		-14	1166	1401	0	+2	121	86
+1954	05	06	Philippines	Taiwan	0	4	ASG		-6	1160	1712	0	+1	121	22
+1956	00	00	Philippines	Japan	0	2	SEG		-27	1133	1320	−4	+10	125	92
+1956	00	00	Philippines	Japan	0	3	SEG		-26	1107	1346	−4	+10	125	92
+1956	02	25	Philippines	South Korea	0	2	SQ		-6	1101	1580	0	+1	125	44
+1956	04	21	South Korea	Philippines	3	0	SQ		2	1582	1099	+1	0	44	125
+1956	11	10	Philippines	United States	0	4	F		-4	1095	1558	0	+2	129	54
+1958	05	09	Philippines	Indonesia	1	2	F		-3	1092	1495	0	+1	132	65
+1958	05	13	Philippines	Indonesia	0	3	F		-5	1087	1500	−1	+1	133	65
+1958	05	23	India	Philippines	4	2	F	JP	2	1556	1085	+1	−1	56	134
+1958	05	25	Hong Kong	Philippines	4	1	ASG	JP	6	1511	1079	−1	0	64	134
+1958	05	26	Japan	Philippines	0	1	ASG		-36	1313	1115	−3	+4	102	130
+1958	05	30	Indonesia	Philippines	5	2	ASG	JP	6	1542	1109	+2	−1	57	131
+1959	03	29	Philippines	Hong Kong	0	7	SQ		-14	1095	1523	−1	+4	134	62
+1959	03	31	Philippines	Taiwan	4	7	SQ		-3	1092	1738	0	+1	134	23
+1962	08	26	Malaya	Philippines	15	1	ASG	ID	14	1468	1078	+3	−1	78	143
+1962	08	27	Indonesia	Philippines	6	0	ASG		4	1516	1074	0	−1	66	144
+1962	08	30	South Vietnam	Philippines	6	0	ASG	ID	8	1480	1066	+2	0	75	144
+1962	09	12	Indonesia	Philippines	9	0	MRD	AY	6	1501	1060	0	−1	70	145
+1962	09	13	Singapore	Philippines	5	0	MRD	AY	19	1218	1041	+3	0	126	145
+1962	09	16	South Vietnam	Philippines	6	0	MRD	AY	7	1417	1034	+4	0	87	145
+1963	12	15	Philippines	Taiwan	0	7	F		-2	1032	1651	0	0	148	34
+1967	07	28	Taiwan	Philippines	9	0	SQ		7	1390	1025	0	0	98	157
+1967	08	01	Indonesia	Philippines	6	0	SQ	TW	6	1469	1019	+2	0	73	157
+1967	08	03	Japan	Philippines	2	0	SQ	TW	2	1566	1017	+1	0	51	157
+1967	08	05	South Korea	Philippines	7	0	SQ	TW	7	1462	1010	+6	0	74	157
+1967	09	27	Japan	Philippines	15	0	OQ		3	1583	1007	0	0	51	157
+1967	10	01	South Vietnam	Philippines	10	0	OQ	JP	9	1428	998	+2	−1	90	158
+1967	10	03	Taiwan	Philippines	7	2	OQ	JP	7	1407	991	+2	0	94	158
+1967	10	06	Lebanon	Philippines	11	1	OQ	JP	11	1381	980	+3	−1	100	159
+1967	10	09	South Korea	Philippines	5	0	OQ	JP	2	1595	978	0	−1	50	160
+1971	08	05	India	Philippines	5	1	MRD	MY	4	1407	974	0	0	90	163
+1971	08	09	Hong Kong	Philippines	2	1	MRD	MY	6	1207	968	0	−1	134	164
+1971	08	11	Indonesia	Philippines	3	1	MRD	MY	3	1432	965	+2	0	82	164
+1971	08	13	Burma	Philippines	2	0	MRD	MY	1	1620	964	0	0	44	164
+1971	08	15	Philippines	Singapore	4	4	MRD	MY	7	971	1126	0	0	164	145
+1971	08	17	Philippines	Thailand	3	1	MRD	MY	39	1010	1264	+4	−9	160	123
+1971	08	24	Thailand	Philippines	1	0	FT	SG	6	1270	1004	0	0	123	160
+1971	09	25	Philippines	Taiwan	3	0	OQ	KR	60	1064	1246	+3	−17	157	129
+1971	09	27	Japan	Philippines	8	1	OQ	KR	6	1529	1058	+2	0	63	157
+1971	09	29	South Korea	Philippines	6	0	OQ		2	1601	1056	0	0	49	157
+1971	10	02	Malaysia	Philippines	5	0	OQ	KR	7	1459	1049	0	−1	75	158
+1972	06	08	Philippines	Singapore	2	0	JAT	ID	27	1076	1090	+3	−6	155	154
+1972	06	12	Philippines	Thailand	1	0	JAT	ID	21	1097	1193	+3	−6	152	136
+1972	06	14	Khmer Republic	Philippines	4	0	JAT	ID	11	1358	1086	+3	−3	104	155
+1972	07	14	Malaysia	Philippines	1	0	MRD		2	1452	1084	+1	0	75	155
+1972	07	16	Khmer Republic	Philippines	2	2	MRD	MY	-10	1344	1094	−1	+1	107	154
+1972	07	18	Japan	Philippines	5	1	MRD	MY	4	1550	1090	+2	−1	60	155
+1972	07	20	Philippines	Sri Lanka	4	1	MRD	MY	18	1108	956	+3	0	152	164
+1972	07	29	Thailand	Philippines	4	0	MRD	MY	21	1225	1087	+3	−2	131	155
+1972	08	02	Indonesia	Philippines	3	0	FT	SG	6	1447	1081	0	0	79	155
+1972	08	04	Japan	Philippines	4	1	FT	SG	4	1509	1077	0	0	64	155
+1972	09	21	Burma	Philippines	4	0	PRS	KR	2	1637	1075	0	0	40	155
+1972	09	23	Singapore	Philippines	5	0	PRS	KR	28	1129	1047	+4	−2	148	157
+1972	09	25	Indonesia	Philippines	12	0	PRS	KR	6	1500	1041	0	−1	64	158
+1972	09	27	Khmer Republic	Philippines	1	0	PRS	KR	6	1301	1035	0	0	114	158
+1972	10	29	Philippines	Australia	0	6	F		-2	1033	1705	0	0	158	31
+1974	09	03	Japan	Philippines	4	0	ASG	IR	6	1472	1027	+2	−1	71	159
+1974	09	05	Israel	Philippines	6	0	ASG	IR	1	1729	1026	0	0	27	159
+1974	09	07	Malaysia	Philippines	11	0	ASG	IR	9	1452	1017	+1	0	78	159
+1976	03	14	Japan	Philippines	3	0	OQ		3	1472	1014	0	0	72	160
+1976	03	17	Japan	Philippines	3	0	OQ		3	1475	1011	+1	−1	71	161
+1976	04	07	Philippines	Taiwan	1	0	FT	US	22	1033	1178	+3	−2	158	137
+1977	11	20	Philippines	Brunei	4	1	SEG	MY	19	1052	846	+1	−1	157	176
+1977	11	21	Malaysia	Philippines	5	0	SEG		4	1472	1048	+1	0	72	157
+1977	11	23	Indonesia	Philippines	1	1	SEG	MY	-13	1319	1061	−2	+2	110	155
+1978	12	23	Philippines	Macao	1	2	SQ		-27	1034	1057	−7	+5	160	155
+1978	12	25	Philippines	China	0	3	SQ		-3	1031	1650	0	+1	160	40
+1978	12	27	Philippines	South Korea	0	5	SQ		-1	1030	1821	0	0	160	17
+1980	02	23	Macao	Philippines	4	1	F		12	1062	1018	+2	−1	153	161
+1980	03	21	Brunei	Philippines	2	0	OQ	MY	44	885	974	+2	−4	176	165
+1980	03	24	Japan	Philippines	10	0	OQ	MY	6	1468	968	+2	0	77	165
+1980	03	27	South Korea	Philippines	8	0	OQ	MY	1	1778	967	0	0	22	165
+1980	03	31	Indonesia	Philippines	4	0	OQ	MY	17	1196	950	+2	0	136	165
+1980	04	02	Malaysia	Philippines	8	0	OQ		2	1519	948	0	0	68	165
+1981	02	26	Philippines	Japan	0	6	F		-4	944	1461	0	+3	166	76
+1981	06	18	Philippines	Taiwan	0	2	F		-11	933	1152	−3	+2	170	142
+1981	08	14	Indonesia	Philippines	3	0	JAT		6	1187	927	+1	0	138	170
+1981	12	09	Philippines	Singapore	0	4	SEG		-16	911	1265	−4	+4	174	119
+1981	12	11	Philippines	Indonesia	0	2	SEG		-13	898	1248	−1	+5	175	124
+1982	05	02	Nepal	Philippines	1	0	KNG	TH	13	946	885	+2	−3	167	178
+1982	05	04	Thailand	Philippines	2	0	KNG		1	1398	884	0	0	89	178
+1982	05	06	Singapore	Philippines	1	0	KNG	TH	4	1230	880	+1	0	132	178
+1983	05	30	Malaysia	Philippines	0	0	SEG	SG	-15	1212	895	−5	+3	135	174
+1983	06	01	Singapore	Philippines	5	0	SEG		4	1299	891	+1	−1	110	175
+1983	09	04	Japan	Philippines	7	0	OQ		1	1525	890	0	0	65	175
+1983	09	07	Japan	Philippines	10	1	OQ		1	1526	889	0	0	65	175
+1984	08	07	Syria	Philippines	2	0	SQ	ID	5	1316	884	0	−2	110	176
+1984	08	09	Thailand	Philippines	3	0	SQ	ID	4	1399	880	0	0	90	176
+1984	08	11	Indonesia	Philippines	1	0	SQ		4	1144	876	0	−1	144	177
+1984	08	13	Bangladesh	Philippines	3	2	SQ	ID	15	986	861	0	−2	165	179
+1984	08	15	Iran	Philippines	7	1	SQ	ID	1	1728	860	0	0	31	179
+1985	03	24	Brunei	Philippines	4	1	ING		15	938	845	0	0	172	180
+1985	12	10	Malaysia	Philippines	6	0	SEG	TH	6	1315	839	+2	0	106	182
+1985	12	12	Thailand	Philippines	7	0	SEG		5	1227	834	+1	0	129	182
+1986	07	20	Brunei	Philippines	2	1	ING		8	912	826	+2	0	173	183
+1986	08	08	Philippines	Russia	0	5	PRS		0	826	1960	0	0	183	7
+1987	04	03	Hong Kong	Philippines	5	0	OQ		2	1335	824	+1	0	102	183
+1987	04	10	China	Philippines	9	0	OQ		1	1589	823	0	0	52	183
+1987	04	13	China	Philippines	10	0	OQ		1	1590	822	0	0	52	183
+1987	05	14	Hong Kong	Philippines	7	0	OQ		2	1345	820	+1	0	100	183
+1989	08	21	Malaysia	Philippines	3	0	SEG		3	1272	817	+3	0	114	186
+1989	08	23	Indonesia	Philippines	5	1	SEG	MY	6	1253	811	+2	0	120	186
+1989	08	25	Brunei	Philippines	2	0	SEG	MY	24	911	787	+2	0	178	186
+1991	05	06	Philippines	Brunei	2	1	INC		16	803	895	0	−2	188	181
+1991	05	12	Philippines	Brunei	0	0	F		0	803	895	0	0	188	181
+1991	11	26	Philippines	Vietnam	2	2	SEG		14	817	1195	0	−2	195	146
+1991	11	28	Philippines	Malaysia	1	0	SEG		34	851	1189	+1	−6	194	146
+1991	11	30	Philippines	Indonesia	1	2	SEG		-6	845	1273	−1	+4	195	127
+1991	12	02	Philippines	Thailand	2	6	SEG		-7	838	1338	0	+2	195	112
+1991	12	04	Philippines	Singapore	0	2	SEG		-8	830	1277	0	+1	195	127
+1993	05	15	Philippines	Brunei	1	0	INC		13	843	882	+1	−2	202	198
+1993	05	17	Philippines	Brunei	0	1	INC		-18	825	900	−1	+3	203	195
+1993	06	09	Singapore	Philippines	7	0	SEG		3	1302	822	0	0	128	203
+1993	06	11	Vietnam	Philippines	1	0	SEG	SG	7	1102	815	+1	−1	172	204
+1993	06	15	Indonesia	Philippines	3	1	SEG	SG	6	1211	809	+1	0	151	204
+1995	12	04	Myanmar	Philippines	4	1	SEG	TH	7	1195	802	+4	0	154	206
+1995	12	06	Laos	Philippines	1	0	SEG	TH	14	932	788	+1	0	195	206
+1995	12	08	Singapore	Philippines	4	0	SEG	TH	4	1308	784	+1	0	126	206
+1995	12	12	Philippines	Brunei	1	0	SEG	TH	23	807	817	0	−1	206	205
+1996	01	30	Hong Kong	Philippines	8	0	SQ		5	1213	802	+2	0	151	206
+1996	02	01	China	Philippines	7	0	SQ	HK	1	1612	801	0	0	51	206
+1996	02	04	Macao	Philippines	5	1	SQ	HK	19	1011	782	+1	0	189	206
+1996	09	02	Thailand	Philippines	5	0	SEA	SG	2	1460	780	+1	0	90	206
+1996	09	04	Malaysia	Philippines	7	0	SEA	SG	5	1262	775	0	0	139	206
+1996	09	06	Singapore	Philippines	3	0	SEA		2	1318	773	0	0	126	206
+1996	09	08	Brunei	Philippines	1	0	SEA	SG	18	831	755	+2	0	203	206
+1996	09	21	India	Philippines	2	0	WQ	QA	9	1072	746	+1	−1	177	207
+1996	09	23	Qatar	Philippines	5	0	WQ		1	1447	745	+1	0	94	207
+1996	09	26	Sri Lanka	Philippines	3	0	WQ	QA	16	978	729	+1	−1	190	208
+1997	02	23	Philippines	Cambodia	1	1	PRS		7	736	1012	0	0	209	188
+1997	10	07	Malaysia	Philippines	4	0	SEG	ID	2	1326	734	+1	0	125	209
+1997	10	09	Laos	Philippines	4	1	SEG	ID	14	983	720	+3	0	190	209
+1997	10	12	Indonesia	Philippines	2	0	SEG		1	1323	719	0	0	126	209
+1997	10	14	Vietnam	Philippines	3	0	SEG	ID	5	1174	714	0	0	163	209
+1997	11	27	Philippines	Estonia	0	1	F		-2	712	1185	0	0	209	160
+1998	03	24	Singapore	Philippines	1	0	SEQ		1	1241	711	0	0	140	209
+1998	03	26	Cambodia	Philippines	1	1	SEQ	SG	-15	1015	726	−4	0	187	209
+1998	08	27	Indonesia	Philippines	3	0	SEA	VN	2	1338	724	0	0	121	209
+1998	08	29	Thailand	Philippines	3	1	SEA	VN	1	1431	723	+1	0	98	209
+1998	08	31	Myanmar	Philippines	5	2	SEA	VN	6	1129	717	0	0	168	209
+1999	07	30	Thailand	Philippines	9	0	SEG	BN	2	1411	715	+1	0	102	211
+1999	08	01	Myanmar	Philippines	4	1	SEG	BN	6	1125	709	+2	0	165	211
+1999	08	03	Laos	Philippines	3	2	SEG	BN	8	967	701	0	0	192	211
+1999	08	08	Vietnam	Philippines	2	0	SEG	BN	2	1286	699	0	0	133	211
+2000	01	23	China	Philippines	8	0	SQ	VN	0	1697	699	−1	0	39	211
+2000	01	26	Vietnam	Philippines	3	0	SQ		1	1294	698	0	−1	133	212
+2000	01	29	Philippines	Guam	2	0	SQ	VN	29	727	660	+2	−4	210	217
+2000	11	06	Indonesia	Philippines	3	0	SEA	TH	2	1355	725	0	0	116	211
+2000	11	08	Myanmar	Philippines	3	0	SEA	TH	7	1119	718	+1	0	170	211
+2000	11	12	Thailand	Philippines	2	0	SEA		0	1515	718	0	0	73	211
+2001	04	25	Lebanon	Philippines	3	0	F		0	1422	718	0	0	97	211
+2001	04	30	Syria	Philippines	12	0	WQ		1	1514	717	0	0	72	211
+2001	05	04	Syria	Philippines	5	1	WQ		0	1514	717	0	0	72	211
+2001	05	07	Oman	Philippines	7	0	WQ		1	1336	716	0	0	123	211
+2001	05	11	Oman	Philippines	2	0	WQ		1	1337	715	0	−1	123	212
+2001	05	19	Laos	Philippines	2	0	WQ		10	896	705	+2	0	195	212
+2001	05	26	Philippines	Laos	1	1	WQ		5	710	891	0	−1	212	196
+2002	12	11	Singapore	Philippines	2	0	F		1	1222	709	0	0	153	212
+2002	12	17	Myanmar	Philippines	6	1	SEA	ID	7	1128	702	0	−1	167	213
+2002	12	19	Vietnam	Philippines	4	1	SEA	ID	3	1265	699	+1	−2	141	215
+2002	12	21	Cambodia	Philippines	1	0	SEA	ID	12	866	687	+1	−2	203	217
+2002	12	23	Indonesia	Philippines	13	1	SEA		2	1337	685	0	0	127	217
+2004	12	08	Myanmar	Philippines	1	0	SEA	MY	3	1118	682	0	−1	170	219
+2004	12	10	Malaysia	Philippines	4	1	SEA		2	1202	680	0	0	154	219
+2004	12	14	Philippines	East Timor	2	1	SEA	MY	20	700	663	+4	−5	215	222
+2004	12	16	Thailand	Philippines	3	1	SEA	MY	2	1320	698	+1	−1	125	216
+2006	03	26	Thailand	Philippines	5	0	F		1	1337	697	0	0	120	216
+2006	04	01	Taiwan	Philippines	1	0	ACH	BD	7	975	690	0	0	191	216
+2006	04	03	India	Philippines	1	1	ACH	BD	-17	1131	707	−1	+2	167	214
+2006	04	05	Afghanistan	Philippines	1	1	ACH	BD	-6	810	713	0	0	206	214
+2006	11	12	Philippines	Laos	1	2	SEQ		-16	697	896	−2	+4	217	199
+2006	11	14	Philippines	East Timor	7	0	SEQ		26	723	619	+3	−1	214	224
+2006	11	18	Philippines	Cambodia	1	0	SEQ		20	743	796	+1	−2	213	208
+2006	11	20	Philippines	Brunei	4	1	SEQ		25	768	713	+2	−1	211	215
+2007	01	07	Singapore	Philippines	4	1	F		1	1291	767	0	0	133	211
+2007	01	12	Malaysia	Philippines	4	0	SEA	TH	6	1187	761	+5	0	158	211
+2007	01	14	Thailand	Philippines	4	0	SEA		1	1343	760	0	0	119	211
+2007	01	16	Myanmar	Philippines	0	0	SEA	TH	-17	1161	777	−1	+1	168	210
+2008	05	13	Philippines	Brunei	1	0	SCQ		11	788	702	0	−3	210	217
+2008	05	15	Philippines	Tajikistan	0	0	SCQ		17	805	1295	+2	−4	208	132
+2008	05	17	Philippines	Bhutan	3	0	SCQ		10	815	593	+1	0	207	223
+2008	10	17	Philippines	East Timor	1	0	SEQ	KH	9	824	583	0	0	206	225
+2008	10	19	Brunei	Philippines	1	1	SEQ	KH	7	701	817	+2	0	217	206
+2008	10	21	Laos	Philippines	2	1	SEQ	KH	18	878	799	+1	−1	201	207
+2008	10	23	Cambodia	Philippines	2	3	SEQ		-25	769	824	0	+1	210	206
+2009	04	14	Philippines	Bhutan	1	0	SCQ	MV	11	835	641	+2	0	204	222
+2009	04	16	Maldives	Philippines	3	2	SCQ		5	1078	830	0	−1	180	205
+2009	04	18	Turkmenistan	Philippines	5	0	SCQ	MV	4	1334	826	0	0	124	205
+2010	01	16	Taiwan	Philippines	0	0	IPF		-8	928	834	−1	0	193	205
+2010	10	10	Taiwan	Philippines	1	1	LTC		-8	928	842	−1	0	193	205
+2010	10	12	Philippines	Macao	5	0	LTC	TW	18	860	673	0	−2	205	220
+2010	10	22	Philippines	East Timor	5	0	SEQ	LA	12	872	555	+3	−2	201	232
+2010	10	24	Laos	Philippines	2	2	SEQ		-5	859	877	−2	0	204	201
+2010	10	26	Cambodia	Philippines	0	0	SEQ	LA	4	804	873	0	0	207	201
+2010	12	02	Philippines	Singapore	1	1	SEA	VN	18	891	1327	+2	−4	200	123
+2010	12	05	Vietnam	Philippines	0	2	SEA		-57	1262	948	−14	+9	141	191
+2010	12	08	Myanmar	Philippines	0	0	SEA	VN	-10	1129	958	0	+1	171	190
+2010	12	16	Indonesia	Philippines	1	0	SEA		3	1315	955	+1	−1	128	191
+2010	12	19	Indonesia	Philippines	1	0	SEA		3	1318	952	+1	0	127	191
+2011	02	09	Philippines	Mongolia	2	0	SCQ		11	963	781	+1	−1	190	209
+2011	03	15	Mongolia	Philippines	2	1	SCQ		25	806	938	+2	−3	207	193
+2011	03	21	Myanmar	Philippines	1	1	SCQ		-14	1115	952	−2	+2	175	191
+2011	03	23	Palestine	Philippines	0	0	SCQ	MM	-12	1185	964	−1	0	157	191
+2011	03	25	Philippines	Bangladesh	3	0	SCQ	MM	36	1000	935	+4	−4	187	193
+2011	06	29	Sri Lanka	Philippines	1	1	WQ		-1	917	1001	0	0	194	187
+2011	07	03	Philippines	Sri Lanka	4	0	WQ		19	1020	898	+3	−4	184	198
+2011	07	23	Kuwait	Philippines	3	0	WQ		1	1593	1019	0	0	60	185
+2011	07	28	Philippines	Kuwait	1	2	WQ		-2	1017	1595	0	0	185	60
+2011	09	30	Hong Kong	Philippines	3	3	LTC	TW	-7	1180	1024	−1	0	161	184
+2011	10	02	Taiwan	Philippines	0	0	LTC		0	925	1024	0	0	194	184
+2011	10	04	Philippines	Macao	2	0	LTC	TW	5	1029	661	+1	0	183	222
+2011	10	07	Singapore	Philippines	2	0	F		3	1320	1026	0	−1	129	184
+2011	10	11	Philippines	Nepal	4	0	F		12	1038	980	+1	0	182	190
+2012	02	29	Philippines	Malaysia	1	1	F		2	1040	1206	0	0	182	153
+2012	03	09	North Korea	Philippines	2	0	SQC	NP	4	1499	1036	0	0	90	182
+2012	03	11	Philippines	India	2	0	SQC	NP	41	1077	1126	+3	−11	179	173
+2012	03	13	Philippines	Tajikistan	2	1	SQC	NP	30	1107	1234	+4	−5	175	147
+2012	03	16	Turkmenistan	Philippines	2	1	SQC	NP	8	1369	1099	0	−2	115	177
+2012	03	19	Philippines	Palestine	4	3	SQC	NP	30	1129	1253	+5	−8	172	144
+2012	06	01	Malaysia	Philippines	0	0	F		-5	1204	1134	−2	+2	156	170
+2012	06	05	Philippines	Indonesia	2	2	F		1	1135	1267	0	0	170	141
+2012	06	12	Philippines	Guam	3	0	F		1	1136	612	0	0	170	227
+2012	09	05	Cambodia	Philippines	0	0	F		6	787	1130	+1	−1	210	172
+2012	09	07	Singapore	Philippines	0	2	F		-23	1219	1153	−4	+5	152	167
+2012	09	10	Laos	Philippines	2	1	F		15	860	1138	0	−4	208	171
+2012	09	25	Philippines	Guam	1	0	PCC		1	1139	655	0	−1	171	226
+2012	09	27	Philippines	Macao	5	0	PCC		2	1141	658	0	0	171	225
+2012	09	29	Philippines	Taiwan	3	1	PCC		6	1147	897	+1	0	170	201
+2012	10	12	Bahrain	Philippines	0	0	F		-8	1438	1155	−1	+2	100	168
+2012	10	16	Kuwait	Philippines	2	1	F		1	1523	1154	0	+1	80	166
+2012	11	15	Philippines	Singapore	1	0	F		9	1163	1216	+3	−2	163	152
+2012	11	24	Thailand	Philippines	2	1	SEA		5	1387	1158	+1	−1	111	165
+2012	11	27	Philippines	Vietnam	1	0	SEA	TH	27	1185	1256	+8	−4	158	144
+2012	11	30	Philippines	Myanmar	2	0	SEA	TH	17	1202	1006	+3	−4	155	189
+2012	12	08	Philippines	Singapore	0	0	SEA		-3	1199	1249	0	0	156	144
+2012	12	12	Singapore	Philippines	1	0	SEA		12	1261	1187	+1	−3	143	159
+2013	02	06	Myanmar	Philippines	0	1	F		-8	998	1195	0	+2	189	157
+2013	03	24	Philippines	Cambodia	8	0	SCQ		3	1198	677	+2	−1	156	222
+2013	03	26	Philippines	Turkmenistan	1	0	SCQ		25	1223	1354	+7	−3	149	120
+2013	06	04	Hong Kong	Philippines	0	1	F		-12	1193	1235	−5	+2	158	147
+2013	08	14	Indonesia	Philippines	2	0	F		12	1229	1223	+3	−2	148	149
+2013	10	11	Philippines	Taiwan	1	2	PCC		-28	1195	856	−9	+2	160	206
+2013	10	15	Philippines	Pakistan	3	1	PCC		6	1201	947	+3	−1	156	196
+2013	11	09	United Arab Emirates	Philippines	4	0	F		2	1643	1199	+2	0	48	156
+2013	11	15	India	Philippines	1	1	F		1	1080	1198	+1	0	180	156
+2014	03	01	Malaysia	Philippines	0	0	F		-2	1170	1200	0	−1	163	157
+2014	03	05	Azerbaijan	Philippines	1	0	F	AE	4	1445	1196	0	−1	101	158
+2014	04	11	Philippines	Nepal	3	0	F	QA	6	1202	900	+2	−1	156	201
+2014	04	27	Philippines	Malaysia	0	0	F		-3	1199	1193	−1	0	158	161
+2014	05	20	Afghanistan	Philippines	0	0	SQC	MV	7	1073	1192	0	−3	181	161
+2014	05	22	Philippines	Laos	2	0	SQC	MV	7	1199	841	+3	−1	158	207
+2014	05	24	Philippines	Turkmenistan	2	0	SQC	MV	39	1238	1269	+12	−8	146	139
+2014	05	27	Maldives	Philippines	2	3	SQC		-18	1078	1256	−3	+2	182	144
+2014	05	30	Palestine	Philippines	1	0	SQC	MV	15	1358	1241	+3	−3	122	147
+2014	09	03	Philippines	Taiwan	5	1	PCC		3	1244	842	+3	0	145	207
+2014	09	06	Philippines	Myanmar	2	3	PCC		-25	1219	1078	−8	+5	153	180
+2014	10	12	Philippines	Papua New Guinea	5	0	F		7	1226	1050	+1	−1	152	186
+2014	10	31	Philippines	Nepal	3	0	F	QA	5	1231	893	+2	−1	149	203
+2014	11	09	Thailand	Philippines	3	0	F		10	1305	1221	+2	−2	130	151
+2014	11	14	Philippines	Cambodia	3	0	F		1	1222	721	0	0	152	217
+2014	11	22	Philippines	Laos	4	1	SEA	VN	8	1230	853	+4	0	150	207
+2014	11	25	Philippines	Indonesia	4	0	SEA	VN	38	1268	1201	+10	−16	140	159
+2014	11	28	Vietnam	Philippines	3	1	SEA		24	1265	1244	+2	−4	142	144
+2014	12	06	Philippines	Thailand	0	0	SEA		1	1245	1364	0	0	144	117
+2014	12	10	Thailand	Philippines	3	0	SEA		15	1379	1230	+4	−5	113	149
+2015	03	30	Bahrain	Philippines	2	1	F		2	1487	1228	+1	−1	88	150
+2015	06	11	Philippines	Bahrain	2	1	WQS		28	1256	1456	+9	−11	140	98
+2015	06	16	Philippines	Yemen	2	0	WQS	QA	25	1281	1176	+5	−3	136	165
+2015	09	03	Philippines	Maldives	2	0	F		4	1285	1028	+1	0	134	187
+2015	09	08	Philippines	Uzbekistan	1	5	WQS		-18	1267	1599	−3	+4	138	60
+2015	10	08	North Korea	Philippines	0	0	WQS		-16	1532	1283	−4	+5	75	134
+2015	10	13	Bahrain	Philippines	2	0	WQS		12	1428	1271	+5	−3	103	138
+2015	11	12	Philippines	Yemen	0	1	WQS		-31	1240	1187	−9	+7	146	163
+2016	03	24	Uzbekistan	Philippines	1	0	WQS		2	1658	1238	0	0	46	149
+2016	03	29	Philippines	North Korea	3	2	WQS		30	1268	1504	+9	−7	142	82
+2016	09	06	Kyrgyzstan	Philippines	1	2	F		-12	1219	1280	−6	+4	158	139
+2016	10	07	Philippines	Bahrain	1	3	F		-13	1267	1443	−5	+2	145	99
+2016	10	10	Philippines	North Korea	1	3	F		-9	1258	1514	0	+2	145	80
+2016	11	09	Philippines	Kyrgyzstan	1	0	F		6	1264	1224	0	0	145	153
+2016	11	19	Philippines	Singapore	0	0	SEA		-12	1252	1136	−3	+4	147	171
+2016	11	22	Philippines	Indonesia	2	2	SEA		-8	1244	1203	−1	+2	148	163
+2016	11	25	Philippines	Thailand	0	1	SEA		-17	1227	1418	−4	+5	152	103
+2017	03	22	Philippines	Malaysia	0	0	F		-6	1221	1115	−1	+2	155	175
+2017	03	28	Philippines	Nepal	4	1	SQ		6	1227	902	+2	0	153	200
+2017	06	07	China	Philippines	8	1	F		4	1547	1223	+1	−2	73	157
+2017	06	13	Tajikistan	Philippines	3	4	SQ		-26	1209	1249	−10	+11	162	146
+2017	09	05	Philippines	Yemen	2	2	SQ		-7	1242	1220	−3	+3	150	156
+2017	10	10	Philippines	Yemen	1	1	SQ	QA	-1	1241	1221	0	−1	151	157
+2017	11	14	Nepal	Philippines	0	0	SQ		12	905	1229	+2	−3	200	155
+2017	12	01	Philippines	Laos	3	1	FT	TW	3	1232	785	0	−1	155	212
+2017	12	03	Taiwan	Philippines	3	0	FT		40	967	1192	+5	−11	193	166
+2017	12	05	East Timor	Philippines	1	0	FT	TW	29	639	1163	+2	−2	228	168
+2018	03	22	Philippines	Fiji	3	2	F		10	1173	1242	0	−3	168	152
+2018	03	27	Philippines	Tajikistan	2	1	SQ		17	1190	1202	+3	−3	165	160
+2018	09	06	Bahrain	Philippines	1	1	F		-7	1410	1197	−2	+1	105	165
+2018	10	03	Philippines	Laos	3	1	BGC	BD	3	1200	757	0	0	163	213
+2018	10	05	Bangladesh	Philippines	0	1	BGC		-5	801	1205	0	+2	208	160
+2018	10	09	Tajikistan	Philippines	2	0	BGC	BD	23	1218	1182	+7	−7	157	167
+2018	10	13	Oman	Philippines	1	1	F	QA	-8	1533	1190	−2	+1	73	165
+2018	11	06	Philippines	Mongolia	3	1	F		1	1191	718	0	0	166	216
+2018	11	13	Philippines	Singapore	1	0	SEA		10	1201	1082	+2	−2	165	179
+2018	11	17	Philippines	East Timor	3	2	SEA	MY	2	1203	652	+2	0	163	228
+2018	11	21	Philippines	Thailand	1	1	SEA		6	1209	1405	+3	0	158	103
+2018	11	25	Indonesia	Philippines	0	0	SEA		-6	1202	1215	−3	+2	162	156
+2018	12	02	Philippines	Vietnam	1	2	SEA		-21	1194	1318	−8	+5	164	131
+2018	12	06	Vietnam	Philippines	2	1	SEA		9	1327	1185	+4	−1	127	165
+2018	12	31	Vietnam	Philippines	4	2	F	QA	9	1338	1176	+6	−3	121	168
+2019	01	07	South Korea	Philippines	1	0	AC	AE	2	1780	1174	+1	0	22	168
+2019	01	11	China	Philippines	3	0	AC	AE	10	1535	1164	+1	−1	76	169
+2019	01	16	Kyrgyzstan	Philippines	3	1	AC	AE	26	1303	1138	+6	−2	135	171
+2019	06	07	China	Philippines	2	0	F		2	1482	1136	+1	−1	87	171
+2019	09	05	Philippines	Syria	2	5	WQS		-17	1119	1455	−5	+3	177	93
+2019	09	10	Guam	Philippines	1	4	WQS		-13	746	1132	−4	+1	215	176
+2019	10	15	Philippines	China	0	0	WQS		13	1145	1481	+5	−4	172	87
+2019	11	14	Maldives	Philippines	1	2	WQS		-15	939	1160	−1	+3	195	169
+2019	11	19	Syria	Philippines	1	0	WQS	AE	5	1484	1155	0	−3	86	172
+2021	06	07	China	Philippines	2	0	WQS	AE	9	1471	1146	0	−1	89	172
+2021	06	11	Philippines	Guam	3	0	WQS	AE	6	1152	727	+3	0	169	216
+2021	06	15	Maldives	Philippines	1	1	WQS	AE	11	952	1141	+1	−3	194	172
+2021	12	08	Singapore	Philippines	2	1	SEA		14	1157	1127	+3	−4	168	177
+2021	12	11	Philippines	East Timor	7	0	SEA	SG	5	1132	629	0	0	177	228
+2021	12	14	Thailand	Philippines	2	1	SEA	SG	11	1313	1121	+3	−1	130	178
+2021	12	18	Philippines	Myanmar	3	2	SEA	SG	12	1133	965	+1	0	177	191
+2022	03	23	Malaysia	Philippines	2	0	FT	SG	22	1169	1111	+4	−1	166	177
+2022	03	29	Singapore	Philippines	2	0	FT		16	1129	1095	+1	−2	175	179
+2022	06	08	Philippines	Yemen	0	0	SQ	MN	4	1099	1166	0	−1	177	168
+2022	06	11	Mongolia	Philippines	0	1	SQ		-8	753	1107	−1	+2	213	175
+2022	06	14	Palestine	Philippines	4	0	SQ	MN	11	1432	1096	+3	−2	93	177
+2022	07	16	Philippines	East Timor	4	1	F	ID	2	1098	623	+1	0	176	229
+2022	12	14	Vietnam	Philippines	1	0	F		2	1396	1096	0	−1	102	178
+2022	12	20	Cambodia	Philippines	3	2	SEA		28	873	1068	+4	−2	202	180
+2022	12	23	Philippines	Brunei	5	1	SEA		3	1071	613	0	−1	180	231
+2022	12	26	Thailand	Philippines	4	0	SEA		7	1383	1064	+4	−2	107	182
+2023	01	02	Philippines	Indonesia	1	2	SEA		-14	1050	1292	−1	0	183	141
+2023	03	24	Kuwait	Philippines	2	0	F		3	1347	1047	+3	0	119	184
+2023	03	28	Jordan	Philippines	4	0	F	QA	2	1592	1045	0	−1	65	184
+2023	06	15	Philippines	Nepal	1	0	F		5	1050	933	+1	−1	183	194
+2023	06	19	Philippines	Taiwan	2	3	F		-16	1034	925	−2	+1	185	196
+2023	09	08	Taiwan	Philippines	1	1	F		0	925	1034	0	+2	195	183
+2023	09	12	Philippines	Afghanistan	2	1	F		9	1043	1076	0	−2	183	180
+2023	10	15	Philippines	Kyrgyzstan	1	0	F	BH	15	1058	1237	+1	−2	183	153
+2023	10	17	Bahrain	Philippines	1	0	F		1	1481	1057	0	+1	86	181
+2023	11	16	Philippines	Vietnam	0	2	WQS		-12	1045	1407	−2	+4	183	102
+2023	11	21	Philippines	Indonesia	1	1	WQS		8	1053	1285	−1	−4	183	146
+2024	03	21	Iraq	Philippines	1	0	WQS		1	1640	1052	0	+1	51	182
+2024	03	26	Philippines	Iraq	0	5	WQS		-5	1047	1645	+1	0	181	53
+2024	06	06	Vietnam	Philippines	3	2	WQS		5	1276	1042	+1	−2	146	183
+2024	06	11	Indonesia	Philippines	2	0	WQS		6	1333	1036	0	0	126	183
+2024	09	04	Malaysia	Philippines	2	1	MRD		4	1280	1032	0	0	146	184
+2024	09	08	Philippines	Tajikistan	0	0	MRD	MY	11	1043	1350	+1	−4	183	120
+2024	10	11	Thailand	Philippines	3	1	KNG		2	1442	1041	+1	0	95	183
+2024	10	14	Philippines	Tajikistan	3	0	KNG	TH	44	1085	1295	+7	−12	176	138
+2024	11	14	Hong Kong	Philippines	3	1	F		10	1117	1075	−2	−3	172	179
+2024	12	12	Philippines	Myanmar	1	1	SEA		-13	1062	918	−2	+3	179	196
+2024	12	15	Laos	Philippines	1	1	SEA		13	706	1049	+2	−2	218	181
+2024	12	18	Philippines	Vietnam	1	1	SEA		7	1056	1268	+1	−2	180	149
+2024	12	21	Indonesia	Philippines	0	1	SEA		-36	1320	1092	−10	+5	130	175
+2024	12	27	Philippines	Thailand	2	1	SEA		33	1125	1425	+5	−8	169	97
+2024	12	30	Thailand	Philippines	3	1	SEA		5	1430	1120	+3	−2	94	171
+2025	03	25	Philippines	Maldives	4	1	SQ		9	1129	877	+2	0	169	203
+2025	06	10	Philippines	Tajikistan	2	2	SQ		4	1133	1287	0	−4	169	143
+2025	10	09	Philippines	East Timor	4	1	SQ	AU	5	1138	684	+2	0	168	223
+2025	10	14	Philippines	East Timor	3	1	SQ		2	1140	682	+1	0	166	223
+2025	11	18	Maldives	Philippines	0	2	SQ		-15	841	1155	−2	+3	205	162
+2026	03	31	Tajikistan	Philippines	1	1	SQ		-12	1284	1167	−7	+1	145	161

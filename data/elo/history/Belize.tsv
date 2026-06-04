@@ -1,0 +1,130 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1928	02	19	British Honduras	Honduras	1	0	F		15	1115	1377	−	0	61	48
+1963	04	01	British Honduras	Jamaica	2	2	F		2	1117	1277	0	−1	139	118
+1983	12	08	Belize	Canada	0	2	F		-4	1113	1560	0	+2	148	60
+1995	11	29	El Salvador	Belize	3	0	NQU		4	1511	1109	+1	0	78	168
+1995	12	01	Costa Rica	Belize	2	1	NQU	SV	2	1594	1107	+1	0	54	168
+1996	06	02	Belize	Panama	1	2	WQ		-15	1092	1313	−3	+2	173	127
+1996	06	09	Panama	Belize	4	1	WQ		10	1323	1082	+2	−2	125	175
+1997	03	23	Panama	Belize	1	1	NUQ		-16	1359	1098	−3	+2	120	173
+1997	03	30	Belize	Panama	0	1	NUQ		-11	1087	1370	−1	+3	174	117
+1999	03	17	Costa Rica	Belize	7	0	NQU		2	1647	1085	+1	0	51	176
+1999	03	19	Honduras	Belize	5	1	NQU	CR	5	1534	1080	+2	0	70	176
+2000	03	05	El Salvador	Belize	5	0	WQ		7	1388	1073	0	0	112	177
+2000	03	19	Guatemala	Belize	2	1	WQ	HN	3	1527	1070	+2	0	70	177
+2000	04	16	Belize	El Salvador	1	3	WQ		-11	1059	1443	−1	+1	180	95
+2000	05	19	Belize	Guatemala	0	0	WQ	HN	17	1076	1482	+3	−7	178	84
+2001	04	24	Belize	Nicaragua	2	0	F		6	1082	918	0	0	177	193
+2001	04	26	Belize	Nicaragua	2	1	F		4	1086	914	+1	0	176	193
+2001	05	23	Costa Rica	Belize	4	0	NQU	HN	3	1650	1083	+1	−1	51	177
+2001	05	25	Belize	Guatemala	3	3	NQU	HN	17	1100	1512	+2	−4	175	72
+2001	06	04	Cuba	Belize	2	1	F		1	1449	1099	0	0	91	175
+2001	06	24	Belize	Cuba	3	2	F		16	1115	1426	+4	−4	170	97
+2002	03	27	Belize	Guyana	3	1	F		10	1125	1093	+4	−3	167	176
+2002	04	17	Belize	Nicaragua	7	1	F		6	1131	900	+2	0	165	195
+2004	06	13	Canada	Belize	4	0	WQ		3	1598	1128	0	−1	60	169
+2004	06	16	Canada	Belize	4	0	WQ		3	1601	1125	+2	0	58	169
+2005	02	19	Guatemala	Belize	2	0	NQU		2	1621	1123	+1	0	54	169
+2005	02	21	Honduras	Belize	4	0	NQU	GT	3	1654	1120	0	0	49	169
+2005	02	23	Nicaragua	Belize	1	0	NQU	GT	26	1030	1094	+4	−5	185	174
+2007	02	08	El Salvador	Belize	2	1	NQU		4	1376	1090	+2	0	108	176
+2007	02	10	Guatemala	Belize	1	0	NQU	SV	3	1550	1087	0	−1	72	177
+2007	02	12	Nicaragua	Belize	4	2	NQU	SV	35	1059	1052	+5	−3	179	180
+2008	01	22	Belize	El Salvador	0	1	F		-4	1048	1380	0	+3	182	110
+2008	02	06	Belize	Saint Kitts and Nevis	3	1	WQ	GT	43	1091	1164	+6	−12	176	166
+2008	03	26	Saint Kitts and Nevis	Belize	1	1	WQ		-9	1155	1100	−1	0	166	176
+2008	05	23	Honduras	Belize	2	0	F		1	1697	1099	0	0	41	177
+2008	06	15	Mexico	Belize	2	0	WQ	US	1	1891	1098	+2	0	11	177
+2008	06	21	Mexico	Belize	7	0	WQ		1	1892	1097	−1	0	12	177
+2009	01	22	Honduras	Belize	2	1	NQU		1	1742	1096	0	−1	36	177
+2009	01	24	El Salvador	Belize	4	1	NQU	HN	7	1476	1089	0	−1	90	178
+2009	01	26	Belize	Nicaragua	1	1	NQU	HN	-3	1086	1039	0	0	178	185
+2010	09	10	Belize	Trinidad and Tobago	0	0	F		7	1093	1506	+2	−1	176	85
+2010	10	09	Guatemala	Belize	4	2	F		2	1450	1091	+1	0	99	176
+2011	01	14	Panama	Belize	2	0	NQC		2	1588	1089	+1	0	60	176
+2011	01	16	El Salvador	Belize	5	2	NQC	PA	6	1491	1083	0	0	93	176
+2011	01	18	Belize	Nicaragua	1	1	NQC	PA	-1	1082	1070	0	+1	176	178
+2011	06	15	Belize	Montserrat	5	2	WQ	TT	3	1085	530	0	0	175	233
+2011	07	17	Belize	Montserrat	3	1	WQ	HN	2	1087	528	0	0	175	233
+2011	09	02	Grenada	Belize	0	3	WQ		-56	1175	1143	−12	+7	160	168
+2011	09	06	Belize	Guatemala	1	2	WQ		-9	1134	1466	−4	+1	172	95
+2011	10	07	Belize	Grenada	1	4	WQ		-42	1092	1203	−3	+11	175	154
+2011	10	11	Guatemala	Belize	3	1	WQ		3	1488	1089	+2	−1	89	176
+2011	11	11	Belize	Saint Vincent and the Grenadines	1	1	WQ		0	1089	1185	−1	−1	177	160
+2011	11	15	Saint Vincent and the Grenadines	Belize	0	2	WQ		-45	1140	1134	−10	+6	170	171
+2013	01	18	Costa Rica	Belize	1	0	NQC		1	1668	1133	0	−1	44	173
+2013	01	20	Belize	Guatemala	0	0	NQC	CR	16	1149	1501	+6	−4	167	86
+2013	01	22	Belize	Nicaragua	2	1	NQC	CR	19	1168	1119	+3	−3	164	176
+2013	01	25	Honduras	Belize	1	0	CCC	CR	2	1675	1166	0	−1	43	165
+2013	01	27	El Salvador	Belize	1	0	CCC	CR	4	1546	1162	0	0	74	165
+2013	03	23	Belize	Trinidad and Tobago	0	0	F		4	1166	1423	+1	−2	165	106
+2013	06	11	Guatemala	Belize	0	0	F		-8	1487	1174	−1	+2	89	163
+2013	07	09	United States	Belize	6	1	CCH		1	1807	1173	0	0	21	163
+2013	07	13	Costa Rica	Belize	1	0	CCH	US	2	1758	1171	0	0	29	164
+2013	07	16	Cuba	Belize	4	0	CCH	US	19	1433	1152	+4	−4	103	168
+2014	09	03	Honduras	Belize	2	0	NQC	US	4	1608	1148	0	−1	57	169
+2014	09	07	Guatemala	Belize	2	1	NQC	US	4	1511	1144	−1	−2	82	172
+2014	09	10	El Salvador	Belize	2	0	NQC	US	6	1530	1138	0	−1	79	173
+2015	03	25	Belize	Cayman Islands	0	0	WQ		-14	1124	947	−2	+1	172	197
+2015	03	29	Cayman Islands	Belize	1	1	WQ		4	951	1120	+1	0	196	173
+2015	06	11	Dominican Republic	Belize	1	2	WQ		-31	1193	1151	−14	+4	165	170
+2015	06	14	Belize	Dominican Republic	3	0	WQ		29	1180	1164	+5	−4	165	169
+2015	09	04	Canada	Belize	3	0	WQ		5	1518	1175	+2	−1	78	165
+2015	09	08	Belize	Canada	1	1	WQ		12	1187	1506	+2	−1	163	80
+2016	10	08	Belize	Honduras	1	2	F		-3	1184	1562	−1	+2	168	66
+2016	11	02	Honduras	Belize	5	0	F		2	1564	1182	0	0	67	168
+2017	01	13	Panama	Belize	0	0	NQC		-19	1669	1201	−4	+3	45	165
+2017	01	15	Costa Rica	Belize	3	0	NQC	PA	2	1838	1199	0	0	19	165
+2017	01	17	El Salvador	Belize	3	1	NQC	PA	14	1419	1185	+2	−3	106	168
+2017	01	20	Nicaragua	Belize	3	1	NQC	PA	23	1294	1162	+9	−1	134	169
+2017	01	22	Honduras	Belize	1	0	NQC	PA	3	1625	1159	0	0	56	169
+2018	03	22	Belize	Grenada	4	2	F		9	1168	1100	+1	0	169	174
+2018	06	03	Barbados	Belize	0	0	F		-2	1134	1170	0	0	173	169
+2018	08	04	Belize	Barbados	1	0	F		6	1176	1128	0	0	170	173
+2018	09	07	Belize	Bahamas	4	0	CLQ		8	1184	891	+2	−1	168	202
+2018	10	14	Montserrat	Belize	1	0	CLQ		37	680	1147	+4	−5	224	172
+2018	11	16	Belize	Puerto Rico	1	0	CLQ		8	1155	1007	0	0	171	189
+2019	03	23	Guyana	Belize	2	1	CLQ		13	1188	1142	+1	−1	164	170
+2019	08	30	Belize	Saint Vincent and the Grenadines	1	1	F		-3	1139	1138	0	+1	170	172
+2019	09	01	Belize	Saint Vincent and the Grenadines	1	0	F		7	1146	1131	0	−2	170	174
+2019	09	08	Belize	Grenada	1	2	CLB		-26	1120	1158	−5	+8	176	167
+2019	10	10	Belize	Saint Kitts and Nevis	0	4	CLB		-38	1082	1257	−3	+5	181	148
+2019	10	13	Saint Kitts and Nevis	Belize	0	1	CLB		-33	1224	1115	−4	+4	152	178
+2019	11	14	Belize	French Guiana	2	0	CLB		35	1150	1242	+7	−6	172	147
+2019	11	17	Grenada	Belize	3	2	CLB		12	1211	1138	+6	−3	154	175
+2021	03	25	Haiti	Belize	2	0	WQ		3	1560	1135	+1	0	67	176
+2021	03	30	Belize	Turks and Caicos Islands	5	0	WQ	DO	9	1144	773	+2	0	174	210
+2021	06	04	Nicaragua	Belize	3	0	WQ		19	1232	1125	+3	−2	152	176
+2022	01	29	Nicaragua	Belize	4	0	F		9	1238	1116	+1	0	151	177
+2022	02	01	Nicaragua	Belize	1	1	F		-6	1232	1122	0	0	151	177
+2022	03	27	Belize	Cuba	0	3	F		-15	1107	1288	−2	+2	178	138
+2022	06	02	Belize	Dominican Republic	0	2	CLB		-33	1074	1204	−4	+7	182	158
+2022	06	05	Guatemala	Belize	2	0	CLB		3	1464	1071	+1	0	86	180
+2022	06	09	Belize	French Guiana	1	1	CLB		9	1080	1323	+1	−2	180	121
+2022	06	14	French Guiana	Belize	1	0	CLB		5	1328	1075	0	0	122	180
+2023	03	24	Belize	Guatemala	1	2	CLB		-7	1068	1462	0	0	180	88
+2023	03	27	Dominican Republic	Belize	2	0	CLB		13	1201	1055	+1	−2	160	182
+2023	09	08	Saint Vincent and the Grenadines	Belize	2	1	CLB	MQ	21	1059	1034	+2	−1	182	183
+2023	09	12	French Guiana	Belize	0	2	CLB		-54	1248	1088	−15	+5	152	178
+2023	10	13	Belize	Bermuda	0	1	CLB		-22	1066	1172	−2	+2	179	164
+2023	10	17	Bermuda	Belize	1	1	CLB		-11	1161	1077	0	+1	164	178
+2023	11	17	Belize	French Guiana	1	0	CLB		26	1103	1259	+4	−3	174	150
+2023	11	21	Saint Vincent and the Grenadines	Belize	3	0	CLB	GD	42	1072	1061	+5	−7	178	180
+2024	03	21	Belize	Puerto Rico	1	1	F		0	1061	1146	+1	0	179	166
+2024	03	24	Belize	Puerto Rico	3	0	F		17	1078	1129	+2	−2	177	168
+2024	06	08	Belize	Nicaragua	0	4	WQ		-22	1056	1349	−3	+4	179	122
+2024	06	11	Guyana	Belize	3	1	WQ	BB	14	1273	1042	+4	−3	148	182
+2024	09	07	Turks and Caicos Islands	Belize	0	4	CLC		-11	631	1053	−2	+1	230	181
+2024	09	10	Belize	Anguilla	1	0	CLC	TC	4	1057	644	+1	0	180	226
+2024	10	09	Belize	Anguilla	1	0	CLC		2	1059	642	0	0	180	226
+2024	10	15	Belize	Turks and Caicos Islands	3	0	CLC		4	1063	648	+1	0	180	226
+2024	11	14	Belize	French Guiana	2	1	CCQ		25	1088	1231	+4	−5	176	155
+2024	11	19	Belize	French Guiana	2	2	CCQ	SR	8	1096	1223	+1	0	173	155
+2025	03	21	Belize	Costa Rica	0	7	CCQ		-6	1090	1650	0	0	175	51
+2025	03	25	Costa Rica	Belize	6	1	CCQ		2	1652	1088	0	0	51	175
+2025	06	04	Montserrat	Belize	1	0	WQ	TT	28	978	1060	+2	−3	188	177
+2025	06	07	Belize	Panama	0	2	WQ		-2	1058	1725	−1	0	179	39
+2025	11	15	Belize	Saint Martin	1	0	CFS	KN	13	1071	1003	0	−1	178	186
+2025	11	18	Saint Kitts and Nevis	Belize	2	6	CFS		-34	1005	1105	−3	+3	184	176
+2026	03	27	Sint Maarten	Belize	3	2	CFS	DO	21	977	1084	+3	0	188	176
+2026	03	30	Guyana	Belize	3	1	CFS	DO	11	1292	1073	+4	−2	140	178

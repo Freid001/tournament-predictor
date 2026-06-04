@@ -1,0 +1,12 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1979	08	30	Fiji	Kiribati	24	0	SPG		6	1099	594	0	−	151	188
+1979	08	31	Papua New Guinea	Kiribati	13	0	SPG	FJ	7	1072	587	0	−1	153	189
+1979	09	05	Kiribati	Tuvalu	3	3	SPG	FJ	12	599	804	0	0	189	179
+2003	06	30	Tuvalu	Kiribati	3	2	SPG	FJ	12	763	587	0	−3	210	226
+2003	07	03	Solomon Islands	Kiribati	7	0	SPG	FJ	2	1248	585	0	0	147	226
+2003	07	05	Fiji	Kiribati	12	0	SPG		1	1363	584	+1	+1	116	225
+2003	07	07	Vanuatu	Kiribati	18	0	SPG	FJ	5	1174	579	+1	0	160	225
+2011	08	30	Fiji	Kiribati	9	0	PG	NC	1	1334	578	+1	0	125	227
+2011	09	01	Cook Islands	Kiribati	3	0	PG	NC	23	730	555	0	−4	214	231
+2011	09	03	Papua New Guinea	Kiribati	17	1	PG	NC	7	1064	548	0	0	180	231
+2011	09	05	Tahiti	Kiribati	17	1	PG	NC	4	1152	544	0	0	166	231

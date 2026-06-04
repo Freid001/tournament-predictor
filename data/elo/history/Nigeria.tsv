@@ -1,0 +1,716 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+1938	00	00	Nigeria	Gold Coast	3	1	F		11	1711	1689	−	−	20	21
+1949	10	08	Sierra Leone	Nigeria	0	2	F		-7	1393	1718	−	0	72	25
+1950	05	28	Gold Coast	Nigeria	1	0	F		8	1697	1710	+1	0	25	24
+1951	10	20	Nigeria	Gold Coast	5	0	JLC		21	1731	1676	+4	−2	19	27
+1953	10	11	Gold Coast	Nigeria	1	0	JLC		13	1689	1718	+1	−1	25	20
+1954	10	30	Nigeria	Gold Coast	3	0	JLC		18	1736	1684	+2	−3	18	24
+1955	05	28	Gold Coast	Nigeria	1	0	F		9	1693	1727	+1	0	25	20
+1955	11	30	Gold Coast	Nigeria	7	0	JLC		27	1720	1700	+4	−5	21	25
+1956	10	06	Nigeria	French Togoland	1	1	F		-6	1694	1563	−2	+2	27	50
+1956	10	27	Nigeria	Gold Coast	3	0	JLC		21	1715	1703	+6	−4	22	25
+1957	10	27	Ghana	Nigeria	3	3	JLC		-4	1699	1719	0	+1	26	24
+1958	10	25	Nigeria	Ghana	3	2	JLC		10	1729	1693	+2	−2	24	32
+1959	10	10	Nigeria	Ghana	3	1	OQ		20	1749	1691	+4	−2	22	34
+1959	10	25	Ghana	Nigeria	4	1	OQ		31	1722	1718	+8	−7	26	29
+1959	11	08	Dahomey	Nigeria	0	1	NKR		-11	1505	1729	−5	+4	65	26
+1959	11	21	Ghana	Nigeria	5	2	JLC		21	1725	1708	+4	−4	27	31
+1959	11	28	Nigeria	Dahomey	10	1	NKR		11	1719	1494	+1	−5	30	70
+1959	12	13	Nigeria	United Arab Republic	2	6	OQ		-53	1666	1714	−8	+6	38	31
+1960	01	01	United Arab Republic	Nigeria	3	0	OQ		21	1735	1645	+5	−1	26	38
+1960	04	24	Togo	Nigeria	1	1	F		0	1529	1645	0	0	58	39
+1960	04	26	Cameroon	Nigeria	0	0	IND	TG	5	1527	1640	0	0	61	40
+1960	06	01	Mali Federation	Nigeria	3	2	F		10	1555	1630	0	0	54	41
+1960	08	28	Ghana	Nigeria	4	1	WQ		15	1769	1615	+4	−1	18	43
+1960	09	10	Nigeria	Ghana	2	2	WQ		3	1618	1766	0	−1	43	19
+1960	10	02	Nigeria	Portuguese Guinea	4	1	NKR		5	1623	1314	+1	0	42	107
+1960	10	05	Nigeria	Mali	2	3	F		-15	1608	1562	−1	0	43	53
+1960	10	09	Nigeria	Ghana	0	3	NKR		-21	1587	1800	−3	+2	46	16
+1960	10	29	Nigeria	Ghana	1	1	IPC		5	1592	1795	0	−1	47	17
+1960	11	19	Nigeria	United Arab Republic	2	1	F		9	1601	1651	0	−1	47	38
+1961	04	08	Nigeria	Ghana	0	0	FQ		5	1606	1781	+1	−1	45	18
+1961	04	22	Sierra Leone	Nigeria	2	4	F		-10	1370	1616	−2	0	102	45
+1961	04	30	Ghana	Nigeria	2	2	FQ		-13	1768	1629	−1	+3	18	42
+1961	06	01	Ghana	Nigeria	3	0	F		8	1755	1621	0	0	21	41
+1961	11	25	Nigeria	Tunisia	2	1	FQ		9	1630	1495	+1	0	40	68
+1961	12	10	Tunisia	Nigeria	2	2	FQ		2	1497	1628	0	0	68	40
+1961	12	17	Ghana	Nigeria	5	1	AZK		12	1767	1616	+2	−3	19	43
+1962	11	10	Nigeria	Ghana	0	0	AZK		3	1619	1792	+2	0	41	17
+1962	12	08	Nigeria	Cameroon	3	1	NKR		10	1629	1499	+1	−3	40	70
+1963	01	01	Cameroon	Nigeria	1	2	NKR		-14	1488	1643	−1	+3	71	38
+1963	01	27	Dahomey	Nigeria	1	1	NKR		1	1530	1642	+1	0	62	37
+1963	02	02	Nigeria	Dahomey	4	1	NKR		12	1654	1518	+1	−4	36	66
+1963	02	24	Ghana	Nigeria	5	0	NKR		12	1809	1642	0	−1	17	38
+1963	02	27	Nigeria	Senegal	4	0	NKR	GH	23	1665	1560	+3	−6	35	54
+1963	04	12	Nigeria	Niger	1	0	JAM	SN	1	1666	1100	0	0	35	141
+1963	04	14	Senegal	Nigeria	5	1	JAM		37	1608	1629	+9	−6	44	41
+1963	07	27	Nigeria	Guinea	2	2	FQ		-9	1620	1578	−1	+1	42	53
+1963	10	06	Guinea	Nigeria	1	0	FQ		15	1616	1605	+6	−5	43	47
+1963	10	08	Liberia	Nigeria	2	2	F		5	1318	1600	+1	−2	109	49
+1963	10	26	Nigeria	Liberia	3	0	F		3	1603	1315	+1	0	48	109
+1963	11	16	Nigeria	Morocco	3	0	OQ		32	1635	1643	+6	−3	42	37
+1963	11	24	Egypt	Nigeria	6	3	AR	GH	35	1742	1600	+4	−8	25	49
+1963	11	28	Sudan	Nigeria	4	0	AR	GH	45	1658	1555	+11	−10	34	59
+1964	03	08	Morocco	Nigeria	4	1	OQ		18	1658	1537	+7	−4	33	63
+1964	03	26	Morocco	Nigeria	2	1	OQ	SN	13	1671	1524	0	−7	33	68
+1964	12	27	Nigeria	Togo	1	2	AGQ		-24	1500	1577	−8	+8	73	49
+1964	12	29	Nigeria	Upper Volta	6	1	AGQ		16	1516	1346	+3	−1	70	107
+1965	01	01	Nigeria	Niger	4	0	AGQ		3	1519	1082	+1	−1	68	145
+1965	01	02	Nigeria	Dahomey	1	1	AGQ		-8	1511	1487	−2	+1	70	75
+1965	08	28	Gabon	Nigeria	2	2	IND		1	1398	1510	0	0	95	68
+1965	08	29	Gabon	Nigeria	1	4	IND		-25	1373	1535	−6	+7	101	61
+1965	10	30	Nigeria	Ghana	0	4	AZK		-21	1514	1744	−7	0	68	28
+1965	11	06	Ghana	Nigeria	3	0	AZK		7	1751	1507	+4	−1	24	69
+1965	12	11	Nigeria	Dahomey	1	0	F		7	1514	1475	+2	−1	64	77
+1966	02	27	Dahomey	Nigeria	1	2	F		-12	1463	1526	−3	+5	80	59
+1966	03	06	Togo	Nigeria	0	1	F		-13	1513	1539	−5	+2	64	57
+1966	04	09	Nigeria	Togo	1	1	F		-3	1536	1516	0	+1	57	63
+1966	11	05	Nigeria	DR Congo	3	2	F		9	1545	1584	+2	0	56	48
+1966	11	27	DR Congo	Nigeria	1	0	F		6	1590	1539	0	−3	48	58
+1967	01	28	Nigeria	Ghana	2	2	AZK		8	1547	1831	+4	0	55	13
+1967	02	12	Ghana	Nigeria	2	0	AZK		4	1835	1543	0	−2	13	55
+1967	02	26	Nigeria	Libya	3	2	F		5	1548	1467	0	−1	56	77
+1967	03	12	Nigeria	Ivory Coast	0	0	FQ		2	1550	1687	+2	0	55	33
+1967	04	02	Togo	Nigeria	1	0	FQ		17	1511	1533	+2	−8	66	63
+1967	04	15	Nigeria	Togo	4	2	FQ		18	1551	1470	+9	−6	54	75
+1967	05	07	Ivory Coast	Nigeria	2	0	FQ		11	1731	1540	+2	−4	27	58
+1967	09	28	Ghana	Nigeria	1	1	F		-7	1764	1547	0	+1	19	58
+1967	10	14	Sierra Leone	Nigeria	1	1	F		3	1336	1544	0	−1	108	60
+1967	10	21	Ghana	Nigeria	2	1	AZK		4	1769	1540	0	0	19	60
+1967	11	05	Nigeria	Sudan	1	0	OQ		19	1559	1611	+6	−5	55	45
+1967	11	19	Sudan	Nigeria	2	1	OQ		12	1623	1547	+4	−2	42	59
+1967	12	23	Nigeria	Ghana	2	2	AZK		4	1551	1743	+3	0	58	23
+1968	01	27	Nigeria	Sierra Leone	4	1	F		5	1556	1350	0	−1	58	105
+1968	04	20	Nigeria	Ethiopia	3	1	OQ		24	1580	1561	+4	−5	54	58
+1968	05	04	Ethiopia	Nigeria	1	0	OQ		15	1576	1565	+2	−4	56	58
+1968	05	08	Kenya	Nigeria	1	2	F		-9	1404	1574	−1	+1	94	57
+1968	10	00	Nigeria	Thailand	7	2	F	MX	7	1581	1298	+1	0	53	114
+1968	10	14	Japan	Nigeria	3	1	OG	MX	41	1652	1540	+7	−9	38	63
+1968	12	07	Nigeria	Cameroon	1	1	WQ		-5	1535	1564	−2	0	65	59
+1968	12	22	Cameroon	Nigeria	2	3	WQ		-27	1537	1562	−6	+7	65	58
+1969	05	10	Nigeria	Ghana	2	1	WQ		19	1581	1633	+5	−7	51	44
+1969	05	18	Ghana	Nigeria	1	1	WQ		-8	1625	1589	−2	+2	46	49
+1969	09	13	Nigeria	Sudan	2	2	WQ		-2	1587	1658	−1	0	50	37
+1969	09	21	Morocco	Nigeria	2	1	WQ		11	1663	1576	+2	−3	36	53
+1969	10	03	Sudan	Nigeria	3	3	WQ		-10	1648	1586	−1	+1	40	51
+1969	11	08	Nigeria	Morocco	2	0	WQ		30	1616	1652	+4	−3	47	37
+1969	12	14	DR Congo	Nigeria	5	0	F		7	1782	1609	0	−2	21	49
+1970	11	08	Nigeria	Congo	0	0	FQ		-8	1601	1576	−2	+1	50	55
+1970	11	22	Congo	Nigeria	2	1	FQ		16	1592	1585	+4	−3	51	53
+1971	02	13	Nigeria	Sierra Leone	1	0	F		3	1588	1380	0	−1	52	96
+1971	04	03	Nigeria	Senegal	1	1	OQ		-7	1581	1560	−1	+1	52	60
+1971	04	18	Senegal	Nigeria	2	1	OQ		16	1576	1565	+5	−9	55	60
+1971	11	27	Nigeria	Upper Volta	4	0	F		6	1571	1370	0	−1	57	99
+1971	12	01	Guinea	Nigeria	3	0	BLW		17	1612	1554	+4	−1	46	59
+1971	12	04	Sierra Leone	Nigeria	0	0	F		2	1386	1552	+1	−1	95	60
+1972	01	09	Upper Volta	Nigeria	3	3	F		3	1360	1549	+2	−2	102	61
+1972	01	30	Nigeria	Guinea	1	1	BLW		-2	1547	1601	0	+1	61	50
+1972	02	13	Cameroon	Nigeria	1	2	F		-14	1569	1561	−1	+3	56	58
+1972	02	20	Nigeria	Morocco	3	0	F		19	1580	1675	+2	−2	55	37
+1972	07	06	Tanzania	Nigeria	0	0	SBA		6	1349	1574	+1	0	107	53
+1972	07	11	Zanzibar	Nigeria	1	4	F		-2	1000	1576	0	0	160	53
+1972	08	05	Nigeria	Congo	2	1	WQ		20	1596	1654	+2	−4	51	40
+1972	08	15	Congo	Nigeria	1	1	WQ		-9	1645	1605	0	+4	40	47
+1972	11	06	Nigeria	Tanzania	2	1	F		3	1608	1383	0	−2	48	96
+1972	11	11	Nigeria	Tanzania	3	2	F		3	1611	1380	0	0	48	96
+1972	11	22	Mali	Nigeria	2	1	F		10	1509	1601	0	−2	63	49
+1972	11	26	Sierra Leone	Nigeria	1	0	F		13	1422	1588	+4	0	83	49
+1972	11	29	Liberia	Nigeria	1	3	F		-10	1358	1598	−5	0	106	49
+1972	12	04	Nigeria	Mali	3	0	F		9	1607	1500	+1	0	48	62
+1972	12	12	Nigeria	Sierra Leone	4	0	F		6	1613	1423	+2	−3	45	86
+1972	12	20	Nigeria	Dahomey	3	0	F		5	1618	1389	0	0	46	95
+1973	01	08	Nigeria	Ghana	4	2	AFG		22	1640	1602	+3	−4	43	48
+1973	01	10	Nigeria	Algeria	2	2	AFG		-8	1632	1598	+1	+1	42	49
+1973	01	12	Nigeria	Tanzania	2	1	AFG		4	1636	1339	−1	0	43	106
+1973	01	14	Nigeria	Egypt	4	2	AFG		26	1662	1669	+5	−2	38	35
+1973	01	18	Nigeria	Guinea	2	0	AFG		27	1689	1702	+5	−5	33	32
+1973	02	10	Nigeria	Ghana	2	3	WQ		-30	1659	1636	−5	+3	39	42
+1973	02	25	Ghana	Nigeria	0	0	WQ		-4	1632	1663	0	0	42	40
+1973	04	13	Sudan	Nigeria	1	1	FQ		3	1522	1660	0	0	61	40
+1973	04	21	Nigeria	Sudan	2	1	FQ		8	1668	1514	+2	0	38	61
+1973	07	14	Zambia	Nigeria	5	1	FQ		46	1532	1622	+2	−7	62	42
+1973	07	29	Nigeria	Zambia	3	2	FQ		10	1632	1522	0	−1	41	63
+1974	07	14	Nigeria	Ivory Coast	2	0	F		8	1640	1554	+1	−3	38	56
+1974	08	11	Nigeria	Ghana	1	1	FT		-6	1634	1602	−1	+2	39	44
+1974	08	17	Nigeria	Ghana	0	1	FT		-20	1614	1622	−4	+3	43	41
+1975	01	22	Nigeria	Cameroon	1	0	F		7	1621	1611	+1	−2	42	44
+1975	02	02	Senegal	Nigeria	0	1	F		-10	1508	1631	0	+2	65	41
+1975	02	09	Liberia	Nigeria	0	1	F		-5	1352	1636	0	+2	104	39
+1975	02	22	Nigeria	Senegal	1	1	F		-6	1630	1507	−2	+1	41	65
+1975	04	23	Nigeria	Togo	1	0	FT	SN	9	1639	1473	0	−3	40	73
+1975	04	25	Senegal	Nigeria	1	0	FT		15	1552	1624	+3	−2	54	42
+1975	07	13	Congo	Nigeria	0	1	FQ		-22	1529	1646	−5	+2	59	41
+1975	07	27	Nigeria	Congo	2	1	FQ		8	1654	1502	0	−1	41	66
+1975	08	24	Ghana	Nigeria	1	2	FT		-19	1619	1673	−2	+4	44	35
+1975	08	31	Ghana	Nigeria	3	0	FT		23	1642	1650	+2	−4	42	39
+1975	09	05	Nigeria	Mali	1	4	F		-27	1623	1578	−4	+5	44	50
+1975	09	07	Ivory Coast	Nigeria	1	1	F		1	1487	1622	0	0	69	44
+1976	02	08	Kenya	Nigeria	1	1	F		3	1436	1619	0	0	85	45
+1976	02	14	Zambia	Nigeria	1	3	F		-14	1490	1633	−3	+2	66	43
+1976	03	01	Nigeria	Zaire	4	2	AR	ET	42	1675	1632	+11	−11	33	44
+1976	03	04	Nigeria	Sudan	1	0	AR	ET	16	1691	1535	0	−2	33	58
+1976	03	06	Morocco	Nigeria	3	1	AR	ET	32	1772	1659	+4	−6	23	39
+1976	03	09	Guinea	Nigeria	1	1	AR	ET	-1	1675	1660	0	0	33	39
+1976	03	11	Morocco	Nigeria	2	1	AR	ET	16	1808	1644	+2	−1	19	40
+1976	03	14	Nigeria	Egypt	3	2	AR	ET	25	1669	1616	+6	−2	34	44
+1976	04	03	Nigeria	Morocco	3	1	OQ		33	1702	1768	+4	−4	30	23
+1976	04	18	Morocco	Nigeria	1	0	OQ		11	1779	1691	+2	−2	22	32
+1976	10	16	Sierra Leone	Nigeria	0	0	WQ		11	1396	1680	+1	0	95	33
+1976	10	30	Nigeria	Sierra Leone	6	2	WQ		7	1687	1389	0	0	33	95
+1977	02	14	Nigeria	Benin	7	0	F		5	1692	1403	+1	0	32	91
+1977	02	17	Sierra Leone	Nigeria	1	1	FQ		11	1400	1681	+2	−1	92	34
+1977	03	13	Nigeria	Sierra Leone	2	0	FQ		6	1687	1394	+1	−1	33	94
+1977	06	12	Senegal	Nigeria	3	1	FQ		33	1580	1654	+7	−5	50	38
+1977	06	25	Nigeria	Senegal	3	0	FQ		19	1673	1561	+3	−5	36	54
+1977	07	10	Nigeria	Ivory Coast	4	0	WQ		18	1691	1553	+5	−6	32	57
+1977	07	25	Ivory Coast	Nigeria	2	2	WQ		1	1579	1690	0	+1	48	32
+1977	08	27	Nigeria	Sierra Leone	2	0	COC		6	1696	1388	+2	0	30	95
+1977	09	04	Nigeria	Ghana	2	1	COC		12	1708	1642	+1	−3	30	43
+1977	09	25	Tunisia	Nigeria	0	0	WQ		-2	1646	1710	0	0	41	30
+1977	10	08	Nigeria	Egypt	4	0	WQ		20	1730	1615	+2	0	27	44
+1977	10	21	Egypt	Nigeria	3	1	WQ		31	1646	1699	+3	−6	41	33
+1977	11	12	Nigeria	Tunisia	0	1	WQ		-27	1672	1694	−5	+5	37	32
+1978	01	14	Nigeria	Benin	7	0	AGQ		10	1682	1393	0	−2	34	93
+1978	01	17	Nigeria	Benin	2	0	AGQ		6	1688	1387	+1	0	33	93
+1978	02	05	Gabon	Nigeria	0	1	F		-4	1366	1692	−1	0	98	33
+1978	03	05	Nigeria	Upper Volta	4	2	AR	GH	9	1701	1329	0	−2	33	108
+1978	03	08	Ghana	Nigeria	1	1	AR		-5	1670	1706	0	+1	35	32
+1978	03	10	Nigeria	Zambia	0	0	AR	GH	-10	1696	1575	−1	+2	33	52
+1978	03	14	Uganda	Nigeria	2	1	AR	GH	33	1617	1663	+6	−3	44	36
+1978	03	16	Nigeria	Tunisia	1	1	AR	GH	0	1663	1664	0	0	36	35
+1978	07	14	Nigeria	Mali	3	1	AFG	DZ	23	1686	1560	+2	−4	35	57
+1978	07	17	Cameroon	Nigeria	0	0	AFG	DZ	9	1528	1677	+1	−2	62	37
+1978	07	21	Ghana	Nigeria	0	0	AFG	DZ	-1	1688	1678	0	0	34	37
+1978	07	25	Nigeria	Malawi	3	2	AFG	DZ	7	1685	1409	+3	−1	35	89
+1978	07	28	Algeria	Nigeria	1	0	AFG		21	1587	1664	+3	−2	53	37
+1979	09	29	Senegal	Nigeria	0	2	F		-17	1587	1681	−5	0	53	35
+1979	10	14	Benin	Nigeria	1	1	F		6	1336	1675	0	−1	106	35
+1979	10	25	Liberia	Nigeria	1	1	F		4	1416	1671	0	−1	88	35
+1979	10	27	Sierra Leone	Nigeria	0	0	F		5	1374	1666	+1	0	97	35
+1979	11	04	Nigeria	Benin	5	0	F		3	1669	1318	0	−1	35	109
+1980	01	26	Nigeria	Liberia	1	0	F		2	1671	1390	0	0	37	93
+1980	02	02	Nigeria	Cameroon	0	0	F		-6	1665	1556	−1	+2	38	59
+1980	03	08	Nigeria	Tanzania	3	1	AR		12	1677	1461	+2	−4	36	79
+1980	03	12	Nigeria	Ivory Coast	0	0	AR		-16	1661	1533	−5	+2	41	65
+1980	03	15	Nigeria	Egypt	1	0	AR		19	1680	1650	+4	−4	37	43
+1980	03	19	Nigeria	Morocco	1	0	AR		12	1692	1562	+2	−2	34	56
+1980	03	22	Nigeria	Algeria	3	0	AR		32	1724	1662	+8	−7	26	39
+1980	06	13	Togo	Nigeria	0	1	F		-6	1474	1730	−2	0	77	27
+1980	06	29	Tunisia	Nigeria	2	0	WQ		28	1685	1702	+7	−4	34	31
+1980	07	12	Nigeria	Tunisia	2	0	WQ		20	1722	1665	+3	−4	28	38
+1980	07	21	Kuwait	Nigeria	3	1	OG	SU	51	1724	1671	+10	−10	27	38
+1980	12	06	Nigeria	Tanzania	1	1	WQ		-14	1657	1480	−4	+4	38	75
+1980	12	20	Tanzania	Nigeria	0	2	WQ		-23	1457	1680	−5	+6	80	32
+1981	04	04	Nigeria	Angola	0	0	F		-7	1673	1487	−1	+1	35	72
+1981	04	12	Guinea	Nigeria	1	1	WQ		1	1559	1672	0	−1	55	36
+1981	04	25	Nigeria	Guinea	1	0	WQ		9	1681	1550	+1	−2	34	57
+1981	07	18	Nigeria	Upper Volta	1	0	F		1	1682	1298	+1	0	35	112
+1981	07	25	Zambia	Nigeria	3	0	F		20	1560	1662	+5	−3	55	38
+1981	07	28	Zambia	Nigeria	3	0	F		18	1578	1644	+2	−2	53	40
+1981	08	01	Zimbabwe	Nigeria	2	0	F		19	1477	1625	+3	−4	76	44
+1981	08	03	Kenya	Nigeria	1	3	F		-10	1406	1635	−1	+3	89	41
+1981	08	12	Norway	Nigeria	2	2	F		1	1497	1634	0	0	71	41
+1981	08	22	Iceland	Nigeria	3	0	F		23	1436	1611	+4	−7	85	48
+1981	09	26	Nigeria	Uganda	0	1	F		-17	1594	1443	−3	+3	47	85
+1981	10	03	Nigeria	Liberia	3	0	F		5	1599	1374	+1	0	46	94
+1981	10	10	Nigeria	Algeria	0	2	WQ		-37	1562	1659	−7	+1	53	41
+1981	10	30	Algeria	Nigeria	2	1	WQ		10	1669	1552	+3	−3	36	56
+1982	03	07	Nigeria	Ethiopia	3	0	AR	LY	22	1574	1336	+5	−3	54	101
+1982	03	10	Algeria	Nigeria	2	1	AR	LY	16	1714	1558	+1	−2	31	57
+1982	03	13	Zambia	Nigeria	3	0	AR	LY	43	1604	1515	+12	−7	44	64
+1983	02	18	Nigeria	Egypt	0	0	F		0	1515	1603	0	0	67	46
+1983	02	20	Nigeria	Egypt	1	1	F		0	1515	1603	0	0	67	46
+1983	03	02	Gabon	Nigeria	0	0	F		2	1337	1513	0	−1	99	66
+1983	04	09	Nigeria	Angola	2	0	FQ		17	1530	1437	+2	−6	63	86
+1983	04	24	Angola	Nigeria	1	0	FQ		20	1457	1510	+7	−5	79	67
+1983	04	29	Ethiopia	Nigeria	0	1	FT		-12	1332	1522	−3	+3	102	64
+1983	05	01	Ghana	Nigeria	1	0	FT	ET	7	1744	1515	+2	0	25	64
+1983	06	04	Nigeria	Thailand	0	0	PRS	KR	-7	1508	1345	−3	0	69	99
+1983	06	08	South Korea	Nigeria	1	0	PRS		8	1606	1500	+2	−3	44	72
+1983	06	10	Nigeria	Indonesia	2	1	PRS	KR	5	1505	1211	+2	0	70	135
+1983	07	09	Nigeria	Togo	2	1	OQ		13	1518	1474	+3	−5	65	78
+1983	07	24	Togo	Nigeria	1	1	OQ		-3	1471	1521	−2	0	79	65
+1983	08	14	Nigeria	Morocco	0	0	FQ		-3	1518	1579	+1	0	64	52
+1983	08	28	Morocco	Nigeria	0	0	FQ		-9	1570	1527	−3	+1	55	64
+1983	10	15	Nigeria	Ghana	0	0	OQ		7	1534	1743	0	0	65	27
+1983	10	30	Ghana	Nigeria	1	2	OQ		-34	1709	1568	−2	+8	32	57
+1983	11	15	Nigeria	Senegal	1	0	COQ		13	1581	1529	+5	−2	52	64
+1983	11	19	Senegal	Nigeria	0	1	COQ		-23	1506	1604	−4	+8	68	45
+1983	12	16	Togo	Nigeria	5	2	COC	CI	46	1540	1558	+8	−14	63	59
+1983	12	18	Mali	Nigeria	0	0	COC	CI	5	1477	1553	0	−1	78	60
+1984	02	11	Nigeria	Morocco	0	0	OQ		-2	1551	1628	0	0	61	40
+1984	02	26	Morocco	Nigeria	0	0	OQ		-9	1619	1560	−2	+1	41	60
+1984	03	05	Nigeria	Ghana	2	1	AR	CI	35	1595	1670	+11	−2	49	35
+1984	03	08	Malawi	Nigeria	2	2	AR	CI	10	1462	1585	+4	−5	79	54
+1984	03	11	Algeria	Nigeria	0	0	AR	CI	-7	1674	1592	−1	+3	36	49
+1984	03	14	Egypt	Nigeria	2	2	AR	CI	-6	1669	1598	−1	+1	36	48
+1984	03	18	Cameroon	Nigeria	3	1	AR	CI	32	1681	1566	+1	−10	36	58
+1984	09	26	Tunisia	Nigeria	5	0	F		12	1622	1554	+1	−1	41	58
+1984	10	20	Nigeria	Liberia	3	0	WQ		8	1562	1298	+1	−4	57	114
+1984	11	04	Liberia	Nigeria	0	1	WQ		-11	1287	1573	−3	+3	117	54
+1985	04	06	Kenya	Nigeria	0	3	WQ		-30	1395	1603	−5	+7	91	48
+1985	04	20	Nigeria	Kenya	3	1	WQ		9	1612	1386	+1	−1	45	92
+1985	06	16	Nigeria	Ivory Coast	0	0	F		-4	1608	1586	−2	+1	47	50
+1985	06	19	Nigeria	Ivory Coast	2	0	F		10	1618	1576	+2	−2	45	52
+1985	06	23	Ivory Coast	Nigeria	1	1	F		-2	1574	1620	−1	0	53	45
+1985	06	26	Ivory Coast	Nigeria	1	1	F		-2	1572	1622	−1	0	54	45
+1985	07	06	Nigeria	Tunisia	1	0	WQ		14	1636	1597	+1	0	43	48
+1985	07	20	Tunisia	Nigeria	2	0	WQ		25	1622	1611	+2	−6	46	48
+1985	08	10	Nigeria	Zambia	0	0	FQ		-5	1606	1618	0	0	47	45
+1985	08	18	Zambia	Nigeria	1	0	FQ		14	1632	1592	+3	−2	42	49
+1987	01	04	Nigeria	Ivory Coast	0	0	AGQ		-3	1589	1636	−2	+1	53	42
+1987	01	18	Ivory Coast	Nigeria	1	0	AGQ		12	1648	1577	+3	−1	40	54
+1987	01	26	Nigeria	Syria	1	0	NGC	IN	9	1586	1360	0	−2	54	95
+1987	01	30	Liberia	Nigeria	2	0	WAN		47	1311	1539	+15	−9	107	63
+1987	02	01	Benin	Nigeria	1	1	WAN	LR	15	1235	1524	+5	−3	126	66
+1987	02	03	Nigeria	Burkina Faso	3	0	WAN	LR	14	1538	1265	+3	−4	63	122
+1987	02	06	Ghana	Nigeria	3	1	WAN	LR	19	1686	1519	+1	−6	35	69
+1987	02	08	Nigeria	Togo	3	1	WAN	LR	22	1541	1404	+7	−3	62	87
+1987	03	28	Nigeria	Togo	2	0	FQ		12	1553	1392	0	−4	61	91
+1987	04	12	Togo	Nigeria	1	1	FQ		3	1395	1550	0	−1	90	61
+1987	06	28	Liberia	Nigeria	2	1	OQ		25	1377	1525	+4	−5	94	67
+1987	07	04	Nigeria	Sierra Leone	3	0	FQ		21	1546	1461	+4	0	62	77
+1987	07	11	Nigeria	Liberia	4	1	OQ		12	1558	1365	+4	−2	58	96
+1987	07	18	Sierra Leone	Nigeria	2	0	FQ		30	1491	1528	+3	−9	73	67
+1987	10	04	Zimbabwe	Nigeria	0	0	OQ		-5	1520	1533	−1	+1	70	67
+1987	10	17	Nigeria	Zimbabwe	2	0	OQ		21	1554	1499	+6	−2	61	72
+1987	11	22	Burkina Faso	Nigeria	0	0	F		4	1291	1550	+2	−1	109	62
+1988	01	15	Algeria	Nigeria	1	0	OQ		10	1652	1540	+1	−1	41	63
+1988	01	30	Nigeria	Algeria	2	0	OQ		31	1571	1621	+9	−5	54	46
+1988	03	14	Nigeria	Kenya	3	0	AR	MA	25	1596	1387	+4	−6	51	93
+1988	03	17	Cameroon	Nigeria	1	1	AR	MA	-6	1680	1602	−1	0	37	51
+1988	03	20	Egypt	Nigeria	0	0	AR	MA	-5	1664	1607	0	+2	39	49
+1988	03	23	Algeria	Nigeria	1	1	AR	MA	-2	1630	1609	0	0	44	49
+1988	03	27	Cameroon	Nigeria	1	0	AR	MA	19	1714	1590	+2	−3	31	52
+1988	09	22	Australia	Nigeria	1	0	OG	KR	21	1724	1569	+3	−4	32	53
+1989	01	07	Nigeria	Gabon	1	0	WQ		9	1578	1436	+6	−1	50	84
+1989	01	22	Angola	Nigeria	2	2	WQ		-2	1514	1580	0	+1	65	50
+1989	04	09	Guinea	Nigeria	1	1	FQ		2	1453	1578	+1	0	81	52
+1989	04	22	Nigeria	Guinea	3	0	FQ		15	1593	1438	+3	−4	49	84
+1989	06	10	Nigeria	Cameroon	2	0	WQ		29	1622	1647	+3	−6	45	40
+1989	06	25	Gabon	Nigeria	2	1	WQ		27	1431	1595	+7	−4	84	49
+1989	07	15	Nigeria	Zimbabwe	3	0	FQ		16	1611	1464	+5	−6	45	76
+1989	07	30	Zimbabwe	Nigeria	1	1	FQ		3	1467	1608	0	0	75	46
+1989	08	12	Nigeria	Angola	1	0	WQ		8	1616	1469	+1	−2	45	74
+1989	08	27	Cameroon	Nigeria	1	0	WQ		12	1682	1604	+2	−2	33	46
+1990	01	25	Nigeria	Ivory Coast	2	0	COC		27	1631	1638	+3	−5	45	42
+1990	01	28	Nigeria	Senegal	0	0	COC		-9	1622	1573	0	+4	45	51
+1990	03	02	Algeria	Nigeria	5	1	AR		29	1689	1593	+4	−2	33	48
+1990	03	05	Nigeria	Egypt	1	0	AR	DZ	29	1622	1615	+3	−7	45	47
+1990	03	08	Nigeria	Ivory Coast	1	0	AR	DZ	27	1649	1623	+7	−7	37	44
+1990	03	12	Nigeria	Zambia	2	0	AR	DZ	29	1678	1536	+3	−6	34	62
+1990	03	16	Algeria	Nigeria	1	0	AR		14	1762	1664	+1	−2	24	36
+1990	08	18	Nigeria	Togo	3	0	FQ		7	1671	1375	+2	−3	37	98
+1990	09	01	Ghana	Nigeria	1	0	FQ		26	1484	1645	+6	−6	69	43
+1990	09	30	Benin	Nigeria	0	1	FQ		-5	1210	1650	0	+1	136	39
+1991	01	13	Burkina Faso	Nigeria	1	1	FQ		7	1431	1643	+2	−2	79	41
+1991	01	27	Togo	Nigeria	0	0	FQ		11	1347	1632	+3	−2	104	43
+1991	04	13	Nigeria	Ghana	0	0	FQ		-11	1621	1537	−2	+2	45	62
+1991	04	27	Nigeria	Benin	3	0	FQ		4	1625	1206	+2	−2	43	139
+1991	06	27	Nigeria	Burkina Faso	3	0	ECW		10	1635	1401	0	−3	45	88
+1991	06	29	Nigeria	Gambia	2	0	ECW		3	1638	1189	+1	0	44	141
+1991	06	30	Nigeria	Mali	2	0	ECW		10	1648	1445	+5	−1	39	78
+1991	07	03	Nigeria	Ghana	0	0	ECW		-10	1638	1566	−5	+1	44	56
+1991	07	27	Nigeria	Burkina Faso	7	1	FQ		10	1648	1370	+4	−4	41	100
+1991	10	31	Ivory Coast	Nigeria	2	0	COC		21	1682	1627	+5	−5	36	47
+1991	11	02	Ghana	Nigeria	1	0	COC	CI	27	1532	1600	+3	−2	65	49
+1992	01	12	Senegal	Nigeria	1	2	AR		-28	1518	1628	−6	+4	68	46
+1992	01	14	Nigeria	Kenya	2	1	AR	SN	15	1643	1462	+2	−2	45	80
+1992	01	19	Nigeria	Zaire	1	0	AR	SN	20	1663	1549	+4	−3	40	62
+1992	01	23	Ghana	Nigeria	2	1	AR	SN	28	1643	1635	+5	−6	44	46
+1992	01	25	Nigeria	Cameroon	2	1	AR	SN	30	1665	1676	+8	−1	38	35
+1992	02	22	Tunisia	Nigeria	1	1	F		1	1529	1664	0	−2	67	40
+1992	05	26	Nigeria	Sudan	2	1	FT	ET	4	1668	1351	0	0	38	110
+1992	05	28	Ethiopia	Nigeria	4	1	FT		36	1474	1632	+7	−8	80	46
+1992	08	15	Sudan	Nigeria	0	0	FQ		10	1361	1622	+2	−1	111	49
+1992	08	29	Nigeria	Uganda	2	0	FQ		13	1635	1494	+3	−2	46	75
+1992	10	10	Nigeria	South Africa	4	0	WQ		30	1665	1630	+9	−10	38	48
+1992	12	20	Congo	Nigeria	0	1	WQ		-14	1435	1679	0	+1	93	34
+1993	01	16	South Africa	Nigeria	0	0	WQ		-3	1636	1682	−1	0	46	34
+1993	02	27	Nigeria	Congo	2	0	WQ		7	1689	1414	+1	−2	32	99
+1993	04	11	Ethiopia	Nigeria	1	0	FQ		33	1366	1656	+5	−3	113	37
+1993	04	25	Nigeria	Sudan	4	0	FQ		6	1662	1317	0	−2	35	121
+1993	05	02	Ivory Coast	Nigeria	2	1	WQ		16	1650	1646	+6	−5	39	40
+1993	07	03	Nigeria	Algeria	4	1	WQ		24	1670	1610	+6	−8	33	50
+1993	07	17	Uganda	Nigeria	0	0	FQ		4	1506	1666	+1	−3	76	36
+1993	07	24	Nigeria	Ethiopia	6	0	FQ		7	1673	1340	+3	−2	33	117
+1993	09	25	Nigeria	Ivory Coast	4	1	WQ		24	1697	1640	+1	−8	32	43
+1993	10	08	Algeria	Nigeria	1	1	WQ		-1	1619	1698	0	0	50	32
+1994	01	11	Thailand	Nigeria	1	1	F		5	1406	1693	+2	−1	100	32
+1994	03	09	Nigeria	Ghana	0	0	F		-5	1688	1624	0	+1	33	50
+1994	03	26	Nigeria	Gabon	3	0	AR	TN	16	1704	1414	+4	−1	30	96
+1994	03	30	Egypt	Nigeria	0	0	AR	TN	1	1688	1703	0	0	35	30
+1994	04	02	Nigeria	Zaire	2	0	AR	TN	20	1723	1502	+1	−5	29	77
+1994	04	06	Ivory Coast	Nigeria	2	2	AR	TN	5	1658	1718	+2	−1	38	30
+1994	04	10	Nigeria	Zambia	2	1	AR	TN	24	1742	1686	+2	−3	28	35
+1994	04	17	Colombia	Nigeria	1	0	F		3	1924	1739	+1	0	6	28
+1994	05	05	Sweden	Nigeria	3	1	F		5	1905	1734	0	0	10	29
+1994	05	14	Nigeria	Suriname	2	1	F	NL	1	1735	1296	0	0	28	130
+1994	05	25	Romania	Nigeria	2	0	F		7	1842	1728	+1	0	20	28
+1994	06	11	Nigeria	Georgia	5	1	F		7	1735	1574	0	−1	28	62
+1994	06	21	Nigeria	Bulgaria	3	0	WC	US	58	1793	1714	+4	−4	24	29
+1994	06	25	Argentina	Nigeria	2	1	WC	US	18	1957	1775	+1	0	4	24
+1994	06	30	Nigeria	Greece	2	0	WC	US	26	1801	1590	0	−5	24	57
+1994	07	05	Italy	Nigeria	2	1	WC	US	17	1979	1784	0	−1	4	25
+1994	11	16	England	Nigeria	1	0	F		5	1894	1779	−1	0	13	26
+1995	01	06	Nigeria	Japan	3	0	IC	SA	23	1802	1580	0	−6	24	62
+1995	01	10	Argentina	Nigeria	0	0	IC	SA	-7	1891	1809	−3	+1	15	23
+1995	01	13	Mexico	Nigeria	1	1	IC	SA	-6	1891	1815	−2	0	14	23
+1995	06	11	United States	Nigeria	3	2	USC		19	1629	1796	+8	−1	43	25
+1995	06	17	Colombia	Nigeria	1	0	USC	US	10	1918	1786	0	0	7	25
+1995	06	24	Mexico	Nigeria	2	1	USC	US	12	1860	1774	+3	−1	17	26
+1995	10	21	Uzbekistan	Nigeria	2	3	AAC		-31	1735	1805	−1	+3	29	23
+1995	11	10	Nigeria	Uzbekistan	1	0	AAC		14	1819	1721	0	−1	23	30
+1996	06	09	Nigeria	Togo	1	3	F		-29	1790	1349	−3	+7	24	118
+1996	11	09	Nigeria	Burkina Faso	2	0	WQ		3	1793	1353	0	−1	23	118
+1996	12	11	Czechia	Nigeria	2	1	KHC	MA	10	1927	1783	0	−1	10	25
+1996	12	12	Morocco	Nigeria	2	0	KHC		25	1664	1758	+4	−1	39	26
+1997	01	12	Kenya	Nigeria	1	1	WQ		14	1386	1744	+4	−4	112	28
+1997	04	05	Nigeria	Guinea	2	1	WQ		4	1748	1437	0	−1	26	94
+1997	04	27	Burkina Faso	Nigeria	1	2	WQ		-5	1305	1753	0	0	129	25
+1997	06	07	Nigeria	Kenya	3	0	WQ		6	1759	1426	0	−1	25	95
+1997	08	07	Nigeria	Cameroon	1	0	LGC	TN	7	1766	1557	+1	−1	24	66
+1997	08	09	Tunisia	Nigeria	2	0	LGC		24	1666	1742	+2	−3	44	27
+1997	08	17	Guinea	Nigeria	1	0	WQ		31	1460	1711	+10	−6	87	33
+1997	12	15	Zambia	Nigeria	2	0	F		15	1628	1696	+3	+1	49	38
+1997	12	17	Zambia	Nigeria	0	0	F		-1	1627	1697	−1	0	51	38
+1998	01	28	Nigeria	Iran	1	0	CBG	HK	14	1711	1661	0	−1	37	43
+1998	02	22	Jamaica	Nigeria	2	2	F		-2	1677	1713	0	0	40	37
+1998	04	22	Germany	Nigeria	1	0	F		1	2063	1712	0	+1	2	35
+1998	05	29	Yugoslavia	Nigeria	3	0	F		4	1969	1708	0	0	7	36
+1998	06	05	Netherlands	Nigeria	5	1	F		5	1959	1703	0	0	8	36
+1998	06	13	Nigeria	Spain	3	2	WC	FR	52	1755	1987	+8	−1	28	4
+1998	06	19	Nigeria	Bulgaria	1	0	WC	FR	34	1789	1766	+6	−4	21	24
+1998	06	24	Paraguay	Nigeria	3	1	WC	FR	48	1813	1741	+6	−7	20	27
+1998	06	28	Denmark	Nigeria	4	1	WC	FR	35	1898	1706	+4	−5	12	32
+1998	10	04	Burkina Faso	Nigeria	0	0	FQ		11	1393	1695	+2	−3	108	38
+1999	01	23	Nigeria	Burundi	2	0	FQ		8	1703	1456	+1	−5	37	90
+1999	02	28	Senegal	Nigeria	1	1	FQ		9	1443	1694	+4	0	92	38
+1999	08	17	Mozambique	Nigeria	0	1	F		-3	1271	1697	−1	0	136	39
+1999	08	28	Nigeria	Ghana	0	0	F		-6	1691	1579	−2	+4	41	59
+1999	11	13	Greece	Nigeria	2	0	F		9	1750	1682	+4	0	27	41
+1999	11	21	Gabon	Nigeria	0	2	F		-11	1468	1693	−5	+3	86	38
+2000	01	23	Nigeria	Tunisia	4	2	AR		22	1715	1613	+2	−5	37	53
+2000	01	28	Nigeria	Congo	0	0	AR		-21	1694	1423	−2	+5	39	101
+2000	02	03	Nigeria	Morocco	2	0	AR		33	1727	1723	+6	−11	33	36
+2000	02	07	Nigeria	Senegal	2	1	AR		8	1735	1525	+2	−2	30	71
+2000	02	10	Nigeria	South Africa	2	0	AR		23	1758	1671	+5	−2	24	42
+2000	02	13	Nigeria	Cameroon	2	2	AR		-13	1745	1670	−1	+5	25	41
+2000	04	09	Eritrea	Nigeria	0	0	WQ		17	1195	1728	+6	−4	156	30
+2000	04	22	Nigeria	Eritrea	4	0	WQ		2	1730	1193	−1	−1	30	157
+2000	06	04	Nigeria	Malawi	3	2	F		1	1731	1306	0	0	32	129
+2000	06	06	Nigeria	Malawi	4	1	F		2	1733	1304	+2	−1	30	130
+2000	06	17	Nigeria	Sierra Leone	2	0	WQ		4	1737	1353	0	0	31	117
+2000	07	09	Liberia	Nigeria	2	1	WQ		33	1391	1704	+8	−9	107	40
+2000	09	02	Nigeria	Namibia	4	0	FQ		5	1709	1344	+4	−1	36	121
+2000	10	07	Madagascar	Nigeria	0	0	FQ		9	1458	1700	+4	−3	86	38
+2001	01	13	Nigeria	Zambia	1	0	FQ		4	1704	1436	0	−1	40	92
+2001	01	27	Nigeria	Sudan	3	0	WQ		4	1708	1316	+1	−1	39	124
+2001	03	11	Ghana	Nigeria	0	0	WQ		10	1437	1698	+3	−1	90	38
+2001	03	24	Zambia	Nigeria	1	1	FQ		8	1454	1690	+3	−5	84	43
+2001	04	21	Sierra Leone	Nigeria	1	0	WQ		34	1332	1656	+8	−7	123	49
+2001	05	05	Nigeria	Liberia	2	0	WQ		11	1667	1486	+3	−7	45	81
+2001	06	02	Nigeria	Madagascar	1	0	FQ		3	1670	1354	0	0	45	120
+2001	06	16	Namibia	Nigeria	0	2	FQ		-12	1321	1682	−1	+5	125	41
+2001	07	01	Sudan	Nigeria	0	4	WQ		-19	1372	1701	−7	+6	116	35
+2001	07	29	Nigeria	Ghana	3	0	WQ		12	1713	1516	+3	0	36	70
+2001	09	13	South Korea	Nigeria	2	2	F		-5	1796	1718	0	+2	22	35
+2001	09	16	South Korea	Nigeria	2	1	F		5	1801	1713	0	−1	22	37
+2001	10	07	Japan	Nigeria	2	2	F	EN	-4	1857	1717	−1	0	14	38
+2002	01	12	Ivory Coast	Nigeria	1	1	F		0	1622	1717	0	0	53	39
+2002	01	21	Nigeria	Algeria	1	0	AR	ML	12	1729	1504	+2	−7	36	79
+2002	01	24	Mali	Nigeria	0	0	AR		12	1455	1717	+4	−2	91	38
+2002	01	28	Nigeria	Liberia	1	0	AR	ML	11	1728	1484	+2	−1	36	83
+2002	02	03	Nigeria	Ghana	1	0	AR	ML	13	1741	1531	+2	−4	33	69
+2002	02	07	Senegal	Nigeria	2	1	AR	ML	32	1680	1709	+5	−5	43	37
+2002	02	09	Mali	Nigeria	0	1	AR		-18	1488	1727	−4	+2	82	35
+2002	03	26	Nigeria	Paraguay	1	1	F	EN	0	1727	1720	0	0	34	37
+2002	04	17	Scotland	Nigeria	1	2	F		-13	1719	1740	−3	+3	37	33
+2002	05	04	Nigeria	Kenya	3	0	F		2	1742	1370	+2	0	31	114
+2002	05	16	Ireland	Nigeria	1	2	F		-16	1873	1758	−3	+2	11	29
+2002	05	18	Nigeria	Jamaica	1	0	UTC	EN	6	1764	1524	+1	−2	28	70
+2002	06	02	Argentina	Nigeria	1	0	WC	JP	11	2030	1753	0	−5	2	31
+2002	06	07	Sweden	Nigeria	2	1	WC	JP	20	1891	1733	+3	−2	9	34
+2002	06	12	England	Nigeria	0	0	WC	JP	-17	1941	1750	−2	+2	7	32
+2002	09	08	Angola	Nigeria	0	0	FQ		8	1508	1742	+3	−1	71	34
+2002	10	12	Senegal	Nigeria	2	2	F		-4	1777	1746	−1	0	27	34
+2002	11	20	Nigeria	Jamaica	0	0	F		-7	1739	1576	0	0	34	62
+2002	11	25	Nigeria	Egypt	1	1	F		-6	1733	1599	0	+2	34	56
+2002	12	15	Ghana	Nigeria	0	1	F		-6	1495	1739	−5	0	79	34
+2003	02	16	Gambia	Nigeria	0	1	F		-3	1362	1742	−1	0	121	33
+2003	03	29	Malawi	Nigeria	0	1	FQ		-6	1343	1748	−3	0	126	33
+2003	05	25	Jamaica	Nigeria	3	2	F		12	1574	1736	+4	0	61	32
+2003	05	30	Nigeria	Ghana	3	1	LGC		6	1742	1490	0	−2	32	78
+2003	06	01	Nigeria	Cameroon	3	0	LGC		21	1763	1747	+4	−6	28	32
+2003	06	07	Nigeria	Malawi	4	1	FQ		3	1766	1327	+1	−2	27	129
+2003	06	11	Nigeria	Brazil	0	3	F		-10	1756	2045	−3	+1	29	1
+2003	06	21	Nigeria	Angola	2	2	FQ		-16	1740	1483	−3	+4	33	81
+2003	07	26	Nigeria	Venezuela	1	0	F	EN	7	1747	1619	+3	−1	30	53
+2003	08	20	Japan	Nigeria	3	0	F		12	1781	1735	+2	−2	23	32
+2004	01	27	Morocco	Nigeria	1	0	AR	TN	36	1605	1699	+10	−7	56	38
+2004	01	31	Nigeria	South Africa	4	0	AR	TN	35	1734	1571	+6	−9	32	65
+2004	02	04	Nigeria	Benin	2	1	AR	TN	4	1738	1296	+2	−1	30	131
+2004	02	08	Nigeria	Cameroon	2	1	AR	TN	27	1765	1743	+4	−3	26	29
+2004	02	11	Tunisia	Nigeria	1	1	AR		-1	1676	1766	−1	0	44	26
+2004	02	13	Nigeria	Mali	2	1	AR	TN	14	1780	1588	+1	−6	25	62
+2004	05	29	Nigeria	Ireland	3	0	UTC	EN	32	1812	1821	+7	−4	18	17
+2004	05	31	Nigeria	Jamaica	2	0	UTC	EN	12	1824	1615	+2	−1	16	56
+2004	06	05	Nigeria	Rwanda	2	0	WQA		2	1826	1354	−1	−2	18	120
+2004	06	20	Angola	Nigeria	1	0	WQA		32	1518	1794	+6	−1	75	21
+2004	07	03	Nigeria	Algeria	1	0	WQA		4	1798	1483	0	0	21	83
+2004	09	05	Zimbabwe	Nigeria	0	3	WQA		-19	1512	1817	−2	0	77	22
+2004	10	09	Gabon	Nigeria	1	1	WQA		15	1408	1802	+3	0	103	22
+2004	10	20	Libya	Nigeria	2	1	LGC		23	1526	1779	+9	−5	73	28
+2004	10	22	Ecuador	Nigeria	2	2	LGC	LY	6	1638	1773	+1	0	52	28
+2004	11	17	South Africa	Nigeria	2	1	NMC		20	1583	1753	+3	−2	64	30
+2005	03	26	Nigeria	Gabon	2	0	WQA		4	1757	1409	0	−1	31	100
+2005	06	05	Rwanda	Nigeria	1	1	WQA		14	1354	1743	+8	−1	113	31
+2005	06	18	Nigeria	Angola	1	1	WQA		-15	1728	1539	−1	+1	33	72
+2005	08	17	Libya	Nigeria	0	1	F		-7	1511	1735	−5	+1	80	33
+2005	09	04	Algeria	Nigeria	2	5	WQA		-16	1402	1751	−2	+2	101	30
+2005	10	08	Nigeria	Zimbabwe	5	1	WQA		9	1760	1504	+1	−3	31	83
+2005	11	16	Romania	Nigeria	3	0	F		9	1848	1751	+4	−3	14	33
+2006	01	23	Nigeria	Ghana	1	0	AR	EG	14	1765	1570	+4	−5	29	66
+2006	01	27	Nigeria	Zimbabwe	2	0	AR	EG	12	1777	1465	+2	−3	27	92
+2006	01	31	Nigeria	Senegal	2	1	AR	EG	18	1795	1658	+4	−2	24	49
+2006	02	04	Nigeria	Tunisia	1	1	AR	EG	-7	1788	1699	−1	+1	25	42
+2006	02	07	Ivory Coast	Nigeria	1	0	AR	EG	30	1747	1758	+5	−6	35	31
+2006	02	09	Nigeria	Senegal	1	0	AR	EG	19	1777	1649	+3	−3	28	50
+2006	09	02	Nigeria	Niger	2	0	FQ		2	1779	1306	0	+1	24	128
+2006	10	08	Lesotho	Nigeria	0	1	FQ		-2	1121	1781	0	0	170	23
+2007	02	06	Ghana	Nigeria	4	1	F	EN	19	1771	1762	+7	−6	27	31
+2007	03	24	Nigeria	Uganda	1	0	FQ		3	1765	1389	+1	+1	30	104
+2007	05	27	Kenya	Nigeria	0	1	F		-3	1324	1768	0	+1	122	28
+2007	06	02	Uganda	Nigeria	2	1	FQ		33	1417	1735	+5	−13	100	41
+2007	06	17	Niger	Nigeria	1	3	FQ		-7	1275	1742	−1	0	135	40
+2007	08	22	Macedonia	Nigeria	0	0	F		3	1529	1739	+1	+1	74	36
+2007	09	08	Nigeria	Lesotho	2	0	FQ		1	1740	1137	+1	0	34	170
+2007	10	14	Mexico	Nigeria	2	2	F		-6	1901	1746	0	0	11	34
+2007	11	17	Australia	Nigeria	1	0	F	EN	11	1729	1735	0	−1	38	36
+2007	11	20	Switzerland	Nigeria	0	1	F		-15	1808	1750	−3	+2	18	34
+2008	01	09	Nigeria	Sudan	2	0	F	ES	3	1753	1387	+1	−1	33	109
+2008	01	21	Ivory Coast	Nigeria	1	0	AR	GH	24	1787	1729	+7	−4	24	37
+2008	01	25	Mali	Nigeria	0	0	AR	GH	10	1587	1719	+3	−2	60	39
+2008	01	29	Nigeria	Benin	2	0	AR	GH	8	1727	1348	+1	−1	39	116
+2008	02	03	Ghana	Nigeria	2	1	AR		14	1803	1713	+3	0	21	40
+2008	05	27	Austria	Nigeria	1	1	F		0	1596	1713	0	0	58	40
+2008	06	01	Nigeria	South Africa	2	0	WQA		9	1722	1508	0	−4	40	85
+2008	06	07	Sierra Leone	Nigeria	0	1	WQA		-3	1185	1725	−1	0	158	39
+2008	06	15	Equatorial Guinea	Nigeria	0	1	WQA		-4	1247	1729	−1	+1	145	38
+2008	06	21	Nigeria	Equatorial Guinea	2	0	WQA		2	1731	1245	0	0	38	145
+2008	09	06	South Africa	Nigeria	0	1	WQA		-13	1492	1744	−3	+3	89	33
+2008	10	11	Nigeria	Sierra Leone	4	1	WQA		2	1746	1246	0	0	33	143
+2008	11	19	Colombia	Nigeria	1	0	F		7	1747	1739	+3	−2	32	35
+2009	02	11	Jamaica	Nigeria	0	0	F	EN	3	1638	1736	−1	−1	52	37
+2009	03	29	Mozambique	Nigeria	0	0	WQA		12	1413	1724	+5	−4	104	36
+2009	05	29	Ireland	Nigeria	1	1	F	EN	-2	1785	1726	0	0	24	37
+2009	06	02	France	Nigeria	0	1	F		-16	1876	1742	−1	+6	10	30
+2009	06	07	Nigeria	Kenya	3	0	WQA		5	1747	1399	+2	−2	30	109
+2009	06	20	Tunisia	Nigeria	0	0	WQA		0	1648	1747	+1	−1	49	32
+2009	09	06	Nigeria	Tunisia	2	2	WQA		-10	1737	1658	−2	0	36	48
+2009	10	11	Nigeria	Mozambique	1	0	WQA		3	1740	1405	0	−2	34	107
+2009	11	14	Kenya	Nigeria	2	3	WQA		-7	1362	1747	0	0	117	35
+2010	01	06	Nigeria	Zambia	0	0	F	ZA	-6	1741	1499	−3	0	36	87
+2010	01	12	Egypt	Nigeria	3	1	AR	AO	42	1745	1699	+6	−6	34	41
+2010	01	16	Nigeria	Benin	1	0	AR	AO	10	1709	1448	+1	−2	40	99
+2010	01	20	Nigeria	Mozambique	3	0	AR	AO	13	1722	1387	+3	−3	37	113
+2010	01	25	Nigeria	Zambia	0	0	AR	AO	-12	1710	1559	−2	+6	39	71
+2010	01	28	Ghana	Nigeria	1	0	AR	AO	27	1708	1683	+3	−3	39	42
+2010	01	30	Nigeria	Algeria	1	0	AR	AO	17	1700	1545	+1	−9	41	78
+2010	03	03	Nigeria	DR Congo	5	2	F		4	1704	1419	0	−2	40	108
+2010	05	25	Nigeria	Saudi Arabia	0	0	F	AT	-1	1703	1687	0	0	39	42
+2010	05	30	Colombia	Nigeria	1	1	F	EN	-1	1745	1704	−1	0	31	38
+2010	06	06	Nigeria	North Korea	3	1	F	ZA	9	1713	1537	0	−1	38	80
+2010	06	12	Argentina	Nigeria	1	0	WC	ZA	14	1935	1699	0	+1	7	37
+2010	06	17	Greece	Nigeria	2	1	WC	ZA	30	1725	1669	+9	−6	33	45
+2010	06	22	Nigeria	South Korea	2	2	WC	ZA	9	1678	1763	+1	0	44	25
+2010	08	11	South Korea	Nigeria	2	1	F		6	1751	1672	+1	−1	30	45
+2010	09	05	Nigeria	Madagascar	2	0	FQ		3	1675	1260	0	0	45	137
+2010	10	10	Guinea	Nigeria	1	0	FQ		24	1524	1651	+6	−3	82	47
+2011	02	09	Nigeria	Sierra Leone	2	1	F		1	1652	1292	0	0	49	134
+2011	03	27	Nigeria	Ethiopia	4	0	FQ		6	1658	1315	0	−4	46	129
+2011	03	29	Nigeria	Kenya	3	0	F		2	1660	1288	−1	0	47	135
+2011	06	01	Nigeria	Argentina	4	1	F		28	1688	1964	+7	0	40	5
+2011	06	05	Ethiopia	Nigeria	2	2	FQ		14	1315	1674	+2	−5	129	46
+2011	09	04	Madagascar	Nigeria	0	2	FQ		-7	1214	1681	−1	+3	151	41
+2011	09	06	Argentina	Nigeria	3	1	F	BD	6	1929	1675	0	−3	7	44
+2011	10	08	Nigeria	Guinea	2	2	FQ		-13	1662	1520	−1	+2	45	82
+2011	10	11	Ghana	Nigeria	0	0	F	EN	-3	1768	1665	−1	−1	26	46
+2011	11	12	Nigeria	Botswana	0	0	F		-8	1657	1407	−2	+2	47	104
+2011	11	15	Nigeria	Zambia	2	0	F		6	1663	1522	+1	−1	46	80
+2012	01	11	Nigeria	Angola	0	0	F		-7	1656	1492	−1	0	47	92
+2012	02	15	Liberia	Nigeria	0	2	F		-4	1245	1660	−1	0	143	46
+2012	02	29	Rwanda	Nigeria	0	0	FQ		6	1461	1654	+2	−2	96	48
+2012	04	12	Egypt	Nigeria	3	2	F	AE	8	1730	1646	+3	−4	31	51
+2012	05	23	Peru	Nigeria	1	0	F		5	1722	1641	0	0	35	51
+2012	06	03	Nigeria	Namibia	1	0	WQ		3	1644	1300	0	0	50	132
+2012	06	09	Malawi	Nigeria	1	1	WQ		9	1390	1635	+1	−4	110	53
+2012	06	16	Nigeria	Rwanda	2	0	FQ		8	1643	1400	+3	0	48	108
+2012	08	15	Niger	Nigeria	0	0	F		6	1299	1637	+3	−3	134	51
+2012	09	08	Liberia	Nigeria	2	2	FQ		13	1291	1624	+3	−2	139	53
+2012	10	13	Nigeria	Liberia	6	1	FQ		7	1631	1301	+1	−2	52	136
+2012	11	14	Nigeria	Venezuela	3	1	F	US	19	1650	1708	+2	−3	49	35
+2013	01	09	Cape Verde	Nigeria	0	0	F	PT	6	1431	1644	0	0	103	50
+2013	01	21	Burkina Faso	Nigeria	1	1	AR	ZA	13	1459	1631	+4	−1	94	50
+2013	01	25	Nigeria	Zambia	1	1	AR	ZA	-5	1626	1560	−2	+1	53	71
+2013	01	29	Nigeria	Ethiopia	2	0	AR	ZA	11	1637	1305	+4	−5	49	135
+2013	02	03	Nigeria	Ivory Coast	2	1	AR	ZA	38	1675	1805	+5	−3	44	20
+2013	02	06	Nigeria	Mali	4	1	AR	ZA	33	1708	1553	+8	−8	36	71
+2013	02	10	Nigeria	Burkina Faso	1	0	AR	ZA	13	1721	1521	+1	−2	34	80
+2013	03	23	Nigeria	Kenya	1	1	WQ		-17	1704	1401	−1	+1	35	109
+2013	05	31	Mexico	Nigeria	2	2	F	US	-5	1870	1709	−2	0	15	37
+2013	06	05	Kenya	Nigeria	0	1	WQ		-9	1392	1718	−1	+1	111	35
+2013	06	12	Namibia	Nigeria	1	1	WQ		14	1314	1704	+4	−2	131	36
+2013	06	17	Nigeria	Tahiti	6	1	CC	BR	6	1710	1224	+1	0	35	149
+2013	06	20	Uruguay	Nigeria	2	1	CC	BR	16	1852	1694	+3	−6	14	41
+2013	06	23	Spain	Nigeria	3	0	CC	BR	6	2163	1688	0	−1	1	42
+2013	08	14	South Africa	Nigeria	0	2	NMC		-21	1545	1709	−7	+7	74	35
+2013	09	07	Nigeria	Malawi	2	0	WQ		4	1713	1333	+1	0	35	128
+2013	09	10	Nigeria	Burkina Faso	4	1	F		7	1720	1559	+2	−1	33	68
+2013	10	13	Ethiopia	Nigeria	1	2	WQ		-9	1387	1729	−2	+4	110	29
+2013	10	28	Jordan	Nigeria	1	0	F		12	1573	1717	+2	−1	65	32
+2013	11	16	Nigeria	Ethiopia	2	0	WQ		5	1722	1382	+2	0	30	113
+2013	11	18	Italy	Nigeria	2	2	F	EN	-5	1906	1727	−1	0	11	30
+2014	03	05	Mexico	Nigeria	0	0	F	US	-2	1808	1729	−1	+2	22	29
+2014	05	28	Nigeria	Scotland	2	2	F	EN	-1	1728	1710	0	0	30	36
+2014	06	03	Greece	Nigeria	0	0	F	US	-3	1818	1731	0	+1	20	30
+2014	06	07	United States	Nigeria	2	1	F		4	1856	1727	+1	0	13	30
+2014	06	16	Iran	Nigeria	0	0	WC	BR	1	1716	1726	+1	0	32	31
+2014	06	21	Nigeria	Bosnia and Herzegovina	1	0	WC	BR	34	1760	1739	+5	−6	26	31
+2014	06	25	Argentina	Nigeria	3	2	WC	BR	10	2048	1750	0	−4	4	29
+2014	06	30	France	Nigeria	2	0	WC	BR	21	1974	1729	0	−2	8	31
+2014	09	06	Nigeria	Congo	2	3	FQ		-37	1692	1423	−6	+6	36	106
+2014	09	10	South Africa	Nigeria	0	0	FQ		-1	1602	1693	−1	−1	59	38
+2014	10	11	Sudan	Nigeria	1	0	FQ		33	1366	1660	+7	−8	117	46
+2014	10	15	Nigeria	Sudan	3	1	FQ		6	1666	1360	+1	−2	45	119
+2014	11	15	Congo	Nigeria	0	2	FQ		-19	1409	1685	−5	+6	109	40
+2014	11	19	Nigeria	South Africa	2	2	FQ		-9	1676	1627	−3	+4	41	54
+2015	03	25	Nigeria	Uganda	0	1	F		-17	1659	1493	−4	+5	49	85
+2015	03	29	South Africa	Nigeria	1	1	F		-1	1598	1660	0	0	62	49
+2015	06	13	Nigeria	Chad	2	0	FQ		3	1663	1262	0	0	47	139
+2015	09	05	Tanzania	Nigeria	0	0	FQ		15	1245	1648	+6	−3	144	50
+2015	09	08	Nigeria	Niger	2	0	F		2	1650	1275	+1	0	50	136
+2015	10	08	DR Congo	Nigeria	2	0	F	BE	23	1476	1627	+5	−2	92	52
+2015	10	11	Nigeria	Cameroon	3	0	F	BE	18	1645	1609	+2	−7	49	58
+2015	11	13	Swaziland	Nigeria	0	0	WQ		14	1264	1631	+1	−3	140	52
+2015	11	17	Nigeria	Swaziland	2	0	WQ		4	1635	1260	+1	−1	49	142
+2016	03	25	Nigeria	Egypt	1	1	FQ		-7	1628	1609	0	+2	50	56
+2016	03	29	Egypt	Nigeria	1	0	FQ		15	1624	1613	+5	−4	51	54
+2016	05	27	Nigeria	Mali	1	0	F	FR	8	1621	1547	+3	−4	52	74
+2016	05	31	Luxembourg	Nigeria	1	3	F		-5	1239	1626	−1	+2	151	51
+2016	09	03	Nigeria	Tanzania	1	0	FQ		4	1630	1321	+2	−1	52	125
+2016	10	09	Zambia	Nigeria	1	2	WQ		-15	1419	1645	−3	+3	103	50
+2016	11	12	Nigeria	Algeria	3	1	WQ		22	1667	1630	+4	−4	48	53
+2017	03	23	Nigeria	Senegal	1	1	F	EN	1	1668	1706	0	0	48	36
+2017	06	01	Nigeria	Togo	3	0	F	FR	6	1674	1381	+1	−1	48	112
+2017	06	10	Nigeria	South Africa	0	2	FQ		-44	1630	1649	−5	+9	54	51
+2017	09	01	Nigeria	Cameroon	4	0	WQ		31	1661	1636	+6	−5	47	51
+2017	09	04	Cameroon	Nigeria	1	1	WQ		-4	1632	1665	−2	0	52	47
+2017	10	07	Nigeria	Zambia	1	0	WQ		7	1672	1495	0	−3	46	84
+2017	11	10	Algeria	Nigeria	1	1	WQ		2	1531	1670	+1	0	73	45
+2017	11	14	Nigeria	Argentina	4	2	F	RU	26	1696	1983	+3	−2	44	6
+2018	03	23	Poland	Nigeria	0	1	F		-16	1825	1712	0	+6	19	38
+2018	03	27	Serbia	Nigeria	2	0	F	EN	13	1783	1699	+1	−4	23	43
+2018	05	28	Nigeria	DR Congo	1	1	F		-6	1693	1584	0	+1	43	66
+2018	06	02	England	Nigeria	2	1	F		2	1942	1691	0	0	7	43
+2018	06	06	Czechia	Nigeria	1	0	F	AT	10	1712	1681	+1	0	41	43
+2018	06	16	Croatia	Nigeria	2	0	WC	RU	24	1877	1657	+1	−2	16	47
+2018	06	22	Nigeria	Iceland	2	0	WC	RU	60	1717	1720	+7	−15	40	39
+2018	06	26	Argentina	Nigeria	2	1	WC	RU	15	1916	1702	+2	−3	12	43
+2018	09	08	Seychelles	Nigeria	0	3	FQ		-2	961	1704	−1	+1	195	40
+2018	09	11	Liberia	Nigeria	1	2	F		-3	1310	1707	0	0	130	42
+2018	10	13	Nigeria	Libya	4	0	FQ		10	1717	1473	+2	−2	39	87
+2018	10	16	Nigeria	Libya	3	2	FQ	TN	8	1725	1465	+2	−1	37	88
+2018	11	17	South Africa	Nigeria	1	1	FQ		5	1545	1720	0	−1	70	38
+2018	11	20	Nigeria	Uganda	0	0	F		-8	1712	1472	−3	+5	42	87
+2019	03	22	Nigeria	Seychelles	3	1	FQ		0	1712	968	+1	0	40	194
+2019	03	26	Nigeria	Egypt	1	0	F		5	1717	1597	+2	−2	37	60
+2019	06	08	Nigeria	Zimbabwe	0	0	F		-8	1709	1484	−1	+2	40	87
+2019	06	16	Senegal	Nigeria	1	0	F	EG	9	1770	1700	+3	−2	27	42
+2019	06	22	Nigeria	Burundi	1	0	AR	EG	6	1706	1353	0	−3	42	120
+2019	06	26	Nigeria	Guinea	1	0	AR	EG	8	1714	1417	+1	−2	40	101
+2019	06	30	Madagascar	Nigeria	2	0	AR	EG	67	1417	1647	+17	−9	102	50
+2019	07	06	Nigeria	Cameroon	3	2	AR	EG	22	1669	1580	+2	−5	48	62
+2019	07	10	Nigeria	South Africa	2	1	AR	EG	17	1686	1531	+5	−2	43	73
+2019	07	14	Algeria	Nigeria	2	1	AR	EG	28	1670	1658	+4	−8	48	51
+2019	07	17	Nigeria	Tunisia	1	0	AR	EG	23	1681	1604	+6	−3	45	56
+2019	09	10	Ukraine	Nigeria	2	2	F		-6	1825	1687	0	0	18	45
+2019	10	13	Brazil	Nigeria	1	1	F	SG	-8	2090	1695	0	0	1	44
+2019	11	13	Nigeria	Benin	2	1	FQ		5	1700	1450	+3	0	41	94
+2019	11	17	Lesotho	Nigeria	2	4	FQ		-9	1297	1709	−2	+1	134	42
+2020	10	09	Algeria	Nigeria	1	0	F	AT	9	1751	1700	+4	−1	28	40
+2020	10	13	Nigeria	Tunisia	1	1	F	AT	-2	1698	1624	−1	+3	40	53
+2020	11	13	Nigeria	Sierra Leone	4	4	FQ		-18	1680	1333	−1	+6	42	122
+2020	11	17	Sierra Leone	Nigeria	0	0	FQ		12	1345	1668	+7	−3	118	45
+2021	03	27	Benin	Nigeria	0	1	FQ		-15	1461	1683	−3	+2	90	41
+2021	03	30	Nigeria	Lesotho	3	0	FQ		4	1687	1288	0	−2	41	136
+2021	06	04	Cameroon	Nigeria	1	0	F	AT	14	1562	1673	+5	0	68	41
+2021	06	08	Cameroon	Nigeria	0	0	F	AT	3	1565	1670	0	−1	68	43
+2021	07	03	Mexico	Nigeria	4	0	F	US	8	1894	1662	0	−1	15	44
+2021	09	03	Nigeria	Liberia	2	0	WQ		5	1667	1349	+1	−1	45	120
+2021	09	07	Cape Verde	Nigeria	1	2	WQ		-12	1418	1679	−2	+1	98	43
+2021	10	07	Nigeria	Central African Republic	0	1	WQ		-38	1641	1312	−8	+9	52	130
+2021	10	10	Nigeria	Central African Republic	2	0	WQ	CM	8	1649	1304	+1	−2	51	132
+2021	11	13	Nigeria	Liberia	2	0	WQ	MA	8	1657	1327	+3	−3	49	122
+2021	11	16	Nigeria	Cape Verde	1	1	WQ		-14	1643	1467	−1	+2	51	87
+2022	01	11	Nigeria	Egypt	1	0	AR	CM	26	1669	1632	+5	−3	47	53
+2022	01	15	Nigeria	Sudan	3	1	AR	CM	9	1678	1306	+2	−2	45	131
+2022	01	19	Nigeria	Guinea-Bissau	2	0	AR	CM	11	1689	1361	+1	−3	43	113
+2022	01	23	Tunisia	Nigeria	1	0	AR	CM	32	1618	1657	+5	−8	58	51
+2022	03	25	Ghana	Nigeria	0	0	WQ		2	1525	1655	+1	+1	76	52
+2022	03	29	Nigeria	Ghana	1	1	WQ		-12	1643	1537	−1	0	53	74
+2022	05	28	Mexico	Nigeria	2	1	F	US	5	1844	1638	+1	0	18	53
+2022	06	02	Ecuador	Nigeria	1	0	F	US	5	1844	1633	+2	−3	18	56
+2022	06	09	Nigeria	Sierra Leone	2	1	FQ		4	1637	1350	+1	−1	53	115
+2022	06	13	Nigeria	Sao Tome and Principe	10	0	FQ	MA	4	1641	1068	+4	0	51	181
+2022	09	27	Algeria	Nigeria	2	1	F		5	1719	1636	0	−2	39	54
+2022	11	09	Costa Rica	Nigeria	2	0	F		7	1743	1629	+1	−1	34	56
+2022	11	17	Portugal	Nigeria	4	0	F		2	2005	1627	+1	0	6	56
+2023	03	24	Nigeria	Guinea-Bissau	0	1	FQ		-35	1592	1415	−8	+10	63	98
+2023	03	27	Guinea-Bissau	Nigeria	0	1	FQ		-16	1399	1608	−4	+6	104	58
+2023	06	18	Nigeria	Sierra Leone	3	2	FQ	LR	7	1615	1325	+2	−2	58	125
+2023	09	10	Nigeria	Sao Tome and Principe	6	0	FQ		2	1617	1064	0	0	56	180
+2023	10	13	Nigeria	Saudi Arabia	2	2	F	PT	-2	1615	1559	−1	0	58	67
+2023	10	16	Nigeria	Mozambique	3	2	F	PT	3	1618	1340	0	−1	58	120
+2023	11	16	Nigeria	Lesotho	1	1	WQ		-18	1600	1235	−4	+3	62	154
+2023	11	19	Nigeria	Zimbabwe	1	1	WQ	RW	-13	1587	1335	−1	+2	61	127
+2024	01	08	Guinea	Nigeria	2	0	F	AE	22	1445	1565	+6	−3	93	66
+2024	01	14	Equatorial Guinea	Nigeria	1	1	AR	CI	4	1509	1561	0	0	76	67
+2024	01	18	Ivory Coast	Nigeria	0	1	AR		-38	1616	1599	−7	+3	57	63
+2024	01	22	Nigeria	Guinea-Bissau	1	0	AR	CI	11	1610	1361	+3	−6	59	115
+2024	01	27	Nigeria	Cameroon	2	0	AR	CI	35	1645	1555	+6	−2	52	65
+2024	02	02	Nigeria	Angola	1	0	AR	CI	17	1662	1515	+3	−5	48	77
+2024	02	07	Nigeria	South Africa	1	1	AR	CI	-6	1656	1580	−2	−1	50	66
+2024	02	11	Ivory Coast	Nigeria	2	1	AR		22	1618	1634	+6	−4	58	54
+2024	03	22	Nigeria	Ghana	2	1	F	MA	7	1641	1504	+2	−2	52	81
+2024	03	26	Mali	Nigeria	2	0	F	MA	15	1646	1626	+4	−5	52	57
+2024	06	07	Nigeria	South Africa	1	1	WQ		-8	1618	1579	−3	+1	59	65
+2024	06	10	Benin	Nigeria	2	1	WQ	CI	32	1397	1586	+9	−4	105	64
+2024	09	07	Nigeria	Benin	3	0	FQ		11	1597	1386	+1	−4	60	109
+2024	09	10	Rwanda	Nigeria	0	0	FQ		8	1353	1589	+2	−1	120	61
+2024	10	11	Nigeria	Libya	1	0	FQ		6	1595	1371	0	−4	61	114
+2024	11	14	Benin	Nigeria	1	1	FQ	CI	9	1425	1586	+4	−3	97	65
+2024	11	18	Nigeria	Rwanda	1	2	FQ		-36	1550	1356	−10	+9	74	121
+2025	03	21	Rwanda	Nigeria	0	2	WQ		-22	1334	1572	−8	+6	129	64
+2025	03	25	Nigeria	Zimbabwe	1	1	WQ		-14	1558	1395	−4	+6	69	106
+2025	05	28	Nigeria	Ghana	2	1	UTC	EN	11	1569	1451	+4	−3	65	92
+2025	05	31	Jamaica	Nigeria	2	2	UTC	EN	0	1569	1569	0	0	66	66
+2025	06	06	Russia	Nigeria	1	1	F		-7	1784	1576	0	0	28	66
+2025	09	06	Nigeria	Rwanda	1	0	WQ		5	1581	1316	+2	−2	66	132
+2025	09	09	South Africa	Nigeria	1	1	WQ		-3	1527	1584	−1	+1	76	66
+2025	10	10	Nigeria	Lesotho	2	1	WQ	ZA	4	1588	1195	0	0	65	158
+2025	10	14	Nigeria	Benin	4	0	WQ		16	1604	1447	+4	−3	62	90
+2025	11	13	Nigeria	Gabon	4	1	WQ	MA	24	1628	1467	+5	−1	57	85
+2025	11	16	DR Congo	Nigeria	1	1	WQ	MA	1	1616	1627	−1	−1	59	58
+2025	12	16	Egypt	Nigeria	2	1	F		8	1598	1619	+2	−1	63	59
+2025	12	23	Nigeria	Tanzania	2	1	AR	MA	8	1627	1317	0	−2	59	131
+2025	12	27	Nigeria	Tunisia	3	2	AR	MA	27	1654	1633	+7	−5	53	57
+2025	12	30	Nigeria	Uganda	3	1	AR	MA	15	1669	1394	+3	−5	50	105
+2026	01	05	Nigeria	Mozambique	4	0	AR	MA	15	1684	1372	0	−4	50	110
+2026	01	10	Nigeria	Algeria	2	0	AR	MA	47	1731	1728	+12	−11	38	41
+2026	01	14	Morocco	Nigeria	0	0	AR		-14	1838	1745	−1	+3	20	35
+2026	01	17	Egypt	Nigeria	0	0	AR	MA	6	1659	1739	0	−1	54	36
+2026	03	27	Nigeria	Iran	2	1	NSM	TR	16	1755	1739	+4	−4	32	37
+2026	03	31	Jordan	Nigeria	2	2	NSM	TR	3	1690	1752	0	0	50	32
+2026	05	26	Nigeria	Zimbabwe	2	0	UTC	EN	5	1757	1366	0	−1	32	113
+2026	05	30	Nigeria	Jamaica	3	0	UTC	EN	12	1769	1527	+4	−2	28	78
