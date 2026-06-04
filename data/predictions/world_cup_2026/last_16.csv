@@ -3,15 +3,15 @@ M89,W77(I1(France)),W74(E1(Germany)),primary,France (68%),
 
 M90,W75(F1(Netherlands)),W73(B2(Canada)),primary,Netherlands (63%),
 
-M91,W76(C1(Brazil)),W78(E2(Ecuador)),primary,Brazil (50%),
+M91,W76(F2(Japan)),W78(E2(Ecuador)),primary,Ecuador (55%),
 
-M92,W80(L1(England)),W79(A1(Mexico)),primary,England (54%),
+M92,W80(L1(England)),W79(A1(Mexico)),primary,Mexico (55%),
 
-M93,W84(H1(Spain)),W83(K2(Colombia)),primary,Spain (72%),
+M93,W84(H1(Spain)),W83(K2(Colombia)),primary,Spain (70%),
 
-M94,W81(D1(Turkey)),W82(G1(Belgium)),primary,Belgium (51%),
+M94,W81(D1(Turkey)),W82(G1(Belgium)),primary,Turkey (50%),
 
-M95,W86(J1(Argentina)),W88(D2(United States)),primary,Argentina (79%),
+M95,W86(J1(Argentina)),W88(D2(Paraguay)),primary,Argentina (77%),
 
-M96,W87(K1(Portugal)),W85(B1(Switzerland)),primary,Portugal (63%),
+M96,W87(K1(Portugal)),W85(B1(Switzerland)),primary,Portugal (64%),
 

@@ -1,5 +1,5 @@
 match_id,team1,team2,path,elo,do_you_disagree
 M97,W89(France),W90(Netherlands),primary,France (67%),
-M98,W93(Spain),W94(Belgium),primary,Spain (81%),
-M99,W91(Brazil),W92(England),primary,England (58%),
-M100,W95(Argentina),W96(Portugal),primary,Argentina (61%),
+M98,W93(Spain),W94(Turkey),primary,Spain (82%),
+M99,W91(Ecuador),W92(Mexico),primary,Mexico (56%),
+M100,W95(Argentina),W96(Portugal),primary,Argentina (59%),

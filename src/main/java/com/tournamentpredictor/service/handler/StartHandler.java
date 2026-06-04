@@ -26,6 +26,8 @@ public class StartHandler {
 
     final int HOME_ADVANTAGE;
     final int[] INJURY_PENALTIES;
+    final int[] HEAT_BONUSES;
+    final int[] SQUAD_DROPOUT_PENALTIES;
 
     private final int CONFIDENCE_GAP;
     private static final List<String> REQUIRED_HEADERS = Arrays.asList("group", "team", "host", "injury_impact");
@@ -41,19 +43,21 @@ public class StartHandler {
     public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                         HeadToHeadCalculator headToHeadCalculator) {
         this(loader, projectRoot, csvHelper, headToHeadCalculator,
-                100, new int[]{0, 25, 50, 100}, 25, 0.85, 0.15);
+                100, new int[]{0, 25, 50, 100}, new int[]{0, 8, 15, 25}, new int[]{0, 20, 40, 75}, 25, 0.85, 0.15);
     }
 
     public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                         HeadToHeadCalculator headToHeadCalculator, PredictionConfig config) {
         this(loader, projectRoot, csvHelper, headToHeadCalculator,
-                config.getHomeAdvantageElo(), config.getInjuryPenalties(), config.getConfidenceGap(),
+                config.getHomeAdvantageElo(), config.getInjuryPenalties(), config.getHeatBonuses(),
+                config.getSquadDropoutPenalties(), config.getConfidenceGap(),
                 config.getEloWeight(), config.getQualFormWeight());
     }
 
     private StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                          HeadToHeadCalculator headToHeadCalculator,
-                         int homeAdvantageElo, int[] injuryPenalties, int confidenceGap,
+                         int homeAdvantageElo, int[] injuryPenalties, int[] heatBonuses,
+                         int[] squadDropoutPenalties, int confidenceGap,
                          double eloBaseWeight, double qualFormWeight) {
         this.loader = loader;
         this.projectRoot = projectRoot;
@@ -61,6 +65,8 @@ public class StartHandler {
         this.headToHeadCalculator = headToHeadCalculator;
         this.HOME_ADVANTAGE = homeAdvantageElo;
         this.INJURY_PENALTIES = injuryPenalties;
+        this.HEAT_BONUSES = heatBonuses;
+        this.SQUAD_DROPOUT_PENALTIES = squadDropoutPenalties;
         this.CONFIDENCE_GAP = confidenceGap;
         this.eloBaseWeight = eloBaseWeight;
         this.qualFormWeight = qualFormWeight;
@@ -86,6 +92,8 @@ public class StartHandler {
         int teamIdx = startIndexes.get("team");
         int hostIdx = startIndexes.get("host");
         int injuryIdx = startIndexes.get("injury_impact");
+        int heatIdx = startIndexes.getOrDefault("heat_impact", -1);
+        int squadDropoutIdx = startIndexes.getOrDefault("squad_dropouts", -1);
 
         Map<String, Integer> eloRatings = loader.loadElo();
         QualificationFormCalculator qualCalc = new QualificationFormCalculator(
@@ -102,6 +110,10 @@ public class StartHandler {
             String team = cols[teamIdx].trim();
             boolean isHost = cols[hostIdx].trim().equalsIgnoreCase("yes");
             int injuryLevel = Integer.parseInt(cols[injuryIdx].trim());
+            int heatLevel = (heatIdx >= 0 && cols.length > heatIdx && !cols[heatIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[heatIdx].trim()) : 0;
+            int squadDropoutLevel = (squadDropoutIdx >= 0 && cols.length > squadDropoutIdx && !cols[squadDropoutIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[squadDropoutIdx].trim()) : 0;
             int elo = eloRatings.getOrDefault(team, 0);
             if (elo == 0) {
                 log.warn("Team '{}' not found in world.csv, ELO defaulting to 0", team);
@@ -111,6 +123,8 @@ public class StartHandler {
                     elo += HOME_ADVANTAGE;
                 }
                 elo -= INJURY_PENALTIES[injuryLevel];
+                elo += HEAT_BONUSES[heatLevel];
+                elo -= SQUAD_DROPOUT_PENALTIES[squadDropoutLevel];
             }
             groups.computeIfAbsent(group, k -> new ArrayList<>()).add(new String[]{team, String.valueOf(elo)});
         }
@@ -279,6 +293,8 @@ public class StartHandler {
         int teamIdx = indexes.get("team");
         int hostIdx = indexes.get("host");
         int injuryIdx = indexes.get("injury_impact");
+        int heatIdx = indexes.getOrDefault("heat_impact", -1);
+        int squadDropoutIdx = indexes.getOrDefault("squad_dropouts", -1);
 
         List<String> errors = new ArrayList<>();
         for (int i = 1; i < lines.size(); i++) {
@@ -295,14 +311,12 @@ public class StartHandler {
             if (!VALID_HOST_VALUES.contains(host)) {
                 errors.add("Row " + (i + 1) + " ('" + cols[teamIdx].trim() + "'): host must be 'yes' or 'no', got '" + host + "'");
             }
-            String injuryStr = cols[injuryIdx].trim();
-            try {
-                int level = Integer.parseInt(injuryStr);
-                if (level < 0 || level >= INJURY_PENALTIES.length) {
-                    errors.add("Row " + (i + 1) + " ('" + cols[teamIdx].trim() + "'): injury_impact must be 0-" + (INJURY_PENALTIES.length - 1) + ", got " + level);
-                }
-            } catch (NumberFormatException e) {
-                errors.add("Row " + (i + 1) + " ('" + cols[teamIdx].trim() + "'): injury_impact must be a number (0-" + (INJURY_PENALTIES.length - 1) + "), got '" + injuryStr + "'");
+            validateLevel(cols, i, teamIdx, injuryIdx, "injury_impact", INJURY_PENALTIES.length, errors);
+            if (heatIdx >= 0 && cols.length > heatIdx && !cols[heatIdx].trim().isEmpty()) {
+                validateLevel(cols, i, teamIdx, heatIdx, "heat_impact", HEAT_BONUSES.length, errors);
+            }
+            if (squadDropoutIdx >= 0 && cols.length > squadDropoutIdx && !cols[squadDropoutIdx].trim().isEmpty()) {
+                validateLevel(cols, i, teamIdx, squadDropoutIdx, "squad_dropouts", SQUAD_DROPOUT_PENALTIES.length, errors);
             }
         }
 
@@ -310,5 +324,20 @@ public class StartHandler {
             throw new IOException("start.csv validation failed:\n  " + String.join("\n  ", errors));
         }
         return indexes;
+    }
+
+    private void validateLevel(String[] cols, int rowNum, int teamIdx, int colIdx,
+                                String colName, int maxLevels, List<String> errors) {
+        String val = cols[colIdx].trim();
+        try {
+            int level = Integer.parseInt(val);
+            if (level < 0 || level >= maxLevels) {
+                errors.add("Row " + (rowNum + 1) + " ('" + cols[teamIdx].trim() + "'): " + colName
+                        + " must be 0-" + (maxLevels - 1) + ", got " + level);
+            }
+        } catch (NumberFormatException e) {
+            errors.add("Row " + (rowNum + 1) + " ('" + cols[teamIdx].trim() + "'): " + colName
+                    + " must be a number (0-" + (maxLevels - 1) + "), got '" + val + "'");
+        }
     }
 }
