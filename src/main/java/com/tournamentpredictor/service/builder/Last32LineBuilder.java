@@ -124,15 +124,11 @@ public class Last32LineBuilder {
             return null;
         }
 
-        // Primary composite team = the one predicted (third_place=yes) in the resolved group
-        String yesTeam = resolved.stream()
-                .filter(c -> "yes".equalsIgnoreCase(teamTP.get(c)))
-                .findFirst().orElse(resolved.get(0));
-        boolean compositeIsPrimary = compositeTeam.equalsIgnoreCase(yesTeam);
-
+        // All teams from the resolved group are primary candidates for this slot —
+        // we know which group fills the slot, but not which team finishes 3rd within it.
         boolean nonCompositeIsPrimary = isTokenPrimary(nonCompositeToken, nonCompositeTeam, teamGW, teamRU);
 
-        if (nonCompositeIsPrimary && compositeIsPrimary) {
+        if (nonCompositeIsPrimary) {
             return "primary";
         }
         return "alt";

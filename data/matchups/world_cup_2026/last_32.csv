@@ -4,8 +4,8 @@ M73,A2(South Korea),B2(Switzerland),alt,Switzerland (66%),Switzerland (69%),Swit
 M73,A2(Czechia),B2(Switzerland),alt,Switzerland (70%),Switzerland (72%),Switzerland (56%),Czechia (54%),Switzerland (70%)
 M73,A2(Czechia),B2(Canada),alt,Canada (62%),Canada (65%),Czechia (55%),Czechia (100%),Canada (62%)
 
+M74,E1(Germany),ABCDF3(Morocco),primary,Germany (61%),Germany (64%),Morocco (53%),Germany (50%),Germany (61%)
 M74,E1(Germany),ABCDF3(Scotland),primary,Germany (69%),Germany (71%),Germany (54%),Germany (97%),Germany (69%)
-M74,E1(Germany),ABCDF3(Morocco),alt,Germany (61%),Germany (64%),Morocco (53%),Germany (50%),Germany (61%)
 M74,E1(Ecuador),ABCDF3(Morocco),alt,Ecuador (62%),Ecuador (66%),Morocco (62%),Ecuador (50%),Ecuador (62%)
 M74,E1(Ecuador),ABCDF3(Scotland),alt,Ecuador (68%),Ecuador (72%),Scotland (54%),Scotland (100%),Ecuador (68%)
 
@@ -21,9 +21,9 @@ M76,C1(Brazil),F2(Netherlands),alt,Netherlands (52%),Brazil (50%),Netherlands (6
 M76,C1(Morocco),F2(Netherlands),alt,Netherlands (63%),Netherlands (66%),Morocco (52%),Netherlands (93%),Netherlands (63%)
 M76,C1(Morocco),F2(Japan),alt,Japan (60%),Japan (62%),Morocco (52%),Morocco (50%),Japan (60%)
 
+M77,I1(France),CDFGH3(United States),primary,France (76%),France (78%),France (64%),France (64%),France (76%)
 M77,I1(France),CDFGH3(Paraguay),primary,France (76%),France (78%),France (62%),France (77%),France (76%)
-M77,I1(France),CDFGH3(United States),alt,France (76%),France (78%),France (64%),France (64%),France (76%)
-M77,I1(France),CDFGH3(Australia),alt,France (79%),France (84%),France (53%),France (96%),France (79%)
+M77,I1(France),CDFGH3(Australia),primary,France (79%),France (84%),France (53%),France (96%),France (79%)
 M77,I1(Norway),CDFGH3(United States),alt,Norway (63%),Norway (62%),Norway (67%),United States (88%),Norway (63%)
 M77,I1(Norway),CDFGH3(Paraguay),alt,Norway (63%),Norway (62%),Norway (66%),Norway (50%),Norway (63%)
 M77,I1(Norway),CDFGH3(Australia),alt,Norway (67%),Norway (69%),Norway (56%),Norway (89%),Norway (67%)
@@ -35,24 +35,24 @@ M78,E2(Germany),I2(Senegal),alt,Germany (57%),Germany (58%),Germany (52%),German
 M78,E2(Ecuador),I2(France),alt,France (66%),France (67%),France (60%),France (65%),France (66%)
 M78,E2(Ecuador),I2(Senegal),alt,Ecuador (57%),Ecuador (60%),Senegal (57%),Senegal (100%),Ecuador (57%)
 
+M79,A1(Mexico),CEFHI3(Norway),primary,Mexico (53%),Mexico (57%),Norway (67%),Mexico (66%),Mexico (53%)
 M79,A1(Mexico),CEFHI3(Senegal),primary,Mexico (60%),Mexico (64%),Senegal (61%),Mexico (100%),Mexico (60%)
-M79,A1(Mexico),CEFHI3(Norway),alt,Mexico (53%),Mexico (57%),Norway (67%),Mexico (66%),Mexico (53%)
 
 M80,L1(England),EHIJK3(Uzbekistan),primary,England (79%),England (83%),England (58%),England (50%),England (79%)
-M80,L1(England),EHIJK3(DR Congo),alt,England (84%),England (88%),England (58%),England (50%),England (84%)
+M80,L1(England),EHIJK3(DR Congo),primary,England (84%),England (88%),England (58%),England (50%),England (84%)
 M80,L1(Croatia),EHIJK3(Uzbekistan),alt,Croatia (72%),Croatia (75%),Croatia (57%),Croatia (50%),Croatia (72%)
 M80,L1(Croatia),EHIJK3(DR Congo),alt,Croatia (77%),Croatia (81%),Croatia (57%),Croatia (50%),Croatia (77%)
 
+M81,D1(Turkey),BEFIJ3(Austria),primary,Turkey (56%),Turkey (57%),Austria (52%),Turkey (58%),Turkey (56%)
 M81,D1(Turkey),BEFIJ3(Algeria),primary,Turkey (66%),Turkey (69%),Algeria (53%),Algeria (76%),Turkey (66%)
-M81,D1(Turkey),BEFIJ3(Austria),alt,Turkey (56%),Turkey (57%),Austria (52%),Turkey (58%),Turkey (56%)
-M81,D1(Turkey),BEFIJ3(Jordan),alt,Turkey (73%),Turkey (76%),Turkey (54%),Turkey (50%),Turkey (73%)
+M81,D1(Turkey),BEFIJ3(Jordan),primary,Turkey (73%),Turkey (76%),Turkey (54%),Turkey (50%),Turkey (73%)
 M81,D1(United States),BEFIJ3(Austria),alt,Austria (52%),United States (50%),Austria (62%),Austria (89%),Austria (52%)
 M81,D1(United States),BEFIJ3(Algeria),alt,United States (59%),United States (63%),Algeria (62%),United States (100%),United States (59%)
 M81,D1(United States),BEFIJ3(Jordan),alt,United States (66%),United States (70%),Jordan (56%),United States (50%),United States (66%)
 
+M82,G1(Belgium),AEHIJ3(South Korea),primary,Belgium (65%),Belgium (68%),Belgium (50%),Belgium (96%),Belgium (65%)
 M82,G1(Belgium),AEHIJ3(Czechia),primary,Belgium (69%),Belgium (71%),Belgium (57%),Belgium (71%),Belgium (69%)
-M82,G1(Belgium),AEHIJ3(South Korea),alt,Belgium (65%),Belgium (68%),Belgium (50%),Belgium (96%),Belgium (65%)
-M82,G1(Belgium),AEHIJ3(South Africa),alt,Belgium (84%),Belgium (89%),Belgium (53%),Belgium (50%),Belgium (84%)
+M82,G1(Belgium),AEHIJ3(South Africa),primary,Belgium (84%),Belgium (89%),Belgium (53%),Belgium (50%),Belgium (84%)
 M82,G1(Iran),AEHIJ3(South Korea),alt,Iran (51%),Iran (51%),South Korea (51%),Iran (52%),Iran (51%)
 M82,G1(Iran),AEHIJ3(Czechia),alt,Iran (54%),Iran (54%),Iran (55%),Iran (50%),Iran (54%)
 M82,G1(Iran),AEHIJ3(South Africa),alt,Iran (76%),Iran (80%),Iran (51%),Iran (50%),Iran (76%)
@@ -67,17 +67,17 @@ M83,K2(Colombia),L2(Panama),alt,Colombia (74%),Colombia (80%),Panama (59%),Colom
 M84,H1(Spain),J2(Austria),primary,Spain (81%),Spain (86%),Spain (53%),Spain (89%),Spain (81%)
 M84,H1(Spain),J2(Algeria),alt,Spain (85%),Spain (91%),Spain (53%),Spain (100%),Spain (85%)
 
+M85,B1(Switzerland),EFGIJ3(Iran),primary,Switzerland (65%),Switzerland (68%),Switzerland (51%),Switzerland (50%),Switzerland (65%)
 M85,B1(Switzerland),EFGIJ3(Egypt),primary,Switzerland (71%),Switzerland (75%),Egypt (52%),Switzerland (100%),Switzerland (71%)
-M85,B1(Switzerland),EFGIJ3(Iran),alt,Switzerland (65%),Switzerland (68%),Switzerland (51%),Switzerland (50%),Switzerland (65%)
-M85,B1(Switzerland),EFGIJ3(New Zealand),alt,Switzerland (80%),Switzerland (86%),New Zealand (56%),Switzerland (50%),Switzerland (80%)
+M85,B1(Switzerland),EFGIJ3(New Zealand),primary,Switzerland (80%),Switzerland (86%),New Zealand (56%),Switzerland (50%),Switzerland (80%)
 M85,B1(Canada),EFGIJ3(Iran),alt,Canada (58%),Canada (61%),Iran (60%),Iran (57%),Canada (58%)
 M85,B1(Canada),EFGIJ3(Egypt),alt,Canada (65%),Canada (70%),Egypt (63%),Egypt (100%),Canada (65%)
 M85,B1(Canada),EFGIJ3(New Zealand),alt,Canada (75%),Canada (82%),New Zealand (67%),Canada (100%),Canada (75%)
 
 M86,J1(Argentina),H2(Uruguay),primary,Argentina (71%),Argentina (73%),Argentina (56%),Argentina (74%),Argentina (71%)
 
+M87,K1(Portugal),DEIJL3(Croatia),primary,Portugal (59%),Portugal (61%),Croatia (55%),Portugal (67%),Portugal (59%)
 M87,K1(Portugal),DEIJL3(Panama),primary,Portugal (76%),Portugal (81%),Panama (51%),Portugal (100%),Portugal (76%)
-M87,K1(Portugal),DEIJL3(Croatia),alt,Portugal (59%),Portugal (61%),Croatia (55%),Portugal (67%),Portugal (59%)
 M87,K1(Colombia),DEIJL3(Croatia),alt,Colombia (57%),Colombia (60%),Croatia (63%),Croatia (100%),Colombia (57%)
 M87,K1(Colombia),DEIJL3(Panama),alt,Colombia (74%),Colombia (80%),Panama (59%),Colombia (92%),Colombia (74%)
 
