@@ -78,7 +78,7 @@ public class MatchResolver {
         DisagreeMapMapper disagreeMapMapper = new DisagreeMapMapper();
         PredictionScorer predictionScorer = new PredictionScorer(eloCalculator, headToHeadCalculator);
 
-        Last32LineBuilder last32LineBuilder = new Last32LineBuilder(displayBuilder, pathCalculator, eloCalculator);
+        Last32LineBuilder last32LineBuilder = new Last32LineBuilder(displayBuilder, pathCalculator, eloCalculator, thirdPlaceResolver);
         Last16LineBuilder last16LineBuilder = new Last16LineBuilder(displayBuilder, pathCalculator, eloCalculator);
         Last8LineBuilder last8LineBuilder = new Last8LineBuilder(pathCalculator, eloCalculator);
         Last4LineBuilder last4LineBuilder = new Last4LineBuilder(pathCalculator, eloCalculator);
