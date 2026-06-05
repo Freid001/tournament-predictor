@@ -168,14 +168,24 @@ public class StartHandler {
         int squadDepthIdx = startIndexes.getOrDefault("squad_depth", -1);
         int squadQualityIdx = startIndexes.getOrDefault("squad_quality", -1);
 
-        Map<String, Integer> eloRatings = loader.loadElo();
-        Path historyDir = projectRoot.resolve("data").resolve("elo").resolve("history");
+        Map<String, Integer> eloRatings = loader.loadEloForTournament(tournament);
+        Path historyDir = loader.historyDirForTournament(tournament);
+        int effectiveQualSinceYear = loader.resolveSnapshotBackedSetting(tournament,
+                "qual.form.since.year", "qual_form_since", qualFormSinceYear);
+        int effectiveQualUntilYear = loader.resolveSnapshotBackedSetting(tournament,
+                "qual.form.until.year", "qual_form_until", qualFormUntilYear);
+        int effectivePreTournamentSinceYear = loader.resolveSnapshotBackedSetting(tournament,
+                "pre.tournament.form.since.year", "pre_tournament_form_since", preTournamentFormSinceYear);
+        int effectivePreTournamentUntilYear = loader.resolveSnapshotBackedSetting(tournament,
+                "pre.tournament.form.until.year", "pre_tournament_form_until", preTournamentFormUntilYear);
+
         QualificationFormCalculator qualCalc = new QualificationFormCalculator(
                 historyDir,
-                qualFormSinceYear, qualFormUntilYear, qualFormEloMax);
+                effectiveQualSinceYear, effectiveQualUntilYear, qualFormEloMax);
         QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
                 historyDir,
-                0, 9999, preTournamentFormEloMax, Set.of("F"), 5);
+                effectivePreTournamentSinceYear, effectivePreTournamentUntilYear,
+                preTournamentFormEloMax, Set.of("F"), 5);
 
         Map<String, List<String[]>> groups = new LinkedHashMap<>();
         for (int i = 1; i < startLines.size(); i++) {

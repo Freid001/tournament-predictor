@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Computes current form scores from ELO history TSV files, using selected
  * match types between sinceYear and untilYear (inclusive).
- * If maxGames > 0, only the most recent maxGames matches are used (ignores year filter).
+ * If maxGames > 0, the year filter is applied first, then the most recent maxGames matches are used.
  * Host nations with no qualifying matches will have no data (hasData() returns false).
  * Score formula: 60% PPG + 20% goals scored per game + 20% inverted goals conceded per game.
  */
@@ -44,7 +44,7 @@ public class QualificationFormCalculator {
                         if (cols.length < 8) continue;
                         int year;
                         try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
-                        if (maxGames == 0 && (year < sinceYear || year > untilYear)) continue;
+                        if (year < sinceYear || year > untilYear) continue;
                         if (!matchTypes.contains(cols[7].trim())) continue;
                         matched.add(cols);
                     }

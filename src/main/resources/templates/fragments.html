@@ -52,6 +52,15 @@
 <div th:fragment="editLink" class="mb-3 text-end">
     <a th:if="${editUrl != null}" th:href="${editUrl}"
        class="btn btn-sm btn-outline-secondary">Edit</a>
+    <script th:if="${editUrl != null}" th:inline="javascript">
+      document.addEventListener('keydown', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key && e.key.toLowerCase() === 'e') {
+          e.preventDefault();
+          location.href = /*[[${editUrl}]]*/ '#';
+        }
+      });
+    </script>
 </div>
 
 <!--

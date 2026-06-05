@@ -75,7 +75,7 @@ public class Last32Handler {
 
         Files.createDirectories(matchupDir);
         List<String> allLines = last32LineBuilder.buildLast32Lines(groups, groupWinner, runnerUp, thirdPlace,
-                eloRatings, brackets);
+                eloRatings, brackets, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> detailed = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedDetailed = csvHelper.sortGroupsPrimaryFirst(detailed);

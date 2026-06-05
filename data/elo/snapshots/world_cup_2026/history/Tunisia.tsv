@@ -1,0 +1,48 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	24	Tunisia	Libya	3	0	FQ		4	1749	1345	+1	0	34	121
+2023	03	28	Libya	Tunisia	0	1	FQ		-6	1339	1755	0	+1	121	33
+2023	06	17	Equatorial Guinea	Tunisia	1	0	FQ		30	1498	1725	+6	−1	81	36
+2023	06	20	Algeria	Tunisia	1	1	F		-3	1711	1728	0	+1	40	36
+2023	09	07	Tunisia	Botswana	3	0	FQ		4	1732	1348	−1	−1	36	117
+2023	09	12	Egypt	Tunisia	1	3	F		-17	1669	1749	−2	+3	48	32
+2023	10	13	South Korea	Tunisia	4	0	F		13	1778	1736	+1	−3	28	35
+2023	10	17	Japan	Tunisia	2	0	F		6	1900	1730	0	0	14	37
+2023	11	17	Tunisia	Sao Tome and Principe	4	0	WQ		1	1731	1063	0	0	37	179
+2023	11	21	Malawi	Tunisia	0	1	WQ		-7	1348	1738	−2	+2	118	36
+2024	01	06	Tunisia	Mauritania	0	0	F		-9	1729	1399	−2	+2	38	104
+2024	01	10	Tunisia	Cape Verde	2	0	F		4	1733	1475	+2	−1	36	88
+2024	01	16	Namibia	Tunisia	1	0	AR	CI	44	1428	1689	+10	−9	99	46
+2024	01	20	Mali	Tunisia	1	1	AR	CI	3	1646	1686	0	0	51	46
+2024	01	24	South Africa	Tunisia	0	0	AR	CI	12	1510	1674	+5	0	77	45
+2024	03	23	Croatia	Tunisia	0	0	FFC	EG	-10	1941	1684	−1	0	12	45
+2024	03	26	New Zealand	Tunisia	0	0	FFC	EG	7	1525	1677	0	0	75	45
+2024	06	05	Tunisia	Equatorial Guinea	1	0	WQ		9	1686	1546	0	−2	45	71
+2024	06	09	Namibia	Tunisia	0	0	WQ	ZA	15	1374	1671	+6	−1	109	45
+2024	09	05	Tunisia	Madagascar	1	0	FQ		3	1674	1323	0	−2	48	131
+2024	09	08	Gambia	Tunisia	1	2	FQ	MA	-5	1342	1679	−7	+1	129	48
+2024	10	11	Tunisia	Comoros	0	1	FQ		-37	1642	1379	−5	+13	54	111
+2024	10	15	Comoros	Tunisia	1	1	FQ	CI	13	1392	1629	+3	0	108	55
+2024	11	14	Tunisia	Madagascar	3	2	FQ	ZA	5	1634	1301	0	−1	55	135
+2024	11	18	Tunisia	Gambia	0	1	FQ		-36	1598	1378	−5	+7	60	116
+2025	03	19	Liberia	Tunisia	0	1	WQ		-8	1257	1606	0	+1	150	58
+2025	03	24	Tunisia	Malawi	2	0	WQ		5	1611	1279	+1	−1	58	143
+2025	06	02	Tunisia	Burkina Faso	2	0	F		7	1618	1492	+2	−1	56	83
+2025	06	06	Morocco	Tunisia	2	0	F		5	1811	1613	+1	−2	25	58
+2025	09	04	Tunisia	Liberia	3	0	WQ		5	1618	1258	−1	0	59	149
+2025	09	08	Equatorial Guinea	Tunisia	0	1	WQ		-18	1465	1636	−3	+5	87	54
+2025	10	10	Tunisia	Sao Tome and Principe	6	0	WQ		1	1637	1024	−1	0	55	183
+2025	10	13	Tunisia	Namibia	3	0	WQ		6	1643	1327	0	0	55	129
+2025	11	12	Tunisia	Mauritania	1	1	F		-8	1635	1350	0	+7	55	117
+2025	11	14	Tunisia	Jordan	3	2	F		7	1642	1609	+1	−4	55	62
+2025	11	18	Brazil	Tunisia	1	1	F	FR	-8	1978	1650	0	+2	6	52
+2025	12	01	Syria	Tunisia	1	0	ARC	QA	30	1487	1620	+5	−6	83	58
+2025	12	04	Palestine	Tunisia	2	2	ARC	QA	8	1483	1612	0	−1	85	60
+2025	12	07	Qatar	Tunisia	0	3	ARC		-29	1425	1641	−6	+7	96	54
+2025	12	18	Tunisia	Botswana	2	1	F		2	1643	1317	+1	0	54	132
+2025	12	23	Tunisia	Uganda	3	1	AR	MA	17	1660	1416	+2	−5	52	100
+2025	12	27	Nigeria	Tunisia	3	2	AR	MA	27	1654	1633	+7	−5	53	57
+2025	12	30	Tanzania	Tunisia	1	1	AR	MA	18	1342	1615	+9	−3	120	60
+2026	01	03	Mali	Tunisia	1	1	AR	MA	1	1600	1614	0	0	63	61
+2026	03	28	Tunisia	Haiti	1	0	FT	CA	12	1626	1530	0	−4	61	79
+2026	03	31	Canada	Tunisia	0	0	FT		-10	1784	1636	0	+3	25	58
+2026	06	01	Austria	Tunisia	1	0	F		3	1830	1633	0	−1	23	59

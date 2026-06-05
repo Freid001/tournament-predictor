@@ -39,7 +39,7 @@ import java.util.stream.Stream;
 
 @Controller
 public class WebController {
-    private static final Set<String> RUN_MODES = Set.of("start", "groups", "last_32", "last_16", "last_8", "last_4", "final");
+    private static final Set<String> RUN_MODES = Set.of("snapshot-refresh", "start", "groups", "last_32", "last_16", "last_8", "last_4", "final");
     private static final Set<String> ROUND_NAMES = Set.of("groups", "groups_match", "last_32", "last_32_match", "last_16", "last_16_match", "last_8", "last_8_match", "last_4", "last_4_match", "final", "final_match");
     private static final Set<String> RESET_STEPS = Set.of("groups", "last_32", "last_16", "last_8", "last_4", "final");
     private static final CSVFormat CSV = CSVFormat.DEFAULT.builder()
@@ -146,9 +146,16 @@ public class WebController {
         model.addAttribute("tournamentLabel", displayTournament(safeTournament));
         model.addAttribute("pageTitle", "Edit Group Setup");
         model.addAttribute("prevNavUrl", null);
+        model.addAttribute("prevNavEnabled", false);
         model.addAttribute("nextNavUrl", "/view/start?tournament=" + safeTournament);
         model.addAttribute("nextNavLabel", "View Setup →");
         model.addAttribute("nextNavEnabled", Files.exists(predictionFile(safeTournament, "start.csv")));
+        model.addAttribute("hasPrevRound", false);
+        model.addAttribute("prevViewUrl", "#");
+        model.addAttribute("prevViewEnabled", false);
+        model.addAttribute("hasNextRound", true);
+        model.addAttribute("nextViewUrl", "/view/start?tournament=" + safeTournament);
+        model.addAttribute("nextViewEnabled", Files.exists(predictionFile(safeTournament, "start.csv")));
         model.addAttribute("canNextRun", false);
         model.addAttribute("editUrl", null);
         model.addAttribute("rows", rows);
@@ -300,9 +307,17 @@ public class WebController {
             model.addAttribute("hasPrevView", prevExists);
             model.addAttribute("prevNavUrl", prevExists ? "/view/" + editPrevRound + "?tournament=" + safeTournament : null);
             model.addAttribute("prevNavLabel", "← " + displayMode(editPrevRound));
+            model.addAttribute("prevNavEnabled", prevExists);
+            model.addAttribute("hasPrevRound", true);
+            model.addAttribute("prevViewUrl", "/view/" + editPrevRound + "?tournament=" + safeTournament);
+            model.addAttribute("prevViewEnabled", prevExists);
         } else {
             model.addAttribute("hasPrevView", false);
             model.addAttribute("prevNavUrl", null);
+            model.addAttribute("prevNavEnabled", false);
+            model.addAttribute("hasPrevRound", false);
+            model.addAttribute("prevViewUrl", "#");
+            model.addAttribute("prevViewEnabled", false);
         }
 
         String currentViewRound = viewRoundForEdit(safeRound);
@@ -311,9 +326,17 @@ public class WebController {
             model.addAttribute("hasCurrentView", cvExists);
             model.addAttribute("nextNavUrl", cvExists ? "/view/" + currentViewRound + "?tournament=" + safeTournament : null);
             model.addAttribute("nextNavLabel", displayViewMode(currentViewRound) + " →");
+            model.addAttribute("nextNavEnabled", cvExists);
+            model.addAttribute("hasNextRound", true);
+            model.addAttribute("nextViewUrl", "/view/" + currentViewRound + "?tournament=" + safeTournament);
+            model.addAttribute("nextViewEnabled", cvExists);
         } else {
             model.addAttribute("hasCurrentView", false);
             model.addAttribute("nextNavUrl", null);
+            model.addAttribute("nextNavEnabled", false);
+            model.addAttribute("hasNextRound", false);
+            model.addAttribute("nextViewUrl", "#");
+            model.addAttribute("nextViewEnabled", false);
         }
         model.addAttribute("canNextRun", false);
         model.addAttribute("editUrl", null);
@@ -577,6 +600,7 @@ public class WebController {
 
     private List<StageView> buildStages(String tournament) {
         boolean startExists = Files.exists(predictionFile(tournament, "start.csv"));
+        boolean snapshotExists = Files.exists(projectRoot.resolve("data").resolve("elo").resolve("snapshots").resolve(tournament).resolve("teams.csv"));
         boolean groupsExists = Files.exists(predictionFile(tournament, "groups.csv"));
         boolean last32PredExists = Files.exists(predictionFile(tournament, "last_32.csv"));
         boolean last32MatchExists = Files.exists(matchupFile(tournament, "last_32.csv"));
@@ -590,6 +614,13 @@ public class WebController {
         boolean finalMatchExists = Files.exists(matchupFile(tournament, "final.csv"));
 
         List<StageView> stages = new ArrayList<>();
+        stages.add(new StageView("Tournament Snapshot", "Freeze ELO ratings and recent history for only this tournament's teams.",
+                snapshotExists ? new StageStatus("❄", "Frozen", "info") : status(false, startExists),
+                startExists, "snapshot-refresh", "Refresh", "btn-warning",
+                false, null,
+                false, null,
+                false, null,
+                false, null));
         stages.add(new StageView("Group Setup", "Edit teams, host status, injury and heat levels. Rankings are generated automatically on save.",
                 status(groupsExists, startExists),
                 false, null,
@@ -970,6 +1001,7 @@ public class WebController {
 
     private String displayMode(String mode) {
         return switch (mode) {
+            case "snapshot-refresh" -> "Tournament Snapshot";
             case "start" -> "Group Setup";
             case "groups_match" -> "Group Rankings";
             case "groups" -> "Group Picks";
@@ -1139,6 +1171,8 @@ public class WebController {
         private final StageStatus status;
         private final boolean canRun;
         private final String runMode;
+        private final String runLabel;
+        private final String runButtonClass;
         private final boolean canEdit;
         private final String editUrl;
         private final boolean canView;
@@ -1150,15 +1184,24 @@ public class WebController {
         private final String resetUrl;
 
         public StageView(String label, String description, StageStatus status, boolean canRun, String runMode, boolean canEdit, String editUrl, boolean canView, String viewUrl, boolean canReset, String resetUrl) {
-            this(label, description, status, canRun, runMode, canEdit, editUrl, canView, viewUrl, false, null, null, canReset, resetUrl);
+            this(label, description, status, canRun, runMode, null, null, canEdit, editUrl, canView, viewUrl, false, null, null, canReset, resetUrl);
         }
 
         public StageView(String label, String description, StageStatus status, boolean canRun, String runMode, boolean canEdit, String editUrl, boolean canView, String viewUrl, boolean canView2, String viewUrl2, String viewLabel2, boolean canReset, String resetUrl) {
+            this(label, description, status, canRun, runMode, null, null, canEdit, editUrl, canView, viewUrl, canView2, viewUrl2, viewLabel2, canReset, resetUrl);
+        }
+
+        public StageView(String label, String description, StageStatus status, boolean canRun, String runMode,
+                         String runLabel, String runButtonClass, boolean canEdit, String editUrl,
+                         boolean canView, String viewUrl, boolean canView2, String viewUrl2,
+                         String viewLabel2, boolean canReset, String resetUrl) {
             this.label = label;
             this.description = description;
             this.status = status;
             this.canRun = canRun;
             this.runMode = runMode;
+            this.runLabel = runLabel != null ? runLabel : "Review";
+            this.runButtonClass = runButtonClass != null ? runButtonClass : "btn-primary";
             this.canEdit = canEdit;
             this.editUrl = editUrl;
             this.canView = canView;
@@ -1175,6 +1218,8 @@ public class WebController {
         public StageStatus getStatus() { return status; }
         public boolean isCanRun() { return canRun; }
         public String getRunMode() { return runMode; }
+        public String getRunLabel() { return runLabel; }
+        public String getRunButtonClass() { return runButtonClass; }
         public boolean isCanEdit() { return canEdit; }
         public String getEditUrl() { return editUrl; }
         public boolean isCanView() { return canView; }
@@ -1392,25 +1437,32 @@ public class WebController {
             return HtmlReporter.buildTeamBreakdownHtml(team, b);
         }
 
+        public String getGroupWinnerBadgeHtml() {
+            return pickBadge(groupWinner, "Group Winner", "Winner Contender", "#FFD700", "#000");
+        }
+
+        public String getRunnerUpBadgeHtml() {
+            return pickBadge(runnerUp, "Runner-up", "Runner-up Contender", "#C0C0C0", "#000");
+        }
+
+        public String getThirdPlaceBadgeHtml() {
+            return pickBadge(thirdPlace, "Best 3rd", "3rd-place Contender", "#CD7F32", "#fff");
+        }
+
         public String getPositionBadgeHtml() {
-            int pos = 1;
-            if (predictedPosition != null && !predictedPosition.isBlank()) {
-                try { pos = Integer.parseInt(predictedPosition.trim().split("[^0-9]")[0]); } catch (NumberFormatException ignored) {}
-            }
-            String label = switch (pos) {
-                case 1 -> "Group Winner";
-                case 2 -> "Runner-up";
-                case 3 -> "Best 3rd";
-                default -> pos + "th";
-            };
-            String style = switch (pos) {
-                case 1 -> "background-color:#FFD700;color:#000";
-                case 2 -> "background-color:#C0C0C0;color:#000";
-                case 3 -> "background-color:#CD7F32;color:#fff";
-                default -> "background-color:#6c757d;color:#fff";
-            };
-            String tooltip = "Predicted group stage finishing position based on adjusted ELO ranking.";
-            return "<span class=\"badge\" style=\"" + style + "\" title=\"" + tooltip + "\">" + escapeHtml(label) + "</span>";
+            return getGroupWinnerBadgeHtml() + " " + getRunnerUpBadgeHtml() + " " + getThirdPlaceBadgeHtml();
+        }
+
+        private static String pickBadge(String value, String yesLabel, String maybeLabel, String background, String color) {
+            if (value == null || value.isBlank() || "no".equalsIgnoreCase(value)) return "";
+            boolean maybe = "maybe".equalsIgnoreCase(value);
+            String label = maybe ? maybeLabel : yesLabel;
+            String style = maybe
+                    ? "border:1px solid " + background + ";color:#212529;background-color:transparent"
+                    : "background-color:" + background + ";color:" + color;
+            String tooltip = maybe ? "Possible group outcome from manual picks." : "Selected group outcome from manual picks.";
+            return "<span class=\"badge\" style=\"" + style + "\" title=\"" + tooltip + "\">"
+                    + escapeHtml(label) + "</span>";
         }
     }
 

@@ -111,6 +111,9 @@ public class PredictionConfig {
     @Value("${path.fatigue.elo.factor:12}")
     private int pathFatigueEloFactor;
 
+    @Value("${path.fatigue.stage.group.multiplier:0.25}")
+    private double pathFatigueStageMultGroup;
+
     @Value("${path.fatigue.stage.last32.multiplier:0.5}")
     private double pathFatigueStageMultLast32;
 
@@ -162,6 +165,7 @@ public class PredictionConfig {
 
     public int getPathFatigueTournamentAvgElo() { return pathFatigueTournamentAvgElo; }
     public int getPathFatigueEloFactor() { return pathFatigueEloFactor; }
+    public double getPathFatigueStageMultGroup() { return pathFatigueStageMultGroup; }
     public double getPathFatigueStageMultLast32() { return pathFatigueStageMultLast32; }
     public double getPathFatigueStageMultLast16() { return pathFatigueStageMultLast16; }
     public double getPathFatigueStageMultLast8() { return pathFatigueStageMultLast8; }

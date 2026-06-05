@@ -1,0 +1,33 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	23	Bosnia and Herzegovina	Iceland	3	0	EQ		18	1634	1517	+5	−4	54	78
+2023	03	26	Slovakia	Bosnia and Herzegovina	2	0	EQ		27	1594	1607	+4	−5	63	59
+2023	06	17	Portugal	Bosnia and Herzegovina	3	0	EQ		4	2008	1603	0	−1	5	61
+2023	06	20	Bosnia and Herzegovina	Luxembourg	0	2	EQ		-49	1554	1483	−7	+11	69	85
+2023	09	08	Bosnia and Herzegovina	Liechtenstein	2	1	EQ		1	1555	965	+1	0	68	191
+2023	09	11	Iceland	Bosnia and Herzegovina	1	0	EQ		19	1494	1536	+5	−3	82	71
+2023	10	13	Liechtenstein	Bosnia and Herzegovina	0	2	EQ		-4	960	1540	0	0	192	71
+2023	10	16	Bosnia and Herzegovina	Portugal	0	5	EQ		-8	1532	2031	−1	+1	72	4
+2023	11	16	Luxembourg	Bosnia and Herzegovina	4	1	EQ		29	1517	1503	+9	−7	74	78
+2023	11	19	Bosnia and Herzegovina	Slovakia	1	2	EQ		-18	1485	1661	−7	+2	86	48
+2024	03	21	Bosnia and Herzegovina	Ukraine	1	2	EQ		-7	1478	1857	0	+1	87	15
+2024	06	03	England	Bosnia and Herzegovina	3	0	F		1	1999	1477	0	0	6	88
+2024	06	09	Italy	Bosnia and Herzegovina	1	0	F		1	1949	1476	0	0	12	90
+2024	09	07	Netherlands	Bosnia and Herzegovina	5	2	ENA		2	1965	1474	0	−1	8	89
+2024	09	10	Hungary	Bosnia and Herzegovina	0	0	ENA		-17	1766	1491	−5	+2	30	86
+2024	10	11	Bosnia and Herzegovina	Germany	1	2	ENA		-4	1487	1960	−1	+1	86	8
+2024	10	14	Bosnia and Herzegovina	Hungary	0	2	ENA		-15	1472	1786	0	+5	86	24
+2024	11	16	Germany	Bosnia and Herzegovina	7	0	ENA		3	1977	1469	0	0	8	86
+2024	11	19	Bosnia and Herzegovina	Netherlands	1	1	ENA		16	1485	1938	+2	−1	84	10
+2025	03	21	Romania	Bosnia and Herzegovina	0	1	WQ		-35	1684	1520	−5	+4	48	80
+2025	03	24	Bosnia and Herzegovina	Cyprus	2	1	WQ		6	1526	1297	+3	0	78	136
+2025	06	07	Bosnia and Herzegovina	San Marino	1	0	WQ		0	1526	845	0	0	76	205
+2025	06	10	Slovenia	Bosnia and Herzegovina	2	1	F		3	1752	1523	+1	+1	34	76
+2025	09	06	San Marino	Bosnia and Herzegovina	0	6	WQ		-3	842	1526	−1	+1	205	77
+2025	09	09	Bosnia and Herzegovina	Austria	1	2	WQ		-9	1517	1855	−1	+1	77	19
+2025	10	09	Cyprus	Bosnia and Herzegovina	2	2	WQ		6	1317	1511	+2	−1	133	80
+2025	10	12	Malta	Bosnia and Herzegovina	1	4	F		-10	1247	1521	0	+2	149	77
+2025	11	15	Bosnia and Herzegovina	Romania	3	1	WQ		35	1556	1642	+5	−5	73	54
+2025	11	18	Austria	Bosnia and Herzegovina	1	1	WQ		-16	1818	1572	−2	+5	23	68
+2026	03	26	Wales	Bosnia and Herzegovina	1	1	WQ		-12	1703	1584	−3	+2	45	67
+2026	03	31	Bosnia and Herzegovina	Italy	1	1	WQ		10	1594	1856	0	−2	66	21
+2026	05	29	Bosnia and Herzegovina	North Macedonia	0	0	F		-3	1591	1592	−1	+1	67	66

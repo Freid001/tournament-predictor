@@ -27,6 +27,7 @@ import com.tournamentpredictor.config.PredictionConfig;
  * Later rounds count more because teams have played more games by then and rotation
  * becomes harder:
  * <ul>
+ *   <li>group   x 0.25 -- group-stage load carried into the first knockout match</li>
  *   <li>last_32 x 0.5 -- early round, squad still fresh, bench minutes available</li>
  *   <li>last_16 x 1.0 -- baseline, first team heavily involved</li>
  *   <li>last_8  x 1.2 -- quarter-final pressure, legs heavier</li>
@@ -43,6 +44,7 @@ public class PathFatigueCalculator {
 
     private int    tournamentAvgElo       = 1850;
     private int    eloFactor              = 12;
+    private double stageMultGroup         = 0.25;
     private double stageMultLast32        = 0.5;
     private double stageMultLast16        = 1.0;
     private double stageMultLast8         = 1.2;
@@ -54,6 +56,7 @@ public class PathFatigueCalculator {
     public PathFatigueCalculator withConfig(PredictionConfig config) {
         this.tournamentAvgElo       = config.getPathFatigueTournamentAvgElo();
         this.eloFactor              = config.getPathFatigueEloFactor();
+        this.stageMultGroup         = config.getPathFatigueStageMultGroup();
         this.stageMultLast32        = config.getPathFatigueStageMultLast32();
         this.stageMultLast16        = config.getPathFatigueStageMultLast16();
         this.stageMultLast8         = config.getPathFatigueStageMultLast8();
@@ -72,12 +75,31 @@ public class PathFatigueCalculator {
     /** Stage multiplier for the round in which an opponent was beaten. */
     public double stageMultiplierForRound(String stageBeat) {
         return switch (stageBeat.toLowerCase()) {
+            case "group" -> stageMultGroup;
             case "last_32" -> stageMultLast32;
             case "last_16" -> stageMultLast16;
             case "last_8"  -> stageMultLast8;
             case "last_4"  -> stageMultLast4;
             default -> throw new IllegalArgumentException("Unknown stage: " + stageBeat);
         };
+    }
+
+    /**
+     * Group-stage contribution is one-way: hard group opponents add load, but weaker
+     * group opponents do not create a rest bonus before the knockouts.
+     */
+    public int groupStageWeightedContribution(int opponentElo) {
+        int raw = Math.max(0, rawScore(opponentElo));
+        return (int) Math.round(raw * stageMultGroup);
+    }
+
+    /**
+     * Knockout contribution is also one-way: a weak opponent can add zero load,
+     * but cannot erase fatigue already accumulated earlier in the tournament.
+     */
+    public int knockoutWeightedContribution(int opponentElo, String stageBeat) {
+        int raw = Math.max(0, rawScore(opponentElo));
+        return (int) Math.round(raw * stageMultiplierForRound(stageBeat));
     }
 
     /**

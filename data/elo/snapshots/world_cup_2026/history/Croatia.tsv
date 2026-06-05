@@ -1,0 +1,37 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	25	Croatia	Wales	1	1	EQ		-15	1935	1731	−1	+1	11	38
+2023	03	28	Turkey	Croatia	0	2	EQ		-21	1701	1956	−3	+2	43	9
+2023	06	14	Netherlands	Croatia	2	4	ENL		-56	1991	2012	−3	+5	7	4
+2023	06	18	Croatia	Spain	0	0	ENL	NL	-2	2010	1990	0	+1	4	7
+2023	09	08	Croatia	Latvia	5	0	EQ		1	2011	1331	0	−2	5	123
+2023	09	11	Armenia	Croatia	0	1	EQ		-4	1508	2015	−2	0	78	5
+2023	10	12	Croatia	Turkey	0	1	EQ		-37	1978	1742	−3	+7	8	34
+2023	10	15	Wales	Croatia	2	1	EQ		31	1705	1947	+3	−2	44	10
+2023	11	18	Latvia	Croatia	0	2	EQ		-3	1349	1950	0	0	119	11
+2023	11	21	Croatia	Armenia	1	0	EQ		1	1951	1469	0	+1	11	89
+2024	03	23	Croatia	Tunisia	0	0	FFC	EG	-10	1941	1684	−1	0	12	45
+2024	03	26	Egypt	Croatia	2	4	FFC		-11	1635	1952	−4	0	55	12
+2024	06	03	Croatia	North Macedonia	3	0	F		2	1954	1549	0	0	12	71
+2024	06	08	Portugal	Croatia	1	2	F		-14	2000	1968	−1	0	6	11
+2024	06	15	Spain	Croatia	3	0	EC	DE	37	2058	1931	+1	−2	3	13
+2024	06	19	Albania	Croatia	2	2	EC	DE	18	1634	1913	+6	0	54	13
+2024	06	24	Croatia	Italy	1	1	EC	DE	2	1915	1936	0	−1	13	12
+2024	09	05	Portugal	Croatia	2	1	ENA		12	1971	1903	+1	0	8	12
+2024	09	08	Croatia	Poland	1	0	ENA		8	1911	1747	0	−2	13	32
+2024	10	12	Croatia	Scotland	2	1	ENA		6	1917	1698	0	−1	13	45
+2024	10	15	Poland	Croatia	3	3	ENA		5	1733	1912	0	0	37	12
+2024	11	15	Scotland	Croatia	1	0	ENA		26	1734	1886	+7	0	37	12
+2024	11	18	Croatia	Portugal	1	1	ENA		0	1886	1993	0	0	12	7
+2025	03	20	Croatia	France	2	0	ENL		45	1931	2010	+3	0	11	3
+2025	03	23	France	Croatia	2	0	ENL		20	2030	1911	0	−3	3	13
+2025	06	06	Croatia	Gibraltar	7	0	WQ	PT	1	1912	1051	+1	+1	10	180
+2025	06	09	Croatia	Czechia	5	1	WQ		14	1926	1749	+1	−4	9	35
+2025	09	05	Faroe Islands	Croatia	0	1	WQ		-2	1273	1928	−1	0	147	9
+2025	09	08	Croatia	Montenegro	4	0	WQ		3	1931	1491	0	−1	9	81
+2025	10	09	Czechia	Croatia	0	0	WQ		4	1765	1927	−1	0	34	10
+2025	10	12	Croatia	Gibraltar	3	0	WQ		0	1927	1023	0	0	10	184
+2025	11	14	Croatia	Faroe Islands	3	1	WQ		1	1928	1369	0	0	10	112
+2025	11	17	Montenegro	Croatia	2	3	WQ		-4	1443	1932	−1	+1	93	9
+2026	03	26	Croatia	Colombia	2	1	F	US	12	1944	1986	+1	0	9	5
+2026	03	31	Brazil	Croatia	3	1	F	US	14	1984	1930	+2	−1	5	10
+2026	06	02	Croatia	Belgium	0	2	F		-22	1908	1888	−2	+3	12	17

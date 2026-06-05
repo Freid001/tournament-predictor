@@ -5,6 +5,7 @@ import com.tournamentpredictor.service.builder.Last32LineBuilder;
 import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.EloCalculator;
+import com.tournamentpredictor.service.util.TeamEloSnapshot;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -49,9 +50,10 @@ public class GroupsHandler {
         Map<String, String> runnerUp = loader.loadRunnerUp(tournament);
         Map<String, String> thirdPlace = loader.loadThirdPlace(tournament);
         Map<String, Integer> eloRatings = loader.loadTournamentElo(tournament);
+        Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
 
         List<String> allLines = last32LineBuilder.buildLast32Lines(groups, groupWinner, runnerUp, thirdPlace,
-                eloRatings, loader.loadBrackets(tournament));
+                eloRatings, loader.loadBrackets(tournament), snapshots);
         List<String> output = new ArrayList<>();
         output.add("match_id,team1,team2,path,elo,prediction,do_you_disagree");
         boolean addedForMatch = false;

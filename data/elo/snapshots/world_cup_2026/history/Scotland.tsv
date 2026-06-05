@@ -1,0 +1,37 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	25	Scotland	Cyprus	3	0	EQ		4	1755	1351	+1	+1	32	116
+2023	03	28	Scotland	Spain	2	0	EQ		42	1797	1964	+7	−3	25	8
+2023	06	17	Norway	Scotland	1	2	EQ		-23	1722	1820	0	+1	37	23
+2023	06	20	Scotland	Georgia	2	0	EQ		11	1831	1651	+1	−3	22	50
+2023	09	08	Cyprus	Scotland	0	3	EQ		-7	1335	1838	−2	+1	121	21
+2023	09	12	Scotland	England	1	3	F		-12	1826	2010	−3	+1	24	6
+2023	10	12	Spain	Scotland	2	0	EQ		10	2018	1816	+2	0	5	24
+2023	10	17	France	Scotland	4	1	F		3	2123	1813	0	0	2	24
+2023	11	16	Georgia	Scotland	2	2	EQ		4	1641	1809	−1	−1	50	25
+2023	11	19	Scotland	Norway	3	3	EQ		-9	1800	1755	−1	+5	25	30
+2024	03	22	Netherlands	Scotland	4	0	F		7	1977	1793	0	0	10	22
+2024	03	26	Scotland	Northern Ireland	0	1	F		-18	1775	1516	−2	+6	26	76
+2024	06	03	Scotland	Gibraltar	2	0	F	PT	0	1775	1046	0	0	26	182
+2024	06	07	Scotland	Finland	2	2	F		-6	1769	1627	−4	+1	29	56
+2024	06	14	Germany	Scotland	5	1	EC		18	1937	1751	0	−1	13	30
+2024	06	19	Scotland	Switzerland	1	1	EC	DE	7	1758	1837	0	0	31	17
+2024	06	23	Hungary	Scotland	1	0	EC	DE	24	1800	1734	+4	−5	22	36
+2024	09	05	Scotland	Poland	2	3	ENA		-26	1708	1755	−6	+9	41	30
+2024	09	08	Portugal	Scotland	2	1	ENA		4	1975	1704	0	0	7	42
+2024	10	12	Croatia	Scotland	2	1	ENA		6	1917	1698	0	−1	13	45
+2024	10	15	Scotland	Portugal	0	0	ENA		10	1708	1984	+2	0	44	6
+2024	11	15	Scotland	Croatia	1	0	ENA		26	1734	1886	+7	0	37	12
+2024	11	18	Poland	Scotland	1	2	ENA		-25	1699	1759	−4	+5	45	33
+2025	03	20	Greece	Scotland	0	1	EAB		-28	1784	1787	−9	+7	29	27
+2025	03	23	Scotland	Greece	0	3	EAB		-45	1742	1829	−7	+8	34	21
+2025	06	06	Scotland	Iceland	1	3	F		-26	1716	1557	−8	+4	43	70
+2025	06	09	Liechtenstein	Scotland	0	4	F		-1	905	1717	0	+1	201	40
+2025	09	05	Denmark	Scotland	0	0	WQ		-12	1853	1729	−3	0	19	40
+2025	09	08	Scotland	Belarus	2	0	WQ	HU	12	1741	1475	+6	−2	34	84
+2025	10	09	Scotland	Greece	3	1	WQ		26	1767	1773	+1	−4	33	30
+2025	10	12	Scotland	Belarus	2	1	WQ		4	1771	1464	+1	−1	30	87
+2025	11	15	Greece	Scotland	3	2	WQ		15	1775	1756	+2	−2	30	32
+2025	11	18	Scotland	Denmark	4	2	WQ		34	1790	1865	+5	−2	27	17
+2026	03	28	Scotland	Japan	0	1	F		-10	1780	1888	−1	+2	27	14
+2026	03	31	Ivory Coast	Scotland	1	0	F	EN	13	1676	1767	+1	−2	52	29
+2026	05	30	Scotland	Curaçao	4	1	F		3	1770	1433	+1	−1	27	91

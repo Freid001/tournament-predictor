@@ -6,7 +6,8 @@ Run modes in order to build a full bracket prediction from the group stage to th
 
 | Mode | Description | Output |
 |---|---|---|
-| `elo-refresh` | Refresh ELO ratings and all team match histories (no `--tournament` needed) | `data/elo/world.csv`, `data/elo/history/` |
+| `elo-refresh` | Refresh global ELO ratings and all team match histories (no `--tournament` needed) | `data/elo/current/world.csv`, `data/elo/current/history/` |
+| `snapshot-refresh` | Freeze ELO ratings and recent history for one tournament | `data/elo/snapshots/<t>/` |
 | `start` | Generate group rankings from `start.csv` (applies home advantage and injury adjustments) | `data/predictions/<t>/groups.csv` |
 | `groups` | Generate last_32 matchup permutations from group predictions | `data/matchups/<t>/last_32.csv` |
 | `last_32` | Score last_32 predictions, generate last_16 matchups | `data/matchups/<t>/last_16.csv` |
@@ -19,21 +20,26 @@ Run modes in order to build a full bracket prediction from the group stage to th
 
 ## Bracket walkthrough
 
-**Step 1** — Refresh ELO ratings (run once, or whenever ratings need updating):
+**Step 1** — Refresh global ELO ratings (run once, or whenever source ratings need updating):
 ```bash
 ./predict.sh --mode=elo-refresh
 ```
 
 **Step 2** — Fill in `data/predictions/world_cup_2026/start.csv` with the group teams, setting `host=yes` for the host nation and `injury_impact=0–3` for each team.
 
-**Step 3** — Generate group rankings:
+**Step 3** — Freeze the tournament snapshot. This uses `data/predictions/world_cup_2026/tournament.properties` for form windows, then copies only the selected tournament teams and recent form-window history. Future global ELO refreshes do not change this tournament unless you refresh the snapshot again:
+```bash
+./predict.sh --tournament=world_cup_2026 --mode=snapshot-refresh
+```
+
+**Step 4** — Generate group rankings:
 ```bash
 ./predict.sh --tournament=world_cup_2026 --mode=start
 ```
 
-**Step 4** — Fill in `data/predictions/world_cup_2026/groups.csv` with your group stage picks (group winners, runners-up, 3rd-place qualifiers).
+**Step 5** — Fill in `data/predictions/world_cup_2026/groups.csv` with your group stage picks (group winners, runners-up, 3rd-place qualifiers).
 
-**Step 5** — Generate all possible last_32 matchup permutations from your group picks:
+**Step 6** — Generate all possible last_32 matchup permutations from your group picks:
 ```bash
 ./predict.sh --tournament=world_cup_2026 --mode=groups
 ```

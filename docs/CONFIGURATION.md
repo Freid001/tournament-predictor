@@ -1,6 +1,6 @@
 # Configuration
 
-All prediction parameters live in `src/main/resources/application.properties`. The defaults are sensible — you only need to change these if you want to experiment with the model.
+Model defaults live in `src/main/resources/application.properties`. Tournament-specific form windows live in `data/predictions/<tournament>/tournament.properties` and are frozen into `data/elo/snapshots/<tournament>/metadata.properties` when you run `snapshot-refresh`.
 
 Win% impact shown for a 50/50 match (equal ELO teams). Formula: `1 / (1 + 10^(−delta/400)) − 50%`.
 
@@ -16,12 +16,37 @@ Game predictions are currently adjusted Elo plus knockout path fatigue, with opt
 
 | Property | Default | Description |
 |---|---|---|
-| `qual.form.since.year` | `2023` | First year of qualifying matches to include. |
-| `qual.form.until.year` | `2026` | Last year of qualifying matches to include. |
 | `qual.form.elo.max` | `100` | Max ELO bonus/penalty from qualification form (±100 ELO, **+14.0%**). Calibrated so perfect qual form exactly cancels home advantage — in practice no team scores 1.0, so the theoretical max is unreachable. |
 | `pre.tournament.form.elo.max` | `50` | Max ELO bonus/penalty from pre-tournament friendlies (±50 ELO, **+7.0%**). Set at 50% of qual form — mirrors eloratings.net K-factor ratio (qualifiers K=40, friendlies K=20). |
-| `pre.tournament.form.since.year` | `2026` | First year of pre-tournament friendlies to include. |
-| `pre.tournament.form.until.year` | `2026` | Last year of pre-tournament friendlies to include. |
+
+Tournament form windows are set per tournament, for example in `data/predictions/world_cup_2026/tournament.properties`:
+
+```properties
+qual.form.since.year=2023
+qual.form.until.year=2026
+pre.tournament.form.since.year=2026
+pre.tournament.form.until.year=2026
+```
+
+After `snapshot-refresh`, generated rankings use the frozen values in snapshot metadata, not the global defaults.
+
+
+## Signal Audit Guide
+
+Use these definitions when refreshing `data/predictions/<tournament>/start.csv` from current news.
+
+| Signal | What to look for | Do not include |
+|---|---|---|
+| `host` | Official host nations receiving genuine home-crowd/travel advantage. | Heat familiarity; use `heat_impact` for climate. |
+| `squad_age_profile` | Unusually young/inexperienced finals squads, or aging cores with several key 33+ players and recovery risk. | A single old goalkeeper or one young star. |
+| `squad_cohesion` | New coach, tactical reset, selection rows, political/federation disruption, late squad churn, poor preparation time. | Normal squad rotation or ordinary selection debate. |
+| `squad_depth` | Replacement quality after the main starters; small pools where one absence causes a big quality drop. | Missing selected-squad players themselves; use Squad Omissions or active-squad Injury. |
+| `squad_quality` | Current talent clearly above historical/base Elo, used sparingly for elite current cycles. | General reputation already priced into Elo. |
+| `squad_dropouts` | Players missing from the selected squad before the tournament: injury ruled them out, coach omission, discipline, retirement, refusal, federation dispute. | Active-squad fitness risk; use `injury_impact`. |
+| `injury_impact` | Active selected-squad players who are doubtful, limited, recently returned, managed, or carrying knocks. | Players not selected at all; use Squad Omissions. |
+| `heat_impact` | Adaptation to hot/humid/altitude venues and likely physical resilience in WC conditions. | Host status or general team quality. |
+
+A player should normally appear in only one availability signal. Neymar carrying a calf issue while selected belongs in `injury_notes`; Rodrygo missing the squad through injury belongs in `dropout_notes`/Squad Omissions.
 
 ## Group stage adjustments
 
@@ -50,15 +75,15 @@ ELO bonus when a team is adapted to extreme heat or altitude conditions.
 | `group.heat.advantage.moderate` | `18` | +18 | **+2.6%** | Team genuinely suited to difficult conditions. |
 | `group.heat.advantage.strong` | `35` | +35 | **+5.0%** | Major advantage — opposition will be severely affected. |
 
-### Squad dropout penalties
+### Squad omission/dropout penalties
 
-ELO deducted when players pull out before the tournament (separate from in-tournament injuries — coach had time to adapt).
+ELO deducted for players missing from the selected squad before the tournament: injury ruled them out, coach omission, discipline, retirement, refusal, or federation/fallout cases. This is separate from `injury_impact`, which is only for active selected-squad players with fitness risk.
 
 | Property | Default | ELO | Win% | Description |
 |---|---|---|---|---|
-| `group.squad.dropout.penalty.minor` | `18` | −18 | **−2.6%** | Fringe player or late replacement. |
-| `group.squad.dropout.penalty.significant` | `35` | −35 | **−5.0%** | Regular starter pulled out. |
-| `group.squad.dropout.penalty.critical` | `70` | −70 | **−9.9%** | Key player/captain dropout; significant tactical impact. Less than injury critical (−12.7%) because planned absences allow tactical adaptation. |
+| `group.squad.dropout.penalty.minor` | `18` | −18 | **−2.6%** | One notable selected-squad absence or fringe loss. |
+| `group.squad.dropout.penalty.significant` | `35` | −35 | **−5.0%** | Regular starter or several useful players missing from the selected squad. |
+| `group.squad.dropout.penalty.critical` | `70` | −70 | **−9.9%** | Multiple starters or a key player missing from the selected squad; lower than injury critical because the squad list is known before kickoff. |
 
 ## Squad signals
 
@@ -97,21 +122,40 @@ Applied on top of base ELO to reflect the current state of a squad independent o
 
 > Quality bonuses are intentionally small to avoid double-counting with ELO, which already prices in historical team quality.
 
+
+## Signal Interactions
+
+Opposing signals are expected when they describe different facts.
+
+| Signal | Can be offset by | Example |
+|---|---|---|
+| `squad_quality` | `squad_dropouts` / Squad Omissions | Elite selected-squad talent can remain even after major players miss the squad. |
+| `squad_quality` | `injury_impact` | Talent ceiling remains high, but active-squad fitness risk reduces reliability. |
+| `squad_quality` | `squad_depth` | Strong starters do not guarantee strong replacements. |
+| `host` | `injury_impact`, `squad_dropouts`, `squad_cohesion` | Home advantage can be cancelled by availability or preparation problems. |
+| `heat_impact` | `squad_age_profile`, `squad_depth`, path fatigue | Heat adaptation helps, but old/thin/tired teams can still fade. |
+| `qual_bonus` / `pre_tournament_bonus` | base Elo | Recent form can disagree with long-run strength. |
+| `squad_cohesion` | `squad_quality` | Talent can underperform under tactical/locker-room disruption. |
+| `squad_depth` | path fatigue | Deep benches reduce fatigue; limited/thin benches amplify it. |
+
+Current heat handling: `heat_impact` is a static tournament-context Elo overlay. It does not directly multiply path fatigue yet. A heat-fatigue interaction may be useful later, but should probably depend on actual venue/date conditions to avoid applying the same heat penalty to every knockout match.
+
 ## Tournament path fatigue
 
-Applied at each knockout round as a live ELO adjustment. See [README § knockout stage](../README.md#knockout-stage-tournament-path-fatigue) for the full formula.
+Applied at each knockout round as a live ELO adjustment. First knockout matches are seeded with group-stage load from above-average group opponents; later rounds add knockout opponents on top. See [README § knockout stage](../README.md#knockout-stage-tournament-path-fatigue) for the full formula.
 
 ### Formula constants
 
 | Property | Default | Description |
 |---|---|---|
-| `path.fatigue.tournament.avg.elo` | `1850` | Baseline "neutral" opponent ELO. Opponents above this add fatigue; below subtract it. |
+| `path.fatigue.tournament.avg.elo` | `1850` | Baseline "neutral" opponent ELO. Group opponents above this add fatigue; weaker group opponents do not create a bonus. |
 | `path.fatigue.elo.factor` | `12` | ELO cost per 100 units of weighted path pressure (−12 ELO, **−1.7%** per 100 pts). |
 
 ### Stage multipliers
 
 | Property | Default | Stage | Rationale |
 |---|---|---|---|
+| `path.fatigue.stage.group.multiplier` | `0.25` | Group | Group-stage load carried into first knockout |
 | `path.fatigue.stage.last32.multiplier` | `0.5` | Last 32 | Early round — squad still fresh |
 | `path.fatigue.stage.last16.multiplier` | `1.0` | Last 16 | Baseline |
 | `path.fatigue.stage.last8.multiplier` | `1.2` | Quarter-final | Legs heavier, rotation harder |
@@ -119,7 +163,7 @@ Applied at each knockout round as a live ELO adjustment. See [README § knockout
 
 ### Bench-depth multipliers
 
-Applied only to negative fatigue values — no effect on easy paths. This is separate from the static bench-depth penalty: the static value captures weak bench quality before kickoff, while this multiplier controls how well the bench absorbs accumulated knockout fatigue.
+Applied only to negative fatigue values — no effect on easy group loads or paths. This is separate from the static bench-depth penalty: the static value captures weak bench quality before kickoff, while this multiplier controls how well the bench absorbs accumulated knockout fatigue.
 
 | Property | Default | Fatigue effect | When to use |
 |---|---|---|---|

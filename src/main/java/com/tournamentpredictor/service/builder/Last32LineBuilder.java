@@ -4,6 +4,8 @@ import com.tournamentpredictor.loader.CsvLoader;
 import com.tournamentpredictor.service.util.DisplayBuilder;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.PathCalculator;
+import com.tournamentpredictor.service.util.PathFatigueCalculator;
+import com.tournamentpredictor.service.util.TeamEloSnapshot;
 import com.tournamentpredictor.service.util.ThirdPlaceResolver;
 
 import java.io.IOException;
@@ -16,8 +18,11 @@ import java.util.Map;
 public class Last32LineBuilder {
     private final DisplayBuilder displayBuilder;
     private final PathCalculator pathCalculator;
+    private static final String HEADER = "match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree";
+
     private final EloCalculator predictionHelper;
     private final ThirdPlaceResolver thirdPlaceResolver;
+    private final PathFatigueCalculator pathFatigueCalc;
 
     public Last32LineBuilder(DisplayBuilder displayBuilder, PathCalculator pathCalculator,
                              EloCalculator predictionHelper) {
@@ -26,15 +31,29 @@ public class Last32LineBuilder {
 
     public Last32LineBuilder(DisplayBuilder displayBuilder, PathCalculator pathCalculator,
                              EloCalculator predictionHelper, ThirdPlaceResolver thirdPlaceResolver) {
+        this(displayBuilder, pathCalculator, predictionHelper, thirdPlaceResolver, new PathFatigueCalculator());
+    }
+
+    public Last32LineBuilder(DisplayBuilder displayBuilder, PathCalculator pathCalculator,
+                             EloCalculator predictionHelper, ThirdPlaceResolver thirdPlaceResolver,
+                             PathFatigueCalculator pathFatigueCalc) {
         this.displayBuilder = displayBuilder;
         this.pathCalculator = pathCalculator;
         this.predictionHelper = predictionHelper;
         this.thirdPlaceResolver = thirdPlaceResolver;
+        this.pathFatigueCalc = pathFatigueCalc != null ? pathFatigueCalc : new PathFatigueCalculator();
     }
 
     public List<String> buildLast32Lines(Map<String, String> groups, Map<String, String> groupWinner,
                                          Map<String, String> runnerUp, Map<String, String> thirdPlace,
                                          Map<String, Integer> eloRatings, List<CsvLoader.BracketEntry> brackets) {
+        return buildLast32Lines(groups, groupWinner, runnerUp, thirdPlace, eloRatings, brackets, Map.of());
+    }
+
+    public List<String> buildLast32Lines(Map<String, String> groups, Map<String, String> groupWinner,
+                                         Map<String, String> runnerUp, Map<String, String> thirdPlace,
+                                         Map<String, Integer> eloRatings, List<CsvLoader.BracketEntry> brackets,
+                                         Map<String, TeamEloSnapshot> snapshots) {
         Map<String, String> teamGW = new HashMap<>();
         Map<String, String> teamRU = new HashMap<>();
         Map<String, String> teamTP = new HashMap<>();
@@ -58,7 +77,7 @@ public class Last32LineBuilder {
         }
 
         List<String> lines = new ArrayList<>();
-        lines.add("match_id,team1,team2,path,elo");
+        lines.add(HEADER);
         for (CsvLoader.BracketEntry bracket : brackets) {
             if (!"LAST_32".equalsIgnoreCase(bracket.stage)) {
                 continue;
@@ -92,15 +111,72 @@ public class Last32LineBuilder {
                         path = pathCalculator.computePredictedMatch(bracket.token1, display1, bracket.token2, display2,
                                 teamGW, teamRU, teamTP);
                     }
-                    String eloPrediction = predictionHelper.computeEloPrediction(team1Name, team2Name, eloRatings);
+                    GroupLoadResult groupLoad1 = groupLoadFor(team1Name, groups, eloRatings, snapshots);
+                    GroupLoadResult groupLoad2 = groupLoadFor(team2Name, groups, eloRatings, snapshots);
+                    int team1AdjustedElo = eloRatings.getOrDefault(team1Name, 0) + groupLoad1.adjustedElo;
+                    int team2AdjustedElo = eloRatings.getOrDefault(team2Name, 0) + groupLoad2.adjustedElo;
+                    String eloPrediction = predictionHelper.computeEloPredictionFromElos(team1Name, team2Name, team1AdjustedElo, team2AdjustedElo);
                     lines.add(String.join(",", bracket.matchId, displayBuilder.safe(display1),
-                            displayBuilder.safe(display2), path, eloPrediction));
+                            displayBuilder.safe(display2), path, eloPrediction,
+                            String.valueOf(groupLoad1.weightedTotal), String.valueOf(groupLoad2.weightedTotal),
+                            groupLoad1.chain, groupLoad2.chain, ""));
                 }
             }
             lines.add("");
         }
         return lines;
     }
+
+    private GroupLoadResult groupLoadFor(String teamName, Map<String, String> groups, Map<String, Integer> eloRatings,
+                                         Map<String, TeamEloSnapshot> snapshots) {
+        if (teamName == null || teamName.isBlank()) {
+            return new GroupLoadResult(0, 0, "");
+        }
+        String group = groupForTeam(teamName, groups);
+        if (group.isEmpty()) {
+            return new GroupLoadResult(0, 0, "");
+        }
+
+        int weightedTotal = 0;
+        List<String> segments = new ArrayList<>();
+        for (Map.Entry<String, String> entry : groups.entrySet()) {
+            String slot = entry.getKey();
+            String opponent = entry.getValue();
+            if (slot == null || opponent == null || opponent.isBlank() || opponent.equalsIgnoreCase(teamName)) {
+                continue;
+            }
+            if (!slot.toUpperCase().startsWith(group)) {
+                continue;
+            }
+            int weighted = pathFatigueCalc.groupStageWeightedContribution(
+                    eloRatings.getOrDefault(opponent, pathFatigueCalc.getTournamentAvgElo()));
+            if (weighted <= 0) {
+                continue;
+            }
+            weightedTotal += weighted;
+            int contributionElo = pathFatigueCalc.eloAdjustmentFromWeighted(weighted);
+            segments.add("G|" + opponent + ":" + contributionElo);
+        }
+
+        int fatigue = pathFatigueCalc.eloAdjustmentFromWeighted(weightedTotal);
+        TeamEloSnapshot snapshot = snapshots != null ? snapshots.get(teamName) : null;
+        int depthLevel = snapshot != null ? snapshot.squadDepthLevel() : 0;
+        int adjustedElo = pathFatigueCalc.applyDepthMultiplier(fatigue, depthLevel);
+        return new GroupLoadResult(weightedTotal, adjustedElo, String.join(" > ", segments));
+    }
+
+    private static String groupForTeam(String teamName, Map<String, String> groups) {
+        for (Map.Entry<String, String> entry : groups.entrySet()) {
+            String team = entry.getValue();
+            if (team != null && team.equalsIgnoreCase(teamName)) {
+                String slot = entry.getKey();
+                return slot == null || slot.isBlank() ? "" : slot.substring(0, 1).toUpperCase();
+            }
+        }
+        return "";
+    }
+
+    private record GroupLoadResult(int weightedTotal, int adjustedElo, String chain) {}
 
     /**
      * Computes path for a match with a composite 3rd-place token using resolved slot assignments.

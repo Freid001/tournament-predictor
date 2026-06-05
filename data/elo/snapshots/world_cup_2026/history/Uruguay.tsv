@@ -1,0 +1,39 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	24	Japan	Uruguay	1	1	F		-1	1850	1905	0	0	17	13
+2023	03	28	South Korea	Uruguay	1	2	F		-10	1779	1915	−3	0	28	13
+2023	06	14	Uruguay	Nicaragua	4	1	F		0	1915	1278	0	0	13	141
+2023	06	20	Uruguay	Cuba	2	0	F		1	1916	1341	+1	0	12	120
+2023	09	08	Uruguay	Chile	3	1	WQ		9	1925	1698	0	−2	12	42
+2023	09	12	Ecuador	Uruguay	2	1	WQ		19	1867	1906	+1	0	16	12
+2023	10	12	Colombia	Uruguay	2	2	WQ		-8	1939	1914	0	0	11	12
+2023	10	17	Uruguay	Brazil	2	0	WQ		36	1950	2053	+4	0	9	3
+2023	11	16	Argentina	Uruguay	0	2	WQ		-52	2118	2002	−1	+2	2	7
+2023	11	21	Uruguay	Bolivia	3	0	WQ		4	2006	1611	0	−3	7	59
+2024	03	26	Ivory Coast	Uruguay	2	1	F	FR	18	1629	1988	+5	−2	56	8
+2024	05	31	Costa Rica	Uruguay	0	0	F		7	1611	1981	+1	−1	61	9
+2024	06	05	Uruguay	Mexico	4	0	F	US	10	1991	1795	+1	−2	8	23
+2024	06	23	Uruguay	Panama	3	1	CA	US	12	2003	1685	+1	−1	7	44
+2024	06	27	Uruguay	Bolivia	5	0	CA	US	8	2011	1572	+1	0	5	65
+2024	07	01	United States	Uruguay	0	1	CA		-15	1746	2026	−1	+1	31	5
+2024	07	06	Brazil	Uruguay	0	0	CA	US	0	2020	2026	0	0	6	5
+2024	07	10	Colombia	Uruguay	1	0	CA	US	24	2069	2002	+1	−1	3	6
+2024	07	13	Canada	Uruguay	2	2	CA	US	16	1755	1986	+1	−1	31	7
+2024	09	01	Guatemala	Uruguay	1	1	F	US	9	1481	1977	+1	−1	88	7
+2024	09	06	Uruguay	Paraguay	0	0	WQ		-17	1960	1678	−2	+3	9	48
+2024	09	10	Venezuela	Uruguay	0	0	WQ		5	1770	1955	+2	−1	27	10
+2024	10	11	Peru	Uruguay	1	0	WQ		28	1741	1927	+6	−2	35	12
+2024	10	15	Uruguay	Ecuador	0	0	WQ		-9	1918	1866	0	+1	11	16
+2024	11	15	Uruguay	Colombia	3	2	WQ		21	1939	2009	0	−1	11	4
+2024	11	19	Brazil	Uruguay	1	1	WQ		-9	1996	1948	+1	+1	5	9
+2025	03	21	Uruguay	Argentina	0	1	WQ		-17	1931	2125	−1	0	10	2
+2025	03	25	Bolivia	Uruguay	0	0	WQ		10	1651	1921	0	0	52	10
+2025	06	05	Paraguay	Uruguay	2	0	WQ		32	1831	1889	+7	−3	20	13
+2025	06	10	Uruguay	Venezuela	2	0	WQ		12	1901	1745	0	−3	12	36
+2025	09	04	Uruguay	Peru	3	0	WQ		13	1914	1730	+2	−1	10	39
+2025	09	09	Chile	Uruguay	0	0	WQ		7	1690	1907	−1	−1	48	11
+2025	10	10	Uruguay	Dominican Republic	1	0	F	MY	1	1908	1285	0	0	11	143
+2025	10	13	Uruguay	Uzbekistan	2	1	F	MY	5	1913	1714	0	0	12	39
+2025	11	15	Mexico	Uruguay	0	0	F		-1	1845	1914	0	+1	20	11
+2025	11	18	United States	Uruguay	5	1	F		24	1747	1890	+5	−2	34	14
+2026	03	27	England	Uruguay	1	1	F		-6	2036	1896	0	+1	4	13
+2026	03	31	Algeria	Uruguay	0	0	F	IT	4	1743	1892	0	−2	35	15

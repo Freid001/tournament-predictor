@@ -15,6 +15,7 @@ import com.tournamentpredictor.service.handler.Last32Handler;
 import com.tournamentpredictor.service.handler.Last4Handler;
 import com.tournamentpredictor.service.handler.Last8Handler;
 import com.tournamentpredictor.service.handler.StartHandler;
+import com.tournamentpredictor.service.handler.TournamentSnapshotHandler;
 import com.tournamentpredictor.service.mapper.DisagreeMapMapper;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.ConsoleReporter;
@@ -42,6 +43,7 @@ public class MatchResolver {
     private final Last4Handler last4Handler;
     private final FinalHandler finalHandler;
     private final EloRefreshHandler eloRefreshHandler;
+    private final TournamentSnapshotHandler tournamentSnapshotHandler;
     private final StartHandler startHandler;
     @Autowired
     public MatchResolver(ConsoleReporter consoleReporter, PredictionConfig predictionConfig) {
@@ -81,7 +83,7 @@ public class MatchResolver {
         DisagreeMapMapper disagreeMapMapper = new DisagreeMapMapper();
         PredictionScorer predictionScorer = new PredictionScorer(eloCalculator);
 
-        Last32LineBuilder last32LineBuilder = new Last32LineBuilder(displayBuilder, pathCalculator, eloCalculator, thirdPlaceResolver);
+        Last32LineBuilder last32LineBuilder = new Last32LineBuilder(displayBuilder, pathCalculator, eloCalculator, thirdPlaceResolver, pathFatigueCalculator);
         Last16LineBuilder last16LineBuilder = new Last16LineBuilder(displayBuilder, pathCalculator, eloCalculator, pathFatigueCalculator);
         Last8LineBuilder last8LineBuilder = new Last8LineBuilder(pathCalculator, eloCalculator, pathFatigueCalculator);
         Last4LineBuilder last4LineBuilder = new Last4LineBuilder(pathCalculator, eloCalculator, pathFatigueCalculator);
@@ -102,6 +104,7 @@ public class MatchResolver {
         this.finalHandler = new FinalHandler(loader, projectRoot, csvHelper, predictionsFileValidator,
                 disagreeMapMapper, eloCalculator, predictionScorer, finalLineBuilder, consoleReporter);
         this.eloRefreshHandler = new EloRefreshHandler(loader, projectRoot, thirdPlaceResolver, tokenResolver, displayBuilder);
+        this.tournamentSnapshotHandler = config != null ? new TournamentSnapshotHandler(loader, projectRoot, config) : null;
         this.startHandler = config != null
                 ? new StartHandler(loader, projectRoot, csvHelper, config)
                 : new StartHandler(loader, projectRoot, csvHelper);
@@ -154,7 +157,15 @@ public class MatchResolver {
             eloRefreshHandler.handle();
             return;
         }
-        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, elo-refresh");
+        if (mode.equalsIgnoreCase("snapshot-refresh") || mode.equalsIgnoreCase("snapshot")) {
+            requireTournament(mode, tournament);
+            if (tournamentSnapshotHandler == null) {
+                throw new IOException("Mode " + mode + " requires application config; run through Spring Boot CLI or UI.");
+            }
+            tournamentSnapshotHandler.handle(tournament);
+            return;
+        }
+        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, elo-refresh, snapshot-refresh");
     }
 
     private void requireTournament(String mode, String tournament) throws IOException {

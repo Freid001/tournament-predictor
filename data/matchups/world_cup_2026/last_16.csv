@@ -1,112 +1,107 @@
 match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent
-M89,W77(I1(France)),W74(E1(Germany)),predicted,France (70%),2081,37,1925,34,-37,-74,United States:0,Scotland:0
-M89,W77(I1(France)),W74(ABCDF3(Scotland)),alt,France (92%),2081,37,1770,20,-37,58,United States:0,Germany:-7
-M89,W77(I1(France)),W74(E1(Ecuador)),alt,France (72%),2081,37,1935,9,-37,-25,United States:0,South Korea:0
-M89,W77(CDFGH3(United States)),W74(E1(Germany)),alt,Germany (76%),1733,0,1925,34,58,-74,Germany:-7,Scotland:0
-M89,W77(CDFGH3(United States)),W74(ABCDF3(Scotland)),alt,United States (60%),1733,0,1770,20,58,58,Germany:-7,Germany:-7
-M89,W77(CDFGH3(United States)),W74(E1(Ecuador)),alt,Ecuador (73%),1733,0,1935,9,58,-25,Germany:-7,South Korea:0
-M89,W77(I1(Norway)),W74(E1(Germany)),alt,Norway (51%),1917,46,1925,34,47,-74,Ecuador:-6,Scotland:0
-M89,W77(I1(Norway)),W74(ABCDF3(Scotland)),alt,Norway (83%),1917,46,1770,20,47,58,Ecuador:-6,Germany:-7
-M89,W77(I1(Norway)),W74(E1(Ecuador)),alt,Norway (54%),1917,46,1935,9,47,-25,Ecuador:-6,South Korea:0
+M89,W77(I1(France)),W74(E1(Germany)),predicted,France (69%),2081,73,1925,69,76,28,G|Norway:-5 > G|Senegal:-4 > United States:0,G|Ecuador:-3 > Scotland:0
+M89,W77(I1(France)),W74(ABCDF3(Scotland)),alt,France (93%),2081,73,1770,40,76,131,G|Norway:-5 > G|Senegal:-4 > United States:0,G|Brazil:-3 > G|Morocco:-2 > Germany:-10
+M89,W77(I1(France)),W74(E1(Ecuador)),alt,France (76%),2081,73,1935,18,76,42,G|Norway:-5 > G|Senegal:-4 > United States:0,G|Germany:-5 > South Korea:0
+M89,W77(CDFGH3(United States)),W74(E1(Germany)),alt,Germany (80%),1733,0,1925,69,107,28,G|Turkey:-3 > Germany:-10,G|Ecuador:-3 > Scotland:0
+M89,W77(CDFGH3(United States)),W74(ABCDF3(Scotland)),alt,United States (58%),1733,0,1770,40,107,131,G|Turkey:-3 > Germany:-10,G|Brazil:-3 > G|Morocco:-2 > Germany:-10
+M89,W77(CDFGH3(United States)),W74(E1(Ecuador)),alt,Ecuador (74%),1733,0,1935,18,107,42,G|Turkey:-3 > Germany:-10,G|Germany:-5 > South Korea:0
+M89,W77(I1(Norway)),W74(E1(Germany)),alt,Germany (51%),1917,92,1925,69,168,28,G|France:-9 > G|Senegal:-4 > Ecuador:-7,G|Ecuador:-3 > Scotland:0
+M89,W77(I1(Norway)),W74(ABCDF3(Scotland)),alt,Norway (84%),1917,92,1770,40,168,131,G|France:-9 > G|Senegal:-4 > Ecuador:-7,G|Brazil:-3 > G|Morocco:-2 > Germany:-10
+M89,W77(I1(Norway)),W74(E1(Ecuador)),alt,Norway (57%),1917,92,1935,18,168,42,G|France:-9 > G|Senegal:-4 > Ecuador:-7,G|Germany:-5 > South Korea:0
 
-M90,W75(F1(Japan)),W73(B2(Canada)),predicted,Japan (61%),1906,39,1793,0,-3,-25,Morocco:0,South Korea:0
-M90,W75(F1(Japan)),W73(A2(South Korea)),alt,Japan (66%),1906,39,1756,31,-3,-3,Morocco:0,Canada:0
-M90,W75(F1(Japan)),W73(A2(Mexico)),alt,Japan (54%),1906,39,1867,0,-3,10,Morocco:0,Switzerland:-1
-M90,W75(F1(Japan)),W73(B2(Switzerland)),alt,Japan (57%),1906,39,1894,30,-3,-72,Morocco:0,Egypt:0
-M90,W75(F1(Japan)),W73(A2(Czechia)),alt,Japan (78%),1906,39,1733,13,-3,10,Morocco:0,Switzerland:-1
-M90,W75(C2(Morocco)),W73(A2(South Korea)),alt,Morocco (55%),1822,44,1756,31,58,-3,Germany:-7,Canada:0
-M90,W75(C2(Morocco)),W73(B2(Canada)),alt,Canada (51%),1822,44,1793,0,58,-25,Germany:-7,South Korea:0
-M90,W75(C2(Morocco)),W73(A2(Mexico)),alt,Mexico (57%),1822,44,1867,0,58,10,Germany:-7,Switzerland:-1
-M90,W75(C2(Morocco)),W73(B2(Switzerland)),alt,Switzerland (55%),1822,44,1894,30,58,-72,Germany:-7,Egypt:0
-M90,W75(C2(Morocco)),W73(A2(Czechia)),alt,Morocco (69%),1822,44,1733,13,58,10,Germany:-7,Switzerland:-1
-M90,W75(C2(Brazil)),W73(A2(South Korea)),alt,Brazil (68%),1988,4,1756,31,27,-3,Netherlands:-3,Canada:0
-M90,W75(C2(Brazil)),W73(B2(Canada)),alt,Brazil (63%),1988,4,1793,0,27,-25,Netherlands:-3,South Korea:0
-M90,W75(C2(Brazil)),W73(A2(Mexico)),alt,Brazil (57%),1988,4,1867,0,27,10,Netherlands:-3,Switzerland:-1
-M90,W75(C2(Brazil)),W73(B2(Switzerland)),alt,Brazil (59%),1988,4,1894,30,27,-72,Netherlands:-3,Egypt:0
-M90,W75(C2(Brazil)),W73(A2(Czechia)),alt,Brazil (79%),1988,4,1733,13,27,10,Netherlands:-3,Switzerland:-1
-M90,W75(C2(Scotland)),W73(A2(South Korea)),alt,South Korea (65%),1770,20,1756,31,58,-3,Germany:-7,Canada:0
-M90,W75(C2(Scotland)),W73(B2(Canada)),alt,Canada (70%),1770,20,1793,0,58,-25,Germany:-7,South Korea:0
-M90,W75(C2(Scotland)),W73(A2(Mexico)),alt,Mexico (75%),1770,20,1867,0,58,10,Germany:-7,Switzerland:-1
-M90,W75(C2(Scotland)),W73(B2(Switzerland)),alt,Switzerland (73%),1770,20,1894,30,58,-72,Germany:-7,Egypt:0
-M90,W75(C2(Scotland)),W73(A2(Czechia)),alt,Czechia (51%),1770,20,1733,13,58,10,Germany:-7,Switzerland:-1
-M90,W75(F1(Netherlands)),W73(A2(South Korea)),alt,Netherlands (64%),1961,37,1756,31,44,-3,Brazil:-5,Canada:0
-M90,W75(F1(Netherlands)),W73(B2(Canada)),alt,Netherlands (58%),1961,37,1793,0,44,-25,Brazil:-5,South Korea:0
-M90,W75(F1(Netherlands)),W73(A2(Mexico)),alt,Netherlands (51%),1961,37,1867,0,44,10,Brazil:-5,Switzerland:-1
-M90,W75(F1(Netherlands)),W73(B2(Switzerland)),alt,Netherlands (54%),1961,37,1894,30,44,-72,Brazil:-5,Egypt:0
-M90,W75(F1(Netherlands)),W73(A2(Czechia)),alt,Netherlands (76%),1961,37,1733,13,44,10,Brazil:-5,Switzerland:-1
+M90,W75(F1(Netherlands)),W73(B2(Canada)),predicted,Netherlands (68%),1961,73,1793,0,75,26,G|Japan:-4 > Morocco:-5,G|Switzerland:-3 > South Korea:0
+M90,W75(F1(Netherlands)),W73(A2(South Korea)),alt,Netherlands (71%),1961,73,1756,62,75,34,G|Japan:-4 > Morocco:-5,G|Mexico:-3 > Canada:-1
+M90,W75(F1(Netherlands)),W73(A2(Mexico)),alt,Netherlands (55%),1961,73,1867,0,75,0,G|Japan:-4 > Morocco:-5,Ivory Coast:0
+M90,W75(F1(Netherlands)),W73(B2(Switzerland)),alt,Netherlands (55%),1961,73,1894,60,75,3,G|Japan:-4 > Morocco:-5,G|Canada:0 > Egypt:0
+M90,W75(F1(Netherlands)),W73(A2(Czechia)),alt,Netherlands (81%),1961,73,1733,25,75,79,G|Japan:-4 > Morocco:-5,G|Mexico:-3 > Switzerland:-6
+M90,W75(C2(Morocco)),W73(A2(South Korea)),alt,Morocco (62%),1822,88,1756,62,101,34,G|Brazil:-3 > Netherlands:-9,G|Mexico:-3 > Canada:-1
+M90,W75(C2(Morocco)),W73(B2(Canada)),alt,Morocco (59%),1822,88,1793,0,101,26,G|Brazil:-3 > Netherlands:-9,G|Switzerland:-3 > South Korea:0
+M90,W75(C2(Morocco)),W73(A2(Mexico)),alt,Mexico (55%),1822,88,1867,0,101,0,G|Brazil:-3 > Netherlands:-9,Ivory Coast:0
+M90,W75(C2(Morocco)),W73(B2(Switzerland)),alt,Switzerland (55%),1822,88,1894,60,101,3,G|Brazil:-3 > Netherlands:-9,G|Canada:0 > Egypt:0
+M90,W75(C2(Morocco)),W73(A2(Czechia)),alt,Morocco (75%),1822,88,1733,25,101,79,G|Brazil:-3 > Netherlands:-9,G|Mexico:-3 > Switzerland:-6
+M90,W75(C2(Brazil)),W73(A2(South Korea)),alt,Brazil (66%),1988,7,1756,62,94,34,G|Morocco:-2 > Netherlands:-9,G|Mexico:-3 > Canada:-1
+M90,W75(C2(Brazil)),W73(B2(Canada)),alt,Brazil (62%),1988,7,1793,0,94,26,G|Morocco:-2 > Netherlands:-9,G|Switzerland:-3 > South Korea:0
+M90,W75(C2(Brazil)),W73(A2(Mexico)),alt,Mexico (51%),1988,7,1867,0,94,0,G|Morocco:-2 > Netherlands:-9,Ivory Coast:0
+M90,W75(C2(Brazil)),W73(B2(Switzerland)),alt,Switzerland (51%),1988,7,1894,60,94,3,G|Morocco:-2 > Netherlands:-9,G|Canada:0 > Egypt:0
+M90,W75(C2(Brazil)),W73(A2(Czechia)),alt,Brazil (77%),1988,7,1733,25,94,79,G|Morocco:-2 > Netherlands:-9,G|Mexico:-3 > Switzerland:-6
+M90,W75(F1(Japan)),W73(A2(South Korea)),alt,Japan (70%),1906,79,1756,62,90,34,G|Netherlands:-4 > Brazil:-6,G|Mexico:-3 > Canada:-1
+M90,W75(F1(Japan)),W73(B2(Canada)),alt,Japan (66%),1906,79,1793,0,90,26,G|Netherlands:-4 > Brazil:-6,G|Switzerland:-3 > South Korea:0
+M90,W75(F1(Japan)),W73(A2(Mexico)),alt,Japan (53%),1906,79,1867,0,90,0,G|Netherlands:-4 > Brazil:-6,Ivory Coast:0
+M90,W75(F1(Japan)),W73(B2(Switzerland)),alt,Japan (54%),1906,79,1894,60,90,3,G|Netherlands:-4 > Brazil:-6,G|Canada:0 > Egypt:0
+M90,W75(F1(Japan)),W73(A2(Czechia)),alt,Japan (80%),1906,79,1733,25,90,79,G|Netherlands:-4 > Brazil:-6,G|Mexico:-3 > Switzerland:-6
 
-M91,W76(C1(Brazil)),W78(I2(Norway)),predicted,Norway (55%),1988,4,1917,46,27,47,Netherlands:-3,Ecuador:-6
-M91,W76(C1(Brazil)),W78(E2(Ecuador)),alt,Ecuador (51%),1988,4,1935,9,27,-25,Netherlands:-3,South Korea:0
-M91,W76(C1(Brazil)),W78(E2(Germany)),alt,Germany (54%),1988,4,1925,34,27,-74,Netherlands:-3,Scotland:0
-M91,W76(C1(Brazil)),W78(I2(France)),alt,France (73%),1988,4,2081,37,27,-37,Netherlands:-3,United States:0
-M91,W76(C1(Brazil)),W78(I2(Senegal)),alt,Brazil (51%),1988,4,1867,29,27,20,Netherlands:-3,Mexico:-2
-M91,W76(F2(Netherlands)),W78(E2(Ecuador)),alt,Ecuador (57%),1961,37,1935,9,44,-25,Brazil:-5,South Korea:0
-M91,W76(F2(Netherlands)),W78(I2(Norway)),alt,Norway (60%),1961,37,1917,46,44,47,Brazil:-5,Ecuador:-6
-M91,W76(F2(Netherlands)),W78(E2(Germany)),alt,Germany (60%),1961,37,1925,34,44,-74,Brazil:-5,Scotland:0
-M91,W76(F2(Netherlands)),W78(I2(France)),alt,France (77%),1961,37,2081,37,44,-37,Brazil:-5,United States:0
-M91,W76(F2(Netherlands)),W78(I2(Senegal)),alt,Senegal (54%),1961,37,1867,29,44,20,Brazil:-5,Mexico:-2
-M91,W76(F2(Japan)),W78(E2(Ecuador)),alt,Ecuador (54%),1906,39,1935,9,-3,-25,Morocco:0,South Korea:0
-M91,W76(F2(Japan)),W78(I2(Norway)),alt,Norway (57%),1906,39,1917,46,-3,47,Morocco:0,Ecuador:-6
-M91,W76(F2(Japan)),W78(E2(Germany)),alt,Germany (57%),1906,39,1925,34,-3,-74,Morocco:0,Scotland:0
-M91,W76(F2(Japan)),W78(I2(France)),alt,France (75%),1906,39,2081,37,-3,-37,Morocco:0,United States:0
-M91,W76(F2(Japan)),W78(I2(Senegal)),alt,Senegal (51%),1906,39,1867,29,-3,20,Morocco:0,Mexico:-2
-M91,W76(C1(Morocco)),W78(E2(Ecuador)),alt,Ecuador (65%),1822,44,1935,9,58,-25,Germany:-7,South Korea:0
-M91,W76(C1(Morocco)),W78(I2(Norway)),alt,Norway (68%),1822,44,1917,46,58,47,Germany:-7,Ecuador:-6
-M91,W76(C1(Morocco)),W78(E2(Germany)),alt,Germany (68%),1822,44,1925,34,58,-74,Germany:-7,Scotland:0
-M91,W76(C1(Morocco)),W78(I2(France)),alt,France (83%),1822,44,2081,37,58,-37,Germany:-7,United States:0
-M91,W76(C1(Morocco)),W78(I2(Senegal)),alt,Senegal (63%),1822,44,1867,29,58,20,Germany:-7,Mexico:-2
+M91,W76(F2(Japan)),W78(I2(Norway)),predicted,Norway (54%),1906,79,1917,92,90,168,G|Netherlands:-4 > Brazil:-6,G|France:-9 > G|Senegal:-4 > Ecuador:-7
+M91,W76(C1(Brazil)),W78(E2(Ecuador)),alt,Ecuador (52%),1988,7,1935,18,94,42,G|Morocco:-2 > Netherlands:-9,G|Germany:-5 > South Korea:0
+M91,W76(C1(Brazil)),W78(I2(Norway)),alt,Norway (59%),1988,7,1917,92,94,168,G|Morocco:-2 > Netherlands:-9,G|France:-9 > G|Senegal:-4 > Ecuador:-7
+M91,W76(C1(Brazil)),W78(E2(Germany)),alt,Germany (60%),1988,7,1925,69,94,28,G|Morocco:-2 > Netherlands:-9,G|Ecuador:-3 > Scotland:0
+M91,W76(C1(Brazil)),W78(I2(France)),alt,France (77%),1988,7,2081,73,94,76,G|Morocco:-2 > Netherlands:-9,G|Norway:-5 > G|Senegal:-4 > United States:0
+M91,W76(C1(Brazil)),W78(I2(Senegal)),alt,Senegal (51%),1988,7,1867,58,94,207,G|Morocco:-2 > Netherlands:-9,G|France:-9 > G|Norway:-5 > Germany:-10
+M91,W76(F2(Japan)),W78(E2(Ecuador)),alt,Japan (53%),1906,79,1935,18,90,42,G|Netherlands:-4 > Brazil:-6,G|Germany:-5 > South Korea:0
+M91,W76(F2(Japan)),W78(E2(Germany)),alt,Germany (55%),1906,79,1925,69,90,28,G|Netherlands:-4 > Brazil:-6,G|Ecuador:-3 > Scotland:0
+M91,W76(F2(Japan)),W78(I2(France)),alt,France (74%),1906,79,2081,73,90,76,G|Netherlands:-4 > Brazil:-6,G|Norway:-5 > G|Senegal:-4 > United States:0
+M91,W76(F2(Japan)),W78(I2(Senegal)),alt,Japan (53%),1906,79,1867,58,90,207,G|Netherlands:-4 > Brazil:-6,G|France:-9 > G|Norway:-5 > Germany:-10
+M91,W76(F2(Netherlands)),W78(E2(Ecuador)),alt,Netherlands (54%),1961,73,1935,18,75,42,G|Japan:-4 > Morocco:-5,G|Germany:-5 > South Korea:0
+M91,W76(F2(Netherlands)),W78(I2(Norway)),alt,Norway (53%),1961,73,1917,92,75,168,G|Japan:-4 > Morocco:-5,G|France:-9 > G|Senegal:-4 > Ecuador:-7
+M91,W76(F2(Netherlands)),W78(E2(Germany)),alt,Germany (54%),1961,73,1925,69,75,28,G|Japan:-4 > Morocco:-5,G|Ecuador:-3 > Scotland:0
+M91,W76(F2(Netherlands)),W78(I2(France)),alt,France (72%),1961,73,2081,73,75,76,G|Japan:-4 > Morocco:-5,G|Norway:-5 > G|Senegal:-4 > United States:0
+M91,W76(F2(Netherlands)),W78(I2(Senegal)),alt,Netherlands (55%),1961,73,1867,58,75,207,G|Japan:-4 > Morocco:-5,G|France:-9 > G|Norway:-5 > Germany:-10
+M91,W76(C1(Morocco)),W78(E2(Ecuador)),alt,Ecuador (56%),1822,88,1935,18,101,42,G|Brazil:-3 > Netherlands:-9,G|Germany:-5 > South Korea:0
+M91,W76(C1(Morocco)),W78(I2(Norway)),alt,Norway (62%),1822,88,1917,92,101,168,G|Brazil:-3 > Netherlands:-9,G|France:-9 > G|Senegal:-4 > Ecuador:-7
+M91,W76(C1(Morocco)),W78(E2(Germany)),alt,Germany (63%),1822,88,1925,69,101,28,G|Brazil:-3 > Netherlands:-9,G|Ecuador:-3 > Scotland:0
+M91,W76(C1(Morocco)),W78(I2(France)),alt,France (80%),1822,88,2081,73,101,76,G|Brazil:-3 > Netherlands:-9,G|Norway:-5 > G|Senegal:-4 > United States:0
+M91,W76(C1(Morocco)),W78(I2(Senegal)),alt,Senegal (55%),1822,88,1867,58,101,207,G|Brazil:-3 > Netherlands:-9,G|France:-9 > G|Norway:-5 > Germany:-10
 
-M92,W80(L1(England)),W79(CEFHI3(Senegal)),predicted,England (59%),2020,48,1867,29,-77,20,Uzbekistan:0,Mexico:-2
-M92,W80(L1(England)),W79(A1(Mexico)),alt,England (64%),2020,48,1867,0,-77,10,Uzbekistan:0,Switzerland:-1
-M92,W80(L1(England)),W79(A1(South Korea)),alt,England (75%),2020,48,1756,31,-77,-3,Uzbekistan:0,Canada:0
-M92,W80(EHIJK3(Uzbekistan)),W79(A1(Mexico)),alt,Mexico (76%),1718,20,1867,0,70,10,England:-8,Switzerland:-1
-M92,W80(EHIJK3(Uzbekistan)),W79(CEFHI3(Senegal)),alt,Senegal (80%),1718,20,1867,29,70,20,England:-8,Mexico:-2
-M92,W80(EHIJK3(Uzbekistan)),W79(A1(South Korea)),alt,South Korea (66%),1718,20,1756,31,70,-3,England:-8,Canada:0
-M92,W80(L1(Croatia)),W79(A1(Mexico)),alt,Croatia (52%),1908,42,1867,0,-93,10,Ivory Coast:0,Switzerland:-1
-M92,W80(L1(Croatia)),W79(CEFHI3(Senegal)),alt,Senegal (54%),1908,42,1867,29,-93,20,Ivory Coast:0,Mexico:-2
-M92,W80(L1(Croatia)),W79(A1(South Korea)),alt,Croatia (64%),1908,42,1756,31,-93,-3,Ivory Coast:0,Canada:0
+M92,W80(L1(England)),W79(A1(Mexico)),predicted,England (63%),2020,97,1867,0,89,0,G|Croatia:-3 > Senegal:-8,Ivory Coast:0
+M92,W80(L1(England)),W79(CEFHI3(Ivory Coast)),alt,England (87%),2020,97,1676,58,89,124,G|Croatia:-3 > Senegal:-8,G|Germany:-5 > G|Ecuador:-3 > Mexico:-6
+M92,W80(L1(England)),W79(A1(South Korea)),alt,England (78%),2020,97,1756,62,89,34,G|Croatia:-3 > Senegal:-8,G|Mexico:-3 > Canada:-1
+M92,W80(EHIJK3(Senegal)),W79(A1(Mexico)),alt,Senegal (50%),1867,58,1867,0,207,0,G|France:-9 > G|Norway:-5 > Germany:-10,Ivory Coast:0
+M92,W80(EHIJK3(Senegal)),W79(CEFHI3(Ivory Coast)),alt,Senegal (80%),1867,58,1676,58,207,124,G|France:-9 > G|Norway:-5 > Germany:-10,G|Germany:-5 > G|Ecuador:-3 > Mexico:-6
+M92,W80(EHIJK3(Senegal)),W79(A1(South Korea)),alt,Senegal (67%),1867,58,1756,62,207,34,G|France:-9 > G|Norway:-5 > Germany:-10,G|Mexico:-3 > Canada:-1
+M92,W80(L1(Croatia)),W79(A1(Mexico)),alt,Mexico (52%),1908,83,1867,0,53,0,G|England:-6 > Ivory Coast:0,Ivory Coast:0
+M92,W80(L1(Croatia)),W79(CEFHI3(Ivory Coast)),alt,Croatia (79%),1908,83,1676,58,53,124,G|England:-6 > Ivory Coast:0,G|Germany:-5 > G|Ecuador:-3 > Mexico:-6
+M92,W80(L1(Croatia)),W79(A1(South Korea)),alt,Croatia (65%),1908,83,1756,62,53,34,G|England:-6 > Ivory Coast:0,G|Mexico:-3 > Canada:-1
 
-M93,W84(H1(Spain)),W83(K2(Colombia)),predicted,Spain (78%),2165,41,1977,5,14,26,Austria:-2,Croatia:-3
-M93,W84(H1(Spain)),W83(L2(Croatia)),alt,Spain (83%),2165,41,1908,42,14,-93,Austria:-2,Ivory Coast:0
-M93,W84(H1(Spain)),W83(K2(Portugal)),alt,Spain (72%),2165,41,1984,26,14,-58,Austria:-2,Panama:0
-M93,W84(H1(Spain)),W83(L2(England)),alt,Spain (75%),2165,41,2020,48,14,-77,Austria:-2,Uzbekistan:0
-M93,W84(H1(Spain)),W83(L2(Panama)),alt,Spain (93%),2165,41,1733,27,14,84,Austria:-2,Portugal:-10
-M93,W84(J2(Austria)),W83(K2(Colombia)),alt,Colombia (65%),1830,32,1977,5,167,26,Spain:-20,Croatia:-3
-M93,W84(J2(Austria)),W83(L2(Croatia)),alt,Croatia (56%),1830,32,1908,42,167,-93,Spain:-20,Ivory Coast:0
-M93,W84(J2(Austria)),W83(K2(Portugal)),alt,Portugal (71%),1830,32,1984,26,167,-58,Spain:-20,Panama:0
-M93,W84(J2(Austria)),W83(L2(England)),alt,England (68%),1830,32,2020,48,167,-77,Spain:-20,Uzbekistan:0
-M93,W84(J2(Austria)),W83(L2(Panama)),alt,Austria (68%),1830,32,1733,27,167,84,Spain:-20,Portugal:-10
+M93,W84(H1(Spain)),W83(K2(Colombia)),predicted,Spain (82%),2165,82,1977,10,38,101,Austria:-5,G|Portugal:-6 > Croatia:-6
+M93,W84(H1(Spain)),W83(L2(Croatia)),alt,Spain (85%),2165,82,1908,83,38,53,Austria:-5,G|England:-6 > Ivory Coast:0
+M93,W84(H1(Spain)),W83(K2(Portugal)),alt,Spain (75%),2165,82,1984,51,38,36,Austria:-5,G|Colombia:-4 > Panama:0
+M93,W84(H1(Spain)),W83(L2(England)),alt,Spain (75%),2165,82,2020,97,38,89,Austria:-5,G|Croatia:-3 > Senegal:-8
+M93,W84(H1(Spain)),W83(L2(Panama)),alt,Spain (95%),2165,82,1733,55,38,180,Austria:-5,G|England:-6 > G|Croatia:-3 > Portugal:-12
+M93,W84(J2(Austria)),W83(K2(Colombia)),alt,Colombia (61%),1830,65,1977,10,192,101,G|Argentina:-10 > England:-13,G|Portugal:-6 > Croatia:-6
+M93,W84(J2(Austria)),W83(L2(Croatia)),alt,Croatia (56%),1830,65,1908,83,192,53,G|Argentina:-10 > England:-13,G|England:-6 > Ivory Coast:0
+M93,W84(J2(Austria)),W83(K2(Portugal)),alt,Portugal (70%),1830,65,1984,51,192,36,G|Argentina:-10 > England:-13,G|Colombia:-4 > Panama:0
+M93,W84(J2(Austria)),W83(L2(England)),alt,England (70%),1830,65,2020,97,192,89,G|Argentina:-10 > England:-13,G|Croatia:-3 > Senegal:-8
+M93,W84(J2(Austria)),W83(L2(Panama)),alt,Austria (72%),1830,65,1733,55,192,180,G|Argentina:-10 > England:-13,G|England:-6 > G|Croatia:-3 > Portugal:-12
+M93,W84(J2(Algeria)),W83(K2(Colombia)),alt,Colombia (79%),1743,64,1977,10,211,101,G|Argentina:-10 > G|Austria:-2 > England:-13,G|Portugal:-6 > Croatia:-6
+M93,W84(J2(Algeria)),W83(L2(Croatia)),alt,Croatia (75%),1743,64,1908,83,211,53,G|Argentina:-10 > G|Austria:-2 > England:-13,G|England:-6 > Ivory Coast:0
+M93,W84(J2(Algeria)),W83(K2(Portugal)),alt,Portugal (85%),1743,64,1984,51,211,36,G|Argentina:-10 > G|Austria:-2 > England:-13,G|Colombia:-4 > Panama:0
+M93,W84(J2(Algeria)),W83(L2(England)),alt,England (85%),1743,64,2020,97,211,89,G|Argentina:-10 > G|Austria:-2 > England:-13,G|Croatia:-3 > Senegal:-8
+M93,W84(J2(Algeria)),W83(L2(Panama)),alt,Algeria (51%),1743,64,1733,55,211,180,G|Argentina:-10 > G|Austria:-2 > England:-13,G|England:-6 > G|Croatia:-3 > Portugal:-12
 
-M94,W81(D1(Turkey)),W82(G1(Belgium)),predicted,Turkey (52%),1906,23,1888,29,-71,-73,Algeria:0,Czechia:0
-M94,W81(D1(Turkey)),W82(AEHIJ3(Czechia)),alt,Turkey (77%),1906,23,1733,13,-71,10,Algeria:0,Switzerland:-1
-M94,W81(D1(Turkey)),W82(G1(Iran)),alt,Turkey (74%),1906,23,1764,26,-71,130,Algeria:0,France:-16
-M94,W81(BEFIJ3(Algeria)),W82(G1(Belgium)),alt,Belgium (76%),1743,32,1888,29,70,-73,England:-8,Czechia:0
-M94,W81(BEFIJ3(Algeria)),W82(AEHIJ3(Czechia)),alt,Czechia (50%),1743,32,1733,13,70,10,England:-8,Switzerland:-1
-M94,W81(BEFIJ3(Algeria)),W82(G1(Iran)),alt,Iran (55%),1743,32,1764,26,70,130,England:-8,France:-16
-M94,W81(D1(Paraguay)),W82(G1(Belgium)),alt,Belgium (60%),1832,3,1888,29,-51,-73,Iran:0,Czechia:0
-M94,W81(D1(Paraguay)),W82(AEHIJ3(Czechia)),alt,Paraguay (67%),1832,3,1733,13,-51,10,Iran:0,Switzerland:-1
-M94,W81(D1(Paraguay)),W82(G1(Iran)),alt,Paraguay (63%),1832,3,1764,26,-51,130,Iran:0,France:-16
+M94,W81(D1(Turkey)),W82(G1(Belgium)),predicted,Belgium (51%),1906,47,1888,58,0,0,Algeria:0,Czechia:0
+M94,W81(D1(Turkey)),W82(AEHIJ3(Czechia)),alt,Turkey (77%),1906,47,1733,25,0,79,Algeria:0,G|Mexico:-3 > Switzerland:-6
+M94,W81(BEFIJ3(Algeria)),W82(G1(Belgium)),alt,Belgium (76%),1743,64,1888,58,211,0,G|Argentina:-10 > G|Austria:-2 > England:-13,Czechia:0
+M94,W81(BEFIJ3(Algeria)),W82(AEHIJ3(Czechia)),alt,Algeria (53%),1743,64,1733,25,211,79,G|Argentina:-10 > G|Austria:-2 > England:-13,G|Mexico:-3 > Switzerland:-6
+M94,W81(D1(Paraguay)),W82(G1(Belgium)),alt,Belgium (67%),1832,5,1888,58,23,0,G|Turkey:-3 > Iran:0,Czechia:0
+M94,W81(D1(Paraguay)),W82(AEHIJ3(Czechia)),alt,Paraguay (63%),1832,5,1733,25,23,79,G|Turkey:-3 > Iran:0,G|Mexico:-3 > Switzerland:-6
 
-M95,W86(J1(Argentina)),W88(D2(Paraguay)),predicted,Argentina (86%),2113,20,1832,3,-11,-51,Uruguay:0,Iran:0
-M95,W86(J1(Argentina)),W88(G2(Iran)),alt,Argentina (91%),2113,20,1764,26,-11,130,Uruguay:0,France:-16
-M95,W86(J1(Argentina)),W88(D2(Turkey)),alt,Argentina (79%),2113,20,1906,23,-11,-71,Uruguay:0,Algeria:0
-M95,W86(J1(Argentina)),W88(G2(Belgium)),alt,Argentina (80%),2113,20,1888,29,-11,-73,Uruguay:0,Czechia:0
-M95,W86(J1(Argentina)),W88(G2(Egypt)),alt,Argentina (93%),2113,20,1699,34,-11,130,Uruguay:0,France:-16
-M95,W86(J1(Argentina)),W88(D2(United States)),alt,Argentina (89%),2113,20,1733,0,-11,58,Uruguay:0,Germany:-7
-M95,W86(H2(Uruguay)),W88(D2(Paraguay)),alt,Paraguay (52%),1892,5,1832,3,145,-51,Argentina:-17,Iran:0
-M95,W86(H2(Uruguay)),W88(G2(Iran)),alt,Uruguay (61%),1892,5,1764,26,145,130,Argentina:-17,France:-16
-M95,W86(H2(Uruguay)),W88(D2(Turkey)),alt,Turkey (64%),1892,5,1906,23,145,-71,Argentina:-17,Algeria:0
-M95,W86(H2(Uruguay)),W88(G2(Belgium)),alt,Belgium (62%),1892,5,1888,29,145,-73,Argentina:-17,Czechia:0
-M95,W86(H2(Uruguay)),W88(G2(Egypt)),alt,Uruguay (67%),1892,5,1699,34,145,130,Argentina:-17,France:-16
-M95,W86(H2(Uruguay)),W88(D2(United States)),alt,Uruguay (56%),1892,5,1733,0,145,58,Argentina:-17,Germany:-7
+M95,W86(J1(Argentina)),W88(D2(Paraguay)),predicted,Argentina (89%),2113,40,1832,5,19,23,G|Austria:-2 > Uruguay:0,G|Turkey:-3 > Iran:0
+M95,W86(J1(Argentina)),W88(G2(Iran)),alt,Argentina (92%),2113,40,1764,52,19,183,G|Austria:-2 > Uruguay:0,G|Belgium:-3 > France:-19
+M95,W86(J1(Argentina)),W88(D2(Turkey)),alt,Argentina (81%),2113,40,1906,47,19,0,G|Austria:-2 > Uruguay:0,Algeria:0
+M95,W86(J1(Argentina)),W88(G2(Egypt)),alt,Argentina (92%),2113,40,1699,68,19,183,G|Austria:-2 > Uruguay:0,G|Belgium:-3 > France:-19
+M95,W86(J1(Argentina)),W88(D2(United States)),alt,Argentina (92%),2113,40,1733,0,19,107,G|Austria:-2 > Uruguay:0,G|Turkey:-3 > Germany:-10
+M95,W86(H2(Uruguay)),W88(D2(Paraguay)),alt,Paraguay (52%),1892,10,1832,5,271,23,G|Spain:-12 > Argentina:-21,G|Turkey:-3 > Iran:0
+M95,W86(H2(Uruguay)),W88(G2(Iran)),alt,Uruguay (56%),1892,10,1764,52,271,183,G|Spain:-12 > Argentina:-21,G|Belgium:-3 > France:-19
+M95,W86(H2(Uruguay)),W88(D2(Turkey)),alt,Turkey (68%),1892,10,1906,47,271,0,G|Spain:-12 > Argentina:-21,Algeria:0
+M95,W86(H2(Uruguay)),W88(G2(Egypt)),alt,Uruguay (58%),1892,10,1699,68,271,183,G|Spain:-12 > Argentina:-21,G|Belgium:-3 > France:-19
+M95,W86(H2(Uruguay)),W88(D2(United States)),alt,Uruguay (56%),1892,10,1733,0,271,107,G|Spain:-12 > Argentina:-21,G|Turkey:-3 > Germany:-10
 
-M96,W87(K1(Portugal)),W85(B1(Switzerland)),predicted,Portugal (70%),1984,26,1894,30,-58,-72,Panama:0,Egypt:0
-M96,W87(K1(Portugal)),W85(EFGIJ3(Egypt)),alt,Portugal (87%),1984,26,1699,34,-58,130,Panama:0,France:-16
-M96,W87(K1(Portugal)),W85(B1(Canada)),alt,Portugal (73%),1984,26,1793,0,-58,-25,Panama:0,South Korea:0
-M96,W87(DEIJL3(Panama)),W85(B1(Switzerland)),alt,Switzerland (70%),1733,27,1894,30,84,-72,Portugal:-10,Egypt:0
-M96,W87(DEIJL3(Panama)),W85(EFGIJ3(Egypt)),alt,Panama (55%),1733,27,1699,34,84,130,Portugal:-10,France:-16
-M96,W87(DEIJL3(Panama)),W85(B1(Canada)),alt,Canada (66%),1733,27,1793,0,84,-25,Portugal:-10,South Korea:0
-M96,W87(K1(Colombia)),W85(B1(Switzerland)),alt,Colombia (64%),1977,5,1894,30,26,-72,Croatia:-3,Egypt:0
-M96,W87(K1(Colombia)),W85(EFGIJ3(Egypt)),alt,Colombia (83%),1977,5,1699,34,26,130,Croatia:-3,France:-16
-M96,W87(K1(Colombia)),W85(B1(Canada)),alt,Colombia (67%),1977,5,1793,0,26,-25,Croatia:-3,South Korea:0
+M96,W87(K1(Portugal)),W85(B1(Switzerland)),predicted,Portugal (64%),1984,51,1894,60,36,3,G|Colombia:-4 > Panama:0,G|Canada:0 > Egypt:0
+M96,W87(K1(Portugal)),W85(EFGIJ3(Egypt)),alt,Portugal (84%),1984,51,1699,68,36,183,G|Colombia:-4 > Panama:0,G|Belgium:-3 > France:-19
+M96,W87(K1(Portugal)),W85(B1(Canada)),alt,Portugal (75%),1984,51,1793,0,36,26,G|Colombia:-4 > Panama:0,G|Switzerland:-3 > South Korea:0
+M96,W87(DEIJL3(Panama)),W85(B1(Switzerland)),alt,Switzerland (77%),1733,55,1894,60,180,3,G|England:-6 > G|Croatia:-3 > Portugal:-12,G|Canada:0 > Egypt:0
+M96,W87(DEIJL3(Panama)),W85(EFGIJ3(Egypt)),alt,Egypt (52%),1733,55,1699,68,180,183,G|England:-6 > G|Croatia:-3 > Portugal:-12,G|Belgium:-3 > France:-19
+M96,W87(DEIJL3(Panama)),W85(B1(Canada)),alt,Canada (66%),1733,55,1793,0,180,26,G|England:-6 > G|Croatia:-3 > Portugal:-12,G|Switzerland:-3 > South Korea:0
+M96,W87(K1(Colombia)),W85(B1(Switzerland)),alt,Colombia (55%),1977,10,1894,60,101,3,G|Portugal:-6 > Croatia:-6,G|Canada:0 > Egypt:0
+M96,W87(K1(Colombia)),W85(EFGIJ3(Egypt)),alt,Colombia (79%),1977,10,1699,68,101,183,G|Portugal:-6 > Croatia:-6,G|Belgium:-3 > France:-19
+M96,W87(K1(Colombia)),W85(B1(Canada)),alt,Colombia (67%),1977,10,1793,0,101,26,G|Portugal:-6 > Croatia:-6,G|Switzerland:-3 > South Korea:0
 

@@ -1,0 +1,38 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	24	Sweden	Belgium	0	3	EQ		-28	1745	1975	−7	+2	36	8
+2023	03	28	Germany	Belgium	2	3	F		-12	1950	1987	−1	+1	10	7
+2023	06	17	Belgium	Austria	1	1	EQ		-15	1972	1774	0	+3	9	29
+2023	06	20	Estonia	Belgium	0	3	EQ		-6	1442	1978	−2	0	95	8
+2023	09	09	Azerbaijan	Belgium	0	1	EQ		-3	1405	1981	−1	0	104	8
+2023	09	12	Belgium	Estonia	5	0	EQ		2	1983	1420	0	−1	8	98
+2023	10	13	Austria	Belgium	2	3	EQ		-16	1805	1999	−3	0	26	7
+2023	10	16	Belgium	Sweden	1	1	EQ		-16	1983	1738	0	+2	7	36
+2023	11	15	Belgium	Serbia	1	0	F		4	1987	1820	0	0	7	23
+2023	11	19	Belgium	Azerbaijan	5	0	EQ		3	1990	1497	0	+2	8	79
+2024	03	23	Ireland	Belgium	0	0	F		7	1615	1983	+2	0	59	9
+2024	03	26	England	Belgium	2	2	F		-3	1998	1986	+1	0	6	9
+2024	06	05	Belgium	Montenegro	2	0	F		1	1987	1570	−1	−1	9	67
+2024	06	08	Belgium	Luxembourg	3	0	F		1	1988	1511	0	0	8	78
+2024	06	17	Slovakia	Belgium	1	0	EC	DE	43	1713	1945	+5	−2	42	11
+2024	06	22	Belgium	Romania	2	0	EC	DE	16	1961	1698	+1	−3	10	42
+2024	06	26	Belgium	Ukraine	0	0	EC	DE	-10	1951	1816	−1	+1	10	19
+2024	07	01	France	Belgium	1	0	EC	DE	17	2077	1934	0	0	3	11
+2024	09	06	Belgium	Israel	3	1	ENA	HU	6	1940	1560	0	−2	10	70
+2024	09	09	France	Belgium	2	0	ENA		17	2014	1923	0	−1	5	12
+2024	10	10	Italy	Belgium	2	2	ENA		-7	1936	1930	0	0	11	12
+2024	10	14	Belgium	France	1	2	ENA		-21	1909	2040	−2	+1	13	3
+2024	11	14	Belgium	Italy	0	1	ENA		-24	1885	1964	0	0	13	9
+2024	11	17	Israel	Belgium	1	0	ENA	HU	35	1601	1850	+12	−4	60	17
+2025	03	20	Ukraine	Belgium	3	1	EAB	ES	34	1836	1816	+5	−3	18	20
+2025	03	23	Belgium	Ukraine	3	0	EAB		27	1843	1809	+4	−7	16	25
+2025	06	06	North Macedonia	Belgium	1	1	WQ		7	1620	1836	+1	−4	56	20
+2025	06	09	Belgium	Wales	4	3	WQ		10	1846	1726	+2	0	18	38
+2025	09	04	Liechtenstein	Belgium	0	6	WQ		-1	904	1847	0	−1	200	19
+2025	09	07	Belgium	Kazakhstan	6	0	WQ		3	1850	1389	+1	−1	19	109
+2025	10	10	Belgium	North Macedonia	0	0	WQ		-15	1835	1638	−1	+5	21	53
+2025	10	13	Wales	Belgium	2	4	WQ		-29	1692	1864	−9	+4	47	17
+2025	11	15	Kazakhstan	Belgium	1	1	WQ		15	1421	1849	+1	−1	101	19
+2025	11	18	Belgium	Liechtenstein	7	0	WQ		0	1849	900	0	+1	19	200
+2026	03	28	United States	Belgium	2	5	F		-17	1730	1866	−6	+2	40	19
+2026	03	31	Belgium	Mexico	1	1	F	US	0	1866	1857	0	+1	19	20
+2026	06	02	Croatia	Belgium	0	2	F		-22	1908	1888	−2	+3	12	17

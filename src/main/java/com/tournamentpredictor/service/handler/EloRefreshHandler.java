@@ -87,7 +87,7 @@ public class EloRefreshHandler {
             }
         }
 
-        Path outputDir = projectRoot.resolve("data").resolve("elo");
+        Path outputDir = projectRoot.resolve("data").resolve("elo").resolve("current");
         Files.createDirectories(outputDir);
         Files.write(outputDir.resolve("world.csv"), output);
 

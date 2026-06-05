@@ -51,7 +51,7 @@ public class Last16Handler {
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Path matchupFile = matchupDir.resolve("last_16.csv");
         if (csvHelper.isLocked(matchupFile)) {
-            System.out.println("  �� Output already exists: " + matchupFile + " — delete to re-run");
+            System.out.println("  [locked] Output already exists: " + matchupFile + " — delete to re-run");
             Map<String, String> last16Odds = loader.loadOdds(tournament, "last_8");
             consoleReporter.printMatchups("Last 16 matchups", Files.readAllLines(matchupFile), eloCalculator, predictionDir.resolve("last_8.csv"), last16Odds);
             return;

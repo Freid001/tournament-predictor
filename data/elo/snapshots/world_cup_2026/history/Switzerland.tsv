@@ -1,0 +1,39 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	25	Belarus	Switzerland	0	5	EQ	RS	-5	1410	1883	−3	0	101	15
+2023	03	28	Switzerland	Israel	3	0	EQ		7	1890	1601	0	−1	14	59
+2023	06	16	Andorra	Switzerland	1	2	EQ		-1	1121	1891	+1	0	171	14
+2023	06	19	Switzerland	Romania	2	2	EQ		-16	1875	1636	0	+4	14	51
+2023	09	09	Kosovo	Switzerland	2	2	EQ		14	1489	1861	+4	−1	84	15
+2023	09	12	Switzerland	Andorra	3	0	EQ		1	1862	1129	−1	−2	17	171
+2023	10	15	Switzerland	Belarus	3	3	EQ		-18	1844	1434	−1	+7	18	95
+2023	11	15	Israel	Switzerland	1	1	EQ	HU	12	1615	1832	+1	−4	60	21
+2023	11	18	Switzerland	Kosovo	1	1	EQ		-17	1815	1530	−4	+5	23	72
+2023	11	21	Romania	Switzerland	1	0	EQ		24	1674	1791	+1	−4	48	26
+2024	03	23	Denmark	Switzerland	0	0	F		-4	1821	1795	0	+1	20	22
+2024	03	26	Ireland	Switzerland	0	1	F		-8	1607	1803	−2	+2	61	21
+2024	06	04	Switzerland	Estonia	4	0	F		2	1805	1353	+1	−1	21	116
+2024	06	08	Switzerland	Austria	1	1	F		-1	1804	1863	0	0	21	15
+2024	06	15	Switzerland	Hungary	3	1	EC	DE	40	1844	1791	+3	−3	18	22
+2024	06	19	Scotland	Switzerland	1	1	EC	DE	7	1758	1837	0	0	31	17
+2024	06	23	Germany	Switzerland	1	1	EC		-14	1938	1851	0	+2	11	16
+2024	06	29	Switzerland	Italy	2	0	EC	DE	46	1897	1890	+3	−3	14	15
+2024	07	06	England	Switzerland	1	1	EC	DE	-6	1970	1903	−1	0	8	13
+2024	09	05	Denmark	Switzerland	2	0	ENA		29	1845	1874	+1	−2	18	15
+2024	09	08	Switzerland	Spain	1	4	ENA		-20	1854	2157	−3	0	18	2
+2024	10	12	Serbia	Switzerland	2	0	ENA		27	1811	1827	+3	0	22	18
+2024	10	15	Switzerland	Denmark	2	2	ENA		-4	1823	1863	−1	−1	20	17
+2024	11	15	Switzerland	Serbia	1	1	ENA		-6	1817	1812	0	0	20	21
+2024	11	18	Spain	Switzerland	3	2	ENA		3	2178	1814	0	0	1	20
+2025	03	21	Northern Ireland	Switzerland	1	1	F		4	1564	1810	0	0	68	21
+2025	03	25	Switzerland	Luxembourg	3	1	F		2	1812	1458	0	0	24	91
+2025	06	07	Switzerland	Mexico	4	2	F	US	15	1827	1802	+1	−2	23	25
+2025	06	10	United States	Switzerland	0	4	F		-18	1694	1845	−3	+5	45	18
+2025	09	05	Switzerland	Kosovo	4	0	WQ		9	1854	1600	+2	0	18	60
+2025	09	08	Switzerland	Slovenia	3	0	WQ		16	1870	1731	+1	−2	16	38
+2025	10	10	Sweden	Switzerland	0	2	WQ		-26	1703	1896	−4	+2	41	13
+2025	10	13	Slovenia	Switzerland	0	0	WQ		4	1735	1892	0	0	35	14
+2025	11	15	Switzerland	Sweden	4	1	WQ		10	1902	1664	+2	0	13	51
+2025	11	18	Kosovo	Switzerland	1	1	WQ		5	1714	1897	−2	+1	43	13
+2026	03	27	Switzerland	Germany	3	4	F		-12	1885	1922	−2	+1	15	11
+2026	03	31	Norway	Switzerland	0	0	F		-4	1912	1889	0	0	12	16
+2026	05	31	Switzerland	Jordan	4	1	F		5	1894	1685	+1	0	15	51

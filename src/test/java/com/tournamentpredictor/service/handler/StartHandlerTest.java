@@ -27,14 +27,19 @@ class StartHandlerTest {
         loader = new CsvLoader(root);
         csvHelper = new CsvHelper();
         // Minimal world.csv: rank,team_code,team_name,rating
-        Path eloDir = root.resolve("data/elo");
+        Path eloDir = root.resolve("data/elo/snapshots/test");
         Files.createDirectories(eloDir);
-        Files.writeString(eloDir.resolve("world.csv"),
+        Files.writeString(eloDir.resolve("teams.csv"),
                 "rank,team_code,team_name,rating\n" +
                 "1,EN,England,2000\n" +
                 "2,US,USA,1800\n");
-        // Empty history dir so qual/pre-tournament bonuses are always 0
+        // Empty snapshot history dir so qual/pre-tournament bonuses are always 0
         Files.createDirectories(eloDir.resolve("history"));
+        Files.writeString(eloDir.resolve("metadata.properties"),
+                "qual_form_since=2023\n" +
+                "qual_form_until=2026\n" +
+                "pre_tournament_form_since=2026\n" +
+                "pre_tournament_form_until=2026\n");
     }
 
     // ─── Constructor defaults ─────────────────────────────────────────────────

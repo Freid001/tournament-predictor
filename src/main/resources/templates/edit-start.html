@@ -17,14 +17,14 @@
                     <th>Grp</th>
                     <th></th>
                     <th>Team</th>
-                    <th class="text-center">Host</th>
-                    <th>Age</th>
-                    <th>Cohesion</th>
-                    <th>Bench Depth</th>
-                    <th>Quality</th>
-                    <th>Dropouts</th>
-                    <th>Injury</th>
-                    <th>Heat</th>
+                    <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Host-country boost only. Use yes for official hosts playing with home advantage; not for climate familiarity.">Host</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Squad age profile. Use Young for unusually inexperienced tournament squads; Aging for cores with several key 33+ players and recovery risk.">Age</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Chemistry/tactical disruption. Look for new coach, selection rows, political disruption, late reshuffles, or unsettled combinations.">Cohesion</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Replacement quality. Use Limited/Thin when quality drops sharply beyond the starters; also affects knockout fatigue sensitivity.">Bench Depth</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Current talent above base Elo. Use sparingly for exceptional current squads so we do not double-count Elo.">Quality</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Players missing from the selected squad: injury ruled them out, coach omission, discipline, retirement, refusal, or federation dispute. Active-squad fitness belongs in Injury.">Squad Omissions</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Current availability and fitness: ruled-out players, doubtful starters, managed minutes, recent returns, or players carrying knocks.">Injury</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Climate adaptation to hot/humid/altitude venues. Use for teams likely to handle conditions better than opponents.">Heat</span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -125,7 +125,7 @@
                                           th:name="${'qualityNotes' + stat.index}" th:text="${row.qualityNotes}"></textarea>
                             </div>
                             <div class="col-md-2">
-                                <label class="form-label mb-1 small text-muted">👤 Dropouts</label>
+                                <label class="form-label mb-1 small text-muted">👤 Squad Omissions</label>
                                 <textarea class="form-control form-control-sm" rows="3"
                                           th:name="${'dropoutNotes' + stat.index}" th:text="${row.dropoutNotes}"></textarea>
                             </div>
@@ -176,6 +176,10 @@
                 if (e.target.closest('select, input, textarea, button, label')) e.stopPropagation();
             }, true);
         });
+
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+            new bootstrap.Tooltip(el);
+        });
         document.querySelectorAll('.team-select').forEach(sel => {
             sel.addEventListener('change', function () {
                 const row = this.closest('tr');
@@ -189,5 +193,6 @@
         });
     </script>
 </div>
+<th:block th:replace="~{fragments :: keyboardNavScript}"></th:block>
 </body>
 </html>

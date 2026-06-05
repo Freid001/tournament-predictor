@@ -279,8 +279,8 @@ class QualificationFormCalculatorTest {
     }
 
     @Test
-    void maxGames_ignoresYearFilter() throws IOException {
-        // All 5 games are from 2020 (before sinceYear=2023) — with maxGames=5 they are still used
+    void maxGames_appliesYearFilterBeforeLimit() throws IOException {
+        // All 5 games are from 2020 (before sinceYear=2023) — they are excluded before maxGames is applied
         writeTsv("England",
                 row(2020, "England", "A", 3, 0, "F"),
                 row(2020, "England", "B", 3, 0, "F"),
@@ -288,12 +288,9 @@ class QualificationFormCalculatorTest {
                 row(2020, "England", "D", 3, 0, "F"),
                 row(2020, "England", "E", 3, 0, "F"));
         QualificationFormCalculator withLimit  = calcWithMaxGames(5, Set.of("F"));
-        QualificationFormCalculator withoutLimit = calcWithMaxGames(0, Set.of("F")); // year filter excludes all
-        // Without maxGames: year filter removes everything → no data
+        QualificationFormCalculator withoutLimit = calcWithMaxGames(0, Set.of("F"));
         assertFalse(withoutLimit.hasData("England"));
-        // With maxGames: year filter bypassed → all 5 wins count → positive bonus
-        assertTrue(withLimit.hasData("England"));
-        assertEquals(50, withLimit.getQualBonus("England"));
+        assertFalse(withLimit.hasData("England"));
     }
 
     @Test

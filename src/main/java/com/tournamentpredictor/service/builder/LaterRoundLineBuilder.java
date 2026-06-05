@@ -123,8 +123,7 @@ class LaterRoundLineBuilder {
 
     private FatigueResult fatigueFor(String team, PriorOpponent opponent, String fatigueStage,
                                      Map<String, TeamEloSnapshot> snapshots) {
-        int raw = pathFatigueCalc.rawScore(opponent.elo);
-        int weightedContribution = (int) Math.round(raw * pathFatigueCalc.stageMultiplierForRound(fatigueStage));
+        int weightedContribution = pathFatigueCalc.knockoutWeightedContribution(opponent.elo, fatigueStage);
         int weightedTotal = opponent.existingWeightedTotal + weightedContribution;
         int contributionElo = pathFatigueCalc.eloAdjustmentFromWeighted(weightedContribution);
         String segment = opponent.name.isEmpty() ? "" : opponent.name + ":" + contributionElo;

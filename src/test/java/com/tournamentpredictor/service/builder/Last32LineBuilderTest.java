@@ -4,6 +4,7 @@ import com.tournamentpredictor.loader.CsvLoader;
 import com.tournamentpredictor.service.util.DisplayBuilder;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.PathCalculator;
+import com.tournamentpredictor.service.util.PathFatigueCalculator;
 import com.tournamentpredictor.service.util.SlotStatusEvaluator;
 import com.tournamentpredictor.service.util.ThirdPlaceResolver;
 import com.tournamentpredictor.service.util.TokenResolver;
@@ -251,7 +252,28 @@ class Last32LineBuilderTest {
                     baseGroups(), baseGroupWinner(), baseRunnerUp(), baseThirdPlace(), baseElos(),
                     List.of(new CsvLoader.BracketEntry("M10", "A1", "AB3", "LAST_32")));
 
-            assertEquals("match_id,team1,team2,path,elo", lines.get(0));
+            assertEquals("match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree", lines.get(0));
+        }
+
+
+        @Test
+        void last32RowsIncludeGroupLoadFatigue() {
+            Last32LineBuilder builder = new Last32LineBuilder(displayBuilder, pathCalculator, eloCalculator, null, new PathFatigueCalculator());
+            var lines = builder.buildLast32Lines(
+                    baseGroups(), baseGroupWinner(), baseRunnerUp(), baseThirdPlace(), baseElos(),
+                    List.of(new CsvLoader.BracketEntry("M11", "B1", "A2", "LAST_32")));
+
+            String row = lines.stream()
+                    .filter(line -> line.startsWith("M11,"))
+                    .findFirst()
+                    .orElseThrow();
+            String[] cols = row.split(",", -1);
+
+            assertEquals("63", cols[5]); // Spain carries France and Scotland group load: 200×0.25 + 50×0.25
+            assertEquals("38", cols[6]); // USA carries England group load: 150×0.25
+            assertTrue(cols[7].contains("G|France:-6"));
+            assertTrue(cols[7].contains("G|Scotland:-2"));
+            assertTrue(cols[8].contains("G|England:-5"));
         }
 
         /** Each LAST_32 match produces exactly one trailing blank line. */

@@ -1,0 +1,40 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	24	Cape Verde	Eswatini	0	0	FQ		-13	1468	1310	−5	+2	87	135
+2023	03	28	Cape Verde	Eswatini	1	0	FQ	ZA	11	1479	1299	+5	−3	82	138
+2023	06	12	Morocco	Cape Verde	0	0	F		-9	1870	1488	0	+1	15	81
+2023	06	18	Cape Verde	Burkina Faso	3	1	FQ		31	1519	1568	+7	−6	76	68
+2023	09	10	Togo	Cape Verde	3	2	FQ		23	1387	1496	+4	−7	111	81
+2023	10	12	Algeria	Cape Verde	5	1	F		5	1712	1491	−2	−1	41	82
+2023	10	17	Comoros	Cape Verde	2	1	F	FR	17	1211	1474	+2	−7	160	87
+2023	11	16	Cape Verde	Angola	0	0	WQ		-10	1464	1398	−2	+2	89	106
+2023	11	21	Cape Verde	Eswatini	2	0	WQ	ZA	15	1479	1255	+4	−8	87	154
+2024	01	10	Tunisia	Cape Verde	2	0	F		4	1733	1475	+2	−1	36	88
+2024	01	14	Cape Verde	Ghana	2	1	AR	CI	30	1505	1511	+11	−6	77	75
+2024	01	19	Cape Verde	Mozambique	3	0	AR	CI	29	1534	1352	+5	−5	72	115
+2024	01	22	Cape Verde	Egypt	2	2	AR	CI	8	1542	1649	+1	0	71	50
+2024	01	29	Cape Verde	Mauritania	1	0	AR	CI	16	1558	1391	+3	−2	66	107
+2024	02	03	Cape Verde	South Africa	0	0	AR	CI	1	1559	1574	−1	−1	69	64
+2024	03	21	Cape Verde	Guyana	1	0	FFS	SA	5	1564	1268	+2	0	67	148
+2024	03	25	Cape Verde	Equatorial Guinea	1	0	FFS	SA	15	1579	1555	+1	−4	65	69
+2024	06	08	Cameroon	Cape Verde	4	1	WQ		27	1582	1552	+5	−5	65	70
+2024	06	11	Cape Verde	Libya	1	0	WQ		8	1560	1402	+2	−1	69	104
+2024	09	06	Egypt	Cape Verde	3	0	FQ		19	1652	1541	0	−4	53	74
+2024	09	10	Cape Verde	Mauritania	2	0	FQ		10	1551	1348	+1	−6	72	123
+2024	10	10	Cape Verde	Botswana	0	1	FQ		-36	1515	1319	−9	+8	81	135
+2024	10	15	Botswana	Cape Verde	1	0	FQ		25	1344	1490	+6	−1	124	83
+2024	11	15	Cape Verde	Egypt	1	1	FQ		5	1495	1674	0	−2	83	50
+2024	11	19	Mauritania	Cape Verde	1	0	FQ		23	1364	1472	+6	−4	119	86
+2025	03	20	Cape Verde	Mauritius	1	0	WQ		2	1474	1034	0	0	87	183
+2025	03	25	Angola	Cape Verde	1	2	WQ		-30	1536	1504	−9	+6	76	80
+2025	05	29	Malaysia	Cape Verde	1	1	F		4	1264	1500	+1	0	150	80
+2025	06	03	Malaysia	Cape Verde	0	3	F		-11	1253	1511	−2	0	152	80
+2025	06	08	Georgia	Cape Verde	1	1	F		-7	1711	1518	−3	+1	43	79
+2025	09	04	Mauritius	Cape Verde	0	2	WQ		-8	1087	1526	0	+4	175	75
+2025	09	09	Cape Verde	Cameroon	1	0	WQ		18	1544	1579	+2	−6	74	67
+2025	10	08	Libya	Cape Verde	3	3	WQ		1	1430	1543	0	0	96	74
+2025	10	13	Cape Verde	Eswatini	3	0	WQ		6	1549	1211	−1	−2	73	156
+2025	11	13	Cape Verde	Iran	0	0	FT	AE	8	1557	1756	+1	−1	71	33
+2025	11	17	Cape Verde	Egypt	1	1	FT	AE	4	1561	1644	+1	0	70	53
+2026	03	27	Chile	Cape Verde	4	2	FFS	NZ	12	1743	1549	+3	−1	36	73
+2026	03	30	Cape Verde	Finland	1	1	FFS	NZ	0	1549	1542	0	0	73	75
+2026	05	31	Cape Verde	Serbia	3	0	F	PT	27	1576	1742	+3	−7	69	35

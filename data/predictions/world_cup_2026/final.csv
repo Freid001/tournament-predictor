@@ -1,2 +1,2 @@
 match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree
-M103,W101(W98(W93(W84(H1(Spain))))),W102(W100(W95(W86(J1(Argentina))))),predicted,Spain (52%),598,375,Austria:-2 > Colombia:-14 > Turkey:-9 > France:-47,Uruguay:0 > Paraguay:0 > Portugal:-24 > England:-25,
+M103,W101(W98(W93(W84(H1(Spain))))),W102(W100(W95(W86(J1(Argentina))))),predicted,Spain (55%),776,581,Austria:-5 > Colombia:-17 > Belgium:-14 > France:-57,G|Austria:-2 > Uruguay:0 > Paraguay:0 > Portugal:-29 > England:-38,

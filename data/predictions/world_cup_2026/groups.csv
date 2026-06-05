@@ -1,49 +1,60 @@
 group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,squad_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place
-A,Mexico,1867,0,12,0,1,0,0,1889,1 (75%),yes,maybe,no
-A,South Korea,1756,31,5,0,0,0,0,1800,2 (61%),maybe,yes,maybe
-A,Czechia,1733,13,17,0,1,0,0,1703,3 (44%),no,maybe,yes
-A,South Africa,1518,23,3,0,0,1,0,1549,4 (20%),no,no,maybe
-B,Switzerland,1894,30,10,0,0,0,0,1869,1 (77%),yes,maybe,no
-B,Canada,1793,0,10,0,1,0,0,1843,2 (74%),maybe,yes,no
-B,Bosnia and Herzegovina,1591,15,-8,2,0,0,0,1565,3 (34%),no,no,yes
-B,Qatar,1423,10,-17,2,1,0,0,1418,4 (15%),no,no,maybe
-C,Brazil,1988,4,10,0,0,0,1,1937,1 (78%),yes,maybe,no
-C,Morocco,1822,44,18,0,2,0,1,1844,2 (63%),maybe,yes,maybe
-C,Scotland,1770,20,-1,2,1,0,0,1701,3 (40%),no,maybe,yes
-C,Haiti,1532,15,4,0,0,2,0,1556,4 (19%),no,no,maybe
-D,Turkey,1906,23,1,0,0,0,0,1913,1 (67%),yes,maybe,no
-D,Paraguay,1832,3,-4,0,0,0,0,1826,2 (51%),maybe,yes,maybe
-D,United States,1733,0,4,1,1,0,0,1775,3 (42%),no,maybe,yes
-D,Australia,1774,29,-12,0,1,0,0,1764,4 (40%),no,no,maybe
-E,Germany,1925,34,16,0,0,0,1,1965,1 (78%),yes,maybe,no
-E,Ecuador,1935,9,5,0,0,0,0,1944,2 (75%),maybe,yes,no
-E,Ivory Coast,1676,29,14,0,1,0,0,1664,3 (38%),no,no,yes
-E,Curaçao,1433,-15,-12,0,1,2,0,1396,4 (8%),no,no,no
-F,Japan,1906,39,20,0,0,0,1,1918,1 (73%),yes,maybe,no
-F,Netherlands,1961,37,10,0,1,0,1,1903,2 (70%),maybe,yes,no
-F,Sweden,1714,-14,6,0,1,0,0,1646,3 (29%),no,no,yes
-F,Tunisia,1633,27,2,0,1,1,0,1642,4 (28%),no,no,maybe
-G,Belgium,1888,29,18,2,1,0,1,1897,1 (77%),yes,maybe,no
-G,Iran,1764,26,15,2,3,0,0,1747,2 (52%),maybe,yes,maybe
-G,Egypt,1699,34,16,2,1,0,0,1706,3 (45%),no,maybe,yes
-G,New Zealand,1585,49,-17,0,0,2,0,1597,4 (27%),no,no,maybe
-H,Spain,2165,41,14,0,0,0,2,2183,1 (95%),yes,no,no
-H,Uruguay,1892,5,-5,0,1,0,0,1827,2 (59%),no,yes,no
-H,Saudi Arabia,1566,7,-14,0,1,0,0,1549,3 (23%),no,no,yes
-H,Cape Verde,1576,6,4,2,1,2,0,1543,3 (23%),no,no,maybe
-I,France,2081,37,16,0,0,0,2,2109,1 (79%),yes,maybe,no
-I,Norway,1917,46,2,0,0,0,1,1975,2 (59%),maybe,yes,maybe
-I,Senegal,1867,29,9,0,0,0,0,1930,3 (51%),no,maybe,yes
-I,Iraq,1608,18,-4,0,0,1,0,1637,4 (11%),no,no,no
-J,Argentina,2113,20,24,2,0,0,2,2139,1 (90%),yes,no,no
-J,Austria,1830,32,16,0,0,0,0,1878,2 (57%),no,yes,no
-J,Algeria,1743,32,12,0,1,0,0,1707,3 (31%),no,no,yes
-J,Jordan,1685,15,-18,0,1,1,0,1642,4 (22%),no,no,maybe
-K,Portugal,1984,26,9,0,0,0,1,2017,1 (77%),yes,maybe,no
-K,Colombia,1977,5,5,2,1,0,0,1969,2 (70%),maybe,yes,no
-K,Uzbekistan,1718,20,-6,0,1,1,0,1695,3 (28%),no,no,yes
-K,DR Congo,1655,20,13,0,1,1,0,1668,4 (24%),no,no,maybe
-L,England,2020,48,-8,0,1,0,1,1990,1 (80%),yes,maybe,no
-L,Croatia,1908,42,4,2,0,0,0,1901,2 (68%),maybe,yes,maybe
-L,Panama,1733,27,-8,2,0,1,0,1734,3 (44%),no,maybe,yes
-L,Ghana,1503,11,-22,0,1,0,0,1437,4 (9%),no,no,no
+A,Mexico,1867,0,23,0,1,0,0,1957,1 (78%),yes,maybe,no
+A,South Korea,1756,62,10,0,0,0,0,1837,2 (60%),maybe,yes,maybe
+A,Czechia,1733,25,34,0,1,0,0,1741,3 (44%),no,maybe,yes
+A,South Africa,1518,45,6,0,0,1,0,1577,4 (19%),no,no,maybe
+
+B,Switzerland,1894,60,21,0,0,0,0,1953,1 (83%),yes,maybe,no
+B,Canada,1793,0,21,0,1,0,0,1863,2 (71%),maybe,yes,no
+B,Bosnia and Herzegovina,1591,29,-17,2,0,0,0,1573,3 (32%),no,no,yes
+B,Qatar,1423,20,-34,2,1,0,0,1425,4 (14%),no,no,maybe
+
+C,Brazil,1988,7,19,0,1,0,1,1956,1 (74%),yes,maybe,no
+C,Morocco,1822,88,37,0,2,0,1,1930,2 (70%),maybe,yes,no
+C,Scotland,1770,40,-2,2,1,0,0,1732,3 (38%),no,no,yes
+C,Haiti,1532,29,18,0,0,2,0,1594,4 (18%),no,no,maybe
+
+D,Turkey,1906,47,2,0,0,0,0,1942,1 (69%),yes,maybe,no
+D,Paraguay,1832,5,-9,0,0,0,0,1828,2 (49%),maybe,yes,maybe
+D,United States,1733,0,7,1,1,0,0,1786,3 (41%),no,maybe,yes
+D,Australia,1774,58,-25,0,1,0,0,1787,3 (41%),no,no,maybe
+
+E,Germany,1925,69,31,0,0,0,1,2017,1 (80%),yes,maybe,no
+E,Ecuador,1935,18,10,0,0,0,0,1963,2 (73%),maybe,yes,no
+E,Ivory Coast,1676,58,27,0,1,0,0,1728,3 (42%),no,no,yes
+E,Curaçao,1433,-31,-25,0,1,2,0,1381,4 (6%),no,no,no
+
+F,Netherlands,1961,73,21,0,1,0,1,1997,1 (75%),yes,maybe,no
+F,Japan,1906,79,41,0,0,0,1,1988,2 (74%),maybe,yes,no
+F,Tunisia,1633,53,3,0,1,1,0,1685,3 (28%),no,no,yes
+F,Sweden,1714,-28,11,0,1,0,0,1646,4 (23%),no,no,maybe
+
+G,Belgium,1888,58,35,2,1,0,1,1950,1 (77%),yes,no,no
+G,Iran,1764,52,30,2,3,0,0,1793,2 (51%),no,yes,maybe
+G,Egypt,1699,68,33,2,1,0,0,1776,3 (48%),no,maybe,yes
+G,New Zealand,1585,97,-34,0,0,2,0,1628,4 (24%),no,no,maybe
+
+H,Spain,2165,82,29,0,0,0,2,2248,1 (96%),yes,no,no
+H,Uruguay,1892,10,-10,0,1,0,0,1842,2 (58%),no,yes,no
+H,Cape Verde,1576,12,7,2,1,2,0,1569,3 (24%),no,no,yes
+H,Saudi Arabia,1566,13,-27,0,1,0,0,1558,4 (22%),no,no,maybe
+
+I,France,2081,73,31,0,0,0,2,2165,1 (80%),yes,maybe,no
+I,Norway,1917,92,5,0,0,0,1,2024,2 (59%),maybe,yes,maybe
+I,Senegal,1867,58,18,0,0,0,0,1978,3 (52%),no,maybe,yes
+I,Iraq,1608,35,-20,0,0,1,0,1648,4 (9%),no,no,no
+
+J,Argentina,2113,40,49,2,0,0,2,2192,1 (90%),yes,no,no
+J,Austria,1830,65,31,0,0,0,0,1926,2 (57%),no,yes,maybe
+J,Algeria,1743,64,23,0,1,0,0,1774,3 (35%),no,maybe,yes
+J,Jordan,1685,29,-35,0,1,1,0,1658,4 (19%),no,no,maybe
+
+K,Portugal,1984,51,18,0,0,0,1,2054,1 (78%),yes,maybe,no
+K,Colombia,1977,10,10,2,1,0,0,1995,2 (69%),maybe,yes,no
+K,Uzbekistan,1718,41,-11,0,1,1,0,1718,3 (27%),no,no,yes
+K,DR Congo,1655,41,26,0,1,1,0,1718,3 (27%),no,no,maybe
+
+L,England,2020,97,-15,0,1,0,1,2061,1 (82%),yes,maybe,no
+L,Croatia,1908,83,7,2,0,0,0,1950,2 (68%),maybe,yes,maybe
+L,Panama,1733,55,-15,2,0,1,0,1768,3 (43%),no,maybe,yes
+L,Ghana,1503,22,-43,0,1,0,0,1414,4 (6%),no,no,no

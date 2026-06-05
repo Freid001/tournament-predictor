@@ -1,0 +1,45 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	23	Iran	Russia	1	1	F		-3	1777	1757	−1	0	28	31
+2023	03	28	Iran	Kenya	2	1	F		1	1778	1370	0	−1	29	113
+2023	06	13	Iran	Afghanistan	6	1	CNU	KG	1	1779	1089	+1	0	28	178
+2023	06	16	Kyrgyzstan	Iran	1	5	CNU		-6	1239	1785	−2	+1	152	26
+2023	06	20	Uzbekistan	Iran	0	1	CNU		-17	1609	1802	−5	+3	60	25
+2023	09	07	Bulgaria	Iran	0	1	F		-5	1492	1807	−2	+1	83	25
+2023	09	12	Iran	Angola	4	0	F		2	1809	1385	−1	−1	27	111
+2023	10	13	Jordan	Iran	1	3	FT		-14	1563	1823	−1	+3	66	23
+2023	10	17	Iran	Qatar	4	0	FT	JO	8	1831	1507	0	−1	22	76
+2023	11	16	Iran	Hong Kong	4	0	WQS		1	1832	1063	+2	−1	20	180
+2023	11	21	Uzbekistan	Iran	2	2	WQS		5	1640	1827	+1	−1	52	20
+2024	01	05	Iran	Burkina Faso	2	1	F		2	1829	1562	0	0	20	66
+2024	01	09	Iran	Indonesia	5	0	F	QA	1	1830	1262	0	−1	20	151
+2024	01	14	Iran	Palestine	4	1	AC	QA	7	1837	1403	+2	−2	18	103
+2024	01	19	Iran	Hong Kong	1	0	AC	QA	1	1838	1073	0	0	18	178
+2024	01	23	Iran	United Arab Emirates	2	1	AC	QA	7	1845	1509	0	−2	17	77
+2024	01	31	Iran	Syria	1	1	AC	QA	-21	1824	1460	−3	+4	20	93
+2024	02	03	Iran	Japan	2	1	AC	QA	29	1853	1851	+5	−1	15	16
+2024	02	07	Qatar	Iran	3	2	AC		37	1601	1816	+5	−5	63	20
+2024	03	21	Iran	Turkmenistan	5	0	WQS		1	1817	1215	−1	−2	21	161
+2024	03	26	Turkmenistan	Iran	0	1	WQS		-2	1213	1819	+1	0	160	20
+2024	06	06	Hong Kong	Iran	2	4	WQS		-1	1057	1820	+1	0	179	20
+2024	06	11	Iran	Uzbekistan	0	0	WQS		-12	1808	1681	0	+3	20	44
+2024	09	05	Iran	Kyrgyzstan	1	0	WQ		1	1809	1281	+1	+1	20	144
+2024	09	10	United Arab Emirates	Iran	0	1	WQ		-11	1538	1820	−3	+1	74	19
+2024	10	10	Uzbekistan	Iran	0	0	WQ		2	1693	1818	0	0	47	19
+2024	10	15	Iran	Qatar	4	1	WQ	AE	14	1832	1565	+2	−1	19	68
+2024	11	14	Iran	North Korea	3	2	WQ	LA	3	1835	1393	+1	+1	18	106
+2024	11	19	Kyrgyzstan	Iran	2	3	WQ		-3	1281	1838	−2	0	143	18
+2025	03	20	Iran	United Arab Emirates	2	0	WQ		5	1843	1528	+1	−1	17	77
+2025	03	25	Iran	Uzbekistan	2	2	WQ		-13	1830	1697	−4	+1	20	47
+2025	06	05	Qatar	Iran	1	0	WQ		32	1530	1798	+7	−7	75	27
+2025	06	10	Iran	North Korea	3	0	WQ		3	1801	1375	0	−4	26	116
+2025	08	29	Iran	Afghanistan	3	1	CNU	TJ	1	1802	1056	0	0	26	179
+2025	09	01	Iran	India	3	0	CNU	TJ	2	1804	1172	0	0	26	162
+2025	09	04	Tajikistan	Iran	2	2	CNU		17	1281	1787	+3	−1	144	27
+2025	09	08	Uzbekistan	Iran	1	0	CNU		19	1718	1768	+5	−3	41	32
+2025	10	10	Russia	Iran	2	1	F		6	1802	1762	0	−1	27	33
+2025	10	14	Iran	Tanzania	2	0	F	AE	2	1764	1336	−1	−1	32	128
+2025	11	13	Cape Verde	Iran	0	0	FT	AE	8	1557	1756	+1	−1	71	33
+2025	11	18	Iran	Uzbekistan	0	0	FT	AE	-1	1755	1735	−1	0	33	36
+2026	03	27	Nigeria	Iran	2	1	NSM	TR	16	1755	1739	+4	−4	32	37
+2026	03	31	Costa Rica	Iran	0	5	NSM	TR	-21	1613	1760	−2	+4	61	31
+2026	05	29	Iran	Gambia	3	1	F	TR	4	1764	1419	0	−3	31	99

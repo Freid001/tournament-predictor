@@ -1,0 +1,35 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	25	Montserrat	Haiti	0	4	CLB		-5	959	1541	0	+2	191	71
+2023	03	28	Haiti	Bermuda	3	1	CLB	DO	6	1547	1159	+1	0	70	166
+2023	06	13	Haiti	Saint Kitts and Nevis	3	1	F	US	3	1550	1189	+2	0	68	162
+2023	06	20	Haiti	Trinidad and Tobago	0	0	F	US	-5	1545	1378	−1	+3	71	110
+2023	06	25	Haiti	Qatar	2	1	CCH	US	25	1570	1519	+5	−2	67	75
+2023	06	29	Mexico	Haiti	3	1	CCH	US	16	1819	1554	0	−2	25	70
+2023	07	02	Honduras	Haiti	2	1	CCH	US	32	1492	1522	+4	−5	85	75
+2023	09	08	Cuba	Haiti	0	0	CLA	DO	12	1280	1510	+4	−5	145	79
+2023	09	12	Jamaica	Haiti	2	2	CLA		-10	1584	1520	−1	+1	64	75
+2023	10	12	Suriname	Haiti	1	1	CLA		8	1291	1512	+3	−1	140	76
+2023	10	15	Jamaica	Haiti	3	2	CLA	TT	16	1607	1496	+1	−3	61	79
+2024	03	23	French Guiana	Haiti	1	1	F		3	1289	1493	+1	+1	142	84
+2024	06	06	Haiti	Saint Lucia	2	1	WQ	BB	4	1497	1088	0	0	83	173
+2024	06	09	Barbados	Haiti	1	3	WQ		-4	930	1501	−2	−1	196	84
+2024	09	06	Puerto Rico	Haiti	1	4	CLB		-13	1134	1514	−1	+2	166	80
+2024	09	09	Haiti	Sint Maarten	6	0	CLB	PR	2	1516	892	+1	0	79	202
+2024	10	11	Aruba	Haiti	1	3	CLB		-4	939	1520	−1	0	194	78
+2024	10	14	Aruba	Haiti	3	5	CLB		-4	935	1524	−1	0	194	78
+2024	11	15	Haiti	Sint Maarten	8	0	CLB	PR	3	1527	911	0	−1	79	197
+2024	11	18	Puerto Rico	Haiti	0	3	CLB		-11	1120	1538	−2	+3	169	75
+2025	03	22	Azerbaijan	Haiti	0	3	F		-15	1383	1553	−6	+4	111	72
+2025	06	07	Aruba	Haiti	0	5	WQ		-4	917	1557	0	+2	197	70
+2025	06	10	Curaçao	Haiti	5	1	WQ	AW	59	1389	1498	+23	−12	105	82
+2025	06	15	Saudi Arabia	Haiti	1	0	CCH	US	18	1609	1480	+4	−2	59	84
+2025	06	19	Haiti	Trinidad and Tobago	1	1	CCH	US	-7	1473	1394	−2	+3	86	104
+2025	06	22	United States	Haiti	2	1	CCH		6	1721	1467	+1	0	40	86
+2025	09	05	Haiti	Honduras	0	0	WQ	CW	7	1474	1578	0	−2	85	67
+2025	09	09	Costa Rica	Haiti	3	3	WQ		-14	1665	1488	−2	+2	50	83
+2025	10	09	Nicaragua	Haiti	0	3	WQ		-29	1302	1517	−7	+4	137	79
+2025	10	13	Honduras	Haiti	3	0	WQ		19	1603	1498	+6	−4	61	82
+2025	11	13	Haiti	Costa Rica	1	0	WQ	CW	29	1527	1642	+6	−3	77	55
+2025	11	18	Haiti	Nicaragua	2	0	WQ	CW	15	1542	1328	+3	−6	75	127
+2026	03	28	Tunisia	Haiti	1	0	FT	CA	12	1626	1530	0	−4	61	79
+2026	03	31	Haiti	Iceland	1	1	FT	CA	2	1532	1571	+2	0	77	69

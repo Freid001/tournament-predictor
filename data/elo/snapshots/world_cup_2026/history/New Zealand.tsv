@@ -1,0 +1,33 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	23	New Zealand	China	0	0	F		-4	1523	1474	+1	+1	76	84
+2023	03	26	New Zealand	China	2	1	F		6	1529	1468	+2	−3	74	86
+2023	06	16	Sweden	New Zealand	4	1	F		5	1756	1524	+2	0	34	75
+2023	06	19	New Zealand	Qatar	1	0	F	AT	11	1535	1544	+2	−1	73	71
+2023	10	13	DR Congo	New Zealand	1	1	F	ES	1	1518	1534	+2	0	73	72
+2023	10	17	Australia	New Zealand	2	0	ASH	EN	9	1779	1525	0	−1	29	72
+2023	11	17	Greece	New Zealand	2	0	F		5	1714	1520	+3	−3	40	75
+2023	11	21	Ireland	New Zealand	1	1	F		-5	1608	1525	−2	+2	60	73
+2024	03	22	Egypt	New Zealand	1	0	FFC		7	1646	1518	+1	0	51	75
+2024	03	26	New Zealand	Tunisia	0	0	FFC	EG	7	1525	1677	0	0	75	45
+2024	06	18	New Zealand	Solomon Islands	3	0	OC	VU	15	1540	1237	+2	−2	74	155
+2024	06	21	Vanuatu	New Zealand	0	4	OC		-10	1070	1550	−1	+1	177	73
+2024	06	27	New Zealand	Tahiti	5	0	OC	VU	10	1560	1156	+4	0	69	163
+2024	06	30	Vanuatu	New Zealand	0	3	OC		-10	1091	1570	0	+2	173	66
+2024	09	07	Mexico	New Zealand	3	0	F	US	8	1793	1562	+3	−1	22	69
+2024	09	10	United States	New Zealand	1	1	F		-7	1726	1569	−2	0	37	69
+2024	10	11	New Zealand	Tahiti	3	0	WQ	VU	7	1576	1179	+3	0	67	161
+2024	10	14	New Zealand	Malaysia	4	0	F		4	1580	1288	+1	0	66	141
+2024	11	15	New Zealand	Vanuatu	8	1	WQ		3	1583	1093	+2	−1	65	176
+2024	11	18	New Zealand	Samoa	8	0	WQ		0	1583	728	+2	0	64	216
+2025	03	21	New Zealand	Fiji	7	0	WQ		6	1589	1227	0	0	60	155
+2025	03	24	New Zealand	New Caledonia	3	0	WQ		6	1595	1285	0	−2	61	140
+2025	06	07	New Zealand	Ivory Coast	1	0	CDS	CA	15	1610	1576	+4	−1	59	65
+2025	06	10	Ukraine	New Zealand	2	1	CDS	CA	8	1799	1602	+1	−1	27	60
+2025	09	05	Australia	New Zealand	1	0	F		3	1778	1599	−1	0	31	61
+2025	09	09	New Zealand	Australia	1	3	F		-12	1587	1790	−2	+1	62	29
+2025	10	09	Poland	New Zealand	1	0	F		4	1714	1583	0	−4	42	67
+2025	10	14	Norway	New Zealand	1	1	F		-8	1872	1591	0	+1	16	66
+2025	11	15	Colombia	New Zealand	2	1	F	US	2	1990	1589	0	−1	5	66
+2025	11	18	Ecuador	New Zealand	2	0	F	US	4	1933	1585	+1	0	9	66
+2026	03	27	New Zealand	Finland	0	2	FFS		-33	1552	1542	−5	+5	71	75
+2026	03	30	New Zealand	Chile	4	1	FFS		33	1585	1710	+6	−8	65	43

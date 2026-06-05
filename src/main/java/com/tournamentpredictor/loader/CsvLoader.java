@@ -152,30 +152,126 @@ public class CsvLoader {
     }
 
     public Map<String,Integer> loadElo() throws IOException {
-        Path p = projectRoot.resolve("data").resolve("elo").resolve("world.csv");
+        return loadEloFrom(worldEloPath());
+    }
+
+    public Map<String,Integer> loadEloForTournament(String tournament) throws IOException {
+        Path snapshot = snapshotDir(tournament).resolve("teams.csv");
+        if (!Files.exists(snapshot)) {
+            throw new IOException("Tournament snapshot not found: " + snapshot.toAbsolutePath()
+                    + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
+        }
+        return loadEloFrom(snapshot);
+    }
+
+    private Map<String,Integer> loadEloFrom(Path p) throws IOException {
         if (!Files.exists(p)) throw new IOException("ELO file not found: " + p.toAbsolutePath());
         Map<String,Integer> map = new HashMap<>();
         try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
             for (CSVRecord r : parser) {
                 if (r.size() < 4) continue;
-                String name = r.get(2);
-                try { map.put(name, Integer.parseInt(r.get(3))); } catch (NumberFormatException ignored) {}
+                String name = r.isMapped("team_name") ? r.get("team_name") : r.get(2);
+                String rating = r.isMapped("rating") ? r.get("rating") : r.get(3);
+                try { map.put(name, Integer.parseInt(rating)); } catch (NumberFormatException ignored) {}
             }
         }
         return map;
     }
 
     public Map<String,String> loadTeamCodes() throws IOException {
-        Path p = projectRoot.resolve("data").resolve("elo").resolve("world.csv");
+        return loadTeamCodesFrom(worldEloPath());
+    }
+
+    public Map<String,String> loadTeamCodesForTournament(String tournament) throws IOException {
+        Path snapshot = snapshotDir(tournament).resolve("teams.csv");
+        if (!Files.exists(snapshot)) {
+            throw new IOException("Tournament snapshot not found: " + snapshot.toAbsolutePath()
+                    + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
+        }
+        return loadTeamCodesFrom(snapshot);
+    }
+
+    private Map<String,String> loadTeamCodesFrom(Path p) throws IOException {
         if (!Files.exists(p)) return new HashMap<>();
         Map<String,String> map = new HashMap<>();
         try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
             for (CSVRecord r : parser) {
                 if (r.size() < 3) continue;
-                map.put(r.get(2), r.get(1));
+                String name = r.isMapped("team_name") ? r.get("team_name") : r.get(2);
+                String code = r.isMapped("team_code") ? r.get("team_code") : r.get(1);
+                map.put(name, code);
             }
         }
         return map;
+    }
+
+
+    public boolean hasTournamentSnapshot(String tournament) {
+        return Files.exists(snapshotDir(tournament).resolve("teams.csv"));
+    }
+
+    public Properties loadTournamentProperties(String tournament) throws IOException {
+        Properties properties = new Properties();
+        Path path = projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("tournament.properties");
+        if (Files.exists(path)) {
+            try (var reader = Files.newBufferedReader(path)) {
+                properties.load(reader);
+            }
+        }
+        return properties;
+    }
+
+    public Properties loadSnapshotMetadata(String tournament) throws IOException {
+        Properties properties = new Properties();
+        Path path = snapshotDir(tournament).resolve("metadata.properties");
+        if (Files.exists(path)) {
+            try (var reader = Files.newBufferedReader(path)) {
+                properties.load(reader);
+            }
+        }
+        return properties;
+    }
+
+    public int resolveTournamentSetting(String tournament, String key, int defaultValue) throws IOException {
+        Properties tournamentProperties = loadTournamentProperties(tournament);
+        return intProperty(tournamentProperties, key, defaultValue);
+    }
+
+    public int resolveSnapshotBackedSetting(String tournament, String key, String metadataKey, int defaultValue) throws IOException {
+        if (hasTournamentSnapshot(tournament)) {
+            Properties metadata = loadSnapshotMetadata(tournament);
+            if (metadata.containsKey(metadataKey)) {
+                return intProperty(metadata, metadataKey, defaultValue);
+            }
+        }
+        return resolveTournamentSetting(tournament, key, defaultValue);
+    }
+
+    private static int intProperty(Properties properties, String key, int defaultValue) {
+        String value = properties.getProperty(key);
+        if (value == null || value.isBlank()) return defaultValue;
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException ignored) {
+            return defaultValue;
+        }
+    }
+
+    private Path snapshotDir(String tournament) {
+        return projectRoot.resolve("data").resolve("elo").resolve("snapshots").resolve(tournament);
+    }
+
+    public Path historyDirForTournament(String tournament) throws IOException {
+        Path snapshot = snapshotDir(tournament).resolve("history");
+        if (!Files.exists(snapshot)) {
+            throw new IOException("Tournament snapshot history not found: " + snapshot.toAbsolutePath()
+                    + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
+        }
+        return snapshot;
+    }
+
+    private Path worldEloPath() {
+        return projectRoot.resolve("data").resolve("elo").resolve("current").resolve("world.csv");
     }
 
     /** Loads the team names from start.csv for a tournament (the team column). */
@@ -194,7 +290,7 @@ public class CsvLoader {
 
     /** Loads the combined ELO map for a tournament: world.csv as base, overridden by groups.csv values. */
     public Map<String,Integer> loadTournamentElo(String tournament) throws IOException {
-        Map<String,Integer> eloRatings = loadElo();
+        Map<String,Integer> eloRatings = loadEloForTournament(tournament);
         eloRatings.putAll(loadGroupElo(tournament));
         return eloRatings;
     }
@@ -274,7 +370,7 @@ public class CsvLoader {
     /**
      * Loads ELO adjustment breakdowns per team for a tournament.
      * Reads start.csv (host/injury/heat/dropout levels), groups.csv snapshots when available,
-     * world.csv as fallback, and ELO history TSV files (qualifying game results).
+     * and tournament snapshot ELO/history files.
      * Returns an empty map if start.csv does not exist.
      */
     public Map<String, EloBreakdown> loadEloBreakdowns(String tournament) throws IOException {
@@ -282,14 +378,9 @@ public class CsvLoader {
         if (!Files.exists(startPath)) return new HashMap<>();
 
         Map<String,Integer> worldElo = new HashMap<>();
-        Path worldPath = projectRoot.resolve("data").resolve("elo").resolve("world.csv");
-        if (Files.exists(worldPath)) {
-            try (var reader = Files.newBufferedReader(worldPath); var parser = CSV.parse(reader)) {
-                for (CSVRecord r : parser) {
-                    if (r.size() < 4) continue;
-                    try { worldElo.put(r.get(2), Integer.parseInt(r.get(3))); } catch (NumberFormatException ignored) {}
-                }
-            }
+        try {
+            worldElo.putAll(loadEloForTournament(tournament));
+        } catch (IOException ignored) {
         }
         Map<String, TeamEloSnapshot> snapshots;
         try {
@@ -298,10 +389,18 @@ public class CsvLoader {
             snapshots = new HashMap<>();
         }
 
-        Path historyDir = projectRoot.resolve("data").resolve("elo").resolve("history");
+        Path historyDir = historyDirForTournament(tournament);
+        int effectiveQualSinceYear = resolveSnapshotBackedSetting(tournament,
+                "qual.form.since.year", "qual_form_since", qualFormSinceYear);
+        int effectiveQualUntilYear = resolveSnapshotBackedSetting(tournament,
+                "qual.form.until.year", "qual_form_until", qualFormUntilYear);
+        int effectivePreTournamentSinceYear = resolveSnapshotBackedSetting(tournament,
+                "pre.tournament.form.since.year", "pre_tournament_form_since", PRE_TOURNAMENT_FORM_SINCE_YEAR);
+        int effectivePreTournamentUntilYear = resolveSnapshotBackedSetting(tournament,
+                "pre.tournament.form.until.year", "pre_tournament_form_until", PRE_TOURNAMENT_FORM_UNTIL_YEAR);
         QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
                 historyDir,
-                0, 9999,
+                effectivePreTournamentSinceYear, effectivePreTournamentUntilYear,
                 preTournamentFormEloMax,
                 Set.of("F"), 5);
 
@@ -337,8 +436,11 @@ public class CsvLoader {
                 String cohesionNotes = r.isMapped("cohesion_notes") ? r.get("cohesion_notes") : "";
                 String depthNotes = r.isMapped("depth_notes") ? r.get("depth_notes") : "";
                 String qualityNotes = r.isMapped("quality_notes") ? r.get("quality_notes") : "";
-                List<String[]> qualResults = attachContributions(loadQualResults(historyDir, team), qualBonus);
-                List<String[]> friendlyResults = attachContributions(loadFriendlyResults(historyDir, team), preTournamentBonus);
+                List<String[]> qualResults = attachContributions(
+                        loadQualResults(historyDir, team, effectiveQualSinceYear, effectiveQualUntilYear), qualBonus);
+                List<String[]> friendlyResults = attachContributions(
+                        loadFriendlyResults(historyDir, team, effectivePreTournamentSinceYear, effectivePreTournamentUntilYear),
+                        preTournamentBonus);
                 result.put(team, new EloBreakdown(
                         baseElo, isHost, homeBonus,
                         injuryLevel, injuryPenalty,
@@ -357,7 +459,7 @@ public class CsvLoader {
         return result;
     }
 
-    private List<String[]> loadFriendlyResults(Path historyDir, String teamName) {
+    private List<String[]> loadFriendlyResults(Path historyDir, String teamName, int sinceYear, int untilYear) {
         Path tsv = historyDir.resolve(teamName + ".tsv");
         if (!Files.exists(tsv)) return List.of();
         List<String[]> results = new ArrayList<>();
@@ -367,6 +469,9 @@ public class CsvLoader {
                 String[] cols = lines.get(i).split("\t", -1);
                 if (cols.length < 8) continue;
                 if (!"F".equals(cols[7].trim())) continue;
+                int year;
+                try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
+                if (year < sinceYear || year > untilYear) continue;
                 int homeScore, awayScore;
                 try {
                     homeScore = Integer.parseInt(cols[5].trim());
@@ -386,7 +491,7 @@ public class CsvLoader {
         return results.size() > 5 ? results.subList(results.size() - 5, results.size()) : results;
     }
 
-    private List<String[]> loadQualResults(Path historyDir, String teamName) {
+    private List<String[]> loadQualResults(Path historyDir, String teamName, int sinceYear, int untilYear) {
         Path tsv = historyDir.resolve(teamName + ".tsv");
         if (!Files.exists(tsv)) return List.of();
         List<String[]> results = new ArrayList<>();
@@ -397,7 +502,7 @@ public class CsvLoader {
                 if (cols.length < 8) continue;
                 int year;
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
-                if (year < qualFormSinceYear || year > qualFormUntilYear) continue;
+                if (year < sinceYear || year > untilYear) continue;
                 if (!QUALIFIER_TYPES.contains(cols[7].trim())) continue;
                 int homeScore, awayScore;
                 try {

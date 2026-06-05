@@ -27,6 +27,7 @@ class PathFatigueCalculatorTest {
         PredictionConfig config = new PredictionConfig();
         setField(config, "pathFatigueTournamentAvgElo",    avgElo);
         setField(config, "pathFatigueEloFactor",           factor);
+        setField(config, "pathFatigueStageMultGroup",      0.25);
         setField(config, "pathFatigueStageMultLast32",     m32);
         setField(config, "pathFatigueStageMultLast16",     m16);
         setField(config, "pathFatigueStageMultLast8",      m8);
@@ -65,6 +66,7 @@ class PathFatigueCalculatorTest {
 
     @Test
     void stageMultiplierForRound_defaultValues() {
+        assertEquals(0.25, calculator.stageMultiplierForRound("group"));
         assertEquals(0.5, calculator.stageMultiplierForRound("last_32"));
         assertEquals(1.0, calculator.stageMultiplierForRound("last_16"));
         assertEquals(1.2, calculator.stageMultiplierForRound("last_8"));
@@ -73,6 +75,7 @@ class PathFatigueCalculatorTest {
 
     @Test
     void stageMultiplierForRound_isCaseInsensitive() {
+        assertEquals(0.25, calculator.stageMultiplierForRound("GROUP"));
         assertEquals(1.0, calculator.stageMultiplierForRound("LAST_16"));
         assertEquals(1.2, calculator.stageMultiplierForRound("Last_8"));
     }
@@ -80,7 +83,20 @@ class PathFatigueCalculatorTest {
     @Test
     void stageMultiplierForRound_throwsOnUnknown() {
         assertThrows(IllegalArgumentException.class, () -> calculator.stageMultiplierForRound("final"));
-        assertThrows(IllegalArgumentException.class, () -> calculator.stageMultiplierForRound("group"));
+    }
+
+    @Test
+    void groupStageWeightedContribution_onlyCountsAboveAverageOpponents() {
+        assertEquals(25, calculator.groupStageWeightedContribution(1950));
+        assertEquals(0, calculator.groupStageWeightedContribution(1850));
+        assertEquals(0, calculator.groupStageWeightedContribution(1750));
+    }
+
+    @Test
+    void knockoutWeightedContribution_onlyCountsAboveAverageOpponents() {
+        assertEquals(50, calculator.knockoutWeightedContribution(1950, "last_32"));
+        assertEquals(0, calculator.knockoutWeightedContribution(1850, "last_32"));
+        assertEquals(0, calculator.knockoutWeightedContribution(1750, "last_32"));
     }
 
     // ─── Positive cap ─────────────────────────────────────────────────────────

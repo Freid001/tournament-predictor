@@ -1,9 +1,17 @@
 match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree
-M89,W77(I1(France)),W74(E1(Germany)),predicted,France (70%),-37,-74,United States:0,Scotland:0,
-M90,W75(F1(Japan)),W73(B2(Canada)),predicted,Japan (61%),-3,-25,Morocco:0,South Korea:0,
-M91,W76(C1(Brazil)),W78(I2(Norway)),predicted,Norway (55%),27,47,Netherlands:-3,Ecuador:-6,
-M92,W80(L1(England)),W79(CEFHI3(Senegal)),predicted,England (59%),-77,20,Uzbekistan:0,Mexico:-2,
-M93,W84(H1(Spain)),W83(K2(Colombia)),predicted,Spain (78%),14,26,Austria:-2,Croatia:-3,
-M94,W81(D1(Turkey)),W82(G1(Belgium)),predicted,Turkey (52%),-71,-73,Algeria:0,Czechia:0,
-M95,W86(J1(Argentina)),W88(D2(Paraguay)),predicted,Argentina (86%),-11,-51,Uruguay:0,Iran:0,
-M96,W87(K1(Portugal)),W85(B1(Switzerland)),predicted,Portugal (70%),-58,-72,Panama:0,Egypt:0,
+M89,W77(I1(France)),W74(E1(Germany)),predicted,France (69%),76,28,G|Norway:-5 > G|Senegal:-4 > United States:0,G|Ecuador:-3 > Scotland:0,
+
+M90,W75(F1(Netherlands)),W73(B2(Canada)),predicted,Netherlands (68%),75,26,G|Japan:-4 > Morocco:-5,G|Switzerland:-3 > South Korea:0,
+
+M91,W76(F2(Japan)),W78(I2(Norway)),predicted,Norway (54%),90,168,G|Netherlands:-4 > Brazil:-6,G|France:-9 > G|Senegal:-4 > Ecuador:-7,
+
+M92,W80(L1(England)),W79(A1(Mexico)),predicted,England (63%),89,0,G|Croatia:-3 > Senegal:-8,Ivory Coast:0,
+
+M93,W84(H1(Spain)),W83(K2(Colombia)),predicted,Spain (82%),38,101,Austria:-5,G|Portugal:-6 > Croatia:-6,
+
+M94,W81(D1(Turkey)),W82(G1(Belgium)),predicted,Belgium (51%),0,0,Algeria:0,Czechia:0,
+
+M95,W86(J1(Argentina)),W88(D2(Paraguay)),predicted,Argentina (89%),19,23,G|Austria:-2 > Uruguay:0,G|Turkey:-3 > Iran:0,
+
+M96,W87(K1(Portugal)),W85(B1(Switzerland)),predicted,Portugal (64%),36,3,G|Colombia:-4 > Panama:0,G|Canada:0 > Egypt:0,
+

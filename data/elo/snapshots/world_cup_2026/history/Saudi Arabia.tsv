@@ -1,0 +1,58 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	01	06	Saudi Arabia	Yemen	2	0	GLF	IQ	2	1646	1097	+1	−1	53	177
+2023	01	09	Iraq	Saudi Arabia	2	0	GLF		28	1597	1618	+6	−3	62	56
+2023	01	12	Oman	Saudi Arabia	2	1	GLF	IQ	22	1597	1596	+4	−7	62	63
+2023	03	24	Saudi Arabia	Venezuela	1	2	F		-10	1586	1694	−1	+1	65	44
+2023	03	28	Saudi Arabia	Bolivia	1	2	F		-12	1574	1618	−1	+5	67	56
+2023	09	08	Costa Rica	Saudi Arabia	3	1	F	EN	12	1649	1562	+1	0	50	67
+2023	09	12	South Korea	Saudi Arabia	1	0	F	EN	5	1765	1557	+1	0	30	67
+2023	10	13	Nigeria	Saudi Arabia	2	2	F	PT	-2	1615	1559	−1	0	58	67
+2023	10	17	Mali	Saudi Arabia	3	1	F	PT	13	1629	1546	+7	−2	52	69
+2023	11	16	Saudi Arabia	Pakistan	4	0	WQS		1	1547	837	−1	0	70	207
+2023	11	21	Jordan	Saudi Arabia	0	2	WQS		-39	1516	1586	−8	+7	75	63
+2024	01	04	Saudi Arabia	Lebanon	1	0	F	QA	3	1589	1309	+1	−2	62	136
+2024	01	09	Palestine	Saudi Arabia	0	0	F	QA	5	1410	1584	+2	0	101	62
+2024	01	10	Saudi Arabia	Hong Kong	2	0	F	QA	2	1586	1080	0	0	62	175
+2024	01	16	Saudi Arabia	Oman	2	1	AC	QA	24	1610	1544	+3	−3	59	68
+2024	01	21	Saudi Arabia	Kyrgyzstan	2	0	AC	QA	8	1618	1237	+3	−1	56	156
+2024	01	25	Saudi Arabia	Thailand	0	0	AC	QA	-13	1605	1431	−4	+2	60	100
+2024	01	30	Saudi Arabia	South Korea	1	1	AC	QA	11	1616	1761	+2	−3	58	30
+2024	03	21	Saudi Arabia	Tajikistan	1	0	WQS		5	1621	1380	+3	0	57	108
+2024	03	26	Tajikistan	Saudi Arabia	1	1	WQS		8	1388	1613	0	−2	109	59
+2024	06	06	Pakistan	Saudi Arabia	0	3	WQS		-1	828	1614	0	+1	206	59
+2024	06	11	Saudi Arabia	Jordan	1	2	WQS		-26	1588	1635	−3	+9	63	53
+2024	09	05	Saudi Arabia	Indonesia	1	1	WQ		-15	1573	1348	−5	+4	66	123
+2024	09	10	China	Saudi Arabia	1	2	WQ		-16	1379	1589	−4	+6	110	61
+2024	10	10	Saudi Arabia	Japan	0	2	WQ		-15	1574	1889	−7	0	68	14
+2024	10	15	Saudi Arabia	Bahrain	0	0	WQ		-11	1563	1478	−1	+3	69	85
+2024	11	14	Australia	Saudi Arabia	0	0	WQ		-13	1728	1576	−6	+1	40	68
+2024	11	19	Indonesia	Saudi Arabia	2	0	WQ		40	1393	1536	+12	−11	110	77
+2024	12	17	Saudi Arabia	Trinidad and Tobago	3	1	F		6	1542	1394	+3	−2	74	109
+2024	12	22	Bahrain	Saudi Arabia	3	2	GLF	KW	25	1483	1517	+3	−4	85	78
+2024	12	25	Saudi Arabia	Yemen	3	2	GLF	KW	3	1520	1088	0	0	78	176
+2024	12	28	Saudi Arabia	Iraq	3	1	GLF	KW	39	1559	1584	+8	−7	70	61
+2024	12	31	Oman	Saudi Arabia	2	1	GLF	KW	23	1534	1536	+3	−5	76	75
+2025	03	20	Saudi Arabia	China	1	0	WQ		9	1545	1415	+3	−1	72	99
+2025	03	25	Japan	Saudi Arabia	0	0	WQ		-17	1876	1562	0	+6	14	66
+2025	05	30	Saudi Arabia	Jordan	2	0	F		14	1576	1619	+3	−1	65	55
+2025	06	05	Bahrain	Saudi Arabia	0	2	WQ		-32	1468	1608	−7	+6	88	58
+2025	06	10	Saudi Arabia	Australia	1	2	WQ		-17	1591	1775	−2	0	63	31
+2025	06	15	Saudi Arabia	Haiti	1	0	CCH	US	18	1609	1480	+4	−2	59	84
+2025	06	19	United States	Saudi Arabia	1	0	CCH		12	1715	1597	+3	−4	41	63
+2025	06	22	Saudi Arabia	Trinidad and Tobago	1	1	CCH	US	-13	1584	1407	−2	+6	65	99
+2025	06	28	Mexico	Saudi Arabia	2	0	CCH	US	16	1827	1568	+2	−3	23	68
+2025	09	04	Saudi Arabia	North Macedonia	2	1	F	CZ	12	1580	1622	+1	−4	67	57
+2025	09	08	Czechia	Saudi Arabia	1	1	F		-7	1761	1587	0	+2	33	65
+2025	10	08	Saudi Arabia	Indonesia	3	2	WQ		5	1592	1350	+1	−2	61	121
+2025	10	14	Saudi Arabia	Iraq	0	0	WQ		-7	1585	1580	−4	+1	67	68
+2025	11	14	Saudi Arabia	Ivory Coast	1	0	F		8	1593	1591	+2	−1	64	65
+2025	11	18	Saudi Arabia	Algeria	0	2	F		-15	1578	1718	−3	+3	67	40
+2025	12	02	Saudi Arabia	Oman	2	1	ARC	QA	14	1592	1460	+2	−2	65	88
+2025	12	05	Saudi Arabia	Comoros	3	1	ARC	QA	14	1606	1374	+2	−2	63	111
+2025	12	08	Morocco	Saudi Arabia	1	0	ARC	QA	9	1826	1597	+1	−1	22	65
+2025	12	11	Saudi Arabia	Palestine	2	1	ARC	QA	14	1611	1469	+3	0	61	86
+2025	12	15	Jordan	Saudi Arabia	1	0	ARC	QA	16	1701	1595	+5	−2	44	63
+2025	12	18	Saudi Arabia	United Arab Emirates	0	0	ARC	QA	-3	1592	1540	0	0	64	76
+2026	03	27	Saudi Arabia	Egypt	0	4	F		-21	1571	1680	−4	+2	68	51
+2026	03	31	Serbia	Saudi Arabia	2	1	F		3	1769	1568	+1	−1	28	71
+2026	05	30	Ecuador	Saudi Arabia	2	1	F	US	2	1935	1566	0	0	9	71

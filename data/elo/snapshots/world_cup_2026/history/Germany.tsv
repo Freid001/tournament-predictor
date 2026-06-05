@@ -1,0 +1,40 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2023	03	25	Germany	Peru	2	0	F		7	1962	1843	0	−2	9	19
+2023	03	28	Germany	Belgium	2	3	F		-12	1950	1987	−1	+1	10	7
+2023	06	12	Germany	Ukraine	3	3	F		-6	1944	1818	−1	0	11	22
+2023	06	16	Poland	Germany	1	0	F		12	1795	1932	+1	0	25	10
+2023	06	20	Germany	Colombia	0	2	F		-19	1913	1951	−2	0	13	11
+2023	09	09	Germany	Japan	1	4	F		-25	1888	1880	0	+1	13	14
+2023	09	12	Germany	France	2	1	F		14	1902	2102	0	−1	13	3
+2023	10	14	United States	Germany	1	3	F		-16	1799	1918	−1	+1	26	12
+2023	10	17	Germany	Mexico	2	2	F	US	-2	1916	1840	−1	0	13	20
+2023	11	18	Germany	Turkey	2	3	F		-17	1899	1763	−1	+5	14	29
+2023	11	21	Austria	Germany	2	0	F		14	1835	1885	+3	0	18	14
+2024	03	23	France	Germany	0	2	F		-26	2083	1911	0	0	2	13
+2024	03	26	Germany	Netherlands	2	1	F		9	1920	1968	0	0	13	10
+2024	06	03	Germany	Ukraine	0	0	F		-4	1916	1867	0	0	13	15
+2024	06	07	Germany	Greece	2	1	F		3	1919	1736	0	−1	13	37
+2024	06	14	Germany	Scotland	5	1	EC		18	1937	1751	0	−1	13	30
+2024	06	19	Germany	Hungary	2	0	EC		15	1952	1776	+1	−6	11	26
+2024	06	23	Germany	Switzerland	1	1	EC		-14	1938	1851	0	+2	11	16
+2024	06	29	Germany	Denmark	2	0	EC		18	1956	1816	+1	0	10	18
+2024	07	05	Germany	Spain	1	2	EC		-23	1933	2112	−2	0	11	2
+2024	09	07	Germany	Hungary	5	0	ENA		17	1950	1783	+2	−2	10	25
+2024	09	10	Netherlands	Germany	2	2	ENA		-6	1959	1956	0	+1	8	9
+2024	10	11	Bosnia and Herzegovina	Germany	1	2	ENA		-4	1487	1960	−1	+1	86	8
+2024	10	14	Germany	Netherlands	1	0	ENA		14	1974	1940	+1	0	7	9
+2024	11	16	Germany	Bosnia and Herzegovina	7	0	ENA		3	1977	1469	0	0	8	86
+2024	11	19	Hungary	Germany	1	1	ENA		6	1778	1971	+4	0	27	8
+2025	03	20	Italy	Germany	1	2	ENL		-29	1901	2000	−2	+2	13	6
+2025	03	23	Germany	Italy	3	3	ENL		-13	1987	1914	−1	+1	7	12
+2025	06	04	Germany	Portugal	1	2	ENL		-32	1955	2020	−1	+2	8	4
+2025	06	08	Germany	France	0	2	ENL		-42	1913	2055	−1	+1	9	3
+2025	09	04	Slovakia	Germany	2	0	WQ		42	1707	1871	+9	−4	42	14
+2025	09	07	Germany	Northern Ireland	3	1	WQ		6	1877	1585	0	−2	14	65
+2025	10	10	Germany	Luxembourg	4	0	WQ		3	1880	1413	−1	−1	15	101
+2025	10	13	Northern Ireland	Germany	0	1	WQ		-11	1607	1891	−1	0	60	15
+2025	11	14	Luxembourg	Germany	0	2	WQ		-6	1401	1897	−2	+1	105	14
+2025	11	17	Germany	Slovakia	6	0	WQ		13	1910	1687	+2	−4	13	48
+2026	03	27	Switzerland	Germany	3	4	F		-12	1885	1922	−2	+1	15	11
+2026	03	30	Germany	Ghana	2	1	F		1	1923	1505	0	0	11	82
+2026	05	31	Germany	Finland	4	0	F		2	1925	1540	0	0	11	74
