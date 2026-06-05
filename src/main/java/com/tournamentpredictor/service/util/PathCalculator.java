@@ -16,8 +16,8 @@ public class PathCalculator {
     }
 
     public String bestPredicted(String existing, String incoming) {
-        if ("primary".equals(existing) || "primary".equals(incoming)) {
-            return "primary";
+        if ("predicted".equals(existing) || "predicted".equals(incoming)) {
+            return "predicted";
         }
         if ("alt".equals(existing) || "alt".equals(incoming)) {
             return "alt";
@@ -26,8 +26,8 @@ public class PathCalculator {
     }
 
     public String computePathFromSlots(String path1, String path2) {
-        if ("primary".equals(path1) && "primary".equals(path2)) {
-            return "primary";
+        if ("predicted".equals(path1) && "predicted".equals(path2)) {
+            return "predicted";
         }
         if ("alt".equals(path1) || "alt".equals(path2)) {
             return "alt";
@@ -40,7 +40,7 @@ public class PathCalculator {
                                         Map<String, String> teamTP) {
         if (slotStatusEvaluator.isDisplayPredicted(token1, display1, teamGW, teamRU, teamTP)
                 && slotStatusEvaluator.isDisplayPredicted(token2, display2, teamGW, teamRU, teamTP)) {
-            return "primary";
+            return "predicted";
         }
         if (slotStatusEvaluator.isDisplayMaybe(token1, display1, teamGW, teamRU, teamTP)
                 || slotStatusEvaluator.isDisplayMaybe(token2, display2, teamGW, teamRU, teamTP)) {

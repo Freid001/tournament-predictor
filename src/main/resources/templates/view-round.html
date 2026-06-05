@@ -1,36 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Tournament Predictor</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
-</head>
+<head th:replace="~{fragments :: pageHead}"></head>
 <body>
-<nav class="navbar navbar-dark bg-dark mb-4">
-    <div class="container"><a class="navbar-brand" href="/">🏆 Tournament Predictor</a></div>
-</nav>
+<nav th:replace="~{fragments :: navbar}"></nav>
 <div class="container pb-4">
-    <div class="d-flex justify-content-between align-items-center mb-3 gap-2 flex-wrap">
-        <div>
-            <h1 class="h3 mb-1" th:text="${'View ' + roundLabel}">View Last 32</h1>
-            <p class="text-muted mb-0" th:text="${tournament}">world_cup_2026</p>
-        </div>
-        <div class="d-flex gap-2">
-            <a class="btn btn-outline-secondary" th:href="@{/tournament/{name}(name=${tournament})}">Back to Tournament</a>
-            <a th:if="${hasPrevRound}" th:href="${prevViewEnabled ? prevViewUrl : '#'}"
-               th:text="${prevViewLabel}"
-               th:classappend="${prevViewEnabled ? '' : ' disabled'}"
-               th:attr="aria-disabled=${!prevViewEnabled}, tabindex=${!prevViewEnabled ? '-1' : ''}"
-               class="btn btn-outline-primary">Back to Previous</a>
-            <a th:if="${editUrl != null}" class="btn btn-outline-primary" th:href="${editUrl}">Edit</a>
-            <a th:if="${hasNextRound}" th:href="${nextViewEnabled ? nextViewUrl : '#'}"
-               th:text="${nextViewLabel}"
-               th:classappend="${nextViewEnabled ? '' : ' disabled'}"
-               th:attr="aria-disabled=${!nextViewEnabled}, tabindex=${!nextViewEnabled ? '-1' : ''}"
-               class="btn btn-primary">Next</a>
-        </div>
-    </div>
+    <div th:replace="~{fragments :: roundNav}"></div>
+    <div th:replace="~{fragments :: editLink}"></div>
 
     <div th:if="${groupsMode}">
         <div th:each="entry : ${groupedRows}" class="mb-4">
@@ -38,23 +13,23 @@
             <div class="table-responsive shadow-sm rounded border">
                 <table class="table table-striped table-sm mb-0 align-middle w-100">
                     <colgroup>
-                        <col style="width:40%">
-                        <col style="width:25%">
-                        <col style="width:35%">
+                        <col>
+                        <col style="width:130px">
                     </colgroup>
                     <thead class="table-dark">
                     <tr>
                         <th>Team</th>
-                        <th>Predicted Position</th>
-                        <th>Group Finish</th>
+                        <th class="text-end" style="white-space:nowrap">Prediction</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="row : ${entry.value}">
-                        <td th:utext="${row.teamHtml}">Mexico</td>
-                        <td th:text="${row.predictedPosition}">1 (78%)</td>
-                        <td th:utext="${row.positionBadgeHtml}"></td>
+                    <th:block th:each="row : ${entry.value}">
+                    <tr class="group-main-row" style="cursor:pointer" onclick="toggleGroupDetail(this)">
+                        <td><span class="expand-icon me-1 text-muted small">▶</span><span th:utext="${row.teamHtml}">Mexico</span></td>
+                        <td class="text-end" th:utext="${row.positionBadgeHtml}"></td>
                     </tr>
+                    <tr th:replace="~{fragments :: groupDetailRow(2, ${row.breakdownHtml})}"></tr>
+                    </th:block>
                     </tbody>
                 </table>
             </div>
@@ -71,7 +46,7 @@
 
     <div th:if="${!groupsMode}" class="table-responsive shadow-sm rounded border">
         <table class="table table-striped table-sm mb-0 align-middle">
-            <thead>
+            <thead class="table-dark">
             <tr>
                 <th>Match</th>
                 <th>Team 1</th>
@@ -92,5 +67,7 @@
         </table>
     </div>
 </div>
+<th:block th:replace="~{fragments :: toggleGroupDetailScript}"></th:block>
+<th:block th:replace="~{fragments :: keyboardNavScript}"></th:block>
 </body>
 </html>

@@ -333,7 +333,7 @@ public class PathHandler {
 
         // DFS from each starting matchId to build all possible paths
         // For primary mode, only explore primary rows — avoids exponential blowup from alt branches
-        boolean primaryOnly = "primary".equalsIgnoreCase(pathMode);
+        boolean primaryOnly = "predicted".equalsIgnoreCase(pathMode);
         List<List<MatchStep>> allPaths = new ArrayList<>();
         for (String startMatchId : startingMatchIds) {
             dfs(startMatchId, teamLower, primaryOnly, andConditions, slotPatterns, matchRows, matchHeaders, matchToStage,
@@ -343,7 +343,7 @@ public class PathHandler {
 
         // Filter by pathMode
         List<List<MatchStep>> filteredPaths;
-        if ("primary".equalsIgnoreCase(pathMode)) {
+        if ("predicted".equalsIgnoreCase(pathMode)) {
             filteredPaths = allPaths.stream()
                 .filter(p -> p.stream().allMatch(s -> s.isPrimary))
                 .collect(Collectors.toList());
@@ -489,8 +489,8 @@ public class PathHandler {
         sortedRows.sort((a, b) -> {
             String pa = valueAt(a, pathIdx);
             String pb = valueAt(b, pathIdx);
-            boolean aPrimary = "primary".equalsIgnoreCase(pa);
-            boolean bPrimary = "primary".equalsIgnoreCase(pb);
+            boolean aPrimary = "predicted".equalsIgnoreCase(pa);
+            boolean bPrimary = "predicted".equalsIgnoreCase(pb);
             if (aPrimary && !bPrimary) return -1;
             if (!aPrimary && bPrimary) return 1;
             return 0;
@@ -510,7 +510,7 @@ public class PathHandler {
 
             String opponent  = t1m ? t2 : t1;
             String rowPath   = valueAt(cols, pathIdx);
-            if (primaryOnly && !"primary".equalsIgnoreCase(rowPath)) continue;
+            if (primaryOnly && !"predicted".equalsIgnoreCase(rowPath)) continue;
             String dedupeKey = rowPath + "|" + opponent;
             if (!seen.add(dedupeKey)) continue;
 
@@ -539,7 +539,7 @@ public class PathHandler {
             boolean teamWins = winner.toLowerCase().contains(teamLower);
             // Convert to the selected team's win probability (not the predicted winner's)
             int teamPct = teamWins ? pct : (100 - pct);
-            boolean isPrimary = "primary".equalsIgnoreCase(rowPath);
+            boolean isPrimary = "predicted".equalsIgnoreCase(rowPath);
 
             // Determine the slot label (e.g. "L1", "L2") from the team column
             String teamDisplayCol = t1m ? valueAt(cols, team1Idx) : valueAt(cols, team2Idx);

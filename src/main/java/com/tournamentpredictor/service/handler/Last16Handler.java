@@ -8,7 +8,7 @@ import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.PredictionScorer;
-import com.tournamentpredictor.service.util.QualificationFormCalculator;
+import com.tournamentpredictor.service.util.TeamEloSnapshot;
 import com.tournamentpredictor.service.validator.PredictionsFileValidator;
 
 import java.io.IOException;
@@ -52,7 +52,7 @@ public class Last16Handler {
         Path matchupFile = matchupDir.resolve("last_16.csv");
         if (csvHelper.isLocked(matchupFile)) {
             System.out.println("  �� Output already exists: " + matchupFile + " — delete to re-run");
-            Map<String, String> last16Odds = loader.loadOdds(tournament, "last_16");
+            Map<String, String> last16Odds = loader.loadOdds(tournament, "last_8");
             consoleReporter.printMatchups("Last 16 matchups", Files.readAllLines(matchupFile), eloCalculator, predictionDir.resolve("last_8.csv"), last16Odds);
             return;
         }
@@ -68,24 +68,24 @@ public class Last16Handler {
         if (!Files.exists(last32File)) {
             throw new IOException("last_32 matchups not found: " + last32File + ". Run mode=last_32 first.");
         }
-        QualificationFormCalculator qualCalc = new QualificationFormCalculator(
-                projectRoot.resolve("data").resolve("elo").resolve("history"), 2023);
         List<String> last32Rows = Files.readAllLines(last32File);
         Map<String, String> groups = loader.loadGroups(tournament);
         Map<String, String> groupWinner = loader.loadGroupWinner(tournament);
         Map<String, String> runnerUp = loader.loadRunnerUp(tournament);
         Map<String, String> thirdPlace = loader.loadThirdPlace(tournament);
         Map<String, Integer> eloRatings = loader.loadTournamentElo(tournament);
+        Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
         Files.createDirectories(matchupDir);
         List<String> lines = last16LineBuilder.buildLast16Lines(groups, groupWinner, runnerUp, thirdPlace,
                 eloRatings, brackets, last32Rows);
-        List<String> output = predictionScorer.scoreLines(lines, disagreeMap, qualCalc);
+        predictionScorer.setSnapshots(snapshots);
+        List<String> output = predictionScorer.scoreLines(lines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
         Files.write(matchupDir.resolve("last_16.csv"), sortedOutput);
         generateLast8Predictions(tournament, eloRatings, brackets, output);
-        Map<String, String> last16Odds = loader.loadOdds(tournament, "last_16");
+        Map<String, String> last16Odds = loader.loadOdds(tournament, "last_8");
         consoleReporter.printMatchups("Last 16 matchups", sortedOutput, eloCalculator, predictionDir.resolve("last_8.csv"), last16Odds);
     }
 

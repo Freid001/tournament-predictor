@@ -1,224 +1,170 @@
-match_id,team1,team2,path,predicted_winner,elo,qualification_form,h2h,prediction
-M101,W97(France),W98(Spain),primary,Spain (61%),Spain (63%),Spain (51%),Spain (74%),Spain (61%)
-M101,W97(France),W98(Colombia),alt,France (59%),France (58%),France (62%),France (77%),France (59%)
-M101,W97(France),W98(Croatia),alt,France (67%),France (70%),Croatia (52%),France (58%),France (67%)
-M101,W97(France),W98(Portugal),alt,France (58%),France (59%),France (53%),France (63%),France (58%)
-M101,W97(France),W98(England),alt,France (61%),France (64%),England (53%),France (78%),France (61%)
-M101,W97(France),W98(Turkey),alt,France (69%),France (72%),France (54%),Turkey (61%),France (69%)
-M101,W97(France),W98(Belgium),alt,France (69%),France (72%),France (52%),France (89%),France (69%)
-M101,W97(France),W98(Austria),alt,France (75%),France (79%),France (52%),France (83%),France (75%)
-M101,W97(France),W98(Iran),alt,France (79%),France (83%),France (53%),France (100%),France (79%)
-M101,W97(France),W98(Algeria),alt,France (79%),France (84%),France (51%),France (100%),France (79%)
-M101,W97(France),W98(Paraguay),alt,France (75%),France (77%),France (62%),France (77%),France (75%)
-M101,W97(Netherlands),W98(Spain),alt,Spain (73%),Spain (77%),Spain (51%),Netherlands (57%),Spain (73%)
-M101,W97(Netherlands),W98(Colombia),alt,Colombia (56%),Colombia (59%),Netherlands (62%),Netherlands (50%),Colombia (56%)
-M101,W97(Netherlands),W98(Croatia),alt,Netherlands (53%),Netherlands (54%),Croatia (51%),Croatia (89%),Netherlands (53%)
-M101,W97(Netherlands),W98(Portugal),alt,Portugal (56%),Portugal (58%),Netherlands (53%),Portugal (64%),Portugal (56%)
-M101,W97(Netherlands),W98(England),alt,England (53%),England (53%),England (53%),England (57%),England (53%)
-M101,W97(Netherlands),W98(Turkey),alt,Netherlands (57%),Netherlands (57%),Netherlands (54%),Netherlands (68%),Netherlands (57%)
-M101,W97(Netherlands),W98(Belgium),alt,Netherlands (56%),Netherlands (57%),Netherlands (52%),Netherlands (73%),Netherlands (56%)
-M101,W97(Netherlands),W98(Austria),alt,Netherlands (63%),Netherlands (65%),Netherlands (52%),Netherlands (58%),Netherlands (63%)
-M101,W97(Netherlands),W98(Iran),alt,Netherlands (68%),Netherlands (71%),Netherlands (54%),Netherlands (100%),Netherlands (68%)
-M101,W97(Netherlands),W98(Algeria),alt,Netherlands (69%),Netherlands (72%),Netherlands (51%),Netherlands (50%),Netherlands (69%)
-M101,W97(Netherlands),W98(Paraguay),alt,Netherlands (63%),Netherlands (63%),Netherlands (63%),Netherlands (59%),Netherlands (63%)
-M101,W97(Germany),W98(Spain),alt,Spain (74%),Spain (78%),Spain (52%),Spain (70%),Spain (74%)
-M101,W97(Germany),W98(Colombia),alt,Colombia (58%),Colombia (61%),Germany (61%),Colombia (88%),Colombia (58%)
-M101,W97(Germany),W98(Croatia),alt,Germany (51%),Germany (52%),Croatia (52%),Croatia (60%),Germany (51%)
-M101,W97(Germany),W98(Portugal),alt,Portugal (58%),Portugal (60%),Germany (52%),Germany (52%),Portugal (58%)
-M101,W97(Germany),W98(England),alt,England (54%),England (54%),England (54%),England (54%),England (54%)
-M101,W97(Germany),W98(Turkey),alt,Germany (55%),Germany (55%),Germany (53%),Turkey (63%),Germany (55%)
-M101,W97(Germany),W98(Belgium),alt,Germany (54%),Germany (55%),Germany (51%),Belgium (62%),Germany (54%)
-M101,W97(Germany),W98(Austria),alt,Germany (61%),Germany (63%),Germany (51%),Austria (55%),Germany (61%)
-M101,W97(Germany),W98(Iran),alt,Germany (67%),Germany (70%),Germany (53%),Germany (100%),Germany (67%)
-M101,W97(Germany),W98(Algeria),alt,Germany (68%),Germany (71%),Germany (50%),Germany (100%),Germany (68%)
-M101,W97(Germany),W98(Paraguay),alt,Germany (61%),Germany (61%),Germany (62%),Germany (59%),Germany (61%)
-M101,W97(Brazil),W98(Spain),alt,Spain (72%),Spain (74%),Spain (63%),Brazil (59%),Spain (72%)
-M101,W97(Brazil),W98(Colombia),alt,Colombia (55%),Colombia (56%),Colombia (50%),Brazil (67%),Colombia (55%)
-M101,W97(Brazil),W98(Croatia),alt,Brazil (55%),Brazil (58%),Croatia (64%),Brazil (86%),Brazil (55%)
-M101,W97(Brazil),W98(Portugal),alt,Portugal (55%),Portugal (54%),Portugal (59%),Brazil (64%),Portugal (55%)
-M101,W97(Brazil),W98(England),alt,England (51%),Brazil (51%),England (65%),Brazil (72%),England (51%)
-M101,W97(Brazil),W98(Turkey),alt,Brazil (57%),Brazil (60%),Turkey (58%),Brazil (85%),Brazil (57%)
-M101,W97(Brazil),W98(Belgium),alt,Brazil (58%),Brazil (61%),Belgium (60%),Belgium (89%),Brazil (58%)
-M101,W97(Brazil),W98(Austria),alt,Brazil (64%),Brazil (68%),Austria (61%),Brazil (100%),Brazil (64%)
-M101,W97(Brazil),W98(Iran),alt,Brazil (69%),Brazil (74%),Iran (59%),Brazil (100%),Brazil (69%)
-M101,W97(Brazil),W98(Algeria),alt,Brazil (70%),Brazil (75%),Algeria (61%),Brazil (100%),Brazil (70%)
-M101,W97(Brazil),W98(Paraguay),alt,Brazil (64%),Brazil (66%),Brazil (50%),Brazil (72%),Brazil (64%)
-M101,W97(Switzerland),W98(Spain),alt,Spain (77%),Spain (81%),Spain (54%),Spain (71%),Spain (77%)
-M101,W97(Switzerland),W98(Colombia),alt,Colombia (61%),Colombia (65%),Switzerland (60%),Colombia (90%),Colombia (61%)
-M101,W97(Switzerland),W98(Croatia),alt,Croatia (52%),Croatia (52%),Croatia (54%),Croatia (68%),Croatia (52%)
-M101,W97(Switzerland),W98(Portugal),alt,Portugal (62%),Portugal (64%),Switzerland (51%),Portugal (67%),Portugal (62%)
-M101,W97(Switzerland),W98(England),alt,England (58%),England (59%),England (55%),England (77%),England (58%)
-M101,W97(Switzerland),W98(Turkey),alt,Switzerland (51%),Switzerland (51%),Switzerland (52%),Switzerland (78%),Switzerland (51%)
-M101,W97(Switzerland),W98(Belgium),alt,Switzerland (51%),Switzerland (51%),Belgium (51%),Belgium (75%),Switzerland (51%)
-M101,W97(Switzerland),W98(Austria),alt,Switzerland (58%),Switzerland (59%),Austria (51%),Switzerland (64%),Switzerland (58%)
-M101,W97(Switzerland),W98(Iran),alt,Switzerland (64%),Switzerland (66%),Switzerland (51%),Switzerland (50%),Switzerland (64%)
-M101,W97(Switzerland),W98(Algeria),alt,Switzerland (64%),Switzerland (67%),Algeria (51%),Switzerland (100%),Switzerland (64%)
-M101,W97(Switzerland),W98(Paraguay),alt,Switzerland (57%),Switzerland (57%),Switzerland (60%),Switzerland (50%),Switzerland (57%)
-M101,W97(Morocco),W98(Spain),alt,Spain (80%),Spain (85%),Morocco (51%),Morocco (50%),Spain (80%)
-M101,W97(Morocco),W98(Colombia),alt,Colombia (66%),Colombia (71%),Morocco (64%),Colombia (100%),Colombia (66%)
-M101,W97(Morocco),W98(Croatia),alt,Croatia (58%),Croatia (59%),Morocco (51%),Croatia (75%),Croatia (58%)
-M101,W97(Morocco),W98(Portugal),alt,Portugal (66%),Portugal (70%),Morocco (55%),Morocco (64%),Portugal (66%)
-M101,W97(Morocco),W98(England),alt,England (63%),England (65%),England (51%),England (92%),England (63%)
-M101,W97(Morocco),W98(Turkey),alt,Turkey (54%),Turkey (56%),Morocco (56%),Morocco (50%),Turkey (54%)
-M101,W97(Morocco),W98(Belgium),alt,Belgium (55%),Belgium (56%),Morocco (54%),Morocco (95%),Belgium (55%)
-M101,W97(Morocco),W98(Austria),alt,Morocco (52%),Morocco (52%),Morocco (54%),Morocco (100%),Morocco (52%)
-M101,W97(Morocco),W98(Iran),alt,Morocco (59%),Morocco (60%),Morocco (56%),Iran (100%),Morocco (59%)
-M101,W97(Morocco),W98(Algeria),alt,Morocco (60%),Morocco (61%),Morocco (53%),Morocco (56%),Morocco (60%)
-M101,W97(Morocco),W98(Paraguay),alt,Morocco (52%),Morocco (50%),Morocco (64%),Morocco (82%),Morocco (52%)
-M101,W97(Japan),W98(Spain),alt,Spain (75%),Spain (79%),Spain (51%),Japan (95%),Spain (75%)
-M101,W97(Japan),W98(Colombia),alt,Colombia (58%),Colombia (62%),Japan (62%),Colombia (78%),Colombia (58%)
-M101,W97(Japan),W98(Croatia),alt,Japan (51%),Japan (51%),Croatia (51%),Japan (50%),Japan (51%)
-M101,W97(Japan),W98(Portugal),alt,Portugal (59%),Portugal (61%),Japan (54%),Japan (50%),Portugal (59%)
-M101,W97(Japan),W98(England),alt,England (55%),England (56%),England (53%),Japan (88%),England (55%)
-M101,W97(Japan),W98(Turkey),alt,Japan (54%),Japan (54%),Japan (54%),Japan (95%),Japan (54%)
-M101,W97(Japan),W98(Belgium),alt,Japan (54%),Japan (54%),Japan (52%),Belgium (69%),Japan (54%)
-M101,W97(Japan),W98(Austria),alt,Japan (61%),Japan (62%),Japan (52%),Japan (50%),Japan (61%)
-M101,W97(Japan),W98(Iran),alt,Japan (67%),Japan (69%),Japan (54%),Iran (62%),Japan (67%)
-M101,W97(Japan),W98(Algeria),alt,Japan (67%),Japan (70%),Japan (52%),Japan (50%),Japan (67%)
-M101,W97(Japan),W98(Paraguay),alt,Japan (60%),Japan (60%),Japan (63%),Japan (77%),Japan (60%)
-M101,W97(Paraguay),W98(Spain),alt,Spain (82%),Spain (85%),Spain (64%),Spain (86%),Spain (82%)
-M101,W97(Paraguay),W98(Colombia),alt,Colombia (68%),Colombia (71%),Colombia (51%),Colombia (75%),Colombia (68%)
-M101,W97(Paraguay),W98(Croatia),alt,Croatia (60%),Croatia (59%),Croatia (64%),Paraguay (50%),Croatia (60%)
-M101,W97(Paraguay),W98(Portugal),alt,Portugal (68%),Portugal (70%),Portugal (59%),Paraguay (50%),Portugal (68%)
-M101,W97(Paraguay),W98(England),alt,England (65%),England (65%),England (65%),England (100%),England (65%)
-M101,W97(Paraguay),W98(Turkey),alt,Turkey (56%),Turkey (56%),Turkey (59%),Paraguay (50%),Turkey (56%)
-M101,W97(Paraguay),W98(Belgium),alt,Belgium (57%),Belgium (56%),Belgium (61%),Belgium (92%),Belgium (57%)
-M101,W97(Paraguay),W98(Austria),alt,Paraguay (50%),Paraguay (52%),Austria (61%),Paraguay (50%),Paraguay (50%)
-M101,W97(Paraguay),W98(Iran),alt,Paraguay (57%),Paraguay (60%),Iran (59%),Paraguay (50%),Paraguay (57%)
-M101,W97(Paraguay),W98(Algeria),alt,Paraguay (58%),Paraguay (61%),Algeria (61%),Paraguay (50%),Paraguay (58%)
-M101,W97(Ecuador),W98(Spain),alt,Spain (74%),Spain (76%),Spain (61%),Spain (100%),Spain (74%)
-M101,W97(Ecuador),W98(Colombia),alt,Colombia (56%),Colombia (57%),Ecuador (52%),Colombia (57%),Colombia (56%)
-M101,W97(Ecuador),W98(Croatia),alt,Ecuador (53%),Ecuador (56%),Croatia (61%),Ecuador (100%),Ecuador (53%)
-M101,W97(Ecuador),W98(Portugal),alt,Portugal (56%),Portugal (56%),Portugal (56%),Ecuador (100%),Portugal (56%)
-M101,W97(Ecuador),W98(England),alt,England (53%),England (51%),England (63%),England (62%),England (53%)
-M101,W97(Ecuador),W98(Turkey),alt,Ecuador (57%),Ecuador (59%),Turkey (56%),Ecuador (100%),Ecuador (57%)
-M101,W97(Ecuador),W98(Belgium),alt,Ecuador (56%),Ecuador (59%),Belgium (58%),Ecuador (50%),Ecuador (56%)
-M101,W97(Ecuador),W98(Austria),alt,Ecuador (63%),Ecuador (67%),Austria (58%),Ecuador (50%),Ecuador (63%)
-M101,W97(Ecuador),W98(Iran),alt,Ecuador (69%),Ecuador (73%),Iran (56%),Ecuador (89%),Ecuador (69%)
-M101,W97(Ecuador),W98(Algeria),alt,Ecuador (69%),Ecuador (74%),Algeria (58%),Ecuador (50%),Ecuador (69%)
-M101,W97(Ecuador),W98(Paraguay),alt,Ecuador (62%),Ecuador (64%),Ecuador (53%),Paraguay (54%),Ecuador (62%)
-M101,W97(United States),W98(Spain),alt,Spain (84%),Spain (87%),Spain (65%),Spain (70%),Spain (84%)
-M101,W97(United States),W98(Colombia),alt,Colombia (71%),Colombia (74%),Colombia (52%),Colombia (83%),Colombia (71%)
-M101,W97(United States),W98(Croatia),alt,Croatia (63%),Croatia (63%),Croatia (65%),Croatia (100%),Croatia (63%)
-M101,W97(United States),W98(Portugal),alt,Portugal (71%),Portugal (73%),Portugal (60%),Portugal (81%),Portugal (71%)
-M101,W97(United States),W98(England),alt,England (69%),England (69%),England (66%),England (70%),England (69%)
-M101,W97(United States),W98(Turkey),alt,Turkey (60%),Turkey (60%),Turkey (60%),Turkey (75%),Turkey (60%)
-M101,W97(United States),W98(Belgium),alt,Belgium (60%),Belgium (60%),Belgium (62%),Belgium (100%),Belgium (60%)
-M101,W97(United States),W98(Austria),alt,Austria (54%),Austria (52%),Austria (62%),Austria (89%),Austria (54%)
-M101,W97(United States),W98(Iran),alt,United States (53%),United States (55%),Iran (60%),United States (94%),United States (53%)
-M101,W97(United States),W98(Algeria),alt,United States (54%),United States (57%),Algeria (62%),United States (100%),United States (54%)
-M101,W97(United States),W98(Paraguay),alt,Paraguay (54%),Paraguay (54%),Paraguay (51%),United States (87%),Paraguay (54%)
-M101,W97(Canada),W98(Spain),alt,Spain (82%),Spain (85%),Spain (65%),Spain (100%),Spain (82%)
-M101,W97(Canada),W98(Colombia),alt,Colombia (68%),Colombia (71%),Colombia (52%),Colombia (58%),Colombia (68%)
-M101,W97(Canada),W98(Croatia),alt,Croatia (60%),Croatia (59%),Croatia (65%),Croatia (100%),Croatia (60%)
-M101,W97(Canada),W98(Portugal),alt,Portugal (69%),Portugal (70%),Portugal (60%),Portugal (90%),Portugal (69%)
-M101,W97(Canada),W98(England),alt,England (66%),England (66%),England (66%),England (100%),England (66%)
-M101,W97(Canada),W98(Turkey),alt,Turkey (57%),Turkey (57%),Turkey (60%),Turkey (100%),Turkey (57%)
-M101,W97(Canada),W98(Belgium),alt,Belgium (57%),Belgium (56%),Belgium (62%),Belgium (100%),Belgium (57%)
-M101,W97(Canada),W98(Austria),alt,Canada (50%),Canada (52%),Austria (62%),Canada (100%),Canada (50%)
-M101,W97(Canada),W98(Iran),alt,Canada (56%),Canada (59%),Iran (60%),Iran (57%),Canada (56%)
-M101,W97(Canada),W98(Algeria),alt,Canada (57%),Canada (61%),Algeria (62%),Algeria (100%),Canada (57%)
-M101,W97(Canada),W98(Paraguay),alt,Paraguay (51%),Paraguay (51%),Paraguay (51%),Canada (50%),Paraguay (51%)
-M101,W97(Australia),W98(Spain),alt,Spain (84%),Spain (89%),Spain (54%),Spain (100%),Spain (84%)
-M101,W97(Australia),W98(Colombia),alt,Colombia (72%),Colombia (78%),Australia (59%),Colombia (86%),Colombia (72%)
-M101,W97(Australia),W98(Croatia),alt,Croatia (65%),Croatia (67%),Croatia (54%),Croatia (82%),Croatia (65%)
-M101,W97(Australia),W98(Portugal),alt,Portugal (73%),Portugal (77%),Australia (51%),Australia (50%),Portugal (73%)
-M101,W97(Australia),W98(England),alt,England (70%),England (73%),England (56%),England (95%),England (70%)
-M101,W97(Australia),W98(Turkey),alt,Turkey (63%),Turkey (65%),Australia (51%),Turkey (100%),Turkey (63%)
-M101,W97(Australia),W98(Belgium),alt,Belgium (63%),Belgium (65%),Belgium (51%),Belgium (100%),Belgium (63%)
-M101,W97(Australia),W98(Austria),alt,Austria (56%),Austria (57%),Austria (51%),Australia (50%),Austria (56%)
-M101,W97(Australia),W98(Iran),alt,Australia (50%),Australia (50%),Australia (51%),Iran (53%),Australia (50%)
-M101,W97(Australia),W98(Algeria),alt,Australia (52%),Australia (52%),Algeria (51%),Australia (50%),Australia (52%)
-M101,W97(Australia),W98(Paraguay),alt,Paraguay (56%),Paraguay (59%),Australia (60%),Australia (77%),Paraguay (56%)
-M101,W97(Norway),W98(Spain),alt,Spain (74%),Spain (79%),Norway (52%),Spain (90%),Spain (74%)
-M101,W97(Norway),W98(Colombia),alt,Colombia (58%),Colombia (62%),Norway (65%),Norway (50%),Colombia (58%)
-M101,W97(Norway),W98(Croatia),alt,Norway (51%),Norway (51%),Norway (52%),Croatia (62%),Norway (51%)
-M101,W97(Norway),W98(Portugal),alt,Portugal (58%),Portugal (61%),Norway (57%),Portugal (78%),Portugal (58%)
-M101,W97(Norway),W98(England),alt,England (54%),England (55%),England (50%),England (92%),England (54%)
-M101,W97(Norway),W98(Turkey),alt,Norway (54%),Norway (54%),Norway (57%),Turkey (72%),Norway (54%)
-M101,W97(Norway),W98(Belgium),alt,Norway (54%),Norway (54%),Norway (55%),Belgium (91%),Norway (54%)
-M101,W97(Norway),W98(Austria),alt,Norway (61%),Norway (62%),Norway (55%),Austria (58%),Norway (61%)
-M101,W97(Norway),W98(Iran),alt,Norway (67%),Norway (69%),Norway (57%),Norway (50%),Norway (67%)
-M101,W97(Norway),W98(Algeria),alt,Norway (68%),Norway (70%),Norway (55%),Norway (50%),Norway (68%)
-M101,W97(Norway),W98(Paraguay),alt,Norway (61%),Norway (60%),Norway (66%),Norway (50%),Norway (61%)
+match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent
+M101,W97(W89(W77(I1(France)))),W98(W93(W84(H1(Spain)))),predicted,Spain (60%),2081,37,2165,41,160,209,United States:0 > Germany:-14 > Japan:-10,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W77(I1(France)))),W98(W93(W83(K2(Colombia)))),alt,France (73%),2081,37,1977,5,160,435,United States:0 > Germany:-14 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W89(W77(I1(France)))),W98(W94(W81(D1(Turkey)))),alt,France (78%),2081,37,1906,23,160,376,United States:0 > Germany:-14 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W89(W77(I1(France)))),W98(W93(W83(L2(Croatia)))),alt,France (75%),2081,37,1908,42,160,22,United States:0 > Germany:-14 > Japan:-10,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W89(W77(I1(France)))),W98(W93(W83(K2(Portugal)))),alt,France (61%),2081,37,1984,26,160,37,United States:0 > Germany:-14 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W89(W77(I1(France)))),W98(W93(W83(L2(England)))),alt,France (66%),2081,37,2020,48,160,153,United States:0 > Germany:-14 > Japan:-10,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W89(W77(I1(France)))),W98(W94(W82(G1(Belgium)))),alt,France (80%),2081,37,1888,29,160,390,United States:0 > Germany:-14 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W89(W77(I1(France)))),W98(W93(W84(J2(Austria)))),alt,France (81%),2081,37,1830,32,160,362,United States:0 > Germany:-14 > Japan:-10,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W74(E1(Germany)))),W98(W93(W84(H1(Spain)))),alt,Spain (79%),1925,34,2165,41,267,209,Scotland:0 > France:-31 > Japan:-10,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W74(E1(Germany)))),W98(W93(W83(K2(Colombia)))),alt,Germany (52%),1925,34,1977,5,267,435,Scotland:0 > France:-31 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W89(W74(E1(Germany)))),W98(W94(W81(D1(Turkey)))),alt,Germany (59%),1925,34,1906,23,267,376,Scotland:0 > France:-31 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W89(W74(E1(Germany)))),W98(W93(W83(L2(Croatia)))),alt,Germany (55%),1925,34,1908,42,267,22,Scotland:0 > France:-31 > Japan:-10,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W89(W74(E1(Germany)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (61%),1925,34,1984,26,267,37,Scotland:0 > France:-31 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W89(W74(E1(Germany)))),W98(W93(W83(L2(England)))),alt,England (56%),1925,34,2020,48,267,153,Scotland:0 > France:-31 > Japan:-10,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W89(W74(E1(Germany)))),W98(W94(W82(G1(Belgium)))),alt,Germany (62%),1925,34,1888,29,267,390,Scotland:0 > France:-31 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W89(W74(E1(Germany)))),W98(W93(W84(J2(Austria)))),alt,Germany (64%),1925,34,1830,32,267,362,Scotland:0 > France:-31 > Japan:-10,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(F1(Japan)))),W98(W93(W84(H1(Spain)))),alt,Spain (83%),1906,39,2165,41,301,209,Morocco:0 > Canada:0 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(F1(Japan)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (55%),1906,39,1977,5,301,435,Morocco:0 > Canada:0 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W75(F1(Japan)))),W98(W94(W81(D1(Turkey)))),alt,Japan (52%),1906,39,1906,23,301,376,Morocco:0 > Canada:0 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W75(F1(Japan)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (52%),1906,39,1908,42,301,22,Morocco:0 > Canada:0 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W75(F1(Japan)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (68%),1906,39,1984,26,301,37,Morocco:0 > Canada:0 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W75(F1(Japan)))),W98(W93(W83(L2(England)))),alt,England (63%),1906,39,2020,48,301,153,Morocco:0 > Canada:0 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W75(F1(Japan)))),W98(W94(W82(G1(Belgium)))),alt,Japan (55%),1906,39,1888,29,301,390,Morocco:0 > Canada:0 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W75(F1(Japan)))),W98(W93(W84(J2(Austria)))),alt,Japan (57%),1906,39,1830,32,301,362,Morocco:0 > Canada:0 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(C2(Morocco)))),W98(W93(W84(H1(Spain)))),alt,Spain (88%),1822,44,2165,41,319,209,Germany:-7 > South Korea:0 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(C2(Morocco)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (65%),1822,44,1977,5,319,435,Germany:-7 > South Korea:0 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W75(C2(Morocco)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (59%),1822,44,1906,23,319,376,Germany:-7 > South Korea:0 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W75(C2(Morocco)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (63%),1822,44,1908,42,319,22,Germany:-7 > South Korea:0 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W75(C2(Morocco)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (77%),1822,44,1984,26,319,37,Germany:-7 > South Korea:0 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W75(C2(Morocco)))),W98(W93(W83(L2(England)))),alt,England (72%),1822,44,2020,48,319,153,Germany:-7 > South Korea:0 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W75(C2(Morocco)))),W98(W94(W82(G1(Belgium)))),alt,Belgium (56%),1822,44,1888,29,319,390,Germany:-7 > South Korea:0 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W75(C2(Morocco)))),W98(W93(W84(J2(Austria)))),alt,Austria (54%),1822,44,1830,32,319,362,Germany:-7 > South Korea:0 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(B2(Canada)))),W98(W93(W84(H1(Spain)))),alt,Spain (89%),1793,0,2165,41,354,209,South Korea:0 > Japan:-8 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(B2(Canada)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (66%),1793,0,1977,5,354,435,South Korea:0 > Japan:-8 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W73(B2(Canada)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (60%),1793,0,1906,23,354,376,South Korea:0 > Japan:-8 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W73(B2(Canada)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (64%),1793,0,1908,42,354,22,South Korea:0 > Japan:-8 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W73(B2(Canada)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (77%),1793,0,1984,26,354,37,South Korea:0 > Japan:-8 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W73(B2(Canada)))),W98(W93(W83(L2(England)))),alt,England (73%),1793,0,2020,48,354,153,South Korea:0 > Japan:-8 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W73(B2(Canada)))),W98(W94(W82(G1(Belgium)))),alt,Belgium (57%),1793,0,1888,29,354,390,South Korea:0 > Japan:-8 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W73(B2(Canada)))),W98(W93(W84(J2(Austria)))),alt,Austria (55%),1793,0,1830,32,354,362,South Korea:0 > Japan:-8 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(A2(Mexico)))),W98(W93(W84(H1(Spain)))),alt,Spain (86%),1867,0,2165,41,389,209,Switzerland:-1 > Japan:-8 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(A2(Mexico)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (61%),1867,0,1977,5,389,435,Switzerland:-1 > Japan:-8 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W73(A2(Mexico)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (54%),1867,0,1906,23,389,376,Switzerland:-1 > Japan:-8 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W73(A2(Mexico)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (58%),1867,0,1908,42,389,22,Switzerland:-1 > Japan:-8 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W73(A2(Mexico)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (73%),1867,0,1984,26,389,37,Switzerland:-1 > Japan:-8 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W73(A2(Mexico)))),W98(W93(W83(L2(England)))),alt,England (68%),1867,0,2020,48,389,153,Switzerland:-1 > Japan:-8 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W73(A2(Mexico)))),W98(W94(W82(G1(Belgium)))),alt,Belgium (51%),1867,0,1888,29,389,390,Switzerland:-1 > Japan:-8 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W73(A2(Mexico)))),W98(W93(W84(J2(Austria)))),alt,Mexico (51%),1867,0,1830,32,389,362,Switzerland:-1 > Japan:-8 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(B2(Switzerland)))),W98(W93(W84(H1(Spain)))),alt,Spain (87%),1894,30,2165,41,307,209,Egypt:0 > Japan:-8 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(B2(Switzerland)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (62%),1894,30,1977,5,307,435,Egypt:0 > Japan:-8 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W73(B2(Switzerland)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (55%),1894,30,1906,23,307,376,Egypt:0 > Japan:-8 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W73(B2(Switzerland)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (59%),1894,30,1908,42,307,22,Egypt:0 > Japan:-8 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W73(B2(Switzerland)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (74%),1894,30,1984,26,307,37,Egypt:0 > Japan:-8 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W73(B2(Switzerland)))),W98(W93(W83(L2(England)))),alt,England (69%),1894,30,2020,48,307,153,Egypt:0 > Japan:-8 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W73(B2(Switzerland)))),W98(W94(W82(G1(Belgium)))),alt,Belgium (53%),1894,30,1888,29,307,390,Egypt:0 > Japan:-8 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W73(B2(Switzerland)))),W98(W93(W84(J2(Austria)))),alt,Austria (50%),1894,30,1830,32,307,362,Egypt:0 > Japan:-8 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(C2(Brazil)))),W98(W93(W84(H1(Spain)))),alt,Spain (81%),1988,4,2165,41,288,209,Netherlands:-3 > South Korea:0 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(C2(Brazil)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (52%),1988,4,1977,5,288,435,Netherlands:-3 > South Korea:0 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W75(C2(Brazil)))),W98(W94(W81(D1(Turkey)))),alt,Brazil (55%),1988,4,1906,23,288,376,Netherlands:-3 > South Korea:0 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W75(C2(Brazil)))),W98(W93(W83(L2(Croatia)))),alt,Brazil (51%),1988,4,1908,42,288,22,Netherlands:-3 > South Korea:0 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W75(C2(Brazil)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (65%),1988,4,1984,26,288,37,Netherlands:-3 > South Korea:0 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W75(C2(Brazil)))),W98(W93(W83(L2(England)))),alt,England (60%),1988,4,2020,48,288,153,Netherlands:-3 > South Korea:0 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W75(C2(Brazil)))),W98(W94(W82(G1(Belgium)))),alt,Brazil (57%),1988,4,1888,29,288,390,Netherlands:-3 > South Korea:0 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W75(C2(Brazil)))),W98(W93(W84(J2(Austria)))),alt,Brazil (60%),1988,4,1830,32,288,362,Netherlands:-3 > South Korea:0 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(A2(South Korea)))),W98(W93(W84(H1(Spain)))),alt,Spain (91%),1756,31,2165,41,376,209,Canada:0 > Japan:-8 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W73(A2(South Korea)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (72%),1756,31,1977,5,376,435,Canada:0 > Japan:-8 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W73(A2(South Korea)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (66%),1756,31,1906,23,376,376,Canada:0 > Japan:-8 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W73(A2(South Korea)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (69%),1756,31,1908,42,376,22,Canada:0 > Japan:-8 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W73(A2(South Korea)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (82%),1756,31,1984,26,376,37,Canada:0 > Japan:-8 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W73(A2(South Korea)))),W98(W93(W83(L2(England)))),alt,England (78%),1756,31,2020,48,376,153,Canada:0 > Japan:-8 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W73(A2(South Korea)))),W98(W94(W82(G1(Belgium)))),alt,Belgium (63%),1756,31,1888,29,376,390,Canada:0 > Japan:-8 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W73(A2(South Korea)))),W98(W93(W84(J2(Austria)))),alt,Austria (61%),1756,31,1830,32,376,362,Canada:0 > Japan:-8 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W93(W84(H1(Spain)))),alt,Spain (92%),1733,0,2165,41,255,209,Germany:-7 > Germany:-14 > Japan:-10,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (73%),1733,0,1977,5,255,435,Germany:-7 > Germany:-14 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (67%),1733,0,1906,23,255,376,Germany:-7 > Germany:-14 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (71%),1733,0,1908,42,255,22,Germany:-7 > Germany:-14 > Japan:-10,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (82%),1733,0,1984,26,255,37,Germany:-7 > Germany:-14 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W93(W83(L2(England)))),alt,England (79%),1733,0,2020,48,255,153,Germany:-7 > Germany:-14 > Japan:-10,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W94(W82(G1(Belgium)))),alt,Belgium (65%),1733,0,1888,29,255,390,Germany:-7 > Germany:-14 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W89(W77(CDFGH3(United States)))),W98(W93(W84(J2(Austria)))),alt,Austria (63%),1733,0,1830,32,255,362,Germany:-7 > Germany:-14 > Japan:-10,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(F1(Netherlands)))),W98(W93(W84(H1(Spain)))),alt,Spain (84%),1961,37,2165,41,305,209,Brazil:-5 > South Korea:0 > France:-37,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W90(W75(F1(Netherlands)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (57%),1961,37,1977,5,305,435,Brazil:-5 > South Korea:0 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W90(W75(F1(Netherlands)))),W98(W94(W81(D1(Turkey)))),alt,Turkey (50%),1961,37,1906,23,305,376,Brazil:-5 > South Korea:0 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W90(W75(F1(Netherlands)))),W98(W93(W83(L2(Croatia)))),alt,Croatia (55%),1961,37,1908,42,305,22,Brazil:-5 > South Korea:0 > France:-37,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W90(W75(F1(Netherlands)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (70%),1961,37,1984,26,305,37,Brazil:-5 > South Korea:0 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W90(W75(F1(Netherlands)))),W98(W93(W83(L2(England)))),alt,England (65%),1961,37,2020,48,305,153,Brazil:-5 > South Korea:0 > France:-37,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W90(W75(F1(Netherlands)))),W98(W94(W82(G1(Belgium)))),alt,Netherlands (52%),1961,37,1888,29,305,390,Brazil:-5 > South Korea:0 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W90(W75(F1(Netherlands)))),W98(W93(W84(J2(Austria)))),alt,Netherlands (54%),1961,37,1830,32,305,362,Brazil:-5 > South Korea:0 > France:-37,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W74(E1(Ecuador)))),W98(W93(W84(H1(Spain)))),alt,Spain (81%),1935,9,2165,41,316,209,South Korea:0 > France:-31 > Japan:-10,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W74(E1(Ecuador)))),W98(W93(W83(K2(Colombia)))),alt,Colombia (52%),1935,9,1977,5,316,435,South Korea:0 > France:-31 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W89(W74(E1(Ecuador)))),W98(W94(W81(D1(Turkey)))),alt,Ecuador (55%),1935,9,1906,23,316,376,South Korea:0 > France:-31 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W89(W74(E1(Ecuador)))),W98(W93(W83(L2(Croatia)))),alt,Ecuador (51%),1935,9,1908,42,316,22,South Korea:0 > France:-31 > Japan:-10,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W89(W74(E1(Ecuador)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (65%),1935,9,1984,26,316,37,South Korea:0 > France:-31 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W89(W74(E1(Ecuador)))),W98(W93(W83(L2(England)))),alt,England (59%),1935,9,2020,48,316,153,South Korea:0 > France:-31 > Japan:-10,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W89(W74(E1(Ecuador)))),W98(W94(W82(G1(Belgium)))),alt,Ecuador (58%),1935,9,1888,29,316,390,South Korea:0 > France:-31 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W89(W74(E1(Ecuador)))),W98(W93(W84(J2(Austria)))),alt,Ecuador (60%),1935,9,1830,32,316,362,South Korea:0 > France:-31 > Japan:-10,Spain:-20 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W77(I1(Norway)))),W98(W93(W84(H1(Spain)))),alt,Spain (77%),1917,46,2165,41,216,209,Ecuador:-6 > Brazil:-10 > Japan:-10,Austria:-2 > Colombia:-14 > Turkey:-9
+M101,W97(W89(W77(I1(Norway)))),W98(W93(W83(K2(Colombia)))),alt,Norway (55%),1917,46,1977,5,216,435,Ecuador:-6 > Brazil:-10 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M101,W97(W89(W77(I1(Norway)))),W98(W94(W81(D1(Turkey)))),alt,Norway (61%),1917,46,1906,23,216,376,Ecuador:-6 > Brazil:-10 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M101,W97(W89(W77(I1(Norway)))),W98(W93(W83(L2(Croatia)))),alt,Norway (57%),1917,46,1908,42,216,22,Ecuador:-6 > Brazil:-10 > Japan:-10,Ivory Coast:0 > Mexico:-5 > Turkey:-9
+M101,W97(W89(W77(I1(Norway)))),W98(W93(W83(K2(Portugal)))),alt,Portugal (59%),1917,46,1984,26,216,37,Ecuador:-6 > Brazil:-10 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M101,W97(W89(W77(I1(Norway)))),W98(W93(W83(L2(England)))),alt,England (53%),1917,46,2020,48,216,153,Ecuador:-6 > Brazil:-10 > Japan:-10,Uzbekistan:0 > Senegal:-10 > Norway:-18
+M101,W97(W89(W77(I1(Norway)))),W98(W94(W82(G1(Belgium)))),alt,Norway (64%),1917,46,1888,29,216,390,Ecuador:-6 > Brazil:-10 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M101,W97(W89(W77(I1(Norway)))),W98(W93(W84(J2(Austria)))),alt,Norway (66%),1917,46,1830,32,216,362,Ecuador:-6 > Brazil:-10 > Japan:-10,Spain:-20 > Colombia:-14 > Turkey:-9
 
-M102,W99(Mexico),W100(Argentina),primary,Argentina (59%),Argentina (59%),Argentina (58%),Argentina (90%),Argentina (59%)
-M102,W99(Mexico),W100(Portugal),alt,Portugal (52%),Mexico (50%),Portugal (60%),Portugal (65%),Portugal (52%)
-M102,W99(Mexico),W100(Croatia),alt,Mexico (58%),Mexico (62%),Croatia (65%),Croatia (74%),Mexico (58%)
-M102,W99(Mexico),W100(Switzerland),alt,Mexico (60%),Mexico (64%),Switzerland (61%),Switzerland (100%),Mexico (60%)
-M102,W99(Mexico),W100(Uruguay),alt,Mexico (62%),Mexico (65%),Uruguay (52%),Uruguay (73%),Mexico (62%)
-M102,W99(Mexico),W100(Colombia),alt,Colombia (51%),Colombia (51%),Colombia (52%),Colombia (91%),Colombia (51%)
-M102,W99(Mexico),W100(Turkey),alt,Mexico (60%),Mexico (64%),Turkey (60%),Mexico (100%),Mexico (60%)
-M102,W99(Mexico),W100(Belgium),alt,Mexico (61%),Mexico (65%),Belgium (62%),Mexico (50%),Mexico (61%)
-M102,W99(England),W100(Argentina),alt,Argentina (61%),Argentina (64%),England (58%),England (79%),Argentina (61%)
-M102,W99(England),W100(Portugal),alt,Portugal (53%),Portugal (55%),England (56%),England (73%),Portugal (53%)
-M102,W99(England),W100(Croatia),alt,England (56%),England (57%),England (52%),England (67%),England (56%)
-M102,W99(England),W100(Switzerland),alt,England (58%),England (59%),England (55%),England (77%),England (58%)
-M102,W99(England),W100(Uruguay),alt,England (61%),England (60%),England (65%),Uruguay (55%),England (61%)
-M102,W99(England),W100(Colombia),alt,Colombia (54%),Colombia (57%),England (65%),England (59%),Colombia (54%)
-M102,W99(England),W100(Turkey),alt,England (59%),England (59%),England (57%),England (94%),England (59%)
-M102,W99(England),W100(Belgium),alt,England (59%),England (60%),England (55%),Belgium (60%),England (59%)
-M102,W99(Ecuador),W100(Argentina),alt,Argentina (63%),Argentina (65%),Argentina (54%),Argentina (67%),Argentina (63%)
-M102,W99(Ecuador),W100(Portugal),alt,Portugal (56%),Portugal (56%),Portugal (56%),Ecuador (100%),Portugal (56%)
-M102,W99(Ecuador),W100(Croatia),alt,Ecuador (53%),Ecuador (56%),Croatia (61%),Ecuador (100%),Ecuador (53%)
-M102,W99(Ecuador),W100(Switzerland),alt,Ecuador (56%),Ecuador (58%),Switzerland (57%),Switzerland (100%),Ecuador (56%)
-M102,W99(Ecuador),W100(Uruguay),alt,Ecuador (58%),Ecuador (59%),Ecuador (52%),Ecuador (51%),Ecuador (58%)
-M102,W99(Ecuador),W100(Colombia),alt,Colombia (56%),Colombia (57%),Ecuador (52%),Colombia (57%),Colombia (56%)
-M102,W99(Ecuador),W100(Turkey),alt,Ecuador (57%),Ecuador (59%),Turkey (56%),Ecuador (100%),Ecuador (57%)
-M102,W99(Ecuador),W100(Belgium),alt,Ecuador (56%),Ecuador (59%),Belgium (58%),Ecuador (50%),Ecuador (56%)
-M102,W99(Brazil),W100(Argentina),alt,Argentina (62%),Argentina (63%),Argentina (57%),Argentina (61%),Argentina (62%)
-M102,W99(Brazil),W100(Portugal),alt,Portugal (55%),Portugal (54%),Portugal (59%),Brazil (64%),Portugal (55%)
-M102,W99(Brazil),W100(Croatia),alt,Brazil (55%),Brazil (58%),Croatia (64%),Brazil (86%),Brazil (55%)
-M102,W99(Brazil),W100(Switzerland),alt,Brazil (57%),Brazil (60%),Switzerland (60%),Brazil (71%),Brazil (57%)
-M102,W99(Brazil),W100(Uruguay),alt,Brazil (59%),Brazil (61%),Brazil (50%),Brazil (63%),Brazil (59%)
-M102,W99(Brazil),W100(Colombia),alt,Colombia (55%),Colombia (56%),Colombia (50%),Brazil (67%),Colombia (55%)
-M102,W99(Brazil),W100(Turkey),alt,Brazil (57%),Brazil (60%),Turkey (58%),Brazil (85%),Brazil (57%)
-M102,W99(Brazil),W100(Belgium),alt,Brazil (58%),Brazil (61%),Belgium (60%),Belgium (89%),Brazil (58%)
-M102,W99(France),W100(Argentina),alt,France (51%),Argentina (50%),France (55%),France (58%),France (51%)
-M102,W99(France),W100(Portugal),alt,France (58%),France (59%),France (53%),France (63%),France (58%)
-M102,W99(France),W100(Croatia),alt,France (67%),France (70%),Croatia (52%),France (58%),France (67%)
-M102,W99(France),W100(Switzerland),alt,France (69%),France (72%),France (52%),France (61%),France (69%)
-M102,W99(France),W100(Uruguay),alt,France (71%),France (73%),France (62%),France (71%),France (71%)
-M102,W99(France),W100(Colombia),alt,France (59%),France (58%),France (62%),France (77%),France (59%)
-M102,W99(France),W100(Turkey),alt,France (69%),France (72%),France (54%),Turkey (61%),France (69%)
-M102,W99(France),W100(Belgium),alt,France (69%),France (72%),France (52%),France (89%),France (69%)
-M102,W99(Japan),W100(Argentina),alt,Argentina (66%),Argentina (70%),Japan (56%),Argentina (61%),Argentina (66%)
-M102,W99(Japan),W100(Portugal),alt,Portugal (59%),Portugal (61%),Japan (54%),Japan (50%),Portugal (59%)
-M102,W99(Japan),W100(Croatia),alt,Japan (51%),Japan (51%),Croatia (51%),Japan (50%),Japan (51%)
-M102,W99(Japan),W100(Switzerland),alt,Japan (53%),Japan (53%),Japan (53%),Switzerland (82%),Japan (53%)
-M102,W99(Japan),W100(Uruguay),alt,Japan (55%),Japan (54%),Japan (62%),Uruguay (53%),Japan (55%)
-M102,W99(Japan),W100(Colombia),alt,Colombia (58%),Colombia (62%),Japan (62%),Colombia (78%),Colombia (58%)
-M102,W99(Japan),W100(Turkey),alt,Japan (54%),Japan (54%),Japan (54%),Japan (95%),Japan (54%)
-M102,W99(Japan),W100(Belgium),alt,Japan (54%),Japan (54%),Japan (52%),Belgium (69%),Japan (54%)
-M102,W99(Germany),W100(Argentina),alt,Argentina (65%),Argentina (68%),Germany (55%),Argentina (57%),Argentina (65%)
-M102,W99(Germany),W100(Portugal),alt,Portugal (58%),Portugal (60%),Germany (52%),Germany (52%),Portugal (58%)
-M102,W99(Germany),W100(Croatia),alt,Germany (51%),Germany (52%),Croatia (52%),Croatia (60%),Germany (51%)
-M102,W99(Germany),W100(Switzerland),alt,Germany (54%),Germany (54%),Germany (51%),Germany (68%),Germany (54%)
-M102,W99(Germany),W100(Uruguay),alt,Germany (56%),Germany (55%),Germany (61%),Germany (100%),Germany (56%)
-M102,W99(Germany),W100(Colombia),alt,Colombia (58%),Colombia (61%),Germany (61%),Colombia (88%),Colombia (58%)
-M102,W99(Germany),W100(Turkey),alt,Germany (55%),Germany (55%),Germany (53%),Turkey (63%),Germany (55%)
-M102,W99(Germany),W100(Belgium),alt,Germany (54%),Germany (55%),Germany (51%),Belgium (62%),Germany (54%)
-M102,W99(Netherlands),W100(Argentina),alt,Argentina (64%),Argentina (67%),Netherlands (56%),Netherlands (53%),Argentina (64%)
-M102,W99(Netherlands),W100(Portugal),alt,Portugal (56%),Portugal (58%),Netherlands (53%),Portugal (64%),Portugal (56%)
-M102,W99(Netherlands),W100(Croatia),alt,Netherlands (53%),Netherlands (54%),Croatia (51%),Croatia (89%),Netherlands (53%)
-M102,W99(Netherlands),W100(Switzerland),alt,Netherlands (55%),Netherlands (56%),Netherlands (52%),Switzerland (62%),Netherlands (55%)
-M102,W99(Netherlands),W100(Uruguay),alt,Netherlands (58%),Netherlands (57%),Netherlands (62%),Netherlands (73%),Netherlands (58%)
-M102,W99(Netherlands),W100(Colombia),alt,Colombia (56%),Colombia (59%),Netherlands (62%),Netherlands (50%),Colombia (56%)
-M102,W99(Netherlands),W100(Turkey),alt,Netherlands (57%),Netherlands (57%),Netherlands (54%),Netherlands (68%),Netherlands (57%)
-M102,W99(Netherlands),W100(Belgium),alt,Netherlands (56%),Netherlands (57%),Netherlands (52%),Netherlands (73%),Netherlands (56%)
-M102,W99(Norway),W100(Argentina),alt,Argentina (65%),Argentina (69%),Norway (59%),Norway (100%),Argentina (65%)
-M102,W99(Norway),W100(Portugal),alt,Portugal (58%),Portugal (61%),Norway (57%),Portugal (78%),Portugal (58%)
-M102,W99(Norway),W100(Croatia),alt,Norway (51%),Norway (51%),Norway (52%),Croatia (62%),Norway (51%)
-M102,W99(Norway),W100(Switzerland),alt,Norway (53%),Norway (53%),Norway (56%),Switzerland (53%),Norway (53%)
-M102,W99(Norway),W100(Uruguay),alt,Norway (56%),Norway (54%),Norway (65%),Norway (50%),Norway (56%)
-M102,W99(Norway),W100(Colombia),alt,Colombia (58%),Colombia (62%),Norway (65%),Norway (50%),Colombia (58%)
-M102,W99(Norway),W100(Turkey),alt,Norway (54%),Norway (54%),Norway (57%),Turkey (72%),Norway (54%)
-M102,W99(Norway),W100(Belgium),alt,Norway (54%),Norway (54%),Norway (55%),Belgium (91%),Norway (54%)
-M102,W99(Croatia),W100(Argentina),alt,Argentina (66%),Argentina (70%),Croatia (57%),Argentina (66%),Argentina (66%)
-M102,W99(Croatia),W100(Portugal),alt,Portugal (59%),Portugal (62%),Croatia (55%),Portugal (67%),Portugal (59%)
-M102,W99(Croatia),W100(Switzerland),alt,Croatia (52%),Croatia (52%),Croatia (54%),Croatia (68%),Croatia (52%)
-M102,W99(Croatia),W100(Uruguay),alt,Croatia (55%),Croatia (53%),Croatia (63%),Croatia (50%),Croatia (55%)
-M102,W99(Croatia),W100(Colombia),alt,Colombia (59%),Colombia (63%),Croatia (63%),Croatia (100%),Colombia (59%)
-M102,W99(Croatia),W100(Turkey),alt,Croatia (53%),Croatia (53%),Croatia (55%),Croatia (52%),Croatia (53%)
-M102,W99(Croatia),W100(Belgium),alt,Croatia (53%),Croatia (53%),Croatia (53%),Belgium (79%),Croatia (53%)
+M102,W99(W92(W80(L1(England)))),W100(W95(W86(J1(Argentina)))),predicted,Argentina (70%),2020,48,2113,20,153,165,Uzbekistan:0 > Senegal:-10 > Norway:-18,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W92(W80(L1(England)))),W100(W96(W87(K1(Portugal)))),alt,Portugal (56%),2020,48,1984,26,153,37,Uzbekistan:0 > Senegal:-10 > Norway:-18,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W92(W80(L1(England)))),W100(W96(W85(B1(Switzerland)))),alt,England (69%),2020,48,1894,30,153,307,Uzbekistan:0 > Senegal:-10 > Norway:-18,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W92(W80(L1(England)))),W100(W95(W88(D2(Paraguay)))),alt,England (75%),2020,48,1832,3,153,396,Uzbekistan:0 > Senegal:-10 > Norway:-18,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W92(W80(L1(England)))),W100(W96(W85(B1(Canada)))),alt,England (73%),2020,48,1793,0,153,354,Uzbekistan:0 > Senegal:-10 > Norway:-18,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W92(W80(L1(England)))),W100(W96(W87(K1(Colombia)))),alt,England (58%),2020,48,1977,5,153,435,Uzbekistan:0 > Senegal:-10 > Norway:-18,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W92(W80(L1(England)))),W100(W95(W86(H2(Uruguay)))),alt,England (74%),2020,48,1892,5,153,321,Uzbekistan:0 > Senegal:-10 > Norway:-18,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W92(W80(L1(England)))),W100(W95(W88(D2(Turkey)))),alt,England (65%),2020,48,1906,23,153,376,Uzbekistan:0 > Senegal:-10 > Norway:-18,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W92(W80(L1(England)))),W100(W95(W88(G2(Belgium)))),alt,England (67%),2020,48,1888,29,153,390,Uzbekistan:0 > Senegal:-10 > Norway:-18,Czechia:0 > Turkey:-8 > Spain:-48
+M102,W99(W91(W78(I2(Norway)))),W100(W95(W86(J1(Argentina)))),alt,Argentina (73%),1917,46,2113,20,216,165,Ecuador:-6 > Brazil:-10 > Japan:-10,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(I2(Norway)))),W100(W96(W87(K1(Portugal)))),alt,Portugal (59%),1917,46,1984,26,216,37,Ecuador:-6 > Brazil:-10 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W91(W78(I2(Norway)))),W100(W96(W85(B1(Switzerland)))),alt,Norway (66%),1917,46,1894,30,216,307,Ecuador:-6 > Brazil:-10 > Japan:-10,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(I2(Norway)))),W100(W95(W88(D2(Paraguay)))),alt,Norway (73%),1917,46,1832,3,216,396,Ecuador:-6 > Brazil:-10 > Japan:-10,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(I2(Norway)))),W100(W96(W85(B1(Canada)))),alt,Norway (70%),1917,46,1793,0,216,354,Ecuador:-6 > Brazil:-10 > Japan:-10,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(I2(Norway)))),W100(W96(W87(K1(Colombia)))),alt,Norway (55%),1917,46,1977,5,216,435,Ecuador:-6 > Brazil:-10 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W91(W78(I2(Norway)))),W100(W95(W86(H2(Uruguay)))),alt,Norway (72%),1917,46,1892,5,216,321,Ecuador:-6 > Brazil:-10 > Japan:-10,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(I2(Norway)))),W100(W95(W88(D2(Turkey)))),alt,Norway (61%),1917,46,1906,23,216,376,Ecuador:-6 > Brazil:-10 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(I2(Norway)))),W100(W95(W88(G2(Belgium)))),alt,Norway (64%),1917,46,1888,29,216,390,Ecuador:-6 > Brazil:-10 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M102,W99(W91(W78(E2(Ecuador)))),W100(W95(W86(J1(Argentina)))),alt,Argentina (77%),1935,9,2113,20,316,165,South Korea:0 > France:-31 > Japan:-10,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(E2(Ecuador)))),W100(W96(W87(K1(Portugal)))),alt,Portugal (65%),1935,9,1984,26,316,37,South Korea:0 > France:-31 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W91(W78(E2(Ecuador)))),W100(W96(W85(B1(Switzerland)))),alt,Ecuador (60%),1935,9,1894,30,316,307,South Korea:0 > France:-31 > Japan:-10,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(E2(Ecuador)))),W100(W95(W88(D2(Paraguay)))),alt,Ecuador (68%),1935,9,1832,3,316,396,South Korea:0 > France:-31 > Japan:-10,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(E2(Ecuador)))),W100(W96(W85(B1(Canada)))),alt,Ecuador (65%),1935,9,1793,0,316,354,South Korea:0 > France:-31 > Japan:-10,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(E2(Ecuador)))),W100(W96(W87(K1(Colombia)))),alt,Colombia (52%),1935,9,1977,5,316,435,South Korea:0 > France:-31 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W91(W78(E2(Ecuador)))),W100(W95(W86(H2(Uruguay)))),alt,Ecuador (66%),1935,9,1892,5,316,321,South Korea:0 > France:-31 > Japan:-10,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(E2(Ecuador)))),W100(W95(W88(D2(Turkey)))),alt,Ecuador (55%),1935,9,1906,23,316,376,South Korea:0 > France:-31 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(E2(Ecuador)))),W100(W95(W88(G2(Belgium)))),alt,Ecuador (58%),1935,9,1888,29,316,390,South Korea:0 > France:-31 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W95(W86(J1(Argentina)))),alt,Argentina (78%),1867,29,2113,20,257,165,Mexico:-2 > Brazil:-10 > Norway:-18,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W96(W87(K1(Portugal)))),alt,Portugal (66%),1867,29,1984,26,257,37,Mexico:-2 > Brazil:-10 > Norway:-18,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W96(W85(B1(Switzerland)))),alt,Senegal (60%),1867,29,1894,30,257,307,Mexico:-2 > Brazil:-10 > Norway:-18,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W95(W88(D2(Paraguay)))),alt,Senegal (67%),1867,29,1832,3,257,396,Mexico:-2 > Brazil:-10 > Norway:-18,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W96(W85(B1(Canada)))),alt,Senegal (64%),1867,29,1793,0,257,354,Mexico:-2 > Brazil:-10 > Norway:-18,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W96(W87(K1(Colombia)))),alt,Colombia (53%),1867,29,1977,5,257,435,Mexico:-2 > Brazil:-10 > Norway:-18,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W95(W86(H2(Uruguay)))),alt,Senegal (65%),1867,29,1892,5,257,321,Mexico:-2 > Brazil:-10 > Norway:-18,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W95(W88(D2(Turkey)))),alt,Senegal (54%),1867,29,1906,23,257,376,Mexico:-2 > Brazil:-10 > Norway:-18,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W92(W79(CEFHI3(Senegal)))),W100(W95(W88(G2(Belgium)))),alt,Senegal (57%),1867,29,1888,29,257,390,Mexico:-2 > Brazil:-10 > Norway:-18,Czechia:0 > Turkey:-8 > Spain:-48
+M102,W99(W91(W78(E2(Germany)))),W100(W95(W86(J1(Argentina)))),alt,Argentina (74%),1925,34,2113,20,267,165,Scotland:0 > France:-31 > Japan:-10,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(E2(Germany)))),W100(W96(W87(K1(Portugal)))),alt,Portugal (61%),1925,34,1984,26,267,37,Scotland:0 > France:-31 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W91(W78(E2(Germany)))),W100(W96(W85(B1(Switzerland)))),alt,Germany (64%),1925,34,1894,30,267,307,Scotland:0 > France:-31 > Japan:-10,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(E2(Germany)))),W100(W95(W88(D2(Paraguay)))),alt,Germany (71%),1925,34,1832,3,267,396,Scotland:0 > France:-31 > Japan:-10,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(E2(Germany)))),W100(W96(W85(B1(Canada)))),alt,Germany (68%),1925,34,1793,0,267,354,Scotland:0 > France:-31 > Japan:-10,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(E2(Germany)))),W100(W96(W87(K1(Colombia)))),alt,Germany (52%),1925,34,1977,5,267,435,Scotland:0 > France:-31 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W91(W78(E2(Germany)))),W100(W95(W86(H2(Uruguay)))),alt,Germany (70%),1925,34,1892,5,267,321,Scotland:0 > France:-31 > Japan:-10,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(E2(Germany)))),W100(W95(W88(D2(Turkey)))),alt,Germany (59%),1925,34,1906,23,267,376,Scotland:0 > France:-31 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(E2(Germany)))),W100(W95(W88(G2(Belgium)))),alt,Germany (62%),1925,34,1888,29,267,390,Scotland:0 > France:-31 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M102,W99(W91(W78(I2(France)))),W100(W95(W86(J1(Argentina)))),alt,Argentina (54%),2081,37,2113,20,160,165,United States:0 > Germany:-14 > Japan:-10,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(I2(France)))),W100(W96(W87(K1(Portugal)))),alt,France (61%),2081,37,1984,26,160,37,United States:0 > Germany:-14 > Japan:-10,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W91(W78(I2(France)))),W100(W96(W85(B1(Switzerland)))),alt,France (82%),2081,37,1894,30,160,307,United States:0 > Germany:-14 > Japan:-10,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(I2(France)))),W100(W95(W88(D2(Paraguay)))),alt,France (86%),2081,37,1832,3,160,396,United States:0 > Germany:-14 > Japan:-10,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(I2(France)))),W100(W96(W85(B1(Canada)))),alt,France (84%),2081,37,1793,0,160,354,United States:0 > Germany:-14 > Japan:-10,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W91(W78(I2(France)))),W100(W96(W87(K1(Colombia)))),alt,France (73%),2081,37,1977,5,160,435,United States:0 > Germany:-14 > Japan:-10,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W91(W78(I2(France)))),W100(W95(W86(H2(Uruguay)))),alt,France (85%),2081,37,1892,5,160,321,United States:0 > Germany:-14 > Japan:-10,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W78(I2(France)))),W100(W95(W88(D2(Turkey)))),alt,France (78%),2081,37,1906,23,160,376,United States:0 > Germany:-14 > Japan:-10,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W78(I2(France)))),W100(W95(W88(G2(Belgium)))),alt,France (80%),2081,37,1888,29,160,390,United States:0 > Germany:-14 > Japan:-10,Czechia:0 > Turkey:-8 > Spain:-48
+M102,W99(W91(W76(C1(Brazil)))),W100(W95(W86(J1(Argentina)))),alt,Argentina (78%),1988,4,2113,20,288,165,Netherlands:-3 > South Korea:0 > France:-37,Uruguay:0 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W76(C1(Brazil)))),W100(W96(W87(K1(Portugal)))),alt,Portugal (65%),1988,4,1984,26,288,37,Netherlands:-3 > South Korea:0 > France:-37,Panama:0 > Switzerland:-2 > Turkey:-9
+M102,W99(W91(W76(C1(Brazil)))),W100(W96(W85(B1(Switzerland)))),alt,Brazil (60%),1988,4,1894,30,288,307,Netherlands:-3 > South Korea:0 > France:-37,Egypt:0 > Japan:-8 > France:-37
+M102,W99(W91(W76(C1(Brazil)))),W100(W95(W88(D2(Paraguay)))),alt,Brazil (67%),1988,4,1832,3,288,396,Netherlands:-3 > South Korea:0 > France:-37,Iran:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W76(C1(Brazil)))),W100(W96(W85(B1(Canada)))),alt,Brazil (64%),1988,4,1793,0,288,354,Netherlands:-3 > South Korea:0 > France:-37,South Korea:0 > Japan:-8 > France:-37
+M102,W99(W91(W76(C1(Brazil)))),W100(W96(W87(K1(Colombia)))),alt,Colombia (52%),1988,4,1977,5,288,435,Netherlands:-3 > South Korea:0 > France:-37,Croatia:-3 > Spain:-40 > Turkey:-9
+M102,W99(W91(W76(C1(Brazil)))),W100(W95(W86(H2(Uruguay)))),alt,Brazil (66%),1988,4,1892,5,288,321,Netherlands:-3 > South Korea:0 > France:-37,Argentina:-17 > Paraguay:0 > Portugal:-24
+M102,W99(W91(W76(C1(Brazil)))),W100(W95(W88(D2(Turkey)))),alt,Brazil (55%),1988,4,1906,23,288,376,Netherlands:-3 > South Korea:0 > France:-37,Algeria:0 > Belgium:-6 > Spain:-48
+M102,W99(W91(W76(C1(Brazil)))),W100(W95(W88(G2(Belgium)))),alt,Brazil (57%),1988,4,1888,29,288,390,Netherlands:-3 > South Korea:0 > France:-37,Czechia:0 > Turkey:-8 > Spain:-48
 

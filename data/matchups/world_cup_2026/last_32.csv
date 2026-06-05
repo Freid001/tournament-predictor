@@ -1,93 +1,224 @@
-match_id,team1,team2,path,predicted_winner,elo,qualification_form,h2h,prediction
-M73,A2(South Korea),B2(Canada),primary,Canada (58%),Canada (61%),South Korea (62%),South Korea (82%),Canada (58%)
-M73,A2(South Korea),B2(Switzerland),alt,Switzerland (65%),Switzerland (68%),Switzerland (50%),South Korea (73%),Switzerland (65%)
-M73,A2(Czechia),B2(Switzerland),alt,Switzerland (70%),Switzerland (72%),Switzerland (56%),Czechia (54%),Switzerland (70%)
-M73,A2(Czechia),B2(Canada),alt,Canada (62%),Canada (65%),Czechia (55%),Czechia (100%),Canada (62%)
+match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent
+M73,A2(South Korea),B2(Canada),predicted,Canada (56%),1756,31,1793,0,0,0,,
+M73,A2(Mexico),B2(Switzerland),alt,Mexico (53%),1867,0,1894,30,0,0,,
+M73,A2(Mexico),B2(Canada),alt,Mexico (57%),1867,0,1793,0,0,0,,
+M73,A2(South Korea),B2(Switzerland),alt,Switzerland (60%),1756,31,1894,30,0,0,,
+M73,A2(Czechia),B2(Switzerland),alt,Switzerland (72%),1733,13,1894,30,0,0,,
+M73,A2(Czechia),B2(Canada),alt,Canada (69%),1733,13,1793,0,0,0,,
 
-M74,E1(Germany),ABCDF3(Morocco),primary,Germany (59%),Germany (61%),Morocco (53%),Germany (50%),Germany (59%)
-M74,E1(Germany),ABCDF3(Scotland),primary,Germany (69%),Germany (71%),Germany (54%),Germany (97%),Germany (69%)
-M74,E1(Ecuador),ABCDF3(Morocco),alt,Ecuador (60%),Ecuador (64%),Morocco (62%),Ecuador (50%),Ecuador (60%)
-M74,E1(Ecuador),ABCDF3(Scotland),alt,Ecuador (70%),Ecuador (74%),Scotland (54%),Scotland (100%),Ecuador (70%)
+M74,E1(Germany),ABCDF3(Scotland),predicted,Germany (82%),1925,34,1770,20,0,0,,
+M74,E1(Germany),ABCDF3(South Korea),alt,Germany (72%),1925,34,1756,31,0,0,,
+M74,E1(Germany),ABCDF3(Czechia),alt,Germany (82%),1925,34,1733,13,0,0,,
+M74,E1(Germany),ABCDF3(South Africa),alt,Germany (92%),1925,34,1518,23,0,0,,
+M74,E1(Germany),ABCDF3(Bosnia and Herzegovina),alt,Germany (91%),1925,34,1591,15,0,0,,
+M74,E1(Germany),ABCDF3(Qatar),alt,Germany (96%),1925,34,1423,10,0,0,,
+M74,E1(Germany),ABCDF3(Morocco),alt,Germany (67%),1925,34,1822,44,0,0,,
+M74,E1(Germany),ABCDF3(Haiti),alt,Germany (91%),1925,34,1532,15,0,0,,
+M74,E1(Germany),ABCDF3(Paraguay),alt,Germany (69%),1925,34,1832,3,0,0,,
+M74,E1(Germany),ABCDF3(United States),alt,Germany (75%),1925,34,1733,0,0,0,,
+M74,E1(Germany),ABCDF3(Australia),alt,Germany (76%),1925,34,1774,29,0,0,,
+M74,E1(Germany),ABCDF3(Sweden),alt,Germany (86%),1925,34,1714,-14,0,0,,
+M74,E1(Germany),ABCDF3(Tunisia),alt,Germany (87%),1925,34,1633,27,0,0,,
+M74,E1(Ecuador),ABCDF3(South Korea),alt,Ecuador (70%),1935,9,1756,31,0,0,,
+M74,E1(Ecuador),ABCDF3(Czechia),alt,Ecuador (80%),1935,9,1733,13,0,0,,
+M74,E1(Ecuador),ABCDF3(South Africa),alt,Ecuador (91%),1935,9,1518,23,0,0,,
+M74,E1(Ecuador),ABCDF3(Bosnia and Herzegovina),alt,Ecuador (90%),1935,9,1591,15,0,0,,
+M74,E1(Ecuador),ABCDF3(Qatar),alt,Ecuador (95%),1935,9,1423,10,0,0,,
+M74,E1(Ecuador),ABCDF3(Morocco),alt,Ecuador (64%),1935,9,1822,44,0,0,,
+M74,E1(Ecuador),ABCDF3(Scotland),alt,Ecuador (80%),1935,9,1770,20,0,0,,
+M74,E1(Ecuador),ABCDF3(Haiti),alt,Ecuador (90%),1935,9,1532,15,0,0,,
+M74,E1(Ecuador),ABCDF3(Paraguay),alt,Ecuador (66%),1935,9,1832,3,0,0,,
+M74,E1(Ecuador),ABCDF3(United States),alt,Ecuador (73%),1935,9,1733,0,0,0,,
+M74,E1(Ecuador),ABCDF3(Australia),alt,Ecuador (74%),1935,9,1774,29,0,0,,
+M74,E1(Ecuador),ABCDF3(Sweden),alt,Ecuador (85%),1935,9,1714,-14,0,0,,
+M74,E1(Ecuador),ABCDF3(Tunisia),alt,Ecuador (85%),1935,9,1633,27,0,0,,
 
-M75,F1(Netherlands),C2(Morocco),primary,Netherlands (61%),Netherlands (63%),Morocco (52%),Netherlands (93%),Netherlands (61%)
-M75,F1(Netherlands),C2(Brazil),alt,Brazil (52%),Brazil (54%),Netherlands (62%),Netherlands (73%),Brazil (52%)
-M75,F1(Netherlands),C2(Scotland),alt,Netherlands (70%),Netherlands (72%),Netherlands (55%),Netherlands (83%),Netherlands (70%)
-M75,F1(Japan),C2(Brazil),alt,Brazil (54%),Brazil (57%),Japan (63%),Brazil (63%),Brazil (54%)
-M75,F1(Japan),C2(Morocco),alt,Japan (58%),Japan (60%),Morocco (52%),Japan (50%),Japan (58%)
-M75,F1(Japan),C2(Scotland),alt,Japan (68%),Japan (70%),Japan (56%),Japan (97%),Japan (68%)
+M75,F1(Japan),C2(Morocco),predicted,Japan (60%),1906,39,1822,44,0,0,,
+M75,F1(Japan),C2(Brazil),alt,Brazil (53%),1906,39,1988,4,0,0,,
+M75,F1(Japan),C2(Scotland),alt,Japan (78%),1906,39,1770,20,0,0,,
+M75,F1(Netherlands),C2(Brazil),alt,Brazil (55%),1961,37,1988,4,0,0,,
+M75,F1(Netherlands),C2(Morocco),alt,Netherlands (58%),1961,37,1822,44,0,0,,
+M75,F1(Netherlands),C2(Scotland),alt,Netherlands (76%),1961,37,1770,20,0,0,,
 
-M76,C1(Brazil),F2(Japan),primary,Japan (46%),Brazil (57%),Japan (63%),Brazil (63%),Brazil (54%)
-M76,C1(Brazil),F2(Netherlands),alt,Brazil (52%),Brazil (54%),Netherlands (62%),Netherlands (73%),Brazil (52%)
-M76,C1(Morocco),F2(Netherlands),alt,Netherlands (61%),Netherlands (63%),Morocco (52%),Netherlands (93%),Netherlands (61%)
-M76,C1(Morocco),F2(Japan),alt,Japan (58%),Japan (60%),Morocco (52%),Morocco (50%),Japan (58%)
+M76,C1(Brazil),F2(Netherlands),predicted,Brazil (55%),1988,4,1961,37,0,0,,
+M76,C1(Brazil),F2(Japan),alt,Brazil (53%),1988,4,1906,39,0,0,,
+M76,C1(Morocco),F2(Japan),alt,Japan (60%),1822,44,1906,39,0,0,,
+M76,C1(Morocco),F2(Netherlands),alt,Netherlands (58%),1822,44,1961,37,0,0,,
 
-M77,I1(France),CDFGH3(Paraguay),primary,France (75%),France (77%),France (62%),France (77%),France (75%)
-M77,I1(France),CDFGH3(United States),primary,France (78%),France (80%),France (64%),France (64%),France (78%)
-M77,I1(France),CDFGH3(Australia),primary,France (78%),France (83%),France (53%),France (96%),France (78%)
-M77,I1(Norway),CDFGH3(Paraguay),alt,Norway (61%),Norway (60%),Norway (66%),Norway (50%),Norway (61%)
-M77,I1(Norway),CDFGH3(United States),alt,Norway (64%),Norway (64%),Norway (67%),United States (88%),Norway (64%)
-M77,I1(Norway),CDFGH3(Australia),alt,Norway (67%),Norway (69%),Norway (56%),Norway (89%),Norway (67%)
+M77,I1(France),CDFGH3(United States),predicted,France (87%),2081,37,1733,0,0,0,,
+M77,I1(France),CDFGH3(Morocco),alt,France (82%),2081,37,1822,44,0,0,,
+M77,I1(France),CDFGH3(Scotland),alt,France (91%),2081,37,1770,20,0,0,,
+M77,I1(France),CDFGH3(Haiti),alt,France (96%),2081,37,1532,15,0,0,,
+M77,I1(France),CDFGH3(Paraguay),alt,France (84%),2081,37,1832,3,0,0,,
+M77,I1(France),CDFGH3(Australia),alt,France (88%),2081,37,1774,29,0,0,,
+M77,I1(France),CDFGH3(Sweden),alt,France (93%),2081,37,1714,-14,0,0,,
+M77,I1(France),CDFGH3(Tunisia),alt,France (94%),2081,37,1633,27,0,0,,
+M77,I1(France),CDFGH3(Iran),alt,France (89%),2081,37,1764,26,0,0,,
+M77,I1(France),CDFGH3(Egypt),alt,France (91%),2081,37,1699,34,0,0,,
+M77,I1(France),CDFGH3(New Zealand),alt,France (95%),2081,37,1585,49,0,0,,
+M77,I1(France),CDFGH3(Saudi Arabia),alt,France (96%),2081,37,1566,7,0,0,,
+M77,I1(France),CDFGH3(Cape Verde),alt,France (96%),2081,37,1576,6,0,0,,
+M77,I1(Norway),CDFGH3(Morocco),alt,Norway (68%),1917,46,1822,44,0,0,,
+M77,I1(Norway),CDFGH3(Scotland),alt,Norway (83%),1917,46,1770,20,0,0,,
+M77,I1(Norway),CDFGH3(Haiti),alt,Norway (92%),1917,46,1532,15,0,0,,
+M77,I1(Norway),CDFGH3(Paraguay),alt,Norway (70%),1917,46,1832,3,0,0,,
+M77,I1(Norway),CDFGH3(United States),alt,Norway (76%),1917,46,1733,0,0,0,,
+M77,I1(Norway),CDFGH3(Australia),alt,Norway (77%),1917,46,1774,29,0,0,,
+M77,I1(Norway),CDFGH3(Sweden),alt,Norway (87%),1917,46,1714,-14,0,0,,
+M77,I1(Norway),CDFGH3(Tunisia),alt,Norway (87%),1917,46,1633,27,0,0,,
+M77,I1(Norway),CDFGH3(Iran),alt,Norway (79%),1917,46,1764,26,0,0,,
+M77,I1(Norway),CDFGH3(Egypt),alt,Norway (82%),1917,46,1699,34,0,0,,
+M77,I1(Norway),CDFGH3(New Zealand),alt,Norway (90%),1917,46,1585,49,0,0,,
+M77,I1(Norway),CDFGH3(Saudi Arabia),alt,Norway (92%),1917,46,1566,7,0,0,,
+M77,I1(Norway),CDFGH3(Cape Verde),alt,Norway (92%),1917,46,1576,6,0,0,,
 
-M78,E2(Ecuador),I2(Norway),primary,Ecuador (52%),Ecuador (55%),Norway (63%),Ecuador (50%),Ecuador (52%)
-M78,E2(Germany),I2(France),alt,France (65%),France (68%),France (51%),France (56%),France (65%)
-M78,E2(Germany),I2(Norway),alt,Germany (50%),Germany (51%),Norway (54%),Germany (86%),Germany (50%)
-M78,E2(Germany),I2(Senegal),alt,Germany (54%),Germany (55%),Germany (52%),Germany (50%),Germany (54%)
-M78,E2(Ecuador),I2(France),alt,France (64%),France (65%),France (60%),France (65%),France (64%)
-M78,E2(Ecuador),I2(Senegal),alt,Ecuador (56%),Ecuador (58%),Senegal (57%),Senegal (100%),Ecuador (56%)
+M78,E2(Ecuador),I2(Norway),predicted,Norway (54%),1935,9,1917,46,0,0,,
+M78,E2(Germany),I2(France),alt,France (70%),1925,34,2081,37,0,0,,
+M78,E2(Germany),I2(Norway),alt,Norway (51%),1925,34,1917,46,0,0,,
+M78,E2(Germany),I2(Senegal),alt,Germany (55%),1925,34,1867,29,0,0,,
+M78,E2(Ecuador),I2(France),alt,France (72%),1935,9,2081,37,0,0,,
+M78,E2(Ecuador),I2(Senegal),alt,Ecuador (52%),1935,9,1867,29,0,0,,
 
-M79,A1(Mexico),CEFHI3(Norway),primary,Mexico (57%),Mexico (61%),Norway (67%),Mexico (66%),Mexico (57%)
-M79,A1(Mexico),CEFHI3(Senegal),primary,Mexico (60%),Mexico (64%),Senegal (61%),Mexico (100%),Mexico (60%)
+M79,A1(Mexico),CEFHI3(Senegal),predicted,Senegal (56%),1867,0,1867,29,0,0,,
+M79,A1(Mexico),CEFHI3(Morocco),alt,Mexico (56%),1867,0,1822,44,0,0,,
+M79,A1(Mexico),CEFHI3(Scotland),alt,Mexico (75%),1867,0,1770,20,0,0,,
+M79,A1(Mexico),CEFHI3(Haiti),alt,Mexico (87%),1867,0,1532,15,0,0,,
+M79,A1(Mexico),CEFHI3(Ivory Coast),alt,Mexico (79%),1867,0,1676,29,0,0,,
+M79,A1(Mexico),CEFHI3(Sweden),alt,Mexico (80%),1867,0,1714,-14,0,0,,
+M79,A1(Mexico),CEFHI3(Tunisia),alt,Mexico (81%),1867,0,1633,27,0,0,,
+M79,A1(Mexico),CEFHI3(Saudi Arabia),alt,Mexico (88%),1867,0,1566,7,0,0,,
+M79,A1(Mexico),CEFHI3(Cape Verde),alt,Mexico (88%),1867,0,1576,6,0,0,,
+M79,A1(Mexico),CEFHI3(Norway),alt,Norway (62%),1867,0,1917,46,0,0,,
+M79,A1(South Korea),CEFHI3(Morocco),alt,Morocco (56%),1756,31,1822,44,0,0,,
+M79,A1(South Korea),CEFHI3(Scotland),alt,South Korea (64%),1756,31,1770,20,0,0,,
+M79,A1(South Korea),CEFHI3(Haiti),alt,South Korea (80%),1756,31,1532,15,0,0,,
+M79,A1(South Korea),CEFHI3(Ivory Coast),alt,South Korea (69%),1756,31,1676,29,0,0,,
+M79,A1(South Korea),CEFHI3(Sweden),alt,South Korea (71%),1756,31,1714,-14,0,0,,
+M79,A1(South Korea),CEFHI3(Tunisia),alt,South Korea (71%),1756,31,1633,27,0,0,,
+M79,A1(South Korea),CEFHI3(Saudi Arabia),alt,South Korea (81%),1756,31,1566,7,0,0,,
+M79,A1(South Korea),CEFHI3(Cape Verde),alt,South Korea (81%),1756,31,1576,6,0,0,,
+M79,A1(South Korea),CEFHI3(Norway),alt,Norway (73%),1756,31,1917,46,0,0,,
+M79,A1(South Korea),CEFHI3(Senegal),alt,Senegal (68%),1756,31,1867,29,0,0,,
 
-M80,L1(England),EHIJK3(Uzbekistan),primary,England (76%),England (79%),England (58%),England (50%),England (76%)
-M80,L1(England),EHIJK3(DR Congo),primary,England (79%),England (83%),England (58%),England (50%),England (79%)
-M80,L1(Croatia),EHIJK3(Uzbekistan),alt,Croatia (71%),Croatia (74%),Croatia (57%),Croatia (50%),Croatia (71%)
-M80,L1(Croatia),EHIJK3(DR Congo),alt,Croatia (76%),Croatia (79%),Croatia (57%),Croatia (50%),Croatia (76%)
+M80,L1(England),EHIJK3(Uzbekistan),predicted,England (85%),2020,48,1718,20,0,0,,
+M80,L1(England),EHIJK3(Ivory Coast),alt,England (87%),2020,48,1676,29,0,0,,
+M80,L1(England),EHIJK3(Saudi Arabia),alt,England (93%),2020,48,1566,7,0,0,,
+M80,L1(England),EHIJK3(Cape Verde),alt,England (93%),2020,48,1576,6,0,0,,
+M80,L1(England),EHIJK3(Norway),alt,England (52%),2020,48,1917,46,0,0,,
+M80,L1(England),EHIJK3(Senegal),alt,England (59%),2020,48,1867,29,0,0,,
+M80,L1(England),EHIJK3(Algeria),alt,England (84%),2020,48,1743,32,0,0,,
+M80,L1(England),EHIJK3(Jordan),alt,England (88%),2020,48,1685,15,0,0,,
+M80,L1(England),EHIJK3(DR Congo),alt,England (86%),2020,48,1655,20,0,0,,
+M80,L1(Croatia),EHIJK3(Ivory Coast),alt,Croatia (80%),1908,42,1676,29,0,0,,
+M80,L1(Croatia),EHIJK3(Saudi Arabia),alt,Croatia (88%),1908,42,1566,7,0,0,,
+M80,L1(Croatia),EHIJK3(Cape Verde),alt,Croatia (89%),1908,42,1576,6,0,0,,
+M80,L1(Croatia),EHIJK3(Norway),alt,Norway (60%),1908,42,1917,46,0,0,,
+M80,L1(Croatia),EHIJK3(Senegal),alt,Senegal (54%),1908,42,1867,29,0,0,,
+M80,L1(Croatia),EHIJK3(Algeria),alt,Croatia (75%),1908,42,1743,32,0,0,,
+M80,L1(Croatia),EHIJK3(Jordan),alt,Croatia (82%),1908,42,1685,15,0,0,,
+M80,L1(Croatia),EHIJK3(Uzbekistan),alt,Croatia (77%),1908,42,1718,20,0,0,,
+M80,L1(Croatia),EHIJK3(DR Congo),alt,Croatia (79%),1908,42,1655,20,0,0,,
 
-M81,D1(Turkey),BEFIJ3(Austria),primary,Turkey (56%),Turkey (58%),Austria (52%),Turkey (58%),Turkey (56%)
-M81,D1(Turkey),BEFIJ3(Algeria),primary,Turkey (64%),Turkey (67%),Algeria (53%),Algeria (76%),Turkey (64%)
-M81,D1(Turkey),BEFIJ3(Jordan),primary,Turkey (71%),Turkey (74%),Turkey (54%),Turkey (50%),Turkey (71%)
-M81,D1(Paraguay),BEFIJ3(Austria),alt,Paraguay (50%),Paraguay (52%),Austria (61%),Paraguay (50%),Paraguay (50%)
-M81,D1(Paraguay),BEFIJ3(Algeria),alt,Paraguay (58%),Paraguay (61%),Algeria (61%),Paraguay (50%),Paraguay (58%)
-M81,D1(Paraguay),BEFIJ3(Jordan),alt,Paraguay (65%),Paraguay (69%),Jordan (55%),Paraguay (100%),Paraguay (65%)
+M81,D1(Turkey),BEFIJ3(Algeria),predicted,Turkey (77%),1906,23,1743,32,0,0,,
+M81,D1(Turkey),BEFIJ3(Bosnia and Herzegovina),alt,Turkey (88%),1906,23,1591,15,0,0,,
+M81,D1(Turkey),BEFIJ3(Qatar),alt,Turkey (95%),1906,23,1423,10,0,0,,
+M81,D1(Turkey),BEFIJ3(Ivory Coast),alt,Turkey (81%),1906,23,1676,29,0,0,,
+M81,D1(Turkey),BEFIJ3(Sweden),alt,Turkey (82%),1906,23,1714,-14,0,0,,
+M81,D1(Turkey),BEFIJ3(Tunisia),alt,Turkey (83%),1906,23,1633,27,0,0,,
+M81,D1(Turkey),BEFIJ3(Norway),alt,Norway (59%),1906,23,1917,46,0,0,,
+M81,D1(Turkey),BEFIJ3(Senegal),alt,Senegal (52%),1906,23,1867,29,0,0,,
+M81,D1(Turkey),BEFIJ3(Jordan),alt,Turkey (83%),1906,23,1685,15,0,0,,
+M81,D1(Paraguay),BEFIJ3(Bosnia and Herzegovina),alt,Paraguay (82%),1832,3,1591,15,0,0,,
+M81,D1(Paraguay),BEFIJ3(Qatar),alt,Paraguay (91%),1832,3,1423,10,0,0,,
+M81,D1(Paraguay),BEFIJ3(Ivory Coast),alt,Paraguay (72%),1832,3,1676,29,0,0,,
+M81,D1(Paraguay),BEFIJ3(Sweden),alt,Paraguay (74%),1832,3,1714,-14,0,0,,
+M81,D1(Paraguay),BEFIJ3(Tunisia),alt,Paraguay (74%),1832,3,1633,27,0,0,,
+M81,D1(Paraguay),BEFIJ3(Norway),alt,Norway (70%),1832,3,1917,46,0,0,,
+M81,D1(Paraguay),BEFIJ3(Senegal),alt,Senegal (65%),1832,3,1867,29,0,0,,
+M81,D1(Paraguay),BEFIJ3(Algeria),alt,Paraguay (66%),1832,3,1743,32,0,0,,
+M81,D1(Paraguay),BEFIJ3(Jordan),alt,Paraguay (74%),1832,3,1685,15,0,0,,
 
-M82,G1(Belgium),AEHIJ3(South Korea),primary,Belgium (64%),Belgium (67%),Belgium (50%),Belgium (96%),Belgium (64%)
-M82,G1(Belgium),AEHIJ3(Czechia),primary,Belgium (69%),Belgium (71%),Belgium (57%),Belgium (71%),Belgium (69%)
-M82,G1(Belgium),AEHIJ3(South Africa),primary,Belgium (84%),Belgium (89%),Belgium (53%),Belgium (50%),Belgium (84%)
-M82,G1(Iran),AEHIJ3(South Korea),alt,Iran (51%),Iran (52%),South Korea (51%),Iran (52%),Iran (51%)
-M82,G1(Iran),AEHIJ3(Czechia),alt,Iran (57%),Iran (57%),Iran (55%),Iran (50%),Iran (57%)
-M82,G1(Iran),AEHIJ3(South Africa),alt,Iran (76%),Iran (80%),Iran (51%),Iran (50%),Iran (76%)
+M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (75%),1888,29,1733,13,0,0,,
+M82,G1(Belgium),AEHIJ3(South Korea),alt,Belgium (64%),1888,29,1756,31,0,0,,
+M82,G1(Belgium),AEHIJ3(South Africa),alt,Belgium (88%),1888,29,1518,23,0,0,,
+M82,G1(Belgium),AEHIJ3(Ivory Coast),alt,Belgium (79%),1888,29,1676,29,0,0,,
+M82,G1(Belgium),AEHIJ3(Saudi Arabia),alt,Belgium (88%),1888,29,1566,7,0,0,,
+M82,G1(Belgium),AEHIJ3(Cape Verde),alt,Belgium (88%),1888,29,1576,6,0,0,,
+M82,G1(Belgium),AEHIJ3(Norway),alt,Norway (61%),1888,29,1917,46,0,0,,
+M82,G1(Belgium),AEHIJ3(Senegal),alt,Senegal (55%),1888,29,1867,29,0,0,,
+M82,G1(Belgium),AEHIJ3(Algeria),alt,Belgium (75%),1888,29,1743,32,0,0,,
+M82,G1(Belgium),AEHIJ3(Jordan),alt,Belgium (81%),1888,29,1685,15,0,0,,
+M82,G1(Iran),AEHIJ3(South Korea),alt,South Korea (58%),1764,26,1756,31,0,0,,
+M82,G1(Iran),AEHIJ3(Czechia),alt,Iran (56%),1764,26,1733,13,0,0,,
+M82,G1(Iran),AEHIJ3(South Africa),alt,Iran (76%),1764,26,1518,23,0,0,,
+M82,G1(Iran),AEHIJ3(Ivory Coast),alt,Iran (62%),1764,26,1676,29,0,0,,
+M82,G1(Iran),AEHIJ3(Saudi Arabia),alt,Iran (76%),1764,26,1566,7,0,0,,
+M82,G1(Iran),AEHIJ3(Cape Verde),alt,Iran (76%),1764,26,1576,6,0,0,,
+M82,G1(Iran),AEHIJ3(Norway),alt,Norway (79%),1764,26,1917,46,0,0,,
+M82,G1(Iran),AEHIJ3(Senegal),alt,Senegal (74%),1764,26,1867,29,0,0,,
+M82,G1(Iran),AEHIJ3(Algeria),alt,Iran (56%),1764,26,1743,32,0,0,,
+M82,G1(Iran),AEHIJ3(Jordan),alt,Iran (65%),1764,26,1685,15,0,0,,
 
-M83,K2(Colombia),L2(Croatia),primary,Colombia (59%),Colombia (63%),Croatia (63%),Croatia (100%),Colombia (59%)
-M83,K2(Portugal),L2(England),alt,Portugal (53%),Portugal (55%),England (56%),England (73%),Portugal (53%)
-M83,K2(Portugal),L2(Croatia),alt,Portugal (59%),Portugal (62%),Croatia (55%),Portugal (67%),Portugal (59%)
-M83,K2(Portugal),L2(Panama),alt,Portugal (75%),Portugal (79%),Panama (51%),Portugal (100%),Portugal (75%)
-M83,K2(Colombia),L2(England),alt,Colombia (54%),Colombia (57%),England (65%),England (59%),Colombia (54%)
-M83,K2(Colombia),L2(Panama),alt,Colombia (74%),Colombia (80%),Panama (59%),Colombia (92%),Colombia (74%)
+M83,K2(Colombia),L2(Croatia),predicted,Colombia (60%),1977,5,1908,42,0,0,,
+M83,K2(Portugal),L2(England),alt,Portugal (54%),1984,26,2020,48,0,0,,
+M83,K2(Portugal),L2(Croatia),alt,Portugal (66%),1984,26,1908,42,0,0,,
+M83,K2(Portugal),L2(Panama),alt,Portugal (84%),1984,26,1733,27,0,0,,
+M83,K2(Colombia),L2(England),alt,England (53%),1977,5,2020,48,0,0,,
+M83,K2(Colombia),L2(Panama),alt,Colombia (79%),1977,5,1733,27,0,0,,
 
-M84,H1(Spain),J2(Austria),primary,Spain (81%),Spain (86%),Spain (53%),Spain (89%),Spain (81%)
-M84,H1(Spain),J2(Algeria),alt,Spain (84%),Spain (90%),Spain (53%),Spain (100%),Spain (84%)
+M84,H1(Spain),J2(Austria),predicted,Spain (85%),2165,41,1830,32,0,0,,
 
-M85,B1(Switzerland),EFGIJ3(Iran),primary,Switzerland (64%),Switzerland (66%),Switzerland (51%),Switzerland (50%),Switzerland (64%)
-M85,B1(Switzerland),EFGIJ3(Egypt),primary,Switzerland (69%),Switzerland (73%),Egypt (52%),Switzerland (100%),Switzerland (69%)
-M85,B1(Switzerland),EFGIJ3(New Zealand),primary,Switzerland (80%),Switzerland (86%),New Zealand (56%),Switzerland (50%),Switzerland (80%)
-M85,B1(Canada),EFGIJ3(Iran),alt,Canada (56%),Canada (59%),Iran (60%),Iran (57%),Canada (56%)
-M85,B1(Canada),EFGIJ3(Egypt),alt,Canada (62%),Canada (66%),Egypt (63%),Egypt (100%),Canada (62%)
-M85,B1(Canada),EFGIJ3(New Zealand),alt,Canada (75%),Canada (82%),New Zealand (67%),Canada (100%),Canada (75%)
+M85,B1(Switzerland),EFGIJ3(Egypt),predicted,Switzerland (72%),1894,30,1699,34,0,0,,
+M85,B1(Switzerland),EFGIJ3(Ivory Coast),alt,Switzerland (76%),1894,30,1676,29,0,0,,
+M85,B1(Switzerland),EFGIJ3(Sweden),alt,Switzerland (78%),1894,30,1714,-14,0,0,,
+M85,B1(Switzerland),EFGIJ3(Tunisia),alt,Switzerland (79%),1894,30,1633,27,0,0,,
+M85,B1(Switzerland),EFGIJ3(Iran),alt,Switzerland (67%),1894,30,1764,26,0,0,,
+M85,B1(Switzerland),EFGIJ3(New Zealand),alt,Switzerland (83%),1894,30,1585,49,0,0,,
+M85,B1(Switzerland),EFGIJ3(Norway),alt,Norway (65%),1894,30,1917,46,0,0,,
+M85,B1(Switzerland),EFGIJ3(Senegal),alt,Senegal (59%),1894,30,1867,29,0,0,,
+M85,B1(Switzerland),EFGIJ3(Algeria),alt,Switzerland (72%),1894,30,1743,32,0,0,,
+M85,B1(Switzerland),EFGIJ3(Jordan),alt,Switzerland (79%),1894,30,1685,15,0,0,,
+M85,B1(Canada),EFGIJ3(Ivory Coast),alt,Canada (74%),1793,0,1676,29,0,0,,
+M85,B1(Canada),EFGIJ3(Sweden),alt,Canada (76%),1793,0,1714,-14,0,0,,
+M85,B1(Canada),EFGIJ3(Tunisia),alt,Canada (76%),1793,0,1633,27,0,0,,
+M85,B1(Canada),EFGIJ3(Iran),alt,Canada (63%),1793,0,1764,26,0,0,,
+M85,B1(Canada),EFGIJ3(Egypt),alt,Canada (69%),1793,0,1699,34,0,0,,
+M85,B1(Canada),EFGIJ3(New Zealand),alt,Canada (80%),1793,0,1585,49,0,0,,
+M85,B1(Canada),EFGIJ3(Norway),alt,Norway (68%),1793,0,1917,46,0,0,,
+M85,B1(Canada),EFGIJ3(Senegal),alt,Senegal (62%),1793,0,1867,29,0,0,,
+M85,B1(Canada),EFGIJ3(Algeria),alt,Canada (69%),1793,0,1743,32,0,0,,
+M85,B1(Canada),EFGIJ3(Jordan),alt,Canada (76%),1793,0,1685,15,0,0,,
 
-M86,J1(Argentina),H2(Uruguay),primary,Argentina (71%),Argentina (73%),Argentina (56%),Argentina (74%),Argentina (71%)
+M86,J1(Argentina),H2(Uruguay),predicted,Argentina (86%),2113,20,1892,5,0,0,,
 
-M87,K1(Portugal),DEIJL3(Croatia),primary,Portugal (59%),Portugal (62%),Croatia (55%),Portugal (67%),Portugal (59%)
-M87,K1(Portugal),DEIJL3(Panama),primary,Portugal (75%),Portugal (79%),Panama (51%),Portugal (100%),Portugal (75%)
-M87,K1(Colombia),DEIJL3(Croatia),alt,Colombia (59%),Colombia (63%),Croatia (63%),Croatia (100%),Colombia (59%)
-M87,K1(Colombia),DEIJL3(Panama),alt,Colombia (74%),Colombia (80%),Panama (59%),Colombia (92%),Colombia (74%)
+M87,K1(Portugal),DEIJL3(Panama),predicted,Portugal (84%),1984,26,1733,27,0,0,,
+M87,K1(Portugal),DEIJL3(Paraguay),alt,Portugal (75%),1984,26,1832,3,0,0,,
+M87,K1(Portugal),DEIJL3(United States),alt,Portugal (80%),1984,26,1733,0,0,0,,
+M87,K1(Portugal),DEIJL3(Australia),alt,Portugal (81%),1984,26,1774,29,0,0,,
+M87,K1(Portugal),DEIJL3(Ivory Coast),alt,Portugal (88%),1984,26,1676,29,0,0,,
+M87,K1(Portugal),DEIJL3(Norway),alt,Portugal (56%),1984,26,1917,46,0,0,,
+M87,K1(Portugal),DEIJL3(Senegal),alt,Portugal (62%),1984,26,1867,29,0,0,,
+M87,K1(Portugal),DEIJL3(Algeria),alt,Portugal (86%),1984,26,1743,32,0,0,,
+M87,K1(Portugal),DEIJL3(Jordan),alt,Portugal (90%),1984,26,1685,15,0,0,,
+M87,K1(Portugal),DEIJL3(Croatia),alt,Portugal (66%),1984,26,1908,42,0,0,,
+M87,K1(Colombia),DEIJL3(Paraguay),alt,Colombia (69%),1977,5,1832,3,0,0,,
+M87,K1(Colombia),DEIJL3(United States),alt,Colombia (75%),1977,5,1733,0,0,0,,
+M87,K1(Colombia),DEIJL3(Australia),alt,Colombia (76%),1977,5,1774,29,0,0,,
+M87,K1(Colombia),DEIJL3(Ivory Coast),alt,Colombia (85%),1977,5,1676,29,0,0,,
+M87,K1(Colombia),DEIJL3(Norway),alt,Norway (51%),1977,5,1917,46,0,0,,
+M87,K1(Colombia),DEIJL3(Senegal),alt,Colombia (56%),1977,5,1867,29,0,0,,
+M87,K1(Colombia),DEIJL3(Algeria),alt,Colombia (82%),1977,5,1743,32,0,0,,
+M87,K1(Colombia),DEIJL3(Jordan),alt,Colombia (87%),1977,5,1685,15,0,0,,
+M87,K1(Colombia),DEIJL3(Croatia),alt,Colombia (60%),1977,5,1908,42,0,0,,
+M87,K1(Colombia),DEIJL3(Panama),alt,Colombia (79%),1977,5,1733,27,0,0,,
 
-M88,D2(Paraguay),G2(Iran),primary,Paraguay (57%),Paraguay (60%),Iran (59%),Paraguay (50%),Paraguay (57%)
-M88,D2(Turkey),G2(Belgium),alt,Turkey (50%),Turkey (50%),Belgium (52%),Turkey (55%),Turkey (50%)
-M88,D2(Turkey),G2(Iran),alt,Turkey (63%),Turkey (65%),Turkey (50%),Turkey (100%),Turkey (63%)
-M88,D2(Turkey),G2(Egypt),alt,Turkey (68%),Turkey (72%),Egypt (53%),Turkey (51%),Turkey (68%)
-M88,D2(Paraguay),G2(Belgium),alt,Belgium (57%),Belgium (56%),Belgium (61%),Belgium (92%),Belgium (57%)
-M88,D2(Paraguay),G2(Egypt),alt,Paraguay (63%),Paraguay (67%),Egypt (62%),Paraguay (50%),Paraguay (63%)
-M88,D2(United States),G2(Belgium),alt,Belgium (60%),Belgium (60%),Belgium (62%),Belgium (100%),Belgium (60%)
-M88,D2(United States),G2(Iran),alt,United States (53%),United States (55%),Iran (60%),United States (94%),United States (53%)
-M88,D2(United States),G2(Egypt),alt,United States (59%),United States (63%),Egypt (63%),United States (94%),United States (59%)
+M88,D2(Paraguay),G2(Iran),predicted,Paraguay (61%),1832,3,1764,26,0,0,,
+M88,D2(Turkey),G2(Belgium),alt,Turkey (52%),1906,23,1888,29,0,0,,
+M88,D2(Turkey),G2(Iran),alt,Turkey (72%),1906,23,1764,26,0,0,,
+M88,D2(Turkey),G2(Egypt),alt,Turkey (77%),1906,23,1699,34,0,0,,
+M88,D2(Paraguay),G2(Belgium),alt,Belgium (60%),1832,3,1888,29,0,0,,
+M88,D2(Paraguay),G2(Egypt),alt,Paraguay (67%),1832,3,1699,34,0,0,,
+M88,D2(United States),G2(Belgium),alt,Belgium (67%),1733,0,1888,29,0,0,,
+M88,D2(United States),G2(Iran),alt,United States (54%),1733,0,1764,26,0,0,,
+M88,D2(United States),G2(Egypt),alt,United States (60%),1733,0,1699,34,0,0,,
 

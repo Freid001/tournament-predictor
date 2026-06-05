@@ -14,15 +14,14 @@ import com.tournamentpredictor.service.handler.Last16Handler;
 import com.tournamentpredictor.service.handler.Last32Handler;
 import com.tournamentpredictor.service.handler.Last4Handler;
 import com.tournamentpredictor.service.handler.Last8Handler;
-import com.tournamentpredictor.service.handler.PathHandler;
 import com.tournamentpredictor.service.handler.StartHandler;
 import com.tournamentpredictor.service.mapper.DisagreeMapMapper;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.DisplayBuilder;
 import com.tournamentpredictor.service.util.EloCalculator;
-import com.tournamentpredictor.service.util.HeadToHeadCalculator;
 import com.tournamentpredictor.service.util.PathCalculator;
+import com.tournamentpredictor.service.util.PathFatigueCalculator;
 import com.tournamentpredictor.service.util.PredictionScorer;
 import com.tournamentpredictor.service.util.SlotStatusEvaluator;
 import com.tournamentpredictor.service.util.ThirdPlaceResolver;
@@ -44,11 +43,9 @@ public class MatchResolver {
     private final FinalHandler finalHandler;
     private final EloRefreshHandler eloRefreshHandler;
     private final StartHandler startHandler;
-    private final PathHandler pathHandler;
-
     @Autowired
     public MatchResolver(ConsoleReporter consoleReporter, PredictionConfig predictionConfig) {
-        this(new CsvLoader(), consoleReporter, predictionConfig);
+        this(new CsvLoader().withQualYears(predictionConfig.getQualFormSinceYear(), predictionConfig.getQualFormUntilYear()), consoleReporter, predictionConfig);
     }
 
     MatchResolver(CsvLoader loader, ConsoleReporter consoleReporter) {
@@ -69,23 +66,22 @@ public class MatchResolver {
         DisplayBuilder displayBuilder = new DisplayBuilder(tokenResolver);
         SlotStatusEvaluator slotStatusEvaluator = new SlotStatusEvaluator(eloCalculator);
         PathCalculator pathCalculator = new PathCalculator(slotStatusEvaluator, eloCalculator);
+        PathFatigueCalculator pathFatigueCalculator = config != null
+                ? new PathFatigueCalculator().withConfig(config)
+                : new PathFatigueCalculator();
         ThirdPlaceResolver thirdPlaceResolver = new ThirdPlaceResolver(projectRoot);
-        HeadToHeadCalculator headToHeadCalculator = config != null
-                ? new HeadToHeadCalculator(projectRoot, config)
-                : new HeadToHeadCalculator(projectRoot);
         CsvHelper csvHelper = new CsvHelper();
         PredictionsFileValidator predictionsFileValidator = new PredictionsFileValidator();
         DisagreeMapMapper disagreeMapMapper = new DisagreeMapMapper();
-        PredictionScorer predictionScorer = new PredictionScorer(eloCalculator, headToHeadCalculator);
+        PredictionScorer predictionScorer = new PredictionScorer(eloCalculator);
 
         Last32LineBuilder last32LineBuilder = new Last32LineBuilder(displayBuilder, pathCalculator, eloCalculator, thirdPlaceResolver);
-        Last16LineBuilder last16LineBuilder = new Last16LineBuilder(displayBuilder, pathCalculator, eloCalculator);
-        Last8LineBuilder last8LineBuilder = new Last8LineBuilder(pathCalculator, eloCalculator);
-        Last4LineBuilder last4LineBuilder = new Last4LineBuilder(pathCalculator, eloCalculator);
-        FinalLineBuilder finalLineBuilder = new FinalLineBuilder(pathCalculator, eloCalculator);
+        Last16LineBuilder last16LineBuilder = new Last16LineBuilder(displayBuilder, pathCalculator, eloCalculator, pathFatigueCalculator);
+        Last8LineBuilder last8LineBuilder = new Last8LineBuilder(pathCalculator, eloCalculator, pathFatigueCalculator);
+        Last4LineBuilder last4LineBuilder = new Last4LineBuilder(pathCalculator, eloCalculator, pathFatigueCalculator);
+        FinalLineBuilder finalLineBuilder = new FinalLineBuilder(pathCalculator, eloCalculator, pathFatigueCalculator);
 
-        this.groupsHandler = new GroupsHandler(loader, projectRoot, csvHelper, last32LineBuilder,
-                eloCalculator, headToHeadCalculator);
+        this.groupsHandler = new GroupsHandler(loader, projectRoot, csvHelper, last32LineBuilder, eloCalculator);
         this.last32Handler = new Last32Handler(loader, projectRoot, csvHelper, predictionsFileValidator,
                 disagreeMapMapper, eloCalculator, predictionScorer, last32LineBuilder, last16LineBuilder, consoleReporter);
         this.last16Handler = new Last16Handler(loader, projectRoot, csvHelper, predictionsFileValidator,
@@ -101,9 +97,8 @@ public class MatchResolver {
                 disagreeMapMapper, eloCalculator, predictionScorer, finalLineBuilder, consoleReporter);
         this.eloRefreshHandler = new EloRefreshHandler(loader, projectRoot, thirdPlaceResolver, tokenResolver, displayBuilder);
         this.startHandler = config != null
-                ? new StartHandler(loader, projectRoot, csvHelper, headToHeadCalculator, config)
-                : new StartHandler(loader, projectRoot, csvHelper, headToHeadCalculator);
-        this.pathHandler = new PathHandler(loader, projectRoot, eloCalculator, consoleReporter);
+                ? new StartHandler(loader, projectRoot, csvHelper, config)
+                : new StartHandler(loader, projectRoot, csvHelper);
     }
 
     public void resolveAndWriteLast32(String tournament) throws IOException {
@@ -153,12 +148,7 @@ public class MatchResolver {
             eloRefreshHandler.handle();
             return;
         }
-        if (mode.equalsIgnoreCase("path")) {
-            requireTournament(mode, tournament);
-            pathHandler.handle(tournament);
-            return;
-        }
-        throw new IOException("Unknown mode: " + mode + ". Supported (run in order): start, groups, last_32, last_16, last_8, last_4, final, elo-refresh, path");
+        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, elo-refresh");
     }
 
     private void requireTournament(String mode, String tournament) throws IOException {

@@ -7,7 +7,7 @@ import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.PredictionScorer;
-import com.tournamentpredictor.service.util.QualificationFormCalculator;
+import com.tournamentpredictor.service.util.TeamEloSnapshot;
 import com.tournamentpredictor.service.validator.PredictionsFileValidator;
 
 import java.io.IOException;
@@ -63,15 +63,15 @@ public class FinalHandler {
         if (!Files.exists(last4File)) {
             throw new IOException("last_4 matchups not found: " + last4File + ". Run mode=last_4 first.");
         }
-        QualificationFormCalculator qualCalc = new QualificationFormCalculator(
-                projectRoot.resolve("data").resolve("elo").resolve("history"), 2023);
         List<String> last4Rows = Files.readAllLines(last4File);
         Map<String, Integer> eloRatings = loader.loadTournamentElo(tournament);
+        Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
         Files.createDirectories(matchupDir);
         List<String> allLines = finalLineBuilder.buildFinalLines(eloRatings, brackets, last4Rows);
-        List<String> output = predictionScorer.scoreLines(allLines, disagreeMap, qualCalc);
+        predictionScorer.setSnapshots(snapshots);
+        List<String> output = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
         Files.write(matchupDir.resolve("final.csv"), sortedOutput);
         consoleReporter.printMatchups("Predicted World Cup champion", sortedOutput, eloCalculator, null, finalOdds);

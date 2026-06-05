@@ -52,7 +52,7 @@ public class PredictionsFileValidator {
             if (!doYouDisagree.isEmpty() && !doYouDisagree.equalsIgnoreCase("yes") && !doYouDisagree.equalsIgnoreCase("no")) {
                 errors.add("Row " + (i + 1) + " (" + matchId + "): do_you_disagree must be 'yes', 'no', or blank, got: '" + doYouDisagree + "'");
             }
-            if ("primary".equalsIgnoreCase(path)) {
+            if ("predicted".equalsIgnoreCase(path)) {
                 primaryCount.merge(matchId, 1, Integer::sum);
             }
         }

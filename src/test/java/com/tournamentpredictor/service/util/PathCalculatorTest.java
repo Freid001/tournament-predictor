@@ -44,7 +44,7 @@ class PathCalculatorTest {
 
     @Test
     void x1YesVsX2Yes_predictedYes() {
-        assertEquals("primary", pathCalculator.computePredictedMatch(
+        assertEquals("predicted", pathCalculator.computePredictedMatch(
                 "E1", "E1(Germany)", "B2", "B2(Canada)", teamGW, teamRU, teamTP));
     }
 
@@ -68,7 +68,7 @@ class PathCalculatorTest {
 
     @Test
     void x1YesVsX3Yes_predictedYes() {
-        assertEquals("primary", pathCalculator.computePredictedMatch(
+        assertEquals("predicted", pathCalculator.computePredictedMatch(
                 "E1", "E1(Germany)", "ABCDF3", "ABCDF3(Scotland)", teamGW, teamRU, teamTP));
     }
 
@@ -92,7 +92,7 @@ class PathCalculatorTest {
 
     @Test
     void x2YesVsX2Yes_predictedYes() {
-        assertEquals("primary", pathCalculator.computePredictedMatch(
+        assertEquals("predicted", pathCalculator.computePredictedMatch(
                 "A2", "A2(Ecuador)", "B2", "B2(Canada)", teamGW, teamRU, teamTP));
     }
 
@@ -116,7 +116,7 @@ class PathCalculatorTest {
 
     @Test
     void x2YesVsX3Yes_predictedYes() {
-        assertEquals("primary", pathCalculator.computePredictedMatch(
+        assertEquals("predicted", pathCalculator.computePredictedMatch(
                 "B2", "B2(Canada)", "ABCDF3", "ABCDF3(Scotland)", teamGW, teamRU, teamTP));
     }
 

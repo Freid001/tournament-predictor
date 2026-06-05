@@ -228,9 +228,8 @@ public class ConsoleReporter {
         int team2Idx = indexOf(headers, "team2");
         int pathIdx = indexOf(headers, "path");
         int predIdx = indexOf(headers, "prediction");
-        if (predIdx < 0) predIdx = indexOf(headers, "elo");
         if (predIdx < 0) predIdx = indexOf(headers, "predicted_winner");
-        int eloIdx = indexOf(headers, "elo");
+        if (predIdx < 0) predIdx = indexOf(headers, "elo");
 
         if (team1Idx < 0 || team2Idx < 0 || predIdx < 0) return;
 
@@ -238,13 +237,13 @@ public class ConsoleReporter {
         Map<String, Integer> primaryMatchIdCount = new HashMap<>();
         for (int i = 1; i < csvLines.size(); i++) {
             String[] cols = csvLines.get(i).split(",", -1);
-            if (pathIdx >= 0 && !"primary".equalsIgnoreCase(valueAt(cols, pathIdx))) continue;
+            if (pathIdx >= 0 && !"predicted".equalsIgnoreCase(valueAt(cols, pathIdx))) continue;
             String matchId = valueAt(cols, matchIdIdx);
             if (!matchId.isEmpty()) primaryMatchIdCount.merge(matchId, 1, Integer::sum);
         }
 
         // Collect rows to display based on path + team filters
-        boolean showPrimary = "primary".equalsIgnoreCase(pathFilter) || "both".equalsIgnoreCase(pathFilter);
+        boolean showPrimary = "predicted".equalsIgnoreCase(pathFilter) || "both".equalsIgnoreCase(pathFilter);
         boolean showAlt = "alt".equalsIgnoreCase(pathFilter) || "both".equalsIgnoreCase(pathFilter);
 
         // For primary rows: track 3rd-place matches (same matchId appears twice in primary)
@@ -257,7 +256,7 @@ public class ConsoleReporter {
             if (line.trim().isEmpty()) continue;
             String[] cols = line.split(",", -1);
             String rowPath = valueAt(cols, pathIdx);
-            boolean isPrimary = "primary".equalsIgnoreCase(rowPath);
+            boolean isPrimary = "predicted".equalsIgnoreCase(rowPath);
 
             if (isPrimary && !showPrimary) continue;
             if (!isPrimary && !showAlt) continue;
@@ -315,7 +314,7 @@ public class ConsoleReporter {
             String pred = valueAt(cols, predIdx);
             String winner = eloCalculator.parseTeamFromPrediction(pred);
             int pct = eloCalculator.parsePctFromPrediction(pred);
-            boolean isThirdPlace = "primary".equalsIgnoreCase(valueAt(cols, pathIdx))
+            boolean isThirdPlace = "predicted".equalsIgnoreCase(valueAt(cols, pathIdx))
                     && displayMatchIdCount.getOrDefault(matchId, 1) > 1;
             boolean isAlt = "alt".equalsIgnoreCase(valueAt(cols, pathIdx));
             String suffix = isThirdPlace ? " (3rd place)" : isAlt ? " (alt)" : "";
@@ -329,16 +328,7 @@ public class ConsoleReporter {
                 if (odds != null && !odds.isEmpty()) {
                     double netVal = calcNetWinningsDouble(odds, 10.0);
                     String net = netVal >= 0 ? String.format("%.2f", netVal) : "";
-                    int eloWinnerPct = -1;
-                    if (eloIdx >= 0 && eloIdx != predIdx) {
-                        String eloVal = valueAt(cols, eloIdx);
-                        String eloTeam = eloCalculator.parseTeamFromPrediction(eloVal);
-                        int rawEloPct = eloCalculator.parsePctFromPrediction(eloVal);
-                        if (rawEloPct != 50 || eloVal.contains("50")) {
-                            eloWinnerPct = winner.equalsIgnoreCase(eloTeam) ? rawEloPct : (100 - rawEloPct);
-                        }
-                    }
-                    String bettingLabel = eloWinnerPct >= 0 && netVal >= 0 ? getBettingLabel(eloWinnerPct, netVal) : "";
+                    String bettingLabel = netVal >= 0 ? getBettingLabel(pct, netVal) : "";
                     if (!bettingLabel.isEmpty() && isAlt) bettingLabel = "Alt " + bettingLabel;
                     oddsCell = odds + (net.isEmpty() ? "" : "  ·  £" + net)
                             + (bettingLabel.isEmpty() ? "" : "  ·  " + bettingLabel);

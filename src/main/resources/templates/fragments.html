@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="pageHead">
+    <meta charset="UTF-8">
+    <title>Tournament Predictor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar navbar-dark bg-dark mb-4">
+    <div class="container"><a class="navbar-brand" href="/">🏆 Tournament Predictor</a></div>
+</nav>
+
+<!--
+  roundNav fragment — shared page header with nav buttons.
+  Model attributes:
+    tournament, tournamentLabel, pageTitle
+    prevNavUrl / prevNavLabel / prevNavEnabled  (prev ← button; null url = hidden)
+    nextNavUrl / nextNavLabel / nextNavEnabled  (next → button; null url = hidden)
+    canNextRun / nextRunMode / nextRunLabel  (Run button; view pages only)
+  Note: editUrl is handled separately via the editLink fragment below.
+-->
+<div th:fragment="roundNav" class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="h3 mb-1" th:text="${pageTitle}">Title</h1>
+        <p class="text-muted mb-0" th:text="${tournamentLabel}">World Cup 2026</p>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+        <a class="btn btn-outline-secondary" th:href="@{/tournament/{name}(name=${tournament})}">Back to Tournament</a>
+        <a th:if="${prevNavUrl != null and !#strings.isEmpty(prevNavUrl)}"
+           th:href="${prevNavEnabled != false ? prevNavUrl : '#'}"
+           th:text="${prevNavLabel}"
+           th:classappend="${prevNavEnabled == false ? ' disabled' : ''}"
+           class="btn btn-outline-primary">← Prev</a>
+        <form th:if="${canNextRun}" th:action="@{/run/{mode}(mode=${nextRunMode}, tournament=${tournament})}" method="post" class="d-inline">
+            <button class="btn btn-primary" type="submit" th:text="${nextRunLabel}">Run</button>
+        </form>
+        <a th:if="${nextNavUrl != null and !#strings.isEmpty(nextNavUrl) and !canNextRun}"
+           th:href="${nextNavEnabled != false ? nextNavUrl : '#'}"
+           th:text="${nextNavLabel}"
+           th:classappend="${nextNavEnabled == false ? ' disabled' : ''}"
+           class="btn btn-primary">→ Next</a>
+    </div>
+</div>
+
+<!--
+  editLink fragment — small secondary edit link rendered just below the nav bar.
+  Uses editUrl model attribute; renders nothing if editUrl is null.
+-->
+<div th:fragment="editLink" class="mb-3 text-end">
+    <a th:if="${editUrl != null}" th:href="${editUrl}"
+       class="btn btn-sm btn-outline-secondary">Edit</a>
+</div>
+
+<!--
+  groupDetailRow(colspan, breakdownHtml) — expandable ELO breakdown detail row.
+  Used by both view-round and edit-round group tables.
+  colspan: number of columns the detail cell should span (2 for view, 5 for edit).
+  breakdownHtml: pre-built HTML string from GroupViewRow/GroupPickRow.getBreakdownHtml().
+-->
+<th:block th:fragment="groupDetailRow(colspan, breakdownHtml)">
+<tr class="group-detail-row" style="display:none">
+    <td th:colspan="${colspan}" class="p-0">
+        <div class="px-3 py-2" style="background:#f8f9fa;border-bottom:1px solid #dee2e6">
+            <div th:utext="${breakdownHtml}"></div>
+        </div>
+    </td>
+</tr>
+</th:block>
+
+<!--
+  toggleGroupDetailScript — shared JS for expanding/collapsing group detail rows.
+  Used by both view-round and edit-round.
+-->
+<th:block th:fragment="toggleGroupDetailScript">
+<script>
+function toggleGroupDetail(row) {
+    const detail = row.nextElementSibling;
+    if (!detail || !detail.classList.contains('group-detail-row')) return;
+    const isHidden = detail.style.display === 'none';
+    detail.style.display = isHidden ? 'table-row' : 'none';
+    const icon = row.querySelector('.expand-icon');
+    if (icon) icon.textContent = isHidden ? '▼' : '▶';
+    if (isHidden) {
+        detail.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+            new bootstrap.Tooltip(el);
+        });
+    }
+}
+</script>
+</th:block>
+
+<!--
+  keyboardNavScript — arrow key navigation between rounds.
+  Uses prevViewEnabled/prevViewUrl and nextViewEnabled/nextViewUrl model attributes.
+  Conditionally rendered only when hasPrevRound or hasNextRound is true.
+-->
+<th:block th:fragment="keyboardNavScript">
+<script th:if="${hasPrevRound or hasNextRound}">
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft' && [[${prevViewEnabled}]]) location.href = '[[${prevViewUrl}]]';
+    if (e.key === 'ArrowRight' && [[${nextViewEnabled}]]) location.href = '[[${nextViewUrl}]]';
+  });
+</script>
+</th:block>
+
+</body>
+</html>

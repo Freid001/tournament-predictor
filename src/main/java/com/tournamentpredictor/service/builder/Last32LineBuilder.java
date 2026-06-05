@@ -104,7 +104,8 @@ public class Last32LineBuilder {
 
     /**
      * Computes path for a match with a composite 3rd-place token using resolved slot assignments.
-     * Returns null if the composite team is not assigned to this slot (row should be skipped).
+     * Returns null if the composite team has third_place=no (row should be skipped entirely).
+     * Returns "alt" if the composite team's group is not the resolver-assigned group (genuine alternative path).
      */
     private String computeCompositeResolvedPath(CsvLoader.BracketEntry bracket,
                                                  String display1, String display2,
@@ -120,16 +121,21 @@ public class Last32LineBuilder {
 
         List<String> resolved = resolvedAssignments.get(bracket.matchId);
         if (resolved == null || !resolved.contains(compositeTeam)) {
-            // This composite team's group is not assigned to this slot — skip
-            return null;
+            // Not the resolver-assigned group — show as alt if they're a valid 3rd-place candidate
+            String tpStatus = teamTP.getOrDefault(compositeTeam, "no");
+            if ("no".equalsIgnoreCase(tpStatus) || tpStatus.isEmpty()) {
+                return null; // not a 3rd-place candidate at all — skip
+            }
+            return "alt";
         }
 
-        // All teams from the resolved group are primary candidates for this slot —
-        // we know which group fills the slot, but not which team finishes 3rd within it.
+        // Resolved group: "yes" 3rd-place + primary opponent = primary; "maybe" or alt opponent = alt
+        String compositeTP = teamTP.getOrDefault(compositeTeam, "no");
+        boolean compositeIsYes = "yes".equalsIgnoreCase(compositeTP);
         boolean nonCompositeIsPrimary = isTokenPrimary(nonCompositeToken, nonCompositeTeam, teamGW, teamRU);
 
-        if (nonCompositeIsPrimary) {
-            return "primary";
+        if (compositeIsYes && nonCompositeIsPrimary) {
+            return "predicted";
         }
         return "alt";
     }

@@ -1,2 +1,2 @@
-match_id,team1,team2,path,elo,do_you_disagree
-M103,W101(Spain),W102(Argentina),primary,Spain (63%),
+match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree
+M103,W101(W98(W93(W84(H1(Spain))))),W102(W100(W95(W86(J1(Argentina))))),predicted,Spain (52%),598,375,Austria:-2 > Colombia:-14 > Turkey:-9 > France:-47,Uruguay:0 > Paraguay:0 > Portugal:-24 > England:-25,

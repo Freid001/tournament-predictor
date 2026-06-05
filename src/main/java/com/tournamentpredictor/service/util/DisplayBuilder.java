@@ -100,7 +100,7 @@ public class DisplayBuilder {
                 String path = cols[3].trim();
                 String display1 = cols[1].trim();
                 String display2 = cols[2].trim();
-                if ("primary".equalsIgnoreCase(path)) {
+                if ("predicted".equalsIgnoreCase(path)) {
                     yesDisplays.add(display1);
                     yesDisplays.add(display2);
                 } else if ("alt".equalsIgnoreCase(path)) {

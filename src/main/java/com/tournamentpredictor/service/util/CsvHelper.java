@@ -59,7 +59,7 @@ public class CsvHelper {
         for (int i = 1; i < lines.size(); i++) {
             String row = lines.get(i);
             if (row.trim().isEmpty()) continue;
-            if ("primary".equals(getCol(row, 3))) {
+            if ("predicted".equals(getCol(row, 3))) {
                 output.add(row);
             }
         }
@@ -70,7 +70,7 @@ public class CsvHelper {
         group.sort((left, right) -> {
             String leftPath  = getCol(left, 3);
             String rightPath = getCol(right, 3);
-            return Integer.compare("primary".equals(leftPath) ? 0 : 1, "primary".equals(rightPath) ? 0 : 1);
+            return Integer.compare("predicted".equals(leftPath) ? 0 : 1, "predicted".equals(rightPath) ? 0 : 1);
         });
         result.addAll(group);
     }

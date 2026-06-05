@@ -3,12 +3,14 @@ package com.tournamentpredictor.service.handler;
 import com.tournamentpredictor.config.PredictionConfig;
 import com.tournamentpredictor.loader.CsvLoader;
 import com.tournamentpredictor.service.util.CsvHelper;
-import com.tournamentpredictor.service.util.HeadToHeadCalculator;
 import com.tournamentpredictor.service.util.QualificationFormCalculator;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -17,7 +19,6 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,46 +31,114 @@ public class StartHandler {
     final int[] SQUAD_DROPOUT_PENALTIES;
 
     private final int CONFIDENCE_GAP;
+    private final int qualFormSinceYear;
+    private final int qualFormUntilYear;
+    private final int qualFormEloMax;
+    private final int preTournamentFormSinceYear;
+    private final int preTournamentFormUntilYear;
+    private final int preTournamentFormEloMax;
+    private final int squadAgeYoungPenalty;
+    private final int squadAgeAgingPenalty;
+    private final int squadCohesionUnsettledPenalty;
+    private final int squadCohesionDisruptedPenalty;
+    private final int squadCohesionFracturedPenalty;
+    private final int squadDepthLimitedPenalty;
+    private final int squadDepthThinPenalty;
+    private final int squadQualityGoodBonus;
+    private final int squadQualityExceptionalBonus;
     private static final List<String> REQUIRED_HEADERS = Arrays.asList("group", "team", "host", "injury_impact");
     private static final Set<String> VALID_HOST_VALUES = Set.of("yes", "no");
 
     private final CsvLoader loader;
     private final Path projectRoot;
     private final CsvHelper csvHelper;
-    private final HeadToHeadCalculator headToHeadCalculator;
-    private final double eloBaseWeight;
-    private final double qualFormWeight;
 
-    public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
-                        HeadToHeadCalculator headToHeadCalculator) {
-        this(loader, projectRoot, csvHelper, headToHeadCalculator,
-                100, new int[]{0, 25, 50, 100}, new int[]{0, 8, 15, 25}, new int[]{0, 20, 40, 75}, 25, 0.85, 0.15);
+    public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper) {
+        this(loader, projectRoot, csvHelper,
+                100, new int[]{0, 25, 50, 100}, new int[]{0, 8, 15, 25}, new int[]{0, 20, 40, 75}, 25,
+                2023, 2026, 50,
+                2026, 2026, 25,
+                10, 8,
+                15, 30, 45,
+                10, 20, 10, 20);
     }
 
-    public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
-                        HeadToHeadCalculator headToHeadCalculator, PredictionConfig config) {
-        this(loader, projectRoot, csvHelper, headToHeadCalculator,
+    public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper, PredictionConfig config) {
+        this(loader, projectRoot, csvHelper,
                 config.getHomeAdvantageElo(), config.getInjuryPenalties(), config.getHeatAdvantages(),
                 config.getSquadDropoutPenalties(), config.getConfidenceGap(),
-                config.getEloWeight(), config.getQualFormWeight());
+                config.getQualFormSinceYear(), config.getQualFormUntilYear(), config.getQualFormEloMax(),
+                config.getPreTournamentFormSinceYear(), config.getPreTournamentFormUntilYear(), config.getPreTournamentFormEloMax(),
+                config.getSquadAgeYoungPenalty(), config.getSquadAgeAgingPenalty(),
+                config.getSquadCohesionUnsettledPenalty(), config.getSquadCohesionDisruptedPenalty(), config.getSquadCohesionFracturedPenalty(),
+                config.getSquadDepthLimitedPenalty(), config.getSquadDepthThinPenalty(),
+                config.getSquadQualityGoodBonus(), config.getSquadQualityExceptionalBonus());
     }
 
     private StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
-                         HeadToHeadCalculator headToHeadCalculator,
                          int homeAdvantageElo, int[] injuryPenalties, int[] heatAdvantages,
                          int[] squadDropoutPenalties, int confidenceGap,
-                         double eloBaseWeight, double qualFormWeight) {
+                         int qualFormSinceYear, int qualFormUntilYear, int qualFormEloMax,
+                         int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax,
+                         int squadAgeYoungPenalty, int squadAgeAgingPenalty,
+                         int squadCohesionUnsettledPenalty, int squadCohesionDisruptedPenalty, int squadCohesionFracturedPenalty) {
         this.loader = loader;
         this.projectRoot = projectRoot;
         this.csvHelper = csvHelper;
-        this.headToHeadCalculator = headToHeadCalculator;
         this.HOME_ADVANTAGE = homeAdvantageElo;
         this.INJURY_PENALTIES = injuryPenalties;
         this.HEAT_ADVANTAGES = heatAdvantages;
         this.SQUAD_DROPOUT_PENALTIES = squadDropoutPenalties;
         this.CONFIDENCE_GAP = confidenceGap;
-        this.eloBaseWeight = eloBaseWeight;
-        this.qualFormWeight = qualFormWeight;
+        this.qualFormSinceYear = qualFormSinceYear;
+        this.qualFormUntilYear = qualFormUntilYear;
+        this.qualFormEloMax = qualFormEloMax;
+        this.preTournamentFormSinceYear = preTournamentFormSinceYear;
+        this.preTournamentFormUntilYear = preTournamentFormUntilYear;
+        this.preTournamentFormEloMax = preTournamentFormEloMax;
+        this.squadAgeYoungPenalty = squadAgeYoungPenalty;
+        this.squadAgeAgingPenalty = squadAgeAgingPenalty;
+        this.squadCohesionUnsettledPenalty = squadCohesionUnsettledPenalty;
+        this.squadCohesionDisruptedPenalty = squadCohesionDisruptedPenalty;
+        this.squadCohesionFracturedPenalty = squadCohesionFracturedPenalty;
+        this.squadDepthLimitedPenalty = 10;
+        this.squadDepthThinPenalty = 20;
+        this.squadQualityGoodBonus = 10;
+        this.squadQualityExceptionalBonus = 20;
+    }
+
+    private StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
+                         int homeAdvantageElo, int[] injuryPenalties, int[] heatAdvantages,
+                         int[] squadDropoutPenalties, int confidenceGap,
+                         int qualFormSinceYear, int qualFormUntilYear, int qualFormEloMax,
+                         int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax,
+                         int squadAgeYoungPenalty, int squadAgeAgingPenalty,
+                         int squadCohesionUnsettledPenalty, int squadCohesionDisruptedPenalty, int squadCohesionFracturedPenalty,
+                         int squadDepthLimitedPenalty, int squadDepthThinPenalty,
+                         int squadQualityGoodBonus, int squadQualityExceptionalBonus) {
+        this.loader = loader;
+        this.projectRoot = projectRoot;
+        this.csvHelper = csvHelper;
+        this.HOME_ADVANTAGE = homeAdvantageElo;
+        this.INJURY_PENALTIES = injuryPenalties;
+        this.HEAT_ADVANTAGES = heatAdvantages;
+        this.SQUAD_DROPOUT_PENALTIES = squadDropoutPenalties;
+        this.CONFIDENCE_GAP = confidenceGap;
+        this.qualFormSinceYear = qualFormSinceYear;
+        this.qualFormUntilYear = qualFormUntilYear;
+        this.qualFormEloMax = qualFormEloMax;
+        this.preTournamentFormSinceYear = preTournamentFormSinceYear;
+        this.preTournamentFormUntilYear = preTournamentFormUntilYear;
+        this.preTournamentFormEloMax = preTournamentFormEloMax;
+        this.squadAgeYoungPenalty = squadAgeYoungPenalty;
+        this.squadAgeAgingPenalty = squadAgeAgingPenalty;
+        this.squadCohesionUnsettledPenalty = squadCohesionUnsettledPenalty;
+        this.squadCohesionDisruptedPenalty = squadCohesionDisruptedPenalty;
+        this.squadCohesionFracturedPenalty = squadCohesionFracturedPenalty;
+        this.squadDepthLimitedPenalty = squadDepthLimitedPenalty;
+        this.squadDepthThinPenalty = squadDepthThinPenalty;
+        this.squadQualityGoodBonus = squadQualityGoodBonus;
+        this.squadQualityExceptionalBonus = squadQualityExceptionalBonus;
     }
 
     public void handle(String tournament) throws IOException {
@@ -94,10 +163,19 @@ public class StartHandler {
         int injuryIdx = startIndexes.get("injury_impact");
         int heatIdx = startIndexes.getOrDefault("heat_impact", -1);
         int squadDropoutIdx = startIndexes.getOrDefault("squad_dropouts", -1);
+        int squadAgeIdx = startIndexes.getOrDefault("squad_age_profile", -1);
+        int squadCohesionIdx = startIndexes.getOrDefault("squad_cohesion", -1);
+        int squadDepthIdx = startIndexes.getOrDefault("squad_depth", -1);
+        int squadQualityIdx = startIndexes.getOrDefault("squad_quality", -1);
 
         Map<String, Integer> eloRatings = loader.loadElo();
+        Path historyDir = projectRoot.resolve("data").resolve("elo").resolve("history");
         QualificationFormCalculator qualCalc = new QualificationFormCalculator(
-                projectRoot.resolve("data").resolve("elo").resolve("history"), 2023);
+                historyDir,
+                qualFormSinceYear, qualFormUntilYear, qualFormEloMax);
+        QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
+                historyDir,
+                0, 9999, preTournamentFormEloMax, Set.of("F"), 5);
 
         Map<String, List<String[]>> groups = new LinkedHashMap<>();
         for (int i = 1; i < startLines.size(); i++) {
@@ -105,7 +183,7 @@ public class StartHandler {
             if (line.isEmpty()) {
                 continue;
             }
-            String[] cols = line.split(",", -1);
+            String[] cols = parseCsvLine(line);
             String group = cols[groupIdx].trim().toUpperCase();
             String team = cols[teamIdx].trim();
             boolean isHost = cols[hostIdx].trim().equalsIgnoreCase("yes");
@@ -114,23 +192,46 @@ public class StartHandler {
                     ? Integer.parseInt(cols[heatIdx].trim()) : 0;
             int squadDropoutLevel = (squadDropoutIdx >= 0 && cols.length > squadDropoutIdx && !cols[squadDropoutIdx].trim().isEmpty())
                     ? Integer.parseInt(cols[squadDropoutIdx].trim()) : 0;
-            int elo = eloRatings.getOrDefault(team, 0);
-            if (elo == 0) {
+            int ageLevel = (squadAgeIdx >= 0 && cols.length > squadAgeIdx && !cols[squadAgeIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[squadAgeIdx].trim()) : 0;
+            int cohesionLevel = (squadCohesionIdx >= 0 && cols.length > squadCohesionIdx && !cols[squadCohesionIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[squadCohesionIdx].trim()) : 0;
+            int depthLevel = (squadDepthIdx >= 0 && cols.length > squadDepthIdx && !cols[squadDepthIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[squadDepthIdx].trim()) : 0;
+            int qualityLevel = (squadQualityIdx >= 0 && cols.length > squadQualityIdx && !cols[squadQualityIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[squadQualityIdx].trim()) : 0;
+            int[] SQUAD_AGE_PENALTIES = {0, squadAgeYoungPenalty, squadAgeAgingPenalty};
+            int[] COHESION_PENALTIES = {0, squadCohesionUnsettledPenalty, squadCohesionDisruptedPenalty, squadCohesionFracturedPenalty};
+            int[] DEPTH_PENALTIES = {0, squadDepthLimitedPenalty, squadDepthThinPenalty};
+            int[] QUALITY_BONUSES = {0, squadQualityGoodBonus, squadQualityExceptionalBonus};
+            int baseElo = eloRatings.getOrDefault(team, 0);
+            if (baseElo == 0) {
                 log.warn("Team '{}' not found in world.csv, ELO defaulting to 0", team);
             }
-            if (elo > 0) {
-                if (isHost) {
-                    elo += HOME_ADVANTAGE;
-                }
-                elo -= INJURY_PENALTIES[injuryLevel];
-                elo += HEAT_ADVANTAGES[heatLevel];
-                elo -= SQUAD_DROPOUT_PENALTIES[squadDropoutLevel];
-            }
-            groups.computeIfAbsent(group, k -> new ArrayList<>()).add(new String[]{team, String.valueOf(elo)});
+            int homeBonus = isHost ? HOME_ADVANTAGE : 0;
+            int qualBonus = qualCalc.getQualBonus(team);
+            int preTournamentBonus = friendlyCalc.getQualBonus(team);
+            int adjustedElo = baseElo + homeBonus - INJURY_PENALTIES[injuryLevel]
+                    + HEAT_ADVANTAGES[heatLevel] - SQUAD_DROPOUT_PENALTIES[squadDropoutLevel] + qualBonus
+                    + preTournamentBonus - SQUAD_AGE_PENALTIES[Math.min(ageLevel, SQUAD_AGE_PENALTIES.length - 1)]
+                    - COHESION_PENALTIES[Math.min(cohesionLevel, COHESION_PENALTIES.length - 1)]
+                    - DEPTH_PENALTIES[Math.min(depthLevel, DEPTH_PENALTIES.length - 1)]
+                    + QUALITY_BONUSES[Math.min(qualityLevel, QUALITY_BONUSES.length - 1)];
+            groups.computeIfAbsent(group, k -> new ArrayList<>()).add(new String[]{
+                    team,
+                    String.valueOf(baseElo),
+                    String.valueOf(qualBonus),
+                    String.valueOf(adjustedElo),
+                    String.valueOf(preTournamentBonus),
+                    String.valueOf(ageLevel),
+                    String.valueOf(cohesionLevel),
+                    String.valueOf(depthLevel),
+                    String.valueOf(qualityLevel)
+            });
         }
 
         List<String> output = new ArrayList<>();
-        output.add("group,team,elo_ranking,qualification_form,h2h,predicted_position,group_winner,runner_up,3rd_place");
+        output.add("group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,squad_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place");
         boolean first = true;
         for (Map.Entry<String, List<String[]>> entry : groups.entrySet()) {
             if (!first) {
@@ -139,22 +240,32 @@ public class StartHandler {
             first = false;
             String group = entry.getKey();
             List<String[]> teams = entry.getValue();
-            Map<String, String[]> scores = computeGroupScores(teams, qualCalc);
-            teams.sort(Comparator.comparingInt(t -> Integer.parseInt(scores.get(t[0])[2].replaceAll("\\s*\\(.*", ""))));
+            Map<String, String[]> scores = computeGroupScores(teams);
+            teams.sort(Comparator.comparingInt(t -> Integer.parseInt(scores.get(t[0])[0].replaceAll("\\s*\\(.*", ""))));
 
             int[] pcts = teams.stream()
-                    .mapToInt(t -> parseCombinedPct(scores.get(t[0])[2]))
+                    .mapToInt(t -> parseCombinedPct(scores.get(t[0])[0]))
                     .toArray();
             int gap12 = pcts.length > 1 ? pcts[0] - pcts[1] : 100;
             int gap23 = pcts.length > 2 ? pcts[1] - pcts[2] : 100;
             int gap34 = pcts.length > 3 ? pcts[2] - pcts[3] : 100;
 
             for (int i = 0; i < teams.size(); i++) {
-                String name = teams.get(i)[0];
+                String[] team = teams.get(i);
+                String name = team[0];
+                int baseElo = Integer.parseInt(team[1]);
+                int qualBonus = Integer.parseInt(team[2]);
+                int adjustedElo = Integer.parseInt(team[3]);
+                int preTournamentBonus = Integer.parseInt(team[4]);
+                int ageLevel = Integer.parseInt(team[5]);
+                int cohesionLevel = Integer.parseInt(team[6]);
+                int depthLevel = Integer.parseInt(team[7]);
+                int qualityLevel = Integer.parseInt(team[8]);
                 String[] s = scores.get(name);
                 String[] pred = autoFillPredictions(i, gap12, gap23, gap34, CONFIDENCE_GAP);
-                output.add(group + "," + name + "," + teams.get(i)[1] + ","
-                        + s[1] + "," + s[0] + "," + s[2] + ","
+                output.add(group + "," + name + "," + baseElo + "," + qualBonus + "," + preTournamentBonus + ","
+                        + ageLevel + "," + cohesionLevel + "," + depthLevel + "," + qualityLevel + ","
+                        + adjustedElo + "," + s[0] + ","
                         + pred[0] + "," + pred[1] + "," + pred[2]);
             }
         }
@@ -164,42 +275,24 @@ public class StartHandler {
         System.out.println("Generated groups.csv for " + groups.size() + " groups. Fill in group_winner, runner_up, and 3rd_place columns before running mode=groups.");
     }
 
-    private Map<String, String[]> computeGroupScores(List<String[]> teams, QualificationFormCalculator qualCalc) {
-        Map<String, String> h2hDisplay = new LinkedHashMap<>();
-        Map<String, String> qualDisplay = new LinkedHashMap<>();
+    private Map<String, String[]> computeGroupScores(List<String[]> teams) {
         Map<String, Integer> combinedPcts = new LinkedHashMap<>();
 
         for (String[] team : teams) {
             String name = team[0];
-            int elo = Integer.parseInt(team[1]);
+            int elo = Integer.parseInt(team[3]);
             double eloTotal = 0.0;
-            double h2hTotal = 0.0;
-            int h2hCount = 0;
             int oppCount = 0;
 
             for (String[] opp : teams) {
                 if (opp[0].equals(name)) continue;
-                int oppElo = Integer.parseInt(opp[1]);
+                int oppElo = Integer.parseInt(opp[3]);
                 eloTotal += 1.0 / (1.0 + Math.pow(10.0, (oppElo - elo) / 400.0));
-                OptionalDouble combined = headToHeadCalculator.computeRawCombinedWinRate(name, opp[0]);
-                h2hTotal += combined.orElse(0.5);
-                if (combined.isPresent()) h2hCount++;
                 oppCount++;
             }
 
             double eloScore = oppCount > 0 ? eloTotal / oppCount : 0.5;
-            boolean hasQual = qualCalc.hasData(name);
-            double qualFormScore = qualCalc.getFormScore(name);
-            boolean hasH2h = h2hCount > 0;
-            double h2hScore = oppCount > 0 ? h2hTotal / oppCount : 0.5;
-
-            h2hDisplay.put(name, hasH2h ? ((int) Math.round(h2hScore * 100)) + "%" : "N/A");
-            qualDisplay.put(name, hasQual ? ((int) Math.round(qualFormScore * 100)) + "%" : "N/A");
-
-            double effectiveQualWeight = hasQual ? qualFormWeight : 0.0;
-            double effectiveEloWeight = eloBaseWeight + (hasQual ? 0.0 : qualFormWeight);
-            double combined = effectiveEloWeight * eloScore + effectiveQualWeight * qualFormScore;
-            combinedPcts.put(name, (int) Math.round(combined * 100));
+            combinedPcts.put(name, (int) Math.round(eloScore * 100));
         }
 
         List<String> names = teams.stream().map(t -> t[0]).collect(Collectors.toList());
@@ -210,8 +303,7 @@ public class StartHandler {
             String name = team[0];
             int pos = positions.get(name);
             int pct = combinedPcts.get(name);
-            // indices: 0=h2h, 1=qualForm, 2=position
-            result.put(name, new String[]{h2hDisplay.get(name), qualDisplay.get(name), pos + " (" + pct + "%)"});
+            result.put(name, new String[]{pos + " (" + pct + "%)"});
         }
         return result;
     }
@@ -274,12 +366,25 @@ public class StartHandler {
         return new String[]{gw, ru, tp};
     }
 
+    private static String[] parseCsvLine(String line) {
+        try {
+            List<CSVRecord> records = CSVFormat.DEFAULT.parse(new StringReader(line)).getRecords();
+            if (records.isEmpty()) return new String[0];
+            CSVRecord record = records.get(0);
+            String[] cols = new String[record.size()];
+            for (int i = 0; i < record.size(); i++) cols[i] = record.get(i);
+            return cols;
+        } catch (IOException e) {
+            return line.split(",", -1);
+        }
+    }
+
     private Map<String, Integer> validateStartCsv(List<String> lines, Path startFile) throws IOException {
         if (lines.isEmpty()) {
             throw new IOException("start.csv is empty: " + startFile);
         }
 
-        String[] headers = lines.get(0).split(",", -1);
+        String[] headers = parseCsvLine(lines.get(0));
         Map<String, Integer> indexes = new LinkedHashMap<>();
         for (int i = 0; i < headers.length; i++) {
             indexes.put(headers[i].trim(), i);
@@ -302,7 +407,7 @@ public class StartHandler {
             if (line.isEmpty()) {
                 continue;
             }
-            String[] cols = line.split(",", -1);
+            String[] cols = parseCsvLine(line);
             if (cols.length <= Math.max(teamIdx, Math.max(hostIdx, injuryIdx))) {
                 errors.add("Row " + (i + 1) + ": missing required columns");
                 continue;

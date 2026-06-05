@@ -8,7 +8,7 @@ import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.PredictionScorer;
-import com.tournamentpredictor.service.util.QualificationFormCalculator;
+import com.tournamentpredictor.service.util.TeamEloSnapshot;
 import com.tournamentpredictor.service.validator.PredictionsFileValidator;
 
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class Last8Handler {
         Path matchupDir = projectRoot.resolve("data").resolve("matchups").resolve(tournament);
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Path matchupFile = matchupDir.resolve("last_8.csv");
-        Map<String, String> qfOdds = loader.loadOdds(tournament, "last_8");
+        Map<String, String> qfOdds = loader.loadOdds(tournament, "last_4");
         if (csvHelper.isLocked(matchupFile)) {
             System.out.println("  🔒 Output already exists: " + matchupFile + " — delete to re-run");
             consoleReporter.printMatchups("Quarter-final matchups", Files.readAllLines(matchupFile), eloCalculator, predictionDir.resolve("last_4.csv"), qfOdds);
@@ -68,15 +68,15 @@ public class Last8Handler {
         if (!Files.exists(last16File)) {
             throw new IOException("last_16 matchups not found: " + last16File + ". Run mode=last_16 first.");
         }
-        QualificationFormCalculator qualCalc = new QualificationFormCalculator(
-                projectRoot.resolve("data").resolve("elo").resolve("history"), 2023);
         List<String> last16Rows = Files.readAllLines(last16File);
         Map<String, Integer> eloRatings = loader.loadTournamentElo(tournament);
+        Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
         Files.createDirectories(matchupDir);
         List<String> allLines = last8LineBuilder.buildLast8Lines(eloRatings, brackets, last16Rows);
-        List<String> output = predictionScorer.scoreLines(allLines, disagreeMap, qualCalc);
+        predictionScorer.setSnapshots(snapshots);
+        List<String> output = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
         Files.write(matchupDir.resolve("last_8.csv"), sortedOutput);
         generateLastSfPredictions(tournament, eloRatings, brackets, output);

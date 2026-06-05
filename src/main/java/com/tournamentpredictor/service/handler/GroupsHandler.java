@@ -5,8 +5,6 @@ import com.tournamentpredictor.service.builder.Last32LineBuilder;
 import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.EloCalculator;
-import com.tournamentpredictor.service.util.HeadToHeadCalculator;
-import com.tournamentpredictor.service.util.QualificationFormCalculator;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,17 +19,14 @@ public class GroupsHandler {
     private final CsvHelper csvHelper;
     private final Last32LineBuilder last32LineBuilder;
     private final EloCalculator eloCalculator;
-    private final HeadToHeadCalculator headToHeadCalculator;
 
     public GroupsHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
-                         Last32LineBuilder last32LineBuilder, EloCalculator eloCalculator,
-                         HeadToHeadCalculator headToHeadCalculator) {
+                         Last32LineBuilder last32LineBuilder, EloCalculator eloCalculator) {
         this.loader = loader;
         this.projectRoot = projectRoot;
         this.csvHelper = csvHelper;
         this.last32LineBuilder = last32LineBuilder;
         this.eloCalculator = eloCalculator;
-        this.headToHeadCalculator = headToHeadCalculator;
     }
 
     public void handle(String tournament) throws IOException {
@@ -49,8 +44,6 @@ public class GroupsHandler {
             throw new IOException("groups.csv validation failed:\n" + String.join("\n", validationErrors));
         }
 
-        QualificationFormCalculator qualCalc = new QualificationFormCalculator(
-                projectRoot.resolve("data").resolve("elo").resolve("history"), 2023);
         Map<String, String> groups = loader.loadGroups(tournament);
         Map<String, String> groupWinner = loader.loadGroupWinner(tournament);
         Map<String, String> runnerUp = loader.loadRunnerUp(tournament);
@@ -72,24 +65,14 @@ public class GroupsHandler {
                 continue;
             }
             String[] cols = row.split(",", -1);
-            if (cols.length >= 5 && "primary".equals(cols[3].trim())) {
+            if (cols.length >= 5 && "predicted".equals(cols[3].trim())) {
                 String matchId = cols[0].trim();
                 String team1Display = cols[1].trim();
                 String team2Display = cols[2].trim();
                 String path = cols[3].trim();
                 String eloPrediction = cols[4].trim();
-                String team1Name = eloCalculator.extractTeamName(team1Display);
-                String team2Name = eloCalculator.extractTeamName(team2Display);
-                boolean hasQual1 = qualCalc.hasData(team1Name);
-                boolean hasQual2 = qualCalc.hasData(team2Name);
-                double qualScore1 = qualCalc.getFormScore(team1Name);
-                double qualScore2 = qualCalc.getFormScore(team2Name);
-                boolean hasQualData = hasQual1 || hasQual2;
-                double qualRelativePct = (qualScore1 + qualScore2) > 0.0 ? qualScore1 / (qualScore1 + qualScore2) : 0.5;
-                String prediction = eloCalculator.combinePredictionsWithQual(team1Name, team2Name,
-                        eloPrediction, qualRelativePct, hasQualData);
                 output.add(String.join(",", matchId, team1Display, team2Display, path, eloPrediction,
-                        prediction, ""));
+                        eloPrediction, ""));
                 addedForMatch = true;
             }
         }

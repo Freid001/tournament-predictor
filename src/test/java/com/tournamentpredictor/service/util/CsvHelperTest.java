@@ -34,7 +34,7 @@ class CsvHelperTest {
     void filterPrimaryOnly_keepsPrimaryRows() {
         List<String> input = List.of(
                 "match_id,team1,team2,path",
-                "M1,A,B,primary",
+                "M1,A,B,predicted",
                 "M2,C,D,alt"
         );
         List<String> result = csvHelper.filterPrimaryOnly(input);
@@ -46,7 +46,7 @@ class CsvHelperTest {
     void filterPrimaryOnly_stripsAltRows() {
         List<String> input = List.of(
                 "match_id,team1,team2,path",
-                "M1,A,B,primary",
+                "M1,A,B,predicted",
                 "M2,C,D,alt",
                 "M3,E,F,alt"
         );
@@ -58,7 +58,7 @@ class CsvHelperTest {
     void filterPrimaryOnly_stripsBlankLines() {
         List<String> input = List.of(
                 "match_id,team1,team2,path",
-                "M1,A,B,primary",
+                "M1,A,B,predicted",
                 "",
                 "M2,C,D,alt"
         );
@@ -94,12 +94,12 @@ class CsvHelperTest {
     void sortGroupsPrimaryFirst_primaryFirst_noChange() {
         List<String> input = List.of(
                 "match_id,team1,team2,path",
-                "M1,A,B,primary",
+                "M1,A,B,predicted",
                 "M1,A,B,alt"
         );
         List<String> result = csvHelper.sortGroupsPrimaryFirst(input);
         assertEquals(3, result.size());
-        assertTrue(result.get(1).contains("primary"));
+        assertTrue(result.get(1).contains("predicted"));
         assertTrue(result.get(2).contains("alt"));
     }
 
@@ -108,11 +108,11 @@ class CsvHelperTest {
         List<String> input = List.of(
                 "match_id,team1,team2,path",
                 "M1,A,B,alt",
-                "M1,A,B,primary"
+                "M1,A,B,predicted"
         );
         List<String> result = csvHelper.sortGroupsPrimaryFirst(input);
         assertEquals(3, result.size());
-        assertTrue(result.get(1).contains("primary"));
+        assertTrue(result.get(1).contains("predicted"));
         assertTrue(result.get(2).contains("alt"));
     }
 
@@ -120,9 +120,9 @@ class CsvHelperTest {
     void sortGroupsPrimaryFirst_blankSeparatorPreserved() {
         List<String> input = List.of(
                 "match_id,team1,team2,path",
-                "M1,A,B,primary",
+                "M1,A,B,predicted",
                 "",
-                "M2,C,D,primary"
+                "M2,C,D,predicted"
         );
         List<String> result = csvHelper.sortGroupsPrimaryFirst(input);
         assertEquals(4, result.size());

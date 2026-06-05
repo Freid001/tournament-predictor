@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for CsvLoader.validateGroups().
  *
- * Validation rules (9-col format):
- *   - Header: group,team,elo_ranking,qualification_form,h2h,predicted_position,group_winner,runner_up,3rd_place
+ * Validation rules (9-col new format):
+ *   - Header: group,team,base_elo,qual_bonus,elo_ranking,predicted_position,group_winner,runner_up,3rd_place
  *   - Position: [A-L] (new) or [A-L][1-4] (legacy)
  *   - Team name is non-empty, no duplicates
- *   - qualification_form / h2h: integer 0-100 or N/A
+ *   - base_elo / qual_bonus / elo_ranking: integers
  *   - predicted_position: integer 1-4
  *   - group_winner / runner_up / 3rd_place values are yes/maybe/no
  *   - Each group has exactly 4 teams
@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *   - Each group has exactly 1 runner_up=yes
  *   - 3rd_place can have multiple yes/maybe per group (no uniqueness rule)
  *
- * Backward-compat: 6-col and 8-col legacy formats are also accepted.
+ * Backward-compat: 6-col and legacy h2h formats are also accepted.
  */
 class CsvLoaderValidationTest {
 
@@ -35,17 +35,16 @@ class CsvLoaderValidationTest {
 
     private static final String TOURNAMENT = "test";
 
-    /** Builds a fully valid 9-column groups.csv with 12 groups (A-L), 4 unique teams each. */
     private static List<String> validGroupsCsv() {
         List<String> lines = new ArrayList<>();
-        lines.add("group,team,elo_ranking,qualification_form,h2h,predicted_position,group_winner,runner_up,3rd_place");
+        lines.add("group,team,base_elo,qual_bonus,elo_ranking,predicted_position,group_winner,runner_up,3rd_place");
         String[] groups = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
         int n = 1;
         for (String g : groups) {
-            lines.add(g + ",Team" + n++ + ",1900,62%,67%,1,yes,maybe,no");
-            lines.add(g + ",Team" + n++ + ",1800,58%,50%,2,maybe,yes,maybe");
-            lines.add(g + ",Team" + n++ + ",1700,52%,N/A,3,no,maybe,yes");
-            lines.add(g + ",Team" + n++ + ",1600,48%,35%,4,no,no,no");
+            lines.add(g + ",Team" + n++ + ",1900,12,1912,1,yes,maybe,no");
+            lines.add(g + ",Team" + n++ + ",1800,6,1806,2,maybe,yes,maybe");
+            lines.add(g + ",Team" + n++ + ",1700,0,1700,3,no,maybe,yes");
+            lines.add(g + ",Team" + n++ + ",1600,-8,1592,4,no,no,no");
             lines.add("");
         }
         return lines;
@@ -70,7 +69,7 @@ class CsvLoaderValidationTest {
     @Test
     void missingColumn_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,TeamX,1900,67%,55%,1,yes,maybe");
+        lines.set(1, "A,TeamX,1900,12,1912,1,yes,maybe");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -80,7 +79,7 @@ class CsvLoaderValidationTest {
     @Test
     void invalidPosition_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "Z,TeamX,1900,67%,55%,1,yes,maybe,no");
+        lines.set(1, "Z,TeamX,1900,12,1912,1,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -90,7 +89,7 @@ class CsvLoaderValidationTest {
     @Test
     void positionDigitOutOfRange_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A5,TeamX,1900,67%,55%,1,yes,maybe,no");
+        lines.set(1, "A5,TeamX,1900,12,1912,1,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -100,7 +99,7 @@ class CsvLoaderValidationTest {
     @Test
     void emptyTeamName_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,,1900,67%,55%,1,yes,maybe,no");
+        lines.set(1, "A,,1900,12,1912,1,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -110,7 +109,7 @@ class CsvLoaderValidationTest {
     @Test
     void duplicateTeamName_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(6, "B,Team1,1900,67%,55%,1,yes,maybe,no");
+        lines.set(6, "B,Team1,1900,12,1912,1,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -120,7 +119,7 @@ class CsvLoaderValidationTest {
     @Test
     void extraTeamInGroup_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.add(5, "A,TeamExtra,1500,50%,50%,3,no,no,no");
+        lines.add(5, "A,TeamExtra,1500,0,1500,3,no,no,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -140,7 +139,7 @@ class CsvLoaderValidationTest {
     @Test
     void invalidGroupWinnerValue_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,Team1,1900,67%,55%,1,invalid,maybe,no");
+        lines.set(1, "A,Team1,1900,12,1912,1,invalid,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -150,7 +149,7 @@ class CsvLoaderValidationTest {
     @Test
     void invalidRunnerUpValue_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(2, "A,Team2,1800,50%,50%,2,maybe,bad,maybe");
+        lines.set(2, "A,Team2,1800,6,1806,2,maybe,bad,maybe");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -160,7 +159,7 @@ class CsvLoaderValidationTest {
     @Test
     void invalidThirdPlaceValue_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(3, "A,Team3,1700,40%,N/A,3,no,maybe,oops");
+        lines.set(3, "A,Team3,1700,0,1700,3,no,maybe,oops");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -170,7 +169,7 @@ class CsvLoaderValidationTest {
     @Test
     void noGroupWinnerYes_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,Team1,1900,67%,55%,1,maybe,maybe,no");
+        lines.set(1, "A,Team1,1900,12,1912,1,maybe,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -180,7 +179,7 @@ class CsvLoaderValidationTest {
     @Test
     void twoGroupWinnerYes_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(2, "A,Team2,1800,50%,50%,2,yes,yes,maybe");
+        lines.set(2, "A,Team2,1800,6,1806,2,yes,yes,maybe");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -190,7 +189,7 @@ class CsvLoaderValidationTest {
     @Test
     void noRunnerUpYes_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(2, "A,Team2,1800,50%,50%,2,maybe,maybe,maybe");
+        lines.set(2, "A,Team2,1800,6,1806,2,maybe,maybe,maybe");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -200,7 +199,7 @@ class CsvLoaderValidationTest {
     @Test
     void twoRunnerUpYes_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(3, "A,Team3,1700,40%,N/A,3,no,yes,yes");
+        lines.set(3, "A,Team3,1700,0,1700,3,no,yes,yes");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -210,7 +209,7 @@ class CsvLoaderValidationTest {
     @Test
     void multipleThirdPlaceYes_noError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(4, "A,Team4,1600,30%,35%,4,no,no,yes");
+        lines.set(4, "A,Team4,1600,-8,1592,4,no,no,yes");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -254,39 +253,29 @@ class CsvLoaderValidationTest {
     }
 
     @Test
-    void invalidH2hPercentValue_reportsError() throws IOException {
+    void invalidBaseElo_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,Team1,1900,62%,101%,1,yes,maybe,no");
+        lines.set(1, "A,Team1,abc,12,1912,1,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
-        assertTrue(errors.stream().anyMatch(e -> e.contains("h2h") && e.contains("100")));
+        assertTrue(errors.stream().anyMatch(e -> e.contains("base_elo") && e.contains("integer")));
     }
 
     @Test
-    void nonIntegerH2hPercentValue_reportsError() throws IOException {
+    void invalidQualBonus_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(2, "A,Team2,1800,58%,x,2,maybe,yes,maybe");
+        lines.set(2, "A,Team2,1800,abc,1806,2,maybe,yes,maybe");
         writeGroups(lines);
 
         List<String> errors = validate();
-        assertTrue(errors.stream().anyMatch(e -> e.contains("h2h") && e.contains("integer")));
-    }
-
-    @Test
-    void invalidQualFormPercentValue_reportsError() throws IOException {
-        List<String> lines = validGroupsCsv();
-        lines.set(1, "A,Team1,1900,101%,67%,1,yes,maybe,no");
-        writeGroups(lines);
-
-        List<String> errors = validate();
-        assertTrue(errors.stream().anyMatch(e -> e.contains("qualification_form") && e.contains("100")));
+        assertTrue(errors.stream().anyMatch(e -> e.contains("qual_bonus") && e.contains("integer")));
     }
 
     @Test
     void invalidPredictedPosition_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,Team1,1900,67%,55%,5,yes,maybe,no");
+        lines.set(1, "A,Team1,1900,12,1912,5,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();
@@ -296,7 +285,7 @@ class CsvLoaderValidationTest {
     @Test
     void nonIntegerPredictedPosition_reportsError() throws IOException {
         List<String> lines = validGroupsCsv();
-        lines.set(1, "A,Team1,1900,67%,55%,x,yes,maybe,no");
+        lines.set(1, "A,Team1,1900,12,1912,x,yes,maybe,no");
         writeGroups(lines);
 
         List<String> errors = validate();

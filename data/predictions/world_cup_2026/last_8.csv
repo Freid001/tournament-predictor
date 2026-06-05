@@ -1,5 +1,5 @@
-match_id,team1,team2,path,elo,do_you_disagree
-M97,W89(France),W90(Netherlands),primary,France (67%),
-M98,W93(Spain),W94(Turkey),primary,Spain (82%),
-M99,W91(Ecuador),W92(Mexico),primary,Mexico (56%),
-M100,W95(Argentina),W96(Portugal),primary,Argentina (59%),
+match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree
+M97,W89(W77(I1(France))),W90(W75(F1(Japan))),predicted,France (74%),78,-10,United States:0 > Germany:-14,Morocco:0 > Canada:0,
+M98,W93(W84(H1(Spain))),W94(W81(D1(Turkey))),predicted,Spain (81%),133,-24,Austria:-2 > Colombia:-14,Algeria:0 > Belgium:-6,
+M99,W91(W78(I2(Norway))),W92(W80(L1(England))),predicted,England (54%),134,3,Ecuador:-6 > Brazil:-10,Uzbekistan:0 > Senegal:-10,
+M100,W95(W86(J1(Argentina))),W96(W87(K1(Portugal))),predicted,Argentina (67%),-35,-39,Uruguay:0 > Paraguay:0,Panama:0 > Switzerland:-2,

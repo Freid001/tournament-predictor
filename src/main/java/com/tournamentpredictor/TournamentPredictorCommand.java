@@ -1,7 +1,6 @@
 package com.tournamentpredictor;
 
 import com.tournamentpredictor.service.MatchResolver;
-import com.tournamentpredictor.service.util.ConsoleReporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +13,29 @@ import java.io.IOException;
 import java.net.URI;
 
 @Command(
-        name = "tournament-predictor",
+        name = "predict",
         mixinStandardHelpOptions = true,
-        description = "Tournament bracket prediction CLI",
+        description = "WC2026 tournament bracket predictor. Use --browser to open the full UI.",
         footer = {
                 "",
-                "Modes (run in order):",
-                "  elo-refresh   Refresh ELO ratings and team match histories",
-                "  start         Generate group rankings from start.csv",
-                "  groups        Generate last_32 matchup permutations",
-                "  last_32       Score last_32, generate last_16 matchups",
-                "  last_16       Score last_16, generate last_8 matchups",
-                "  last_8        Score last_8, generate last_4 matchups",
-                "  last_4        Score last_4, generate final matchups",
-                "  final         Score final predictions",
-                "  path          Trace a team's bracket route (requires --filter)"
+                "Examples:",
+                "  predict --browser --tournament=world_cup_2026",
+                "      Start the browser UI (recommended)",
+                "",
+                "  predict --mode=elo-refresh",
+                "      Refresh ELO ratings and team match histories from latest data",
+                "",
+                "  predict --tournament=world_cup_2026",
+                "      Run the default pipeline mode (start) — generate group rankings",
+                "",
+                "Pipeline modes (run in order for a full bracket):",
+                "  start     Generate group rankings from start.csv         [default]",
+                "  groups    Generate last_32 matchup permutations from group picks",
+                "  last_32   Score last_32 predictions, generate last_16 matchups",
+                "  last_16   Score last_16 predictions, generate last_8 matchups",
+                "  last_8    Score last_8 predictions, generate last_4 matchups",
+                "  last_4    Score last_4 predictions, generate final matchup",
+                "  final     Score final predictions"
         }
 )
 @Component
@@ -39,35 +46,16 @@ public class TournamentPredictorCommand implements Runnable {
     @Autowired
     private MatchResolver resolver;
 
-    @Autowired
-    private ConsoleReporter consoleReporter;
-
     @Option(names = "--tournament",
-            description = "Tournament subfolder under data/ (required for all modes except elo-refresh)")
+            description = "Tournament subfolder under data/ (e.g. world_cup_2026). Required for all pipeline modes.")
     private String tournament;
 
-    @Option(names = "--mode", defaultValue = "groups",
-            description = "Mode to run (default: ${DEFAULT-VALUE})")
+    @Option(names = "--mode", defaultValue = "start",
+            description = "Pipeline mode to run. Default: start. See footer for full list.")
     private String mode;
 
-    @Option(names = "--filter",
-            description = "Filter console output to matchups involving this team (required for path mode)")
-    private String filter;
-
-    @Option(names = "--path", defaultValue = "both",
-            description = "For path mode: primary, alt, both (default: ${DEFAULT-VALUE})")
-    private String path;
-
-    @Option(names = {"--page", "--p"}, defaultValue = "1",
-            description = "Page number for path/last_x output (default: ${DEFAULT-VALUE})")
-    private int page;
-
-    @Option(names = "--flags", defaultValue = "false",
-            description = "Show emoji flags in output (default: ${DEFAULT-VALUE})")
-    private boolean flags;
-
     @Option(names = "--browser", defaultValue = "false",
-            description = "Start web UI on localhost:8080")
+            description = "Launch the browser UI at http://localhost:8080")
     private boolean browser;
 
     @Override
@@ -83,19 +71,6 @@ public class TournamentPredictorCommand implements Runnable {
             }
             return;
         }
-
-        if (!"primary".equals(path) && !"alt".equals(path) && !"both".equals(path)) {
-            fail("--path must be one of: primary, alt, both", 2);
-            return;
-        }
-        if (page < 1) {
-            fail("--page must be a positive integer", 2);
-            return;
-        }
-        consoleReporter.setTeamFilter(filter);
-        consoleReporter.setPathFilter(path);
-        consoleReporter.setPageNumber(page);
-        consoleReporter.setShowFlags(flags);
 
         try {
             resolver.resolveAndWrite(mode, tournament);

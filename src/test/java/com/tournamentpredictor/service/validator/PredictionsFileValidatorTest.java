@@ -19,7 +19,7 @@ class PredictionsFileValidatorTest {
         Path file = tempDir.resolve("last_32.csv");
         Files.write(file, List.of(
                 "match_id,team1,team2,path,elo,history_competitions,history_friendlies,prediction,do_you_disagree",
-                "M1,England,Germany,primary,England (60%),England (55%),England (54%),yes",
+                "M1,England,Germany,predicted,England (60%),England (55%),England (54%),yes",
                 "M1,England,Germany,alt,England (60%),England (55%),England (54%),"
         ));
 

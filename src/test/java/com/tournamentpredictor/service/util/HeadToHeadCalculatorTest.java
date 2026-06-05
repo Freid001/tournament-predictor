@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HeadToHeadCalculatorTest {
     @TempDir
@@ -56,6 +57,52 @@ class HeadToHeadCalculatorTest {
 
         assertEquals("Team One (100%)",
                 calculator.computeFriendlyPrediction("Team One", "Team Two"));
+    }
+
+    @Test
+    void computeFriendlyPrediction_noHistory_returnsTeamOneAt50Percent() {
+        // No TSV files at all → falls back to 0.5 win rate
+        HeadToHeadCalculator calculator = new HeadToHeadCalculator(tempDir);
+        assertEquals("Team One (50%)", calculator.computeFriendlyPrediction("Team One", "Team Two"));
+    }
+
+    @Test
+    void computeCompetitionPrediction_noHistory_returnsTeamOneAt50Percent() {
+        HeadToHeadCalculator calculator = new HeadToHeadCalculator(tempDir);
+        assertEquals("Team One (50%)", calculator.computeCompetitionPrediction("Team One", "Team Two"));
+    }
+
+    @Test
+    void computeRawCompWinRate_noHistory_isEmpty() {
+        HeadToHeadCalculator calculator = new HeadToHeadCalculator(tempDir);
+        assertTrue(calculator.computeRawCompWinRate("Team One", "Team Two").isEmpty());
+    }
+
+    @Test
+    void computeRawFriendlyWinRate_noHistory_isEmpty() {
+        HeadToHeadCalculator calculator = new HeadToHeadCalculator(tempDir);
+        assertTrue(calculator.computeRawFriendlyWinRate("Team One", "Team Two").isEmpty());
+    }
+
+    @Test
+    void computeFriendlyPrediction_singleDraw_returns50Percent() throws IOException {
+        int currentYear = LocalDate.now().getYear();
+        writeHistory("Team One", List.of(
+                currentYear + "\t1\t1\tTeam One\tTeam Two\t1\t1\tF"
+        ));
+        HeadToHeadCalculator calculator = new HeadToHeadCalculator(tempDir);
+        assertEquals("Team One (50%)", calculator.computeFriendlyPrediction("Team One", "Team Two"));
+    }
+
+    @Test
+    void computeCompetitionPrediction_onlyFriendliesExist_returns50Percent() throws IOException {
+        // Competition mode ignores friendlies → no comp data → 50%
+        int currentYear = LocalDate.now().getYear();
+        writeHistory("Team One", List.of(
+                currentYear + "\t1\t1\tTeam One\tTeam Two\t3\t0\tF"
+        ));
+        HeadToHeadCalculator calculator = new HeadToHeadCalculator(tempDir);
+        assertEquals("Team One (50%)", calculator.computeCompetitionPrediction("Team One", "Team Two"));
     }
 
     private void writeHistory(String teamName, List<String> lines) throws IOException {

@@ -20,7 +20,7 @@ class DisagreeMapMapperTest {
         Path file = tempDir.resolve("last_32.csv");
         Files.write(file, List.of(
                 "match_id,team1,team2,path,elo,history_competitions,history_friendlies,prediction,do_you_disagree",
-                "M1,England,Germany,primary,England (60%),England (55%),England (54%),England (58%),yes"
+                "M1,England,Germany,predicted,England (60%),England (55%),England (54%),England (58%),yes"
         ));
 
         Map<String, String> disagreeMap = new DisagreeMapMapper().loadDisagreeMap(file);
@@ -33,7 +33,7 @@ class DisagreeMapMapperTest {
         Path file = tempDir.resolve("last_16.csv");
         Files.write(file, List.of(
                 "match_id,team1,team2,path,predicted_winner,legacy_column",
-                "M2,Spain,France,primary,Spain (52%),no"
+                "M2,Spain,France,predicted,Spain (52%),no"
         ));
 
         Map<String, String> disagreeMap = new DisagreeMapMapper().loadDisagreeMap(file);
