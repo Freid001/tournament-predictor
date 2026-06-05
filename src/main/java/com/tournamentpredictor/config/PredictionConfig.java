@@ -6,9 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class PredictionConfig {
 
-    @Value("${prediction.elo.weight:0.85}")
-    private double eloWeight;
-
     @Value("${elo.scale.divisor:400.0}")
     private double eloScaleDivisor;
 
@@ -126,13 +123,15 @@ public class PredictionConfig {
     @Value("${path.fatigue.stage.last4.multiplier:1.5}")
     private double pathFatigueStageMultLast4;
 
+    @Value("${path.fatigue.depth.good.multiplier:0.85}")
+    private double pathFatigueDepthGoodMultiplier;
+
     @Value("${path.fatigue.depth.limited.multiplier:1.15}")
     private double pathFatigueDepthLimitedMultiplier;
 
     @Value("${path.fatigue.depth.thin.multiplier:1.30}")
     private double pathFatigueDepthThinMultiplier;
 
-    public double getEloWeight() { return eloWeight; }
     public double getEloScaleDivisor() { return eloScaleDivisor; }
     public int getQualFormSinceYear() { return qualFormSinceYear; }
     public int getQualFormUntilYear() { return qualFormUntilYear; }
@@ -140,7 +139,6 @@ public class PredictionConfig {
     public int getPreTournamentFormEloMax() { return preTournamentFormEloMax; }
     public int getPreTournamentFormSinceYear() { return preTournamentFormSinceYear; }
     public int getPreTournamentFormUntilYear() { return preTournamentFormUntilYear; }
-    public double getHalfLifeYears() { return 5.0; }
     public int getHomeAdvantageElo() { return homeAdvantageElo; }
     public int[] getInjuryPenalties() { return new int[]{0, injuryPenaltyMinor, injuryPenaltySignificant, injuryPenaltyCritical}; }
     public int[] getHeatAdvantages() { return new int[]{0, heatAdvanttageMild, heatAdvanttageModerate, heatAdvanttageStrong}; }
@@ -168,6 +166,7 @@ public class PredictionConfig {
     public double getPathFatigueStageMultLast16() { return pathFatigueStageMultLast16; }
     public double getPathFatigueStageMultLast8() { return pathFatigueStageMultLast8; }
     public double getPathFatigueStageMultLast4() { return pathFatigueStageMultLast4; }
+    public double getPathFatigueDepthGoodMultiplier() { return pathFatigueDepthGoodMultiplier; }
     public double getPathFatigueDepthLimitedMultiplier() { return pathFatigueDepthLimitedMultiplier; }
     public double getPathFatigueDepthThinMultiplier() { return pathFatigueDepthThinMultiplier; }
 }

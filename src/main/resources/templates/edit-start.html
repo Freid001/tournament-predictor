@@ -20,7 +20,7 @@
                     <th class="text-center">Host</th>
                     <th>Age</th>
                     <th>Cohesion</th>
-                    <th>Depth</th>
+                    <th>Bench Depth</th>
                     <th>Quality</th>
                     <th>Dropouts</th>
                     <th>Injury</th>
@@ -64,9 +64,9 @@
                     </td>
                     <td>
                         <select class="form-select form-select-sm" th:name="${'squadDepth' + stat.index}">
-                            <option value="0" th:selected="${row.squadDepth == 0}">Good</option>
-                            <option value="1" th:selected="${row.squadDepth == 1}">Limited (-10)</option>
-                            <option value="2" th:selected="${row.squadDepth == 2}">Thin (-20)</option>
+                            <option value="0" th:selected="${row.squadDepth == 0}">Good/deep</option>
+                            <option value="1" th:selected="${row.squadDepth == 1}">Limited bench (-10)</option>
+                            <option value="2" th:selected="${row.squadDepth == 2}">Thin bench (-20)</option>
                         </select>
                     </td>
                     <td>
@@ -115,7 +115,7 @@
                                           th:name="${'cohesionNotes' + stat.index}" th:text="${row.cohesionNotes}"></textarea>
                             </div>
                             <div class="col-md-2">
-                                <label class="form-label mb-1 small text-muted">⬇️ Depth</label>
+                                <label class="form-label mb-1 small text-muted">⬇️ Bench Depth</label>
                                 <textarea class="form-control form-control-sm" rows="3"
                                           th:name="${'depthNotes' + stat.index}" th:text="${row.depthNotes}"></textarea>
                             </div>

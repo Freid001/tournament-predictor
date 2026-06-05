@@ -109,11 +109,11 @@ class PathFatigueCalculatorTest {
     // ─── Depth multiplier ─────────────────────────────────────────────────────
 
     @Nested
-    class DepthMultiplier {
+    class BenchDepthMultiplier {
         @Test
-        void normalDepth_noMultiplier() {
-            assertEquals(-72, calculator.applyDepthMultiplier(-72, 0));
-            assertEquals(-12, calculator.applyDepthMultiplier(-12, 0));
+        void goodDepth_reducesFatigue() {
+            assertEquals(-61, calculator.applyDepthMultiplier(-72, 0));
+            assertEquals(-10, calculator.applyDepthMultiplier(-12, 0));
         }
 
         @Test
@@ -225,7 +225,7 @@ class PathFatigueCalculatorTest {
     @Nested
     class EndToEnd {
         @Test
-        void hardPath_normalSquad() {
+        void hardPath_goodDepthSquad() {
             // Beat 1950 (last_32) → 2050 (last_16) → 2100 (last_8)
             int w32  = (int) Math.round(calculator.rawScore(1950) * calculator.stageMultiplierForRound("last_32")); //  50
             int w16  = (int) Math.round(calculator.rawScore(2050) * calculator.stageMultiplierForRound("last_16")); // 200
@@ -235,8 +235,8 @@ class PathFatigueCalculatorTest {
             assertEquals("Very Hard", calculator.label(total));
             int fatigue = calculator.eloAdjustmentFromWeighted(total); // (550/100) × -12 = -66
             assertEquals(-66, fatigue);
-            // Normal squad: no multiplier
-            assertEquals(-66, calculator.applyDepthMultiplier(fatigue, 0));
+            // Good/deep bench: fatigue reduced by 15%
+            assertEquals(-56, calculator.applyDepthMultiplier(fatigue, 0));
         }
 
         @Test
@@ -245,10 +245,10 @@ class PathFatigueCalculatorTest {
             int w16  = (int) Math.round(calculator.rawScore(2050) * calculator.stageMultiplierForRound("last_16"));
             int w8   = (int) Math.round(calculator.rawScore(2100) * calculator.stageMultiplierForRound("last_8"));
             int fatigue = calculator.eloAdjustmentFromWeighted(w32 + w16 + w8);
-            int normalFatigue = calculator.applyDepthMultiplier(fatigue, 0);
+            int goodFatigue = calculator.applyDepthMultiplier(fatigue, 0);
             int thinFatigue   = calculator.applyDepthMultiplier(fatigue, 2);
             // Thin squad is penalised more than normal on same path
-            assertTrue(thinFatigue < normalFatigue, "Thin squad should have worse fatigue penalty");
+            assertTrue(thinFatigue < goodFatigue, "Thin squad should have worse fatigue penalty than good/deep squad");
         }
 
         @Test

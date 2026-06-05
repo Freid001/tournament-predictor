@@ -79,20 +79,21 @@ public class Last16Handler {
 
         Files.createDirectories(matchupDir);
         List<String> lines = last16LineBuilder.buildLast16Lines(groups, groupWinner, runnerUp, thirdPlace,
-                eloRatings, brackets, last32Rows);
+                eloRatings, brackets, last32Rows, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> output = predictionScorer.scoreLines(lines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
         Files.write(matchupDir.resolve("last_16.csv"), sortedOutput);
-        generateLast8Predictions(tournament, eloRatings, brackets, output);
+        generateLast8Predictions(tournament, eloRatings, snapshots, brackets, output);
         Map<String, String> last16Odds = loader.loadOdds(tournament, "last_8");
         consoleReporter.printMatchups("Last 16 matchups", sortedOutput, eloCalculator, predictionDir.resolve("last_8.csv"), last16Odds);
     }
 
     private void generateLast8Predictions(String tournament, Map<String, Integer> eloRatings,
+                                          Map<String, TeamEloSnapshot> snapshots,
                                           List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets,
                                           List<String> last16Output) throws IOException {
-        List<String> allLines = last8LineBuilder.buildLast8Lines(eloRatings, brackets, last16Output);
+        List<String> allLines = last8LineBuilder.buildLast8Lines(eloRatings, brackets, last16Output, snapshots);
         List<String> output = csvHelper.filterPrimaryOnly(allLines);
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Files.createDirectories(predictionDir);

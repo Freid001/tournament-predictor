@@ -1,20 +1,26 @@
 # Matchup CSV Format
 
-```
-match_id,team1,team2,path,predicted_winner,elo,history_competitions,history_friendlies,qual_form,prediction
-M89,🏴E1(England),🇩🇪B2(Germany),primary,England (55%),England (52%),England (60%),Germany (55%),51%,England (55%)
+Active scored matchup files use this shape:
+
+```csv
+match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent
+M89,E1(England),B2(Germany),predicted,England (55%),2020,48,1925,34,0,-12,,France:-12
 ```
 
 | Column | Description |
 |---|---|
-| `path` | `primary` = both teams confirmed; `alt` = at least one side uncertain |
-| `predicted_winner` | Final predicted winner after applying `do_you_disagree` override |
-| `elo` | ELO-only prediction with win probability |
-| `history_competitions` | Head-to-head prediction from competitive matches |
-| `history_friendlies` | Head-to-head prediction from friendly matches |
-| `qual_form` | Qualification-form share for team1 in the matchup, or `N/A` if neither side has qualification data |
-| `prediction` | Combined prediction (70% ELO + 15% qualification form + 10.5% competition history + 4.5% friendly history by default) |
-| `do_you_disagree` | Set to `yes` to override the combined prediction with the other team |
+| `match_id` | Bracket match identifier. |
+| `team1`, `team2` | Display token and team name for each side. |
+| `path` | `predicted` = current primary bracket path; `alt` = alternative possible path. |
+| `prediction` | Final predicted winner after adjusted Elo, path fatigue, and `do_you_disagree` override. |
+| `team*_base_elo` | Raw team Elo from `data/elo/world.csv` before tournament overlays. |
+| `team*_qual_bonus` | Qualification-form Elo overlay included in the adjusted group Elo. |
+| `team*_path_fatigue` | Cumulative weighted path difficulty before conversion to Elo penalty. |
+| `team*_path_opponent` | Prior knockout opponent chain with each opponent contribution. |
+
+Prediction input files also include `do_you_disagree`. Set it to `yes` to override the model and pick the other team.
+
+Legacy H2H columns such as `history_competitions` and `history_friendlies` may still be accepted by validators for old files, but head-to-head is not part of the active prediction formula.
 
 ## qualification.csv (data/{tournament}/qualification.csv)
 
@@ -30,7 +36,5 @@ Team qualification campaign statistics. Used to compute qualification form — h
 | `gf` | Goals for (scored) |
 | `ga` | Goals against (conceded) |
 
-Host nations (who skip qualification) should not be included — they default to `0.5` neutral.
-Teams not listed also default to `0.5` neutral.
-
-Form score formula: `70% points-per-game (normalised) + 30% goal-difference-per-game (clamped to [-3,+3])`.
+Host nations who skip qualification default to neutral form.
+Teams not listed also default to neutral form.

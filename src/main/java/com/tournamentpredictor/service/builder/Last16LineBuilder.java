@@ -5,6 +5,7 @@ import com.tournamentpredictor.service.util.DisplayBuilder;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.PathCalculator;
 import com.tournamentpredictor.service.util.PathFatigueCalculator;
+import com.tournamentpredictor.service.util.TeamEloSnapshot;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -29,7 +30,7 @@ public class Last16LineBuilder {
     public List<String> buildLast16Lines(Map<String, String> groups, Map<String, String> groupWinner,
                                          Map<String, String> runnerUp, Map<String, String> thirdPlace,
                                          Map<String, Integer> eloRatings, List<CsvLoader.BracketEntry> brackets,
-                                         List<String> last32Rows) {
+                                         List<String> last32Rows, Map<String, TeamEloSnapshot> snapshots) {
         Map<String, String> last32PredByTeam = new LinkedHashMap<>();
         for (String row : last32Rows) {
             if (row.trim().isEmpty() || row.startsWith("match_id")) {
@@ -83,8 +84,8 @@ public class Last16LineBuilder {
                     int t2ContribElo = pathFatigueCalc.eloAdjustmentFromWeighted(t2ContribW);
                     String t1Chain = opp1[0].isEmpty() ? "" : opp1[0] + ":" + t1ContribElo;
                     String t2Chain = opp2[0].isEmpty() ? "" : opp2[0] + ":" + t2ContribElo;
-                    int t1AdjElo = eloRatings.getOrDefault(team1, 0) + pathFatigueCalc.eloAdjustmentFromWeighted(t1NewTotal);
-                    int t2AdjElo = eloRatings.getOrDefault(team2, 0) + pathFatigueCalc.eloAdjustmentFromWeighted(t2NewTotal);
+                    int t1AdjElo = eloRatings.getOrDefault(team1, 0) + fatigueAdjustedElo(team1, t1NewTotal, snapshots);
+                    int t2AdjElo = eloRatings.getOrDefault(team2, 0) + fatigueAdjustedElo(team2, t2NewTotal, snapshots);
                     String adjEloPrediction = predictionHelper.computeEloPredictionFromElos(team1, team2, t1AdjElo, t2AdjElo);
                     lines.add(String.join(",", bracket.matchId, displayBuilder.safe(display1),
                             displayBuilder.safe(display2), path, adjEloPrediction,
@@ -94,6 +95,13 @@ public class Last16LineBuilder {
             lines.add("");
         }
         return lines;
+    }
+
+    private int fatigueAdjustedElo(String team, int weightedTotal, Map<String, TeamEloSnapshot> snapshots) {
+        int fatigue = pathFatigueCalc.eloAdjustmentFromWeighted(weightedTotal);
+        TeamEloSnapshot snapshot = snapshots != null ? snapshots.get(team) : null;
+        int depthLevel = snapshot != null ? snapshot.squadDepthLevel() : 0;
+        return pathFatigueCalc.applyDepthMultiplier(fatigue, depthLevel);
     }
 
     /** Returns [loserName, loserElo, "0", ""] — Last16 is the first knockout stage, no prior chain. */

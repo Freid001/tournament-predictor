@@ -69,7 +69,7 @@ public class FinalHandler {
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
         Files.createDirectories(matchupDir);
-        List<String> allLines = finalLineBuilder.buildFinalLines(eloRatings, brackets, last4Rows);
+        List<String> allLines = finalLineBuilder.buildFinalLines(eloRatings, brackets, last4Rows, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> output = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);

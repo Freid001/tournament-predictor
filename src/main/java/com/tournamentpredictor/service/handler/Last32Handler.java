@@ -82,7 +82,7 @@ public class Last32Handler {
         Files.write(matchupDir.resolve("last_32.csv"), sortedDetailed);
 
         List<String> allLast16 = last16LineBuilder.buildLast16Lines(groups, groupWinner, runnerUp, thirdPlace,
-                eloRatings, brackets, detailed);
+                eloRatings, brackets, detailed, snapshots);
         List<String> primaryOnly = new ArrayList<>();
         primaryOnly.add(allLast16.get(0));
         boolean addedForMatch = false;

@@ -74,19 +74,20 @@ public class Last4Handler {
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
         Files.createDirectories(matchupDir);
-        List<String> allLines = last4LineBuilder.buildLast4Lines(eloRatings, brackets, last8Rows);
+        List<String> allLines = last4LineBuilder.buildLast4Lines(eloRatings, brackets, last8Rows, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> output = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
         Files.write(matchupDir.resolve("last_4.csv"), sortedOutput);
-        generateFinalPredictions(tournament, eloRatings, brackets, output);
+        generateFinalPredictions(tournament, eloRatings, snapshots, brackets, output);
         consoleReporter.printMatchups("Semi-final matchups", sortedOutput, eloCalculator, predictionDir.resolve("final.csv"), sfOdds);
     }
 
     private void generateFinalPredictions(String tournament, Map<String, Integer> eloRatings,
+                                          Map<String, TeamEloSnapshot> snapshots,
                                           List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets,
                                           List<String> last4Output) throws IOException {
-        List<String> allLines = finalLineBuilder.buildFinalLines(eloRatings, brackets, last4Output);
+        List<String> allLines = finalLineBuilder.buildFinalLines(eloRatings, brackets, last4Output, snapshots);
         List<String> output = csvHelper.filterPrimaryOnly(allLines);
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Files.createDirectories(predictionDir);

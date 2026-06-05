@@ -4,19 +4,13 @@ All prediction parameters live in `src/main/resources/application.properties`. T
 
 Win% impact shown for a 50/50 match (equal ELO teams). Formula: `1 / (1 + 10^(−delta/400)) − 50%`.
 
-## Prediction weights
+## Elo prediction scale
 
 | Property | Default | Description |
 |---|---|---|
-| `prediction.elo.weight` | `0.70` | How much ELO counts vs head-to-head history. `0.70` = 70% ELO, 30% history. |
-| `prediction.history.competition.weight` | `0.70` | Within the 30% history slice: competitive matches get 70%, friendlies get 30%. Full split: **70% ELO + 21% competitive history + 9% friendly history**. |
-| `elo.scale.divisor` | `400.0` | Standard chess/FIFA ELO divisor — not recommended to change. Lower = exaggerates gaps; higher = more coin-flip outcomes. |
+| `elo.scale.divisor` | `400.0` | Standard World Football Elo expected-score divisor. Lower = exaggerates gaps; higher = more coin-flip outcomes. |
 
-## Head-to-head decay
-
-| Property | Default | Description |
-|---|---|---|
-| `h2h.decay.half.life.years` | `5.0` | How quickly old results lose relevance. A result from exactly this many years ago counts for 50% of a recent result. |
+Game predictions are currently adjusted Elo plus knockout path fatigue, with optional manual override. Head-to-head history is not part of the active formula.
 
 ## Qualification form
 
@@ -87,7 +81,7 @@ Applied on top of base ELO to reflect the current state of a squad independent o
 | `squad.cohesion.disrupted.elo` | `22` | −22 | **−3.2%** | Serious disruption — new coach mid-cycle, major selection rows. |
 | `squad.cohesion.fractured.elo` | `45` | −45 | **−6.4%** | Extreme breakdown — political crisis, player boycotts, institutional dysfunction. |
 
-### Depth
+### Bench depth
 
 | Property | Default | ELO | Win% | Description |
 |---|---|---|---|---|
@@ -123,14 +117,15 @@ Applied at each knockout round as a live ELO adjustment. See [README § knockout
 | `path.fatigue.stage.last8.multiplier` | `1.2` | Quarter-final | Legs heavier, rotation harder |
 | `path.fatigue.stage.last4.multiplier` | `1.5` | Semi-final | Virtually no rotation |
 
-### Depth multipliers
+### Bench-depth multipliers
 
-Applied only to negative fatigue values — no effect on easy paths. Not double-counting with the static squad depth penalty (which always applies regardless of path).
+Applied only to negative fatigue values — no effect on easy paths. This is separate from the static bench-depth penalty: the static value captures weak bench quality before kickoff, while this multiplier controls how well the bench absorbs accumulated knockout fatigue.
 
-| Property | Default | Win% amplification | When to use |
+| Property | Default | Fatigue effect | When to use |
 |---|---|---|---|
-| `path.fatigue.depth.limited.multiplier` | `1.15` | ×1.15 on fatigue ELO | Bench quality drops sharply after 13–14 players |
-| `path.fatigue.depth.thin.multiplier` | `1.30` | ×1.30 on fatigue ELO | Minnow-level depth, tiny pools |
+| `path.fatigue.depth.good.multiplier` | `0.85` | Reduces fatigue ELO by 15% | Deep squads that can rotate without a major quality drop |
+| `path.fatigue.depth.limited.multiplier` | `1.15` | Amplifies fatigue ELO by 15% | Bench quality drops sharply after 13-14 players |
+| `path.fatigue.depth.thin.multiplier` | `1.30` | Amplifies fatigue ELO by 30% | Minnow-level depth, tiny pools |
 
 ## Betting labels
 

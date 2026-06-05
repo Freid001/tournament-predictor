@@ -227,7 +227,8 @@ public class CsvLoader {
                     int baseElo = r.isMapped("base_elo") ? Integer.parseInt(r.get("base_elo").trim()) : 0;
                     int qualBonus = r.isMapped("qual_bonus") ? Integer.parseInt(r.get("qual_bonus").trim()) : 0;
                     int adjustedElo = r.isMapped("elo_ranking") ? Integer.parseInt(r.get("elo_ranking").trim()) : baseElo + qualBonus;
-                    map.put(name, new TeamEloSnapshot(baseElo, qualBonus, adjustedElo));
+                    int squadDepthLevel = r.isMapped("squad_depth") ? Integer.parseInt(r.get("squad_depth").trim()) : 0;
+                    map.put(name, new TeamEloSnapshot(baseElo, qualBonus, adjustedElo, squadDepthLevel));
                 } catch (NumberFormatException ignored) {}
             }
         }

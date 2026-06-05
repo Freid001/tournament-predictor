@@ -717,7 +717,7 @@ public class HtmlReporter extends ConsoleReporter {
                   .append(b.cohesionNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.cohesionNotes) + "</span>")
                   .append("</td></tr>");
             if (b.squadDepthPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small\">⬇️ Squad Depth</td><td class=\"text-end fw-bold text-danger\">−").append(b.squadDepthPenalty)
+                sb.append("<tr class=\"table-danger\"><td class=\"small\">⬇️ Bench Depth</td><td class=\"text-end fw-bold text-danger\">−").append(b.squadDepthPenalty)
                   .append(b.depthNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.depthNotes) + "</span>")
                   .append("</td></tr>");
             if (b.squadQualityBonus != 0)

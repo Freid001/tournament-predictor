@@ -1,6 +1,6 @@
 # Tournament Predictor
 
-A tournament bracket predictor for WC2026 using ELO ratings, head-to-head history, qualification form, friendly form, and real-world squad adjustments (home advantage, injuries, heat, squad strength, fatigue).
+A tournament bracket predictor for WC2026 using World Football Elo ratings, tournament-specific squad adjustments, bracket-path generation, manual overrides, and knockout path fatigue.
 
 ## Contents
 
@@ -16,7 +16,7 @@ The browser UI is the primary way to use the predictor. It walks you through the
 **What it models:**
 - Group stage rankings using ELO + home advantage + qualification form + friendly form + injuries + heat + squad age/cohesion/depth/quality/dropouts
 - Every possible knockout matchup given your group picks
-- Combined predictions using ELO, competitive head-to-head, and friendly history
+- Game predictions using adjusted ELO, knockout path fatigue, and optional manual overrides
 - Bracket paths showing every route a team could take to the final
 - **Tournament path fatigue** — how depleted a team is based on the quality of opponents already beaten en route to each match, backed by sports science research
 
@@ -67,17 +67,16 @@ See [Modes](docs/MODES.md) for the full pipeline reference.
 
 ### Knockout round predictions
 
-Each matchup combines three signals:
+Current game prediction is ELO-first. Each matchup uses the standard Elo expected-score formula with a 400-point divisor:
 
-| Signal | Weight | Source |
-|---|---|---|
-| ELO rating | 70% | `data/elo/world.csv` (overridden by `groups.csv` for tournament teams) |
-| Competitive head-to-head | 21% | Historical competitive match results |
-| Friendly head-to-head | 9% | Historical friendly match results |
+`team1WinPct = 1 / (1 + 10^((team2Elo - team1Elo) / 400))`
 
-Combined formula: `finalPct = 0.7 × elo + 0.3 × (0.7 × competition + 0.3 × friendly)`
+The team ELO used in knockouts is the tournament-adjusted ELO from `groups.csv`, not the raw `world.csv` value. From last 16 onward, each team can also receive a live knockout path-fatigue penalty before the ELO formula is applied.
 
-The ELO rating used per team is their **adjusted ELO** — base rating plus all applicable signals below.
+The plus/minus values in this project are **temporary pre-match Elo deltas**, not permanent World Football Elo rating updates. World Football Elo uses the same 400-point expectation scale and a 100-point home adjustment, while post-match rating movement is controlled by match importance, result, and goal difference. This app uses Elo-point-sized overlays so every signal translates consistently into win probability before a tournament match is predicted.
+
+`do_you_disagree=yes` manually flips the predicted winner for a matchup.
+
 
 ### Group stage adjustments
 
@@ -85,16 +84,16 @@ Applied once at the group stage to calculate each team's effective ELO ranking. 
 
 | Signal | Max impact | Notes |
 |---|---|---|
-| **Home Advantage** | +100 ELO | Applied to host nations. Matches eloratings.net standard. |
-| **Qualification Form** | ±50 ELO | Based on 2023–2026 WC qualifying results (PPG + goals scored/conceded). |
-| **Friendly Form** | ±25 ELO | Based on last 5 pre-tournament friendlies. |
-| **Injuries** | −75 ELO | Scaled by impact level: minor −20, significant −40, critical −75. |
-| **Heat Advantage** | +25 ELO | Team acclimatised to heat at their venue. mild +8, moderate +15, strong +25. |
-| **Squad Age** | −ELO | Penalty for very young or very old squad profiles. |
-| **Squad Cohesion** | −ELO | Penalty for unsettled squads (manager changes, dressing room issues). |
-| **Squad Depth** | −ELO | Penalty for thin squads with limited rotation options. |
-| **Squad Quality** | +ELO | Bonus for squads with exceptional individual quality above their ELO. |
-| **Squad Dropouts** | −ELO | Penalty for key players withdrawing pre-tournament. |
+| **Home advantage** | +100 ELO | Applied to host nations. This matches the World Football Elo convention of adding 100 points for the home team when projecting a match. |
+| **Qualification form** | ±100 ELO | Based on 2023-2026 qualifying results in ELO history files. This is intentionally a current-form overlay, but it can partly double-count recent competitive results already present in base ELO. |
+| **Friendly form** | ±50 ELO | Based on recent pre-tournament friendlies. Also partly overlaps with base ELO because friendlies are already in the source history, but with lower match weight. |
+| **Injuries** | -22 / -45 / -90 ELO | Current-availability penalty. Critical injury is deliberately just below home advantage: severe enough to nearly cancel a host boost, but not stronger than playing the tournament at home. |
+| **Heat advantage** | +9 / +18 / +35 ELO | Venue/climate adaptation. Kept much smaller than home advantage because it is situational and less universal. |
+| **Squad dropouts** | -18 / -35 / -70 ELO | Planned absences or omissions. Lower than injury penalties because coaches have more time to adapt. |
+| **Squad age** | -12 young / -8 aging ELO | Small negative-only adjustment for inexperience or recovery risk. |
+| **Squad cohesion** | -11 / -22 / -45 ELO | Negative-only disruption signal. Some risk may already be reflected in recent ELO results. |
+| **Bench depth** | -10 / -20 ELO | Static bench-depth penalty for limited or thin squads. Also controls fatigue sensitivity in knockouts. |
+| **Squad quality** | +10 / +20 ELO | Small forward-looking talent bonus. Kept small because base ELO already captures most team quality. |
 
 All values are configurable in `application.properties` — see [Configuration](docs/CONFIGURATION.md).
 
@@ -117,15 +116,7 @@ Applied at each knockout round (last 32 through final) as a **live ELO adjustmen
 
 Capped at 0 — an easy bracket is not a rest bonus; it simply means no accumulated fatigue burden.
 
-**Squad depth interaction:** thin squads cannot rotate so path fatigue hits them harder. A depth multiplier is applied only to negative fatigue values (no effect on easy paths):
-
-| Depth level | Multiplier | When to use |
-|---|---|---|
-| Normal | × 1.00 | Default |
-| Limited | × 1.15 | Bench quality drops sharply after 13–14 players |
-| Thin | × 1.30 | Minnow-level depth — tiny pools, first World Cup nations |
-
-This is separate from the static squad depth ELO penalty (which always applies regardless of path). The multiplier only activates when the team has a genuinely hard path.
+**Bench-depth interaction:** `squad_depth` also changes how strongly cumulative fatigue hits a team. Good/deep benches reduce negative fatigue by 15%, limited benches amplify it by 15%, and thin benches amplify it by 30%. Easy paths still cap at 0, so bench depth never creates a rest bonus.
 
 | Difficulty label | Cumulative weighted total |
 |---|---|
@@ -136,6 +127,15 @@ This is separate from the static squad depth ELO penalty (which always applies r
 | Very Hard | > +200 |
 
 All values configurable under `path.fatigue.*` in `application.properties`.
+
+### Double-counting notes
+
+`world.csv` already reflects historical team strength, including prior qualifying matches, friendlies, squad quality, coaching stability, and some injury effects once those effects have shown up in results. The extra adjustments are therefore not all independent signals.
+
+The safest interpretation is:
+- **Low double-count risk:** home advantage, current injuries, current dropouts, venue heat, and knockout path fatigue. These are match/tournament-context adjustments not fully present in a neutral pre-tournament ELO rating.
+- **Medium double-count risk:** qualification form and friendly form. These use recent results that are already part of ELO, but emphasize current-cycle form more heavily than the long-run rating.
+- **Higher double-count risk:** squad quality, cohesion, age, and static bench depth. These are partly reflected in recent results, so their values are intentionally modest and should be used only for clear current-cycle information not already obvious in ELO.
 
 ### Qualification form formula
 

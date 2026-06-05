@@ -18,7 +18,7 @@
                 <th class="text-center">Host</th>
                 <th>Age</th>
                 <th>Cohesion</th>
-                <th>Depth</th>
+                <th>Bench Depth</th>
                 <th>Quality</th>
                 <th>Dropouts</th>
                 <th>Injury</th>
@@ -53,8 +53,8 @@
                 </td>
                 <td>
                     <span th:switch="${row.squadDepth}">
-                        <span th:case="1" class="badge text-bg-warning">Limited (-10)</span>
-                        <span th:case="2" class="badge text-bg-danger">Thin (-20)</span>
+                        <span th:case="1" class="badge text-bg-warning">Limited bench (-10)</span>
+                        <span th:case="2" class="badge text-bg-danger">Thin bench (-20)</span>
                     </span>
                 </td>
                 <td>
