@@ -16,11 +16,13 @@ import com.tournamentpredictor.service.handler.Last4Handler;
 import com.tournamentpredictor.service.handler.Last8Handler;
 import com.tournamentpredictor.service.handler.StartHandler;
 import com.tournamentpredictor.service.handler.TournamentSnapshotHandler;
+import com.tournamentpredictor.service.simulation.SimulationHandler;
 import com.tournamentpredictor.service.mapper.DisagreeMapMapper;
 import com.tournamentpredictor.service.util.CsvHelper;
 import com.tournamentpredictor.service.util.ConsoleReporter;
 import com.tournamentpredictor.service.util.DisplayBuilder;
 import com.tournamentpredictor.service.util.EloCalculator;
+import com.tournamentpredictor.service.util.ExpectedGoalsCalculator;
 import com.tournamentpredictor.service.util.PathCalculator;
 import com.tournamentpredictor.service.util.PathFatigueCalculator;
 import com.tournamentpredictor.service.util.PredictionScorer;
@@ -45,6 +47,7 @@ public class MatchResolver {
     private final EloRefreshHandler eloRefreshHandler;
     private final TournamentSnapshotHandler tournamentSnapshotHandler;
     private final StartHandler startHandler;
+    private final SimulationHandler simulationHandler;
     @Autowired
     public MatchResolver(ConsoleReporter consoleReporter, PredictionConfig predictionConfig) {
         this(new CsvLoader().withQualYears(predictionConfig.getQualFormSinceYear(), predictionConfig.getQualFormUntilYear()), consoleReporter, predictionConfig);
@@ -108,6 +111,7 @@ public class MatchResolver {
         this.startHandler = config != null
                 ? new StartHandler(loader, projectRoot, csvHelper, config)
                 : new StartHandler(loader, projectRoot, csvHelper);
+        this.simulationHandler = new SimulationHandler(loader, projectRoot, new ExpectedGoalsCalculator(), eloCalculator, pathFatigueCalculator, SimulationHandler.DEFAULT_RUNS, SimulationHandler.DEFAULT_SEED);
     }
 
     public void resolveAndWriteLast32(String tournament) throws IOException {
@@ -153,6 +157,11 @@ public class MatchResolver {
             finalHandler.handle(tournament);
             return;
         }
+        if (mode.equalsIgnoreCase("simulate")) {
+            requireTournament(mode, tournament);
+            simulationHandler.handle(tournament);
+            return;
+        }
         if (mode.equalsIgnoreCase("elo-refresh") || mode.equalsIgnoreCase("elo")) {
             eloRefreshHandler.handle();
             return;
@@ -165,7 +174,7 @@ public class MatchResolver {
             tournamentSnapshotHandler.handle(tournament);
             return;
         }
-        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, elo-refresh, snapshot-refresh");
+        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, simulate, elo-refresh, snapshot-refresh");
     }
 
     private void requireTournament(String mode, String tournament) throws IOException {

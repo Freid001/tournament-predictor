@@ -39,7 +39,8 @@ import java.net.URI;
                 "  last_16   Score last_16 predictions, generate last_8 matchups",
                 "  last_8    Score last_8 predictions, generate last_4 matchups",
                 "  last_4    Score last_4 predictions, generate final matchup",
-                "  final     Score final predictions"
+                "  final     Score final predictions",
+                "  simulate  Simulate Last 32 onward and write simulation_last_32.csv"
         }
 )
 @Component

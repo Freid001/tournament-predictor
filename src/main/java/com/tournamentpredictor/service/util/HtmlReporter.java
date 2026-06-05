@@ -537,11 +537,9 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("<div class=\"px-3 py-2\" style=\"background:#f8f9fa;border-bottom:1px solid #dee2e6\">");
 
         if (b1 != null || b2 != null) {
+            appendExpectedGoalsPanel(html, team1, b1, row.length > 15 ? row[15] : "", team2, b2, row.length > 16 ? row[16] : "");
             html.append("<div class=\"row g-3 mb-2 w-100 align-items-start\">");
             appendTeamEloBreakdown(html, team1, b1, row.length > 15 ? row[15] : "");
-            html.append("<div class=\"col-auto d-flex align-items-center justify-content-center px-1\">")
-                .append("<span class=\"fw-bold text-muted small\">vs</span>")
-                .append("</div>");
             appendTeamEloBreakdown(html, team2, b2, row.length > 16 ? row[16] : "");
             html.append("</div>");
 
@@ -558,11 +556,114 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("</div></td></tr>");
     }
 
+    private static void appendExpectedGoalsPanel(StringBuilder html, String team1, EloBreakdown b1, String originSlot1,
+                                                 String team2, EloBreakdown b2, String originSlot2) {
+        if (b1 == null || b2 == null) {
+            return;
+        }
+        ExpectedGoalsCalculator.Projection projection = new ExpectedGoalsCalculator()
+                .project(team1, team2, b1.totalElo, b2.totalElo);
+        html.append("<div class=\"border rounded bg-white mb-2 p-2\">");
+        html.append("<div class=\"text-muted small fw-semibold mb-2\">Score model</div>");
+        html.append("<div class=\"row g-2 align-items-stretch text-center\">");
+        appendScoreModelTeamColumn(html, team1, b1, originSlot1, projection.team1ExpectedGoals(),
+                projection.team1WinPct(), projection.team1AdvancePct());
+        html.append("<div class=\"col-12 col-lg-2 d-flex flex-lg-column justify-content-center align-items-center gap-2 small\">");
+        html.append("<span class=\"badge text-bg-light border\">Most likely 90-min score ")
+                .append(escapeHtml(projection.mostLikelyScoreText()))
+                .append("</span>");
+        html.append("<span class=\"text-muted\">Draw ").append(projection.drawPct()).append("%</span>");
+        html.append("</div>");
+        appendScoreModelTeamColumn(html, team2, b2, originSlot2, projection.team2ExpectedGoals(),
+                projection.team2WinPct(), projection.team2AdvancePct());
+        html.append("</div>");
+        html.append("<div class=\"text-muted mt-2\" style=\"font-size:0.72rem\">")
+                .append("Score model preview. Match picks still use the existing Elo winner rule.")
+                .append("</div>");
+        html.append("</div>");
+    }
+
+    private static void appendScoreModelTeamColumn(StringBuilder html, String team, EloBreakdown breakdown, String originSlot,
+                                                   double expectedGoals, int winPct, int advancePct) {
+        html.append("<div class=\"col-12 col-lg-5\">");
+        html.append("<div class=\"h-100 border rounded bg-light-subtle p-2\">");
+        html.append("<div class=\"fs-4 mb-1\">").append(flagHtml(team)).append("</div>");
+        html.append("<div class=\"fw-semibold mb-2\">").append(escapeHtml(team)).append("</div>");
+        html.append("<div class=\"row g-1 small\">");
+        appendScoreModelStat(html, "xG", String.format(java.util.Locale.ROOT, "%.2f", expectedGoals));
+        appendScoreModelStat(html, "90-min W", winPct + "%");
+        appendScoreModelStat(html, "Advance", advancePct + "%");
+        html.append("</div>");
+        appendScoreModelTournamentPath(html, breakdown, originSlot);
+        html.append("</div>");
+        html.append("</div>");
+    }
+
+    private static void appendScoreModelTournamentPath(StringBuilder html, EloBreakdown b, String originSlot) {
+        if (b == null || (b.pathFatigueLabel.isEmpty() && b.pathOpponent.isEmpty()
+                && (originSlot == null || originSlot.isBlank()))) {
+            return;
+        }
+        String badgeClass = switch (b.pathFatigueLabel) {
+            case "Very Easy", "Easy" -> "bg-success";
+            case "Hard", "Very Hard" -> "bg-danger";
+            default -> "bg-secondary";
+        };
+        html.append("<div class=\"border-top mt-2 pt-2\">");
+        html.append("<div class=\"text-muted\" style=\"font-size:0.68rem\">Tournament Path</div>");
+        if (!b.pathOpponent.isEmpty() || (originSlot != null && !originSlot.isBlank())) {
+            String[] segments = b.pathOpponent.isEmpty() ? new String[0] : b.pathOpponent.split(" > ");
+            html.append("<div class=\"small\">");
+            boolean hasPathItem = false;
+            if (originSlot != null && !originSlot.isBlank()) {
+                html.append("<span class='text-muted fw-semibold'>").append(escapeHtml(originSlot)).append("</span>");
+                hasPathItem = true;
+            }
+            for (String segment : segments) {
+                if ("G".equals(pathFatigueSegmentStage(segment))) continue;
+                String name = pathFatigueSegmentName(segment);
+                if (name.isEmpty()) continue;
+                if (hasPathItem) html.append(" <span class='text-muted'>›</span> ");
+                html.append(flagHtml(name)).append(escapeHtml(name));
+                hasPathItem = true;
+            }
+            html.append("</div>");
+        }
+        if (!b.pathFatigueLabel.isEmpty()) {
+            html.append("<span class=\"badge ").append(badgeClass).append(" fw-normal mt-1\" style=\"font-size:0.7rem\">")
+                    .append(escapeHtml(b.pathFatigueLabel)).append("</span>");
+        }
+        html.append("</div>");
+    }
+
+    private static void appendScoreModelStat(StringBuilder html, String label, String value) {
+        html.append("<div class=\"col-4\">")
+                .append("<div class=\"text-muted\" style=\"font-size:0.68rem\">")
+                .append(escapeHtml(label))
+                .append("</div>")
+                .append("<div class=\"fw-semibold\">")
+                .append(escapeHtml(value))
+                .append("</div>")
+                .append("</div>");
+    }
+
+    private static void appendFormValueWithCircles(StringBuilder html, String value, List<String[]> results, String teamName) {
+        html.append("<span class=\"d-inline-flex align-items-center justify-content-end gap-2 flex-wrap\">");
+        if (!results.isEmpty()) {
+            html.append("<span class='d-inline-flex align-items-center gap-1'>");
+            appendFormCircles(html, results, teamName);
+            html.append("</span>");
+        }
+        html.append("<span>").append(escapeHtml(value)).append("</span>");
+        html.append("</span>");
+    }
+
     private static void appendFormCircles(StringBuilder html, List<String[]> results, String teamName) {
         for (String[] entry : results) {
             String result   = entry[0];
             String opponent = entry.length > 1 ? entry[1] : "";
             String score    = entry.length > 2 ? entry[2] : "";
+            String contribution = entry.length > 3 ? entry[3] : "";
             String color = switch (result) {
                 case "W" -> "#198754";
                 case "D" -> "#adb5bd";
@@ -571,6 +672,9 @@ public class HtmlReporter extends ConsoleReporter {
             String tooltipHtml = flagHtml(teamName) + escapeHtml(teamName)
                     + " vs " + flagHtml(opponent) + escapeHtml(opponent)
                     + "<br>" + escapeHtml(score);
+            if (!contribution.isBlank()) {
+                tooltipHtml += "<br>ELO " + signedEloText(parseIntOrZero(contribution));
+            }
             html.append("<span data-bs-toggle='tooltip' data-bs-html='true' data-bs-title='")
                 .append(tooltipHtml.replace("'", "&#39;"))
                 .append("' style=\"display:inline-block;width:13px;height:13px;border-radius:50%;background:")
@@ -580,7 +684,7 @@ public class HtmlReporter extends ConsoleReporter {
 
     private static void appendTeamEloBreakdown(StringBuilder html, String teamName, EloBreakdown b, String originSlot) {
         html.append("<div class=\"col\">")
-            .append(buildTeamBreakdownHtml(teamName, b, originSlot))
+            .append(buildTeamBreakdownHtml(teamName, b, originSlot, false, false))
             .append("</div>");
     }
 
@@ -595,21 +699,27 @@ public class HtmlReporter extends ConsoleReporter {
     }
 
     public static String buildTeamBreakdownHtml(String teamName, EloBreakdown b, String originSlot) {
+        return buildTeamBreakdownHtml(teamName, b, originSlot, true, true);
+    }
+
+    private static String buildTeamBreakdownHtml(String teamName, EloBreakdown b, String originSlot,
+                                                 boolean showHeader, boolean showTournamentPath) {
         StringBuilder sb = new StringBuilder();
-        // Flag + name header
-        sb.append("<div class=\"text-center mb-2 fs-6\">")
-          .append(flagHtml(teamName))
-          .append("<strong>").append(escapeHtml(teamName)).append("</strong>")
-          .append("</div>");
+        if (showHeader) {
+            sb.append("<div class=\"text-center mb-2 fs-6\">")
+              .append(flagHtml(teamName))
+              .append("<strong>").append(escapeHtml(teamName)).append("</strong>")
+              .append("</div>");
+        }
         // Tournament path — shown ABOVE qualifiers, only for knockout rounds
-        if (b != null && !b.pathFatigueLabel.isEmpty()) {
+        if (showTournamentPath && b != null && !b.pathFatigueLabel.isEmpty()) {
             String badgeClass = switch (b.pathFatigueLabel) {
                 case "Very Easy", "Easy" -> "bg-success";
                 case "Hard", "Very Hard" -> "bg-danger";
                 default -> "bg-secondary";
             };
             sb.append("<div class=\"text-center mb-1\">");
-            sb.append("<span class=\"text-muted\" style=\"font-size:0.65rem\">tournament path</span><br>");
+            sb.append("<span class=\"text-muted\" style=\"font-size:0.65rem\">Tournament Path</span><br>");
             if (!b.pathOpponent.isEmpty() || (originSlot != null && !originSlot.isBlank())) {
                 String[] segments = b.pathOpponent.isEmpty() ? new String[0] : b.pathOpponent.split(" > ");
                 sb.append("<span style=\"font-size:0.75rem\">");
@@ -632,34 +742,17 @@ public class HtmlReporter extends ConsoleReporter {
               .append(escapeHtml(b.pathFatigueLabel)).append(" ")
               .append(signedEloSpan(b.pathFatigueAdjustment)).append("</span>");
             sb.append("</div>");
-        } else if (b != null) {
+        } else if (showTournamentPath && b != null) {
             sb.append("<div class=\"mb-1\"></div>");
         }
-        // Qual form circles — always 2 divs so ELO table aligns consistently
-        if (b != null && !b.qualResults.isEmpty()) {
-            sb.append("<div class=\"text-center mb-1 text-muted\" style=\"font-size:0.65rem\">qualifiers</div>");
-            sb.append("<div class=\"text-center mb-1\">");
-            appendFormCircles(sb, b.qualResults, teamName);
-            sb.append("</div>");
-        } else if (b != null && b.isHost) {
-            sb.append("<div class=\"text-center mb-1 text-muted\" style=\"font-size:0.65rem\">qualifiers</div>");
-            sb.append("<div class=\"text-center mb-1 text-muted small fst-italic\">Host — no qualifiers</div>");
-        } else if (b != null) {
-            sb.append("<div class=\"mb-1\"></div><div class=\"mb-1\"></div>");
-        }
-        // Friendly form circles
-        if (b != null && !b.friendlyResults.isEmpty()) {
-            sb.append("<div class=\"text-center text-muted mb-1\" style=\"font-size:0.65rem\">friendlies</div>");
-            sb.append("<div class=\"text-center mb-2\">");
-            appendFormCircles(sb, b.friendlyResults, teamName);
-            sb.append("</div>");
-        } else if (b != null) {
-            sb.append("<div class=\"mb-2\"></div>");
-        }
         if (b != null) {
-            sb.append("<table class=\"table table-sm table-bordered mb-0\" style=\"background:#fff\">");
+            sb.append("<div class=\"border rounded bg-white overflow-hidden shadow-sm\">");
+            sb.append("<div class=\"d-flex justify-content-between align-items-center px-2 py-1 border-bottom bg-light\">");
+            sb.append("<span class=\"text-muted small fw-semibold\">ELO calculation</span>");
+            sb.append("<span class=\"small text-muted\">Base <span class=\"fw-semibold text-body\">").append(b.baseElo).append("</span></span>");
+            sb.append("</div>");
+            sb.append("<table class=\"table table-sm mb-0 align-middle\">");
             sb.append("<tbody>");
-            sb.append("<tr><td class=\"text-muted small\">Base ELO</td><td class=\"text-end fw-bold\">").append(b.baseElo).append("</td></tr>");
             // Path difficulty first
             if (b.pathFatigueAdjustment != 0 || !b.pathOpponent.isEmpty()) {
                 String[] pathSegs = b.pathOpponent.isEmpty() ? new String[0] : b.pathOpponent.split(" > ");
@@ -681,85 +774,104 @@ public class HtmlReporter extends ConsoleReporter {
                     breakdownHtml.append("<span class='fw-semibold'>KO:</span> ").append(knockoutHtml);
                 }
                 sb.append("<tr class=\"").append(b.pathFatigueAdjustment > 0 ? "table-success" : "table-warning").append("\">");
-                sb.append("<td class=\"small\">😴 Path Fatigue</td>");
-                sb.append("<td class=\"text-end fw-bold ").append(b.pathFatigueAdjustment > 0 ? "text-success" : "text-warning").append("\">")
-                  .append(signedEloText(b.pathFatigueAdjustment));
-                if (breakdownHtml.length() > 0)
-                    sb.append("<br><span class='fw-normal text-muted' style='font-size:0.72rem'>").append(breakdownHtml)
-                      .append("</span>");
+                sb.append("<td class=\"small text-nowrap border-end-0\" style=\"width:48%\">😴 Path Fatigue</td>");
+                sb.append("<td class=\"text-end fw-bold border-start-0 ").append(b.pathFatigueAdjustment > 0 ? "text-success" : "text-warning").append("\">");
+                if (breakdownHtml.length() > 0) {
+                    sb.append("<span class=\"d-inline-flex align-items-center justify-content-end gap-2 flex-wrap\">");
+                    appendPathFatigueChips(sb, pathSegs);
+                    sb.append("<span>").append(signedEloText(b.pathFatigueAdjustment)).append("</span>");
+                    sb.append("</span>");
+                } else {
+                    sb.append(signedEloText(b.pathFatigueAdjustment));
+                }
                 sb.append("</td></tr>");
             }
             // Qual Form second
             if (b.qualBonus != 0) {
                 sb.append("<tr class=\"").append(b.qualBonus > 0 ? "table-success" : "table-danger").append("\">");
-                sb.append("<td class=\"small\">⚔️ Qualification Form</td>");
-                sb.append("<td class=\"text-end fw-bold ").append(b.qualBonus > 0 ? "text-success" : "text-danger").append("\">")
-                  .append(signedEloText(b.qualBonus));
-                if (!b.qualResults.isEmpty()) {
-                    sb.append("<br><span class='fw-normal text-muted' style='font-size:0.72rem'>");
-                    for (int i = 0; i < b.qualResults.size(); i++) {
-                        if (i > 0) sb.append(", ");
-                        String opp = b.qualResults.get(i)[1];
-                        int cv = Integer.parseInt(b.qualResults.get(i)[3]);
-                        sb.append(flagHtml(opp)).append(signedEloSpan(cv));
-                    }
-                    sb.append("</span>");
-                }
+                sb.append("<td class=\"small text-nowrap border-end-0\" style=\"width:48%\">⚔️ Qualification Form</td>");
+                sb.append("<td class=\"text-end fw-bold border-start-0 ").append(b.qualBonus > 0 ? "text-success" : "text-danger").append("\" style=\"width:52%\">");
+                appendFormValueWithCircles(sb, signedEloText(b.qualBonus), b.qualResults, teamName);
                 sb.append("</td></tr>");
             }
             // Friendly Form third
             if (b.preTournamentBonus != 0) {
                 sb.append("<tr class=\"").append(b.preTournamentBonus > 0 ? "table-success" : "table-danger").append("\">");
-                sb.append("<td class=\"small\">📈 Friendly Form</td>");
-                sb.append("<td class=\"text-end fw-bold ").append(b.preTournamentBonus > 0 ? "text-success" : "text-danger").append("\">")
-                  .append(signedEloText(b.preTournamentBonus));
-                if (!b.friendlyResults.isEmpty()) {
-                    sb.append("<br><span class='fw-normal text-muted' style='font-size:0.72rem'>");
-                    for (int i = 0; i < b.friendlyResults.size(); i++) {
-                        if (i > 0) sb.append(", ");
-                        String opp = b.friendlyResults.get(i)[1];
-                        int cv = Integer.parseInt(b.friendlyResults.get(i)[3]);
-                        sb.append(flagHtml(opp)).append(signedEloSpan(cv));
-                    }
-                    sb.append("</span>");
-                }
+                sb.append("<td class=\"small text-nowrap border-end-0\" style=\"width:48%\">📈 Friendly Form</td>");
+                sb.append("<td class=\"text-end fw-bold border-start-0 ").append(b.preTournamentBonus > 0 ? "text-success" : "text-danger").append("\" style=\"width:52%\">");
+                appendFormValueWithCircles(sb, signedEloText(b.preTournamentBonus), b.friendlyResults, teamName);
                 sb.append("</td></tr>");
             }
             // Rest of squad/situational signals
             if (b.homeBonus != 0)
-                sb.append("<tr class=\"table-success\"><td class=\"small\">🏠 Home Advantage</td><td class=\"text-end fw-bold text-success\">+").append(b.homeBonus).append("</td></tr>");
+                sb.append("<tr class=\"table-success\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🏠 Home Advantage</td><td class=\"text-end fw-bold border-start-0 text-success\" style=\"width:52%\">+").append(b.homeBonus).append("</td></tr>");
             if (b.squadAgePenalty != 0)
-                sb.append("<tr class=\"table-warning\"><td class=\"small\">👶 Squad Age</td><td class=\"text-end fw-bold text-warning\">−").append(b.squadAgePenalty)
+                sb.append("<tr class=\"table-warning\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">👶 Squad Age</td><td class=\"text-end fw-bold border-start-0 text-warning\" style=\"width:52%\">−").append(b.squadAgePenalty)
                   .append(b.ageNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.ageNotes) + "</span>")
                   .append("</td></tr>");
             if (b.squadCohesionPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small\">🤝 Squad Cohesion</td><td class=\"text-end fw-bold text-danger\">−").append(b.squadCohesionPenalty)
+                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🤝 Squad Cohesion</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.squadCohesionPenalty)
                   .append(b.cohesionNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.cohesionNotes) + "</span>")
                   .append("</td></tr>");
             if (b.squadDepthPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small\">⬇️ Bench Depth</td><td class=\"text-end fw-bold text-danger\">−").append(b.squadDepthPenalty)
+                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">⬇️ Bench Depth</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.squadDepthPenalty)
                   .append(b.depthNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.depthNotes) + "</span>")
                   .append("</td></tr>");
             if (b.squadQualityBonus != 0)
-                sb.append("<tr class=\"table-success\"><td class=\"small\">⭐ Squad Quality</td><td class=\"text-end fw-bold text-success\">+").append(b.squadQualityBonus)
+                sb.append("<tr class=\"table-success\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">⭐ Squad Quality</td><td class=\"text-end fw-bold border-start-0 text-success\" style=\"width:52%\">+").append(b.squadQualityBonus)
                   .append(b.qualityNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.qualityNotes) + "</span>")
                   .append("</td></tr>");
             if (b.dropoutPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small\">👤 Squad Omissions</td><td class=\"text-end fw-bold text-danger\">−").append(b.dropoutPenalty)
+                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">👤 Squad Omissions</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.dropoutPenalty)
                   .append(b.dropoutNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.dropoutNotes) + "</span>")
                   .append("</td></tr>");
             if (b.injuryPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small\">🤕 Injuries</td><td class=\"text-end fw-bold text-danger\">−").append(b.injuryPenalty)
+                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🤕 Injuries</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.injuryPenalty)
                   .append(b.injuryNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.injuryNotes) + "</span>")
                   .append("</td></tr>");
             if (b.heatBonus != 0)
-                sb.append("<tr class=\"table-warning\"><td class=\"small\">🔥 Heat Advantage</td><td class=\"text-end fw-bold\">+").append(b.heatBonus).append("</td></tr>");
-            sb.append("<tr class=\"table-primary\"><td class=\"fw-bold\">Adjusted ELO</td><td class=\"text-end fw-bold\">").append(b.totalElo).append("</td></tr>");
-            sb.append("</tbody></table>");
+                sb.append("<tr class=\"table-warning\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🔥 Heat Advantage</td><td class=\"text-end fw-bold border-start-0\" style=\"width:52%\">+").append(b.heatBonus).append("</td></tr>");
+            sb.append("<tr class=\"border-top table-light\"><td class=\"fw-bold text-nowrap border-end-0\" style=\"width:48%\">Adjusted ELO</td><td class=\"text-end fw-bold border-start-0 fs-6\" style=\"width:52%\">").append(b.totalElo).append("</td></tr>");
+            sb.append("</tbody></table></div>");
         } else {
             sb.append("<div class=\"text-muted small fst-italic\">No breakdown data available.</div>");
         }
         return sb.toString();
+    }
+
+    private static void appendPathFatigueChips(StringBuilder html, String[] segments) {
+        html.append("<span class='d-inline-flex align-items-center gap-1 flex-wrap justify-content-end'>");
+        for (String segment : segments) {
+            String chip = pathFatigueChipHtml(segment);
+            if (!chip.isEmpty()) html.append(chip);
+        }
+        html.append("</span>");
+    }
+
+    private static String pathFatigueChipHtml(String segment) {
+        String name = pathFatigueSegmentName(segment);
+        if (name.isEmpty()) return "";
+        String value = pathFatigueSegmentValue(segment);
+        String stage = pathFatigueSegmentStage(segment);
+        String tooltip = escapeHtml(name);
+        if (!value.isEmpty()) {
+            tooltip += "<br>" + ("G".equals(stage) ? "Group" : "Knockout") + " ELO " + signedEloText(parseIntOrZero(value));
+        }
+        String label = flagHtml(name);
+        if (label.isEmpty()) label = escapeHtml(name);
+        return "<span data-bs-toggle='tooltip' data-bs-html='true' data-bs-title='"
+                + tooltip.replace("'", "&#39;")
+                + "' class='d-inline-flex align-items-center justify-content-center border rounded px-1 bg-white'"
+                + " style='min-width:24px;height:18px;font-size:0.72rem;cursor:default'>"
+                + label + "</span>";
+    }
+
+    private static String pathFatigueSegmentValue(String segment) {
+        String raw = segment == null ? "" : segment.trim();
+        int marker = raw.indexOf('|');
+        if (marker > 0) raw = raw.substring(marker + 1).trim();
+        int colon = raw.lastIndexOf(':');
+        return colon > 0 && colon < raw.length() - 1 ? raw.substring(colon + 1).trim() : "";
     }
 
     private static String pathFatigueSegmentStage(String segment) {

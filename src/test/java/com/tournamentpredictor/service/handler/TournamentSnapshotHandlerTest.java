@@ -62,51 +62,41 @@ class TournamentSnapshotHandlerTest {
     private void writeStartCsv(String tournament, String... teams) throws IOException {
         Path dir = root.resolve("data/predictions").resolve(tournament);
         Files.createDirectories(dir);
-        StringBuilder csv = new StringBuilder("group,team,host,injury_impact
-");
+        StringBuilder csv = new StringBuilder("group,team,host,injury_impact\n");
         char group = 'A';
         for (String team : teams) {
-            csv.append(group).append(',').append(team).append(",no,0
-");
+            csv.append(group).append(',').append(team).append(",no,0\n");
         }
         Files.writeString(dir.resolve("start.csv"), csv.toString());
     }
 
     private void writeTournamentProperties(String tournament) throws IOException {
         Path dir = root.resolve("data/predictions").resolve(tournament);
-        Files.writeString(dir.resolve("tournament.properties"),
-                "qual.form.since.year=2024
-" +
-                "qual.form.until.year=2025
-" +
-                "pre.tournament.form.since.year=2026
-" +
-                "pre.tournament.form.until.year=2026
-");
+        Files.writeString(dir.resolve("tournament.properties"), """
+                qual.form.since.year=2024
+                qual.form.until.year=2025
+                pre.tournament.form.since.year=2026
+                pre.tournament.form.until.year=2026
+                """);
     }
 
     private void writeCurrentWorldCsv() throws IOException {
         Path dir = root.resolve("data/elo/current");
         Files.createDirectories(dir);
-        Files.writeString(dir.resolve("world.csv"),
-                "rank,team_code,team_name,rating
-" +
-                "1,EN,England,2000
-" +
-                "2,US,USA,1800
-" +
-                "3,DE,Germany,1900
-");
+        Files.writeString(dir.resolve("world.csv"), """
+                rank,team_code,team_name,rating
+                1,EN,England,2000
+                2,US,USA,1800
+                3,DE,Germany,1900
+                """);
     }
 
     private void writeHistory(String team, String... rows) throws IOException {
         Path dir = root.resolve("data/elo/current/history");
         Files.createDirectories(dir);
-        StringBuilder tsv = new StringBuilder("year	month	day	home_team	away_team	home_score	away_score	match_type
-");
+        StringBuilder tsv = new StringBuilder("year\tmonth\tday\thome_team\taway_team\thome_score\taway_score\tmatch_type\n");
         for (String row : rows) {
-            tsv.append(row).append('
-');
+            tsv.append(row).append("\n");
         }
         Files.writeString(dir.resolve(team + ".tsv"), tsv.toString());
     }

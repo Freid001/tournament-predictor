@@ -5,6 +5,7 @@ import com.tournamentpredictor.service.MatchResolver;
 import com.tournamentpredictor.service.util.EloBreakdown;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.HtmlReporter;
+import com.tournamentpredictor.web.view.SimulationResultsRenderer;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -24,6 +25,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import com.tournamentpredictor.loader.CsvLoader;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -33,15 +37,16 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
 public class WebController {
-    private static final Set<String> RUN_MODES = Set.of("snapshot-refresh", "start", "groups", "last_32", "last_16", "last_8", "last_4", "final");
-    private static final Set<String> ROUND_NAMES = Set.of("groups", "groups_match", "last_32", "last_32_match", "last_16", "last_16_match", "last_8", "last_8_match", "last_4", "last_4_match", "final", "final_match");
-    private static final Set<String> RESET_STEPS = Set.of("groups", "last_32", "last_16", "last_8", "last_4", "final");
+    private static final Set<String> RUN_MODES = Set.of("snapshot-refresh", "start", "groups", "last_32", "last_16", "last_8", "last_4", "final", "simulate");
+    private static final Set<String> ROUND_NAMES = Set.of("groups", "groups_match", "last_32", "last_32_match", "last_16", "last_16_match", "last_8", "last_8_match", "last_4", "last_4_match", "final", "final_match", "simulation");
+    private static final Set<String> RESET_STEPS = Set.of("groups", "last_32", "last_16", "last_8", "last_4", "final", "simulation");
     private static final CSVFormat CSV = CSVFormat.DEFAULT.builder()
             .setHeader()
             .setSkipHeaderRecord(true)
@@ -552,6 +557,12 @@ public class WebController {
             model.addAttribute("groupedRows", groupedRows);
             return "view-round";
         } else {
+            if ("simulation".equals(safeRound)) {
+                model.addAttribute("output", SimulationResultsRenderer.render(csvData.rows(), readCsv(predictionFile(safeTournament, "simulation_paths_last_32.csv")).rows()));
+                model.addAttribute("mode", displayViewMode(safeRound));
+                return "result";
+            }
+
             HtmlReporter reporter = new HtmlReporter().withConfig(predictionConfig);
             List<String> lines = java.nio.file.Files.readAllLines(file);
             CsvLoader csvLoader = new CsvLoader(projectRoot).withConfig(predictionConfig);
@@ -612,14 +623,16 @@ public class WebController {
         boolean last4MatchExists = Files.exists(matchupFile(tournament, "last_4.csv"));
         boolean finalPredExists = Files.exists(predictionFile(tournament, "final.csv"));
         boolean finalMatchExists = Files.exists(matchupFile(tournament, "final.csv"));
+        boolean simulationExists = Files.exists(predictionFile(tournament, "simulation_last_32.csv"));
 
         List<StageView> stages = new ArrayList<>();
-        stages.add(new StageView("Tournament Snapshot", "Freeze ELO ratings and recent history for only this tournament's teams.",
+        stages.add(new StageView("Tournament Snapshot", snapshotDescription(tournament, snapshotExists),
                 snapshotExists ? new StageStatus("❄", "Frozen", "info") : status(false, startExists),
-                startExists, "snapshot-refresh", "Refresh", "btn-warning",
+                startExists, "snapshot-refresh", "Refresh", "btn-outline-secondary",
                 false, null,
                 false, null,
                 false, null,
+                null,
                 false, null));
         stages.add(new StageView("Group Setup", "Edit teams, host status, injury and heat levels. Rankings are generated automatically on save.",
                 status(groupsExists, startExists),
@@ -663,7 +676,47 @@ public class WebController {
                 finalPredExists, "/edit/final?tournament=" + tournament,
                 finalMatchExists, "/view/final_match?tournament=" + tournament,
                 finalPredExists || finalMatchExists, "/reset/final?tournament=" + tournament));
+        stages.add(new StageView("Monte Carlo", "Simulate Last 32 onward from the current bracket and show reach-round probabilities.",
+                status(simulationExists, last32PredExists && !simulationExists),
+                last32PredExists && !simulationExists, "simulate", "Run", "btn-primary",
+                false, null,
+                simulationExists, "/view/simulation?tournament=" + tournament,
+                false, null,
+                null,
+                simulationExists, "/reset/simulation?tournament=" + tournament));
         return stages;
+    }
+
+    private String snapshotDescription(String tournament, boolean snapshotExists) {
+        String base = "Freeze ELO ratings and recent history for only this tournament's teams.";
+        if (!snapshotExists) {
+            return base;
+        }
+        Path metadataPath = projectRoot.resolve("data").resolve("elo").resolve("snapshots")
+                .resolve(tournament).resolve("metadata.properties");
+        if (!Files.exists(metadataPath)) {
+            return base;
+        }
+        try (Reader reader = Files.newBufferedReader(metadataPath)) {
+            Properties metadata = new Properties();
+            metadata.load(reader);
+            String createdAt = metadata.getProperty("created_at", "");
+            String teamCount = metadata.getProperty("team_count", "");
+            String historyCount = metadata.getProperty("history_file_count", "");
+            if (createdAt.isBlank()) {
+                return base;
+            }
+            String refreshed = DateTimeFormatter.ofPattern("d MMM yyyy, HH:mm")
+                    .withZone(ZoneId.systemDefault())
+                    .format(Instant.parse(createdAt));
+            String counts = "";
+            if (!teamCount.isBlank() && !historyCount.isBlank()) {
+                counts = " (" + teamCount + " teams, " + historyCount + " history files)";
+            }
+            return base + " Data files last refreshed " + refreshed + counts + ".";
+        } catch (Exception e) {
+            return base;
+        }
     }
 
     private StageStatus status(boolean complete, boolean ready) {
@@ -701,7 +754,9 @@ public class WebController {
                 predictionFile(tournament, "last_4.csv"),
                 matchupFile(tournament, "last_4.csv"),
                 predictionFile(tournament, "final.csv"),
-                matchupFile(tournament, "final.csv")
+                matchupFile(tournament, "final.csv"),
+                predictionFile(tournament, "simulation_last_32.csv"),
+                predictionFile(tournament, "simulation_paths_last_32.csv")
         ));
     }
 
@@ -716,7 +771,9 @@ public class WebController {
                 predictionFile(tournament, "last_4.csv"),
                 matchupFile(tournament, "last_4.csv"),
                 predictionFile(tournament, "final.csv"),
-                matchupFile(tournament, "final.csv")
+                matchupFile(tournament, "final.csv"),
+                predictionFile(tournament, "simulation_last_32.csv"),
+                predictionFile(tournament, "simulation_paths_last_32.csv")
         ));
     }
 
@@ -760,10 +817,17 @@ public class WebController {
                 return;
             }
         }
+        paths.add(predictionFile(tournament, "simulation_last_32.csv"));
+        paths.add(predictionFile(tournament, "simulation_paths_last_32.csv"));
         deletePaths(paths);
     }
 
     private void cascadeDeleteForReset(String tournament, String step) throws IOException {
+        if ("simulation".equals(step)) {
+            deletePaths(List.of(predictionFile(tournament, "simulation_last_32.csv"),
+                predictionFile(tournament, "simulation_paths_last_32.csv")));
+            return;
+        }
         if ("groups".equals(step)) {
             deletePaths(List.of(
                     predictionFile(tournament, "groups.csv"),
@@ -776,7 +840,9 @@ public class WebController {
                     predictionFile(tournament, "last_4.csv"),
                     matchupFile(tournament, "last_4.csv"),
                     predictionFile(tournament, "final.csv"),
-                    matchupFile(tournament, "final.csv")
+                    matchupFile(tournament, "final.csv"),
+                    predictionFile(tournament, "simulation_last_32.csv"),
+                predictionFile(tournament, "simulation_paths_last_32.csv")
             ));
             return;
         }
@@ -860,6 +926,7 @@ public class WebController {
             case "last_8" -> matchupFile(tournament, "last_8.csv");
             case "last_4" -> matchupFile(tournament, "last_4.csv");
             case "final" -> matchupFile(tournament, "final.csv");
+            case "simulate" -> predictionFile(tournament, "simulation_last_32.csv");
             default -> null;
         };
     }
@@ -878,12 +945,13 @@ public class WebController {
             case "last_4_match" -> matchupFile(tournament, "last_4.csv");
             case "final" -> predictionFile(tournament, "final.csv");
             case "final_match" -> matchupFile(tournament, "final.csv");
+            case "simulation" -> predictionFile(tournament, "simulation_last_32.csv");
             default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid round");
         };
     }
 
     private static final List<String> VIEW_ROUND_SEQUENCE = List.of(
-        "start", "groups", "last_32_match", "last_16_match", "last_8_match", "last_4_match", "final_match"
+        "start", "groups", "last_32_match", "last_16_match", "last_8_match", "last_4_match", "final_match", "simulation"
     );
 
     private String nextViewRound(String round) {
@@ -952,10 +1020,12 @@ public class WebController {
         if (Files.exists(matchupFile(tournament, "last_8.csv"))) count++;
         if (Files.exists(matchupFile(tournament, "last_4.csv"))) count++;
         if (Files.exists(matchupFile(tournament, "final.csv"))) count++;
+        if (Files.exists(predictionFile(tournament, "simulation_last_32.csv"))) count++;
         return count;
     }
 
     private String describeCurrentStage(String tournament) {
+        if (Files.exists(predictionFile(tournament, "simulation_last_32.csv"))) return "Monte Carlo complete";
         if (Files.exists(matchupFile(tournament, "final.csv"))) return "Final complete";
         if (Files.exists(matchupFile(tournament, "last_4.csv"))) return "Semi-finals complete";
         if (Files.exists(matchupFile(tournament, "last_8.csv"))) return "Last 8 complete";
@@ -1010,6 +1080,7 @@ public class WebController {
             case "last_8", "last_8_match" -> "Quarter Finals";
             case "last_4", "last_4_match" -> "Semi Finals";
             case "final", "final_match" -> "Final";
+            case "simulate", "simulation" -> "Monte Carlo";
             default -> mode;
         };
     }
@@ -1063,6 +1134,7 @@ public class WebController {
             case "last_8"  -> "redirect:/edit/last_4?tournament=" + tournament;
             case "last_4"  -> "redirect:/edit/final?tournament=" + tournament;
             case "final"   -> "redirect:/view/final_match?tournament=" + tournament;
+            case "simulate" -> "redirect:/view/simulation?tournament=" + tournament;
             default        -> redirectToTournament(tournament);
         };
     }

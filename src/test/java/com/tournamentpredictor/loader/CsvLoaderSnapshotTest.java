@@ -19,11 +19,10 @@ class CsvLoaderSnapshotTest {
     void loadEloForTournament_requiresSnapshotEvenWhenCurrentExists() throws IOException {
         Path current = root.resolve("data/elo/current");
         Files.createDirectories(current);
-        Files.writeString(current.resolve("world.csv"),
-                "rank,team_code,team_name,rating
-" +
-                "1,EN,England,2000
-");
+        Files.writeString(current.resolve("world.csv"), """
+                rank,team_code,team_name,rating
+                1,EN,England,2000
+                """);
 
         IOException error = assertThrows(IOException.class,
                 () -> new CsvLoader(root).loadEloForTournament("test"));
@@ -36,21 +35,18 @@ class CsvLoaderSnapshotTest {
     void tournamentEloAndHistoryUseSnapshotOnly() throws IOException {
         Path current = root.resolve("data/elo/current");
         Files.createDirectories(current.resolve("history"));
-        Files.writeString(current.resolve("world.csv"),
-                "rank,team_code,team_name,rating
-" +
-                "1,EN,England,2000
-");
+        Files.writeString(current.resolve("world.csv"), """
+                rank,team_code,team_name,rating
+                1,EN,England,2000
+                """);
 
         Path snapshot = root.resolve("data/elo/snapshots/test");
         Files.createDirectories(snapshot.resolve("history"));
-        Files.writeString(snapshot.resolve("teams.csv"),
-                "rank,team_code,team_name,rating
-" +
-                "1,EN,England,1900
-");
-        Files.writeString(snapshot.resolve("history/England.tsv"), "header
-");
+        Files.writeString(snapshot.resolve("teams.csv"), """
+                rank,team_code,team_name,rating
+                1,EN,England,1900
+                """);
+        Files.writeString(snapshot.resolve("history/England.tsv"), "header\n");
 
         CsvLoader loader = new CsvLoader(root);
         Map<String, Integer> elo = loader.loadEloForTournament("test");
@@ -63,21 +59,18 @@ class CsvLoaderSnapshotTest {
     void snapshotMetadataOverridesTournamentPropertiesForReplaySettings() throws IOException {
         Path tournamentDir = root.resolve("data/predictions/test");
         Files.createDirectories(tournamentDir);
-        Files.writeString(tournamentDir.resolve("tournament.properties"),
-                "qual.form.since.year=2020
-" +
-                "qual.form.until.year=2021
-");
+        Files.writeString(tournamentDir.resolve("tournament.properties"), """
+                qual.form.since.year=2020
+                qual.form.until.year=2021
+                """);
 
         Path snapshot = root.resolve("data/elo/snapshots/test");
         Files.createDirectories(snapshot);
-        Files.writeString(snapshot.resolve("teams.csv"), "rank,team_code,team_name,rating
-");
-        Files.writeString(snapshot.resolve("metadata.properties"),
-                "qual_form_since=2023
-" +
-                "qual_form_until=2026
-");
+        Files.writeString(snapshot.resolve("teams.csv"), "rank,team_code,team_name,rating\n");
+        Files.writeString(snapshot.resolve("metadata.properties"), """
+                qual_form_since=2023
+                qual_form_until=2026
+                """);
 
         CsvLoader loader = new CsvLoader(root);
 

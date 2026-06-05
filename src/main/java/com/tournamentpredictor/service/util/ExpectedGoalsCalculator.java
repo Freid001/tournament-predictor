@@ -1,0 +1,156 @@
+package com.tournamentpredictor.service.util;
+
+import java.util.Locale;
+
+public class ExpectedGoalsCalculator {
+    private static final double DEFAULT_BASE_TOTAL_GOALS = 2.60;
+    private static final double DEFAULT_GOAL_DIFF_PER_400_ELO = 1.00;
+    private static final double MIN_EXPECTED_GOALS = 0.20;
+    private static final double MAX_EXPECTED_GOALS = 4.50;
+    private static final int MAX_SCORELINE_GOALS = 10;
+
+    private final double eloScaleDivisor;
+    private final double baseTotalGoals;
+    private final double goalDiffPer400Elo;
+
+    public ExpectedGoalsCalculator() {
+        this(400.0, DEFAULT_BASE_TOTAL_GOALS, DEFAULT_GOAL_DIFF_PER_400_ELO);
+    }
+
+    ExpectedGoalsCalculator(double eloScaleDivisor, double baseTotalGoals, double goalDiffPer400Elo) {
+        this.eloScaleDivisor = eloScaleDivisor;
+        this.baseTotalGoals = baseTotalGoals;
+        this.goalDiffPer400Elo = goalDiffPer400Elo;
+    }
+
+    public Projection project(String team1, String team2, int team1Elo, int team2Elo) {
+        double noDrawTeam1WinProbability = eloWinProbability(team1Elo, team2Elo);
+        double eloDiff = team1Elo - team2Elo;
+        double expectedGoalDiff = (eloDiff / 400.0) * goalDiffPer400Elo;
+        double team1ExpectedGoals = clamp((baseTotalGoals + expectedGoalDiff) / 2.0);
+        double team2ExpectedGoals = clamp((baseTotalGoals - expectedGoalDiff) / 2.0);
+
+        ScoreProbability scoreProbability = scoreProbability(team1ExpectedGoals, team2ExpectedGoals);
+        double team1AdvanceProbability = scoreProbability.team1WinProbability
+                + (scoreProbability.drawProbability * noDrawTeam1WinProbability);
+        double team2AdvanceProbability = 1.0 - team1AdvanceProbability;
+
+        String pick = team1AdvanceProbability >= team2AdvanceProbability ? team1 : team2;
+        int advancePct = (int) Math.round(Math.max(team1AdvanceProbability, team2AdvanceProbability) * 100);
+
+        return new Projection(
+                team1,
+                team2,
+                round2(team1ExpectedGoals),
+                round2(team2ExpectedGoals),
+                roundPct(scoreProbability.team1WinProbability),
+                roundPct(scoreProbability.drawProbability),
+                roundPct(scoreProbability.team2WinProbability),
+                roundPct(team1AdvanceProbability),
+                roundPct(team2AdvanceProbability),
+                noDrawTeam1WinProbability,
+                scoreProbability.mostLikelyTeam1Goals,
+                scoreProbability.mostLikelyTeam2Goals,
+                pick,
+                advancePct
+        );
+    }
+
+    private double eloWinProbability(int team1Elo, int team2Elo) {
+        return 1.0 / (1.0 + Math.pow(10.0, (team2Elo - team1Elo) / eloScaleDivisor));
+    }
+
+    private ScoreProbability scoreProbability(double team1ExpectedGoals, double team2ExpectedGoals) {
+        double[] team1GoalProbabilities = poissonProbabilities(team1ExpectedGoals);
+        double[] team2GoalProbabilities = poissonProbabilities(team2ExpectedGoals);
+        double team1WinProbability = 0.0;
+        double drawProbability = 0.0;
+        double team2WinProbability = 0.0;
+        double mostLikelyProbability = -1.0;
+        int mostLikelyTeam1Goals = 0;
+        int mostLikelyTeam2Goals = 0;
+
+        for (int team1Goals = 0; team1Goals <= MAX_SCORELINE_GOALS; team1Goals++) {
+            for (int team2Goals = 0; team2Goals <= MAX_SCORELINE_GOALS; team2Goals++) {
+                double probability = team1GoalProbabilities[team1Goals] * team2GoalProbabilities[team2Goals];
+                if (team1Goals > team2Goals) {
+                    team1WinProbability += probability;
+                } else if (team1Goals == team2Goals) {
+                    drawProbability += probability;
+                } else {
+                    team2WinProbability += probability;
+                }
+                if (probability > mostLikelyProbability) {
+                    mostLikelyProbability = probability;
+                    mostLikelyTeam1Goals = team1Goals;
+                    mostLikelyTeam2Goals = team2Goals;
+                }
+            }
+        }
+
+        double total = team1WinProbability + drawProbability + team2WinProbability;
+        return new ScoreProbability(
+                team1WinProbability / total,
+                drawProbability / total,
+                team2WinProbability / total,
+                mostLikelyTeam1Goals,
+                mostLikelyTeam2Goals
+        );
+    }
+
+    private double[] poissonProbabilities(double lambda) {
+        double[] probabilities = new double[MAX_SCORELINE_GOALS + 1];
+        probabilities[0] = Math.exp(-lambda);
+        for (int goals = 1; goals <= MAX_SCORELINE_GOALS; goals++) {
+            probabilities[goals] = probabilities[goals - 1] * lambda / goals;
+        }
+        return probabilities;
+    }
+
+    private double clamp(double value) {
+        return Math.max(MIN_EXPECTED_GOALS, Math.min(MAX_EXPECTED_GOALS, value));
+    }
+
+    private static double round2(double value) {
+        return Math.round(value * 100.0) / 100.0;
+    }
+
+    private static int roundPct(double value) {
+        return (int) Math.round(value * 100.0);
+    }
+
+    private record ScoreProbability(double team1WinProbability,
+                                    double drawProbability,
+                                    double team2WinProbability,
+                                    int mostLikelyTeam1Goals,
+                                    int mostLikelyTeam2Goals) {
+    }
+
+    public record Projection(String team1,
+                             String team2,
+                             double team1ExpectedGoals,
+                             double team2ExpectedGoals,
+                             int team1WinPct,
+                             int drawPct,
+                             int team2WinPct,
+                             int team1AdvancePct,
+                             int team2AdvancePct,
+                             double noDrawTeam1WinProbability,
+                             int mostLikelyTeam1Goals,
+                             int mostLikelyTeam2Goals,
+                             String pick,
+                             int pickAdvancePct) {
+
+        public String expectedGoalsText() {
+            return formatGoals(team1ExpectedGoals) + " - " + formatGoals(team2ExpectedGoals);
+        }
+
+        public String mostLikelyScoreText() {
+            return mostLikelyTeam1Goals + "-" + mostLikelyTeam2Goals;
+        }
+
+        private static String formatGoals(double goals) {
+            return String.format(Locale.ROOT, "%.2f", goals);
+        }
+    }
+}

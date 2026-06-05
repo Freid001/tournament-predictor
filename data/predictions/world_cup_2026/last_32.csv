@@ -1,33 +1,17 @@
 match_id,team1,team2,path,elo,prediction,do_you_disagree
 M73,A2(South Korea),B2(Canada),predicted,Canada (54%),Canada (54%),
-
 M74,E1(Germany),ABCDF3(Scotland),predicted,Germany (84%),Germany (84%),
-
 M75,F1(Netherlands),C2(Morocco),predicted,Netherlands (60%),Netherlands (60%),
-
 M76,C1(Brazil),F2(Japan),predicted,Japan (54%),Japan (54%),
-
 M77,I1(France),CDFGH3(United States),predicted,France (90%),France (90%),
-
 M78,E2(Ecuador),I2(Norway),predicted,Norway (58%),Norway (58%),
-
 M79,A1(Mexico),CEFHI3(Ivory Coast),predicted,Mexico (80%),Mexico (80%),
-
 M80,L1(England),EHIJK3(Senegal),predicted,England (63%),England (63%),
-
 M81,D1(Turkey),BEFIJ3(Algeria),predicted,Turkey (74%),Turkey (74%),
-
 M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (77%),Belgium (77%),
-
 M83,K2(Colombia),L2(Croatia),predicted,Colombia (56%),Colombia (56%),
-
 M84,H1(Spain),J2(Austria),predicted,Spain (87%),Spain (87%),
-
 M85,B1(Switzerland),EFGIJ3(Egypt),predicted,Switzerland (74%),Switzerland (74%),
-
 M86,J1(Argentina),H2(Uruguay),predicted,Argentina (89%),Argentina (89%),
-
 M87,K1(Portugal),DEIJL3(Panama),predicted,Portugal (84%),Portugal (84%),
-
 M88,D2(Paraguay),G2(Iran),predicted,Paraguay (55%),Paraguay (55%),
-

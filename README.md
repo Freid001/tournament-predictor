@@ -92,6 +92,24 @@ The plus/minus values in this project are **temporary pre-match Elo deltas**, no
 
 `do_you_disagree=yes` manually flips the predicted winner for a matchup.
 
+### Model accuracy and calibration
+
+This is an explainable tournament model, not a fully calibrated market-grade forecasting system yet. It should be useful for ranking teams, exposing why a route is hard, comparing close matchups, and stress-testing bracket assumptions. It should not be treated as a proven edge over bookmaker odds or professional forecasting models.
+
+Compared with stronger public World Cup predictors, this project has three clear gaps:
+
+- It predicts each matchup directly from adjusted Elo, but does not yet convert team strength into expected goals with a Poisson or Dixon-Coles score model.
+- It does not yet run Monte Carlo simulations over the full bracket, so it cannot produce calibrated title, final, semi-final, or group-qualification probabilities.
+- It is not yet backtested against past tournaments or held-out international matches, so the custom signal weights are reasoned and configurable rather than statistically fitted.
+
+The highest-value accuracy upgrades would be:
+
+1. Backtest every signal against past World Cups and recent international matches, then tune weights against log loss or Brier score instead of intuition.
+2. Add a Poisson or Dixon-Coles layer so Elo difference predicts goal distributions, draws, extra time, and penalties more realistically.
+3. Add Monte Carlo tournament simulation for group and knockout paths, including uncertainty around group positions and third-place qualification.
+4. Add external cross-checks such as market odds, xG/xGA, squad market value, rest days, travel distance, and venue/weather by match.
+5. Track prediction calibration in generated outputs so a 70% model pick actually wins about 70% of comparable historical games.
+
 
 ### Group stage adjustments
 

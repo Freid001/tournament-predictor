@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex flex-wrap gap-2">
                     <form th:if="${stage.canRun}" th:action="@{/run/{mode}(mode=${stage.runMode}, tournament=${tournament.name})}" method="post" class="d-inline">
-                        <button class="btn btn-primary btn-sm" type="submit">Review</button>
+                        <button class="btn btn-sm" th:classappend="${stage.runButtonClass}" type="submit" th:text="${stage.runLabel}">Review</button>
                     </form>
                     <a th:if="${stage.canView}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl}">View</a>
                     <a th:if="${stage.canView2}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl2}" th:text="${stage.viewLabel2}">View Rankings</a>
