@@ -56,6 +56,12 @@ public class MatchResolver {
         return new MatchResolver(new CsvLoader(), reporter);
     }
 
+    public static MatchResolver forWeb(ConsoleReporter reporter, PredictionConfig predictionConfig) {
+        return new MatchResolver(new CsvLoader()
+                .withQualYears(predictionConfig.getQualFormSinceYear(), predictionConfig.getQualFormUntilYear())
+                .withConfig(predictionConfig), reporter, predictionConfig);
+    }
+
     MatchResolver(CsvLoader loader, ConsoleReporter consoleReporter, PredictionConfig predictionConfig) {
         this(loader == null ? new CsvLoader() : loader, Path.of(System.getProperty("user.dir")), consoleReporter, predictionConfig);
     }

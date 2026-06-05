@@ -36,7 +36,7 @@ chmod +x predict.sh
 ./predict.sh --browser --tournament=world_cup_2026
 ```
 
-> **Requires Java 17+.** Check with `java -version`.
+> **Requires Java 25+.** Check with `java -version`.
 
 You will also need the `data/` folder from the repository. Download and extract the latest `data.zip` from the [releases page](https://github.com/freid001/tournament-predictor/releases).
 
@@ -49,7 +49,7 @@ mvn -q package
 ./predict.sh --browser --tournament=world_cup_2026
 ```
 
-> **Requires Java 17+ and Maven 3.8+.**
+> **Requires Java 25+ and Maven 3.8+.**
 
 ## Usage
 

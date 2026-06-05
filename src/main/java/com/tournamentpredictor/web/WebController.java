@@ -84,7 +84,7 @@ public class WebController {
                 reporter.appendWarning("Output already exists: " + lockedPath + " — delete or reset to re-run.");
             }
 
-            MatchResolver.forWeb(reporter).resolveAndWrite(safeMode, safeTournament);
+            MatchResolver.forWeb(reporter, predictionConfig).resolveAndWrite(safeMode, safeTournament);
             appendBrowserOnlyMessages(reporter, safeMode, safeTournament, lockedBefore);
             if (reporter.getHtml().isBlank()) {
                 reporter.appendInfo("Completed " + displayMode(safeMode) + ".");
@@ -216,7 +216,7 @@ public class WebController {
         writeCsv(predictionFile(safeTournament, "start.csv"), headers, rows);
         cascadeDeleteAfterStart(safeTournament);
         try {
-            MatchResolver.forWeb(new HtmlReporter().withConfig(predictionConfig)).resolveAndWrite("start", safeTournament);
+            MatchResolver.forWeb(new HtmlReporter().withConfig(predictionConfig), predictionConfig).resolveAndWrite("start", safeTournament);
         } catch (Exception e) {
             return redirectToTournament(safeTournament);
         }
@@ -401,7 +401,7 @@ public class WebController {
             cascadeDeleteAfterRoundEdit(safeTournament, safeRound);
         }
         try {
-            MatchResolver.forWeb(new HtmlReporter().withConfig(predictionConfig)).resolveAndWrite(safeRound, safeTournament);
+            MatchResolver.forWeb(new HtmlReporter().withConfig(predictionConfig), predictionConfig).resolveAndWrite(safeRound, safeTournament);
         } catch (Exception e) {
             return redirectToTournament(safeTournament);
         }
