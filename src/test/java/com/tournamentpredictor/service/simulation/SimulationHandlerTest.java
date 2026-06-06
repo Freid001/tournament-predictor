@@ -109,14 +109,19 @@ class SimulationHandlerTest {
 
         handler.handle("test");
 
-        List<String> lines = Files.readAllLines(predictionDir.resolve("simulation_last_32.csv"));
+        List<String> lines = Files.readAllLines(root.resolve("data/simulations/test").resolve("simulation_last_32.csv"));
         assertEquals("team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed", lines.get(0));
         assertTrue(lines.stream().skip(1).allMatch(line -> line.matches(".*,(Exit Last 32|Exit Last 16|Exit QF|Exit SF|Runner-up|Champion),[0-9.]+,(Exit Last 32|Exit Last 16|Exit QF|Exit SF|Runner-up|Champion),[0-9.]+,10,99")));
 
-        List<String> pathLines = Files.readAllLines(predictionDir.resolve("simulation_paths_last_32.csv"));
+        List<String> pathLines = Files.readAllLines(root.resolve("data/simulations/test").resolve("simulation_paths_last_32.csv"));
         assertEquals("team,finish,path,count,percentage,simulation_runs,simulation_seed", pathLines.get(0));
         assertTrue(pathLines.stream().anyMatch(line -> line.contains("Alpha")));
         assertTrue(pathLines.stream().skip(1).allMatch(line -> line.matches(".*,[0-9]+,[0-9.]+,10,99")));
+
+        List<String> scorelineLines = Files.readAllLines(root.resolve("data/simulations/test").resolve("simulation_scorelines_last_32.csv"));
+        assertEquals("stage,match_id,team1,team2,scoreline,winner,count,scoreline_pct,matchup_runs,matchup_pct,simulation_runs,simulation_seed", scorelineLines.get(0));
+        assertTrue(scorelineLines.stream().skip(1).anyMatch(line -> line.contains("last_32,M73,Alpha,Delta")));
+        assertTrue(scorelineLines.stream().skip(1).allMatch(line -> line.matches("[^,]+,M[0-9]+,[^,]+,[^,]+,[0-9]+-[0-9]+,[^,]+,[0-9]+,[0-9.]+,[0-9]+,[0-9.]+,10,99")));
     }
 
     private static CsvLoader.BracketEntry bracket(String matchId, String team1, String team2, String stage) {

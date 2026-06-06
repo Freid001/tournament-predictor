@@ -1,6 +1,7 @@
 package com.tournamentpredictor.service.util;
 
 import java.util.Locale;
+import java.util.Random;
 
 public class ExpectedGoalsCalculator {
     private static final double DEFAULT_BASE_TOTAL_GOALS = 2.60;
@@ -149,8 +150,33 @@ public class ExpectedGoalsCalculator {
             return mostLikelyTeam1Goals + "-" + mostLikelyTeam2Goals;
         }
 
+        public SampledScoreline sampleScoreline(Random random) {
+            int team1Goals = samplePoisson(team1ExpectedGoals, random);
+            int team2Goals = samplePoisson(team2ExpectedGoals, random);
+            boolean team1Advances = team1Goals > team2Goals
+                    || (team1Goals == team2Goals && random.nextDouble() < noDrawTeam1WinProbability);
+            return new SampledScoreline(team1Goals, team2Goals, team1Advances);
+        }
+
+        private static int samplePoisson(double lambda, Random random) {
+            double limit = Math.exp(-lambda);
+            double product = 1.0;
+            int goals = 0;
+            do {
+                goals++;
+                product *= random.nextDouble();
+            } while (product > limit);
+            return goals - 1;
+        }
+
         private static String formatGoals(double goals) {
             return String.format(Locale.ROOT, "%.2f", goals);
+        }
+    }
+
+    public record SampledScoreline(int team1Goals, int team2Goals, boolean team1Advances) {
+        public String scoreText() {
+            return team1Goals + "-" + team2Goals;
         }
     }
 }

@@ -1,17 +1,17 @@
 match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree
-M89,W77(I1(France)),W74(E1(Germany)),predicted,France (69%),76,28,G|Norway:-5 > G|Senegal:-4 > United States:0,G|Ecuador:-3 > Scotland:0,
+M89,W77(I1(France)),W74(E1(Germany)),predicted,France (69%),74,27,G|Norway:-5 > G|Senegal:-4 > Egypt:0,G|Ecuador:-3 > Australia:0,
 
-M90,W75(F1(Netherlands)),W73(B2(Canada)),predicted,Netherlands (68%),75,26,G|Japan:-4 > Morocco:-5,G|Switzerland:-3 > South Korea:0,
+M90,W75(F1(Netherlands)),W73(B2(Canada)),predicted,Netherlands (64%),71,21,G|Japan:-4 > Morocco:-4,G|Switzerland:-3 > South Korea:0,
 
-M91,W76(F2(Japan)),W78(I2(Norway)),predicted,Norway (54%),90,168,G|Netherlands:-4 > Brazil:-6,G|France:-9 > G|Senegal:-4 > Ecuador:-7,
+M91,W76(F2(Japan)),W78(I2(Norway)),predicted,Norway (54%),88,168,G|Netherlands:-4 > Brazil:-6,G|France:-10 > G|Senegal:-4 > Ecuador:-7,
 
-M92,W80(L1(England)),W79(A1(Mexico)),predicted,England (63%),89,0,G|Croatia:-3 > Senegal:-8,Ivory Coast:0,
+M92,W80(L1(England)),W79(A1(Mexico)),predicted,England (63%),19,0,G|Croatia:-2 > DR Congo:0,Ivory Coast:0,
 
-M93,W84(H1(Spain)),W83(K2(Colombia)),predicted,Spain (82%),38,101,Austria:-5,G|Portugal:-6 > Croatia:-6,
+M93,W84(H1(Spain)),W83(K2(Colombia)),predicted,Spain (83%),44,89,Austria:-5,G|Portugal:-6 > Croatia:-5,
 
-M94,W81(D1(Turkey)),W82(G1(Belgium)),predicted,Belgium (51%),0,0,Algeria:0,Czechia:0,
+M94,W81(D1(Turkey)),W82(G1(Belgium)),predicted,Turkey (56%),64,0,Senegal:-8,Czechia:0,
 
-M95,W86(J1(Argentina)),W88(D2(Paraguay)),predicted,Argentina (89%),19,23,G|Austria:-2 > Uruguay:0,G|Turkey:-3 > Iran:0,
+M95,W86(J1(Argentina)),W88(D2(Paraguay)),predicted,Argentina (88%),22,35,G|Austria:-3 > Uruguay:0,G|Turkey:-4 > Iran:0,
 
-M96,W87(K1(Portugal)),W85(B1(Switzerland)),predicted,Portugal (64%),36,3,G|Colombia:-4 > Panama:0,G|Canada:0 > Egypt:0,
+M96,W87(K1(Portugal)),W85(B1(Switzerland)),predicted,Portugal (66%),31,8,G|Colombia:-4 > Panama:0,G|Canada:-1 > Algeria:0,
 

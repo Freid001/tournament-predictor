@@ -3,6 +3,8 @@ package com.tournamentpredictor.service.util;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -75,5 +77,17 @@ class ExpectedGoalsCalculatorTest {
 
         assertEquals("1.30 - 1.30", projection.expectedGoalsText());
         assertTrue(projection.mostLikelyScoreText().matches("\\d+-\\d+"));
+    }
+
+
+    
+    void sampleScoreline_returnsGoalsAndKnockoutAdvanceResult() {
+        ExpectedGoalsCalculator.Projection projection = calculator.project("A", "B", 1800, 1800);
+
+        ExpectedGoalsCalculator.SampledScoreline scoreline = projection.sampleScoreline(new Random(7L));
+
+        assertTrue(scoreline.team1Goals() >= 0);
+        assertTrue(scoreline.team2Goals() >= 0);
+        assertTrue(scoreline.scoreText().matches("\\d+-\\d+"));
     }
 }

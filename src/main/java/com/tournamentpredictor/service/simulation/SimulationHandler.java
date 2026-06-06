@@ -27,6 +27,7 @@ public class SimulationHandler {
     private static final double BEST_REALISTIC_THRESHOLD_PCT = 1.0;
     private static final String OUTPUT_HEADER = "team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed";
     private static final String PATH_OUTPUT_HEADER = "team,finish,path,count,percentage,simulation_runs,simulation_seed";
+    private static final String SCORELINE_OUTPUT_HEADER = "stage,match_id,team1,team2,scoreline,winner,count,scoreline_pct,matchup_runs,matchup_pct,simulation_runs,simulation_seed";
 
     private final CsvLoader loader;
     private final Path projectRoot;
@@ -68,6 +69,7 @@ public class SimulationHandler {
         SimulationResult result = simulateLast32(Files.readAllLines(last32), brackets, eloRatings, snapshots);
         writeOutput(tournament, result);
         writePathOutput(tournament, result);
+        writeScorelineOutput(tournament, result);
         System.out.println("Simulation complete: " + runs + " runs from Last 32. Output: "
                 + outputPath(tournament).toAbsolutePath());
     }
@@ -90,39 +92,40 @@ public class SimulationHandler {
         }
 
         Map<PathKey, Integer> pathCounts = new HashMap<>();
+        Map<ScorelineKey, Integer> scorelineCounts = new HashMap<>();
         Random random = new Random(seed);
         for (int run = 0; run < runs; run++) {
             RunState runState = new RunState();
-            playStage("LAST_32", "last_32", "last_16", matchDefinitions, runState, counts, eloRatings, snapshots, random);
-            playStage("LAST_16", "last_16", "last_8", matchDefinitions, runState, counts, eloRatings, snapshots, random);
-            playStage("QUARTER", "last_8", "last_4", matchDefinitions, runState, counts, eloRatings, snapshots, random);
-            playStage("SEMI", "last_4", "final", matchDefinitions, runState, counts, eloRatings, snapshots, random);
+            playStage("LAST_32", "last_32", "last_16", matchDefinitions, runState, counts, eloRatings, snapshots, scorelineCounts, random);
+            playStage("LAST_16", "last_16", "last_8", matchDefinitions, runState, counts, eloRatings, snapshots, scorelineCounts, random);
+            playStage("QUARTER", "last_8", "last_4", matchDefinitions, runState, counts, eloRatings, snapshots, scorelineCounts, random);
+            playStage("SEMI", "last_4", "final", matchDefinitions, runState, counts, eloRatings, snapshots, scorelineCounts, random);
             List<MatchDefinition> finals = matchDefinitions.values().stream()
                     .filter(match -> "FINAL".equals(match.stage))
                     .toList();
             if (finals.size() != 1) {
                 throw new IllegalStateException("Expected one final match, found " + finals.size());
             }
-            PlayedMatch finalResult = playMatch(finals.get(0), "final", runState, eloRatings, snapshots, random);
+            PlayedMatch finalResult = playMatch(finals.get(0), "final", runState, eloRatings, snapshots, scorelineCounts, random);
             runState.winners.put(finals.get(0).matchId, finalResult.winner);
             counts.computeIfAbsent(finalResult.winner, TeamCounts::new).champion++;
             recordRunPaths(counts.keySet(), finalResult.winner, runState, pathCounts);
         }
         return new SimulationResult(counts.values().stream()
                 .sorted(Comparator.comparing((TeamCounts c) -> c.champion).reversed().thenComparing(c -> c.team))
-                .toList(), sortedPathCounts(pathCounts), runs);
+                .toList(), sortedPathCounts(pathCounts), sortedScorelineCounts(scorelineCounts), runs);
     }
 
     private void playStage(String stage, String fatigueStage, String reachedRound,
                            Map<String, MatchDefinition> matchDefinitions,
                            RunState runState, Map<String, TeamCounts> counts,
                            Map<String, Integer> eloRatings, Map<String, TeamEloSnapshot> snapshots,
-                           Random random) {
+                           Map<ScorelineKey, Integer> scorelineCounts, Random random) {
         for (MatchDefinition match : matchDefinitions.values()) {
             if (!stage.equals(match.stage)) {
                 continue;
             }
-            PlayedMatch result = playMatch(match, fatigueStage, runState, eloRatings, snapshots, random);
+            PlayedMatch result = playMatch(match, fatigueStage, runState, eloRatings, snapshots, scorelineCounts, random);
             runState.winners.put(match.matchId, result.winner);
             TeamCounts teamCounts = counts.computeIfAbsent(result.winner, TeamCounts::new);
             teamCounts.increment(reachedRound);
@@ -132,7 +135,7 @@ public class SimulationHandler {
     private PlayedMatch playMatch(MatchDefinition match, String fatigueStage, RunState runState,
                                   Map<String, Integer> eloRatings,
                                   Map<String, TeamEloSnapshot> snapshots,
-                                  Random random) {
+                                  Map<ScorelineKey, Integer> scorelineCounts, Random random) {
         String team1 = resolve(match.team1, runState.winners);
         String team2 = resolve(match.team2, runState.winners);
         int team1BaseElo = eloRatings.getOrDefault(team1, 0);
@@ -140,8 +143,10 @@ public class SimulationHandler {
         int team1Elo = adjustedElo(team1, team1BaseElo, runState, snapshots);
         int team2Elo = adjustedElo(team2, team2BaseElo, runState, snapshots);
         ExpectedGoalsCalculator.Projection projection = expectedGoalsCalculator.project(team1, team2, team1Elo, team2Elo);
-        boolean team1Wins = random.nextDouble() * 100.0 < projection.team1AdvancePct();
+        ExpectedGoalsCalculator.SampledScoreline scoreline = projection.sampleScoreline(random);
+        boolean team1Wins = scoreline.team1Advances();
         String winner = team1Wins ? team1 : team2;
+        scorelineCounts.merge(new ScorelineKey(fatigueStage, match.matchId, team1, team2, scoreline.scoreText(), winner), 1, Integer::sum);
         String loser = team1Wins ? team2 : team1;
         int loserElo = team1Wins ? team2BaseElo : team1BaseElo;
         runState.pathByTeam.computeIfAbsent(winner, ignored -> new ArrayList<>()).add(loser);
@@ -270,12 +275,50 @@ public class SimulationHandler {
         Files.write(output, lines);
     }
 
+    private void writeScorelineOutput(String tournament, SimulationResult result) throws IOException {
+        Path output = scorelineOutputPath(tournament);
+        Files.createDirectories(output.getParent());
+        List<String> lines = new ArrayList<>();
+        lines.add(SCORELINE_OUTPUT_HEADER);
+        Map<MatchupKey, Integer> matchupRuns = matchupRuns(result.scorelineCounts());
+        for (ScorelineCount scorelineCount : result.scorelineCounts()) {
+            int matchupCount = matchupRuns.getOrDefault(new MatchupKey(scorelineCount.stage(), scorelineCount.matchId(), scorelineCount.team1(), scorelineCount.team2()), 0);
+            lines.add(String.join(",",
+                    csv(scorelineCount.stage()),
+                    csv(scorelineCount.matchId()),
+                    csv(scorelineCount.team1()),
+                    csv(scorelineCount.team2()),
+                    csv(scorelineCount.scoreline()),
+                    csv(scorelineCount.winner()),
+                    String.valueOf(scorelineCount.count()),
+                    pct(scorelineCount.count(), Math.max(1, matchupCount)),
+                    String.valueOf(matchupCount),
+                    pct(matchupCount, result.runs()),
+                    String.valueOf(result.runs()),
+                    String.valueOf(seed)));
+        }
+        Files.write(output, lines);
+    }
+
+    private static Map<MatchupKey, Integer> matchupRuns(List<ScorelineCount> scorelineCounts) {
+        Map<MatchupKey, Integer> totals = new HashMap<>();
+        for (ScorelineCount scorelineCount : scorelineCounts) {
+            MatchupKey key = new MatchupKey(scorelineCount.stage(), scorelineCount.matchId(), scorelineCount.team1(), scorelineCount.team2());
+            totals.merge(key, scorelineCount.count(), Integer::sum);
+        }
+        return totals;
+    }
+
     private Path outputPath(String tournament) {
-        return projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("simulation_last_32.csv");
+        return projectRoot.resolve("data").resolve("simulations").resolve(tournament).resolve("simulation_last_32.csv");
     }
 
     private Path pathOutputPath(String tournament) {
-        return projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("simulation_paths_last_32.csv");
+        return projectRoot.resolve("data").resolve("simulations").resolve(tournament).resolve("simulation_paths_last_32.csv");
+    }
+
+    private Path scorelineOutputPath(String tournament) {
+        return projectRoot.resolve("data").resolve("simulations").resolve(tournament).resolve("simulation_scorelines_last_32.csv");
     }
 
     private static List<PathCount> sortedPathCounts(Map<PathKey, Integer> pathCounts) {
@@ -285,6 +328,26 @@ public class SimulationHandler {
                         .thenComparing(Comparator.comparingInt(PathCount::count).reversed())
                         .thenComparing(PathCount::finish)
                         .thenComparing(PathCount::path))
+                .collect(Collectors.toList());
+    }
+
+    private static List<ScorelineCount> sortedScorelineCounts(Map<ScorelineKey, Integer> scorelineCounts) {
+        return scorelineCounts.entrySet().stream()
+                .map(entry -> new ScorelineCount(
+                        entry.getKey().stage(),
+                        entry.getKey().matchId(),
+                        entry.getKey().team1(),
+                        entry.getKey().team2(),
+                        entry.getKey().scoreline(),
+                        entry.getKey().winner(),
+                        entry.getValue()))
+                .sorted(Comparator.comparing(ScorelineCount::stage)
+                        .thenComparing(ScorelineCount::matchId)
+                        .thenComparing(ScorelineCount::team1)
+                        .thenComparing(ScorelineCount::team2)
+                        .thenComparing(Comparator.comparingInt(ScorelineCount::count).reversed())
+                        .thenComparing(ScorelineCount::scoreline)
+                        .thenComparing(ScorelineCount::winner))
                 .collect(Collectors.toList());
     }
 
@@ -327,7 +390,7 @@ public class SimulationHandler {
     record MatchDefinition(String matchId, String stage, String team1, String team2) {
     }
 
-    record SimulationResult(List<TeamCounts> teamCounts, List<PathCount> pathCounts, int runs) {
+    record SimulationResult(List<TeamCounts> teamCounts, List<PathCount> pathCounts, List<ScorelineCount> scorelineCounts, int runs) {
     }
 
     private record FinishOutcome(String label, int count, int rank) {
@@ -339,7 +402,16 @@ public class SimulationHandler {
     record PathCount(String team, String finish, String path, int count) {
     }
 
+    record ScorelineCount(String stage, String matchId, String team1, String team2, String scoreline, String winner, int count) {
+    }
+
     private record PathKey(String team, String finish, String path) {
+    }
+
+    private record ScorelineKey(String stage, String matchId, String team1, String team2, String scoreline, String winner) {
+    }
+
+    private record MatchupKey(String stage, String matchId, String team1, String team2) {
     }
 
     private static final class RunState {

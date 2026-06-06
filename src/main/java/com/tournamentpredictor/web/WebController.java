@@ -90,6 +90,7 @@ public class WebController {
             }
 
             MatchResolver.forWeb(reporter, predictionConfig).resolveAndWrite(safeMode, safeTournament);
+            autoRunLast32Simulation(safeMode, safeTournament, reporter);
             appendBrowserOnlyMessages(reporter, safeMode, safeTournament, lockedBefore);
             if (reporter.getHtml().isBlank()) {
                 reporter.appendInfo("Completed " + displayMode(safeMode) + ".");
@@ -429,7 +430,9 @@ public class WebController {
             cascadeDeleteAfterRoundEdit(safeTournament, safeRound);
         }
         try {
-            MatchResolver.forWeb(new HtmlReporter().withConfig(predictionConfig), predictionConfig).resolveAndWrite(safeRound, safeTournament);
+            HtmlReporter saveReporter = new HtmlReporter().withConfig(predictionConfig);
+            MatchResolver.forWeb(saveReporter, predictionConfig).resolveAndWrite(safeRound, safeTournament);
+            autoRunLast32Simulation(safeRound, safeTournament, saveReporter);
         } catch (Exception e) {
             return redirectToTournament(safeTournament);
         }
@@ -484,7 +487,7 @@ public class WebController {
     }
 
     @GetMapping("/view/{round}")
-    public String viewRound(@PathVariable("round") String round, @RequestParam("tournament") String tournament, Model model) throws IOException {
+    public String viewRound(@PathVariable("round") String round, @RequestParam("tournament") String tournament, @RequestParam(value = "team", required = false) String teamFilter, Model model) throws IOException {
         String safeRound = safeRound(round);
         String safeTournament = safeTournament(tournament);
         Path file = roundFileForView(safeTournament, safeRound);
@@ -531,7 +534,7 @@ public class WebController {
         model.addAttribute("prevNavUrl", prevExists ? "/view/" + prevRound + "?tournament=" + safeTournament : null);
         model.addAttribute("prevNavLabel", prevRound != null ? "← " + displayViewMode(prevRound) : null);
         model.addAttribute("prevNavEnabled", prevExists);
-        model.addAttribute("pageTitle", "View " + displayViewMode(safeRound));
+        model.addAttribute("pageTitle", "last_32_match".equals(safeRound) ? "Last 32" : "View " + displayViewMode(safeRound));
 
         if (groupsMode) {
             CsvLoader csvLoader = new CsvLoader(projectRoot).withConfig(predictionConfig);
@@ -558,7 +561,10 @@ public class WebController {
             return "view-round";
         } else {
             if ("simulation".equals(safeRound)) {
-                model.addAttribute("output", SimulationResultsRenderer.render(csvData.rows(), readCsv(predictionFile(safeTournament, "simulation_paths_last_32.csv")).rows()));
+                model.addAttribute("output", SimulationResultsRenderer.render(csvData.rows(),
+                        readCsv(simulationFile(safeTournament, "simulation_paths_last_32.csv")).rows(),
+                        readCsv(simulationFile(safeTournament, "simulation_scorelines_last_32.csv")).rows(),
+                        trim(teamFilter), safeTournament));
                 model.addAttribute("mode", displayViewMode(safeRound));
                 return "result";
             }
@@ -576,9 +582,32 @@ public class WebController {
             }
             String editRound = editRoundForMatchView(safeRound);
             String editUrlStr = editRound != null ? "/edit/" + editRound + "?tournament=" + safeTournament : null;
+            List<Map<String, String>> groupProbabilityRows = "last_32_match".equals(safeRound)
+                    ? readCsv(predictionFile(safeTournament, "groups.csv")).rows()
+                    : List.of();
+            List<Map<String, String>> last32SnapshotRows = "last_32_match".equals(safeRound)
+                    ? routeAverageLast16Rows(csvData.rows(), groupProbabilityRows)
+                    : List.of();
+            if ("last_32_match".equals(safeRound)) {
+                for (Map<String, String> row : last32SnapshotRows) {
+                    String marketOdds = odds.getOrDefault(row.getOrDefault("team", ""), "");
+                    if (!marketOdds.isBlank()) {
+                        row.put("market_odds", marketOdds);
+                    }
+                }
+            }
             reporter.setEditUrl(editUrlStr);
+            if ("last_32_match".equals(safeRound)) {
+                reporter.withMatchupLikelihood(matchupLikelihoodMap(csvData.rows(), groupProbabilityRows));
+            }
             reporter.printMatchups(displayViewMode(safeRound), lines, new EloCalculator(), null, odds, eloBreakdowns);
-            model.addAttribute("output", reporter.getHtml());
+            String outputHtml = reporter.getHtml();
+            if ("last_32_match".equals(safeRound)) {
+                if (!last32SnapshotRows.isEmpty()) {
+                    outputHtml = SimulationResultsRenderer.renderSnapshot(last32SnapshotRows, safeTournament) + outputHtml;
+                }
+            }
+            model.addAttribute("output", outputHtml);
             model.addAttribute("mode", displayViewMode(safeRound));
             if (editUrlStr != null) {
                 model.addAttribute("editUrl", editUrlStr);
@@ -623,7 +652,7 @@ public class WebController {
         boolean last4MatchExists = Files.exists(matchupFile(tournament, "last_4.csv"));
         boolean finalPredExists = Files.exists(predictionFile(tournament, "final.csv"));
         boolean finalMatchExists = Files.exists(matchupFile(tournament, "final.csv"));
-        boolean simulationExists = Files.exists(predictionFile(tournament, "simulation_last_32.csv"));
+        boolean simulationExists = Files.exists(simulationFile(tournament, "simulation_last_32.csv"));
 
         List<StageView> stages = new ArrayList<>();
         stages.add(new StageView("Tournament Snapshot", snapshotDescription(tournament, snapshotExists),
@@ -725,6 +754,17 @@ public class WebController {
         return new StageStatus("⬜", "Locked", "secondary");
     }
 
+    private void autoRunLast32Simulation(String mode, String tournament, HtmlReporter reporter) throws IOException {
+        if (!("groups".equals(mode) || "last_32".equals(mode))) {
+            return;
+        }
+        if (!Files.exists(predictionFile(tournament, "last_32.csv"))) {
+            return;
+        }
+        MatchResolver.forWeb(reporter, predictionConfig).resolveAndWrite("simulate", tournament);
+        reporter.appendInfo("Updated Last 32 simulation outputs.");
+    }
+
     private void appendBrowserOnlyMessages(HtmlReporter reporter, String mode, String tournament, boolean lockedBefore) throws IOException {
         if ("start".equals(mode)) {
             if (lockedBefore) {
@@ -755,8 +795,9 @@ public class WebController {
                 matchupFile(tournament, "last_4.csv"),
                 predictionFile(tournament, "final.csv"),
                 matchupFile(tournament, "final.csv"),
-                predictionFile(tournament, "simulation_last_32.csv"),
-                predictionFile(tournament, "simulation_paths_last_32.csv")
+                simulationFile(tournament, "simulation_last_32.csv"),
+                simulationFile(tournament, "simulation_paths_last_32.csv"),
+                simulationFile(tournament, "simulation_scorelines_last_32.csv")
         ));
     }
 
@@ -772,8 +813,9 @@ public class WebController {
                 matchupFile(tournament, "last_4.csv"),
                 predictionFile(tournament, "final.csv"),
                 matchupFile(tournament, "final.csv"),
-                predictionFile(tournament, "simulation_last_32.csv"),
-                predictionFile(tournament, "simulation_paths_last_32.csv")
+                simulationFile(tournament, "simulation_last_32.csv"),
+                simulationFile(tournament, "simulation_paths_last_32.csv"),
+                simulationFile(tournament, "simulation_scorelines_last_32.csv")
         ));
     }
 
@@ -817,15 +859,18 @@ public class WebController {
                 return;
             }
         }
-        paths.add(predictionFile(tournament, "simulation_last_32.csv"));
-        paths.add(predictionFile(tournament, "simulation_paths_last_32.csv"));
+        paths.add(simulationFile(tournament, "simulation_last_32.csv"));
+        paths.addAll(List.of(
+                simulationFile(tournament, "simulation_paths_last_32.csv"),
+                simulationFile(tournament, "simulation_scorelines_last_32.csv")));
         deletePaths(paths);
     }
 
     private void cascadeDeleteForReset(String tournament, String step) throws IOException {
         if ("simulation".equals(step)) {
-            deletePaths(List.of(predictionFile(tournament, "simulation_last_32.csv"),
-                predictionFile(tournament, "simulation_paths_last_32.csv")));
+            deletePaths(List.of(simulationFile(tournament, "simulation_last_32.csv"),
+                simulationFile(tournament, "simulation_paths_last_32.csv"),
+                simulationFile(tournament, "simulation_scorelines_last_32.csv")));
             return;
         }
         if ("groups".equals(step)) {
@@ -841,8 +886,9 @@ public class WebController {
                     matchupFile(tournament, "last_4.csv"),
                     predictionFile(tournament, "final.csv"),
                     matchupFile(tournament, "final.csv"),
-                    predictionFile(tournament, "simulation_last_32.csv"),
-                predictionFile(tournament, "simulation_paths_last_32.csv")
+                    simulationFile(tournament, "simulation_last_32.csv"),
+                simulationFile(tournament, "simulation_paths_last_32.csv"),
+                simulationFile(tournament, "simulation_scorelines_last_32.csv")
             ));
             return;
         }
@@ -860,9 +906,10 @@ public class WebController {
         return Files.readAllLines(path).stream().filter(line -> !line.trim().isEmpty()).skip(1).count();
     }
 
-    private String preferredWinner(Map<String, String> row) {
+    static String preferredWinner(Map<String, String> row) {
         for (String key : List.of("predicted_winner", "prediction", "elo")) {
-            String value = trim(row.getOrDefault(key, ""));
+            String raw = row.getOrDefault(key, "");
+            String value = raw == null ? "" : raw.trim();
             if (!value.isEmpty()) return value;
         }
         return "";
@@ -884,6 +931,161 @@ public class WebController {
             }
             return new CsvData(headers, rows);
         }
+    }
+
+    static List<Map<String, String>> routeAverageLast16Rows(List<Map<String, String>> matchupRows) {
+        return routeAverageLast16Rows(matchupRows, List.of());
+    }
+
+    static List<Map<String, String>> routeAverageLast16Rows(List<Map<String, String>> matchupRows, List<Map<String, String>> groupRows) {
+        Map<String, Map<String, Double>> slotProbabilities = groupSlotProbabilities(groupRows);
+        boolean weighted = !slotProbabilities.isEmpty();
+        EloCalculator eloCalculator = new EloCalculator();
+        Map<String, double[]> totals = new LinkedHashMap<>();
+        int routeRows = 0;
+        for (Map<String, String> row : matchupRows) {
+            String team1Display = row.getOrDefault("team1", "");
+            String team2Display = row.getOrDefault("team2", "");
+            String team1 = eloCalculator.extractTeamName(team1Display);
+            String team2 = eloCalculator.extractTeamName(team2Display);
+            String prediction = preferredWinner(row);
+            String winner = eloCalculator.parseTeamFromPrediction(prediction);
+            int winnerPct = eloCalculator.parsePctFromPrediction(prediction);
+            if (team1.isBlank() || team2.isBlank() || winner.isBlank() || winnerPct <= 0) {
+                continue;
+            }
+            double routeWeight = weighted
+                    ? slotProbability(team1, slotToken(team1Display), slotProbabilities)
+                    * slotProbability(team2, slotToken(team2Display), slotProbabilities)
+                    : 1.0;
+            if (routeWeight <= 0) {
+                continue;
+            }
+            routeRows++;
+            addRoutePct(totals, team1, winner.equalsIgnoreCase(team1) ? winnerPct : 100 - winnerPct, routeWeight);
+            addRoutePct(totals, team2, winner.equalsIgnoreCase(team2) ? winnerPct : 100 - winnerPct, routeWeight);
+        }
+
+        List<Map<String, String>> rows = new ArrayList<>();
+        for (Map.Entry<String, double[]> entry : totals.entrySet()) {
+            double[] total = entry.getValue();
+            if (total[1] == 0) {
+                continue;
+            }
+            Map<String, String> row = new LinkedHashMap<>();
+            row.put("team", entry.getKey());
+            row.put("reach_last_16", String.format(java.util.Locale.ROOT, "%.1f", total[0] / total[1]));
+            row.put("route_matchups", String.valueOf(routeRows));
+            if (weighted) {
+                row.put("route_weighted", "true");
+            }
+            rows.add(row);
+        }
+        return rows;
+    }
+
+    static Map<String, String> matchupLikelihoodMap(List<Map<String, String>> matchupRows, List<Map<String, String>> groupRows) {
+        Map<String, Map<String, Double>> slotProbabilities = groupSlotProbabilities(groupRows);
+        Map<String, String> likelihoods = new LinkedHashMap<>();
+        if (slotProbabilities.isEmpty()) {
+            return likelihoods;
+        }
+        EloCalculator eloCalculator = new EloCalculator();
+        for (Map<String, String> row : matchupRows) {
+            String matchId = row.getOrDefault("match_id", "").trim();
+            String team1Display = row.getOrDefault("team1", "");
+            String team2Display = row.getOrDefault("team2", "");
+            String team1 = eloCalculator.extractTeamName(team1Display);
+            String team2 = eloCalculator.extractTeamName(team2Display);
+            double likelihood = slotProbability(team1, slotToken(team1Display), slotProbabilities)
+                    * slotProbability(team2, slotToken(team2Display), slotProbabilities);
+            if (!matchId.isEmpty() && !team1.isEmpty() && !team2.isEmpty() && likelihood > 0) {
+                likelihoods.put(matchupLikelihoodKey(matchId, team1, team2),
+                        String.format(java.util.Locale.ROOT, "%.1f", likelihood * 100.0 + 1e-9));
+            }
+        }
+        return likelihoods;
+    }
+
+    static String matchupLikelihoodKey(String matchId, String team1, String team2) {
+        return matchId + "|" + team1 + "|" + team2;
+    }
+
+    private static void addRoutePct(Map<String, double[]> totals, String team, double pct, double weight) {
+        double[] total = totals.computeIfAbsent(team, ignored -> new double[2]);
+        total[0] += pct * weight;
+        total[1] += weight;
+    }
+
+    private static Map<String, Map<String, Double>> groupSlotProbabilities(List<Map<String, String>> groupRows) {
+        Map<String, Map<String, Double>> probabilities = new LinkedHashMap<>();
+        for (Map<String, String> row : groupRows) {
+            String team = row.getOrDefault("team", "").trim();
+            if (team.isEmpty()) {
+                continue;
+            }
+            Map<String, Double> slots = new LinkedHashMap<>();
+            slots.put("1", flagProbability(row.getOrDefault("group_winner", "")));
+            slots.put("2", flagProbability(row.getOrDefault("runner_up", "")));
+            slots.put("3", flagProbability(row.getOrDefault("3rd_place", "")));
+
+            String predictedPosition = row.getOrDefault("predicted_position", "").trim();
+            String position = predictedPosition.isEmpty() ? "" : predictedPosition.substring(0, 1);
+            double pct = probabilityFromText(predictedPosition);
+            if (("1".equals(position) || "2".equals(position) || "3".equals(position)) && pct > 0) {
+                slots.put(position, Math.max(slots.getOrDefault(position, 0.0), pct));
+            }
+            probabilities.put(team, slots);
+        }
+        return probabilities;
+    }
+
+    private static double slotProbability(String team, String slotToken, Map<String, Map<String, Double>> probabilities) {
+        if (probabilities.isEmpty()) {
+            return 1.0;
+        }
+        String slot = slotType(slotToken);
+        if (slot.isEmpty()) {
+            return 0.0;
+        }
+        return probabilities.getOrDefault(team, Map.of()).getOrDefault(slot, 0.0);
+    }
+
+    private static String slotToken(String display) {
+        if (display == null) {
+            return "";
+        }
+        int paren = display.indexOf("(");
+        return (paren >= 0 ? display.substring(0, paren) : display).trim();
+    }
+
+    private static String slotType(String slotToken) {
+        if (slotToken == null || slotToken.isBlank()) {
+            return "";
+        }
+        String last = slotToken.substring(slotToken.length() - 1);
+        return "1".equals(last) || "2".equals(last) || "3".equals(last) ? last : "";
+    }
+
+    private static double probabilityFromText(String value) {
+        int open = value.indexOf("(");
+        int pct = value.indexOf("%", open + 1);
+        if (open < 0 || pct <= open) {
+            return 0.0;
+        }
+        try {
+            return Double.parseDouble(value.substring(open + 1, pct).trim()) / 100.0;
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    private static double flagProbability(String value) {
+        return switch (value == null ? "" : value.trim().toLowerCase(java.util.Locale.ROOT)) {
+            case "yes" -> 0.75;
+            case "maybe" -> 0.35;
+            default -> 0.0;
+        };
     }
 
     private void writeCsv(Path path, List<String> headers, List<Map<String, String>> rows) throws IOException {
@@ -926,7 +1128,7 @@ public class WebController {
             case "last_8" -> matchupFile(tournament, "last_8.csv");
             case "last_4" -> matchupFile(tournament, "last_4.csv");
             case "final" -> matchupFile(tournament, "final.csv");
-            case "simulate" -> predictionFile(tournament, "simulation_last_32.csv");
+            case "simulate" -> simulationFile(tournament, "simulation_last_32.csv");
             default -> null;
         };
     }
@@ -945,7 +1147,7 @@ public class WebController {
             case "last_4_match" -> matchupFile(tournament, "last_4.csv");
             case "final" -> predictionFile(tournament, "final.csv");
             case "final_match" -> matchupFile(tournament, "final.csv");
-            case "simulation" -> predictionFile(tournament, "simulation_last_32.csv");
+            case "simulation" -> simulationFile(tournament, "simulation_last_32.csv");
             default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid round");
         };
     }
@@ -1020,12 +1222,12 @@ public class WebController {
         if (Files.exists(matchupFile(tournament, "last_8.csv"))) count++;
         if (Files.exists(matchupFile(tournament, "last_4.csv"))) count++;
         if (Files.exists(matchupFile(tournament, "final.csv"))) count++;
-        if (Files.exists(predictionFile(tournament, "simulation_last_32.csv"))) count++;
+        if (Files.exists(simulationFile(tournament, "simulation_last_32.csv"))) count++;
         return count;
     }
 
     private String describeCurrentStage(String tournament) {
-        if (Files.exists(predictionFile(tournament, "simulation_last_32.csv"))) return "Monte Carlo complete";
+        if (Files.exists(simulationFile(tournament, "simulation_last_32.csv"))) return "Monte Carlo complete";
         if (Files.exists(matchupFile(tournament, "final.csv"))) return "Final complete";
         if (Files.exists(matchupFile(tournament, "last_4.csv"))) return "Semi-finals complete";
         if (Files.exists(matchupFile(tournament, "last_8.csv"))) return "Last 8 complete";
@@ -1118,6 +1320,10 @@ public class WebController {
         if ("groups".equals(round) || "groups_match".equals(round)) {
             return "Group Rankings";
         }
+        if ("last_32_match".equals(round)) {
+            return "Last 32";
+        }
+        
         return displayMode(round);
     }
 
@@ -1141,6 +1347,10 @@ public class WebController {
 
     private Path predictionFile(String tournament, String fileName) {
         return projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve(fileName);
+    }
+
+    private Path simulationFile(String tournament, String fileName) {
+        return projectRoot.resolve("data").resolve("simulations").resolve(tournament).resolve(fileName);
     }
 
     private Path matchupFile(String tournament, String fileName) {
