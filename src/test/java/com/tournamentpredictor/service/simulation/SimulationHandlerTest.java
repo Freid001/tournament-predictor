@@ -124,6 +124,52 @@ class SimulationHandlerTest {
         assertTrue(scorelineLines.stream().skip(1).allMatch(line -> line.matches("[^,]+,M[0-9]+,[^,]+,[^,]+,[0-9]+-[0-9]+,[^,]+,[0-9]+,[0-9.]+,[0-9]+,[0-9.]+,10,99")));
     }
 
+    @Test
+    void simulateFromLast16TreatsEntrantsAsQualifiedAndSkipsLast32() {
+        SimulationHandler handler = new SimulationHandler(new CsvLoader(root), root,
+                new ExpectedGoalsCalculator(), new EloCalculator(), 20, 42L);
+        List<String> last16 = List.of(
+                "match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree",
+                "M89,W77(Alpha),W74(Beta),predicted,Alpha (60%),120,40,Route A,Route B,",
+                "M90,W75(Gamma),W73(Delta),predicted,Gamma (55%),80,20,Route C,Route D,"
+        );
+        List<CsvLoader.BracketEntry> brackets = List.of(
+                bracket("M97", "W89", "W90", "QUARTER"),
+                bracket("M101", "W97", "W97", "SEMI"),
+                bracket("M103", "W101", "W101", "FINAL")
+        );
+        Map<String, Integer> elo = Map.of("Alpha", 2100, "Beta", 1900, "Gamma", 2000, "Delta", 1800);
+
+        SimulationHandler.SimulationResult result = handler.simulateFromRound(
+                SimulationHandler.SimulationStage.LAST_16, last16, brackets, elo, Map.of());
+
+        assertEquals(4, result.teamCounts().size());
+        assertTrue(result.teamCounts().stream().allMatch(counts -> counts.reachLast16 == 20));
+        assertTrue(result.scorelineCounts().stream().noneMatch(row -> "last_32".equals(row.stage())));
+        assertTrue(result.scorelineCounts().stream().anyMatch(row -> "last_16".equals(row.stage())));
+    }
+
+
+    @Test
+    void groupSimulationProducesThirtyTwoQualifiersAndOneChampionPerRun() throws Exception {
+        Path project = Path.of("").toAbsolutePath();
+        CsvLoader loader = new CsvLoader(project);
+        int runs = 20;
+        SimulationHandler handler = new SimulationHandler(loader, project,
+                new ExpectedGoalsCalculator(), new EloCalculator(), runs, 42L);
+
+        SimulationHandler.GroupSimulationResult result = handler.simulateGroups(
+                loader.loadGroups("world_cup_2026"),
+                loader.loadBrackets("world_cup_2026"),
+                loader.loadTournamentElo("world_cup_2026"),
+                loader.loadTeamSnapshots("world_cup_2026"));
+
+        assertEquals(48, result.counts().size());
+        assertEquals(32 * runs, result.counts().values().stream().mapToInt(c -> c.reachLast32).sum());
+        assertEquals(runs, result.counts().values().stream().mapToInt(c -> c.champion).sum());
+        assertTrue(result.counts().containsKey("Scotland"));
+    }
+
     private static CsvLoader.BracketEntry bracket(String matchId, String team1, String team2, String stage) {
         return new CsvLoader.BracketEntry(matchId, team1, team2, stage);
     }

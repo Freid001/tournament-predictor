@@ -49,8 +49,9 @@ public class CsvHelper {
     }
 
     /**
-     * Returns header + primary-path rows only. Blank separator lines and alt rows are removed.
-     * Used when building the predictions file for the next knockout round.
+     * Returns header + model-selected rows only. Blank separators and alternate rows are removed.
+     * This defines the generated bracket for staged analysis; it does not prune branches from
+     * SimulationHandler.handleGroups(), where every sampled winner continues through that run.
      */
     public List<String> filterPrimaryOnly(List<String> lines) {
         List<String> output = new ArrayList<>();

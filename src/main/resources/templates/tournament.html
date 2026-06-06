@@ -21,7 +21,7 @@
                         <strong th:text="${stage.label}">Last 32</strong>
                         <span class="badge" th:classappend="${' text-bg-' + stage.status.badge}" th:text="${stage.status.text}">Ready</span>
                     </div>
-                    <div class="text-muted small" th:text="${stage.description}">Description</div>
+                    <div class="text-muted small" style="white-space: pre-line" th:text="${stage.description}">Description</div>
                 </div>
                 <div class="d-flex flex-wrap gap-2">
                     <form th:if="${stage.canRun}" th:action="@{/run/{mode}(mode=${stage.runMode}, tournament=${tournament.name})}" method="post" class="d-inline">
@@ -37,6 +37,14 @@
     </div>
 </div>
 <script>
+  document.querySelectorAll('form').forEach(function(form) {
+    if (!form.action.includes('/run/snapshot-refresh')) return;
+    form.addEventListener('submit', function(event) {
+      var message = 'Refreshing now will include newly available matches played before the tournament start date. Generated group rankings and tournament results will be cleared, but your team setup will remain saved. Results after the tournament starts on 11 Jun 2026 are excluded. Do you want to continue?';
+      if (!window.confirm(message)) event.preventDefault();
+    });
+  });
+
   document.addEventListener('keydown', function(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 'ArrowLeft') location.href = '/';

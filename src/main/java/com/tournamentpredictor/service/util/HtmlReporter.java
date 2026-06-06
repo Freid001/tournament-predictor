@@ -323,6 +323,8 @@ public class HtmlReporter extends ConsoleReporter {
         int team2PathDiffIdx = indexOf(headers, "team2_path_fatigue");
         int team1PathOppIdx = indexOf(headers, "team1_path_opponent");
         int team2PathOppIdx = indexOf(headers, "team2_path_opponent");
+        int modelPredictionIdx = indexOf(headers, "model_prediction");
+        int selectionSourceIdx = indexOf(headers, "selection_source");
         if (predIdx < 0) predIdx = indexOf(headers, "predicted_winner");
         if (predIdx < 0) predIdx = indexOf(headers, "elo");
 
@@ -381,6 +383,10 @@ public class HtmlReporter extends ConsoleReporter {
             String pred = valueAt(cols, predIdx);
             String winner = eloCalculator.parseTeamFromPrediction(pred);
             int pct = eloCalculator.parsePctFromPrediction(pred);
+            String modelPrediction = valueAt(cols, modelPredictionIdx);
+            String modelWinner = eloCalculator.parseTeamFromPrediction(modelPrediction);
+            String modelPct = modelPrediction.isBlank() ? "" : String.valueOf(eloCalculator.parsePctFromPrediction(modelPrediction));
+            String selectionSource = valueAt(cols, selectionSourceIdx);
             String rowPath = valueAt(cols, pathIdx);
             boolean isPrimary = pathIdx < 0 || "predicted".equalsIgnoreCase(rowPath);
             boolean isAlt = !isPrimary;
@@ -420,7 +426,7 @@ public class HtmlReporter extends ConsoleReporter {
                     originSlot(rawTeam1), originSlot(rawTeam2),
                     simWinner, simWinnerPct, team1SimPct, team2SimPct,
                     rowProjection.winner(), rowProjection.winnerPct(), rowProjection.team1Pct(), rowProjection.team2Pct(),
-                    matchupLikelihood});
+                    matchupLikelihood, selectionSource, modelWinner, modelPct});
         }
 
         if (tableRows.isEmpty()) {
@@ -431,10 +437,9 @@ public class HtmlReporter extends ConsoleReporter {
         long altCount = tableRows.stream().filter(r -> "alt".equals(r[7])).count();
         boolean showToggle = altCount > 0;
         boolean roundOf32 = label != null && (label.contains("Last 32") || label.contains("Round of 32"));
-        boolean showPositionOnPrimary = roundOf32;
         boolean hasSimulationAdvance = tableRows.stream().anyMatch(r -> (r.length > 17 && !r[17].isBlank()) || (r.length > 21 && !r[21].isBlank()));
         boolean showWinnerColumn = !hasSimulationAdvance;
-        boolean showOdds = hasOdds && !roundOf32;
+        boolean showOdds = false;
         boolean hasMatchupLikelihood = tableRows.stream().anyMatch(r -> r.length > 25 && !r[25].isBlank());
         if (hasMatchupLikelihood) {
             tableRows.sort(java.util.Comparator.comparingDouble((String[] row) -> parseDoubleOrZero(row[25])).reversed());
@@ -471,15 +476,16 @@ public class HtmlReporter extends ConsoleReporter {
             html.append("</div>");
         }
         html.append("<div class=\"table-responsive\"><table class=\"table table-striped table-hover table-sm align-middle\">");
-        html.append("<thead class=\"table-dark\"><tr><th>Match</th><th>Team 1</th><th>Team 2</th>");
+        html.append("<thead class=\"table-dark\"><tr><th style=\"width:28px\" aria-label=\"Details\"></th><th>Match</th><th>Team 1</th><th>Team 2</th>");
         if (showWinnerColumn) html.append("<th>Winner</th>");
         if (hasSimulationAdvance) html.append("<th>Most Likely Winner</th>");
         if (hasMatchupLikelihood) html.append("<th>Match Likelihood</th>");
-        if (roundOf32) html.append("<th>Path</th>");
+        html.append("<th>Path</th>");
         if (showOdds) html.append("<th>").append(escapeHtml(oddsHeaderFor(label))).append("</th><th>Net Winnings (Bet=£10)</th>");
         html.append("</tr></thead><tbody>");
 
         for (String[] row : tableRows) {
+            boolean userPick = row.length > 26 && "user".equalsIgnoreCase(row[26]);
             html.append("<tr class=\"").append("predicted".equals(row[7]) ? "table-primary" : "").append("\" data-path=\"").append(row[7]).append("\"")
                     .append(" data-team1=\"").append(escapeHtml(row[1])).append("\"")
                     .append(" data-team2=\"").append(escapeHtml(row[2])).append("\"")
@@ -487,22 +493,16 @@ public class HtmlReporter extends ConsoleReporter {
                     .append(" aria-expanded=\"false\"")
                     .append(" onclick=\"toggleDetail(this)\"")
                     .append(">");
-            html.append("<td><span class=\"expand-icon me-1\" aria-hidden=\"true\"></span>").append(escapeHtml(row[0])).append("</td>");
+            html.append("<td class=\"text-center text-muted\"><span class=\"expand-icon\" aria-hidden=\"true\"></span></td>");
+            html.append("<td>").append(escapeHtml(row[0])).append("</td>");
             html.append("<td>").append(teamCell(row[1]));
-            if (!roundOf32 && row.length > 9 && !row[9].isEmpty() && ("alt".equals(row[7]) || showPositionOnPrimary)) {
-                html.append(" ").append(positionBadgeHtml(row[9]));
-            }
             html.append("</td>");
             html.append("<td>").append(teamCell(row[2]));
-            if (!roundOf32 && !row[3].isEmpty()) {
-                html.append(" <span class=\"badge text-bg-secondary\">").append(escapeHtml(row[3])).append("</span>");
-            }
-            if (!roundOf32 && row.length > 10 && !row[10].isEmpty() && ("alt".equals(row[7]) || showPositionOnPrimary)) {
-                html.append(" ").append(positionBadgeHtml(row[10]));
-            }
             html.append("</td>");
             if (showWinnerColumn) {
-                html.append("<td><span class=\"")
+                html.append("<td>");
+                if (userPick) html.append("<span class=\"badge text-bg-warning me-1\">User Pick</span>");
+                html.append("<span class=\"")
                         .append(Integer.parseInt(row[5]) >= 60 ? "fw-semibold text-success" : "fw-semibold text-warning-emphasis")
                         .append("\">")
                         .append(teamCell(row[4]))
@@ -512,7 +512,21 @@ public class HtmlReporter extends ConsoleReporter {
             }
             if (hasSimulationAdvance) {
                 html.append("<td>");
-                if (row.length > 17 && !row[17].isBlank()) {
+                if (userPick) {
+                    html.append("<div class=\"fw-semibold\">")
+                            .append(teamCell(row[4])).append(" (").append(escapeHtml(row[5])).append("%) ")
+                            .append("<span class=\"badge text-bg-warning\">User Pick</span></div>");
+                    if (row.length > 27 && !row[27].isBlank()) {
+                        html.append("<div class=\"text-muted small\">Model: ")
+                                .append(teamCell(row[27]));
+                        if (row.length > 28 && !row[28].isBlank()) html.append(" (").append(escapeHtml(row[28])).append("%)");
+                        html.append("</div>");
+                    }
+                    if (row.length > 17 && !row[17].isBlank()) {
+                        html.append("<div class=\"text-muted small\">Simulation: ")
+                                .append(teamCell(row[17])).append(" (").append(escapeHtml(row[18])).append("%)</div>");
+                    }
+                } else if (row.length > 17 && !row[17].isBlank()) {
                     html.append("<div class=\"fw-semibold\">")
                             .append(teamCell(row[17]))
                             .append(" (").append(escapeHtml(row[18])).append("%)</div>")
@@ -532,17 +546,25 @@ public class HtmlReporter extends ConsoleReporter {
                 html.append("</td>");
             }
             if (hasMatchupLikelihood) {
-                html.append("<td class=\"fw-semibold\">")
-                        .append(escapeHtml(row[25])).append("%</td>");
+                html.append("<td class=\"fw-semibold\">");
+                if (row[25].isBlank()) {
+                    html.append("<span class=\"text-muted\">Not observed</span>");
+                } else {
+                    double likelihood = parseDoubleOrZero(row[25]);
+                    if (likelihood > 0 && likelihood < 0.1) {
+                        html.append("&lt;0.1%");
+                    } else {
+                        html.append(escapeHtml(row[25])).append("%");
+                    }
+                }
+                html.append("</td>");
             }
-            if (roundOf32) {
-                boolean predictedPath = "predicted".equals(row[7]);
-                html.append("<td><span class=\"badge ")
-                        .append(predictedPath ? "text-bg-primary" : "text-bg-secondary")
-                        .append("\">")
-                        .append(predictedPath ? "Predicted" : "Alternative")
-                        .append("</span></td>");
-            }
+            boolean predictedPath = "predicted".equals(row[7]);
+            html.append("<td><span class=\"badge ")
+                    .append(predictedPath ? "text-bg-primary" : "text-bg-secondary")
+                    .append("\">")
+                    .append(predictedPath ? "Predicted" : "Alternative")
+                    .append("</span></td>");
             if (showOdds) {
                 html.append("<td>").append(escapeHtml(row[6])).append("</td>");
                 int betPct = hasSimulationAdvance && row.length > 18 && !row[18].isBlank()
@@ -556,8 +578,8 @@ public class HtmlReporter extends ConsoleReporter {
             }
             html.append("</tr>");
             // Detail (expandable) row with signal breakdown
-            int colSpan = 3 + (showWinnerColumn ? 1 : 0) + (hasSimulationAdvance ? 1 : 0)
-                    + (hasMatchupLikelihood ? 1 : 0) + (roundOf32 ? 1 : 0) + (showOdds ? 2 : 0);
+            int colSpan = 4 + (showWinnerColumn ? 1 : 0) + (hasSimulationAdvance ? 1 : 0)
+                    + (hasMatchupLikelihood ? 1 : 0) + 1 + (showOdds ? 2 : 0);
             appendEloDetailRow(html, row, colSpan, eloCalculator, eloBreakdowns, stage, pathFatigueCalculator);
         }
 
@@ -647,29 +669,75 @@ public class HtmlReporter extends ConsoleReporter {
             return;
         }
         ExpectedGoalsCalculator.Projection projection = new ExpectedGoalsCalculator()
-                .project(team1, team2, b1.totalElo, b2.totalElo);
+                .project(team1, team2, b1.totalElo, b2.totalElo,
+                        b1.attackQuality, b1.defenceQuality,
+                        b2.attackQuality, b2.defenceQuality);
         html.append("<div class=\"border rounded bg-white mb-2 p-2\">");
         html.append("<div class=\"text-muted small fw-semibold mb-2\">Score model</div>");
         html.append("<div class=\"row g-2 align-items-stretch text-center\">");
         appendScoreModelTeamColumn(html, team1, b1, originSlot1, projection.team1ExpectedGoals(),
                 projection.team1WinPct(), projection.team1AdvancePct());
-        html.append("<div class=\"col-12 col-lg-2 d-flex flex-lg-column justify-content-center align-items-center gap-2 small\">");
-        html.append("<span class=\"badge text-bg-light border fs-6\">")
-                .append(escapeHtml(projection.mostLikelyScoreText()))
-                .append("</span>");
-        html.append("<span class=\"text-muted\">90-min draw ").append(projection.drawPct()).append("%</span>");
-        html.append("<span class=\"badge text-bg-light border\">")
-                .append(flagHtml(projection.pick())).append(escapeHtml(projection.pick()))
-                .append(" after ET/pens ").append(projection.pickAdvancePct()).append("%")
-                .append("</span>");
-        html.append("</div>");
+        html.append("<div class=\"col-12 col-lg-2 d-flex align-items-center\">");
+        html.append("<div class=\"w-100 border rounded-3 bg-light px-2 py-3 text-center\">");
+        html.append("<div class=\"text-uppercase text-muted fw-semibold\" style=\"font-size:0.65rem;letter-spacing:.06em\">Most likely score</div>");
+        html.append("<div class=\"display-6 fw-bold lh-1 my-2\">")
+                .append(escapeHtml(projection.mostLikelyScoreText().replace("-", " - ")))
+                .append("</div>");
+        html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.72rem\">")
+                .append(projection.mostLikelyScorePct()).append("% exact-score likelihood</div>");
+        html.append("<div class=\"d-grid gap-2\">");
+        html.append("<div class=\"border rounded-2 bg-white px-2 py-1\">")
+                .append("<div class=\"text-muted\" style=\"font-size:0.65rem\">Draw after 90 min</div>")
+                .append("<div class=\"fw-semibold\">").append(projection.drawPct()).append("%</div></div>");
+        html.append("<div class=\"border rounded-2 bg-white px-2 py-1\">")
+                .append("<div class=\"text-muted\" style=\"font-size:0.65rem\">")
+                .append(flagHtml(projection.pick())).append(escapeHtml(projection.pick())).append(" advances</div>")
+                .append("<div class=\"fw-semibold\">").append(projection.pickAdvancePct()).append("%</div></div>");
+        html.append("</div></div></div>");
         appendScoreModelTeamColumn(html, team2, b2, originSlot2, projection.team2ExpectedGoals(),
                 projection.team2WinPct(), projection.team2AdvancePct());
         html.append("</div>");
         html.append("<div class=\"text-muted mt-2\" style=\"font-size:0.72rem\">")
-                .append("Score model preview. Simulations sample 90-minute goals; level games are resolved by the Elo-based ET/pens tiebreak.")
+                .append("Exact-score probabilities are individually low; this is the single most likely score, not a confident result forecast. Simulations sample 90-minute goals; level games are resolved by the Elo-based ET/pens tiebreak.")
                 .append("</div>");
         html.append("</div>");
+    }
+
+
+
+    private static String penaltyLevelClass(int level, int maxLevel) {
+        if (level >= maxLevel) return "quality-level-neg-2";
+        if (level <= 1) return "quality-level-neg-1";
+        return "quality-level-neg-mid";
+    }
+
+    private static String benefitLevelClass(int level, int maxLevel) {
+        if (level >= maxLevel) return "quality-level-pos-2";
+        if (level <= 1) return "quality-level-pos-1";
+        return "quality-level-pos-mid";
+    }
+
+    private static void appendGoalQualityCard(StringBuilder html, String label, int level) {
+        String levelClass = switch (level) {
+            case -2 -> "quality-level-neg-2";
+            case -1 -> "quality-level-neg-1";
+            case 1 -> "quality-level-pos-1";
+            case 2 -> "quality-level-pos-2";
+            default -> "quality-level-0";
+        };
+        String value = (level > 0 ? "+" : "") + level;
+        String description = switch (level) {
+            case -2 -> "Very weak";
+            case -1 -> "Weak";
+            case 1 -> "Strong";
+            case 2 -> "Elite";
+            default -> "Average";
+        };
+        html.append("<div class=\"col-6 p-2 ").append(levelClass).append("\">")
+                .append("<div style=\"font-size:0.68rem;opacity:.8\">").append(label).append("</div>")
+                .append("<div class=\"fw-bold\">").append(value).append("</div>")
+                .append("<div style=\"font-size:0.68rem;opacity:.8\">").append(description).append("</div>")
+                .append("</div>");
     }
 
     private static void appendScoreModelTeamColumn(StringBuilder html, String team, EloBreakdown breakdown, String originSlot,
@@ -835,6 +903,15 @@ public class HtmlReporter extends ConsoleReporter {
             sb.append("<div class=\"mb-1\"></div>");
         }
         if (b != null) {
+
+            sb.append("<div class=\"border rounded bg-white shadow-sm mb-2\">");
+            sb.append("<div class=\"px-2 py-1 border-bottom bg-light text-muted small fw-semibold\">Goal model inputs</div>");
+            sb.append("<div class=\"row g-0 text-center\">");
+            appendGoalQualityCard(sb, "Attack", b.attackQuality);
+            appendGoalQualityCard(sb, "Defence", b.defenceQuality);
+            sb.append("</div>");
+            sb.append("<div class=\"border-top px-2 py-1 text-muted\" style=\"font-size:0.68rem\">Affects xG, scorelines and match probabilities. Excluded from Adjusted ELO.</div>");
+            sb.append("</div>");
             sb.append("<div class=\"border rounded bg-white overflow-hidden shadow-sm\">");
             sb.append("<div class=\"d-flex justify-content-between align-items-center px-2 py-1 border-bottom bg-light\">");
             sb.append("<span class=\"text-muted small fw-semibold\">ELO calculation</span>");
@@ -893,33 +970,34 @@ public class HtmlReporter extends ConsoleReporter {
             }
             // Rest of squad/situational signals
             if (b.homeBonus != 0)
-                sb.append("<tr class=\"table-success\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🏠 Home Advantage</td><td class=\"text-end fw-bold border-start-0 text-success\" style=\"width:52%\">+").append(b.homeBonus).append("</td></tr>");
+                sb.append("<tr class=\"quality-level-pos-2\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🏠 Home Advantage</td><td class=\"text-end fw-bold border-start-0 text-success\" style=\"width:52%\">+").append(b.homeBonus).append("</td></tr>");
             if (b.squadAgePenalty != 0)
-                sb.append("<tr class=\"table-warning\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">👶 Squad Age</td><td class=\"text-end fw-bold border-start-0 text-warning\" style=\"width:52%\">−").append(b.squadAgePenalty)
+                sb.append("<tr class=\"").append(b.squadAgeLevel == 1 ? "quality-level-neg-mid" : "quality-level-neg-1").append("\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">👶 Squad Age</td><td class=\"text-end fw-bold border-start-0 text-warning\" style=\"width:52%\">−").append(b.squadAgePenalty)
                   .append(b.ageNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.ageNotes) + "</span>")
                   .append("</td></tr>");
             if (b.squadCohesionPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🤝 Squad Cohesion</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.squadCohesionPenalty)
+                sb.append("<tr class=\"").append(penaltyLevelClass(b.squadCohesionLevel, 3)).append("\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🤝 Squad Cohesion</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.squadCohesionPenalty)
                   .append(b.cohesionNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.cohesionNotes) + "</span>")
                   .append("</td></tr>");
-            if (b.squadDepthPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">⬇️ Bench Depth</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.squadDepthPenalty)
-                  .append(b.depthNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.depthNotes) + "</span>")
+            if (b.squadDepthPenalty != 0) {
+                boolean excellentDepth = b.squadDepthLevel == -1;
+                sb.append("<tr class=\"")
+                  .append(excellentDepth ? "quality-level-pos-2" : penaltyLevelClass(b.squadDepthLevel, 2))
+                  .append("\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">⬇️ Bench Depth</td><td class=\"text-end fw-bold border-start-0\" style=\"width:52%\">")
+                  .append(excellentDepth ? "+" + Math.abs(b.squadDepthPenalty) : "−" + b.squadDepthPenalty)
+                  .append(b.depthNotes.isEmpty() ? "" : "<br><span class='fw-normal' style='font-size:0.75rem;opacity:.8'>" + escapeHtml(b.depthNotes) + "</span>")
                   .append("</td></tr>");
-            if (b.squadQualityBonus != 0)
-                sb.append("<tr class=\"table-success\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">⭐ Squad Quality</td><td class=\"text-end fw-bold border-start-0 text-success\" style=\"width:52%\">+").append(b.squadQualityBonus)
-                  .append(b.qualityNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.qualityNotes) + "</span>")
-                  .append("</td></tr>");
+            }
             if (b.dropoutPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">👤 Squad Omissions</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.dropoutPenalty)
+                sb.append("<tr class=\"").append(penaltyLevelClass(b.dropoutLevel, 3)).append("\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">👤 Squad Omissions</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.dropoutPenalty)
                   .append(b.dropoutNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.dropoutNotes) + "</span>")
                   .append("</td></tr>");
             if (b.injuryPenalty != 0)
-                sb.append("<tr class=\"table-danger\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🤕 Injuries</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.injuryPenalty)
+                sb.append("<tr class=\"").append(penaltyLevelClass(b.injuryLevel, 3)).append("\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🤕 Injuries</td><td class=\"text-end fw-bold border-start-0 text-danger\" style=\"width:52%\">−").append(b.injuryPenalty)
                   .append(b.injuryNotes.isEmpty() ? "" : "<br><span class='fw-normal text-muted' style='font-size:0.75rem'>" + escapeHtml(b.injuryNotes) + "</span>")
                   .append("</td></tr>");
             if (b.heatBonus != 0)
-                sb.append("<tr class=\"table-warning\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🔥 Heat Advantage</td><td class=\"text-end fw-bold border-start-0\" style=\"width:52%\">+").append(b.heatBonus).append("</td></tr>");
+                sb.append("<tr class=\"").append(benefitLevelClass(b.heatLevel, 3)).append("\"><td class=\"small text-nowrap border-end-0\" style=\"width:48%\">🔥 Heat Advantage</td><td class=\"text-end fw-bold border-start-0\" style=\"width:52%\">+").append(b.heatBonus).append("</td></tr>");
             sb.append("<tr class=\"border-top table-light\"><td class=\"fw-bold text-nowrap border-end-0\" style=\"width:48%\">Adjusted ELO</td><td class=\"text-end fw-bold border-start-0 fs-6\" style=\"width:52%\">").append(b.totalElo).append("</td></tr>");
             sb.append("</tbody></table></div>");
         } else {
@@ -1047,7 +1125,9 @@ public class HtmlReporter extends ConsoleReporter {
                     team2PathOpp == null ? "" : team2PathOpp);
         }
         ExpectedGoalsCalculator.Projection projection = new ExpectedGoalsCalculator()
-                .project(team1, team2, b1.totalElo, b2.totalElo);
+                .project(team1, team2, b1.totalElo, b2.totalElo,
+                        b1.attackQuality, b1.defenceQuality,
+                        b2.attackQuality, b2.defenceQuality);
         return new RowAdvanceProjection(
                 projection.pick(),
                 String.valueOf(projection.pickAdvancePct()),

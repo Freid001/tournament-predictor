@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 <div class="container pb-4">
-    <div th:replace="~{fragments :: roundNav}"></div>
+    <div th:replace="~{fragments :: editHeader}"></div>
 
     <form th:action="@{/edit/{round}(round=${round}, tournament=${tournament})}" method="post">
         <input type="hidden" name="rowCount" th:value="${#lists.size(rows)}">
@@ -23,6 +23,7 @@
                 <div class="table-responsive shadow-sm rounded border">
                     <table class="table table-striped table-sm mb-0 align-middle w-100">
                         <colgroup>
+                            <col style="width:28px">
                             <col>
                             <col style="width:105px">
                             <col style="width:105px">
@@ -31,6 +32,7 @@
                         </colgroup>
                         <thead class="table-dark">
                         <tr>
+                            <th aria-label="Details"></th>
                             <th>Team</th>
                             <th class="text-center" style="white-space:nowrap">Winner</th>
                             <th class="text-center" style="white-space:nowrap">Runner-up</th>
@@ -41,7 +43,8 @@
                         <tbody>
                         <th:block th:each="row : ${entry.value}">
                         <tr class="group-main-row" style="cursor:pointer" onclick="toggleGroupDetail(this)">
-                            <td><span class="expand-icon me-1 text-muted small">▶</span><span th:utext="${row.teamHtml}"></span></td>
+                            <td class="text-center text-muted"><span class="expand-icon" aria-hidden="true"></span></td>
+                            <td><span th:utext="${row.teamHtml}"></span></td>
                             <td class="text-center">
                                 <select class="form-select form-select-sm group-pick" data-category="groupWinner" th:name="${'groupWinner' + row.rowIndex}" onclick="event.stopPropagation()">
                                     <option value="yes" th:selected="${row.groupWinner == 'yes'}">yes</option>
@@ -65,48 +68,12 @@
                             </td>
                             <td class="text-center text-muted small" th:text="${row.predictedPosition}"></td>
                         </tr>
-                        <tr th:replace="~{fragments :: groupDetailRow(5, ${row.breakdownHtml})}"></tr>
+                        <tr th:replace="~{fragments :: groupDetailRow(6, ${row.breakdownHtml})}"></tr>
                         </th:block>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-
-        <div th:if="${!groupsMode}" class="table-responsive shadow-sm rounded border">
-            <table class="table table-striped table-sm mb-0 align-middle w-100">
-                <colgroup>
-                    <col style="width:8%">
-                    <col style="width:27%">
-                    <col style="width:4%">
-                    <col style="width:27%">
-                    <col style="width:27%">
-                    <col style="width:7%">
-                </colgroup>
-                <thead class="table-dark">
-                <tr>
-                    <th>Match</th>
-                    <th>Team 1</th>
-                    <th></th>
-                    <th>Team 2</th>
-                    <th>Predicted Winner</th>
-                    <th class="text-center">Disagree?</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="row, stat : ${rows}">
-                    <td th:text="${row.matchId}">M73</td>
-                    <td th:utext="${row.team1Html}">Mexico</td>
-                    <td>vs</td>
-                    <td th:utext="${row.team2Html}">Canada</td>
-                    <td class="predicted-winner-cell"
-                        th:utext="${row.disagree ? row.disagreeWinnerHtml : row.predictedWinnerHtml}"
-                        th:data-agree="${row.predictedWinnerHtml}"
-                        th:data-disagree="${row.disagreeWinnerHtml}">Mexico (68%)</td>
-                    <td class="text-center"><input class="form-check-input disagree-cb" type="checkbox" th:name="${'disagree' + stat.index}" th:checked="${row.disagree}"></td>
-                </tr>
-                </tbody>
-            </table>
         </div>
 
         <button class="btn btn-primary mt-3" type="submit">Save Changes</button>
@@ -123,12 +90,6 @@ document.querySelectorAll('select.group-pick').forEach(function(sel) {
             }
         });
         checkGroupPickErrors(tbody);
-    });
-});
-document.querySelectorAll('.disagree-cb').forEach(function(cb) {
-    cb.addEventListener('change', function() {
-        var cell = this.closest('tr').querySelector('.predicted-winner-cell');
-        cell.innerHTML = this.checked ? cell.dataset.disagree : cell.dataset.agree;
     });
 });
 function checkGroupPickErrors(tbody) {

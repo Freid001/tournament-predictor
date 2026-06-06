@@ -31,13 +31,20 @@ public final class SimulationResultsRenderer {
 
     public static String render(List<Map<String, String>> rows, List<Map<String, String>> pathRows,
                                 List<Map<String, String>> scorelineRows, String teamFilter, String tournament) {
+        return render(rows, pathRows, scorelineRows, teamFilter, tournament, "last_32");
+    }
+
+    public static String render(List<Map<String, String>> rows, List<Map<String, String>> pathRows,
+                                List<Map<String, String>> scorelineRows, String teamFilter,
+                                String tournament, String startRound) {
         String activeTeam = teamFilter == null ? "" : teamFilter.trim();
         StringBuilder html = new StringBuilder();
         html.append("<div class=\"card shadow-sm border-0 mb-3\">")
                 .append("<div class=\"card-body\">")
                 .append("<div class=\"d-flex flex-column flex-md-row justify-content-between gap-2 align-items-md-center mb-3\">")
                 .append("<div><h2 class=\"h4 mb-1\">Monte Carlo Simulation</h2>")
-                .append("<div class=\"text-muted small\">Last 32 onward, based on current adjusted ELO, route fatigue, and xG advance probabilities.</div></div>")
+                .append("<div class=\"text-muted small\">").append(snapshotStartLabel(startRound))
+                .append(" onward, based on current adjusted ELO, route fatigue, and xG advance probabilities.</div></div>")
                 .append("<div class=\"d-flex flex-wrap gap-2 align-self-start align-self-md-center\">")
                 .append(metaBadge(rows, "simulation_runs", "runs"))
                 .append(metaBadge(rows, "simulation_seed", "seed"))
@@ -45,22 +52,67 @@ public final class SimulationResultsRenderer {
                 .append("</div></div>");
 
         appendTopChampions(html, rows);
-        appendFullTable(html, rows, tournament);
-        appendCommonPaths(html, pathRows, activeTeam, tournament);
-        appendCommonScorelines(html, scorelineRows, activeTeam, tournament);
+        appendFullTable(html, rows, tournament, startRound);
+        appendCommonPaths(html, pathRows, activeTeam, tournament, startRound);
+        appendCommonScorelines(html, scorelineRows, activeTeam, tournament, startRound);
 
         html.append("</div></div>");
         return html.toString();
     }
 
+
+    public static String renderGroupSimulation(List<Map<String, String>> rows, String tournament) {
+        if (rows == null || rows.isEmpty()) return "";
+        List<Map<String, String>> sorted = rows.stream()
+                .sorted(Comparator.comparingDouble((Map<String, String> row) -> pctValue(row, "champion")).reversed()
+                        .thenComparing(row -> row.getOrDefault("team", "")))
+                .toList();
+        StringBuilder html = new StringBuilder();
+        html.append("<div class=\"card shadow-sm border-0 mb-4\"><div class=\"card-body\">")
+                .append("<div class=\"d-flex flex-column flex-md-row justify-content-between gap-2 mb-3\">")
+                .append("<div><h2 class=\"h5 mb-1\">End-to-end tournament simulation</h2>")
+                .append("<div class=\"text-muted small\">Group matches and every knockout round are simulated together. ")
+                .append("Percentages include the chance of qualifying from the group.</div></div>")
+                .append("<div class=\"d-flex gap-2 align-self-start\">")
+                .append(metaBadge(rows, "simulation_runs", "runs"))
+                .append(metaBadge(rows, "simulation_seed", "seed"))
+                .append("</div></div>")
+                .append("<div class=\"table-responsive\"><table class=\"table table-sm align-middle mb-0\">")
+                .append("<thead><tr><th>Team</th><th class=\"text-end\">Last 32</th>")
+                .append("<th class=\"text-end\">Last 16</th><th class=\"text-end\">QF</th>")
+                .append("<th class=\"text-end\">SF</th><th class=\"text-end\">Final</th>")
+                .append("<th class=\"text-end\">Champion</th></tr></thead><tbody>");
+        for (Map<String, String> row : sorted) {
+            html.append("<tr><td class=\"fw-semibold\">")
+                    .append(HtmlReporter.flagHtml(row.getOrDefault("team", ""))).append(" ")
+                    .append(escapeHtml(row.getOrDefault("team", ""))).append("</td>")
+                    .append(percentCell(row, "reach_last_32"))
+                    .append(percentCell(row, "reach_last_16"))
+                    .append(percentCell(row, "reach_last_8"))
+                    .append(percentCell(row, "reach_last_4"))
+                    .append(percentCell(row, "reach_final"))
+                    .append("<td class=\"text-end fw-semibold\">")
+                    .append(escapeHtml(row.getOrDefault("champion", ""))).append("%</td></tr>");
+        }
+        html.append("</tbody></table></div>")
+                .append("<div class=\"text-muted small mt-2\">Group ties use points, goal difference, goals scored, then ELO as the final simulation tie-break.</div>")
+                .append("</div></div>");
+        return html.toString();
+    }
+
     public static String renderSnapshot(List<Map<String, String>> rows, String tournament) {
+        return renderSnapshot(rows, tournament, "last_32");
+    }
+
+    public static String renderSnapshot(List<Map<String, String>> rows, String tournament, String startRound) {
         if (rows == null || rows.isEmpty()) {
             return "";
         }
-        List<Map<String, String>> last16Leaders = rows.stream()
-                .sorted(Comparator.comparingDouble((Map<String, String> row) -> pctValue(row, "reach_last_16")).reversed()
+        String advanceColumn = snapshotAdvanceColumn(startRound);
+        String advanceLabel = snapshotAdvanceLabel(startRound);
+        List<Map<String, String>> leaders = rows.stream()
+                .sorted(Comparator.comparingDouble((Map<String, String> row) -> pctValue(row, advanceColumn)).reversed()
                         .thenComparing(row -> row.getOrDefault("team", "")))
-                .limit(16)
                 .toList();
 
         String routeMatchups = rows.get(0).getOrDefault("route_matchups", "");
@@ -70,20 +122,22 @@ public final class SimulationResultsRenderer {
                 ? (routeWeighted
                 ? "Weighted across " + formatCount(routeMatchups) + " possible last 32 matchup projections using group outcome likelihood."
                 : "Averaged across " + formatCount(routeMatchups) + " possible last 32 matchup projections.")
-                : (simulationRuns.isBlank()
-                ? "Across all simulated last 32 routes."
-                : "Across " + formatCount(simulationRuns) + " simulations from the last 32 stage.");
+                : simulationChain(startRound, simulationRuns);
 
         StringBuilder html = new StringBuilder();
         html.append("<div class=\"border rounded-2 bg-light p-3 mb-3\">")
                 .append("<div class=\"d-flex flex-column flex-md-row justify-content-between gap-2 align-items-md-center mb-2\">")
-                .append("<div><div class=\"fw-semibold\">Most likely teams to proceed to Last 16</div>")
-                .append("<div class=\"text-muted small\">Conditional on qualifying for the last 32. ").append(simulationSubtitle).append("</div></div>")
-                .append("<a class=\"btn btn-outline-secondary btn-sm align-self-start align-self-md-center\" href=\"/view/simulation?tournament=")
-                .append(url(tournament)).append("\">Full simulation</a></div>")
+                .append("<div><div class=\"fw-semibold\">Most likely teams to proceed to ").append(advanceLabel).append("</div>")
+                .append("<div class=\"text-muted small\">").append(simulationSubtitle).append("</div></div>")
+                .append("</div>")
                 .append("<div class=\"row g-2\">");
-        for (Map<String, String> row : last16Leaders) {
-            html.append("<div class=\"col-6 col-md-3 col-xl-2\">")
+        for (int leaderIndex = 0; leaderIndex < leaders.size(); leaderIndex++) {
+            Map<String, String> row = leaders.get(leaderIndex);
+            html.append("<div class=\"col-6 col-md-3 col-xl-2 sim-snapshot-card\" data-sim-page=\"")
+                    .append(leaderIndex / 12)
+                    .append("\" style=\"")
+                    .append(leaderIndex < 12 ? "" : "display:none")
+                    .append("\">")
                     .append("<div class=\"border rounded-2 bg-white px-2 py-2 h-100 sim-snapshot-team\" role=\"button\" tabindex=\"0\" style=\"cursor:pointer\" data-team=\"")
                     .append(escapeHtml(row.getOrDefault("team", "")))
                     .append("\" onclick=\"filterTeamValue(this.dataset.team)\" onkeydown=\"if(event.key==='Enter'||event.key===' '){event.preventDefault();filterTeamValue(this.dataset.team);}\">")
@@ -92,15 +146,20 @@ public final class SimulationResultsRenderer {
                     .append("</div><div class=\"fs-5 flex-shrink-0\">")
                     .append(HtmlReporter.flagHtml(row.getOrDefault("team", "")))
                     .append("</div></div>")
-                    .append("<div class=\"h5 mb-0\">").append(escapeHtml(row.getOrDefault("reach_last_16", ""))).append("%</div>")
-                    .append("<div class=\"text-muted small\">last 32 win chance</div>");
+                    .append("<div class=\"h5 mb-0\">").append(escapeHtml(row.getOrDefault(advanceColumn, ""))).append("%</div>")
+                    .append("<div class=\"text-muted small\">chance to reach ").append(advanceLabel).append("</div>");
             String marketOdds = row.getOrDefault("market_odds", "");
             if (!marketOdds.isBlank()) {
                 String netProfit = netWinnings(marketOdds, 10.0);
-                String candidateBadge = betCandidateBadge(pctValue(row, "reach_last_16"), netProfit);
+                String betProbabilityText = row.getOrDefault("bet_probability", "");
+                double betProbability = pctValue(row, "bet_probability");
+                String candidateBadge = betProbabilityText.isBlank()
+                        ? "" : betCandidateBadge(betProbability, marketOdds);
                 html.append("<div class=\"border-top mt-2 pt-2 small\">")
-                        .append("<div>Market to reach Last 16: <span class=\"fw-semibold\">")
+                        .append("<div>Market to reach ").append(advanceLabel).append(": <span class=\"fw-semibold\">")
                         .append(escapeHtml(marketOdds)).append("</span></div>")
+                        .append(betProbabilityText.isBlank() ? "" : "<div class=\"text-muted\">Current-round chance: "
+                                + escapeHtml(betProbabilityText) + "%</div>")
                         .append("<div class=\"d-flex justify-content-between align-items-center gap-1 flex-wrap\">")
                         .append("<span class=\"text-muted\">&pound;10 bet: &pound;")
                         .append(escapeHtml(netProfit)).append(" net</span>")
@@ -108,8 +167,68 @@ public final class SimulationResultsRenderer {
             }
             html.append("</div></div>");
         }
-        html.append("</div></div>");
+        html.append("</div>");
+        int pageCount = (leaders.size() + 11) / 12;
+        if (pageCount > 1) {
+            html.append("<div class=\"d-flex justify-content-center gap-2 mt-3 sim-snapshot-pager\" aria-label=\"Team comparison pages\">");
+            for (int page = 0; page < pageCount; page++) {
+                html.append("<button type=\"button\" class=\"btn btn-sm rounded-circle p-0 sim-page-dot ")
+                        .append(page == 0 ? "btn-secondary" : "btn-outline-secondary")
+                        .append("\" style=\"width:12px;height:12px\" aria-label=\"Show team page ")
+                        .append(page + 1).append("\" aria-current=\"")
+                        .append(page == 0 ? "page" : "false")
+                        .append("\" onclick=\"showSimulationPage(this,")
+                        .append(page).append(")\"></button>");
+            }
+            html.append("</div>");
+        }
+        html.append("</div>")
+                .append("<script>function showSimulationPage(button,page){const panel=button.closest(`.border.rounded-2.bg-light`);panel.querySelectorAll(`.sim-snapshot-card`).forEach(card=>card.style.display=Number(card.dataset.simPage)===page?``:`none`);panel.querySelectorAll(`.sim-page-dot`).forEach(dot=>{const active=dot===button;dot.classList.toggle(`btn-secondary`,active);dot.classList.toggle(`btn-outline-secondary`,!active);dot.setAttribute(`aria-current`,active?`page`:`false`);});}</script>");
         return html.toString();
+    }
+
+    private static String snapshotAdvanceColumn(String startRound) {
+        return switch (startRound) {
+            case "last_16" -> "reach_last_8";
+            case "last_8" -> "reach_last_4";
+            case "last_4" -> "reach_final";
+            case "final" -> "champion";
+            default -> "reach_last_16";
+        };
+    }
+
+    private static String snapshotAdvanceLabel(String startRound) {
+        return switch (startRound) {
+            case "last_16" -> "Quarter Finals";
+            case "last_8" -> "Semi Finals";
+            case "last_4" -> "Final";
+            case "final" -> "Champion";
+            default -> "Last 16";
+        };
+    }
+
+    private static String simulationChain(String startRound, String simulationRuns) {
+        String runs = simulationRuns.isBlank() ? "simulations" : formatCount(simulationRuns) + " simulations";
+        List<String> stages = switch (startRound) {
+            case "last_16" -> List.of("Last 32", "Last 16");
+            case "last_8" -> List.of("Last 32", "Last 16", "Quarter Finals");
+            case "last_4" -> List.of("Last 32", "Last 16", "Quarter Finals", "Semi Finals");
+            case "final" -> List.of("Last 32", "Last 16", "Quarter Finals", "Semi Finals", "Final");
+            default -> List.of("Last 32");
+        };
+        return stages.stream()
+                .map(stage -> stage + " (" + runs + ")")
+                .collect(java.util.stream.Collectors.joining(" &rarr; "));
+    }
+
+    private static String snapshotStartLabel(String startRound) {
+        return switch (startRound) {
+            case "last_16" -> "Last 16";
+            case "last_8" -> "Quarter Finals";
+            case "last_4" -> "Semi Finals";
+            case "final" -> "Final";
+            default -> "Last 32";
+        };
     }
 
     private static void appendTopChampions(StringBuilder html, List<Map<String, String>> rows) {
@@ -137,7 +256,8 @@ public final class SimulationResultsRenderer {
         html.append("</div></div>");
     }
 
-    private static void appendFullTable(StringBuilder html, List<Map<String, String>> rows, String tournament) {
+    private static void appendFullTable(StringBuilder html, List<Map<String, String>> rows,
+                                        String tournament, String startRound) {
         html.append("<div class=\"table-responsive mb-4\"><table class=\"table table-sm align-middle mb-0\">")
                 .append("<thead><tr>")
                 .append("<th>Team</th><th>Predicted Finish</th><th>Best Realistic Finish</th>")
@@ -147,7 +267,7 @@ public final class SimulationResultsRenderer {
         for (Map<String, String> row : rows) {
             String team = row.getOrDefault("team", "");
             html.append("<tr>")
-                    .append("<td class=\"fw-semibold\">").append(teamLink(team, tournament)).append("</td>")
+                    .append("<td class=\"fw-semibold\">").append(teamLink(team, tournament, startRound)).append("</td>")
                     .append("<td>").append(finishText(row, "predicted_finish", "predicted_finish_pct")).append("</td>")
                     .append("<td>").append(finishText(row, "best_realistic_finish", "best_realistic_pct")).append("</td>")
                     .append(percentCell(row, "reach_last_16"))
@@ -161,7 +281,7 @@ public final class SimulationResultsRenderer {
     }
 
     private static void appendCommonPaths(StringBuilder html, List<Map<String, String>> pathRows,
-                                          String teamFilter, String tournament) {
+                                          String teamFilter, String tournament, String startRound) {
         List<Map<String, String>> filteredRows = pathRows.stream()
                 .filter(row -> teamFilter.isBlank() || row.getOrDefault("team", "").equalsIgnoreCase(teamFilter))
                 .toList();
@@ -186,7 +306,7 @@ public final class SimulationResultsRenderer {
                 .append("<div class=\"text-muted small\">Top ").append(topPaths.size()).append(" exact routes</div>");
         if (!teamFilter.isBlank() && !tournament.isBlank()) {
             html.append("<a class=\"btn btn-outline-secondary btn-sm\" href=\"/view/simulation?tournament=")
-                    .append(url(tournament)).append("\">Clear</a>");
+                    .append(url(tournament)).append("&simulationRound=").append(url(startRound)).append("\">Clear</a>");
         }
         html.append("</div></div>")
                 .append("<div class=\"table-responsive\"><table class=\"table table-sm align-middle mb-0\">")
@@ -194,7 +314,7 @@ public final class SimulationResultsRenderer {
         for (Map<String, String> row : topPaths) {
             String team = row.getOrDefault("team", "");
             html.append("<tr>")
-                    .append("<td class=\"fw-semibold\">").append(teamLink(team, tournament)).append("</td>")
+                    .append("<td class=\"fw-semibold\">").append(teamLink(team, tournament, startRound)).append("</td>")
                     .append("<td>").append(escapeHtml(row.getOrDefault("finish", ""))).append("</td>")
                     .append("<td class=\"text-break\">").append(escapeHtml(row.getOrDefault("path", ""))).append("</td>")
                     .append("<td class=\"text-end\">").append(escapeHtml(row.getOrDefault("count", ""))).append("</td>")
@@ -205,7 +325,7 @@ public final class SimulationResultsRenderer {
     }
 
     private static void appendCommonScorelines(StringBuilder html, List<Map<String, String>> scorelineRows,
-                                               String teamFilter, String tournament) {
+                                               String teamFilter, String tournament, String startRound) {
         List<Map<String, String>> filteredRows = scorelineRows.stream()
                 .filter(row -> teamFilter.isBlank()
                         || row.getOrDefault("team1", "").equalsIgnoreCase(teamFilter)
@@ -236,11 +356,11 @@ public final class SimulationResultsRenderer {
         for (Map<String, String> row : filteredRows) {
             html.append("<tr>")
                     .append("<td>").append(stageLabel(row.getOrDefault("stage", ""))).append("</td>")
-                    .append("<td class=\"text-break\">").append(teamLink(row.getOrDefault("team1", ""), tournament))
+                    .append("<td class=\"text-break\">").append(teamLink(row.getOrDefault("team1", ""), tournament, startRound))
                     .append(" <span class=\"text-muted\">v</span> ")
-                    .append(teamLink(row.getOrDefault("team2", ""), tournament)).append("</td>")
+                    .append(teamLink(row.getOrDefault("team2", ""), tournament, startRound)).append("</td>")
                     .append("<td class=\"fw-semibold\">").append(escapeHtml(row.getOrDefault("scoreline", ""))).append("</td>")
-                    .append("<td>").append(teamLink(row.getOrDefault("winner", ""), tournament)).append("</td>")
+                    .append("<td>").append(teamLink(row.getOrDefault("winner", ""), tournament, startRound)).append("</td>")
                     .append("<td class=\"text-end fw-semibold\">").append(escapeHtml(row.getOrDefault("scoreline_pct", ""))).append("%</td>")
                     .append("<td class=\"text-end\">").append(escapeHtml(row.getOrDefault("matchup_pct", ""))).append("%</td>")
                     .append("</tr>");
@@ -248,20 +368,16 @@ public final class SimulationResultsRenderer {
         html.append("</tbody></table></div></div>");
     }
 
-    private static String snapshotItem(String label, String team, String detailHtml, String tournament) {
-        return "<div class=\"col-12 col-md-3\"><div class=\"small text-muted\">" + escapeHtml(label)
-                + "</div><div class=\"fw-semibold\">" + teamLink(team, tournament) + " " + detailHtml + "</div></div>";
-    }
-
     private static String pctDetail(Map<String, String> row, String key) {
         return "<span class=\"text-muted\">" + escapeHtml(row.getOrDefault(key, "")) + "%</span>";
     }
 
-    private static String teamLink(String team, String tournament) {
+    private static String teamLink(String team, String tournament, String startRound) {
         if (team == null || team.isBlank() || tournament == null || tournament.isBlank()) {
             return escapeHtml(team == null ? "" : team);
         }
-        return "<a href=\"/view/simulation?tournament=" + url(tournament) + "&team=" + url(team)
+        return "<a href=\"/view/simulation?tournament=" + url(tournament) + "&simulationRound="
+                + url(startRound) + "&team=" + url(team)
                 + "\" class=\"link-primary link-offset-2\">" + escapeHtml(team) + "</a>";
     }
 
@@ -326,18 +442,26 @@ public final class SimulationResultsRenderer {
         }
     }
 
-    private static String betCandidateBadge(double pct, String netProfit) {
-        double profit;
+    private static String betCandidateBadge(double pct, String odds) {
+        int slash = odds == null ? -1 : odds.indexOf(47);
+        if (slash <= 0 || slash >= odds.length() - 1) return "";
+        double numerator;
+        double denominator;
         try {
-            profit = Double.parseDouble(netProfit);
+            numerator = Double.parseDouble(odds.substring(0, slash).trim());
+            denominator = Double.parseDouble(odds.substring(slash + 1).trim());
         } catch (NumberFormatException e) {
             return "";
         }
-        if (pct >= 55 && profit >= 10) return "<span class=\"badge text-bg-success\">Strong Candidate</span>";
-        if (pct >= 40 && profit >= 10) return "<span class=\"badge text-bg-primary\">Candidate</span>";
-        if (pct >= 40 && profit > 5) return "<span class=\"badge text-bg-info\">Weak Candidate</span>";
-        if (pct >= 30 && profit >= 10) return "<span class=\"badge text-bg-warning\">Risky Candidate</span>";
-        if (pct < 30 && profit >= 20) return "<span class=\"badge text-bg-secondary\">Moonshot</span>";
+        if (numerator <= 0 || denominator <= 0) return "";
+        double impliedPct = denominator / (numerator + denominator) * 100.0;
+        double edge = pct - impliedPct;
+        if (edge <= 0) return "";
+        if (pct < 30) return "<span class=\"badge\" style=\"background-color:#6f42c1;color:#fff\">Moonshot</span>";
+        if (pct < 40) return "<span class=\"badge\" style=\"background-color:#fd7e14;color:#fff\">Risky Candidate</span>";
+        if (edge >= 10) return "<span class=\"badge text-bg-success\">Strong Candidate</span>";
+        if (edge >= 5) return "<span class=\"badge text-bg-primary\">Candidate</span>";
+        if (edge >= 2) return "<span class=\"badge text-bg-info\">Weak Candidate</span>";
         return "";
     }
 

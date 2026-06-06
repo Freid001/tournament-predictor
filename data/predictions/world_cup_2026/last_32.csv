@@ -1,17 +1,33 @@
 match_id,team1,team2,path,elo,prediction,do_you_disagree
 M73,A2(South Korea),B2(Canada),predicted,Canada (59%),Canada (59%),
-M74,E1(Germany),ABCDF3(Australia),predicted,Germany (81%),Germany (81%),
+
+M74,E1(Germany),ABCDF3(Australia),predicted,Germany (80%),Germany (80%),
+
 M75,F1(Netherlands),C2(Morocco),predicted,Netherlands (59%),Netherlands (59%),
+
 M76,C1(Brazil),F2(Japan),predicted,Japan (54%),Japan (54%),
-M77,I1(France),CDFGH3(Egypt),predicted,France (91%),France (91%),
-M78,E2(Ecuador),I2(Norway),predicted,Norway (57%),Norway (57%),
+
+M77,I1(France),CDFGH3(Egypt),predicted,France (90%),France (90%),
+
+M78,E2(Ecuador),I2(Norway),predicted,Norway (56%),Norway (56%),
+
 M79,A1(Mexico),CEFHI3(Ivory Coast),predicted,Mexico (78%),Mexico (78%),
+
 M80,L1(England),EHIJK3(DR Congo),predicted,England (87%),England (87%),
+
 M81,D1(Turkey),BEFIJ3(Senegal),predicted,Turkey (54%),Turkey (54%),
-M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (76%),Belgium (76%),
+
+M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (75%),Belgium (75%),
+
 M83,K2(Colombia),L2(Croatia),predicted,Colombia (57%),Colombia (57%),
-M84,H1(Spain),J2(Austria),predicted,Spain (86%),Spain (86%),
+
+M84,H1(Spain),J2(Austria),predicted,Spain (85%),Spain (85%),
+
 M85,B1(Switzerland),EFGIJ3(Algeria),predicted,Switzerland (72%),Switzerland (72%),
-M86,J1(Argentina),H2(Uruguay),predicted,Argentina (89%),Argentina (89%),
+
+M86,J1(Argentina),H2(Uruguay),predicted,Argentina (88%),Argentina (88%),
+
 M87,K1(Portugal),DEIJL3(Panama),predicted,Portugal (84%),Portugal (84%),
+
 M88,D2(Paraguay),G2(Iran),predicted,Paraguay (54%),Paraguay (54%),
+

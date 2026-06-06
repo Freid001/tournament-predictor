@@ -91,7 +91,7 @@ class EloBreakdownTest {
     }
 
     @Test
-    void totalElo_squadQualityBonusAdded() {
+    void totalElo_attackAndDefenceQualityDoNotChangeElo() {
         EloBreakdown b = fullBreakdown(1900, false, 0,
                 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0);
@@ -103,12 +103,12 @@ class EloBreakdownTest {
                 "", "", "", "", "", "",
                 List.of(), List.of(),
                 0, "");
-        assertEquals(1920, bq.totalElo);
+        assertEquals(1900, bq.totalElo);
     }
 
     @Test
-    void totalElo_depthAndQualityTogether_cancel() {
-        // depth penalty=10 and quality bonus=10 → no net change to base
+    void totalElo_depthStillAppliesWithGoalQuality() {
+        // Attack and defence quality are xG-only; the depth penalty still reduces ELO.
         EloBreakdown b = new EloBreakdown(1900, false, 0,
                 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0,
@@ -116,14 +116,14 @@ class EloBreakdownTest {
                 "", "", "", "", "", "",
                 List.of(), List.of(),
                 0, "");
-        assertEquals(1900, b.totalElo);
+        assertEquals(1890, b.totalElo);
     }
 
     @Test
     void totalElo_allSignalsActive_correctSum() {
         // base=2000, home=+50, injury=-20, heat=+15, dropout=-10,
-        // qual=+30, preTournament=+25, age=-10, cohesion=-10, depth=-10, quality=+20
-        // expected = 2000 + 50 - 20 + 15 - 10 + 30 + 25 - 10 - 10 - 10 + 20 = 2080
+        // qual=+30, preTournament=+25, age=-10, cohesion=-10, depth=-10; goal quality is excluded
+        // expected = 2000 + 50 - 20 + 15 - 10 + 30 + 25 - 10 - 10 - 10 = 2060
         EloBreakdown b = new EloBreakdown(2000, true, 50,
                 1, 20, 1, 15, 1, 10, 30, 25,
                 1, 10, 1, 10,
@@ -131,7 +131,7 @@ class EloBreakdownTest {
                 "dn", "in", "an", "cn", "depn", "qn",
                 List.of(), List.of(),
                 0, "");
-        assertEquals(2080, b.totalElo);
+        assertEquals(2060, b.totalElo);
     }
 
     @Test
@@ -172,8 +172,8 @@ class EloBreakdownTest {
                 List.of());
         assertEquals(0, b.squadDepthLevel);
         assertEquals(0, b.squadDepthPenalty);
-        assertEquals(0, b.squadQualityLevel);
-        assertEquals(0, b.squadQualityBonus);
+        assertEquals(0, b.attackQuality);
+        assertEquals(0, b.defenceQuality);
         assertEquals(0, b.preTournamentBonus);
         assertEquals(1900, b.totalElo);
     }
@@ -187,8 +187,8 @@ class EloBreakdownTest {
                 List.of(), List.of());
         assertEquals(0, b.squadDepthLevel);
         assertEquals(0, b.squadDepthPenalty);
-        assertEquals(0, b.squadQualityLevel);
-        assertEquals(0, b.squadQualityBonus);
+        assertEquals(0, b.attackQuality);
+        assertEquals(0, b.defenceQuality);
         assertEquals(1900, b.totalElo);
     }
 
@@ -208,7 +208,7 @@ class EloBreakdownTest {
         assertEquals("", b.ageNotes);
         assertEquals("", b.cohesionNotes);
         assertEquals("", b.depthNotes);
-        assertEquals("", b.qualityNotes);
+        assertEquals("", b.goalQualityNotes);
     }
 
     // ─── Immutable result lists ───────────────────────────────────────────────
@@ -263,14 +263,14 @@ class EloBreakdownTest {
         assertEquals(8, b.squadCohesionPenalty);
         assertEquals(2, b.squadDepthLevel);
         assertEquals(20, b.squadDepthPenalty);
-        assertEquals(1, b.squadQualityLevel);
-        assertEquals(15, b.squadQualityBonus);
+        assertEquals(1, b.attackQuality);
+        assertEquals(15, b.defenceQuality);
         assertEquals("dropout", b.dropoutNotes);
         assertEquals("injury", b.injuryNotes);
         assertEquals("age", b.ageNotes);
         assertEquals("cohesion", b.cohesionNotes);
         assertEquals("depth", b.depthNotes);
-        assertEquals("quality", b.qualityNotes);
+        assertEquals("quality", b.goalQualityNotes);
         assertEquals(1, b.qualResults.size());
         assertEquals(1, b.friendlyResults.size());
     }

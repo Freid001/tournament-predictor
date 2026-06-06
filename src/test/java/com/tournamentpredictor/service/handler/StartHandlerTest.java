@@ -174,6 +174,16 @@ class StartHandlerTest {
         }
     }
 
+    @Test
+    void excellentSquadDepth_addsTenElo() throws IOException {
+        writeStartCsv("group,team,host,injury_impact,squad_depth\n" +
+                "A,England,no,0,-1\n");
+
+        new StartHandler(loader, root, csvHelper).handle("test");
+
+        assertEquals(2010, readAdjustedElo("test", "England"));
+    }
+
     // ─── Helpers ──────────────────────────────────────────────────────────────
 
     private void writeStartCsv(String content) throws IOException {

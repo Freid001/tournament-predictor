@@ -42,10 +42,9 @@ public class StartHandler {
     private final int squadCohesionUnsettledPenalty;
     private final int squadCohesionDisruptedPenalty;
     private final int squadCohesionFracturedPenalty;
+    private final int squadDepthExcellentBonus;
     private final int squadDepthLimitedPenalty;
     private final int squadDepthThinPenalty;
-    private final int squadQualityGoodBonus;
-    private final int squadQualityExceptionalBonus;
     private static final List<String> REQUIRED_HEADERS = Arrays.asList("group", "team", "host", "injury_impact");
     private static final Set<String> VALID_HOST_VALUES = Set.of("yes", "no");
 
@@ -60,7 +59,7 @@ public class StartHandler {
                 2026, 2026, 25,
                 10, 8,
                 15, 30, 45,
-                10, 20, 10, 20);
+                10, 10, 20);
     }
 
     public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper, PredictionConfig config) {
@@ -71,8 +70,7 @@ public class StartHandler {
                 config.getPreTournamentFormSinceYear(), config.getPreTournamentFormUntilYear(), config.getPreTournamentFormEloMax(),
                 config.getSquadAgeYoungPenalty(), config.getSquadAgeAgingPenalty(),
                 config.getSquadCohesionUnsettledPenalty(), config.getSquadCohesionDisruptedPenalty(), config.getSquadCohesionFracturedPenalty(),
-                config.getSquadDepthLimitedPenalty(), config.getSquadDepthThinPenalty(),
-                config.getSquadQualityGoodBonus(), config.getSquadQualityExceptionalBonus());
+                config.getSquadDepthExcellentBonus(), config.getSquadDepthLimitedPenalty(), config.getSquadDepthThinPenalty());
     }
 
     private StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
@@ -101,10 +99,9 @@ public class StartHandler {
         this.squadCohesionUnsettledPenalty = squadCohesionUnsettledPenalty;
         this.squadCohesionDisruptedPenalty = squadCohesionDisruptedPenalty;
         this.squadCohesionFracturedPenalty = squadCohesionFracturedPenalty;
+        this.squadDepthExcellentBonus = 10;
         this.squadDepthLimitedPenalty = 10;
         this.squadDepthThinPenalty = 20;
-        this.squadQualityGoodBonus = 10;
-        this.squadQualityExceptionalBonus = 20;
     }
 
     private StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
@@ -114,8 +111,7 @@ public class StartHandler {
                          int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax,
                          int squadAgeYoungPenalty, int squadAgeAgingPenalty,
                          int squadCohesionUnsettledPenalty, int squadCohesionDisruptedPenalty, int squadCohesionFracturedPenalty,
-                         int squadDepthLimitedPenalty, int squadDepthThinPenalty,
-                         int squadQualityGoodBonus, int squadQualityExceptionalBonus) {
+                         int squadDepthExcellentBonus, int squadDepthLimitedPenalty, int squadDepthThinPenalty) {
         this.loader = loader;
         this.projectRoot = projectRoot;
         this.csvHelper = csvHelper;
@@ -135,10 +131,9 @@ public class StartHandler {
         this.squadCohesionUnsettledPenalty = squadCohesionUnsettledPenalty;
         this.squadCohesionDisruptedPenalty = squadCohesionDisruptedPenalty;
         this.squadCohesionFracturedPenalty = squadCohesionFracturedPenalty;
+        this.squadDepthExcellentBonus = squadDepthExcellentBonus;
         this.squadDepthLimitedPenalty = squadDepthLimitedPenalty;
         this.squadDepthThinPenalty = squadDepthThinPenalty;
-        this.squadQualityGoodBonus = squadQualityGoodBonus;
-        this.squadQualityExceptionalBonus = squadQualityExceptionalBonus;
     }
 
     public void handle(String tournament) throws IOException {
@@ -167,6 +162,8 @@ public class StartHandler {
         int squadCohesionIdx = startIndexes.getOrDefault("squad_cohesion", -1);
         int squadDepthIdx = startIndexes.getOrDefault("squad_depth", -1);
         int squadQualityIdx = startIndexes.getOrDefault("squad_quality", -1);
+        int attackQualityIdx = startIndexes.getOrDefault("attack_quality", -1);
+        int defenceQualityIdx = startIndexes.getOrDefault("defence_quality", -1);
 
         Map<String, Integer> eloRatings = loader.loadEloForTournament(tournament);
         Path historyDir = loader.historyDirForTournament(tournament);
@@ -178,14 +175,17 @@ public class StartHandler {
                 "pre.tournament.form.since.year", "pre_tournament_form_since", preTournamentFormSinceYear);
         int effectivePreTournamentUntilYear = loader.resolveSnapshotBackedSetting(tournament,
                 "pre.tournament.form.until.year", "pre_tournament_form_until", preTournamentFormUntilYear);
+        java.time.LocalDate tournamentStartDate = loader.resolveSnapshotBackedDate(tournament,
+                "tournament.start.date", "tournament_start_date");
 
         QualificationFormCalculator qualCalc = new QualificationFormCalculator(
                 historyDir,
-                effectiveQualSinceYear, effectiveQualUntilYear, qualFormEloMax);
+                effectiveQualSinceYear, effectiveQualUntilYear, qualFormEloMax,
+                java.util.Set.of("WQ", "WQS", "FQ"), 0, tournamentStartDate);
         QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
                 historyDir,
                 effectivePreTournamentSinceYear, effectivePreTournamentUntilYear,
-                preTournamentFormEloMax, Set.of("F"), 5);
+                preTournamentFormEloMax, Set.of("F"), 5, tournamentStartDate);
 
         Map<String, List<String[]>> groups = new LinkedHashMap<>();
         for (int i = 1; i < startLines.size(); i++) {
@@ -208,12 +208,18 @@ public class StartHandler {
                     ? Integer.parseInt(cols[squadCohesionIdx].trim()) : 0;
             int depthLevel = (squadDepthIdx >= 0 && cols.length > squadDepthIdx && !cols[squadDepthIdx].trim().isEmpty())
                     ? Integer.parseInt(cols[squadDepthIdx].trim()) : 0;
-            int qualityLevel = (squadQualityIdx >= 0 && cols.length > squadQualityIdx && !cols[squadQualityIdx].trim().isEmpty())
+            int legacyQuality = (squadQualityIdx >= 0 && cols.length > squadQualityIdx && !cols[squadQualityIdx].trim().isEmpty())
                     ? Integer.parseInt(cols[squadQualityIdx].trim()) : 0;
+            int attackQuality = (attackQualityIdx >= 0 && cols.length > attackQualityIdx && !cols[attackQualityIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[attackQualityIdx].trim()) : legacyQuality;
+            int defenceQuality = (defenceQualityIdx >= 0 && cols.length > defenceQualityIdx && !cols[defenceQualityIdx].trim().isEmpty())
+                    ? Integer.parseInt(cols[defenceQualityIdx].trim()) : legacyQuality;
             int[] SQUAD_AGE_PENALTIES = {0, squadAgeYoungPenalty, squadAgeAgingPenalty};
             int[] COHESION_PENALTIES = {0, squadCohesionUnsettledPenalty, squadCohesionDisruptedPenalty, squadCohesionFracturedPenalty};
             int[] DEPTH_PENALTIES = {0, squadDepthLimitedPenalty, squadDepthThinPenalty};
-            int[] QUALITY_BONUSES = {0, squadQualityGoodBonus, squadQualityExceptionalBonus};
+            int depthPenalty = depthLevel == -1
+                    ? -squadDepthExcellentBonus
+                    : DEPTH_PENALTIES[Math.min(depthLevel, DEPTH_PENALTIES.length - 1)];
             int baseElo = eloRatings.getOrDefault(team, 0);
             if (baseElo == 0) {
                 log.warn("Team '{}' not found in world.csv, ELO defaulting to 0", team);
@@ -225,8 +231,7 @@ public class StartHandler {
                     + HEAT_ADVANTAGES[heatLevel] - SQUAD_DROPOUT_PENALTIES[squadDropoutLevel] + qualBonus
                     + preTournamentBonus - SQUAD_AGE_PENALTIES[Math.min(ageLevel, SQUAD_AGE_PENALTIES.length - 1)]
                     - COHESION_PENALTIES[Math.min(cohesionLevel, COHESION_PENALTIES.length - 1)]
-                    - DEPTH_PENALTIES[Math.min(depthLevel, DEPTH_PENALTIES.length - 1)]
-                    + QUALITY_BONUSES[Math.min(qualityLevel, QUALITY_BONUSES.length - 1)];
+                    - depthPenalty;
             groups.computeIfAbsent(group, k -> new ArrayList<>()).add(new String[]{
                     team,
                     String.valueOf(baseElo),
@@ -236,12 +241,13 @@ public class StartHandler {
                     String.valueOf(ageLevel),
                     String.valueOf(cohesionLevel),
                     String.valueOf(depthLevel),
-                    String.valueOf(qualityLevel)
+                    String.valueOf(attackQuality),
+                    String.valueOf(defenceQuality)
             });
         }
 
         List<String> output = new ArrayList<>();
-        output.add("group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,squad_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place");
+        output.add("group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place");
         boolean first = true;
         for (Map.Entry<String, List<String[]>> entry : groups.entrySet()) {
             if (!first) {
@@ -270,11 +276,12 @@ public class StartHandler {
                 int ageLevel = Integer.parseInt(team[5]);
                 int cohesionLevel = Integer.parseInt(team[6]);
                 int depthLevel = Integer.parseInt(team[7]);
-                int qualityLevel = Integer.parseInt(team[8]);
+                int attackQuality = Integer.parseInt(team[8]);
+                int defenceQuality = Integer.parseInt(team[9]);
                 String[] s = scores.get(name);
                 String[] pred = autoFillPredictions(i, gap12, gap23, gap34, CONFIDENCE_GAP);
                 output.add(group + "," + name + "," + baseElo + "," + qualBonus + "," + preTournamentBonus + ","
-                        + ageLevel + "," + cohesionLevel + "," + depthLevel + "," + qualityLevel + ","
+                        + ageLevel + "," + cohesionLevel + "," + depthLevel + "," + attackQuality + "," + defenceQuality + ","
                         + adjustedElo + "," + s[0] + ","
                         + pred[0] + "," + pred[1] + "," + pred[2]);
             }

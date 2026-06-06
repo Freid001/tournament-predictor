@@ -11,7 +11,7 @@
         <table class="table table-striped table-sm mb-0 align-middle">
             <thead class="table-dark">
             <tr>
-                <th></th>
+                <th style="width:28px" aria-label="Details"></th>
                 <th>Grp</th>
                 <th></th>
                 <th>Team</th>
@@ -19,7 +19,8 @@
                 <th><span data-bs-toggle="tooltip" data-bs-title="Squad age profile. Use Young for unusually inexperienced tournament squads; Aging for cores with several key 33+ players and recovery risk.">Age</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="Chemistry/tactical disruption. Look for new coach, selection rows, political disruption, late reshuffles, or unsettled combinations.">Cohesion</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="Replacement quality. Use Limited/Thin when quality drops sharply beyond the starters; also affects knockout fatigue sensitivity.">Bench Depth</span></th>
-                <th><span data-bs-toggle="tooltip" data-bs-title="Current talent above base Elo. Use sparingly for exceptional current squads so we do not double-count Elo.">Quality</span></th>
+                <th><span data-bs-toggle="tooltip" data-bs-title="xG-only attacking quality from -2 to +2.">Attack</span></th>
+                <th><span data-bs-toggle="tooltip" data-bs-title="xG-only defensive quality from -2 to +2.">Defence</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="Players missing from the selected squad: injury ruled them out, coach omission, discipline, retirement, refusal, or federation dispute. Active-squad fitness belongs in Injury.">Squad Omissions</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="Current availability and fitness: ruled-out players, doubtful starters, managed minutes, recent returns, or players carrying knocks.">Injury</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="Climate adaptation to hot/humid/altitude venues. Use for teams likely to handle conditions better than opponents.">Heat</span></th>
@@ -28,65 +29,76 @@
             <tbody>
             <th:block th:each="row, stat : ${rows}">
             <tr style="cursor:pointer" onclick="toggleNotes(this)">
-                <td class="text-center pe-0" style="width:1.5rem">
-                    <span class="expand-icon" style="font-size:.75em;opacity:.5"
-                          th:text="${!#strings.isEmpty(row.dropoutNotes) or !#strings.isEmpty(row.injuryNotes) or !#strings.isEmpty(row.ageNotes) or !#strings.isEmpty(row.cohesionNotes) or !#strings.isEmpty(row.depthNotes) or !#strings.isEmpty(row.qualityNotes)} ? '▶' : '▷'">▶</span>
+                <td class="text-center text-muted" style="width:28px">
+                    <span class="expand-icon" aria-hidden="true"></span>
                 </td>
                 <td class="fw-semibold text-center" th:text="${row.group}">A</td>
                 <td class="text-center" th:utext="${row.teamFlagHtml}"></td>
                 <td th:text="${row.team}">England</td>
                 <td class="text-center">
-                    <span th:if="${row.host}" class="badge text-bg-warning">Host (+100)</span>
+                    <span th:if="${row.host}" class="badge quality-badge quality-level-pos-2">Host (+100)</span>
                 </td>
                 <td>
                     <span th:switch="${row.squadAgeProfile}">
-                        <span th:case="1" class="badge text-bg-info">Young (-12)</span>
-                        <span th:case="2" class="badge text-bg-secondary">Aging (-8)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-neg-mid">Young (-12)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-neg-1">Aging (-8)</span>
                     </span>
                 </td>
                 <td>
                     <span th:switch="${row.squadCohesion}">
-                        <span th:case="1" class="badge text-bg-warning">Unsettled (-11)</span>
-                        <span th:case="2" class="badge text-bg-danger">Disrupted (-22)</span>
-                        <span th:case="3" class="badge text-bg-danger">Fractured (-45)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-neg-1">Unsettled (-11)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-neg-mid">Disrupted (-22)</span>
+                        <span th:case="3" class="badge quality-badge quality-level-neg-2">Fractured (-45)</span>
                     </span>
                 </td>
                 <td>
                     <span th:switch="${row.squadDepth}">
-                        <span th:case="1" class="badge text-bg-warning">Limited bench (-10)</span>
-                        <span th:case="2" class="badge text-bg-danger">Thin bench (-20)</span>
+                        <span th:case="-1" class="badge quality-badge quality-level-pos-2">Excellent (+10)</span>
+                        <span th:case="0" class="badge quality-badge quality-level-0">Good/deep</span>
+                        <span th:case="1" class="badge quality-badge quality-level-neg-1">Limited bench (-10)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-neg-2">Thin bench (-20)</span>
                     </span>
                 </td>
                 <td>
-                    <span th:switch="${row.squadQuality}">
-                        <span th:case="1" class="badge text-bg-success">Good (+10)</span>
-                        <span th:case="2" class="badge text-bg-success">Exceptional (+20)</span>
+                    <span th:switch="${row.attackQuality}">
+                        <span th:case="-2" class="badge quality-badge quality-level-neg-2">Very weak (-2)</span>
+                        <span th:case="-1" class="badge quality-badge quality-level-neg-1">Weak (-1)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-pos-1">Strong (+1)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-pos-2">Elite (+2)</span>
+                    </span>
+                </td>
+                <td>
+                    <span th:switch="${row.defenceQuality}">
+                        <span th:case="-2" class="badge quality-badge quality-level-neg-2">Very weak (-2)</span>
+                        <span th:case="-1" class="badge quality-badge quality-level-neg-1">Weak (-1)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-pos-1">Strong (+1)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-pos-2">Elite (+2)</span>
                     </span>
                 </td>
                 <td>
                     <span th:switch="${row.squadDropouts}">
-                        <span th:case="1" class="badge text-bg-secondary">Minor (-18)</span>
-                        <span th:case="2" class="badge text-bg-warning">Significant (-35)</span>
-                        <span th:case="3" class="badge text-bg-danger">Critical (-70)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-neg-1">Minor (-18)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-neg-mid">Significant (-35)</span>
+                        <span th:case="3" class="badge quality-badge quality-level-neg-2">Critical (-70)</span>
                     </span>
                 </td>
                 <td>
                     <span th:switch="${row.injuryImpact}">
-                        <span th:case="1" class="badge text-bg-secondary">Minor (-22)</span>
-                        <span th:case="2" class="badge text-bg-warning">Significant (-45)</span>
-                        <span th:case="3" class="badge text-bg-danger">Critical (-90)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-neg-1">Minor (-22)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-neg-mid">Significant (-45)</span>
+                        <span th:case="3" class="badge quality-badge quality-level-neg-2">Critical (-90)</span>
                     </span>
                 </td>
                 <td>
                     <span th:switch="${row.heatImpact}">
-                        <span th:case="1" class="badge text-bg-info">Mild (+9)</span>
-                        <span th:case="2" class="badge text-bg-info">Moderate (+18)</span>
-                        <span th:case="3" class="badge text-bg-primary">Strong (+35)</span>
+                        <span th:case="1" class="badge quality-badge quality-level-pos-1">Mild (+9)</span>
+                        <span th:case="2" class="badge quality-badge quality-level-pos-mid">Moderate (+18)</span>
+                        <span th:case="3" class="badge quality-badge quality-level-pos-2">Strong (+35)</span>
                     </span>
                 </td>
             </tr>
             <tr class="notes-row table-light" style="display:none">
-                <td colspan="12" class="py-2 px-3 small">
+                <td colspan="13" class="py-2 px-3 small">
                     <div th:if="${!#strings.isEmpty(row.ageNotes)}"><span class="text-muted">👶</span> <span th:text="${row.ageNotes}"></span></div>
                     <div th:if="${!#strings.isEmpty(row.cohesionNotes)}"><span class="text-muted">🤝</span> <span th:text="${row.cohesionNotes}"></span></div>
                     <div th:if="${!#strings.isEmpty(row.depthNotes)}"><span class="text-muted">⬇️</span> <span th:text="${row.depthNotes}"></span></div>
@@ -111,7 +123,7 @@
         const isHidden = detail.style.display === 'none';
         detail.style.display = isHidden ? '' : 'none';
         const icon = row.querySelector('.expand-icon');
-        if (icon) icon.textContent = isHidden ? '▼' : (icon.dataset.hasNotes === 'true' ? '▶' : '▷');
+        if (icon) icon.classList.toggle('expanded', isHidden);
     }
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
         new bootstrap.Tooltip(el);

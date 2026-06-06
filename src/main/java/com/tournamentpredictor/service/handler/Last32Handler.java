@@ -83,6 +83,8 @@ public class Last32Handler {
 
         List<String> allLast16 = last16LineBuilder.buildLast16Lines(groups, groupWinner, runnerUp, thirdPlace,
                 eloRatings, brackets, detailed, snapshots);
+        // Build the staged UI bracket from model-selected rows only. The independent group-to-final
+        // Monte Carlo still carries every sampled Last 32 upset into later rounds within that run.
         List<String> primaryOnly = new ArrayList<>();
         primaryOnly.add(allLast16.get(0));
         boolean addedForMatch = false;

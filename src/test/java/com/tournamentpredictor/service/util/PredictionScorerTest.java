@@ -56,7 +56,7 @@ class PredictionScorerTest {
     }
 
     @Test
-    void validRowProduces13Columns() {
+    void validRowIncludesModelAndSelectionMetadata() {
         List<String> input = List.of(
                 "match_id,team1,team2,path,eloPrediction",
                 "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%)"
@@ -64,7 +64,7 @@ class PredictionScorerTest {
         List<String> result = scorer.scoreLines(input, Map.of());
         assertEquals(2, result.size());
         String[] cols = result.get(1).split(",", -1);
-        assertEquals(13, cols.length);
+        assertEquals(15, cols.length);
         assertEquals("M1", cols[0]);
         assertEquals("🇩🇪B2(Germany)", cols[1]);
         assertEquals("🇫🇷A1(France)", cols[2]);
@@ -73,10 +73,12 @@ class PredictionScorerTest {
         assertEquals("0", cols[10]);
         assertEquals("", cols[11]); // team1_path_opponent
         assertEquals("", cols[12]); // team2_path_opponent
+        assertEquals("Germany (55%)", cols[13]);
+        assertEquals("model", cols[14]);
     }
 
     @Test
-    void disagreeOverrideIsApplied() {
+    void legacyDisagreeOverrideIsIgnored() {
         List<String> input = List.of(
                 "match_id,team1,team2,path,eloPrediction",
                 "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%)"
@@ -85,11 +87,13 @@ class PredictionScorerTest {
         List<String> result = scorer.scoreLines(input, Map.of(disagreeKey, "yes"));
         assertEquals(2, result.size());
         String[] cols = result.get(1).split(",", -1);
-        assertTrue(cols[4].contains("France"),
-                "Expected France after disagree override, got: " + cols[4]);
+        assertTrue(cols[4].contains("Germany"),
+                "Expected the model selection to remain Germany, got: " + cols[4]);
+        assertEquals("Germany (55%)", cols[13]);
+        assertEquals("model", cols[14]);
     }
 
-    @Test
+
     void disagreeKeyMustMatchExactly() {
         List<String> input = List.of(
                 "match_id,team1,team2,path,eloPrediction",

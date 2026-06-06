@@ -2,16 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="pageHead">
     <meta charset="UTF-8">
-    <title>Tournament Predictor</title>
+    <title>Football Tournament Prediction Engine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener('submit', function(event) {
+        if (event.defaultPrevented) return;
+        var form = event.target;
+        var button = form.querySelector('button[type="submit"]');
+        if (!button || button.disabled) return;
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        var spinner = document.createElement('span');
+        spinner.className = 'spinner-border spinner-border-sm me-2';
+        spinner.setAttribute('aria-hidden', 'true');
+        button.prepend(spinner);
+      });
+    </script>
+    <style>
+      .quality-level-neg-2 { background-color:#842029 !important; color:#fff !important; border-color:#842029 !important; }
+      .quality-level-neg-mid { background-color:#dc3545 !important; color:#fff !important; border-color:#b02a37 !important; }
+      .quality-level-neg-1 { background-color:#f8d7da !important; color:#842029 !important; border-color:#f1aeb5 !important; }
+      .quality-level-0 { background-color:#fff3cd !important; color:#664d03 !important; border-color:#ffe69c !important; }
+      .quality-level-pos-1 { background-color:#dff5e6 !important; color:#176b3a !important; border-color:#b7e4c7 !important; }
+      .quality-level-pos-mid { background-color:#75c98b !important; color:#123d21 !important; border-color:#52b66d !important; }
+      .quality-level-pos-2 { background-color:#2e9f55 !important; color:#fff !important; border-color:#278747 !important; }
+      .quality-level-neg-2 .text-danger, .quality-level-neg-2 .text-warning, .quality-level-pos-2 .text-success { color:inherit !important; }
+      .quality-badge { border:1px solid; }
+      select.quality-select, select.signal-select { border-width:1px; font-weight:600; }
+      .expand-icon { display:inline-block; width:0; height:0; border-top:4px solid transparent; border-bottom:4px solid transparent; border-left:6px solid currentColor; opacity:.55; vertical-align:middle; transform-origin:35% 50%; transition:transform .15s ease; }
+      .expand-icon.expanded { transform:rotate(90deg); }
+    </style>
 </head>
 <body>
 
 <nav th:fragment="navbar" class="navbar navbar-dark bg-dark mb-4">
-    <div class="container"><a class="navbar-brand" href="/">🏆 Tournament Predictor</a></div>
+    <div class="container"><a class="navbar-brand" href="/">🏆 Football Tournament Prediction Engine</a></div>
 </nav>
+
+<!--
+  editHeader fragment - edit pages keep navigation minimal; save actions remain with the form.
+-->
+<div th:fragment="editHeader" class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="h3 mb-1" th:text="${pageTitle}">Edit</h1>
+        <p class="text-muted mb-0" th:text="${tournamentLabel}">World Cup 2026</p>
+    </div>
+    <a class="btn btn-outline-secondary" th:href="@{/tournament/{name}(name=${tournament})}">Back to Tournament</a>
+</div>
 
 <!--
   roundNav fragment — shared page header with nav buttons.
@@ -19,7 +58,7 @@
     tournament, tournamentLabel, pageTitle
     prevNavUrl / prevNavLabel / prevNavEnabled  (prev ← button; null url = hidden)
     nextNavUrl / nextNavLabel / nextNavEnabled  (next → button; null url = hidden)
-    canNextRun / nextRunMode / nextRunLabel  (Run button; view pages only)
+    canNextRun / nextRunMode / nextRunLabel  (optional next-stage action)
   Note: editUrl is handled separately via the editLink fragment below.
 -->
 <div th:fragment="roundNav" class="d-flex justify-content-between align-items-center mb-3">
@@ -66,7 +105,7 @@
 <!--
   groupDetailRow(colspan, breakdownHtml) — expandable ELO breakdown detail row.
   Used by both view-round and edit-round group tables.
-  colspan: number of columns the detail cell should span (2 for view, 5 for edit).
+  colspan: number of columns the detail cell should span, including the disclosure column.
   breakdownHtml: pre-built HTML string from GroupViewRow/GroupPickRow.getBreakdownHtml().
 -->
 <th:block th:fragment="groupDetailRow(colspan, breakdownHtml)">
@@ -91,7 +130,7 @@ function toggleGroupDetail(row) {
     const isHidden = detail.style.display === 'none';
     detail.style.display = isHidden ? 'table-row' : 'none';
     const icon = row.querySelector('.expand-icon');
-    if (icon) icon.textContent = isHidden ? '▼' : '▶';
+    if (icon) icon.classList.toggle('expanded', isHidden);
     if (isHidden) {
         detail.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
             new bootstrap.Tooltip(el);

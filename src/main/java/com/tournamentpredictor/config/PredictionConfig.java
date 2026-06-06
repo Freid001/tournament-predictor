@@ -75,17 +75,14 @@ public class PredictionConfig {
     @Value("${squad.cohesion.fractured.elo:45}")
     private int squadCohesionFracturedPenalty;
 
+    @Value("${squad.depth.excellent.elo:10}")
+    private int squadDepthExcellentBonus;
+
     @Value("${squad.depth.limited.elo:10}")
     private int squadDepthLimitedPenalty;
 
     @Value("${squad.depth.thin.elo:20}")
     private int squadDepthThinPenalty;
-
-    @Value("${squad.quality.good.elo:10}")
-    private int squadQualityGoodBonus;
-
-    @Value("${squad.quality.exceptional.elo:20}")
-    private int squadQualityExceptionalBonus;
 
     @Value("${betting.strong.candidate.min.profit:20.0}")
     private double bettingStrongCandidateMinProfit;
@@ -126,6 +123,9 @@ public class PredictionConfig {
     @Value("${path.fatigue.stage.last4.multiplier:1.5}")
     private double pathFatigueStageMultLast4;
 
+    @Value("${path.fatigue.depth.excellent.multiplier:0.70}")
+    private double pathFatigueDepthExcellentMultiplier;
+
     @Value("${path.fatigue.depth.good.multiplier:0.85}")
     private double pathFatigueDepthGoodMultiplier;
 
@@ -152,10 +152,9 @@ public class PredictionConfig {
     public int getSquadCohesionUnsettledPenalty() { return squadCohesionUnsettledPenalty; }
     public int getSquadCohesionDisruptedPenalty() { return squadCohesionDisruptedPenalty; }
     public int getSquadCohesionFracturedPenalty() { return squadCohesionFracturedPenalty; }
+    public int getSquadDepthExcellentBonus() { return squadDepthExcellentBonus; }
     public int getSquadDepthLimitedPenalty() { return squadDepthLimitedPenalty; }
     public int getSquadDepthThinPenalty() { return squadDepthThinPenalty; }
-    public int getSquadQualityGoodBonus() { return squadQualityGoodBonus; }
-    public int getSquadQualityExceptionalBonus() { return squadQualityExceptionalBonus; }
     public double getBettingStrongCandidateMinProfit() { return bettingStrongCandidateMinProfit; }
     public double getBettingCandidateMinProfit() { return bettingCandidateMinProfit; }
     public double getBettingWeakCandidateMinProfit() { return bettingWeakCandidateMinProfit; }
@@ -170,6 +169,7 @@ public class PredictionConfig {
     public double getPathFatigueStageMultLast16() { return pathFatigueStageMultLast16; }
     public double getPathFatigueStageMultLast8() { return pathFatigueStageMultLast8; }
     public double getPathFatigueStageMultLast4() { return pathFatigueStageMultLast4; }
+    public double getPathFatigueDepthExcellentMultiplier() { return pathFatigueDepthExcellentMultiplier; }
     public double getPathFatigueDepthGoodMultiplier() { return pathFatigueDepthGoodMultiplier; }
     public double getPathFatigueDepthLimitedMultiplier() { return pathFatigueDepthLimitedMultiplier; }
     public double getPathFatigueDepthThinMultiplier() { return pathFatigueDepthThinMultiplier; }

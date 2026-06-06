@@ -189,7 +189,7 @@ public class ConsoleReporter {
     public static void printGeneratedFile(Path generatedFile, int matchupCount, String nextMode) {
         System.out.println();
         System.out.println("  Generated " + matchupCount + " matchups");
-        System.out.println("  Override results using do_you_disagree in: " + generatedFile.toAbsolutePath());
+        System.out.println("  Model-selected path written to: " + generatedFile.toAbsolutePath());
         System.out.println("  Run --mode=" + nextMode + " to continue");
         System.out.println();
     }
@@ -295,7 +295,7 @@ public class ConsoleReporter {
         }
         if (predictionsFile != null) {
             String nextMode = predictionsFile.getFileName().toString().replace(".csv", "");
-            System.out.println("  Override results using do_you_disagree in: " + predictionsFile.toAbsolutePath());
+            System.out.println("  Model-selected path written to: " + predictionsFile.toAbsolutePath());
             System.out.println("  Run --mode=" + nextMode + " to continue");
         }
         System.out.println();

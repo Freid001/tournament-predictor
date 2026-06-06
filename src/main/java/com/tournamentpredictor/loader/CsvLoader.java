@@ -9,6 +9,8 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -247,6 +249,23 @@ public class CsvLoader {
         return resolveTournamentSetting(tournament, key, defaultValue);
     }
 
+    public LocalDate resolveSnapshotBackedDate(String tournament, String key, String metadataKey) throws IOException {
+        Properties source = hasTournamentSnapshot(tournament) ? loadSnapshotMetadata(tournament) : loadTournamentProperties(tournament);
+        String sourceKey = hasTournamentSnapshot(tournament) ? metadataKey : key;
+        String value = source.getProperty(sourceKey, "").trim();
+        if (value.isEmpty() && hasTournamentSnapshot(tournament)) {
+            source = loadTournamentProperties(tournament);
+            sourceKey = key;
+            value = source.getProperty(sourceKey, "").trim();
+        }
+        if (value.isEmpty()) return null;
+        try {
+            return LocalDate.parse(value);
+        } catch (DateTimeException e) {
+            throw new IOException("Invalid " + sourceKey + ": " + value + " (expected YYYY-MM-DD).", e);
+        }
+    }
+
     private static int intProperty(Properties properties, String key, int defaultValue) {
         String value = properties.getProperty(key);
         if (value == null || value.isBlank()) return defaultValue;
@@ -324,7 +343,11 @@ public class CsvLoader {
                     int qualBonus = r.isMapped("qual_bonus") ? Integer.parseInt(r.get("qual_bonus").trim()) : 0;
                     int adjustedElo = r.isMapped("elo_ranking") ? Integer.parseInt(r.get("elo_ranking").trim()) : baseElo + qualBonus;
                     int squadDepthLevel = r.isMapped("squad_depth") ? Integer.parseInt(r.get("squad_depth").trim()) : 0;
-                    map.put(name, new TeamEloSnapshot(baseElo, qualBonus, adjustedElo, squadDepthLevel));
+                    int legacyQuality = r.isMapped("squad_quality") ? Integer.parseInt(r.get("squad_quality").trim()) : 0;
+                    int attackQuality = r.isMapped("attack_quality") ? Integer.parseInt(r.get("attack_quality").trim()) : legacyQuality;
+                    int defenceQuality = r.isMapped("defence_quality") ? Integer.parseInt(r.get("defence_quality").trim()) : legacyQuality;
+                    map.put(name, new TeamEloSnapshot(baseElo, qualBonus, adjustedElo, squadDepthLevel,
+                            attackQuality, defenceQuality));
                 } catch (NumberFormatException ignored) {}
             }
         }
@@ -337,7 +360,7 @@ public class CsvLoader {
     private int[] squadAgePenalties     = {0, 12, 8};
     private int[] squadCohesionPenalties = {0, 11, 22, 45};
     private int[] squadDepthPenalties   = {0, 10, 20};
-    private int[] squadQualityBonuses   = {0, 10, 20};
+    private int squadDepthExcellentBonus = 10;
     private int   homeAdvantage         = 100;
     private int   preTournamentFormEloMax = 50;
     private static final int   PRE_TOURNAMENT_FORM_SINCE_YEAR = 2026;
@@ -361,7 +384,7 @@ public class CsvLoader {
         this.squadCohesionPenalties = new int[]{0, config.getSquadCohesionUnsettledPenalty(),
                 config.getSquadCohesionDisruptedPenalty(), config.getSquadCohesionFracturedPenalty()};
         this.squadDepthPenalties   = new int[]{0, config.getSquadDepthLimitedPenalty(), config.getSquadDepthThinPenalty()};
-        this.squadQualityBonuses   = new int[]{0, config.getSquadQualityGoodBonus(), config.getSquadQualityExceptionalBonus()};
+        this.squadDepthExcellentBonus = config.getSquadDepthExcellentBonus();
         this.homeAdvantage         = config.getHomeAdvantageElo();
         this.preTournamentFormEloMax = config.getPreTournamentFormEloMax();
         return this;
@@ -398,11 +421,13 @@ public class CsvLoader {
                 "pre.tournament.form.since.year", "pre_tournament_form_since", PRE_TOURNAMENT_FORM_SINCE_YEAR);
         int effectivePreTournamentUntilYear = resolveSnapshotBackedSetting(tournament,
                 "pre.tournament.form.until.year", "pre_tournament_form_until", PRE_TOURNAMENT_FORM_UNTIL_YEAR);
+        LocalDate tournamentStartDate = resolveSnapshotBackedDate(tournament,
+                "tournament.start.date", "tournament_start_date");
         QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
                 historyDir,
                 effectivePreTournamentSinceYear, effectivePreTournamentUntilYear,
                 preTournamentFormEloMax,
-                Set.of("F"), 5);
+                Set.of("F"), 5, tournamentStartDate);
 
         Map<String, EloBreakdown> result = new LinkedHashMap<>();
         try (var reader = Files.newBufferedReader(startPath); var parser = CSV.parse(reader)) {
@@ -416,8 +441,10 @@ public class CsvLoader {
                 int dropoutLevel = safeLevel(r, "squad_dropouts");
                 int squadAgeLevel = safeLevel(r, "squad_age_profile");
                 int squadCohesionLevel = safeLevel(r, "squad_cohesion");
-                int squadDepthLevel = safeLevel(r, "squad_depth");
-                int squadQualityLevel = safeLevel(r, "squad_quality");
+                int squadDepthLevel = signedDepth(r);
+                int legacyQuality = safeLevel(r, "squad_quality");
+                int attackQuality = signedQuality(r, "attack_quality", legacyQuality);
+                int defenceQuality = signedQuality(r, "defence_quality", legacyQuality);
                 TeamEloSnapshot snapshot = snapshots.get(team);
                 int baseElo = snapshot != null ? snapshot.baseElo() : worldElo.getOrDefault(team, 0);
                 int qualBonus = snapshot != null ? snapshot.qualBonus() : 0;
@@ -428,8 +455,10 @@ public class CsvLoader {
                 int dropoutPenalty    = squadDropoutPenalties[Math.min(dropoutLevel, squadDropoutPenalties.length - 1)];
                 int squadAgePenalty   = squadAgePenalties[Math.min(squadAgeLevel, squadAgePenalties.length - 1)];
                 int squadCohesionPenalty = squadCohesionPenalties[Math.min(squadCohesionLevel, squadCohesionPenalties.length - 1)];
-                int squadDepthPenalty = squadDepthPenalties[Math.min(squadDepthLevel, squadDepthPenalties.length - 1)];
-                int squadQualityBonus = squadQualityBonuses[Math.min(squadQualityLevel, squadQualityBonuses.length - 1)];
+                int squadDepthPenalty = squadDepthLevel == -1
+                        ? -squadDepthExcellentBonus
+                        : squadDepthPenalties[Math.min(squadDepthLevel, squadDepthPenalties.length - 1)];
+                int defenceQualityInput = defenceQuality;
                 String dropoutNotes = r.isMapped("dropout_notes") ? r.get("dropout_notes") : "";
                 String injuryNotes  = r.isMapped("injury_notes")  ? r.get("injury_notes")  : "";
                 String ageNotes     = r.isMapped("age_notes")     ? r.get("age_notes")     : "";
@@ -437,9 +466,9 @@ public class CsvLoader {
                 String depthNotes = r.isMapped("depth_notes") ? r.get("depth_notes") : "";
                 String qualityNotes = r.isMapped("quality_notes") ? r.get("quality_notes") : "";
                 List<String[]> qualResults = attachContributions(
-                        loadQualResults(historyDir, team, effectiveQualSinceYear, effectiveQualUntilYear), qualBonus);
+                        loadQualResults(historyDir, team, effectiveQualSinceYear, effectiveQualUntilYear, tournamentStartDate), qualBonus);
                 List<String[]> friendlyResults = attachContributions(
-                        loadFriendlyResults(historyDir, team, effectivePreTournamentSinceYear, effectivePreTournamentUntilYear),
+                        loadFriendlyResults(historyDir, team, effectivePreTournamentSinceYear, effectivePreTournamentUntilYear, tournamentStartDate),
                         preTournamentBonus);
                 result.put(team, new EloBreakdown(
                         baseElo, isHost, homeBonus,
@@ -450,7 +479,7 @@ public class CsvLoader {
                         squadAgeLevel, squadAgePenalty,
                         squadCohesionLevel, squadCohesionPenalty,
                         squadDepthLevel, squadDepthPenalty,
-                        squadQualityLevel, squadQualityBonus,
+                        attackQuality, defenceQualityInput,
                         dropoutNotes, injuryNotes, ageNotes, cohesionNotes, depthNotes, qualityNotes,
                         qualResults, friendlyResults,
                         0, ""));
@@ -459,7 +488,17 @@ public class CsvLoader {
         return result;
     }
 
-    private List<String[]> loadFriendlyResults(Path historyDir, String teamName, int sinceYear, int untilYear) {
+    private static boolean isAfter(String[] cols, LocalDate maxDate) {
+        if (maxDate == null) return false;
+        try {
+            return LocalDate.of(Integer.parseInt(cols[0].trim()), Integer.parseInt(cols[1].trim()),
+                    Integer.parseInt(cols[2].trim())).isAfter(maxDate);
+        } catch (DateTimeException | NumberFormatException e) {
+            return true;
+        }
+    }
+
+    private List<String[]> loadFriendlyResults(Path historyDir, String teamName, int sinceYear, int untilYear, LocalDate maxDate) {
         Path tsv = historyDir.resolve(teamName + ".tsv");
         if (!Files.exists(tsv)) return List.of();
         List<String[]> results = new ArrayList<>();
@@ -471,7 +510,7 @@ public class CsvLoader {
                 if (!"F".equals(cols[7].trim())) continue;
                 int year;
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
-                if (year < sinceYear || year > untilYear) continue;
+                if (year < sinceYear || year > untilYear || isAfter(cols, maxDate)) continue;
                 int homeScore, awayScore;
                 try {
                     homeScore = Integer.parseInt(cols[5].trim());
@@ -491,7 +530,7 @@ public class CsvLoader {
         return results.size() > 5 ? results.subList(results.size() - 5, results.size()) : results;
     }
 
-    private List<String[]> loadQualResults(Path historyDir, String teamName, int sinceYear, int untilYear) {
+    private List<String[]> loadQualResults(Path historyDir, String teamName, int sinceYear, int untilYear, LocalDate maxDate) {
         Path tsv = historyDir.resolve(teamName + ".tsv");
         if (!Files.exists(tsv)) return List.of();
         List<String[]> results = new ArrayList<>();
@@ -502,7 +541,7 @@ public class CsvLoader {
                 if (cols.length < 8) continue;
                 int year;
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
-                if (year < sinceYear || year > untilYear) continue;
+                if (year < sinceYear || year > untilYear || isAfter(cols, maxDate)) continue;
                 if (!QUALIFIER_TYPES.contains(cols[7].trim())) continue;
                 int homeScore, awayScore;
                 try {
@@ -564,6 +603,18 @@ public class CsvLoader {
     private static int safeLevel(CSVRecord r, String col) {
         if (!r.isMapped(col)) return 0;
         try { return Integer.parseInt(r.get(col).trim()); } catch (NumberFormatException e) { return 0; }
+    }
+
+    private static int signedDepth(CSVRecord r) {
+        if (!r.isMapped("squad_depth") || r.get("squad_depth").isBlank()) return 0;
+        try { return Math.max(-1, Math.min(2, Integer.parseInt(r.get("squad_depth").trim()))); }
+        catch (NumberFormatException e) { return 0; }
+    }
+
+    private static int signedQuality(CSVRecord r, String col, int fallback) {
+        if (!r.isMapped(col) || r.get(col).isBlank()) return Math.max(-2, Math.min(2, fallback));
+        try { return Math.max(-2, Math.min(2, Integer.parseInt(r.get(col).trim()))); }
+        catch (NumberFormatException e) { return Math.max(-2, Math.min(2, fallback)); }
     }
 
     private Path groupsPath(String tournament) throws IOException {

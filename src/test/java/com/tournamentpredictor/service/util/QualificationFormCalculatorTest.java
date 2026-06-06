@@ -6,6 +6,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +32,13 @@ class QualificationFormCalculatorTest {
 
     /** Build a TSV data row. home/away score, match type, year. */
     private static String row(int year, String home, int homeScore, String away, int awayScore, String type) {
-        return year + "\t1\t1\t" + home + "\t" + away + "\t" + homeScore + "\t" + awayScore + "\t" + type;
+        return rowDate(year, 1, 1, home, homeScore, away, awayScore, type);
+    }
+
+    private static String rowDate(int year, int month, int day, String home, int homeScore,
+                                  String away, int awayScore, String type) {
+        return year + "\t" + month + "\t" + day + "\t" + home + "\t" + away + "\t"
+                + homeScore + "\t" + awayScore + "\t" + type;
     }
 
     private QualificationFormCalculator calc(int sinceYear, int untilYear) {
@@ -112,6 +119,16 @@ class QualificationFormCalculatorTest {
                 row(2023, "England", "Germany", 1, 0, "WQ"),
                 row(2026, "England", "France", 1, 0, "WQ"));
         assertTrue(calc(2023, 2026).hasData("England"));
+    }
+
+
+    void maximumDateExcludesMatchesAfterTournamentStarts() throws IOException {
+        writeTsv("England",
+                rowDate(2026, 6, 10, "England", 1, "Before", 0, "WQ"),
+                rowDate(2026, 6, 12, "After", 5, "England", 0, "WQ"));
+        QualificationFormCalculator c = new QualificationFormCalculator(historyDir, 2023, 2026, ELO_MAX,
+                Set.of("WQ"), 0, LocalDate.of(2026, 6, 11));
+        assertTrue(c.getQualBonus("England") > 0, "Post-start loss must not affect form");
     }
 
     // ─── Match type filtering ─────────────────────────────────────────────────

@@ -9,6 +9,8 @@ public class ExpectedGoalsCalculator {
     private static final double MIN_EXPECTED_GOALS = 0.20;
     private static final double MAX_EXPECTED_GOALS = 4.50;
     private static final int MAX_SCORELINE_GOALS = 10;
+    // Signed Attack/Defence inputs shape goals only; they are not ELO adjustments.
+    private static final double QUALITY_XG_PER_LEVEL = 0.15;
 
     private final double eloScaleDivisor;
     private final double baseTotalGoals;
@@ -25,11 +27,23 @@ public class ExpectedGoalsCalculator {
     }
 
     public Projection project(String team1, String team2, int team1Elo, int team2Elo) {
+        return project(team1, team2, team1Elo, team2Elo, 0, 0, 0, 0);
+    }
+
+    /**
+     * Projects a score distribution from adjusted ELO plus separate current-squad goal profiles.
+     * Form belongs in adjusted ELO; Attack/Defence should use separate evidence to avoid double counting.
+     */
+    public Projection project(String team1, String team2, int team1Elo, int team2Elo,
+                              int team1AttackQuality, int team1DefenceQuality,
+                              int team2AttackQuality, int team2DefenceQuality) {
         double noDrawTeam1WinProbability = eloWinProbability(team1Elo, team2Elo);
         double eloDiff = team1Elo - team2Elo;
         double expectedGoalDiff = (eloDiff / 400.0) * goalDiffPer400Elo;
-        double team1ExpectedGoals = clamp((baseTotalGoals + expectedGoalDiff) / 2.0);
-        double team2ExpectedGoals = clamp((baseTotalGoals - expectedGoalDiff) / 2.0);
+        double team1ExpectedGoals = clamp((baseTotalGoals + expectedGoalDiff) / 2.0
+                + QUALITY_XG_PER_LEVEL * (team1AttackQuality - team2DefenceQuality));
+        double team2ExpectedGoals = clamp((baseTotalGoals - expectedGoalDiff) / 2.0
+                + QUALITY_XG_PER_LEVEL * (team2AttackQuality - team1DefenceQuality));
 
         ScoreProbability scoreProbability = scoreProbability(team1ExpectedGoals, team2ExpectedGoals);
         double team1AdvanceProbability = scoreProbability.team1WinProbability
@@ -52,6 +66,7 @@ public class ExpectedGoalsCalculator {
                 noDrawTeam1WinProbability,
                 scoreProbability.mostLikelyTeam1Goals,
                 scoreProbability.mostLikelyTeam2Goals,
+                roundPct(scoreProbability.mostLikelyProbability),
                 pick,
                 advancePct
         );
@@ -95,7 +110,8 @@ public class ExpectedGoalsCalculator {
                 drawProbability / total,
                 team2WinProbability / total,
                 mostLikelyTeam1Goals,
-                mostLikelyTeam2Goals
+                mostLikelyTeam2Goals,
+                mostLikelyProbability
         );
     }
 
@@ -124,7 +140,8 @@ public class ExpectedGoalsCalculator {
                                     double drawProbability,
                                     double team2WinProbability,
                                     int mostLikelyTeam1Goals,
-                                    int mostLikelyTeam2Goals) {
+                                    int mostLikelyTeam2Goals,
+                                    double mostLikelyProbability) {
     }
 
     public record Projection(String team1,
@@ -139,6 +156,7 @@ public class ExpectedGoalsCalculator {
                              double noDrawTeam1WinProbability,
                              int mostLikelyTeam1Goals,
                              int mostLikelyTeam2Goals,
+                             int mostLikelyScorePct,
                              String pick,
                              int pickAdvancePct) {
 

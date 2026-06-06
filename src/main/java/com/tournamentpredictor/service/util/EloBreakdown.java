@@ -20,14 +20,14 @@ public final class EloBreakdown {
     public final int squadCohesionPenalty;
     public final int squadDepthLevel;
     public final int squadDepthPenalty;
-    public final int squadQualityLevel;
-    public final int squadQualityBonus;
+    public final int attackQuality;
+    public final int defenceQuality;
     public final String dropoutNotes;
     public final String injuryNotes;
     public final String ageNotes;
     public final String cohesionNotes;
     public final String depthNotes;
-    public final String qualityNotes;
+    public final String goalQualityNotes;
     public final int pathFatigueAdjustment;
     public final String pathFatigueLabel;
     public final String pathOpponent;
@@ -134,17 +134,17 @@ public final class EloBreakdown {
                         int squadAgeLevel, int squadAgePenalty,
                         int squadCohesionLevel, int squadCohesionPenalty,
                         int squadDepthLevel, int squadDepthPenalty,
-                        int squadQualityLevel, int squadQualityBonus,
+                        int attackQuality, int defenceQuality,
                         String dropoutNotes, String injuryNotes,
                         String ageNotes, String cohesionNotes,
-                        String depthNotes, String qualityNotes,
+                        String depthNotes, String goalQualityNotes,
                         List<String[]> qualResults, List<String[]> friendlyResults,
                         int pathFatigueAdjustment, String pathFatigueLabel) {
         this(baseElo, isHost, homeBonus, injuryLevel, injuryPenalty, heatLevel, heatBonus,
                 dropoutLevel, dropoutPenalty, qualBonus, preTournamentBonus, squadAgeLevel, squadAgePenalty,
                 squadCohesionLevel, squadCohesionPenalty, squadDepthLevel, squadDepthPenalty,
-                squadQualityLevel, squadQualityBonus, dropoutNotes, injuryNotes, ageNotes, cohesionNotes,
-                depthNotes, qualityNotes, qualResults, friendlyResults, pathFatigueAdjustment, pathFatigueLabel, "");
+                attackQuality, defenceQuality, dropoutNotes, injuryNotes, ageNotes, cohesionNotes,
+                depthNotes, goalQualityNotes, qualResults, friendlyResults, pathFatigueAdjustment, pathFatigueLabel, "");
     }
 
     public EloBreakdown(int baseElo, boolean isHost, int homeBonus,
@@ -155,10 +155,10 @@ public final class EloBreakdown {
                         int squadAgeLevel, int squadAgePenalty,
                         int squadCohesionLevel, int squadCohesionPenalty,
                         int squadDepthLevel, int squadDepthPenalty,
-                        int squadQualityLevel, int squadQualityBonus,
+                        int attackQuality, int defenceQuality,
                         String dropoutNotes, String injuryNotes,
                         String ageNotes, String cohesionNotes,
-                        String depthNotes, String qualityNotes,
+                        String depthNotes, String goalQualityNotes,
                         List<String[]> qualResults, List<String[]> friendlyResults,
                         int pathFatigueAdjustment, String pathFatigueLabel, String pathOpponent) {
         this.baseElo = baseElo;
@@ -178,20 +178,20 @@ public final class EloBreakdown {
         this.squadCohesionPenalty = squadCohesionPenalty;
         this.squadDepthLevel = squadDepthLevel;
         this.squadDepthPenalty = squadDepthPenalty;
-        this.squadQualityLevel = squadQualityLevel;
-        this.squadQualityBonus = squadQualityBonus;
+        this.attackQuality = attackQuality;
+        this.defenceQuality = defenceQuality;
         this.dropoutNotes = dropoutNotes != null ? dropoutNotes : "";
         this.injuryNotes = injuryNotes != null ? injuryNotes : "";
         this.ageNotes = ageNotes != null ? ageNotes : "";
         this.cohesionNotes = cohesionNotes != null ? cohesionNotes : "";
         this.depthNotes = depthNotes != null ? depthNotes : "";
-        this.qualityNotes = qualityNotes != null ? qualityNotes : "";
+        this.goalQualityNotes = goalQualityNotes != null ? goalQualityNotes : "";
         this.pathFatigueAdjustment = pathFatigueAdjustment;
         this.pathFatigueLabel = pathFatigueLabel != null ? pathFatigueLabel : "";
         this.pathOpponent = pathOpponent != null ? pathOpponent : "";
         this.totalElo = baseElo + homeBonus - injuryPenalty + heatBonus - dropoutPenalty + qualBonus
                 + preTournamentBonus - squadAgePenalty - squadCohesionPenalty
-                - squadDepthPenalty + squadQualityBonus + pathFatigueAdjustment;
+                - squadDepthPenalty + pathFatigueAdjustment;
         this.qualResults = qualResults != null ? List.copyOf(qualResults) : List.of();
         this.friendlyResults = friendlyResults != null ? List.copyOf(friendlyResults) : List.of();
     }
@@ -205,8 +205,8 @@ public final class EloBreakdown {
                 squadAgeLevel, squadAgePenalty,
                 squadCohesionLevel, squadCohesionPenalty,
                 squadDepthLevel, squadDepthPenalty,
-                squadQualityLevel, squadQualityBonus,
-                dropoutNotes, injuryNotes, ageNotes, cohesionNotes, depthNotes, qualityNotes,
+                attackQuality, defenceQuality,
+                dropoutNotes, injuryNotes, ageNotes, cohesionNotes, depthNotes, goalQualityNotes,
                 qualResults, friendlyResults,
                 adjustment, label, opponent);
     }

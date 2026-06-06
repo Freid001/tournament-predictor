@@ -1,6 +1,6 @@
-# Tournament Predictor
+# Football Tournament Prediction Engine
 
-A tournament bracket predictor for WC2026 using World Football Elo ratings, tournament-specific squad adjustments, bracket-path generation, manual overrides, and knockout path fatigue.
+An international football tournament prediction engine combining ELO-based match forecasting, xG and Poisson score modelling, bracket prediction, Monte Carlo simulation, and route analysis.
 
 ## Contents
 
@@ -11,17 +11,24 @@ A tournament bracket predictor for WC2026 using World Football Elo ratings, tour
 
 ## About
 
-The browser UI is the primary way to use the predictor. It walks you through the full tournament from group stage to final — configuring teams, reviewing predictions, overriding picks, and exploring every possible bracket path.
+The browser UI is the primary way to use the predictor. Configure the teams, review the group-stage selections, then use one Run Tournament action to calculate every knockout round and simulation. The completed round pages expose predicted and alternate bracket paths.
+
+The engine is both:
+
+- **A bracket prediction tool** for the model-selected route and alternate matchups.
+- **A Monte Carlo tournament simulator** for progression and title probabilities.
 
 **What it models:**
-- Group stage rankings using ELO + home advantage + qualification form + friendly form + injuries + heat + squad age/cohesion/depth/quality/omissions
+- Group-stage rankings using base ELO plus current-form, availability, environment, cohesion, age, and depth adjustments
+- Separate Attack and Defence inputs that shape xG and scorelines without being added to Adjusted ELO
 - Every possible knockout matchup given your group picks
-- Game predictions using adjusted ELO, knockout path fatigue, and optional manual overrides
+- Match predictions using adjusted ELO, attack/defence-shaped xG, Poisson score probabilities, route fatigue, and model-selected paths
 - Bracket paths showing every route a team could take to the final
-- **Tournament path fatigue** — how depleted a team is based on the quality of opponents already beaten en route to each match, backed by sports science research
+- Round-by-round and end-to-end Monte Carlo probabilities, including group qualification, third-place routing, every knockout round, and champion chances
+- **Tournament path fatigue** - route-specific depletion based on opponents already faced
 
 **What it does not do:**
-- Full tournament win probabilities (e.g. "France has a 23% chance of winning"). That would require a Monte Carlo simulator running millions of full bracket simulations.
+- Claim statistically proven calibration or a guaranteed betting edge. Attack/Defence and other custom weights remain user inputs that need historical backtesting.
 
 ## Quick start
 
@@ -74,65 +81,63 @@ A snapshot is stored under `data/elo/snapshots/<tournament>/`:
 
 - `teams.csv` contains only the tournament teams and their frozen base ELO ratings.
 - `history/` contains only those teams' recent ELO history rows for the configured form window.
-- `metadata.properties` records the form-year ranges and source files used.
+- `metadata.properties` records the form windows, tournament start-date cutoff, and source files used.
 
-Each tournament can define form windows in `data/predictions/<tournament>/tournament.properties`. `snapshot-refresh` reads those values and freezes them into snapshot metadata. After that, `start` and the UI ELO breakdowns read from the tournament snapshot and its metadata; they do not fall back to the refreshable current ELO files. This keeps old tournaments reproducible even if `eloratings.net` changes, goes offline, or global ELO is refreshed for a future tournament.
+Each tournament must define `tournament.start.date=YYYY-MM-DD` and can define form windows in `data/predictions/<tournament>/tournament.properties`. `snapshot-refresh` reads those values and freezes them into snapshot metadata. After that, `start` and the UI ELO breakdowns read from the tournament snapshot and its metadata; they do not fall back to the refreshable current ELO files. History rows after the frozen tournament start date are excluded, even if the snapshot is refreshed years later. This keeps old tournaments reproducible even if `eloratings.net` changes, goes offline, or global ELO is refreshed for a future tournament.
 
 ## Prediction methodology
 
 ### Knockout round predictions
 
-Current game prediction is ELO-first. Each matchup uses the standard Elo expected-score formula with a 400-point divisor:
+Current match prediction has two layers:
+
+1. **Adjusted ELO** combines frozen base ELO with current-form and tournament-context adjustments. Knockout path fatigue can then modify that strength for the specific route. The standard 400-point expectation scale remains the base strength model:
 
 `team1WinPct = 1 / (1 + 10^((team2Elo - team1Elo) / 400))`
 
-The team ELO used in knockouts is the tournament-adjusted ELO from `groups.csv`, generated from the tournament snapshot when present, not the live global `world.csv` value. From last 16 onward, each team can also receive a live knockout path-fatigue penalty before the ELO formula is applied.
+2. **Goal model inputs** apply `attack_quality` and `defence_quality` directly to expected goals. Each level changes xG by `0.15`: attack changes the team's own xG, while the opponent's defence changes that xG in the opposite direction. These inputs are deliberately excluded from Adjusted ELO.
 
-The plus/minus values in this project are **temporary pre-match Elo deltas**, not permanent World Football Elo rating updates. World Football Elo uses the same 400-point expectation scale and a 100-point home adjustment, while post-match rating movement is controlled by match importance, result, and goal difference. This app uses Elo-point-sized overlays so every signal translates consistently into win probability before a tournament match is predicted.
+The score model converts xG into 90-minute win/draw/loss and exact-score probabilities using independent Poisson distributions. Drawn knockout matches use the ELO expectation for the extra-time/penalty advancement split. Monte Carlo runs sample these score distributions through the group stage and knockout bracket.
 
-`do_you_disagree=yes` manually flips the predicted winner for a matchup.
+The plus/minus ELO values are temporary pre-match deltas, not permanent World Football Elo updates. Attack and Defence are separate xG inputs, not ELO deltas.
 
 ### Model accuracy and calibration
 
 This is an explainable tournament model, not a fully calibrated market-grade forecasting system yet. It should be useful for ranking teams, exposing why a route is hard, comparing close matchups, and stress-testing bracket assumptions. It should not be treated as a proven edge over bookmaker odds or professional forecasting models.
 
-Compared with stronger public World Cup predictors, this project has three clear gaps:
-
-- It predicts each matchup directly from adjusted Elo, but does not yet convert team strength into expected goals with a Poisson or Dixon-Coles score model.
-- It does not yet run Monte Carlo simulations over the full bracket, so it cannot produce calibrated title, final, semi-final, or group-qualification probabilities.
-- It is not yet backtested against past tournaments or held-out international matches, so the custom signal weights are reasoned and configurable rather than statistically fitted.
+The project includes an xG/Poisson score model, a true group-to-final Monte Carlo simulation, and separate round-conditional simulations. Its main remaining gap is calibration: the custom ELO and xG weights have not yet been fitted against held-out historical tournaments.
 
 The highest-value accuracy upgrades would be:
 
 1. Backtest every signal against past World Cups and recent international matches, then tune weights against log loss or Brier score instead of intuition.
-2. Add a Poisson or Dixon-Coles layer so Elo difference predicts goal distributions, draws, extra time, and penalties more realistically.
-3. Add Monte Carlo tournament simulation for group and knockout paths, including uncertainty around group positions and third-place qualification.
-4. Add external cross-checks such as market odds, xG/xGA, squad market value, rest days, travel distance, and venue/weather by match.
-5. Track prediction calibration in generated outputs so a 70% model pick actually wins about 70% of comparable historical games.
+2. Calibrate the `0.15 xG` Attack/Defence step and Poisson assumptions against historical score distributions.
+3. Add external cross-checks such as market odds, external xG/xGA, rest days, travel distance, and venue/weather by match.
+4. Track prediction calibration so a 70% model pick wins about 70% of comparable historical games.
 
 
 ### Group stage adjustments
 
-Applied once at the group stage to calculate each team's effective ELO ranking. Carried forward into all knockout round predictions.
+Applied once at the group stage to calculate each team's effective ELO ranking. Attack and Defence are carried separately as goal-model inputs.
 
 | Signal | Max impact | Notes |
 |---|---|---|
-| **Home advantage** | +100 ELO | Applied to host nations. This matches the World Football Elo convention of adding 100 points for the home team when projecting a match. |
-| **Qualification form** | ±100 ELO | Based on 2023-2026 qualifying results in ELO history files. This is intentionally a current-form overlay, but it can partly double-count recent competitive results already present in base ELO. |
-| **Friendly form** | ±50 ELO | Based on recent pre-tournament friendlies. Also partly overlaps with base ELO because friendlies are already in the source history, but with lower match weight. |
-| **Injuries** | -22 / -45 / -90 ELO | Current-availability penalty. Critical injury is deliberately just below home advantage: severe enough to nearly cancel a host boost, but not stronger than playing the tournament at home. |
-| **Heat advantage** | +9 / +18 / +35 ELO | Venue/climate adaptation. Kept much smaller than home advantage because it is situational and less universal. |
-| **Squad omissions** | -18 / -35 / -70 ELO | Players missing from the selected squad for injury, coach choice, discipline, retirement, refusal, or federation dispute. Active-squad fitness belongs under Injuries. |
-| **Squad age** | -12 young / -8 aging ELO | Small negative-only adjustment for inexperience or recovery risk. |
-| **Squad cohesion** | -11 / -22 / -45 ELO | Negative-only disruption signal. Some risk may already be reflected in recent ELO results. |
-| **Bench depth** | -10 / -20 ELO | Static bench-depth penalty for limited or thin squads. Also controls fatigue sensitivity in knockouts. |
-| **Squad quality** | +10 / +20 ELO | Small forward-looking talent bonus. Kept small because base ELO already captures most team quality. |
+| **Home advantage** | +100 ELO | Official host-country advantage. |
+| **Qualification form** | +/-100 ELO | Recent qualifying results; intentionally re-emphasizes current-cycle form already partly present in base ELO. |
+| **Friendly form** | +/-50 ELO | Recent pre-tournament friendlies with a smaller weight. |
+| **Injuries** | -22 / -45 / -90 ELO | Current selected-squad availability. |
+| **Heat advantage** | +9 / +18 / +35 ELO | Venue and climate adaptation. |
+| **Squad omissions** | -18 / -35 / -70 ELO | Players missing from the selected squad. |
+| **Squad age** | -12 young / -8 aging ELO | Inexperience or recovery risk. |
+| **Squad cohesion** | -11 / -22 / -45 ELO | Preparation, tactical, or institutional disruption. |
+| **Bench depth** | +10 / -10 / -20 ELO | Replacement-quality penalty; also controls fatigue sensitivity. |
+| **Attack quality** | -2 to +2; 0.15 xG per level | Changes the team's xG, not Adjusted ELO. |
+| **Defence quality** | -2 to +2; 0.15 xG per level | Changes the opponent's xG, not Adjusted ELO. |
 
-All values are configurable in `application.properties` — see [Configuration](docs/CONFIGURATION.md).
+ELO adjustment values are configurable in `application.properties`. Attack and Defence are direct signed inputs in `start.csv`.
 
 ### Knockout stage: tournament path fatigue
 
-Applied at each knockout round (last 32 through final) as a **live ELO adjustment** on top of the team's base ranking. The first knockout match is seeded with **group load**: the strength of above-average opponents already faced in the group. This is entirely separate from base ELO — it does not double-count any existing signal.
+Applied at each knockout round (last 32 through final) as a live ELO adjustment on top of the team's ranking. The first knockout match is seeded with group load from above-average opponents already faced.
 
 **Why it matters:** sports science research shows teams that face tougher opponents in earlier knockout rounds underperform expectations in later rounds relative to their base ELO, even after controlling for raw strength. The primary driver is **accumulated fatigue** — physical depletion from high-intensity matches against strong opposition compounds across rounds.
 
@@ -152,7 +157,7 @@ Capped at 0 — an easy group/bracket is not a rest bonus; it simply means no ac
 
 UI notes split the source of fatigue as `G:` for group load and `KO:` for knockout path, for example `G: Brazil -3, Morocco -3` and `KO: Brazil -5`. The tournament route breadcrumb stays route-only, for example `C3 › Brazil › France`.
 
-**Bench-depth interaction:** `squad_depth` also changes how strongly cumulative fatigue hits a team. Good/deep benches reduce negative fatigue by 15%, limited benches amplify it by 15%, and thin benches amplify it by 30%. Easy paths still cap at 0, so bench depth never creates a rest bonus.
+**Bench-depth interaction:** `squad_depth` also changes how strongly cumulative fatigue hits a team. Excellent benches reduce negative fatigue by 30%, good/deep benches reduce it by 15%, limited benches amplify it by 15%, and thin benches amplify it by 30%. Easy paths still cap at 0, so bench depth never creates a rest bonus.
 
 | Difficulty label | Cumulative weighted total |
 |---|---|
@@ -167,37 +172,36 @@ All values configurable under `path.fatigue.*` in `application.properties`.
 
 ### Opposing Signals
 
-Some signals are intentionally allowed to push against each other because they describe different facts. That is useful, not a bug, as long as the same player/event is not counted twice.
+Some signals intentionally push against each other because they describe different facts. That is useful as long as the same evidence is not counted twice.
 
 | Signal | Can be offset by | Example |
 |---|---|---|
-| `squad_quality` | `squad_dropouts` / Squad Omissions | Brazil can still have elite selected-squad talent while losing Rodrygo, Estevao, and Eder Militao from the squad. |
-| `squad_quality` | `injury_impact` | A deep squad can absorb knocks better, but an active-squad star carrying an injury still reduces reliability. |
-| `squad_quality` | `squad_depth` | A brilliant starting XI can still have a limited bench; quality is ceiling, depth is replacement floor. |
+| `attack_quality` / `defence_quality` | `squad_dropouts`, `injury_impact` | Goal quality describes the selected squad's profile; omissions and injuries describe availability. |
+| `attack_quality` / `defence_quality` | `squad_depth` | Starting quality and replacement depth are separate facts. |
 | `host` | `injury_impact`, `squad_dropouts`, `squad_cohesion` | Home advantage can be partly cancelled by missing players or unstable preparation. |
-| `heat_impact` | `squad_age_profile`, `squad_depth`, path fatigue | Heat adaptation helps, but old/thin squads and brutal knockout paths can still create fatigue risk. |
-| `qual_bonus` / `pre_tournament_bonus` | base Elo | Recent form can push against long-run Elo when a team is improving or declining. |
-| `squad_cohesion` | `squad_quality` | Talent can be dragged down by a new coach, selection row, or tactical reset. |
-| `squad_depth` | path fatigue | This is directly modeled: deep benches soften accumulated fatigue; limited/thin benches amplify it. |
+| `heat_impact` | `squad_age_profile`, `squad_depth`, path fatigue | Heat adaptation helps, but old/thin/tired squads can still fade. |
+| `qual_bonus` / `pre_tournament_bonus` | base ELO | Recent observed results can push against long-run strength. |
+| `squad_cohesion` | Attack/Defence | A talented squad can underperform under tactical or locker-room disruption. |
+| `squad_depth` | path fatigue | Deep benches soften accumulated fatigue; limited/thin benches amplify it. |
 
-Availability rule of thumb: if a player is **not in the selected squad**, put the effect in `squad_dropouts`/Squad Omissions even when the reason is injury. If a player is **in the selected squad but limited, doubtful, recently returned, or managed**, put it in `injury_impact`.
+Availability rule: not selected belongs in `squad_dropouts`; selected but limited, doubtful, recently returned, or managed belongs in `injury_impact`.
 
-Heat is currently a static group-stage overlay carried forward through adjusted Elo. It does **not** directly multiply knockout path fatigue yet; doing that safely probably needs venue/date conditions so heat is not double-counted for every knockout match.
+Heat is currently a static ELO overlay. It does not directly multiply path fatigue because doing so safely requires venue and date conditions.
 
 ### Double-counting notes
 
-`world.csv` already reflects historical team strength, including prior qualifying matches, friendlies, squad quality, coaching stability, and some injury effects once those effects have shown up in results. The extra adjustments are therefore not all independent signals.
+Base ELO already reflects historical team strength, including prior qualifying matches, friendlies, coaching stability, and squad effects once they appear in results.
 
-The safest interpretation is:
-- **Low double-count risk:** home advantage, active-squad injuries, current squad omissions, venue heat, and knockout path fatigue. These are match/tournament-context adjustments not fully present in a neutral pre-tournament ELO rating.
-- **Medium double-count risk:** qualification form and friendly form. These use recent results that are already part of ELO, but emphasize current-cycle form more heavily than the long-run rating.
-- **Higher double-count risk:** squad quality, cohesion, age, and static bench depth. These are partly reflected in recent results, so their values are intentionally modest and should be used only for clear current-cycle information not already obvious in ELO.
+- **Low double-count risk:** home advantage, active-squad injuries, current squad omissions, venue heat, and knockout path fatigue.
+- **Medium double-count risk:** qualification and friendly form. They deliberately re-emphasize recent observed results already present in base ELO.
+- **Subjective profile risk:** Attack and Defence can remain alongside form when they come from separate current-squad evidence such as personnel, tactical role, chance creation, finishing, or defensive structure. Do not set them merely because the same recent results were good or bad.
+- Attack/Defence are excluded from Adjusted ELO. Their xG effect already changes scorelines, win/draw probabilities, advancement probabilities, Monte Carlo outcomes, and betting comparisons.
 
 ### Qualification form formula
 
-`formScore = 0.6 × PPG + 0.2 × goalsForNorm + 0.2 × goalsAgainstNorm`
+`formScore = 0.6 x PPG + 0.2 x goalsForNorm + 0.2 x goalsAgainstNorm`
 
-Where PPG = `(3 × wins + draws) / (3 × played)`, goals for/against are normalised per game against a max of 3. A score above 0.5 gives a positive ELO bonus; below 0.5 gives a penalty. Only WC qualifying matches (WQ, WQS, FQ) from the configured year range (default 2023–2026) are used. Hosts with no qualifying matches receive no bonus or penalty.
+Where PPG = `(3 x wins + draws) / (3 x played)`. A score above 0.5 gives a positive ELO bonus; below 0.5 gives a penalty. Only configured qualifying matches are used. Hosts with no qualifying matches receive no bonus or penalty.
 
 ## Docs
 

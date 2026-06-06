@@ -77,10 +77,34 @@ class ExpectedGoalsCalculatorTest {
 
         assertEquals("1.30 - 1.30", projection.expectedGoalsText());
         assertTrue(projection.mostLikelyScoreText().matches("\\d+-\\d+"));
+        assertTrue(projection.mostLikelyScorePct() > 0);
+        assertTrue(projection.mostLikelyScorePct() < 25);
     }
 
 
     
+    @Test
+    void attackAndDefenceQualityShapeGoalsWithoutChangingEloInputs() {
+        ExpectedGoalsCalculator.Projection baseline = calculator.project("A", "B", 1800, 1800);
+        ExpectedGoalsCalculator.Projection shaped = calculator.project("A", "B", 1800, 1800,
+                2, 2, -1, -2);
+
+        assertEquals(1.90, shaped.team1ExpectedGoals());
+        assertEquals(0.85, shaped.team2ExpectedGoals());
+        assertTrue(shaped.team1ExpectedGoals() > baseline.team1ExpectedGoals());
+        assertTrue(shaped.team2ExpectedGoals() < baseline.team2ExpectedGoals());
+    }
+
+    @Test
+    void strongAttacksCanRaiseTotalExpectedGoals() {
+        ExpectedGoalsCalculator.Projection projection = calculator.project("A", "B", 1800, 1800,
+                2, 0, 2, 0);
+
+        assertEquals(1.60, projection.team1ExpectedGoals());
+        assertEquals(1.60, projection.team2ExpectedGoals());
+    }
+
+    @Test
     void sampleScoreline_returnsGoalsAndKnockoutAdvanceResult() {
         ExpectedGoalsCalculator.Projection projection = calculator.project("A", "B", 1800, 1800);
 

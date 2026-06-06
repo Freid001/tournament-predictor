@@ -118,6 +118,10 @@ public class MatchResolver {
         last32Handler.handle(tournament);
     }
 
+    public void resolveAndWriteSimulation(String tournament, String startRound) throws IOException {
+        simulationHandler.handle(tournament, startRound);
+    }
+
     public void resolveAndWrite(String mode, String tournament) throws IOException {
         if (mode == null) {
             mode = "groups";

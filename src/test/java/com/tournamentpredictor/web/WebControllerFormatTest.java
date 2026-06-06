@@ -111,6 +111,52 @@ class WebControllerFormatTest {
         assertEquals("26.3", likelihoods.get(WebController.matchupLikelihoodKey("M78", "France", "Brazil")));
     }
 
+    @Test
+    void recursiveRouteLikelihoodPropagatesAlternativeWinners() {
+        List<Map<String, String>> feederRows = List.of(
+                Map.of("match_id", "M89", "team1", "W77(France)", "team2", "W74(Germany)", "prediction", "France (75%)"),
+                Map.of("match_id", "M89", "team1", "W77(Egypt)", "team2", "W74(Germany)", "prediction", "Germany (80%)"),
+                Map.of("match_id", "M90", "team1", "W75(Netherlands)", "team2", "W73(Canada)", "prediction", "Netherlands (60%)")
+        );
+        Map<String, String> feederLikelihoods = Map.of(
+                "M89|France|Germany", "60.0",
+                "M89|Egypt|Germany", "40.0",
+                "M90|Netherlands|Canada", "100.0"
+        );
+        List<Map<String, String>> nextRows = List.of(
+                Map.of("match_id", "M97", "team1", "W89(France)", "team2", "W90(Netherlands)"),
+                Map.of("match_id", "M97", "team1", "W89(Egypt)", "team2", "W90(Canada)")
+        );
+
+        Map<String, String> likelihoods = WebController.routeWeightedNextRoundMatchupLikelihoodMap(
+                nextRows, feederRows, feederLikelihoods);
+
+        assertEquals("27.0", likelihoods.get("M97|France|Netherlands"));
+        assertEquals("3.2", likelihoods.get("M97|Egypt|Canada"));
+    }
+
+    @Test
+    void simulationAdvanceMapUsesRequestedLaterRoundColumn() {
+        Map<String, String> percentages = WebController.simulationAdvanceMap(List.of(
+                Map.of("team", "France", "reach_last_8", "72.4"),
+                Map.of("team", "Brazil", "reach_last_8", "61.1")
+        ), "reach_last_8");
+
+        assertEquals("72.4", percentages.get("France"));
+        assertEquals("61.1", percentages.get("Brazil"));
+    }
+
+    @Test
+    void simulationMatchupLikelihoodMapUsesCurrentStageRows() {
+        Map<String, String> percentages = WebController.simulationMatchupLikelihoodMap(List.of(
+                Map.of("stage", "last_16", "match_id", "M89", "team1", "France", "team2", "Brazil", "matchup_pct", "100.0", "scoreline", "1-0"),
+                Map.of("stage", "last_16", "match_id", "M89", "team1", "France", "team2", "Brazil", "matchup_pct", "100.0", "scoreline", "2-1"),
+                Map.of("stage", "last_8", "match_id", "M97", "team1", "France", "team2", "Spain", "matchup_pct", "48.2", "scoreline", "1-1")
+        ), "last_16");
+
+        assertEquals(Map.of("M89|France|Brazil", "100.0"), percentages);
+    }
+
     private static String routePct(List<Map<String, String>> rows, String team) {
         return rows.stream()
                 .filter(row -> team.equals(row.get("team")))

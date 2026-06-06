@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <h2 class="h5 card-title" th:text="${t.name}">world_cup_2026</h2>
                     <p class="card-text text-muted mb-2" th:text="${t.stage}">Group Setup complete</p>
-                    <span class="badge text-bg-secondary" th:text="${t.completedSteps + ' / 8 complete'}">0 / 8 complete</span>
+                    <span class="badge text-bg-secondary" th:text="${t.completedSteps + ' / 4 complete'}">0 / 4 complete</span>
                 </div>
                 <div class="card-footer bg-white border-0 pt-0">
                     <a class="btn btn-primary" th:href="@{/tournament/{name}(name=${t.name})}">Predictions</a>

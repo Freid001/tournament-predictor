@@ -2,6 +2,8 @@ package com.tournamentpredictor.service.util;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +11,7 @@ import java.util.Set;
 
 /**
  * Computes current form scores from ELO history TSV files, using selected
- * match types between sinceYear and untilYear (inclusive).
+ * match types between sinceYear and untilYear (inclusive), optionally capped at a maximum date.
  * If maxGames > 0, the year filter is applied first, then the most recent maxGames matches are used.
  * Host nations with no qualifying matches will have no data (hasData() returns false).
  * Score formula: 60% PPG + 20% goals scored per game + 20% inverted goals conceded per game.
@@ -22,14 +24,19 @@ public class QualificationFormCalculator {
     private final int eloMax;
 
     public QualificationFormCalculator(Path historyDir, int sinceYear, int untilYear, int eloMax) {
-        this(historyDir, sinceYear, untilYear, eloMax, DEFAULT_MATCH_TYPES, 0);
+        this(historyDir, sinceYear, untilYear, eloMax, DEFAULT_MATCH_TYPES, 0, null);
     }
 
     public QualificationFormCalculator(Path historyDir, int sinceYear, int untilYear, int eloMax, Set<String> matchTypes) {
-        this(historyDir, sinceYear, untilYear, eloMax, matchTypes, 0);
+        this(historyDir, sinceYear, untilYear, eloMax, matchTypes, 0, null);
     }
 
     public QualificationFormCalculator(Path historyDir, int sinceYear, int untilYear, int eloMax, Set<String> matchTypes, int maxGames) {
+        this(historyDir, sinceYear, untilYear, eloMax, matchTypes, maxGames, null);
+    }
+
+    public QualificationFormCalculator(Path historyDir, int sinceYear, int untilYear, int eloMax,
+                                       Set<String> matchTypes, int maxGames, LocalDate maxDate) {
         this.eloMax = eloMax;
         if (!Files.exists(historyDir)) return;
         try (var stream = Files.list(historyDir)) {
@@ -45,6 +52,15 @@ public class QualificationFormCalculator {
                         int year;
                         try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
                         if (year < sinceYear || year > untilYear) continue;
+                        if (maxDate != null) {
+                            try {
+                                LocalDate matchDate = LocalDate.of(year,
+                                        Integer.parseInt(cols[1].trim()), Integer.parseInt(cols[2].trim()));
+                                if (matchDate.isAfter(maxDate)) continue;
+                            } catch (DateTimeException | NumberFormatException e) {
+                                continue;
+                            }
+                        }
                         if (!matchTypes.contains(cols[7].trim())) continue;
                         matched.add(cols);
                     }

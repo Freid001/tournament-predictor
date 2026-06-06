@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 <div class="container pb-4">
-    <div th:replace="~{fragments :: roundNav}"></div>
+    <div th:replace="~{fragments :: editHeader}"></div>
 
     <form id="startForm" th:action="@{/edit/start(tournament=${tournament})}" method="post" onsubmit="return validateTeams()">
         <input type="hidden" name="rowCount" th:value="${#lists.size(rows)}">
@@ -13,7 +13,7 @@
             <table class="table table-striped table-sm mb-0 align-middle">
                 <thead class="table-dark">
                 <tr>
-                    <th></th>
+                    <th style="width:28px" aria-label="Details"></th>
                     <th>Grp</th>
                     <th></th>
                     <th>Team</th>
@@ -21,7 +21,8 @@
                     <th><span data-bs-toggle="tooltip" data-bs-title="Squad age profile. Use Young for unusually inexperienced tournament squads; Aging for cores with several key 33+ players and recovery risk.">Age</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Chemistry/tactical disruption. Look for new coach, selection rows, political disruption, late reshuffles, or unsettled combinations.">Cohesion</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Replacement quality. Use Limited/Thin when quality drops sharply beyond the starters; also affects knockout fatigue sensitivity.">Bench Depth</span></th>
-                    <th><span data-bs-toggle="tooltip" data-bs-title="Current talent above base Elo. Use sparingly for exceptional current squads so we do not double-count Elo.">Quality</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Chance creation and finishing relative to the team average. Changes xG only, not ELO.">Attack</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Preventing chances and goals relative to the team average. Changes opponent xG only, not ELO.">Defence</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Players missing from the selected squad: injury ruled them out, coach omission, discipline, retirement, refusal, or federation dispute. Active-squad fitness belongs in Injury.">Squad Omissions</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Current availability and fitness: ruled-out players, doubtful starters, managed minutes, recent returns, or players carrying knocks.">Injury</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Climate adaptation to hot/humid/altitude venues. Use for teams likely to handle conditions better than opponents.">Heat</span></th>
@@ -30,9 +31,8 @@
                 <tbody>
                 <th:block th:each="row, stat : ${rows}">
                 <tr style="cursor:pointer" onclick="toggleNotes(this)">
-                    <td class="text-center pe-0" style="width:1.5rem">
-                        <span class="expand-icon" style="font-size:.75em;opacity:.5"
-                              th:text="${!row.dropoutNotes.isEmpty() or !row.injuryNotes.isEmpty() or !row.ageNotes.isEmpty() or !row.cohesionNotes.isEmpty() or !row.depthNotes.isEmpty() or !row.qualityNotes.isEmpty()} ? '▶' : '▷'">▶</span>
+                    <td class="text-center text-muted" style="width:28px">
+                        <span class="expand-icon" aria-hidden="true"></span>
                     </td>
                     <td class="fw-semibold text-center">
                         <input type="hidden" th:name="${'group' + stat.index}" th:value="${row.group}">
@@ -48,14 +48,14 @@
                     </td>
                     <td class="text-center"><input class="form-check-input" type="checkbox" th:name="${'host' + stat.index}" th:checked="${row.host}"></td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'squadAgeProfile' + stat.index}">
+                        <select class="form-select form-select-sm signal-select" th:name="${'squadAgeProfile' + stat.index}">
                             <option value="0" th:selected="${row.squadAgeProfile == 0}">Balanced</option>
                             <option value="1" th:selected="${row.squadAgeProfile == 1}">Young (-12)</option>
                             <option value="2" th:selected="${row.squadAgeProfile == 2}">Aging (-8)</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'squadCohesion' + stat.index}">
+                        <select class="form-select form-select-sm signal-select" th:name="${'squadCohesion' + stat.index}">
                             <option value="0" th:selected="${row.squadCohesion == 0}">Settled</option>
                             <option value="1" th:selected="${row.squadCohesion == 1}">Unsettled (-11)</option>
                             <option value="2" th:selected="${row.squadCohesion == 2}">Disrupted (-22)</option>
@@ -63,46 +63,58 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'squadDepth' + stat.index}">
+                        <select class="form-select form-select-sm signal-select" th:name="${'squadDepth' + stat.index}">
+                            <option value="-1" th:selected="${row.squadDepth == -1}">Excellent (+10)</option>
                             <option value="0" th:selected="${row.squadDepth == 0}">Good/deep</option>
                             <option value="1" th:selected="${row.squadDepth == 1}">Limited bench (-10)</option>
                             <option value="2" th:selected="${row.squadDepth == 2}">Thin bench (-20)</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'squadQuality' + stat.index}">
-                            <option value="0" th:selected="${row.squadQuality == 0}">Normal</option>
-                            <option value="1" th:selected="${row.squadQuality == 1}">Good (+10)</option>
-                            <option value="2" th:selected="${row.squadQuality == 2}">Exceptional (+20)</option>
+                        <select class="form-select form-select-sm quality-select signal-select" th:name="${'attackQuality' + stat.index}">
+                            <option value="-2" th:selected="${row.attackQuality == -2}">Very weak (-2)</option>
+                            <option value="-1" th:selected="${row.attackQuality == -1}">Weak (-1)</option>
+                            <option value="0" th:selected="${row.attackQuality == 0}">Average</option>
+                            <option value="1" th:selected="${row.attackQuality == 1}">Strong (+1)</option>
+                            <option value="2" th:selected="${row.attackQuality == 2}">Elite (+2)</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'squadDropouts' + stat.index}">
+                        <select class="form-select form-select-sm quality-select signal-select" th:name="${'defenceQuality' + stat.index}">
+                            <option value="-2" th:selected="${row.defenceQuality == -2}">Very weak (-2)</option>
+                            <option value="-1" th:selected="${row.defenceQuality == -1}">Weak (-1)</option>
+                            <option value="0" th:selected="${row.defenceQuality == 0}">Average</option>
+                            <option value="1" th:selected="${row.defenceQuality == 1}">Strong (+1)</option>
+                            <option value="2" th:selected="${row.defenceQuality == 2}">Elite (+2)</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select form-select-sm signal-select" th:name="${'squadDropouts' + stat.index}">
                             <option value="0" th:selected="${row.squadDropouts == 0}">None</option>
                             <option value="1" th:selected="${row.squadDropouts == 1}">Minor (-18)</option>
-                            <option value="2" th:selected="${row.squadDropouts == 2}">Sig. (-35)</option>
+                            <option value="2" th:selected="${row.squadDropouts == 2}">Significant (-35)</option>
                             <option value="3" th:selected="${row.squadDropouts == 3}">Critical (-70)</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'injuryImpact' + stat.index}">
+                        <select class="form-select form-select-sm signal-select" th:name="${'injuryImpact' + stat.index}">
                             <option value="0" th:selected="${row.injuryImpact == 0}">None</option>
                             <option value="1" th:selected="${row.injuryImpact == 1}">Minor (-22)</option>
-                            <option value="2" th:selected="${row.injuryImpact == 2}">Sig. (-45)</option>
+                            <option value="2" th:selected="${row.injuryImpact == 2}">Significant (-45)</option>
                             <option value="3" th:selected="${row.injuryImpact == 3}">Critical (-90)</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select form-select-sm" th:name="${'heatImpact' + stat.index}">
+                        <select class="form-select form-select-sm signal-select" th:name="${'heatImpact' + stat.index}">
                             <option value="0" th:selected="${row.heatImpact == 0}">None</option>
                             <option value="1" th:selected="${row.heatImpact == 1}">Mild (+9)</option>
-                            <option value="2" th:selected="${row.heatImpact == 2}">Mod. (+18)</option>
+                            <option value="2" th:selected="${row.heatImpact == 2}">Moderate (+18)</option>
                             <option value="3" th:selected="${row.heatImpact == 3}">Strong (+35)</option>
                         </select>
                     </td>
                 </tr>
                 <tr th:id="${'notes-' + stat.index}" class="notes-row table-light" style="display:none">
-                    <td colspan="12" class="py-2 px-3">
+                    <td colspan="13" class="py-2 px-3">
                         <div class="row g-2">
                             <div class="col-md-2">
                                 <label class="form-label mb-1 small text-muted">👶 Age</label>
@@ -167,7 +179,7 @@
             const isHidden = detail.style.display === 'none';
             detail.style.display = isHidden ? '' : 'none';
             const icon = row.querySelector('.expand-icon');
-            if (icon) icon.textContent = isHidden ? '▼' : (icon.textContent === '▷' ? '▷' : '▶');
+            if (icon) icon.classList.toggle('expanded', isHidden);
         }
 
         // Don't toggle when interacting with form controls inside the row
@@ -175,6 +187,30 @@
             tr.addEventListener('click', function(e) {
                 if (e.target.closest('select, input, textarea, button, label')) e.stopPropagation();
             }, true);
+        });
+
+        const signalClasses = ['quality-level-neg-2', 'quality-level-neg-mid', 'quality-level-neg-1', 'quality-level-0', 'quality-level-pos-1', 'quality-level-pos-mid', 'quality-level-pos-2'];
+        function signalLevelClass(select) {
+            const value = select.value;
+            const name = select.name;
+            if (name.startsWith('attackQuality') || name.startsWith('defenceQuality'))
+                return { '-2': signalClasses[0], '-1': signalClasses[2], '0': signalClasses[3], '1': signalClasses[4], '2': signalClasses[6] }[value];
+            if (name.startsWith('squadAgeProfile'))
+                return { '0': signalClasses[3], '1': signalClasses[1], '2': signalClasses[2] }[value];
+            if (name.startsWith('squadDepth'))
+                return { '-1': signalClasses[6], '0': signalClasses[3], '1': signalClasses[2], '2': signalClasses[0] }[value];
+            if (name.startsWith('heatImpact'))
+                return { '0': signalClasses[3], '1': signalClasses[4], '2': signalClasses[5], '3': signalClasses[6] }[value];
+            return { '0': signalClasses[3], '1': signalClasses[2], '2': signalClasses[1], '3': signalClasses[0] }[value];
+        }
+        function updateSignalSelect(select) {
+            select.classList.remove(...signalClasses);
+            const levelClass = signalLevelClass(select);
+            if (levelClass) select.classList.add(levelClass);
+        }
+        document.querySelectorAll('.signal-select').forEach(select => {
+            updateSignalSelect(select);
+            select.addEventListener('change', () => updateSignalSelect(select));
         });
 
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {

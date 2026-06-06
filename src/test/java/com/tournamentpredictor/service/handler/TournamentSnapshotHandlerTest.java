@@ -26,6 +26,7 @@ class TournamentSnapshotHandlerTest {
                 row(2023, "England", "A", 1, 0, "WQ"),
                 row(2024, "England", "B", 2, 0, "WQ"),
                 row(2026, "England", "C", 3, 0, "F"),
+                rowDate(2026, 6, 12, "England", "After", 5, 0, "F"),
                 row(2027, "England", "D", 4, 0, "F"));
         writeHistory("USA",
                 row(2024, "USA", "A", 1, 1, "WQ"));
@@ -44,11 +45,12 @@ class TournamentSnapshotHandlerTest {
         assertFalse(teams.stream().anyMatch(line -> line.contains("Germany")));
 
         List<String> englandHistory = Files.readAllLines(snapshot.resolve("history/England.tsv"));
-        assertEquals(3, englandHistory.size(), "header plus 2024 and 2026 rows");
+        assertEquals(3, englandHistory.size(), "header plus rows on or before the tournament start date");
         assertFalse(englandHistory.stream().anyMatch(line -> line.startsWith("2023	")));
         assertTrue(englandHistory.stream().anyMatch(line -> line.startsWith("2024	")));
         assertTrue(englandHistory.stream().anyMatch(line -> line.startsWith("2026	")));
-        assertFalse(englandHistory.stream().anyMatch(line -> line.startsWith("2027	")));
+        assertFalse(englandHistory.stream().anyMatch(line -> line.contains("After")));
+        assertFalse(englandHistory.stream().anyMatch(line -> line.startsWith("2027\t")));
 
         String metadata = Files.readString(snapshot.resolve("metadata.properties"));
         assertTrue(metadata.contains("elo_source=data/elo/current/world.csv"));
@@ -57,6 +59,7 @@ class TournamentSnapshotHandlerTest {
         assertTrue(metadata.contains("qual_form_until=2025"));
         assertTrue(metadata.contains("pre_tournament_form_since=2026"));
         assertTrue(metadata.contains("pre_tournament_form_until=2026"));
+        assertTrue(metadata.contains("tournament_start_date=2026-06-11"));
     }
 
     private void writeStartCsv(String tournament, String... teams) throws IOException {
@@ -77,6 +80,7 @@ class TournamentSnapshotHandlerTest {
                 qual.form.until.year=2025
                 pre.tournament.form.since.year=2026
                 pre.tournament.form.until.year=2026
+                tournament.start.date=2026-06-11
                 """);
     }
 
@@ -102,6 +106,12 @@ class TournamentSnapshotHandlerTest {
     }
 
     private static String row(int year, String home, String away, int homeScore, int awayScore, String type) {
-        return year + "	1	1	" + home + "	" + away + "	" + homeScore + "	" + awayScore + "	" + type;
+        return rowDate(year, 1, 1, home, away, homeScore, awayScore, type);
+    }
+
+    private static String rowDate(int year, int month, int day, String home, String away,
+                                  int homeScore, int awayScore, String type) {
+        return year + "\t" + month + "\t" + day + "\t" + home + "\t" + away + "\t"
+                + homeScore + "\t" + awayScore + "\t" + type;
     }
 }

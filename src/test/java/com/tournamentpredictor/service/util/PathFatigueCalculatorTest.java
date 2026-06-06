@@ -268,6 +268,11 @@ class PathFatigueCalculatorTest {
         }
 
         @Test
+        void excellentDepth_reducesHardPathFatigueByThirtyPercent() {
+            assertEquals(-50, calculator.applyDepthMultiplier(-72, -1));
+        }
+
+        @Test
         void easyPath_noBonus_forAnyDepth() {
             // Beat 1700 (last_32) — below average, easy path
             int weighted = (int) Math.round(calculator.rawScore(1700) * calculator.stageMultiplierForRound("last_32")); // -75

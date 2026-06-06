@@ -7,6 +7,9 @@ target/
 node_modules/
 .env
 
+# Generated Monte Carlo outputs.
+data/simulations/
+
 # Global ELO refresh output. Tournament-local snapshots under data/elo/snapshots/ are kept.
 data/elo/current/world.csv
 data/elo/current/history/

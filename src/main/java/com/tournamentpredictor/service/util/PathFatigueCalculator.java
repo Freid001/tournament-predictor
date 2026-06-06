@@ -35,7 +35,7 @@ import com.tournamentpredictor.config.PredictionConfig;
  * </ul>
  *
  * <h3>Bench-depth multiplier</h3>
- * Good/deep squads absorb hard paths better; limited and thin squads absorb them worse.
+ * Excellent squads absorb hard paths best; good/deep squads absorb them better; limited and thin squads absorb them worse.
  * This multiplier only changes negative fatigue penalties. It never creates a bonus on an easy path.
  *
  * All values are configurable via application.properties under the {@code path.fatigue.*} prefix.
@@ -49,6 +49,7 @@ public class PathFatigueCalculator {
     private double stageMultLast16        = 1.0;
     private double stageMultLast8         = 1.2;
     private double stageMultLast4         = 1.5;
+    private double depthExcellentMultiplier = 0.70;
     private double depthGoodMultiplier    = 0.85;
     private double depthLimitedMultiplier = 1.15;
     private double depthThinMultiplier    = 1.30;
@@ -61,6 +62,7 @@ public class PathFatigueCalculator {
         this.stageMultLast16        = config.getPathFatigueStageMultLast16();
         this.stageMultLast8         = config.getPathFatigueStageMultLast8();
         this.stageMultLast4         = config.getPathFatigueStageMultLast4();
+        this.depthExcellentMultiplier = config.getPathFatigueDepthExcellentMultiplier();
         this.depthGoodMultiplier    = config.getPathFatigueDepthGoodMultiplier();
         this.depthLimitedMultiplier = config.getPathFatigueDepthLimitedMultiplier();
         this.depthThinMultiplier    = config.getPathFatigueDepthThinMultiplier();
@@ -113,11 +115,12 @@ public class PathFatigueCalculator {
 
     /**
      * Apply bench-depth sensitivity to a negative fatigue ELO value.
-     * Level 0 = good/deep, 1 = limited, 2 = thin. Easy paths remain 0, never a bonus.
+     * Level -1 = excellent, 0 = good/deep, 1 = limited, 2 = thin. Easy paths remain 0, never a bonus.
      */
     public int applyDepthMultiplier(int fatigueElo, int depthLevel) {
         if (fatigueElo >= 0) return fatigueElo;
         double multiplier = switch (depthLevel) {
+            case -1 -> depthExcellentMultiplier;
             case 0 -> depthGoodMultiplier;
             case 1 -> depthLimitedMultiplier;
             case 2 -> depthThinMultiplier;

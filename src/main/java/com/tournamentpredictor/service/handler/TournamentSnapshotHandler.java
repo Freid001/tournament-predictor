@@ -12,6 +12,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.DateTimeException;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -38,6 +40,7 @@ public class TournamentSnapshotHandler {
     private int effectiveQualUntilYear;
     private int effectivePreTournamentSinceYear;
     private int effectivePreTournamentUntilYear;
+    private LocalDate tournamentStartDate;
 
     public TournamentSnapshotHandler(CsvLoader loader, Path projectRoot, PredictionConfig config) {
         this.loader = loader;
@@ -58,6 +61,18 @@ public class TournamentSnapshotHandler {
                 "pre.tournament.form.since.year", config.getPreTournamentFormSinceYear());
         effectivePreTournamentUntilYear = loader.resolveTournamentSetting(tournament,
                 "pre.tournament.form.until.year", config.getPreTournamentFormUntilYear());
+        String configuredStartDate = loader.loadTournamentProperties(tournament)
+                .getProperty("tournament.start.date", "").trim();
+        if (configuredStartDate.isEmpty()) {
+            throw new IOException("Missing tournament.start.date in data/predictions/" + tournament
+                    + "/tournament.properties (expected YYYY-MM-DD).");
+        }
+        try {
+            tournamentStartDate = LocalDate.parse(configuredStartDate);
+        } catch (DateTimeException e) {
+            throw new IOException("Invalid tournament.start.date: " + configuredStartDate
+                    + " (expected YYYY-MM-DD).", e);
+        }
 
         Path snapshotDir = projectRoot.resolve("data").resolve("elo").resolve("snapshots").resolve(tournament);
         Path historyDir = snapshotDir.resolve("history");
@@ -131,15 +146,18 @@ public class TournamentSnapshotHandler {
             for (int i = 1; i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] cols = line.split("\t", -1);
-                if (cols.length == 0) {
+                if (cols.length < 3) {
                     continue;
                 }
                 try {
                     int year = Integer.parseInt(cols[0].trim());
-                    if (year >= since && year <= until) {
+                    int month = Integer.parseInt(cols[1].trim());
+                    int day = Integer.parseInt(cols[2].trim());
+                    LocalDate matchDate = LocalDate.of(year, month, day);
+                    if (year >= since && year <= until && !matchDate.isAfter(tournamentStartDate)) {
                         out.add(line);
                     }
-                } catch (NumberFormatException ignored) {
+                } catch (NumberFormatException | DateTimeException ignored) {
                 }
             }
             Files.write(outputDir.resolve(team + ".tsv"), out);
@@ -156,6 +174,7 @@ public class TournamentSnapshotHandler {
         values.put("requested_team_count", String.valueOf(requestedTeams));
         values.put("team_count", String.valueOf(copiedTeams));
         values.put("history_file_count", String.valueOf(copiedHistory));
+        values.put("tournament_start_date", tournamentStartDate.toString());
         values.put("qual_form_since", String.valueOf(effectiveQualSinceYear));
         values.put("qual_form_until", String.valueOf(effectiveQualUntilYear));
         values.put("pre_tournament_form_since", String.valueOf(effectivePreTournamentSinceYear));

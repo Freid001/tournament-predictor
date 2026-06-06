@@ -1,5 +1,5 @@
 match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,do_you_disagree
-M97,W89(W77(I1(France))),W90(W75(F1(Netherlands))),predicted,France (73%),251,103,G|Norway:-5 > G|Senegal:-4 > Egypt:0 > Germany:-21,G|Japan:-4 > Morocco:-4 > Canada:-4,
-M98,W93(W84(H1(Spain))),W94(W81(D1(Turkey))),predicted,Spain (81%),167,157,Austria:-5 > Colombia:-15,Senegal:-8 > Belgium:-11,
-M99,W91(W78(I2(Norway))),W92(W80(L1(England))),predicted,England (58%),302,126,G|France:-10 > G|Senegal:-4 > Ecuador:-7 > Japan:-16,G|Croatia:-2 > DR Congo:0 > Mexico:-13,
-M100,W95(W86(J1(Argentina))),W96(W87(K1(Portugal))),predicted,Argentina (70%),22,114,G|Austria:-3 > Uruguay:0 > Paraguay:0,G|Colombia:-4 > Panama:0 > Switzerland:-10,
+M97,W89(W77(I1(France))),W90(W75(F1(Netherlands))),predicted,France (73%),239,95,G|Norway:-5 > G|Senegal:-4 > Egypt:0 > Germany:-20,G|Japan:-4 > Morocco:-4 > Canada:-4,
+M98,W93(W84(H1(Spain))),W94(W81(D1(Turkey))),predicted,Spain (80%),167,147,Austria:-5 > Colombia:-15,Senegal:-8 > Belgium:-10,
+M99,W91(W78(I2(Norway))),W92(W80(L1(England))),predicted,England (59%),290,126,G|France:-9 > G|Senegal:-4 > Ecuador:-7 > Japan:-15,G|Croatia:-2 > DR Congo:0 > Mexico:-13,
+M100,W95(W86(J1(Argentina))),W96(W87(K1(Portugal))),predicted,Argentina (69%),22,114,G|Austria:-3 > Uruguay:0 > Paraguay:0,G|Colombia:-4 > Panama:0 > Switzerland:-10,

@@ -13,7 +13,7 @@ import java.util.Map;
 public class PredictionScorer {
 
     static final String OUTPUT_HEADER =
-            "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent";
+            "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,model_prediction,selection_source";
 
     private static final CSVFormat LINE_FORMAT = CSVFormat.DEFAULT;
 
@@ -51,8 +51,7 @@ public class PredictionScorer {
             String team2PathDiff = record.size() > 6 ? record.get(6).trim() : "0";
             String team1PathOpponent = record.size() > 7 ? record.get(7).trim() : "";
             String team2PathOpponent = record.size() > 8 ? record.get(8).trim() : "";
-            String disagree = disagreeMap.getOrDefault(matchId + "|" + team1Display + "|" + team2Display, "");
-            String prediction = eloCalculator.applyDisagreeOverride(disagree, eloPrediction, team1Display, team2Display);
+            String prediction = eloPrediction;
             String team1Name = eloCalculator.extractTeamName(team1Display);
             String team2Name = eloCalculator.extractTeamName(team2Display);
             TeamEloSnapshot team1Snapshot = snapshots.get(team1Name);
@@ -71,7 +70,9 @@ public class PredictionScorer {
                     team1PathDiff,
                     team2PathDiff,
                     team1PathOpponent,
-                    team2PathOpponent));
+                    team2PathOpponent,
+                    eloPrediction,
+                    "model"));
         }
         return output;
     }
