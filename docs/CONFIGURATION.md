@@ -126,10 +126,10 @@ These are manual score-model inputs, not ELO properties.
 
 | Input | Values | xG effect | Description |
 |---|---|---|---|
-| `attack_quality` | -2 to +2 | +0.15 xG per level | Chance creation and finishing relative to the team's normal level. |
-| `defence_quality` | -2 to +2 | -0.15 opponent xG per level | Chance and goal prevention relative to the team's normal level. |
+| `attack_quality` | -2 to +2 | +0.05 xG per level | Chance creation and finishing relative to the team's normal level. |
+| `defence_quality` | -2 to +2 | -0.05 opponent xG per level | Chance and goal prevention relative to the team's normal level. |
 
-A +2 Attack input adds 0.30 xG; a +2 Defence input removes 0.30 xG from the opponent. Negative values reverse those effects. They influence scorelines, match probabilities, Monte Carlo outcomes, and betting comparisons, but are excluded from Adjusted ELO to avoid applying the same judgment twice.
+A +2 Attack input adds 0.10 xG; a +2 Defence input removes 0.10 xG from the opponent. Negative values reverse those effects. They influence scorelines, match probabilities, Monte Carlo outcomes, and betting comparisons, but are excluded from Adjusted ELO to avoid applying the same judgment twice.
 
 
 ## Signal Interactions

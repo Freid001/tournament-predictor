@@ -8,6 +8,7 @@ An international football tournament prediction engine combining ELO-based match
 - [Quick start](#quick-start)
 - [Prediction methodology](#prediction-methodology)
 - [Docs](#docs)
+- [Training results](docs/TRAINING_RESULTS.md)
 
 ## About
 
@@ -32,8 +33,8 @@ The engine is both:
 - Round-by-round and end-to-end Monte Carlo probabilities, including group qualification, third-place routing, every knockout round, and champion chances
 - Tournament-specific group ranking: UEFA head-to-head mini-tables for EURO tournaments; FIFA-style overall criteria remain the default
 - Best-third ranking uses points, goal difference, goals scored and wins, with ELO only as the final fallback when disciplinary/competition-ranking data is unavailable
-- Historical training datasets currently included: FIFA World Cups 2006, 2010, 2014, 2018 and 2022 plus UEFA EURO 2016, 2020 and 2024; each snapshot excludes results from tournament kickoff onward
-- Repeatable calibration reports from committed actual results via `./predict.sh --mode=training`
+- Historical deterministic calibration covers every FIFA World Cup from 1994 through 2022 and every UEFA EURO from 1992 through 2024; each snapshot excludes results from tournament kickoff onward
+- `./predict.sh --mode=training` downloads pinned public results, rebuilds ignored historical inputs, and runs every calibration grid
 - **Tournament path fatigue** - route-specific depletion based on opponents already faced
 
 **What it does not do:**
@@ -104,45 +105,51 @@ Current match prediction has two layers:
 
 `team1WinPct = 1 / (1 + 10^((team2Elo - team1Elo) / 400))`
 
-2. **Goal model inputs** apply `attack_quality` and `defence_quality` directly to expected goals. Each level changes xG by `0.15`: attack changes the team's own xG, while the opponent's defence changes that xG in the opposite direction. These inputs are deliberately excluded from Adjusted ELO.
+2. **Goal model inputs** apply `attack_quality` and `defence_quality` directly to expected goals. Each level changes xG by `0.05`: attack changes the team's own xG, while the opponent's defence changes that xG in the opposite direction. These inputs are deliberately excluded from Adjusted ELO.
 
 The score model converts xG into 90-minute win/draw/loss and exact-score probabilities using independent Poisson distributions. Drawn knockout matches use the ELO expectation for the extra-time/penalty advancement split. Monte Carlo runs sample these score distributions through the group stage and knockout bracket.
 
 The plus/minus ELO values are temporary pre-match deltas, not permanent World Football Elo updates. Attack and Defence are separate xG inputs, not ELO deltas.
 
 
-### Historical training report
+### Historical training and calibration
 
-Run every committed historical tournament:
+Build the project, download the pinned historical sources, generate disposable snapshots and actual results, and run all calibration grids:
 
 ```bash
 ./predict.sh --mode=training
 ```
 
-Run one tournament:
+Generated historical predictions, snapshots, actual results, source notes, and CSV reports live under ignored `data/` paths. They can be deleted at any time and rebuilt with the same command. Only World Cup 2026 runtime data remains committed.
+
+Use the pinned source revisions when comparing model changes. Do not tune against one tournament and report that same tournament as independent validation.
+
+Run deterministic ELO/xG parameter selection with leave-one-tournament-out validation. Compare aggregate rankings with the tournament holdout report before changing production settings:
 
 ```bash
-./predict.sh --mode=training --tournament=world_cup_2022
+./predict.sh --mode=training-grid
 ```
 
-Actual group results and final tournament finishes live under `data/backtests/<tournament>/`. The command compares them with the saved Monte Carlo outputs and writes:
+Core calibration decisions and current results are recorded in [Training Results](docs/TRAINING_RESULTS.md).
 
-- `data/backtests/training_report.csv` - Brier score, log loss, goals, progression accuracy and champion ranking
-- `data/backtests/training_calibration.csv` - favourite probability bands versus actual win rates
-- `data/backtests/training_scorelines.csv` - predicted versus actual exact-score frequencies
+Warm-up friendly caps can be evaluated separately:
 
-Use the same committed inputs when comparing model changes. Do not tune against one tournament and report that same tournament as independent validation.
+```bash
+./predict.sh --mode=training-warmup-grid
+```
+
+The expanded 17-tournament holdout test found a broad aggregate optimum around 120-140 ELO, but the improvement was inconsistent across holdouts and worsened World Cup 2022. Production therefore remains at the more conservative 50-ELO cap.
 
 ### Model accuracy and calibration
 
 This is an explainable tournament model, not a fully calibrated market-grade forecasting system yet. It should be useful for ranking teams, exposing why a route is hard, comparing close matchups, and stress-testing bracket assumptions. It should not be treated as a proven edge over bookmaker odds or professional forecasting models.
 
-The project includes an xG/Poisson score model, a two-process group-to-final Monte Carlo simulation that preserves each sampled route between steps, and separate round-conditional simulations. Calibration now covers World Cups 2006-2022 and EURO 2016-2024. The older added datasets use frozen historical ELO/form with neutral manual squad adjustments, while the originally curated tournaments retain their tournament-specific squad inputs. This is a stronger calibration sample, but it is still not evidence of a market-grade betting edge.
+The project includes an xG/Poisson score model, a two-process group-to-final Monte Carlo simulation that preserves each sampled route between steps, and separate round-conditional simulations. Deterministic match calibration covers World Cups 1994-2022 and EURO 1992-2024 (612 group matches across 17 tournaments). Historical bootstrap data uses frozen pre-kickoff ELO/form, source-derived squad ages and goal profiles, climate proxies, and sparse cited availability/cohesion overrides. This is a stronger calibration sample, but it is still not evidence of a market-grade betting edge.
 
 The highest-value accuracy upgrades would be:
 
 1. Backtest every signal against past World Cups and recent international matches, then tune weights against log loss or Brier score instead of intuition.
-2. Continue validating the `0.15 xG` Attack/Defence step and Poisson assumptions against historical score distributions.
+2. Continue validating the `0.05 xG` Attack/Defence step and Poisson assumptions against historical score distributions.
 3. Add external cross-checks such as market odds, external xG/xGA, rest days, travel distance, and venue/weather by match.
 4. Track prediction calibration so a 70% model pick wins about 70% of comparable historical games.
 
@@ -162,8 +169,8 @@ Applied once at the group stage to calculate each team's effective ELO ranking. 
 | **Squad age** | -12 young / -8 aging ELO | Inexperience or recovery risk. |
 | **Squad cohesion** | -11 / -22 / -45 ELO | Preparation, tactical, or institutional disruption. |
 | **Bench depth** | +10 / -10 / -20 ELO | Replacement-quality penalty; also controls fatigue sensitivity. |
-| **Attack quality** | -2 to +2; 0.15 xG per level | Changes the team's xG, not Adjusted ELO. |
-| **Defence quality** | -2 to +2; 0.15 xG per level | Changes the opponent's xG, not Adjusted ELO. |
+| **Attack quality** | -2 to +2; 0.05 xG per level | Changes the team's xG, not Adjusted ELO. |
+| **Defence quality** | -2 to +2; 0.05 xG per level | Changes the opponent's xG, not Adjusted ELO. |
 
 ELO adjustment values are configurable in `application.properties`. Attack and Defence are direct signed inputs in `start.csv`.
 

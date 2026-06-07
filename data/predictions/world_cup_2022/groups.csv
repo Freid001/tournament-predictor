@@ -1,40 +1,40 @@
 group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place
-A,Netherlands,2040,61,17,0,0,-1,1,2,2128,1 (86%),yes,no,no
-A,Qatar,1680,91,38,0,0,1,-1,-1,1899,2 (53%),no,yes,maybe
-A,Ecuador,1832,4,-1,0,0,0,0,1,1835,3 (43%),no,maybe,yes
-A,Senegal,1684,50,17,0,0,0,1,1,1661,4 (18%),no,no,maybe
+A,Netherlands,2040,0,17,0,0,0,2,0,2057,1 (81%),yes,no,no
+A,Qatar,1680,0,37,0,0,0,2,1,1852,2 (49%),no,yes,maybe
+A,Ecuador,1832,0,-10,1,0,0,0,1,1828,3 (45%),no,maybe,yes
+A,Senegal,1684,0,17,0,0,0,0,0,1701,4 (24%),no,no,maybe
 
-B,England,1919,80,43,0,0,-1,2,1,2030,1 (78%),yes,no,no
-B,Iran,1798,71,-3,0,1,0,0,0,1833,2 (45%),no,yes,maybe
-B,United States,1796,22,-3,1,0,0,0,0,1803,3 (40%),no,maybe,yes
-B,Wales,1789,33,-10,1,0,1,0,0,1790,4 (37%),no,no,maybe
+B,England,1919,0,43,0,0,0,2,-1,1962,1 (74%),yes,no,no
+B,Iran,1798,0,-6,0,0,0,0,1,1810,2 (47%),no,yes,maybe
+B,Wales,1789,0,-10,1,0,0,1,0,1767,3 (40%),no,maybe,yes
+B,United States,1796,0,-21,1,0,0,1,0,1763,4 (39%),no,no,maybe
 
-C,Argentina,2143,47,50,0,0,-1,2,1,2250,1 (93%),yes,no,no
-C,Poland,1813,49,13,0,0,1,1,0,1865,2 (48%),no,yes,maybe
-C,Mexico,1808,29,-3,1,1,0,0,1,1793,3 (37%),no,maybe,yes
-C,Saudi Arabia,1636,59,-6,0,0,1,-1,-1,1679,4 (21%),no,no,maybe
+C,Argentina,2143,0,50,0,0,0,0,2,2175,1 (90%),yes,no,no
+C,Mexico,1808,0,-6,0,0,0,-1,1,1837,2 (46%),no,yes,maybe
+C,Poland,1813,0,13,0,0,0,0,-1,1826,3 (44%),no,maybe,yes
+C,Saudi Arabia,1636,0,-3,0,0,0,-2,1,1668,4 (20%),no,no,maybe
 
-D,Denmark,1971,84,3,0,0,0,1,1,2058,1 (74%),yes,maybe,no
-D,France,2004,55,47,0,0,-1,2,1,2036,2 (71%),maybe,yes,no
-D,Australia,1720,32,39,0,0,1,-1,0,1781,3 (30%),no,no,yes
-D,Tunisia,1705,47,8,0,0,1,-1,0,1750,4 (25%),no,no,maybe
+D,France,2004,0,47,0,0,0,2,0,1981,1 (69%),yes,maybe,no
+D,Denmark,1971,0,3,0,0,0,0,0,1974,2 (68%),maybe,yes,no
+D,Australia,1720,0,39,0,0,0,0,0,1777,3 (34%),no,no,yes
+D,Tunisia,1705,0,8,0,0,0,0,2,1748,4 (29%),no,no,maybe
 
-E,Spain,2049,52,46,1,0,-1,2,1,2145,1 (79%),yes,maybe,no
-E,Germany,1962,83,23,0,0,-1,2,0,2056,2 (66%),maybe,yes,no
-E,Japan,1788,71,2,0,0,0,0,1,1861,3 (35%),no,no,yes
-E,Costa Rica,1743,20,23,1,0,1,-1,0,1764,4 (21%),no,no,maybe
+E,Spain,2049,0,46,1,0,0,0,1,2083,1 (78%),yes,maybe,no
+E,Germany,1962,0,23,0,0,0,2,-1,1985,2 (62%),maybe,yes,no
+E,Japan,1788,0,-1,0,0,0,2,1,1805,3 (33%),no,no,yes
+E,Costa Rica,1743,0,23,1,0,0,0,2,1772,4 (27%),no,no,maybe
 
-F,Belgium,2006,70,1,2,0,0,1,0,2047,1 (71%),yes,maybe,no
-F,Croatia,1926,55,21,2,0,0,1,1,1994,2 (62%),maybe,yes,no
-F,Morocco,1764,78,14,0,1,0,1,1,1845,3 (36%),no,no,yes
-F,Canada,1775,63,7,1,0,0,1,-1,1811,4 (30%),no,no,maybe
+F,Belgium,2006,0,1,0,0,0,1,-2,2007,1 (71%),yes,maybe,no
+F,Croatia,1926,0,21,0,0,0,2,0,1947,2 (61%),maybe,yes,maybe
+F,Morocco,1764,0,28,0,0,0,1,0,1827,3 (39%),no,maybe,yes
+F,Canada,1775,0,-6,0,0,0,1,1,1769,4 (29%),no,no,maybe
 
-G,Brazil,2169,73,47,0,0,-1,2,2,2299,1 (92%),yes,no,no
-G,Serbia,1898,55,14,0,0,0,2,0,1945,2 (50%),no,yes,maybe
-G,Switzerland,1901,52,-30,0,0,0,0,1,1923,3 (47%),no,maybe,yes
-G,Cameroon,1607,39,-25,0,0,0,0,0,1621,4 (10%),no,no,no
+G,Brazil,2169,0,48,0,0,0,2,2,2235,1 (91%),yes,no,no
+G,Serbia,1898,0,14,0,0,0,2,0,1912,2 (51%),no,yes,maybe
+G,Switzerland,1901,0,-30,0,0,0,1,0,1871,3 (45%),no,maybe,yes
+G,Cameroon,1607,0,-19,0,0,0,1,0,1623,4 (13%),no,no,no
 
-H,Portugal,2005,52,50,1,0,-1,2,1,2105,1 (84%),yes,maybe,no
-H,Uruguay,1935,2,22,1,0,0,1,1,1947,2 (62%),maybe,yes,maybe
-H,South Korea,1786,60,21,0,0,0,1,0,1822,3 (44%),no,maybe,yes
-H,Ghana,1564,24,-5,1,1,0,0,-1,1560,4 (11%),no,no,no
+H,Portugal,2005,0,50,0,0,0,1,1,2055,1 (79%),yes,maybe,no
+H,Uruguay,1935,0,23,2,0,0,-1,0,1950,2 (64%),maybe,yes,maybe
+H,South Korea,1786,0,21,0,0,0,0,1,1825,3 (44%),no,maybe,yes
+H,Ghana,1564,0,10,1,0,0,-1,0,1597,4 (13%),no,no,no

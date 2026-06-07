@@ -1,3 +1,0 @@
-variant,outcome_brier,brier_delta,log_loss,log_loss_delta,predicted_goals,actual_goals,goal_error,goal_error_delta,qualifier_brier,quarter_brier,semi_brier,final_brier,champion_brier,correct_qualifiers,qualifiers
-baseline,0.5898,0.0000,1.0075,0.0000,2.6719,2.4470,0.2249,0.0000,0.1832,0.1363,0.0994,0.0578,0.0285,34,48
-no_qualification_form_xg_minus_3_pct,0.5881,-0.0017,1.0044,-0.0031,2.5903,2.4470,0.1433,-0.0816,0.1837,0.1367,0.1002,0.0571,0.0281,35,48

@@ -6,6 +6,7 @@ import com.tournamentpredictor.service.simulation.SimulationHandler;
 import com.tournamentpredictor.service.util.EloBreakdown;
 import com.tournamentpredictor.service.util.EloCalculator;
 import com.tournamentpredictor.service.util.HtmlReporter;
+import com.tournamentpredictor.service.util.ExpectedGoalsCalculator;
 import com.tournamentpredictor.web.view.SimulationResultsRenderer;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -50,6 +51,7 @@ public class WebController {
     private static final Set<String> RUN_MODES = Set.of("snapshot-refresh", "start", "groups", "group-simulation", "tournament", "last_32", "last_16", "last_8", "last_4", "final", "simulate");
     private static final Set<String> ROUND_NAMES = Set.of("groups", "groups_match", "last_32", "last_32_match", "last_16", "last_16_match", "last_8", "last_8_match", "last_4", "last_4_match", "final", "final_match");
     private static final Set<String> RESET_STEPS = Set.of("groups", "group-simulation", "last_32", "last_16", "last_8", "last_4", "final", "simulation");
+    private static final Set<String> HISTORICAL_COMPARISONS = Set.of("world_cup_2014", "world_cup_2018", "world_cup_2022");
     private static final CSVFormat CSV = CSVFormat.DEFAULT.builder()
             .setHeader()
             .setSkipHeaderRecord(true)
@@ -68,6 +70,17 @@ public class WebController {
     public String index(Model model) throws IOException {
         model.addAttribute("tournaments", scanTournaments());
         return "index";
+    }
+
+    @GetMapping("/history/{name}")
+    public String historicalComparison(@PathVariable("name") String name, Model model) throws IOException {
+        String tournament = safeTournament(name);
+        if (!HISTORICAL_COMPARISONS.contains(tournament)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        HistoricalComparison comparison = buildHistoricalComparison(tournament);
+        model.addAttribute("comparison", comparison);
+        model.addAttribute("tournament", tournament);
+        model.addAttribute("tournamentLabel", displayTournament(tournament));
+        return "historical-comparison";
     }
 
     @GetMapping("/tournament/{name}")
@@ -812,9 +825,53 @@ public class WebController {
             return stream.filter(Files::isDirectory)
                     .map(path -> path.getFileName().toString())
                     .sorted()
-                    .map(name -> new TournamentSummary(name, describeCurrentStage(name), completedStepCount(name)))
+                    .map(name -> new TournamentSummary(name, describeCurrentStage(name), completedStepCount(name),
+                            HISTORICAL_COMPARISONS.contains(name)))
                     .collect(Collectors.toList());
         }
+    }
+
+    private HistoricalComparison buildHistoricalComparison(String tournament) throws IOException {
+        CsvData groupData = readCsv(predictionFile(tournament, "groups.csv"));
+        CsvData actualData = readCsv(projectRoot.resolve("data/backtests").resolve(tournament).resolve("actual_results.csv"));
+        Map<String, HistoricalProfile> profiles = new LinkedHashMap<>();
+        for (Map<String, String> row : groupData.rows()) {
+            String team = row.getOrDefault("team", "");
+            profiles.put(team, new HistoricalProfile(parseInt(row.getOrDefault("elo_ranking", "0"), 0),
+                    parseInt(row.getOrDefault("attack_quality", "0"), 0),
+                    parseInt(row.getOrDefault("defence_quality", "0"), 0)));
+        }
+        ExpectedGoalsCalculator calculator = new ExpectedGoalsCalculator(predictionConfig.getEloScaleDivisor(),
+                2.60, predictionConfig.getGoalDiffPer400Elo(), predictionConfig.getExpectedGoalsMultiplier());
+        List<HistoricalMatchView> matches = new ArrayList<>();
+        int correct = 0;
+        for (Map<String, String> row : actualData.rows()) {
+            String team1 = row.getOrDefault("team1", ""), team2 = row.getOrDefault("team2", "");
+            HistoricalProfile p1 = profiles.get(team1), p2 = profiles.get(team2);
+            if (p1 == null || p2 == null) continue;
+            var projection = calculator.project(team1, team2, p1.elo, p2.elo,
+                    p1.attack, p1.defence, p2.attack, p2.defence);
+            int goals1 = parseInt(row.getOrDefault("team1_goals", "0"), 0);
+            int goals2 = parseInt(row.getOrDefault("team2_goals", "0"), 0);
+            String predicted = outcome(projection.exactTeam1WinProbability(), projection.exactDrawProbability(),
+                    projection.exactTeam2WinProbability());
+            String actual = goals1 > goals2 ? "Home" : goals2 > goals1 ? "Away" : "Draw";
+            boolean matchCorrect = predicted.equals(actual);
+            if (matchCorrect) correct++;
+            matches.add(new HistoricalMatchView(team1, team2, goals1 + "-" + goals2, predicted, actual,
+                    percent(projection.exactTeam1WinProbability()), percent(projection.exactDrawProbability()),
+                    percent(projection.exactTeam2WinProbability()), projection.expectedGoalsText(), matchCorrect));
+        }
+        return new HistoricalComparison(tournament, displayTournament(tournament), correct, matches.size(), matches);
+    }
+
+    static String outcome(double home, double draw, double away) {
+        if (draw >= home && draw >= away) return "Draw";
+        return home >= away ? "Home" : "Away";
+    }
+
+    private static String percent(double probability) {
+        return String.format(java.util.Locale.ROOT, "%.1f%%", probability * 100.0);
     }
 
     private List<StageView> buildStages(String tournament) {
@@ -2008,19 +2065,39 @@ public class WebController {
         private final String label;
         private final String stage;
         private final int completedSteps;
+        private final boolean historicalComparison;
 
         public TournamentSummary(String name, String stage, int completedSteps) {
+            this(name, stage, completedSteps, false);
+        }
+
+        public TournamentSummary(String name, String stage, int completedSteps, boolean historicalComparison) {
             this.name = name;
             this.label = displayTournament(name);
             this.stage = stage;
             this.completedSteps = completedSteps;
+            this.historicalComparison = historicalComparison;
         }
 
         public String getName() { return name; }
         public String getLabel() { return label; }
         public String getStage() { return stage; }
         public int getCompletedSteps() { return completedSteps; }
+        public boolean isHistoricalComparison() { return historicalComparison; }
     }
+
+    public record HistoricalComparison(String tournament, String label, int correct, int total,
+                                       List<HistoricalMatchView> matches) {
+        public String accuracy() {
+            return total == 0 ? "0.0%" : String.format(java.util.Locale.ROOT, "%.1f%%", correct * 100.0 / total);
+        }
+    }
+
+    public record HistoricalMatchView(String team1, String team2, String score, String predictedOutcome,
+                                      String actualOutcome, String homeProbability, String drawProbability,
+                                      String awayProbability, String expectedGoals, boolean correct) {}
+
+    private record HistoricalProfile(int elo, int attack, int defence) {}
 
     public static final class StageView {
         private final String label;

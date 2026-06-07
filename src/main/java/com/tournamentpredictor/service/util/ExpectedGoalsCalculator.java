@@ -10,27 +10,35 @@ public class ExpectedGoalsCalculator {
     private static final double MAX_EXPECTED_GOALS = 4.50;
     private static final int MAX_SCORELINE_GOALS = 10;
     // Signed Attack/Defence inputs shape goals only; they are not ELO adjustments.
-    private static final double QUALITY_XG_PER_LEVEL = 0.15;
+    private static final double DEFAULT_QUALITY_XG_PER_LEVEL = 0.05;
 
     private final double eloScaleDivisor;
     private final double baseTotalGoals;
     private final double goalDiffPer400Elo;
     private final double totalMultiplier;
+    private final double qualityXgPerLevel;
 
     public ExpectedGoalsCalculator() {
-        this(400.0, DEFAULT_BASE_TOTAL_GOALS, DEFAULT_GOAL_DIFF_PER_400_ELO, 1.0);
+        this(400.0, DEFAULT_BASE_TOTAL_GOALS, DEFAULT_GOAL_DIFF_PER_400_ELO, 1.0, DEFAULT_QUALITY_XG_PER_LEVEL);
     }
 
     ExpectedGoalsCalculator(double eloScaleDivisor, double baseTotalGoals, double goalDiffPer400Elo) {
-        this(eloScaleDivisor, baseTotalGoals, goalDiffPer400Elo, 1.0);
+        this(eloScaleDivisor, baseTotalGoals, goalDiffPer400Elo, 1.0, DEFAULT_QUALITY_XG_PER_LEVEL);
     }
 
     public ExpectedGoalsCalculator(double eloScaleDivisor, double baseTotalGoals,
                                    double goalDiffPer400Elo, double totalMultiplier) {
+        this(eloScaleDivisor, baseTotalGoals, goalDiffPer400Elo, totalMultiplier, DEFAULT_QUALITY_XG_PER_LEVEL);
+    }
+
+    public ExpectedGoalsCalculator(double eloScaleDivisor, double baseTotalGoals,
+                                   double goalDiffPer400Elo, double totalMultiplier,
+                                   double qualityXgPerLevel) {
         this.eloScaleDivisor = eloScaleDivisor;
         this.baseTotalGoals = baseTotalGoals;
         this.goalDiffPer400Elo = goalDiffPer400Elo;
         this.totalMultiplier = totalMultiplier;
+        this.qualityXgPerLevel = qualityXgPerLevel;
     }
 
     public Projection project(String team1, String team2, int team1Elo, int team2Elo) {
@@ -48,9 +56,9 @@ public class ExpectedGoalsCalculator {
         double eloDiff = team1Elo - team2Elo;
         double expectedGoalDiff = (eloDiff / 400.0) * goalDiffPer400Elo;
         double team1ExpectedGoals = clamp(totalMultiplier * ((baseTotalGoals + expectedGoalDiff) / 2.0
-                + QUALITY_XG_PER_LEVEL * (team1AttackQuality - team2DefenceQuality)));
+                + qualityXgPerLevel * (team1AttackQuality - team2DefenceQuality)));
         double team2ExpectedGoals = clamp(totalMultiplier * ((baseTotalGoals - expectedGoalDiff) / 2.0
-                + QUALITY_XG_PER_LEVEL * (team2AttackQuality - team1DefenceQuality)));
+                + qualityXgPerLevel * (team2AttackQuality - team1DefenceQuality)));
 
         ScoreProbability scoreProbability = scoreProbability(team1ExpectedGoals, team2ExpectedGoals);
         double team1AdvanceProbability = scoreProbability.team1WinProbability
@@ -70,6 +78,9 @@ public class ExpectedGoalsCalculator {
                 roundPct(scoreProbability.team2WinProbability),
                 roundPct(team1AdvanceProbability),
                 roundPct(team2AdvanceProbability),
+                scoreProbability.team1WinProbability,
+                scoreProbability.drawProbability,
+                scoreProbability.team2WinProbability,
                 noDrawTeam1WinProbability,
                 scoreProbability.mostLikelyTeam1Goals,
                 scoreProbability.mostLikelyTeam2Goals,
@@ -160,6 +171,9 @@ public class ExpectedGoalsCalculator {
                              int team2WinPct,
                              int team1AdvancePct,
                              int team2AdvancePct,
+                             double exactTeam1WinProbability,
+                             double exactDrawProbability,
+                             double exactTeam2WinProbability,
                              double noDrawTeam1WinProbability,
                              int mostLikelyTeam1Goals,
                              int mostLikelyTeam2Goals,

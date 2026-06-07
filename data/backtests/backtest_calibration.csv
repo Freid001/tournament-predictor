@@ -1,7 +1,0 @@
-tournament,band,matches,predicted_win_rate,actual_win_rate
-world_cup_2022,35-45,11,0.3973,0.4545
-world_cup_2022,45-55,10,0.4928,0.4000
-world_cup_2022,55-65,13,0.6102,0.5385
-world_cup_2022,65-75,11,0.6893,0.7273
-world_cup_2022,75-85,1,0.8078,1.0000
-world_cup_2022,85-101,2,0.8614,0.0000

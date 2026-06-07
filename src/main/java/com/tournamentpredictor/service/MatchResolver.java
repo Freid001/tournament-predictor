@@ -16,7 +16,11 @@ import com.tournamentpredictor.service.handler.Last4Handler;
 import com.tournamentpredictor.service.handler.Last8Handler;
 import com.tournamentpredictor.service.handler.StartHandler;
 import com.tournamentpredictor.service.handler.TournamentSnapshotHandler;
-import com.tournamentpredictor.service.handler.TrainingHandler;
+import com.tournamentpredictor.service.handler.TrainingCoreGridHandler;
+import com.tournamentpredictor.service.handler.TrainingContextGridHandler;
+import com.tournamentpredictor.service.handler.TrainingDataBootstrapHandler;
+import com.tournamentpredictor.service.handler.TrainingGridHandler;
+import com.tournamentpredictor.service.handler.TrainingWarmupGridHandler;
 import com.tournamentpredictor.service.simulation.SimulationHandler;
 import com.tournamentpredictor.service.mapper.DisagreeMapMapper;
 import com.tournamentpredictor.service.util.CsvHelper;
@@ -49,7 +53,11 @@ public class MatchResolver {
     private final TournamentSnapshotHandler tournamentSnapshotHandler;
     private final StartHandler startHandler;
     private final SimulationHandler simulationHandler;
-    private final TrainingHandler trainingHandler;
+    private final TrainingDataBootstrapHandler trainingDataBootstrapHandler;
+    private final TrainingGridHandler trainingGridHandler;
+    private final TrainingCoreGridHandler trainingCoreGridHandler;
+    private final TrainingContextGridHandler trainingContextGridHandler;
+    private final TrainingWarmupGridHandler trainingWarmupGridHandler;
     @Autowired
     public MatchResolver(ConsoleReporter consoleReporter, PredictionConfig predictionConfig) {
         this(new CsvLoader().withQualYears(predictionConfig.getQualFormSinceYear(), predictionConfig.getQualFormUntilYear()), consoleReporter, predictionConfig);
@@ -121,7 +129,17 @@ public class MatchResolver {
         long simulationSeed = config == null ? SimulationHandler.DEFAULT_SEED : config.getSimulationSeed();
         this.simulationHandler = new SimulationHandler(loader, projectRoot, expectedGoalsCalculator,
                 eloCalculator, pathFatigueCalculator, simulationRuns, simulationSeed);
-        this.trainingHandler = new TrainingHandler(projectRoot);
+        this.trainingGridHandler = new TrainingGridHandler(loader, projectRoot);
+        this.trainingCoreGridHandler = new TrainingCoreGridHandler(projectRoot,
+                config == null ? 400.0 : config.getEloScaleDivisor());
+        this.trainingContextGridHandler = new TrainingContextGridHandler(projectRoot,
+                config == null ? 400.0 : config.getEloScaleDivisor());
+        this.trainingWarmupGridHandler = new TrainingWarmupGridHandler(projectRoot,
+                config == null ? 400.0 : config.getEloScaleDivisor(),
+                config == null ? 1.20 : config.getGoalDiffPer400Elo(),
+                config == null ? 0.93 : config.getExpectedGoalsMultiplier());
+        this.trainingDataBootstrapHandler = config == null ? null
+                : new TrainingDataBootstrapHandler(projectRoot, eloRefreshHandler, tournamentSnapshotHandler, startHandler);
     }
 
     public void resolveAndWriteLast32(String tournament) throws IOException {
@@ -191,7 +209,30 @@ public class MatchResolver {
             return;
         }
         if (mode.equalsIgnoreCase("training") || mode.equalsIgnoreCase("trainning")) {
-            trainingHandler.handle(tournament);
+            if (trainingDataBootstrapHandler == null) {
+                throw new IOException("Mode training requires application config; run through the Spring Boot CLI.");
+            }
+            trainingDataBootstrapHandler.handle();
+            trainingGridHandler.handle();
+            trainingWarmupGridHandler.handle();
+            trainingCoreGridHandler.handle();
+            trainingContextGridHandler.handle();
+            return;
+        }
+        if (mode.equalsIgnoreCase("training-grid") || mode.equalsIgnoreCase("trainning-grid")) {
+            trainingGridHandler.handle();
+            return;
+        }
+        if (mode.equalsIgnoreCase("training-core-grid") || mode.equalsIgnoreCase("trainning-core-grid")) {
+            trainingCoreGridHandler.handle();
+            return;
+        }
+        if (mode.equalsIgnoreCase("training-warmup-grid") || mode.equalsIgnoreCase("trainning-warmup-grid")) {
+            trainingWarmupGridHandler.handle();
+            return;
+        }
+        if (mode.equalsIgnoreCase("training-context-grid") || mode.equalsIgnoreCase("trainning-context-grid")) {
+            trainingContextGridHandler.handle();
             return;
         }
         if (mode.equalsIgnoreCase("elo-refresh") || mode.equalsIgnoreCase("elo")) {
@@ -206,7 +247,7 @@ public class MatchResolver {
             tournamentSnapshotHandler.handle(tournament);
             return;
         }
-        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, simulate, group-simulation, knockout-simulation, training, elo-refresh, snapshot-refresh");
+        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, simulate, group-simulation, knockout-simulation, training, training-grid, training-core-grid, training-warmup-grid, elo-refresh, snapshot-refresh");
     }
 
     private void requireTournament(String mode, String tournament) throws IOException {

@@ -67,6 +67,25 @@ class TournamentSnapshotHandlerTest {
         assertTrue(metadata.contains("tournament_start_date=2026-06-11"));
     }
 
+    @Test
+    void snapshotRefreshUsesHistoricalAliasWhenSelectingPreTournamentRating() throws IOException {
+        writeStartCsv("euros_test", "Czechia");
+        writeTournamentProperties("euros_test");
+        Path current = root.resolve("data/elo/current");
+        Files.createDirectories(current);
+        Files.writeString(current.resolve("world.csv"), """
+                rank,team_code,team_name,rating
+                1,CZ,Czechia,1800
+                """);
+        writeHistory("Czechia",
+                eloRowDate(2026, 6, 10, "Czech Republic", "BeforeElo", 1, 0, "F", 1910, 1700));
+
+        new TournamentSnapshotHandler(new CsvLoader(root), root, new PredictionConfig()).handle("euros_test");
+
+        List<String> teams = Files.readAllLines(root.resolve("data/elo/snapshots/euros_test/teams.csv"));
+        assertTrue(teams.stream().anyMatch(line -> line.contains("Czechia,1910")));
+    }
+
     private void writeStartCsv(String tournament, String... teams) throws IOException {
         Path dir = root.resolve("data/predictions").resolve(tournament);
         Files.createDirectories(dir);

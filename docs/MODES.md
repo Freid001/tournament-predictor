@@ -57,11 +57,42 @@ The browser workflow requires group review followed by one Run Tournament action
 
 Once a mode writes its output file it is **locked** — re-running the same mode will print a warning and show the existing output rather than overwriting it. Delete the output file to re-run a mode.
 
-## Training evaluation
+## Training bootstrap and calibration
 
 ```bash
 ./predict.sh --mode=training
-./predict.sh --mode=training --tournament=world_cup_2022
 ```
 
-Compares frozen historical simulations with actual results and writes `training_*.csv` reports under `data/backtests/`.
+Downloads pinned tournament results and squad datasets, derives historical age and pre-kickoff goal profiles, applies sparse documented context overrides, generates ignored snapshots, then runs the ELO/xG, warm-up, core, and contextual calibration grids. The generated historical data and reports under `data/backtests/`, `data/elo/snapshots/`, and `data/predictions/` are disposable and can be rebuilt with this command.
+
+## Calibration grid
+
+```bash
+./predict.sh --mode=training-grid
+```
+
+Runs only the ELO goal-separation and total-xG grid against already generated historical data. Run `training` first after cloning or deleting the ignored training workspace.
+
+## Warm-up calibration grid
+
+```bash
+./predict.sh --mode=training-warmup-grid
+```
+
+Tests warm-up friendly ELO caps from `0` through `200` ELO against already generated historical data. Reports include Brier score, log loss, and predicted-versus-actual upset rates.
+
+## Core calibration grid
+
+```bash
+./predict.sh --mode=training-core-grid
+```
+
+Evaluates host advantage and attack/defence xG steps independently, then runs a recent-weighted joint grid over ELO goal separation, total xG, host advantage, and attack/defence quality. It requires the generated training workspace. See [Training Results](TRAINING_RESULTS.md) for decisions and limitations.
+
+## Context calibration grid
+
+```bash
+./predict.sh --mode=training-context-grid
+```
+
+Tests production-weight multipliers for squad age, cohesion, depth, omissions, active injuries, and heat. It reports signal coverage and leave-one-tournament-out results; run `training` first to generate the historical profiles.

@@ -89,8 +89,8 @@ class ExpectedGoalsCalculatorTest {
         ExpectedGoalsCalculator.Projection shaped = calculator.project("A", "B", 1800, 1800,
                 2, 2, -1, -2);
 
-        assertEquals(1.90, shaped.team1ExpectedGoals());
-        assertEquals(0.85, shaped.team2ExpectedGoals());
+        assertEquals(1.50, shaped.team1ExpectedGoals());
+        assertEquals(1.15, shaped.team2ExpectedGoals());
         assertTrue(shaped.team1ExpectedGoals() > baseline.team1ExpectedGoals());
         assertTrue(shaped.team2ExpectedGoals() < baseline.team2ExpectedGoals());
     }
@@ -100,8 +100,8 @@ class ExpectedGoalsCalculatorTest {
         ExpectedGoalsCalculator.Projection projection = calculator.project("A", "B", 1800, 1800,
                 2, 0, 2, 0);
 
-        assertEquals(1.60, projection.team1ExpectedGoals());
-        assertEquals(1.60, projection.team2ExpectedGoals());
+        assertEquals(1.40, projection.team1ExpectedGoals());
+        assertEquals(1.40, projection.team2ExpectedGoals());
     }
 
     @Test
@@ -124,8 +124,8 @@ class ExpectedGoalsCalculatorTest {
         ExpectedGoalsCalculator.Projection projection = scaled.project("A", "B", 1800, 1800,
                 2, 0, 2, 0);
 
-        assertEquals(1.55, projection.team1ExpectedGoals());
-        assertEquals(1.55, projection.team2ExpectedGoals());
+        assertEquals(1.36, projection.team1ExpectedGoals());
+        assertEquals(1.36, projection.team2ExpectedGoals());
     }
 
     @Test

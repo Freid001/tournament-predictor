@@ -26,6 +26,14 @@ import java.util.Set;
  * ELO refreshes do not silently change an old tournament.
  */
 public class TournamentSnapshotHandler {
+    private static final Map<String, Set<String>> HISTORICAL_NAMES = Map.of(
+            "Czechia", Set.of("Czechia", "Czech Republic"),
+            "Serbia", Set.of("Serbia", "Yugoslavia", "Serbia and Montenegro"),
+            "United States", Set.of("United States", "USA"),
+            "Russia", Set.of("Russia", "CIS"),
+            "Ivory Coast", Set.of("Ivory Coast", "Côte d'Ivoire"),
+            "Bosnia and Herzegovina", Set.of("Bosnia and Herzegovina", "Bosnia-Herzegovina")
+    );
     private static final CSVFormat CSV = CSVFormat.DEFAULT.builder()
             .setHeader()
             .setSkipHeaderRecord(true)
@@ -139,10 +147,11 @@ public class TournamentSnapshotHandler {
                 LocalDate matchDate = LocalDate.of(Integer.parseInt(cols[0].trim()),
                         Integer.parseInt(cols[1].trim()), Integer.parseInt(cols[2].trim()));
                 if (!matchDate.isBefore(tournamentStartDate)) continue;
-                if (team.equals(cols[3].trim())) {
+                Set<String> historicalNames = HISTORICAL_NAMES.getOrDefault(team, Set.of(team));
+                if (historicalNames.contains(cols[3].trim())) {
                     rating = Integer.parseInt(cols[10].trim());
                     found = true;
-                } else if (team.equals(cols[4].trim())) {
+                } else if (historicalNames.contains(cols[4].trim())) {
                     rating = Integer.parseInt(cols[11].trim());
                     found = true;
                 }

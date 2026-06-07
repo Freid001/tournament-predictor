@@ -145,4 +145,13 @@ class FriendliesFormCalculatorTest {
         assertEquals(1.0, c.getFormScore("England"), 0.001,
                 "lastN=2 should pick the 2 most recent (by date) games");
     }
+
+    @Test
+    void historicalAliasUsesCorrectHomeAwayOrientation() throws IOException {
+        writeTsv("Czechia",
+                row(2024, 1, 1, "Czech Republic", 3, "Germany", 0, "F"));
+        QualificationFormCalculator c = new QualificationFormCalculator(
+                historyDir, 2024, 2024, 50, java.util.Set.of("F"), 3, null);
+        assertTrue(c.getQualBonus("Czechia") > 0);
+    }
 }

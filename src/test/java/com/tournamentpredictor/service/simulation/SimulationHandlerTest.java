@@ -185,17 +185,43 @@ class SimulationHandlerTest {
 
     @Test
     void euroGroupSimulationStartsAtLast16WithFourBestThirds() throws Exception {
+        String tournament = "euros_test";
         Path project = Path.of("").toAbsolutePath();
-        CsvLoader loader = new CsvLoader(project);
+        Path predictionDir = root.resolve("data/predictions").resolve(tournament);
+        Path snapshotDir = root.resolve("data/elo/snapshots").resolve(tournament);
+        Path bracketDir = root.resolve("data/bracket");
+        Files.createDirectories(predictionDir);
+        Files.createDirectories(snapshotDir);
+        Files.createDirectories(bracketDir);
+        Files.copy(project.resolve("data/bracket/euros_2024.csv"), bracketDir.resolve(tournament + ".csv"));
+        Files.copy(project.resolve("data/bracket/third_place_lookup_last_16.csv"),
+                bracketDir.resolve("third_place_lookup_last_16.csv"));
+
+        StringBuilder groups = new StringBuilder("group,team,base_elo,qual_bonus,squad_depth,attack_quality,defence_quality,elo_ranking\n");
+        StringBuilder ratings = new StringBuilder("rank,team_code,team_name,rating\n");
+        int rank = 1;
+        for (char group = 'A'; group <= 'F'; group++) {
+            for (int position = 1; position <= 4; position++) {
+                String team = "Team " + group + position;
+                int elo = 2100 - rank * 10;
+                groups.append(group).append(',').append(team).append(',').append(elo)
+                        .append(",0,0,0,0,").append(elo).append('\n');
+                ratings.append(rank).append(',').append(group).append(position).append(',')
+                        .append(team).append(',').append(elo).append('\n');
+                rank++;
+            }
+        }
+        Files.writeString(predictionDir.resolve("groups.csv"), groups);
+        Files.writeString(snapshotDir.resolve("teams.csv"), ratings);
+
+        CsvLoader loader = new CsvLoader(root);
         int runs = 20;
-        SimulationHandler handler = new SimulationHandler(loader, project,
+        SimulationHandler handler = new SimulationHandler(loader, root,
                 new ExpectedGoalsCalculator(), new EloCalculator(), runs, 42L);
 
         SimulationHandler.GroupSimulationResult result = handler.simulateGroups(
-                loader.loadGroups("euros_2024"),
-                loader.loadBrackets("euros_2024"),
-                loader.loadTournamentElo("euros_2024"),
-                loader.loadTeamSnapshots("euros_2024"));
+                loader.loadGroups(tournament), loader.loadBrackets(tournament),
+                loader.loadTournamentElo(tournament), loader.loadTeamSnapshots(tournament));
 
         assertEquals(24, result.counts().size());
         assertEquals(16 * runs, result.counts().values().stream().mapToInt(c -> c.reachKnockout).sum());
@@ -205,8 +231,8 @@ class SimulationHandlerTest {
                 .allMatch(match -> match.team1() != null && match.team2() != null));
 
         SimulationHandler.SimulationResult knockout = handler.simulateKnockoutsFromGroupRoutes(
-                result.routes(), loader.loadBrackets("euros_2024"),
-                loader.loadTournamentElo("euros_2024"), loader.loadTeamSnapshots("euros_2024"));
+                result.routes(), loader.loadBrackets(tournament),
+                loader.loadTournamentElo(tournament), loader.loadTeamSnapshots(tournament));
         assertEquals(runs, knockout.teamCounts().stream().mapToInt(c -> c.champion).sum());
         assertEquals(16 * runs, knockout.teamCounts().stream().mapToInt(c -> c.reachLast16).sum());
     }

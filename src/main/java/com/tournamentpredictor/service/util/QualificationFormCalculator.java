@@ -19,6 +19,14 @@ import java.util.Set;
 public class QualificationFormCalculator {
 
     private static final Set<String> DEFAULT_MATCH_TYPES = Set.of("WQ", "WQS", "FQ");
+    private static final Map<String, Set<String>> HISTORICAL_NAMES = Map.of(
+            "Czechia", Set.of("Czechia", "Czech Republic"),
+            "Serbia", Set.of("Serbia", "Yugoslavia", "Serbia and Montenegro"),
+            "United States", Set.of("United States", "USA"),
+            "Russia", Set.of("Russia", "CIS"),
+            "Ivory Coast", Set.of("Ivory Coast", "Côte d'Ivoire"),
+            "Bosnia and Herzegovina", Set.of("Bosnia and Herzegovina", "Bosnia-Herzegovina")
+    );
 
     private final Map<String, Double> formScores = new HashMap<>();
     private final int eloMax;
@@ -75,7 +83,8 @@ public class QualificationFormCalculator {
                             homeScore = Integer.parseInt(cols[5].trim());
                             awayScore = Integer.parseInt(cols[6].trim());
                         } catch (Exception e) { continue; }
-                        boolean isHome = teamName.equals(cols[3].trim());
+                        Set<String> teamNames = HISTORICAL_NAMES.getOrDefault(teamName, Set.of(teamName));
+                        boolean isHome = teamNames.contains(cols[3].trim());
                         int teamScore = isHome ? homeScore : awayScore;
                         int oppScore  = isHome ? awayScore : homeScore;
                         played++;

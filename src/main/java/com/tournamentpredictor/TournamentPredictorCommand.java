@@ -41,7 +41,11 @@ import java.net.URI;
                 "  last_4    Score last_4 predictions, generate final matchup",
                 "  final     Score final predictions",
                 "  simulate  Simulate Last 32 onward and write simulation_last_32.csv",
-                "  training  Compare historical simulations with actual results"
+                "  training             Download generated history and run all calibration grids",
+                "  training-grid         Evaluate ELO/xG parameters with tournament holdouts",
+                "  training-core-grid    Evaluate home, quality, and recent-weighted joint parameters",
+                "  training-context-grid Evaluate age, cohesion, depth, omissions, injuries, and heat",
+                "  training-warmup-grid  Evaluate warm-up friendly ELO caps with holdouts"
         }
 )
 @Component

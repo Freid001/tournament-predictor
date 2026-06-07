@@ -61,7 +61,7 @@ Manual group setup input. These fields are the evidence-backed overlays applied 
 | `squad_age_profile` / `age_notes` | 0 balanced, 1 young/inexperienced, 2 aging core. Notes should cite age/recovery context. |
 | `squad_cohesion` / `cohesion_notes` | 0 settled, 1 unsettled, 2 disrupted, 3 fractured. Use for coach changes, selection rows, political disruption, or late churn. |
 | `squad_depth` / `depth_notes` | −1 excellent (+10 ELO), 0 good/deep, 1 limited bench, 2 thin bench. Measures replacement quality, not missing selected-squad players themselves. |
-| `attack_quality` / `defence_quality` | Signed values from -2 to +2: very weak, weak, average, strong, elite. Each level changes xG by 0.15. Attack changes the team's xG; Defence changes the opponent's xG. Neither changes Adjusted ELO. |
+| `attack_quality` / `defence_quality` | Signed values from -2 to +2: very weak, weak, average, strong, elite. Each level changes xG by 0.05. Attack changes the team's xG; Defence changes the opponent's xG. Neither changes Adjusted ELO. |
 | `quality_notes` | Evidence for the Attack/Defence assessment, such as personnel, tactical role, chance creation, finishing, or defensive structure. Do not derive it only from the same results used for form. |
 | `squad_dropouts` / `dropout_notes` | Squad Omissions: players missing from the selected squad because injury ruled them out, coach omission, discipline, retirement, refusal, or federation dispute. |
 | `injury_impact` / `injury_notes` | Active selected-squad fitness availability: doubtful, limited, managed, recently returned, or carrying knocks. |

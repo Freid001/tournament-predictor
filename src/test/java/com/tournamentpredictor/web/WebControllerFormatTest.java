@@ -157,6 +157,13 @@ class WebControllerFormatTest {
         assertEquals(Map.of("M89|France|Brazil", "100.0"), percentages);
     }
 
+    
+    void historicalOutcomeSelectsHighestProbabilityIncludingDraw() {
+        assertEquals("Home", WebController.outcome(0.50, 0.30, 0.20));
+        assertEquals("Draw", WebController.outcome(0.30, 0.40, 0.30));
+        assertEquals("Away", WebController.outcome(0.20, 0.30, 0.50));
+    }
+
     private static String routePct(List<Map<String, String>> rows, String team) {
         return rows.stream()
                 .filter(row -> team.equals(row.get("team")))

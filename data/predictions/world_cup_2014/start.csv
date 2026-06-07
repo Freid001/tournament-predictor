@@ -1,33 +1,33 @@
 group,team,host,squad_age_profile,age_notes,squad_cohesion,cohesion_notes,squad_depth,depth_notes,attack_quality,defence_quality,quality_notes,squad_dropouts,dropout_notes,injury_impact,injury_notes,heat_impact
-A,Brazil,yes,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-A,Mexico,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-A,Croatia,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-A,Cameroon,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-B,Netherlands,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-B,Chile,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-B,Spain,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-B,Australia,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-C,Colombia,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-C,Greece,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-C,Ivory Coast,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-C,Japan,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-D,Costa Rica,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-D,Uruguay,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-D,Italy,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-D,England,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-E,France,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-E,Switzerland,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-E,Ecuador,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-E,Honduras,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-F,Argentina,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-F,Nigeria,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-F,Bosnia and Herzegovina,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-F,Iran,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-G,Germany,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-G,United States,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-G,Portugal,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-G,Ghana,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-H,Belgium,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-H,Algeria,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-H,Russia,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
-H,South Korea,no,0,,0,,0,,0,0,Neutral manual squad adjustments for historical training.,0,,0,,0
+A,Brazil,yes,0,Average age 27.8 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 7 competitive matches before kickoff: attack residual +1.01 and defence residual +0.14 xG/game; derived from frozen ELO history.,0,,0,,2
+A,Croatia,no,0,Average age 27.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,-1,0,Last 10 competitive matches before kickoff: attack residual -0.32 and defence residual +0.10 xG/game; derived from frozen ELO history.,0,,0,,0
+A,Mexico,no,0,Average age 26.8 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,-1,Last 10 competitive matches before kickoff: attack residual +0.55 and defence residual -0.33 xG/game; derived from frozen ELO history.,0,,0,,3
+A,Cameroon,no,0,Average age 26.2 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,-1,1,Last 9 competitive matches before kickoff: attack residual -0.28 and defence residual +0.24 xG/game; derived from frozen ELO history.,0,,0,,3
+B,Spain,no,0,Average age 27.8 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 10 competitive matches before kickoff: attack residual +0.49 and defence residual +0.04 xG/game; derived from frozen ELO history.,0,,0,,0
+B,Netherlands,no,0,Average age 26.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 10 competitive matches before kickoff: attack residual +1.55 and defence residual +0.14 xG/game; derived from frozen ELO history.,0,,0,,0
+B,Chile,no,0,Average age 27.6 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,-1,Last 10 competitive matches before kickoff: attack residual +0.53 and defence residual -0.35 xG/game; derived from frozen ELO history.,0,,0,,0
+B,Australia,no,1,Average age 25.8 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,-1,Last 10 competitive matches before kickoff: attack residual +1.47 and defence residual -0.24 xG/game; derived from frozen ELO history.,0,,0,,2
+C,Colombia,no,0,Average age 27.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,1,Last 10 competitive matches before kickoff: attack residual +0.45 and defence residual +0.27 xG/game; derived from frozen ELO history.,2,Radamel Falcao missed the final squad after an ACL injury. Source: https://en.wikipedia.org/wiki/2014_FIFA_World_Cup_squads,0,,2
+C,Greece,no,0,Average age 28.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,-1,1,Last 10 competitive matches before kickoff: attack residual -0.38 and defence residual +0.34 xG/game; derived from frozen ELO history.,0,,0,,0
+C,Ivory Coast,no,0,Average age 27.3 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,-1,Last 10 competitive matches before kickoff: attack residual +0.64 and defence residual -0.25 xG/game; derived from frozen ELO history.,0,,0,,3
+C,Japan,no,0,Average age 26.9 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,-2,Last 10 competitive matches before kickoff: attack residual +0.43 and defence residual -0.75 xG/game; derived from frozen ELO history.,0,,0,,2
+D,Uruguay,no,0,Average age 28.1 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 10 competitive matches before kickoff: attack residual +1.11 and defence residual +0.13 xG/game; derived from frozen ELO history.,0,,0,,0
+D,Costa Rica,no,0,Average age 27.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,0,2,Last 10 competitive matches before kickoff: attack residual -0.14 and defence residual +0.48 xG/game; derived from frozen ELO history.,0,,0,,2
+D,England,no,0,Average age 26.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,1,Last 10 competitive matches before kickoff: attack residual +1.22 and defence residual +0.23 xG/game; derived from frozen ELO history.,0,,0,,0
+D,Italy,no,0,Average age 27.4 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,-2,Last 10 competitive matches before kickoff: attack residual +0.47 and defence residual -0.61 xG/game; derived from frozen ELO history.,0,,0,,0
+E,Switzerland,no,0,Average age 25.6 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,0,1,Last 10 competitive matches before kickoff: attack residual +0.11 and defence residual +0.23 xG/game; derived from frozen ELO history.,0,,0,,0
+E,Ecuador,no,0,Average age 27.2 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,0,0,Last 10 competitive matches before kickoff: attack residual +0.07 and defence residual +0.19 xG/game; derived from frozen ELO history.,0,,0,,2
+E,France,no,0,Average age 26.4 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,1,Last 10 competitive matches before kickoff: attack residual +0.41 and defence residual +0.23 xG/game; derived from frozen ELO history.,0,,0,,0
+E,Honduras,no,0,Average age 28.1 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,0,0,Last 10 competitive matches before kickoff: attack residual -0.02 and defence residual +0.10 xG/game; derived from frozen ELO history.,0,,0,,0
+F,Argentina,no,0,Average age 28.5 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 10 competitive matches before kickoff: attack residual +0.62 and defence residual -0.16 xG/game; derived from frozen ELO history.,0,,0,,0
+F,Bosnia and Herzegovina,no,0,Average age 26.6 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,1,Last 10 competitive matches before kickoff: attack residual +1.45 and defence residual +0.27 xG/game; derived from frozen ELO history.,0,,0,,0
+F,Iran,no,0,Average age 28.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,1,Last 10 competitive matches before kickoff: attack residual +1.03 and defence residual +0.25 xG/game; derived from frozen ELO history.,0,,0,,2
+F,Nigeria,no,0,Average age 25.3 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,0,Last 10 competitive matches before kickoff: attack residual +0.30 and defence residual +0.02 xG/game; derived from frozen ELO history.,0,,0,,3
+G,Germany,no,0,Average age 25.7 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,-2,Last 10 competitive matches before kickoff: attack residual +1.69 and defence residual -0.46 xG/game; derived from frozen ELO history.,0,,0,,0
+G,Portugal,no,0,Average age 28.2 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,0,Last 10 competitive matches before kickoff: attack residual +0.30 and defence residual -0.18 xG/game; derived from frozen ELO history.,0,,0,,0
+G,Ghana,no,1,Average age 24.9 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 10 competitive matches before kickoff: attack residual +0.96 and defence residual -0.02 xG/game; derived from frozen ELO history.,0,,0,,3
+G,United States,no,0,Average age 27.3 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,2,0,Last 10 competitive matches before kickoff: attack residual +1.25 and defence residual -0.03 xG/game; derived from frozen ELO history.,0,,0,,0
+H,Belgium,no,0,Average age 25.5 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,2,Last 10 competitive matches before kickoff: attack residual +0.38 and defence residual +0.60 xG/game; derived from frozen ELO history.,0,,0,,0
+H,Algeria,no,0,Average age 26.2 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,0,Last 10 competitive matches before kickoff: attack residual +0.25 and defence residual +0.17 xG/game; derived from frozen ELO history.,0,,0,,3
+H,Russia,no,0,Average age 27.0 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,1,1,Last 10 competitive matches before kickoff: attack residual +0.32 and defence residual +0.24 xG/game; derived from frozen ELO history.,0,,0,,0
+H,South Korea,no,0,Average age 25.7 from 23 selected players; Fjelstul World Cup Database v1.2.0 squad and player tables.,0,,0,,-1,0,Last 10 competitive matches before kickoff: attack residual -0.42 and defence residual +0.19 xG/game; derived from frozen ELO history.,0,,0,,2
