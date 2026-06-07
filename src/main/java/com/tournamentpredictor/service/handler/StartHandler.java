@@ -37,6 +37,7 @@ public class StartHandler {
     private final int preTournamentFormSinceYear;
     private final int preTournamentFormUntilYear;
     private final int preTournamentFormEloMax;
+    private final int preTournamentFormMaxGames;
     private final int squadAgeYoungPenalty;
     private final int squadAgeAgingPenalty;
     private final int squadCohesionUnsettledPenalty;
@@ -55,8 +56,8 @@ public class StartHandler {
     public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper) {
         this(loader, projectRoot, csvHelper,
                 100, new int[]{0, 25, 50, 100}, new int[]{0, 8, 15, 25}, new int[]{0, 20, 40, 75}, 25,
-                2023, 2026, 50,
-                2026, 2026, 25,
+                2023, 2026, 0,
+                2026, 2026, 25, 3,
                 10, 8,
                 15, 30, 45,
                 10, 10, 20);
@@ -67,7 +68,7 @@ public class StartHandler {
                 config.getHomeAdvantageElo(), config.getInjuryPenalties(), config.getHeatAdvantages(),
                 config.getSquadDropoutPenalties(), config.getConfidenceGap(),
                 config.getQualFormSinceYear(), config.getQualFormUntilYear(), config.getQualFormEloMax(),
-                config.getPreTournamentFormSinceYear(), config.getPreTournamentFormUntilYear(), config.getPreTournamentFormEloMax(),
+                config.getPreTournamentFormSinceYear(), config.getPreTournamentFormUntilYear(), config.getPreTournamentFormEloMax(), config.getPreTournamentFormMaxGames(),
                 config.getSquadAgeYoungPenalty(), config.getSquadAgeAgingPenalty(),
                 config.getSquadCohesionUnsettledPenalty(), config.getSquadCohesionDisruptedPenalty(), config.getSquadCohesionFracturedPenalty(),
                 config.getSquadDepthExcellentBonus(), config.getSquadDepthLimitedPenalty(), config.getSquadDepthThinPenalty());
@@ -77,7 +78,7 @@ public class StartHandler {
                          int homeAdvantageElo, int[] injuryPenalties, int[] heatAdvantages,
                          int[] squadDropoutPenalties, int confidenceGap,
                          int qualFormSinceYear, int qualFormUntilYear, int qualFormEloMax,
-                         int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax,
+                         int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax, int preTournamentFormMaxGames,
                          int squadAgeYoungPenalty, int squadAgeAgingPenalty,
                          int squadCohesionUnsettledPenalty, int squadCohesionDisruptedPenalty, int squadCohesionFracturedPenalty) {
         this.loader = loader;
@@ -94,6 +95,7 @@ public class StartHandler {
         this.preTournamentFormSinceYear = preTournamentFormSinceYear;
         this.preTournamentFormUntilYear = preTournamentFormUntilYear;
         this.preTournamentFormEloMax = preTournamentFormEloMax;
+        this.preTournamentFormMaxGames = preTournamentFormMaxGames;
         this.squadAgeYoungPenalty = squadAgeYoungPenalty;
         this.squadAgeAgingPenalty = squadAgeAgingPenalty;
         this.squadCohesionUnsettledPenalty = squadCohesionUnsettledPenalty;
@@ -108,7 +110,7 @@ public class StartHandler {
                          int homeAdvantageElo, int[] injuryPenalties, int[] heatAdvantages,
                          int[] squadDropoutPenalties, int confidenceGap,
                          int qualFormSinceYear, int qualFormUntilYear, int qualFormEloMax,
-                         int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax,
+                         int preTournamentFormSinceYear, int preTournamentFormUntilYear, int preTournamentFormEloMax, int preTournamentFormMaxGames,
                          int squadAgeYoungPenalty, int squadAgeAgingPenalty,
                          int squadCohesionUnsettledPenalty, int squadCohesionDisruptedPenalty, int squadCohesionFracturedPenalty,
                          int squadDepthExcellentBonus, int squadDepthLimitedPenalty, int squadDepthThinPenalty) {
@@ -126,6 +128,7 @@ public class StartHandler {
         this.preTournamentFormSinceYear = preTournamentFormSinceYear;
         this.preTournamentFormUntilYear = preTournamentFormUntilYear;
         this.preTournamentFormEloMax = preTournamentFormEloMax;
+        this.preTournamentFormMaxGames = preTournamentFormMaxGames;
         this.squadAgeYoungPenalty = squadAgeYoungPenalty;
         this.squadAgeAgingPenalty = squadAgeAgingPenalty;
         this.squadCohesionUnsettledPenalty = squadCohesionUnsettledPenalty;
@@ -177,15 +180,17 @@ public class StartHandler {
                 "pre.tournament.form.until.year", "pre_tournament_form_until", preTournamentFormUntilYear);
         java.time.LocalDate tournamentStartDate = loader.resolveSnapshotBackedDate(tournament,
                 "tournament.start.date", "tournament_start_date");
+        Set<String> qualifierTypes = loader.resolveTournamentMatchTypes(tournament,
+                "qual.form.match.types", Set.of("WQ", "WQS", "FQ"));
 
         QualificationFormCalculator qualCalc = new QualificationFormCalculator(
                 historyDir,
                 effectiveQualSinceYear, effectiveQualUntilYear, qualFormEloMax,
-                java.util.Set.of("WQ", "WQS", "FQ"), 0, tournamentStartDate);
+                qualifierTypes, 0, tournamentStartDate);
         QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
                 historyDir,
                 effectivePreTournamentSinceYear, effectivePreTournamentUntilYear,
-                preTournamentFormEloMax, Set.of("F"), 5, tournamentStartDate);
+                preTournamentFormEloMax, Set.of("F"), preTournamentFormMaxGames, tournamentStartDate);
 
         Map<String, List<String[]>> groups = new LinkedHashMap<>();
         for (int i = 1; i < startLines.size(); i++) {
@@ -289,7 +294,7 @@ public class StartHandler {
 
         Files.createDirectories(predictionDir);
         Files.write(groupsFile, output);
-        System.out.println("Generated groups.csv for " + groups.size() + " groups. Fill in group_winner, runner_up, and 3rd_place columns before running mode=groups.");
+        System.out.println("Generated groups.csv for " + groups.size() + " groups. Model-selected display positions are ready for group simulation.");
     }
 
     private Map<String, String[]> computeGroupScores(List<String[]> teams) {

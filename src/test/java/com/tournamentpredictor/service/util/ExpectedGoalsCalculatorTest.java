@@ -105,6 +105,30 @@ class ExpectedGoalsCalculatorTest {
     }
 
     @Test
+    void strongerEloGoalSeparationRaisesFavouriteWinProbability() {
+        ExpectedGoalsCalculator baseline = new ExpectedGoalsCalculator(400.0, 2.60, 1.00, 0.95);
+        ExpectedGoalsCalculator calibrated = new ExpectedGoalsCalculator(400.0, 2.60, 1.10, 0.95);
+
+        ExpectedGoalsCalculator.Projection baselineProjection = baseline.project("A", "B", 2000, 1800);
+        ExpectedGoalsCalculator.Projection calibratedProjection = calibrated.project("A", "B", 2000, 1800);
+
+        assertTrue(calibratedProjection.team1WinPct() > baselineProjection.team1WinPct());
+        assertEquals(baselineProjection.drawPct(), calibratedProjection.drawPct());
+        assertEquals(50, calibrated.project("A", "B", 1800, 1800).team1AdvancePct());
+    }
+
+    @Test
+    void totalMultiplierScalesBothTeamsAfterQualityAdjustments() {
+        ExpectedGoalsCalculator scaled = new ExpectedGoalsCalculator(400.0, 2.60, 1.00, 0.97);
+
+        ExpectedGoalsCalculator.Projection projection = scaled.project("A", "B", 1800, 1800,
+                2, 0, 2, 0);
+
+        assertEquals(1.55, projection.team1ExpectedGoals());
+        assertEquals(1.55, projection.team2ExpectedGoals());
+    }
+
+    @Test
     void sampleScoreline_returnsGoalsAndKnockoutAdvanceResult() {
         ExpectedGoalsCalculator.Projection projection = calculator.project("A", "B", 1800, 1800);
 

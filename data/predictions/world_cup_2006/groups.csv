@@ -1,0 +1,40 @@
+group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place
+A,Germany,1895,0,32,0,0,0,0,0,2027,1 (84%),yes,no,no
+A,Poland,1821,0,19,0,0,0,0,0,1840,2 (56%),no,yes,maybe
+A,Costa Rica,1724,0,-43,0,0,0,0,0,1681,3 (31%),no,maybe,yes
+A,Ecuador,1700,0,-28,0,0,0,0,0,1672,4 (29%),no,no,maybe
+
+B,England,1973,0,46,0,0,0,0,0,2019,1 (83%),yes,no,no
+B,Sweden,1859,0,-23,0,0,0,0,0,1836,2 (56%),no,yes,maybe
+B,Paraguay,1779,0,6,0,0,0,0,0,1785,3 (48%),no,maybe,yes
+B,Trinidad and Tobago,1566,0,-43,0,0,0,0,0,1523,4 (13%),no,no,no
+
+C,Netherlands,1994,0,21,0,0,0,0,0,2015,1 (75%),yes,maybe,no
+C,Argentina,1921,0,3,0,0,0,0,0,1924,2 (60%),maybe,yes,no
+C,Ivory Coast,1766,0,10,0,0,0,0,0,1776,3 (34%),no,no,yes
+C,Serbia,1742,0,13,0,0,0,0,0,1755,4 (31%),no,no,maybe
+
+D,Portugal,1915,0,48,0,0,0,0,0,1963,1 (75%),yes,maybe,no
+D,Iran,1841,0,23,0,0,0,0,0,1864,2 (60%),maybe,yes,maybe
+D,Mexico,1838,0,-12,0,0,0,0,0,1826,3 (54%),no,maybe,yes
+D,Angola,1565,0,-39,0,0,0,0,0,1526,4 (12%),no,no,no
+
+E,Czechia,1971,0,43,0,0,0,0,0,2014,1 (73%),yes,maybe,no
+E,Italy,1943,0,10,0,0,0,0,0,1953,2 (63%),maybe,yes,maybe
+E,United States,1824,0,39,0,0,0,0,0,1863,3 (48%),no,maybe,yes
+E,Ghana,1616,0,28,0,0,0,0,0,1644,4 (16%),no,no,no
+
+F,Brazil,2034,0,47,0,0,0,0,0,2081,1 (82%),yes,no,no
+F,Australia,1798,0,23,0,0,0,0,0,1821,2 (40%),no,yes,maybe
+F,Croatia,1838,0,-28,0,0,0,0,0,1810,3 (39%),no,maybe,yes
+F,Japan,1789,0,21,0,0,0,0,0,1810,3 (39%),no,no,maybe
+
+G,France,1970,0,41,0,0,0,0,0,2011,1 (85%),yes,no,no
+G,Switzerland,1800,0,10,0,0,0,0,0,1810,2 (56%),no,yes,maybe
+G,South Korea,1743,0,-3,0,0,0,0,0,1740,3 (46%),no,maybe,yes
+G,Togo,1488,0,12,0,0,0,0,0,1500,4 (13%),no,no,no
+
+H,Spain,1964,0,23,0,0,0,0,0,1987,1 (83%),yes,maybe,no
+H,Ukraine,1790,0,30,0,0,0,0,0,1820,2 (58%),maybe,yes,maybe
+H,Tunisia,1703,0,14,0,0,0,0,0,1717,3 (42%),no,maybe,yes
+H,Saudi Arabia,1554,0,-14,0,0,0,0,0,1540,4 (17%),no,no,maybe

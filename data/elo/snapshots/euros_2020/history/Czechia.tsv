@@ -1,0 +1,24 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2019	03	22	England	Czechia	5	0	EQ		10	1969	1718	+1	0	6	37
+2019	03	26	Czechia	Brazil	1	3	F		-4	1714	2131	−2	0	38	1
+2019	06	07	Czechia	Bulgaria	2	1	EQ		10	1724	1609	0	−2	38	57
+2019	06	10	Czechia	Montenegro	3	0	EQ		13	1737	1561	+2	−4	36	67
+2019	09	07	Kosovo	Czechia	2	1	EQ		25	1568	1712	+4	−6	67	40
+2019	09	10	Montenegro	Czechia	0	3	EQ		-31	1540	1743	−7	+6	72	33
+2019	10	11	Czechia	England	2	1	EQ		26	1769	1922	+6	−3	27	12
+2019	10	14	Czechia	Northern Ireland	2	3	F		-15	1754	1673	−4	0	32	46
+2019	11	14	Czechia	Kosovo	2	1	EQ		7	1761	1577	+4	0	28	62
+2019	11	17	Bulgaria	Czechia	1	0	EQ		26	1574	1735	+4	−5	64	34
+2020	09	04	Slovakia	Czechia	1	3	ENB		-38	1696	1773	−7	+9	42	25
+2020	09	07	Czechia	Scotland	1	2	ENB		-32	1741	1661	−7	+8	32	46
+2020	10	07	Cyprus	Czechia	1	2	F		-3	1340	1744	0	+3	119	29
+2020	10	11	Israel	Czechia	1	2	ENB		-15	1547	1759	−4	+3	71	28
+2020	10	14	Scotland	Czechia	1	0	ENB		20	1686	1739	+5	−6	41	36
+2020	11	11	Germany	Czechia	1	0	F		3	1968	1736	0	0	10	36
+2020	11	15	Czechia	Israel	1	0	ENB		7	1743	1571	0	0	36	63
+2020	11	18	Czechia	Slovakia	2	0	ENB		17	1760	1664	+5	−3	31	44
+2021	03	24	Czechia	Estonia	6	2	WQ	PL	8	1768	1374	+1	−2	30	110
+2021	03	27	Czechia	Belgium	1	1	WQ		12	1780	2104	+1	0	28	2
+2021	03	30	Wales	Czechia	1	0	WQ		12	1844	1768	+3	−1	16	29
+2021	06	04	Italy	Czechia	4	0	F		5	2013	1763	0	−2	6	28
+2021	06	08	Czechia	Albania	3	1	F		4	1767	1556	−1	0	29	70

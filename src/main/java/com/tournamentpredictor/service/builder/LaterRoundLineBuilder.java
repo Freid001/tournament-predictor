@@ -72,10 +72,12 @@ class LaterRoundLineBuilder {
         String path2 = priorRound.pathByWinner.getOrDefault(match2 + "|" + winner2, "alt");
         String path = pathCalculator.computePathFromSlots(path1, path2);
 
-        PriorOpponent opp1 = findPriorOpponentWithPath(winner1, priorRows, eloRatings);
-        PriorOpponent opp2 = findPriorOpponentWithPath(winner2, priorRows, eloRatings);
+        PriorOpponent opp1 = findPriorOpponentWithPath(winner1, match1, priorRows, eloRatings);
+        PriorOpponent opp2 = findPriorOpponentWithPath(winner2, match2, priorRows, eloRatings);
         FatigueResult fatigue1 = fatigueFor(winner1, opp1, fatigueStage, snapshots);
         FatigueResult fatigue2 = fatigueFor(winner2, opp2, fatigueStage, snapshots);
+
+        path = pathCalculator.classifyCompletedRoute(path, fatigue1.chain, fatigue2.chain);
 
         int t1AdjElo = eloRatings.getOrDefault(winner1, 0) + fatigue1.adjustedElo;
         int t2AdjElo = eloRatings.getOrDefault(winner2, 0) + fatigue2.adjustedElo;
@@ -92,13 +94,9 @@ class LaterRoundLineBuilder {
         Map<String, String> tokenByWinner = new LinkedHashMap<>();
 
         for (String line : priorRows) {
-            if (line.trim().isEmpty() || line.startsWith("match_id")) {
-                continue;
-            }
+            if (line.trim().isEmpty() || line.startsWith("match_id")) continue;
             String[] cols = line.split(",", -1);
-            if (cols.length < 5) {
-                continue;
-            }
+            if (cols.length < 5) continue;
             String matchId = cols[0].trim();
             String path = cols[3].trim();
             String winner = predictionHelper.parseTeamFromPrediction(cols[4].trim());
@@ -109,13 +107,18 @@ class LaterRoundLineBuilder {
             String winnerToken = winner.equalsIgnoreCase(team1Name) ? team1Token : team2Token;
             String loser = winner.equalsIgnoreCase(team1Name) ? team2Name : team1Name;
 
+            // Matchup tables expose both possible winners. The selected winner retains its
+            // path classification; the predicted loser advancing is explicitly an upset.
             if (!winner.isEmpty()) {
                 winnersByMatch.computeIfAbsent(matchId, ignored -> new LinkedHashSet<>()).add(winner);
                 pathByWinner.merge(matchId + "|" + winner, path, pathCalculator::bestPredicted);
                 tokenByWinner.putIfAbsent(matchId + "|" + winner, winnerToken);
             }
             if (!loser.isEmpty()) {
-                pathByWinner.merge(matchId + "|" + loser, "alt", pathCalculator::bestPredicted);
+                String loserToken = loser.equalsIgnoreCase(team1Name) ? team1Token : team2Token;
+                winnersByMatch.computeIfAbsent(matchId, ignored -> new LinkedHashSet<>()).add(loser);
+                pathByWinner.merge(matchId + "|" + loser, "upset", pathCalculator::bestPredicted);
+                tokenByWinner.putIfAbsent(matchId + "|" + loser, loserToken);
             }
         }
         return new PriorRound(winnersByMatch, pathByWinner, tokenByWinner);
@@ -123,10 +126,10 @@ class LaterRoundLineBuilder {
 
     private FatigueResult fatigueFor(String team, PriorOpponent opponent, String fatigueStage,
                                      Map<String, TeamEloSnapshot> snapshots) {
-        int weightedContribution = pathFatigueCalc.knockoutWeightedContribution(opponent.elo, fatigueStage);
+        int weightedContribution = pathFatigueCalc.knockoutWeightedContribution(opponent.elo, fatigueStage, opponent.upsetWin);
         int weightedTotal = opponent.existingWeightedTotal + weightedContribution;
         int contributionElo = pathFatigueCalc.eloAdjustmentFromWeighted(weightedContribution);
-        String segment = opponent.name.isEmpty() ? "" : opponent.name + ":" + contributionElo;
+        String segment = opponent.name.isEmpty() ? "" : (opponent.upsetWin ? "U@" : "K@") + opponent.matchId + "|" + opponent.name + ":" + contributionElo;
         String chain = opponent.existingChain.isEmpty() ? segment : opponent.existingChain + " > " + segment;
         int fatigue = pathFatigueCalc.eloAdjustmentFromWeighted(weightedTotal);
         TeamEloSnapshot snapshot = snapshots != null ? snapshots.get(team) : null;
@@ -135,12 +138,14 @@ class LaterRoundLineBuilder {
         return new FatigueResult(weightedTotal, adjustedElo, chain);
     }
 
-    private PriorOpponent findPriorOpponentWithPath(String teamName, List<String> priorRows, Map<String, Integer> eloRatings) {
-        PriorOpponent fallback = null;
+    private PriorOpponent findPriorOpponentWithPath(String teamName, String sourceMatchId, List<String> priorRows, Map<String, Integer> eloRatings) {
+        PriorOpponent winningFallback = null;
+        PriorOpponent losingFallback = null;
         for (String row : priorRows) {
             if (row.trim().isEmpty() || row.startsWith("match_id")) continue;
             String[] cols = row.split(",", -1);
             if (cols.length < 5) continue;
+            if (!sourceMatchId.equalsIgnoreCase(cols[0].trim())) continue;
             String t1 = predictionHelper.extractTeamName(cols[1].trim());
             String t2 = predictionHelper.extractTeamName(cols[2].trim());
             String winner = predictionHelper.parseTeamFromPrediction(cols[4].trim());
@@ -152,23 +157,25 @@ class LaterRoundLineBuilder {
                 String existingChain = cols.length > 12 ? (winnerIsT1 ? cols[11].trim() : cols[12].trim()) : "";
                 PriorOpponent result = new PriorOpponent(loser,
                         eloRatings.getOrDefault(loser, pathFatigueCalc.getTournamentAvgElo()),
-                        parseInt(existingTotal), existingChain);
+                        parseInt(existingTotal), existingChain, false, cols[0].trim());
                 if (isPredicted) return result;
-                if (fallback == null) fallback = result;
-            } else if (fallback == null) {
+                if (winningFallback == null) winningFallback = result;
+            } else if (losingFallback == null) {
                 boolean isT1 = t1.equalsIgnoreCase(teamName);
                 boolean isT2 = t2.equalsIgnoreCase(teamName);
                 if (isT1 || isT2) {
                     String opponent = isT1 ? t2 : t1;
                     String existingTotal = cols.length > 10 ? (isT1 ? cols[9].trim() : cols[10].trim()) : "0";
                     String existingChain = cols.length > 12 ? (isT1 ? cols[11].trim() : cols[12].trim()) : "";
-                    fallback = new PriorOpponent(opponent,
+                    losingFallback = new PriorOpponent(opponent,
                             eloRatings.getOrDefault(opponent, pathFatigueCalc.getTournamentAvgElo()),
-                            parseInt(existingTotal), existingChain);
+                            parseInt(existingTotal), existingChain, true, cols[0].trim());
                 }
             }
         }
-        return fallback != null ? fallback : new PriorOpponent("", pathFatigueCalc.getTournamentAvgElo(), 0, "");
+        if (winningFallback != null) return winningFallback;
+        if (losingFallback != null) return losingFallback;
+        return new PriorOpponent("", pathFatigueCalc.getTournamentAvgElo(), 0, "", false, "");
     }
 
     private static int parseInt(String value) {
@@ -180,7 +187,7 @@ class LaterRoundLineBuilder {
                               Map<String, String> pathByWinner,
                               Map<String, String> tokenByWinner) {}
 
-    private record PriorOpponent(String name, int elo, int existingWeightedTotal, String existingChain) {}
+    private record PriorOpponent(String name, int elo, int existingWeightedTotal, String existingChain, boolean upsetWin, String matchId) {}
 
     private record FatigueResult(int weightedTotal, int adjustedElo, String chain) {}
 }

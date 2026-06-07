@@ -122,13 +122,15 @@ class QualificationFormCalculatorTest {
     }
 
 
-    void maximumDateExcludesMatchesAfterTournamentStarts() throws IOException {
+    @Test
+    void maximumDateExcludesMatchesFromTournamentStartOnward() throws IOException {
         writeTsv("England",
                 rowDate(2026, 6, 10, "England", 1, "Before", 0, "WQ"),
+                rowDate(2026, 6, 11, "OpeningDay", 5, "England", 0, "WQ"),
                 rowDate(2026, 6, 12, "After", 5, "England", 0, "WQ"));
         QualificationFormCalculator c = new QualificationFormCalculator(historyDir, 2023, 2026, ELO_MAX,
                 Set.of("WQ"), 0, LocalDate.of(2026, 6, 11));
-        assertTrue(c.getQualBonus("England") > 0, "Post-start loss must not affect form");
+        assertTrue(c.getQualBonus("England") > 0, "Opening-day and later losses must not affect form");
     }
 
     // ─── Match type filtering ─────────────────────────────────────────────────

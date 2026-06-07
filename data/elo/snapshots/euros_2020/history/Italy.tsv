@@ -1,0 +1,24 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2019	03	23	Italy	Finland	2	0	EQ		6	1894	1615	+1	−2	14	54
+2019	03	26	Italy	Liechtenstein	6	0	EQ		1	1895	1130	−1	0	14	173
+2019	06	08	Greece	Italy	0	3	EQ		-19	1607	1914	−4	+2	58	11
+2019	06	11	Italy	Bosnia and Herzegovina	2	1	EQ		7	1921	1744	0	−2	11	35
+2019	09	05	Armenia	Italy	1	3	EQ		-7	1454	1928	−5	+1	94	11
+2019	09	08	Finland	Italy	1	2	EQ		-12	1674	1940	−4	+1	48	10
+2019	10	12	Italy	Greece	2	0	EQ		3	1943	1544	0	−1	11	69
+2019	10	15	Liechtenstein	Italy	0	5	EQ		-1	1148	1944	+1	0	170	11
+2019	11	15	Bosnia and Herzegovina	Italy	0	3	EQ		-21	1678	1965	−1	+2	44	9
+2019	11	18	Italy	Armenia	9	1	EQ		3	1968	1450	0	−1	9	95
+2020	09	04	Italy	Bosnia and Herzegovina	1	1	ENA		-16	1952	1699	−3	+4	12	40
+2020	09	07	Netherlands	Italy	0	1	ENA		-29	1993	1981	−1	+4	6	8
+2020	10	07	Italy	Moldova	6	0	F		0	1981	1250	+1	−1	7	148
+2020	10	11	Poland	Italy	0	0	ENA		4	1816	1977	+2	−1	20	8
+2020	10	14	Italy	Netherlands	1	1	ENA		-6	1971	1973	0	+2	9	8
+2020	11	11	Italy	Estonia	4	0	F		1	1972	1376	+1	+1	8	110
+2020	11	15	Italy	Poland	2	0	ENA		13	1985	1829	+2	−2	6	19
+2020	11	18	Bosnia and Herzegovina	Italy	0	2	ENA		-12	1634	1997	−1	+1	48	6
+2021	03	25	Italy	Northern Ireland	2	0	WQ		3	2000	1583	0	+1	6	61
+2021	03	28	Bulgaria	Italy	0	2	WQ		-5	1488	2005	+2	0	80	6
+2021	03	31	Lithuania	Italy	0	2	WQ		-3	1359	2008	−2	0	117	6
+2021	05	28	Italy	San Marino	7	0	F		0	2008	827	0	0	6	209
+2021	06	04	Italy	Czechia	4	0	F		5	2013	1763	0	−2	6	28

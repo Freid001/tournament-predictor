@@ -47,9 +47,9 @@ public class Last8Handler {
     }
 
     public void handle(String tournament) throws IOException {
-        Path matchupDir = projectRoot.resolve("data").resolve("matchups").resolve(tournament);
+        Path simulationDir = projectRoot.resolve("data").resolve("simulations").resolve(tournament);
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
-        Path matchupFile = matchupDir.resolve("last_8.csv");
+        Path matchupFile = simulationDir.resolve("matchup_paths_last_8.csv");
         Map<String, String> qfOdds = loader.loadOdds(tournament, "last_4");
         if (csvHelper.isLocked(matchupFile)) {
             System.out.println("  🔒 Output already exists: " + matchupFile + " — delete to re-run");
@@ -64,7 +64,7 @@ public class Last8Handler {
         predictionsFileValidator.validatePredictionsFile(overrideFile);
         Map<String, String> disagreeMap = disagreeMapMapper.loadDisagreeMap(overrideFile);
 
-        Path last16File = projectRoot.resolve("data").resolve("matchups").resolve(tournament).resolve("last_16.csv");
+        Path last16File = projectRoot.resolve("data").resolve("simulations").resolve(tournament).resolve("matchup_paths_last_16.csv");
         if (!Files.exists(last16File)) {
             throw new IOException("last_16 matchups not found: " + last16File + ". Run mode=last_16 first.");
         }
@@ -73,12 +73,12 @@ public class Last8Handler {
         Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
-        Files.createDirectories(matchupDir);
+        Files.createDirectories(simulationDir);
         List<String> allLines = last8LineBuilder.buildLast8Lines(eloRatings, brackets, last16Rows, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> output = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
-        Files.write(matchupDir.resolve("last_8.csv"), sortedOutput);
+        Files.write(simulationDir.resolve("matchup_paths_last_8.csv"), sortedOutput);
         generateLastSfPredictions(tournament, eloRatings, snapshots, brackets, output);
         consoleReporter.printMatchups("Quarter-final matchups", sortedOutput, eloCalculator, predictionDir.resolve("last_4.csv"), qfOdds);
     }
@@ -88,7 +88,7 @@ public class Last8Handler {
                                            List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets,
                                            List<String> last8Output) throws IOException {
         List<String> allLines = last4LineBuilder.buildLast4Lines(eloRatings, brackets, last8Output, snapshots);
-        List<String> output = csvHelper.filterPrimaryOnly(allLines);
+        List<String> output = allLines;
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Files.createDirectories(predictionDir);
         Files.write(predictionDir.resolve("last_4.csv"), output);

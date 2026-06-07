@@ -9,44 +9,7 @@
 
     <div th:if="${groupsMode}">
         <div th:utext="${groupSimulationHtml}"></div>
-        <div th:each="entry : ${groupedRows}" class="mb-4">
-            <h5 class="fw-semibold mb-2" th:text="${'Group ' + entry.key}">Group A</h5>
-            <div class="table-responsive shadow-sm rounded border">
-                <table class="table table-striped table-sm mb-0 align-middle w-100">
-                    <colgroup>
-                        <col style="width:28px">
-                        <col>
-                        <col style="width:105px">
-                        <col style="width:105px">
-                        <col style="width:95px">
-                        <col style="width:70px">
-                    </colgroup>
-                    <thead class="table-dark">
-                    <tr>
-                        <th aria-label="Details"></th>
-                        <th>Team</th>
-                        <th class="text-center" style="white-space:nowrap">Winner</th>
-                        <th class="text-center" style="white-space:nowrap">Runner-up</th>
-                        <th class="text-center" style="white-space:nowrap">3rd Place</th>
-                        <th class="text-center" style="white-space:nowrap">Position</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <th:block th:each="row : ${entry.value}">
-                    <tr class="group-main-row" style="cursor:pointer" onclick="toggleGroupDetail(this)">
-                        <td class="text-center text-muted"><span class="expand-icon" aria-hidden="true"></span></td>
-                        <td><span th:utext="${row.teamHtml}">Mexico</span></td>
-                        <td class="text-center" th:utext="${row.groupWinnerBadgeHtml}"></td>
-                        <td class="text-center" th:utext="${row.runnerUpBadgeHtml}"></td>
-                        <td class="text-center" th:utext="${row.thirdPlaceBadgeHtml}"></td>
-                        <td class="text-center text-muted small" th:text="${row.predictedPosition}"></td>
-                    </tr>
-                    <tr th:replace="~{fragments :: groupDetailRow(6, ${row.breakdownHtml})}"></tr>
-                    </th:block>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <div th:utext="${groupMatchesHtml}"></div>
     </div>
 
     <script th:if="${hasPrevRound or hasNextRound}">

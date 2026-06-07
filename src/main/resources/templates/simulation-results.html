@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: pageHead}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+<div class="container pb-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div><h1 class="h3 mb-1">Tournament Probabilities</h1><p class="text-muted mb-0" th:text="${tournamentLabel}">Tournament</p></div>
+    <div class="d-flex gap-2"><a class="btn btn-outline-secondary" th:href="@{/tournament/{name}(name=${tournament})}">Back to Tournament</a><a class="btn btn-outline-primary" th:href="@{/view/groups(tournament=${tournament})}">Group Stage</a></div>
+  </div>
+  <div class="card shadow-sm border-0 mb-3"><div class="card-body">
+    <div class="d-flex justify-content-between align-items-start mb-3"><div><h2 class="h4 mb-1">Monte Carlo Simulation</h2><div class="text-muted small">Last 16 onward from the simulated group-stage routes.</div></div><div><span class="badge text-bg-light border" th:text="${simulationRuns + &apos; runs&apos;}">runs</span></div></div>
+    <div class="table-responsive"><table class="table table-sm align-middle">
+      <thead><tr><th>Team</th><th>Predicted Finish</th><th class="text-end">Last 16</th><th class="text-end">QF</th><th class="text-end">SF</th><th class="text-end">Final</th><th class="text-end">Champion</th></tr></thead>
+      <tbody><tr th:each="row : ${simulationRows}">
+        <td class="fw-semibold" th:text="${row.team}">Team</td>
+        <td th:text="${row.predicted_finish + &apos; (&apos; + row.predicted_finish_pct + &apos;%)&apos;}">Finish</td>
+        <td class="text-end" th:text="${row.reach_last_16 + &apos;%&apos;}"></td>
+        <td class="text-end" th:text="${row.reach_last_8 + &apos;%&apos;}"></td>
+        <td class="text-end" th:text="${row.reach_last_4 + &apos;%&apos;}"></td>
+        <td class="text-end" th:text="${row.reach_final + &apos;%&apos;}"></td>
+        <td class="text-end fw-semibold" th:text="${row.champion + &apos;%&apos;}"></td>
+      </tr></tbody>
+    </table></div>
+  </div></div>
+</div>
+</body>
+</html>

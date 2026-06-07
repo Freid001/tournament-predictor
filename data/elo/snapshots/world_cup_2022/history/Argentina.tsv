@@ -1,0 +1,30 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	10	08	Argentina	Ecuador	1	0	WQ		5	1974	1720	0	+1	9	36
+2020	10	13	Bolivia	Argentina	1	2	WQ		-7	1585	1981	0	+2	60	8
+2020	11	12	Argentina	Paraguay	1	1	WQ		-14	1967	1783	−4	+1	11	26
+2020	11	17	Peru	Argentina	0	2	WQ		-26	1792	1993	−4	+4	25	6
+2021	06	03	Argentina	Chile	1	1	WQ		-13	1980	1829	0	+2	7	18
+2021	06	08	Colombia	Argentina	2	2	WQ		-3	1928	1983	0	+1	13	7
+2021	06	14	Argentina	Chile	1	1	CA	BR	-11	1972	1826	0	+1	8	18
+2021	06	18	Argentina	Uruguay	1	0	CA	BR	22	1994	1913	+1	−2	7	12
+2021	06	21	Argentina	Paraguay	1	0	CA	BR	12	2006	1782	+1	−2	6	27
+2021	06	28	Argentina	Bolivia	4	1	CA	BR	7	2013	1580	−1	−1	6	63
+2021	07	03	Argentina	Ecuador	3	0	CA	BR	20	2033	1782	+1	−3	5	27
+2021	07	06	Argentina	Colombia	1	1	CA	BR	-9	2024	1904	0	0	5	14
+2021	07	10	Brazil	Argentina	0	1	CA		-39	2114	2063	−1	+1	2	5
+2021	09	02	Venezuela	Argentina	1	3	WQ		-14	1736	2077	0	+1	34	3
+2021	09	09	Argentina	Bolivia	3	0	WQ		2	2079	1586	0	0	3	61
+2021	10	07	Paraguay	Argentina	0	0	WQ		10	1808	2069	+1	−1	22	4
+2021	10	10	Argentina	Uruguay	3	0	WQ		15	2084	1923	+1	−2	3	13
+2021	10	14	Argentina	Peru	1	0	WQ		4	2088	1801	0	−2	3	24
+2021	11	12	Uruguay	Argentina	0	1	WQ		-16	1897	2104	0	+1	14	2
+2021	11	16	Argentina	Brazil	0	0	WQ		-3	2101	2149	−1	0	3	1
+2022	01	27	Chile	Argentina	1	2	WQ		-9	1784	2110	−1	0	28	3
+2022	02	01	Argentina	Colombia	1	0	WQ		5	2115	1872	+1	−1	2	14
+2022	03	25	Argentina	Venezuela	3	0	WQ		3	2118	1688	0	−1	2	45
+2022	03	29	Ecuador	Argentina	1	1	WQ		10	1839	2108	+2	−1	21	3
+2022	06	01	Argentina	Italy	3	0	IC	EN	30	2138	1967	+1	−1	2	8
+2022	06	05	Argentina	Estonia	5	0	F	ES	1	2139	1385	0	0	2	104
+2022	09	23	Argentina	Honduras	3	0	F	US	1	2140	1461	0	−1	2	89
+2022	09	27	Argentina	Jamaica	3	0	F	US	1	2141	1552	0	0	2	69
+2022	11	16	United Arab Emirates	Argentina	0	5	F		-2	1484	2143	+1	0	81	2

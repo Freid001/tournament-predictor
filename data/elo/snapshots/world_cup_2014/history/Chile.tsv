@@ -1,0 +1,30 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	15	Paraguay	Chile	2	0	F		15	1798	1870	+1	−2	21	12
+2012	02	29	Chile	Ghana	1	1	F	US	-5	1865	1696	0	+2	12	39
+2012	03	21	Chile	Peru	3	1	PCF		10	1875	1741	+2	−1	10	31
+2012	04	11	Peru	Chile	0	3	PCF		-24	1717	1899	−4	+2	35	8
+2012	06	02	Bolivia	Chile	0	2	WQ		-11	1528	1910	−3	0	79	8
+2012	06	09	Venezuela	Chile	0	2	WQ		-22	1692	1932	−3	0	39	8
+2012	08	15	Ecuador	Chile	3	0	F	US	24	1809	1908	+7	−1	16	10
+2012	09	11	Chile	Colombia	1	3	WQ		-44	1864	1883	−7	+5	16	11
+2012	10	12	Ecuador	Chile	3	1	WQ		25	1850	1839	+1	−1	16	17
+2012	10	16	Chile	Argentina	1	2	WQ		-17	1822	2008	−2	0	19	4
+2012	11	14	Serbia	Chile	3	1	F	CH	21	1683	1801	+7	−2	39	21
+2013	01	19	Chile	Haiti	3	0	F		3	1804	1457	0	0	21	94
+2013	02	06	Chile	Egypt	2	1	F	ES	5	1809	1630	+1	+1	20	49
+2013	03	22	Peru	Chile	1	0	WQ		20	1737	1789	+3	−3	32	23
+2013	03	26	Chile	Uruguay	2	0	WQ		26	1815	1813	+6	−2	17	18
+2013	04	24	Brazil	Chile	2	2	F		-7	2041	1822	0	+1	3	16
+2013	06	07	Paraguay	Chile	1	2	WQ		-20	1701	1842	−5	+1	39	16
+2013	06	11	Chile	Bolivia	3	1	WQ		9	1851	1622	+1	−1	15	53
+2013	08	14	Chile	Iraq	6	0	F	DK	6	1857	1546	+2	−1	14	72
+2013	09	06	Chile	Venezuela	3	0	WQ		13	1870	1692	+2	−3	12	39
+2013	09	10	Chile	Spain	2	2	F	CH	6	1876	2119	0	0	12	1
+2013	10	11	Colombia	Chile	3	3	WQ		-7	1895	1883	+1	0	9	12
+2013	10	15	Chile	Ecuador	2	1	WQ		13	1896	1834	+2	0	10	18
+2013	11	15	England	Chile	0	2	F		-22	1942	1918	0	+1	6	9
+2013	11	19	Brazil	Chile	2	1	F	CA	5	2132	1913	0	−1	1	10
+2014	01	22	Chile	Costa Rica	4	0	F		6	1919	1728	+1	−1	9	30
+2014	03	05	Germany	Chile	1	0	F		4	2089	1915	0	0	3	9
+2014	05	30	Chile	Egypt	3	2	F		3	1918	1685	0	−3	9	43
+2014	06	04	Chile	Northern Ireland	2	0	F		1	1919	1411	0	0	8	110

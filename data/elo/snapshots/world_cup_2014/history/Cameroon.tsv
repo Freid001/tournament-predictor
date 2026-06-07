@@ -1,0 +1,25 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	29	Guinea-Bissau	Cameroon	0	1	FQ		-5	1217	1657	−2	+2	152	46
+2012	05	20	Egypt	Cameroon	2	1	F	SD	8	1745	1649	0	−3	31	49
+2012	05	26	Cameroon	Guinea	2	1	F	FR	7	1656	1537	+4	−5	45	79
+2012	06	02	Cameroon	DR Congo	1	0	WQ		6	1662	1438	0	−2	46	100
+2012	06	10	Libya	Cameroon	2	1	WQ	TN	29	1533	1633	+5	−8	80	53
+2012	06	16	Cameroon	Guinea-Bissau	1	0	FQ		2	1635	1215	0	0	52	154
+2012	09	08	Cape Verde	Cameroon	2	0	FQ		41	1436	1594	+9	−10	102	63
+2012	10	14	Cameroon	Cape Verde	2	1	FQ		7	1601	1429	0	−4	61	105
+2012	10	16	Colombia	Cameroon	3	0	F		3	1896	1598	+1	+1	10	60
+2012	11	14	Albania	Cameroon	0	0	F	CH	3	1509	1595	+1	−2	85	62
+2012	12	19	Angola	Cameroon	1	0	F		11	1479	1584	0	−2	93	63
+2013	02	06	Tanzania	Cameroon	1	0	F		14	1368	1570	+4	−3	119	67
+2013	03	23	Cameroon	Togo	2	1	WQ		9	1579	1434	+2	−1	65	102
+2013	06	02	Ukraine	Cameroon	0	0	F		-7	1760	1586	−2	+3	27	62
+2013	06	09	Togo	Cameroon	2	0	WQ		34	1478	1552	+9	−9	91	71
+2013	06	16	DR Congo	Cameroon	0	0	WQ		-1	1461	1553	0	+1	95	72
+2013	09	08	Cameroon	Libya	1	0	WQ		15	1568	1550	+8	−7	66	74
+2013	10	13	Tunisia	Cameroon	0	0	WQ		-3	1524	1571	0	+1	79	63
+2013	11	17	Cameroon	Tunisia	4	1	WQ		21	1592	1503	+4	−7	59	84
+2014	03	05	Portugal	Cameroon	5	1	F		3	1934	1589	+1	−2	7	61
+2014	05	26	Cameroon	Macedonia	2	0	F	AT	12	1601	1507	+4	−2	58	83
+2014	05	29	Paraguay	Cameroon	2	1	F	AT	7	1701	1594	+2	−2	37	60
+2014	06	01	Germany	Cameroon	2	2	F		-9	2071	1603	0	+1	3	59
+2014	06	07	Cameroon	Moldova	1	0	F		4	1607	1454	0	−3	58	100

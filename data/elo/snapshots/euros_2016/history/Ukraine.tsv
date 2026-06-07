@@ -1,0 +1,23 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	Ukraine	United States	2	0	F	CY	17	1838	1849	+3	0	17	13
+2014	05	22	Ukraine	Niger	2	1	F		0	1838	1289	0	0	17	135
+2014	09	03	Ukraine	Moldova	1	0	F		1	1839	1453	−1	0	18	100
+2014	09	08	Ukraine	Slovakia	0	1	EQ		-34	1805	1668	−1	+8	19	43
+2014	10	09	Belarus	Ukraine	0	2	EQ		-20	1561	1825	−5	+1	69	18
+2014	10	12	Ukraine	Macedonia	1	0	EQ		3	1828	1501	0	−2	18	86
+2014	11	15	Luxembourg	Ukraine	0	3	EQ		-4	1225	1832	−1	+1	150	17
+2014	11	18	Ukraine	Lithuania	0	0	F		-9	1823	1466	−1	0	18	95
+2015	03	27	Spain	Ukraine	1	0	EQ		8	1960	1815	0	0	6	18
+2015	03	31	Ukraine	Latvia	1	1	F		-9	1806	1471	−1	+4	19	92
+2015	06	09	Ukraine	Georgia	2	1	F	AT	3	1809	1466	0	−1	19	94
+2015	06	14	Ukraine	Luxembourg	3	0	EQ		1	1810	1222	0	−1	19	153
+2015	09	05	Ukraine	Belarus	3	1	EQ		7	1817	1550	0	−2	17	69
+2015	09	08	Slovakia	Ukraine	0	0	EQ		-2	1753	1819	−1	0	29	16
+2015	10	09	Macedonia	Ukraine	0	2	EQ		-10	1419	1829	−2	0	106	16
+2015	10	12	Ukraine	Spain	0	1	EQ		-17	1812	1992	−1	0	17	6
+2015	11	14	Ukraine	Slovenia	2	0	EQ		10	1822	1613	+1	−2	16	56
+2015	11	17	Slovenia	Ukraine	1	1	EQ		6	1619	1816	+2	0	53	16
+2016	03	24	Ukraine	Cyprus	1	0	F		1	1817	1422	+1	−1	16	105
+2016	03	28	Ukraine	Wales	1	0	F		4	1821	1662	0	0	16	44
+2016	05	29	Ukraine	Romania	4	3	F	IT	8	1829	1755	0	−4	16	31
+2016	06	03	Ukraine	Albania	3	1	F	IT	7	1836	1616	0	−1	16	54

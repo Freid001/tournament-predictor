@@ -1,33 +1,33 @@
 match_id,team1,team2,path,elo,prediction,do_you_disagree
-M73,A2(South Korea),B2(Canada),predicted,Canada (59%),Canada (59%),
+M73,A2(South Korea),B2(Switzerland),predicted,Switzerland (67%),Switzerland (67%),
 
-M74,E1(Germany),ABCDF3(Australia),predicted,Germany (80%),Germany (80%),
+M74,E1(Germany),ABCDF3(Scotland),predicted,Germany (82%),Germany (82%),
 
-M75,F1(Netherlands),C2(Morocco),predicted,Netherlands (59%),Netherlands (59%),
+M75,F1(Netherlands),C2(Morocco),predicted,Netherlands (62%),Netherlands (62%),
 
-M76,C1(Brazil),F2(Japan),predicted,Japan (54%),Japan (54%),
+M76,C1(Brazil),F2(Japan),predicted,Brazil (57%),Brazil (57%),
 
-M77,I1(France),CDFGH3(Egypt),predicted,France (90%),France (90%),
+M77,I1(France),CDFGH3(United States),predicted,France (87%),France (87%),
 
-M78,E2(Ecuador),I2(Norway),predicted,Norway (56%),Norway (56%),
+M78,E2(Ecuador),I2(Senegal),predicted,Ecuador (54%),Ecuador (54%),
 
-M79,A1(Mexico),CEFHI3(Ivory Coast),predicted,Mexico (78%),Mexico (78%),
+M79,A1(Mexico),CEFHI3(Norway),predicted,Mexico (57%),Mexico (57%),
 
-M80,L1(England),EHIJK3(DR Congo),predicted,England (87%),England (87%),
+M80,L1(England),EHIJK3(DR Congo),predicted,England (83%),England (83%),
 
-M81,D1(Turkey),BEFIJ3(Senegal),predicted,Turkey (54%),Turkey (54%),
+M81,D1(Turkey),BEFIJ3(Algeria),predicted,Turkey (79%),Turkey (79%),
 
-M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (75%),Belgium (75%),
+M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (71%),Belgium (71%),
 
-M83,K2(Colombia),L2(Croatia),predicted,Colombia (57%),Colombia (57%),
+M83,K2(Colombia),L2(Croatia),predicted,Colombia (66%),Colombia (66%),
 
-M84,H1(Spain),J2(Austria),predicted,Spain (85%),Spain (85%),
+M84,H1(Spain),J2(Austria),predicted,Spain (84%),Spain (84%),
 
-M85,B1(Switzerland),EFGIJ3(Algeria),predicted,Switzerland (72%),Switzerland (72%),
+M85,B1(Canada),EFGIJ3(Egypt),predicted,Canada (74%),Canada (74%),
 
-M86,J1(Argentina),H2(Uruguay),predicted,Argentina (88%),Argentina (88%),
+M86,J1(Argentina),H2(Uruguay),predicted,Argentina (86%),Argentina (86%),
 
 M87,K1(Portugal),DEIJL3(Panama),predicted,Portugal (84%),Portugal (84%),
 
-M88,D2(Paraguay),G2(Iran),predicted,Paraguay (54%),Paraguay (54%),
+M88,D2(Paraguay),G2(Iran),predicted,Paraguay (61%),Paraguay (61%),
 

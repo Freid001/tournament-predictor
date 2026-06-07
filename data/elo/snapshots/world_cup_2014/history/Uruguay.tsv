@@ -1,0 +1,31 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	29	Romania	Uruguay	1	1	F		5	1716	1987	0	0	36	5
+2012	05	25	Russia	Uruguay	1	1	F		1	1837	1986	0	0	15	5
+2012	06	02	Uruguay	Venezuela	1	1	WQ		-16	1970	1714	0	+2	5	36
+2012	06	10	Uruguay	Peru	4	2	WQ		6	1976	1694	0	0	5	38
+2012	08	15	France	Uruguay	0	0	F		1	1854	1975	0	−1	14	6
+2012	09	07	Colombia	Uruguay	4	0	WQ		46	1839	1929	+4	−2	16	8
+2012	09	11	Uruguay	Ecuador	1	1	WQ		-11	1918	1825	0	+1	8	17
+2012	10	12	Argentina	Uruguay	3	0	WQ		21	1991	1897	+2	−2	4	10
+2012	10	16	Bolivia	Uruguay	4	1	WQ		55	1629	1842	+13	−6	53	16
+2012	11	14	Poland	Uruguay	1	3	F		-13	1692	1855	−1	+1	37	15
+2013	02	06	Spain	Uruguay	3	1	F	QA	5	2153	1850	0	−1	1	16
+2013	03	22	Uruguay	Paraguay	1	1	WQ		-11	1839	1736	0	0	16	33
+2013	03	26	Chile	Uruguay	2	0	WQ		26	1815	1813	+6	−2	17	18
+2013	06	05	Uruguay	France	1	0	F		9	1822	1863	+2	0	17	15
+2013	06	11	Venezuela	Uruguay	0	1	WQ		-21	1710	1843	−3	+1	36	17
+2013	06	16	Spain	Uruguay	2	1	CC	BR	7	2156	1836	0	−1	1	18
+2013	06	20	Uruguay	Nigeria	2	1	CC	BR	16	1852	1694	+3	−6	14	41
+2013	06	23	Uruguay	Tahiti	8	0	CC	BR	3	1855	1220	+1	0	13	149
+2013	06	26	Brazil	Uruguay	2	1	CC		7	2086	1848	0	−3	2	16
+2013	06	30	Italy	Uruguay	2	2	CC	BR	-7	1936	1855	0	+3	7	13
+2013	08	14	Japan	Uruguay	2	4	F		-16	1753	1871	−2	+4	27	10
+2013	09	06	Peru	Uruguay	1	2	WQ		-20	1744	1891	−2	0	28	10
+2013	09	10	Uruguay	Colombia	2	0	WQ		24	1915	1902	+2	−3	8	10
+2013	10	11	Ecuador	Uruguay	1	0	WQ		19	1847	1896	+1	0	18	8
+2013	10	15	Uruguay	Argentina	3	2	WQ		23	1919	2019	+1	0	7	4
+2013	11	13	Jordan	Uruguay	0	5	WQ		-16	1566	1935	−5	0	67	7
+2013	11	20	Uruguay	Jordan	0	0	WQ		-17	1918	1583	−3	+6	9	64
+2014	03	05	Austria	Uruguay	1	1	F		4	1666	1914	0	0	47	10
+2014	05	30	Uruguay	Northern Ireland	1	0	F		1	1915	1412	0	0	10	110
+2014	06	04	Uruguay	Slovenia	2	0	F		3	1918	1643	+1	0	9	49

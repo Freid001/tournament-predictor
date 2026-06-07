@@ -1,0 +1,32 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2016	03	24	Saudi Arabia	Malaysia	2	0	WQS		3	1516	1120	0	0	81	176
+2016	03	29	United Arab Emirates	Saudi Arabia	1	1	WQS		-11	1631	1527	−2	+3	50	76
+2016	08	24	Saudi Arabia	Laos	4	0	F	QA	1	1528	794	−1	−1	76	210
+2016	09	01	Saudi Arabia	Thailand	1	0	WQ		10	1538	1419	+2	−4	74	106
+2016	09	06	Iraq	Saudi Arabia	1	2	WQ	MY	-17	1460	1555	−8	+5	95	71
+2016	10	06	Saudi Arabia	Australia	2	2	WQ		4	1559	1730	+3	−2	68	35
+2016	10	11	Saudi Arabia	United Arab Emirates	3	0	WQ		28	1587	1562	+7	−8	61	67
+2016	11	15	Japan	Saudi Arabia	2	1	WQ		7	1754	1580	+3	−3	30	65
+2017	01	14	Saudi Arabia	Cambodia	7	2	F	AE	0	1580	807	0	0	65	210
+2017	03	23	Thailand	Saudi Arabia	0	3	WQ		-29	1393	1609	−6	+7	110	59
+2017	03	28	Saudi Arabia	Iraq	1	0	WQ		9	1618	1495	+2	0	57	84
+2017	06	08	Australia	Saudi Arabia	3	2	WQ		10	1723	1608	+1	−2	35	58
+2017	08	29	United Arab Emirates	Saudi Arabia	2	1	WQ		18	1564	1590	+3	−6	70	63
+2017	09	05	Saudi Arabia	Japan	1	0	WQ		25	1615	1756	+2	−6	59	31
+2017	10	07	Saudi Arabia	Jamaica	5	2	F		11	1626	1564	+5	−3	55	71
+2017	10	10	Saudi Arabia	Ghana	0	3	F		-24	1602	1617	−7	+6	62	57
+2017	11	07	Saudi Arabia	Latvia	2	0	F	PT	6	1608	1369	+1	−5	61	117
+2017	11	10	Portugal	Saudi Arabia	3	0	F		2	2001	1606	0	−1	5	61
+2017	11	13	Bulgaria	Saudi Arabia	1	0	F	PT	10	1619	1596	+3	−4	55	64
+2017	12	22	Kuwait	Saudi Arabia	1	2	GLF		-18	1449	1614	−7	+10	96	55
+2017	12	25	Saudi Arabia	United Arab Emirates	0	0	GLF	KW	-3	1611	1565	−2	+2	57	68
+2017	12	28	Oman	Saudi Arabia	2	0	GLF	KW	41	1516	1570	+9	−10	78	67
+2018	02	26	Saudi Arabia	Moldova	3	0	F		4	1574	1326	+1	−1	67	123
+2018	02	28	Iraq	Saudi Arabia	4	1	F		13	1584	1561	+2	−4	66	71
+2018	03	23	Saudi Arabia	Ukraine	1	1	F	ES	5	1566	1733	0	−1	68	33
+2018	03	27	Belgium	Saudi Arabia	4	0	F		2	1928	1564	0	0	9	67
+2018	05	09	Saudi Arabia	Algeria	2	0	F	ES	14	1578	1521	+2	−4	66	76
+2018	05	15	Saudi Arabia	Greece	2	0	F	ES	19	1597	1644	+3	−1	63	50
+2018	05	28	Italy	Saudi Arabia	2	1	F	CH	3	1900	1594	0	−2	12	65
+2018	06	03	Peru	Saudi Arabia	3	0	F	CH	5	1916	1589	0	−1	10	64
+2018	06	08	Germany	Saudi Arabia	2	1	F		1	2076	1588	0	0	2	64

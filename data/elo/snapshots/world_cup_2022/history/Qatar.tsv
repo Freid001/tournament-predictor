@@ -1,0 +1,39 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	10	12	Ghana	Qatar	5	1	F	TR	22	1630	1646	+5	−3	52	49
+2020	11	13	Costa Rica	Qatar	1	1	F	AT	1	1621	1645	+1	0	54	48
+2020	11	17	South Korea	Qatar	2	1	F	AT	7	1773	1638	+1	0	28	48
+2020	12	04	Qatar	Bangladesh	5	0	WQS		0	1638	848	0	0	47	207
+2021	03	24	Qatar	Luxembourg	1	0	F	HU	3	1641	1360	−2	0	49	113
+2021	03	27	Qatar	Azerbaijan	2	1	F	HU	4	1645	1378	+5	−2	45	108
+2021	03	30	Ireland	Qatar	1	1	F	HU	1	1614	1644	+1	−1	53	47
+2021	06	03	Qatar	India	1	0	WQS		2	1646	1193	−1	0	46	161
+2021	06	07	Qatar	Oman	1	0	WQS		8	1654	1497	+1	−2	46	79
+2021	07	04	Qatar	El Salvador	1	0	F	HR	6	1660	1496	+1	−1	45	81
+2021	07	13	Panama	Qatar	3	3	CCH	US	8	1556	1652	+2	−1	69	46
+2021	07	17	Qatar	Grenada	4	0	CCH	US	5	1657	1142	0	−1	46	171
+2021	07	20	Qatar	Honduras	2	0	CCH	US	35	1692	1598	+5	−9	41	59
+2021	07	24	Qatar	El Salvador	3	2	CCH	US	15	1707	1534	+2	−4	39	74
+2021	07	29	United States	Qatar	1	0	CCH		11	1838	1696	+1	−1	17	41
+2021	09	01	Serbia	Qatar	4	0	F	HU	14	1799	1682	+2	−1	24	42
+2021	09	04	Portugal	Qatar	3	1	F	HU	4	2012	1678	0	0	7	43
+2021	09	07	Luxembourg	Qatar	1	1	F		5	1401	1673	0	−1	101	44
+2021	10	09	Portugal	Qatar	3	0	F		3	2018	1670	0	−1	8	46
+2021	10	12	Ireland	Qatar	4	0	F		15	1647	1655	+1	−5	53	51
+2021	11	11	Serbia	Qatar	4	0	F		7	1812	1648	−1	−1	25	53
+2021	11	14	Azerbaijan	Qatar	2	2	F		6	1321	1642	+3	−1	126	52
+2021	11	30	Qatar	Bahrain	1	0	ARC		10	1652	1543	+2	−3	51	72
+2021	12	03	Qatar	Oman	2	1	ARC		8	1660	1502	+2	−3	49	82
+2021	12	06	Qatar	Iraq	3	0	ARC		17	1677	1551	+4	−1	45	68
+2021	12	10	Qatar	United Arab Emirates	5	0	ARC		14	1691	1487	+1	−2	44	85
+2021	12	15	Qatar	Algeria	1	2	ARC		-22	1669	1779	−3	+4	47	29
+2021	12	18	Qatar	Egypt	0	0	ARC		-6	1663	1658	−2	+1	49	50
+2022	03	26	Qatar	Bulgaria	2	1	F		4	1667	1513	+1	0	49	79
+2022	03	29	Qatar	Slovenia	0	0	F		-4	1663	1626	−1	−1	50	57
+2022	08	26	Jamaica	Qatar	1	1	FT	AT	5	1553	1658	0	−1	71	49
+2022	09	23	Canada	Qatar	2	0	F	AT	10	1778	1648	0	−1	30	50
+2022	09	27	Chile	Qatar	2	2	F	AT	-2	1702	1650	0	−1	40	52
+2022	10	13	Qatar	Nicaragua	2	1	F	ES	2	1652	1251	+1	0	51	148
+2022	10	23	Qatar	Guatemala	2	0	F	ES	7	1659	1442	+1	0	50	91
+2022	10	27	Qatar	Honduras	1	0	F	ES	5	1664	1466	0	−3	50	87
+2022	11	05	Qatar	Panama	2	1	F	ES	10	1674	1645	+1	−1	49	52
+2022	11	09	Qatar	Albania	1	0	F	ES	6	1680	1538	+1	−2	48	74

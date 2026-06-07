@@ -1,0 +1,27 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	Spain	Italy	1	0	F		3	2105	1903	0	0	2	11
+2014	05	31	Ireland	Italy	0	0	F	EN	6	1694	1897	0	−1	40	12
+2014	06	04	Italy	Luxembourg	1	1	F		-10	1887	1222	−1	+2	12	154
+2014	06	14	Italy	England	2	1	WC	BR	34	1921	1897	+3	−2	9	10
+2014	06	20	Costa Rica	Italy	1	0	WC	BR	42	1822	1879	+3	−3	21	11
+2014	06	24	Uruguay	Italy	1	0	WC	BR	30	1913	1849	+3	−2	9	15
+2014	09	04	Italy	Netherlands	2	0	F		23	1872	2130	+1	0	13	2
+2014	09	09	Norway	Italy	0	2	EQ		-17	1597	1889	−3	+2	59	12
+2014	10	10	Italy	Azerbaijan	2	1	EQ		2	1891	1426	+2	−2	11	105
+2014	10	13	Malta	Italy	0	1	EQ		-1	1219	1892	−1	−1	154	13
+2014	11	16	Italy	Croatia	1	1	EQ		-9	1883	1824	−1	0	14	19
+2014	11	18	Italy	Albania	1	0	F		2	1885	1577	0	0	14	64
+2015	03	28	Bulgaria	Italy	2	2	EQ		10	1615	1875	+2	0	57	14
+2015	03	31	Italy	England	1	1	F		-1	1874	1927	0	0	14	9
+2015	06	12	Croatia	Italy	1	1	EQ		-3	1832	1877	0	+1	17	13
+2015	06	16	Portugal	Italy	1	0	F	CH	9	1905	1868	+2	0	10	14
+2015	09	03	Italy	Malta	1	0	EQ		1	1869	1236	+1	−1	13	146
+2015	09	06	Italy	Bulgaria	1	0	EQ		4	1873	1583	0	0	13	63
+2015	10	10	Azerbaijan	Italy	1	3	EQ		-7	1426	1880	−3	0	104	14
+2015	10	13	Italy	Norway	2	1	EQ		6	1886	1663	0	−1	14	45
+2015	11	13	Belgium	Italy	3	1	F		10	1927	1876	0	0	10	15
+2015	11	17	Italy	Romania	2	2	F		-6	1870	1764	0	+1	15	29
+2016	03	24	Italy	Spain	1	1	F		1	1871	2000	0	0	15	4
+2016	03	29	Germany	Italy	4	1	F		6	2059	1865	0	0	1	15
+2016	05	29	Italy	Scotland	1	0	F	MT	6	1871	1714	0	−2	15	40
+2016	06	06	Italy	Finland	2	0	F		3	1874	1575	0	0	15	64

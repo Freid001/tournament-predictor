@@ -1,0 +1,37 @@
+stage,date,team1,team2,team1_goals,team2_goals
+groups,2016-06-10,France,Romania,2,1
+groups,2016-06-11,England,Russia,1,1
+groups,2016-06-11,Switzerland,Albania,1,0
+groups,2016-06-11,Wales,Slovakia,2,1
+groups,2016-06-12,Croatia,Turkey,1,0
+groups,2016-06-12,Germany,Ukraine,2,0
+groups,2016-06-12,Poland,Northern Ireland,1,0
+groups,2016-06-13,Ireland,Sweden,1,1
+groups,2016-06-13,Italy,Belgium,2,0
+groups,2016-06-13,Spain,Czechia,1,0
+groups,2016-06-14,Hungary,Austria,2,0
+groups,2016-06-14,Iceland,Portugal,1,1
+groups,2016-06-15,France,Albania,2,0
+groups,2016-06-15,Romania,Switzerland,1,1
+groups,2016-06-15,Slovakia,Russia,2,1
+groups,2016-06-16,England,Wales,2,1
+groups,2016-06-16,Germany,Poland,0,0
+groups,2016-06-16,Northern Ireland,Ukraine,2,0
+groups,2016-06-17,Croatia,Czechia,2,2
+groups,2016-06-17,Italy,Sweden,1,0
+groups,2016-06-17,Spain,Turkey,3,0
+groups,2016-06-18,Austria,Portugal,0,0
+groups,2016-06-18,Belgium,Ireland,3,0
+groups,2016-06-18,Hungary,Iceland,1,1
+groups,2016-06-19,Albania,Romania,1,0
+groups,2016-06-19,France,Switzerland,0,0
+groups,2016-06-20,England,Slovakia,0,0
+groups,2016-06-20,Wales,Russia,3,0
+groups,2016-06-21,Croatia,Spain,2,1
+groups,2016-06-21,Germany,Northern Ireland,1,0
+groups,2016-06-21,Poland,Ukraine,1,0
+groups,2016-06-21,Turkey,Czechia,2,0
+groups,2016-06-22,Belgium,Sweden,1,0
+groups,2016-06-22,Hungary,Portugal,3,3
+groups,2016-06-22,Iceland,Austria,2,1
+groups,2016-06-22,Ireland,Italy,1,0

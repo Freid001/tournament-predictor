@@ -151,7 +151,7 @@ class SimulationHandlerTest {
 
 
     @Test
-    void groupSimulationProducesThirtyTwoQualifiersAndOneChampionPerRun() throws Exception {
+    void groupSimulationProducesPositionsQualifiersAndSavedRoutes() throws Exception {
         Path project = Path.of("").toAbsolutePath();
         CsvLoader loader = new CsvLoader(project);
         int runs = 20;
@@ -165,9 +165,87 @@ class SimulationHandlerTest {
                 loader.loadTeamSnapshots("world_cup_2026"));
 
         assertEquals(48, result.counts().size());
-        assertEquals(32 * runs, result.counts().values().stream().mapToInt(c -> c.reachLast32).sum());
-        assertEquals(runs, result.counts().values().stream().mapToInt(c -> c.champion).sum());
+        assertEquals(32 * runs, result.counts().values().stream().mapToInt(c -> c.reachKnockout).sum());
+        assertEquals(12 * runs, result.counts().values().stream().mapToInt(c -> c.finishFirst).sum());
+        assertEquals(12 * runs, result.counts().values().stream().mapToInt(c -> c.finishSecond).sum());
+        assertEquals(12 * runs, result.counts().values().stream().mapToInt(c -> c.finishThird).sum());
+        assertEquals(12 * runs, result.counts().values().stream().mapToInt(c -> c.finishFourth).sum());
+        assertEquals(runs, result.routes().size());
+        assertTrue(result.routes().stream().allMatch(route -> route.matches().size() == 16));
+        assertEquals(72, result.scorelineCounts().stream()
+                .map(row -> row.matchId() + "|" + row.team1() + "|" + row.team2()).distinct().count());
+        assertEquals(72 * runs, result.scorelineCounts().stream().mapToInt(SimulationHandler.ScorelineCount::count).sum());
+
+        SimulationHandler.SimulationResult knockout = handler.simulateKnockoutsFromGroupRoutes(
+                result.routes(), loader.loadBrackets("world_cup_2026"),
+                loader.loadTournamentElo("world_cup_2026"), loader.loadTeamSnapshots("world_cup_2026"));
+        assertEquals(runs, knockout.teamCounts().stream().mapToInt(c -> c.champion).sum());
         assertTrue(result.counts().containsKey("Scotland"));
+    }
+
+    @Test
+    void euroGroupSimulationStartsAtLast16WithFourBestThirds() throws Exception {
+        Path project = Path.of("").toAbsolutePath();
+        CsvLoader loader = new CsvLoader(project);
+        int runs = 20;
+        SimulationHandler handler = new SimulationHandler(loader, project,
+                new ExpectedGoalsCalculator(), new EloCalculator(), runs, 42L);
+
+        SimulationHandler.GroupSimulationResult result = handler.simulateGroups(
+                loader.loadGroups("euros_2024"),
+                loader.loadBrackets("euros_2024"),
+                loader.loadTournamentElo("euros_2024"),
+                loader.loadTeamSnapshots("euros_2024"));
+
+        assertEquals(24, result.counts().size());
+        assertEquals(16 * runs, result.counts().values().stream().mapToInt(c -> c.reachKnockout).sum());
+        assertEquals(runs, result.routes().size());
+        assertTrue(result.routes().stream().allMatch(route -> route.matches().size() == 8));
+        assertTrue(result.routes().stream().flatMap(route -> route.matches().values().stream())
+                .allMatch(match -> match.team1() != null && match.team2() != null));
+
+        SimulationHandler.SimulationResult knockout = handler.simulateKnockoutsFromGroupRoutes(
+                result.routes(), loader.loadBrackets("euros_2024"),
+                loader.loadTournamentElo("euros_2024"), loader.loadTeamSnapshots("euros_2024"));
+        assertEquals(runs, knockout.teamCounts().stream().mapToInt(c -> c.champion).sum());
+        assertEquals(16 * runs, knockout.teamCounts().stream().mapToInt(c -> c.reachLast16).sum());
+    }
+
+
+    @Test
+    void uefaGroupRankingUsesHeadToHeadBeforeOverallGoalDifference() {
+        SimulationHandler.GroupStanding alpha = standing("A", "Alpha", 6, 10, 1, 2);
+        SimulationHandler.GroupStanding beta = standing("A", "Beta", 6, 4, 3, 2);
+
+        List<SimulationHandler.GroupStanding> ranked = SimulationHandler.rankUefaGroup(
+                List.of(alpha, beta),
+                List.of(new SimulationHandler.GroupMatch("Alpha", "Beta", 0, 1)),
+                Map.of("Alpha", 2200, "Beta", 1800));
+
+        assertEquals(List.of("Beta", "Alpha"), ranked.stream().map(row -> row.team).toList());
+    }
+
+    @Test
+    void uefaGroupRankingFallsBackToOverallWinsBeforeElo() {
+        SimulationHandler.GroupStanding alpha = standing("A", "Alpha", 4, 4, 3, 1);
+        SimulationHandler.GroupStanding beta = standing("A", "Beta", 4, 4, 3, 2);
+
+        List<SimulationHandler.GroupStanding> ranked = SimulationHandler.rankUefaGroup(
+                List.of(alpha, beta),
+                List.of(new SimulationHandler.GroupMatch("Alpha", "Beta", 1, 1)),
+                Map.of("Alpha", 2200, "Beta", 1800));
+
+        assertEquals(List.of("Beta", "Alpha"), ranked.stream().map(row -> row.team).toList());
+    }
+
+    private static SimulationHandler.GroupStanding standing(String group, String team, int points,
+                                                              int goalsFor, int goalsAgainst, int wins) {
+        SimulationHandler.GroupStanding standing = new SimulationHandler.GroupStanding(group, team);
+        standing.points = points;
+        standing.goalsFor = goalsFor;
+        standing.goalsAgainst = goalsAgainst;
+        standing.wins = wins;
+        return standing;
     }
 
     private static CsvLoader.BracketEntry bracket(String matchId, String team1, String team2, String stage) {

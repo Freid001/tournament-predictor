@@ -1,0 +1,33 @@
+group,team,position,finish
+A,Brazil,1,semi_final
+A,Mexico,2,last_16
+A,Croatia,3,group_stage
+A,Cameroon,4,group_stage
+B,Netherlands,1,semi_final
+B,Chile,2,last_16
+B,Spain,3,group_stage
+B,Australia,4,group_stage
+C,Colombia,1,quarter_final
+C,Greece,2,last_16
+C,Ivory Coast,3,group_stage
+C,Japan,4,group_stage
+D,Costa Rica,1,quarter_final
+D,Uruguay,2,last_16
+D,Italy,3,group_stage
+D,England,4,group_stage
+E,France,1,quarter_final
+E,Switzerland,2,last_16
+E,Ecuador,3,group_stage
+E,Honduras,4,group_stage
+F,Argentina,1,runner_up
+F,Nigeria,2,last_16
+F,Bosnia and Herzegovina,3,group_stage
+F,Iran,4,group_stage
+G,Germany,1,champion
+G,United States,2,last_16
+G,Portugal,3,group_stage
+G,Ghana,4,group_stage
+H,Belgium,1,quarter_final
+H,Algeria,2,last_16
+H,Russia,3,group_stage
+H,South Korea,4,group_stage

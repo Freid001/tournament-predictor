@@ -1,0 +1,25 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	29	Gambia	Algeria	1	2	FQ		-20	1353	1500	−1	+5	116	88
+2012	05	26	Algeria	Niger	3	0	F		5	1505	1293	+4	−1	85	133
+2012	06	02	Algeria	Rwanda	4	0	WQ		20	1525	1414	+5	−3	81	104
+2012	06	10	Mali	Algeria	2	1	WQ	BF	18	1574	1507	+5	−6	67	86
+2012	06	15	Algeria	Gambia	4	1	FQ		12	1519	1325	+1	−2	85	125
+2012	09	09	Algeria	Libya	1	0	FQ	MA	25	1544	1589	+7	−7	75	63
+2012	10	14	Algeria	Libya	2	0	FQ		25	1569	1564	+8	−6	68	69
+2012	11	14	Algeria	Bosnia and Herzegovina	0	1	F		-8	1561	1746	−1	0	69	30
+2013	01	12	South Africa	Algeria	0	0	F		-3	1555	1564	−1	+2	73	68
+2013	01	22	Tunisia	Algeria	1	0	AR	ZA	24	1604	1540	+7	−8	57	76
+2013	01	26	Togo	Algeria	2	0	AR	ZA	51	1457	1489	+13	−13	95	88
+2013	01	30	Algeria	Ivory Coast	2	2	AR	ZA	20	1509	1843	+6	−2	82	17
+2013	03	26	Algeria	Benin	3	1	WQ		14	1523	1383	+8	−1	79	112
+2013	05	25	Algeria	Mauritania	1	0	F		1	1524	1146	0	−1	79	170
+2013	06	02	Algeria	Burkina Faso	2	0	F		11	1535	1521	+3	−2	76	79
+2013	06	09	Benin	Algeria	1	3	WQ		-26	1357	1561	−7	+7	120	69
+2013	06	16	Rwanda	Algeria	0	1	WQ		-15	1351	1576	−9	+4	124	63
+2013	08	14	Algeria	Guinea	2	2	F		-4	1572	1523	−1	+4	65	80
+2013	09	10	Algeria	Mali	1	0	WQ		15	1587	1562	+6	−3	59	67
+2013	10	12	Burkina Faso	Algeria	3	2	WQ		17	1554	1570	+6	−4	70	63
+2013	11	19	Algeria	Burkina Faso	1	0	WQ		14	1584	1540	+2	−3	62	74
+2014	03	05	Algeria	Slovenia	2	0	F		14	1598	1646	+3	−2	59	50
+2014	05	31	Algeria	Armenia	3	1	F	CH	15	1613	1574	+2	−2	57	66
+2014	06	04	Algeria	Romania	2	1	F	CH	13	1626	1716	+3	0	54	31

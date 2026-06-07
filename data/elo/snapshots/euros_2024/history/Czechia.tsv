@@ -1,0 +1,25 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2022	03	24	Sweden	Czechia	1	0	WQ		15	1835	1818	+4	−1	21	25
+2022	03	29	Wales	Czechia	1	1	F		-3	1841	1821	−2	+3	20	23
+2022	06	02	Czechia	Switzerland	2	1	ENA		20	1841	1899	+4	0	19	13
+2022	06	05	Czechia	Spain	2	2	ENA		5	1846	2026	+2	0	16	4
+2022	06	09	Portugal	Czechia	2	0	ENA		11	2022	1835	0	−2	6	19
+2022	06	12	Spain	Czechia	2	0	ENA		9	2052	1826	0	−3	4	23
+2022	09	24	Czechia	Portugal	0	4	ENA		-30	1796	2029	−6	+2	26	5
+2022	09	27	Switzerland	Czechia	2	1	ENA		9	1928	1787	+1	−1	12	27
+2022	11	16	Czechia	Faroe Islands	5	0	F		1	1788	1301	0	0	27	135
+2022	11	19	Turkey	Czechia	2	1	F		10	1711	1778	+2	−2	39	28
+2023	03	24	Czechia	Poland	3	1	EQ		23	1801	1778	+2	−3	25	28
+2023	03	27	Moldova	Czechia	0	0	EQ		17	1248	1784	+6	−2	148	27
+2023	06	17	Faroe Islands	Czechia	0	3	EQ		-7	1299	1791	−1	+1	137	26
+2023	06	20	Montenegro	Czechia	1	4	F		-11	1548	1802	−1	+1	70	25
+2023	09	07	Czechia	Albania	1	1	EQ		-15	1787	1577	−1	+2	27	66
+2023	09	10	Hungary	Czechia	1	1	F		-4	1844	1791	−1	0	18	27
+2023	10	12	Albania	Czechia	3	0	EQ		43	1657	1748	+8	−5	49	33
+2023	10	15	Czechia	Faroe Islands	1	0	EQ		1	1749	1247	+1	+1	31	152
+2023	11	17	Poland	Czechia	1	1	EQ		-4	1707	1753	−1	0	42	32
+2023	11	20	Czechia	Moldova	3	0	EQ		3	1756	1338	+2	−1	32	125
+2024	03	22	Norway	Czechia	1	2	F		-13	1742	1769	−2	+2	34	29
+2024	03	26	Czechia	Armenia	2	1	F		2	1771	1455	+1	−1	28	94
+2024	06	07	Czechia	Malta	7	1	F	AT	2	1773	1258	+1	−2	26	153
+2024	06	10	Czechia	North Macedonia	2	1	F		3	1776	1546	0	−2	26	74

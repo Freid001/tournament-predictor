@@ -22,6 +22,9 @@ public class PathCalculator {
         if ("alt".equals(existing) || "alt".equals(incoming)) {
             return "alt";
         }
+        if ("upset".equals(existing) || "upset".equals(incoming)) {
+            return "upset";
+        }
         return existing;
     }
 
@@ -29,10 +32,26 @@ public class PathCalculator {
         if ("predicted".equals(path1) && "predicted".equals(path2)) {
             return "predicted";
         }
+        if ("upset".equals(path1) || "upset".equals(path2)) {
+            return "upset";
+        }
         if ("alt".equals(path1) || "alt".equals(path2)) {
             return "alt";
         }
         return "";
+    }
+
+    /** Classify a complete displayed route from its actual knockout history. */
+    public String classifyCompletedRoute(String candidatePath, String team1Chain, String team2Chain) {
+        if (containsUpset(team1Chain) || containsUpset(team2Chain)) return "upset";
+        return "predicted".equalsIgnoreCase(candidatePath) ? "predicted" : "alt";
+    }
+
+    private static boolean containsUpset(String chain) {
+        if (chain == null || chain.isBlank()) return false;
+        return java.util.Arrays.stream(chain.split(" > "))
+                .map(String::trim)
+                .anyMatch(segment -> segment.toUpperCase(java.util.Locale.ROOT).startsWith("U@"));
     }
 
     public String computePredictedMatch(String token1, String display1, String token2, String display2,

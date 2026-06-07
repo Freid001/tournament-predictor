@@ -1,0 +1,25 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	29	Greece	Belgium	1	1	F		-5	1778	1687	−2	0	25	42
+2012	05	25	Belgium	Montenegro	2	2	F		-4	1683	1641	0	+3	42	51
+2012	06	02	England	Belgium	1	0	F		2	1955	1681	0	−1	6	43
+2012	08	15	Belgium	Netherlands	4	2	F		22	1703	1943	+4	−2	38	8
+2012	09	07	Wales	Belgium	0	2	WQ		-31	1580	1734	−5	+7	65	31
+2012	09	11	Belgium	Croatia	1	1	WQ		2	1736	1865	0	−2	31	15
+2012	10	12	Serbia	Belgium	0	3	WQ		-44	1687	1780	−7	+7	39	24
+2012	10	16	Belgium	Scotland	2	0	WQ		14	1794	1653	+2	−4	22	47
+2012	11	14	Romania	Belgium	2	1	F		9	1754	1785	−1	0	29	22
+2013	02	06	Belgium	Slovakia	2	1	F		3	1788	1598	−1	+2	23	55
+2013	03	22	Macedonia	Belgium	0	2	WQ		-19	1533	1807	−5	+4	77	19
+2013	03	26	Belgium	Macedonia	1	0	WQ		4	1811	1529	0	−3	19	77
+2013	05	29	United States	Belgium	2	4	F		-17	1749	1828	−3	+3	29	16
+2013	06	07	Belgium	Serbia	2	1	WQ		9	1837	1692	−1	−3	17	41
+2013	08	14	Belgium	France	0	0	F		-2	1835	1859	0	0	18	13
+2013	09	06	Scotland	Belgium	0	2	WQ		-22	1624	1857	−4	+4	53	14
+2013	10	11	Croatia	Belgium	1	2	WQ		-26	1845	1883	−6	+3	19	12
+2013	10	15	Belgium	Wales	1	1	WQ		-17	1866	1584	−2	+5	14	61
+2013	11	14	Belgium	Colombia	0	2	F		-17	1849	1928	−2	0	16	8
+2013	11	19	Belgium	Japan	2	3	F		-15	1834	1764	−3	+2	18	25
+2014	03	05	Belgium	Ivory Coast	2	2	F		-4	1830	1778	0	+1	18	23
+2014	05	26	Belgium	Luxembourg	5	1	F		1	1831	1212	0	0	18	155
+2014	06	01	Sweden	Belgium	0	2	F		-18	1795	1849	−1	+5	22	14
+2014	06	07	Belgium	Tunisia	1	0	F		2	1851	1526	0	−1	15	76

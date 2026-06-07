@@ -1,0 +1,31 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2008	02	06	Spain	France	1	0	F		8	1972	2003	0	0	5	4
+2008	03	26	France	England	1	0	F		5	2008	1910	0	−1	4	9
+2008	05	27	France	Ecuador	2	0	F		2	2010	1677	0	0	4	42
+2008	05	31	France	Paraguay	0	0	F		-7	2003	1805	0	+1	4	20
+2008	06	03	France	Colombia	1	0	F		3	2006	1817	0	0	4	17
+2008	06	09	France	Romania	0	0	EC	CH	-7	1999	1915	0	0	4	10
+2008	06	13	Netherlands	France	4	1	EC	CH	41	2063	1958	+2	−1	1	6
+2008	06	17	Italy	France	2	0	EC	CH	36	2012	1922	0	−2	5	8
+2008	08	20	Sweden	France	2	3	F		-9	1764	1931	0	+1	27	7
+2008	09	06	Austria	France	3	1	WQ		48	1638	1883	+8	−3	51	10
+2008	09	10	France	Serbia	2	1	WQ		8	1891	1721	+1	−4	9	38
+2008	10	11	Romania	France	2	2	WQ		-3	1832	1894	−1	+1	17	8
+2008	10	14	France	Tunisia	3	1	F		3	1897	1610	0	0	8	55
+2008	11	19	France	Uruguay	0	0	F		-5	1892	1831	0	+2	8	15
+2009	02	11	France	Argentina	0	2	F		-16	1876	1990	−2	+2	10	4
+2009	03	28	Lithuania	France	0	1	WQ		-12	1622	1888	0	+1	53	9
+2009	04	01	France	Lithuania	1	0	WQ		4	1892	1618	0	−3	9	56
+2009	06	02	France	Nigeria	0	1	F		-16	1876	1742	−1	+6	10	30
+2009	06	05	France	Turkey	1	0	F		6	1882	1805	0	−2	10	17
+2009	08	12	Faroe Islands	France	0	1	WQ		-1	1183	1883	0	0	160	10
+2009	09	05	France	Romania	1	1	WQ		-10	1873	1803	−1	+3	11	19
+2009	09	09	Serbia	France	1	1	WQ		-3	1823	1876	0	+1	16	10
+2009	10	10	France	Faroe Islands	5	0	WQ		1	1877	1213	0	−2	10	156
+2009	10	14	France	Austria	3	1	WQ		6	1883	1590	0	−2	10	60
+2009	11	14	Ireland	France	0	1	WQ		-19	1755	1902	−7	+3	30	7
+2009	11	18	France	Ireland	1	1	WQ		-12	1890	1767	−1	+3	8	27
+2010	03	03	France	Spain	0	2	F		-11	1879	2105	−2	0	11	2
+2010	05	26	France	Costa Rica	2	1	F		3	1882	1696	0	0	10	41
+2010	05	30	Tunisia	France	1	1	F		5	1613	1877	0	−1	53	11
+2010	06	04	China	France	1	0	F	RE	16	1638	1861	+1	−1	51	12

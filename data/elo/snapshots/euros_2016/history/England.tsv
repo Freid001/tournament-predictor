@@ -1,0 +1,29 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	England	Denmark	1	0	F		3	1936	1743	0	0	6	28
+2014	05	30	England	Peru	3	0	F		5	1941	1706	0	−1	6	36
+2014	06	04	Ecuador	England	2	2	F	US	3	1835	1938	0	0	18	6
+2014	06	07	England	Honduras	0	0	F	US	-7	1931	1668	−1	0	7	47
+2014	06	14	Italy	England	2	1	WC	BR	34	1921	1897	+3	−2	9	10
+2014	06	19	Uruguay	England	2	1	WC	BR	34	1883	1863	+5	−4	11	15
+2014	06	24	Costa Rica	England	0	0	WC	BR	4	1826	1859	+1	+1	18	14
+2014	09	03	England	Norway	1	0	F		2	1861	1614	0	−1	13	55
+2014	09	08	Switzerland	England	0	2	EQ		-37	1808	1898	−2	+4	18	10
+2014	10	09	England	San Marino	5	0	EQ		0	1898	873	0	0	10	203
+2014	10	12	Estonia	England	0	1	EQ		-5	1458	1903	−2	0	96	10
+2014	11	15	England	Slovenia	3	1	EQ		8	1911	1658	+1	−1	10	47
+2014	11	18	Scotland	England	1	3	F		-12	1722	1923	−5	0	32	9
+2015	03	27	England	Lithuania	4	0	EQ		3	1926	1463	0	0	9	94
+2015	03	31	Italy	England	1	1	F		-1	1874	1927	0	0	14	9
+2015	06	07	Ireland	England	0	0	F		3	1722	1924	0	−1	35	10
+2015	06	14	Slovenia	England	2	3	EQ		-10	1634	1934	−3	0	53	8
+2015	09	05	San Marino	England	0	6	EQ		0	886	1934	0	0	204	9
+2015	09	08	England	Switzerland	2	0	EQ		13	1947	1795	+1	−2	7	19
+2015	10	09	England	Estonia	2	0	EQ		2	1949	1484	0	0	7	90
+2015	10	12	Lithuania	England	0	3	EQ		-6	1426	1955	−2	0	104	7
+2015	11	13	Spain	England	2	0	F		9	2001	1946	+1	−1	4	8
+2015	11	17	England	France	2	0	F		12	1958	1953	+2	0	6	7
+2016	03	26	Germany	England	2	3	F		-15	2053	1973	0	+2	1	5
+2016	03	29	England	Netherlands	1	2	F		-15	1958	1901	−4	+1	9	13
+2016	05	22	England	Turkey	2	1	F		4	1962	1819	0	−1	9	17
+2016	05	27	England	Australia	2	1	F		2	1964	1718	+1	−1	8	39
+2016	06	02	England	Portugal	1	0	F		6	1970	1906	+2	−1	6	13

@@ -1,0 +1,31 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	29	Poland	Portugal	0	0	F		3	1708	1898	0	0	37	8
+2012	05	26	Portugal	Macedonia	0	0	F		-9	1889	1494	0	+3	9	91
+2012	06	02	Portugal	Turkey	1	3	F		-24	1865	1756	−3	+2	12	30
+2012	06	09	Germany	Portugal	1	0	EC	UA	13	2056	1852	+2	−1	2	15
+2012	06	13	Portugal	Denmark	3	2	EC	UA	25	1877	1831	+4	−1	12	16
+2012	06	17	Portugal	Netherlands	2	1	EC	UA	33	1910	1965	+2	−2	10	6
+2012	06	21	Portugal	Czechia	1	0	EC	PL	18	1928	1788	0	−5	9	22
+2012	06	27	Portugal	Spain	0	0	EC	UA	14	1942	2131	+1	0	8	1
+2012	08	15	Portugal	Panama	2	0	F		4	1946	1710	+1	0	7	34
+2012	09	07	Luxembourg	Portugal	1	2	WQ		-1	1146	1947	−1	0	169	7
+2012	09	11	Portugal	Azerbaijan	3	0	WQ		2	1949	1402	0	−1	7	108
+2012	10	12	Russia	Portugal	1	0	WQ		19	1891	1930	+2	0	12	7
+2012	10	16	Portugal	Northern Ireland	1	1	WQ		-19	1911	1451	−2	+6	9	97
+2012	11	14	Gabon	Portugal	2	2	F		7	1540	1904	+2	−1	74	10
+2013	02	06	Portugal	Ecuador	2	3	F		-14	1890	1863	−2	+1	12	15
+2013	03	22	Israel	Portugal	3	3	WQ		9	1634	1881	+3	−2	49	14
+2013	03	26	Azerbaijan	Portugal	0	2	WQ		-6	1404	1887	−2	+4	109	10
+2013	06	07	Portugal	Russia	1	0	WQ		15	1902	1878	+2	−1	8	10
+2013	06	10	Portugal	Croatia	1	0	F	CH	9	1911	1866	0	−1	8	12
+2013	08	14	Portugal	Netherlands	1	1	F		0	1911	2008	−1	−1	9	5
+2013	09	06	Northern Ireland	Portugal	2	4	WQ		-7	1447	1918	−1	0	99	9
+2013	09	10	Brazil	Portugal	3	1	F	US	7	2119	1911	+1	0	1	9
+2013	10	11	Portugal	Israel	1	1	WQ		-16	1895	1656	0	+4	9	48
+2013	10	15	Portugal	Luxembourg	3	0	WQ		1	1896	1214	−1	−1	10	153
+2013	11	15	Portugal	Sweden	1	0	WQ		13	1909	1848	−1	−1	11	16
+2013	11	19	Sweden	Portugal	2	3	WQ		-22	1826	1931	−3	+1	19	9
+2014	03	05	Portugal	Cameroon	5	1	F		3	1934	1589	+1	−2	7	61
+2014	05	31	Portugal	Greece	0	0	F		-6	1928	1821	0	0	7	20
+2014	06	06	Portugal	Mexico	1	0	F	US	7	1935	1814	0	−2	7	21
+2014	06	10	Portugal	Ireland	5	1	F	US	7	1942	1687	0	0	6	41

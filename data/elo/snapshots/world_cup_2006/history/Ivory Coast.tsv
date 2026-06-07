@@ -1,0 +1,29 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2004	03	31	Tunisia	Ivory Coast	0	2	F		-23	1672	1613	−5	+3	44	57
+2004	04	28	Ivory Coast	Guinea	4	2	F	FR	11	1624	1512	+1	−1	56	75
+2004	06	06	Ivory Coast	Libya	2	0	WQA		10	1634	1436	+2	−2	53	96
+2004	06	20	Egypt	Ivory Coast	1	2	WQA		-29	1664	1663	−5	+6	46	48
+2004	07	04	Cameroon	Ivory Coast	2	0	WQA		17	1740	1646	+2	−4	29	52
+2004	08	18	Ivory Coast	Senegal	2	1	F	FR	11	1657	1669	+4	−5	46	42
+2004	09	05	Ivory Coast	Sudan	5	0	WQA		6	1663	1310	+1	−2	45	127
+2004	10	10	Benin	Ivory Coast	0	1	WQA		-7	1276	1670	−3	+3	137	43
+2005	02	08	DR Congo	Ivory Coast	2	2	F	FR	6	1448	1664	0	−2	94	45
+2005	03	27	Ivory Coast	Benin	3	0	WQA		4	1668	1272	0	0	49	138
+2005	06	03	Libya	Ivory Coast	0	0	WQA		3	1524	1665	0	0	74	48
+2005	06	19	Ivory Coast	Egypt	2	0	WQA		26	1691	1691	+8	−4	40	40
+2005	08	17	France	Ivory Coast	3	0	F		4	1959	1687	0	−1	6	43
+2005	09	04	Ivory Coast	Cameroon	2	3	WQA		-23	1664	1752	−7	+7	49	29
+2005	10	08	Sudan	Ivory Coast	1	3	WQA		-16	1377	1680	−2	+2	106	46
+2005	11	12	Ivory Coast	Romania	2	1	F	FR	15	1695	1839	+2	−3	42	17
+2005	11	16	Italy	Ivory Coast	1	1	F	CH	-6	1939	1701	0	+1	7	41
+2006	01	17	Ivory Coast	Jordan	2	0	F	AE	9	1710	1535	0	−2	40	73
+2006	01	21	Ivory Coast	Morocco	1	0	AR	EG	23	1733	1660	+7	−6	34	50
+2006	01	24	Ivory Coast	Libya	2	1	AR	EG	9	1742	1449	+1	0	34	96
+2006	01	28	Egypt	Ivory Coast	3	1	AR		31	1732	1711	+5	−6	36	41
+2006	02	04	Cameroon	Ivory Coast	1	1	AR	EG	-6	1784	1717	0	+1	26	40
+2006	02	07	Ivory Coast	Nigeria	1	0	AR	EG	30	1747	1758	+5	−6	35	31
+2006	02	10	Egypt	Ivory Coast	0	0	AR		-8	1749	1755	−2	+2	34	33
+2006	03	01	Spain	Ivory Coast	3	2	F		3	1960	1752	+1	+1	5	33
+2006	05	27	Switzerland	Ivory Coast	1	1	F		-4	1792	1756	0	−1	24	34
+2006	05	30	Chile	Ivory Coast	1	1	F	FR	1	1707	1755	+1	0	42	34
+2006	06	04	Ivory Coast	Slovenia	3	0	F	FR	11	1766	1601	+2	−4	32	60

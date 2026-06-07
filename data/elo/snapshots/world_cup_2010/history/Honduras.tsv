@@ -1,0 +1,44 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2008	02	06	Honduras	Paraguay	2	0	F		18	1682	1826	+3	−4	41	18
+2008	03	26	Honduras	Colombia	2	1	F	US	14	1696	1826	0	−1	41	16
+2008	05	23	Honduras	Belize	2	0	F		1	1697	1099	0	0	41	177
+2008	05	30	Honduras	Venezuela	1	1	F	US	-1	1696	1650	0	0	41	48
+2008	06	04	Honduras	Puerto Rico	4	0	WQ		1	1697	957	0	0	41	192
+2008	06	07	Honduras	Haiti	3	1	F		5	1702	1521	0	−2	41	81
+2008	06	14	Puerto Rico	Honduras	2	2	WQ		19	976	1683	+3	−2	189	43
+2008	08	20	Mexico	Honduras	2	1	WQ		6	1898	1677	+1	−1	10	43
+2008	09	06	Canada	Honduras	1	2	WQ		-22	1598	1699	−6	+2	57	42
+2008	09	10	Honduras	Jamaica	2	0	WQ		11	1710	1537	+1	−7	41	78
+2008	10	11	Honduras	Canada	3	1	WQ		13	1723	1581	+2	−5	39	63
+2008	10	15	Jamaica	Honduras	1	0	WQ		23	1593	1700	+6	−2	60	41
+2008	11	19	Honduras	Mexico	1	0	WQ		23	1723	1834	+4	−2	38	13
+2009	01	18	Honduras	Chile	2	0	F	US	18	1741	1783	+2	−1	36	21
+2009	01	22	Honduras	Belize	2	1	NQU		1	1742	1096	0	−1	36	177
+2009	01	24	Honduras	Nicaragua	4	1	NQU		1	1743	1036	+1	0	35	185
+2009	01	26	Honduras	El Salvador	2	0	NQU		6	1749	1470	+2	0	33	90
+2009	01	30	Honduras	Panama	0	1	UNC		-34	1715	1578	−9	+10	40	62
+2009	02	01	Honduras	El Salvador	1	0	UNC		5	1720	1458	+1	−1	39	90
+2009	02	11	Costa Rica	Honduras	2	0	WQ		21	1752	1699	+6	−6	31	44
+2009	03	28	Trinidad and Tobago	Honduras	1	1	WQ		2	1574	1697	−1	0	65	44
+2009	04	01	Honduras	Mexico	3	1	WQ		32	1729	1793	+10	−8	34	23
+2009	06	06	United States	Honduras	2	1	WQ		11	1810	1718	+3	−1	16	36
+2009	06	10	Honduras	El Salvador	1	0	WQ		7	1725	1530	−2	−5	38	80
+2009	06	28	Honduras	Panama	2	0	F	US	9	1734	1566	+3	−1	35	67
+2009	07	04	Honduras	Haiti	1	0	CCH	US	6	1740	1392	0	−2	35	109
+2009	07	08	United States	Honduras	2	0	CCH		16	1888	1724	+2	−3	9	38
+2009	07	11	Honduras	Grenada	4	0	CCH	US	6	1730	1251	+1	0	37	140
+2009	07	18	Honduras	Canada	1	0	CCH	US	19	1749	1629	+5	−5	32	54
+2009	07	23	United States	Honduras	2	0	CCH		16	1885	1733	+2	−3	9	35
+2009	08	12	Honduras	Costa Rica	4	0	WQ		31	1764	1740	+7	−8	29	35
+2009	09	05	Honduras	Trinidad and Tobago	4	1	WQ		10	1774	1552	+2	−2	27	70
+2009	09	09	Mexico	Honduras	1	0	WQ		8	1914	1766	0	−1	7	28
+2009	10	10	Honduras	United States	2	3	WQ		-23	1743	1836	−5	+2	33	16
+2009	10	14	El Salvador	Honduras	0	1	WQ		-14	1513	1757	−3	+4	84	29
+2009	11	14	Honduras	Latvia	2	1	F		3	1760	1569	+1	−2	27	68
+2009	11	18	Peru	Honduras	2	1	F	US	15	1587	1745	+7	−9	59	36
+2010	01	23	United States	Honduras	1	3	F		-21	1780	1766	−5	+6	22	28
+2010	03	03	Turkey	Honduras	2	0	F		10	1794	1756	+1	−3	18	29
+2010	04	21	Honduras	Venezuela	0	1	F		-14	1742	1727	−3	+3	31	35
+2010	05	27	Belarus	Honduras	2	2	F	AT	4	1592	1738	+1	0	61	32
+2010	06	02	Azerbaijan	Honduras	0	0	F	AT	7	1443	1731	+5	0	99	32
+2010	06	05	Romania	Honduras	3	0	F	AT	17	1749	1714	+4	−4	28	37

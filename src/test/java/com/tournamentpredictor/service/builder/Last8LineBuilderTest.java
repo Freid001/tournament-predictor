@@ -108,7 +108,7 @@ class Last8LineBuilderTest {
             String t2Chain = cols[8]; // England is team2
 
             // Uzbekistan (R32 from prior chain) then Senegal (R16 just added)
-            assertTrue(t2Chain.startsWith("Uzbekistan:0 > Senegal:"),
+            assertTrue(t2Chain.startsWith("Uzbekistan:0 > K@M92|Senegal:"),
                     "Chain should start with R32 opponent then R16 opponent: " + t2Chain);
         }
     }
@@ -117,6 +117,48 @@ class Last8LineBuilderTest {
 
     @Nested
     class OutputStructure {
+
+        @Test
+        void forwardsPredictedLosersAsUpsetQuarterFinalists() {
+            Map<String, Integer> elos = Map.of(
+                    "England", 2020, "DR Congo", 1655, "Mexico", 1867, "Norway", 1917);
+
+            String m91 = scoredRow("M91", "W77(Norway)", "W78(Mexico)",
+                    "predicted", "Norway (55%)", 0, 0, "", "");
+            String m92 = scoredRow("M92", "W80(England)", "W79(DR Congo)",
+                    "predicted", "England (83%)", 0, 0, "", "");
+
+            List<String> output = builder.buildLast8Lines(elos, quarterBracket(), Arrays.asList(HEADER, m91, m92));
+
+            assertTrue(output.stream().anyMatch(line ->
+                    line.startsWith("M99,") && line.contains("DR Congo") && line.contains(",upset,")));
+            assertTrue(output.stream().anyMatch(line ->
+                    line.startsWith("M99,") && line.contains("Mexico") && line.contains(",upset,")));
+        }
+
+        @Test
+        void alternativeExpectedWinnerIsNotMislabelledAsUpset() {
+            Map<String, Integer> elos = Map.of(
+                    "England", 2020, "Mexico", 1867, "DR Congo", 1655,
+                    "Norway", 1917, "France", 2081);
+
+            String m91 = scoredRow("M91", "W77(Norway)", "W78(France)",
+                    "predicted", "Norway (55%)", 0, 0, "", "");
+            // Mexico is scanned first as a loser, but in its valid alternative matchup it is favored.
+            String m92MexicoLoses = scoredRow("M92", "W80(England)", "W79(Mexico)",
+                    "predicted", "England (70%)", 0, 0, "", "");
+            String m92MexicoWins = scoredRow("M92", "W80(DR Congo)", "W79(Mexico)",
+                    "alt", "Mexico (83%)", 0, 0, "", "");
+
+            List<String> output = builder.buildLast8Lines(elos, quarterBracket(),
+                    Arrays.asList(HEADER, m91, m92MexicoLoses, m92MexicoWins));
+
+            String mexicoRoute = output.stream()
+                    .filter(line -> line.startsWith("M99,") && line.contains("Mexico") && line.contains(",alt,"))
+                    .findFirst().orElseThrow();
+            assertTrue(mexicoRoute.contains("K@M92|DR Congo:"), mexicoRoute);
+            assertFalse(mexicoRoute.contains("U@M92|"), mexicoRoute);
+        }
 
         @Test
         void outputIncludesHeaderRow() {

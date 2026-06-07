@@ -1,0 +1,27 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	Switzerland	Croatia	2	2	F		-4	1846	1809	−1	+1	15	21
+2014	05	30	Switzerland	Jamaica	1	0	F		2	1848	1520	+2	−1	14	79
+2014	06	03	Switzerland	Peru	2	0	F		6	1854	1700	+2	0	13	37
+2014	06	15	Switzerland	Ecuador	2	1	WC	BR	28	1882	1807	+1	−2	12	20
+2014	06	20	France	Switzerland	5	2	WC	BR	47	1965	1835	+1	−6	8	18
+2014	06	25	Switzerland	Honduras	3	0	WC	BR	25	1860	1604	+3	−4	14	57
+2014	07	01	Argentina	Switzerland	1	0	WC	BR	15	2063	1845	0	−1	4	15
+2014	09	08	Switzerland	England	0	2	EQ		-37	1808	1898	−2	+4	18	10
+2014	10	09	Slovenia	Switzerland	1	0	EQ		25	1641	1783	+6	−4	49	22
+2014	10	14	San Marino	Switzerland	0	4	EQ		-1	872	1784	0	0	203	23
+2014	11	15	Switzerland	Lithuania	4	0	EQ		6	1790	1457	+2	+1	21	96
+2014	11	18	Poland	Switzerland	2	2	F		-1	1727	1791	−2	0	30	21
+2015	03	27	Switzerland	Estonia	3	0	EQ		5	1796	1454	0	−1	21	97
+2015	03	31	Switzerland	United States	1	1	F		-3	1793	1809	−1	+1	21	18
+2015	06	10	Switzerland	Liechtenstein	3	0	F		1	1794	1213	0	0	21	158
+2015	06	14	Lithuania	Switzerland	1	2	EQ		-7	1429	1801	−2	0	105	21
+2015	09	05	Switzerland	Slovenia	3	2	EQ		7	1808	1627	+2	−1	18	53
+2015	09	08	England	Switzerland	2	0	EQ		13	1947	1795	+1	−2	7	19
+2015	10	09	Switzerland	San Marino	7	0	EQ		0	1795	885	0	0	19	205
+2015	10	12	Estonia	Switzerland	0	1	EQ		-9	1475	1804	−4	+1	94	18
+2015	11	13	Slovakia	Switzerland	3	2	F		9	1734	1795	+3	0	34	19
+2015	11	17	Austria	Switzerland	1	2	F		-13	1801	1808	−3	+1	20	18
+2016	03	25	Ireland	Switzerland	1	0	F		8	1778	1800	+4	−1	22	20
+2016	03	29	Switzerland	Bosnia and Herzegovina	0	2	F		-22	1778	1748	−3	+4	23	32
+2016	05	28	Switzerland	Belgium	1	2	F		-9	1769	1928	−3	+1	26	10
+2016	06	03	Switzerland	Moldova	2	1	F		1	1770	1350	−1	0	26	117

@@ -16,6 +16,7 @@ import com.tournamentpredictor.service.handler.Last4Handler;
 import com.tournamentpredictor.service.handler.Last8Handler;
 import com.tournamentpredictor.service.handler.StartHandler;
 import com.tournamentpredictor.service.handler.TournamentSnapshotHandler;
+import com.tournamentpredictor.service.handler.TrainingHandler;
 import com.tournamentpredictor.service.simulation.SimulationHandler;
 import com.tournamentpredictor.service.mapper.DisagreeMapMapper;
 import com.tournamentpredictor.service.util.CsvHelper;
@@ -48,6 +49,7 @@ public class MatchResolver {
     private final TournamentSnapshotHandler tournamentSnapshotHandler;
     private final StartHandler startHandler;
     private final SimulationHandler simulationHandler;
+    private final TrainingHandler trainingHandler;
     @Autowired
     public MatchResolver(ConsoleReporter consoleReporter, PredictionConfig predictionConfig) {
         this(new CsvLoader().withQualYears(predictionConfig.getQualFormSinceYear(), predictionConfig.getQualFormUntilYear()), consoleReporter, predictionConfig);
@@ -111,7 +113,15 @@ public class MatchResolver {
         this.startHandler = config != null
                 ? new StartHandler(loader, projectRoot, csvHelper, config)
                 : new StartHandler(loader, projectRoot, csvHelper);
-        this.simulationHandler = new SimulationHandler(loader, projectRoot, new ExpectedGoalsCalculator(), eloCalculator, pathFatigueCalculator, SimulationHandler.DEFAULT_RUNS, SimulationHandler.DEFAULT_SEED);
+        ExpectedGoalsCalculator expectedGoalsCalculator = config == null
+                ? new ExpectedGoalsCalculator()
+                : new ExpectedGoalsCalculator(config.getEloScaleDivisor(), 2.60, config.getGoalDiffPer400Elo(),
+                        config.getExpectedGoalsMultiplier());
+        int simulationRuns = config == null ? SimulationHandler.DEFAULT_RUNS : config.getSimulationRuns();
+        long simulationSeed = config == null ? SimulationHandler.DEFAULT_SEED : config.getSimulationSeed();
+        this.simulationHandler = new SimulationHandler(loader, projectRoot, expectedGoalsCalculator,
+                eloCalculator, pathFatigueCalculator, simulationRuns, simulationSeed);
+        this.trainingHandler = new TrainingHandler(projectRoot);
     }
 
     public void resolveAndWriteLast32(String tournament) throws IOException {
@@ -120,6 +130,10 @@ public class MatchResolver {
 
     public void resolveAndWriteSimulation(String tournament, String startRound) throws IOException {
         simulationHandler.handle(tournament, startRound);
+    }
+
+    public void resolveAndWriteKnockoutsFromGroups(String tournament) throws IOException {
+        simulationHandler.handleKnockoutsFromGroups(tournament);
     }
 
     public void resolveAndWrite(String mode, String tournament) throws IOException {
@@ -161,9 +175,23 @@ public class MatchResolver {
             finalHandler.handle(tournament);
             return;
         }
+        if (mode.equalsIgnoreCase("group-simulation")) {
+            requireTournament(mode, tournament);
+            simulationHandler.handle(tournament, "groups");
+            return;
+        }
+        if (mode.equalsIgnoreCase("knockout-simulation")) {
+            requireTournament(mode, tournament);
+            simulationHandler.handleKnockoutsFromGroups(tournament);
+            return;
+        }
         if (mode.equalsIgnoreCase("simulate")) {
             requireTournament(mode, tournament);
             simulationHandler.handle(tournament);
+            return;
+        }
+        if (mode.equalsIgnoreCase("training") || mode.equalsIgnoreCase("trainning")) {
+            trainingHandler.handle(tournament);
             return;
         }
         if (mode.equalsIgnoreCase("elo-refresh") || mode.equalsIgnoreCase("elo")) {
@@ -178,7 +206,7 @@ public class MatchResolver {
             tournamentSnapshotHandler.handle(tournament);
             return;
         }
-        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, simulate, elo-refresh, snapshot-refresh");
+        throw new IOException("Unknown mode: " + mode + ". Use --browser for the full UI, or run pipeline modes: start, groups, last_32, last_16, last_8, last_4, final, simulate, group-simulation, knockout-simulation, training, elo-refresh, snapshot-refresh");
     }
 
     private void requireTournament(String mode, String tournament) throws IOException {

@@ -1,0 +1,24 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2019	03	21	Austria	Poland	0	1	EQ		-26	1739	1777	−8	+11	36	24
+2019	03	24	Poland	Latvia	2	0	EQ		2	1779	1288	0	−1	24	141
+2019	06	07	North Macedonia	Poland	0	1	EQ		-12	1522	1791	−4	+2	77	23
+2019	06	10	Poland	Israel	4	0	EQ		12	1803	1597	+2	−3	21	59
+2019	09	06	Slovenia	Poland	2	0	EQ		41	1613	1762	+12	−5	53	26
+2019	09	09	Poland	Austria	0	0	EQ		-7	1755	1746	−1	0	27	32
+2019	10	10	Latvia	Poland	0	3	EQ		-6	1224	1761	−2	+1	151	27
+2019	10	13	Poland	North Macedonia	2	0	EQ		8	1769	1535	0	−2	28	72
+2019	11	16	Israel	Poland	1	2	EQ		-14	1554	1783	0	+3	66	24
+2019	11	19	Poland	Slovenia	3	2	EQ		6	1789	1586	0	0	24	60
+2020	09	04	Netherlands	Poland	1	0	ENA		5	2022	1784	0	0	5	24
+2020	09	07	Bosnia and Herzegovina	Poland	1	2	ENA		-21	1678	1805	−4	+1	43	23
+2020	10	07	Poland	Finland	5	1	F		7	1812	1652	+1	−1	22	48
+2020	10	11	Poland	Italy	0	0	ENA		4	1816	1977	+2	−1	20	8
+2020	10	14	Poland	Bosnia and Herzegovina	3	0	ENA		14	1830	1667	+1	−2	19	44
+2020	11	11	Poland	Ukraine	2	0	F		12	1842	1847	0	0	19	17
+2020	11	15	Italy	Poland	2	0	ENA		13	1985	1829	+2	−2	6	19
+2020	11	18	Poland	Netherlands	1	2	ENA		-17	1812	1994	−4	+1	22	7
+2021	03	25	Hungary	Poland	3	3	WQ		-2	1742	1814	0	+1	37	21
+2021	03	28	Poland	Andorra	3	0	WQ		0	1814	1033	0	0	23	185
+2021	03	31	England	Poland	2	1	WQ		7	1977	1807	+1	0	8	22
+2021	06	01	Poland	Russia	1	1	F		-5	1802	1743	0	+1	22	36
+2021	06	08	Poland	Iceland	2	2	F		-7	1795	1611	0	+2	22	57

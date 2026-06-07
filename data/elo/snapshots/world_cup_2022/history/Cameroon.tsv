@@ -1,0 +1,28 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	10	09	Cameroon	Japan	0	0	F	NL	4	1582	1740	+1	−3	62	33
+2020	11	12	Cameroon	Mozambique	4	1	FQ		7	1589	1304	+2	0	60	131
+2020	11	16	Mozambique	Cameroon	0	2	FQ		-15	1289	1604	−5	+2	136	58
+2021	03	26	Cape Verde	Cameroon	3	1	FQ		40	1424	1564	+5	−7	99	65
+2021	03	30	Cameroon	Rwanda	0	0	FQ		-16	1548	1300	−8	+3	73	133
+2021	06	04	Cameroon	Nigeria	1	0	F	AT	14	1562	1673	+5	0	68	41
+2021	06	08	Cameroon	Nigeria	0	0	F	AT	3	1565	1670	0	−1	68	43
+2021	09	03	Cameroon	Malawi	2	0	WQ		7	1572	1298	+1	−1	66	133
+2021	09	06	Ivory Coast	Cameroon	2	1	WQ		11	1643	1561	+1	−3	51	69
+2021	10	08	Cameroon	Mozambique	3	1	WQ		7	1568	1300	+2	−1	68	133
+2021	10	11	Cameroon	Mozambique	1	0	WQ	MA	7	1575	1293	+2	0	65	134
+2021	11	13	Cameroon	Malawi	4	0	WQ	ZA	13	1588	1293	+4	−4	63	135
+2021	11	16	Cameroon	Ivory Coast	1	0	WQ		19	1607	1646	+4	−1	61	50
+2022	01	09	Cameroon	Burkina Faso	2	1	AR		16	1623	1555	+3	0	58	67
+2022	01	13	Cameroon	Ethiopia	4	1	AR		8	1631	1321	+4	−4	54	126
+2022	01	17	Cameroon	Cape Verde	1	1	AR		-16	1615	1480	−7	+1	61	86
+2022	01	24	Cameroon	Comoros	2	1	AR		4	1619	1268	+3	−1	58	141
+2022	01	29	Cameroon	Gambia	2	0	AR		13	1632	1441	+4	−3	54	94
+2022	02	03	Cameroon	Egypt	0	0	AR		-3	1629	1687	0	+1	54	44
+2022	02	05	Cameroon	Burkina Faso	3	3	AR		-11	1618	1568	−5	0	59	65
+2022	03	25	Cameroon	Algeria	0	1	WQ		-21	1597	1713	−5	+2	62	40
+2022	03	29	Algeria	Cameroon	1	2	WQ		-31	1682	1628	−4	+6	44	56
+2022	06	09	Cameroon	Burundi	1	0	FQ	TZ	4	1632	1256	+1	+1	55	145
+2022	09	23	Uzbekistan	Cameroon	2	0	F	KR	18	1574	1614	+3	−3	67	60
+2022	09	27	South Korea	Cameroon	1	0	F		4	1783	1610	+1	−1	28	61
+2022	11	09	Cameroon	Jamaica	1	1	F		-4	1606	1556	0	+1	61	68
+2022	11	18	Cameroon	Panama	1	1	F	AE	1	1607	1645	0	−1	60	53

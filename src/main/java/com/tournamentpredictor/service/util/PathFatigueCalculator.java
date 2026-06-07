@@ -14,7 +14,7 @@ import com.tournamentpredictor.config.PredictionConfig;
  * For each prior opponent:
  * <pre>
  *   rawScore  = opponentElo - tournamentAvgElo
- *   weighted  = rawScore x stageMult(round beaten)
+ *   weighted  = rawScore x stageMult(round beaten) x upsetMult(if applicable)
  * </pre>
  * Accumulated across all prior rounds:
  * <pre>
@@ -49,6 +49,7 @@ public class PathFatigueCalculator {
     private double stageMultLast16        = 1.0;
     private double stageMultLast8         = 1.2;
     private double stageMultLast4         = 1.5;
+    private double upsetMultiplier         = 1.25;
     private double depthExcellentMultiplier = 0.70;
     private double depthGoodMultiplier    = 0.85;
     private double depthLimitedMultiplier = 1.15;
@@ -62,6 +63,7 @@ public class PathFatigueCalculator {
         this.stageMultLast16        = config.getPathFatigueStageMultLast16();
         this.stageMultLast8         = config.getPathFatigueStageMultLast8();
         this.stageMultLast4         = config.getPathFatigueStageMultLast4();
+        this.upsetMultiplier         = config.getPathFatigueUpsetMultiplier();
         this.depthExcellentMultiplier = config.getPathFatigueDepthExcellentMultiplier();
         this.depthGoodMultiplier    = config.getPathFatigueDepthGoodMultiplier();
         this.depthLimitedMultiplier = config.getPathFatigueDepthLimitedMultiplier();
@@ -100,8 +102,14 @@ public class PathFatigueCalculator {
      * but cannot erase fatigue already accumulated earlier in the tournament.
      */
     public int knockoutWeightedContribution(int opponentElo, String stageBeat) {
+        return knockoutWeightedContribution(opponentElo, stageBeat, false);
+    }
+
+    /** Upset wins amplify the normal opponent-strength load; they do not add a flat penalty. */
+    public int knockoutWeightedContribution(int opponentElo, String stageBeat, boolean upsetWin) {
         int raw = Math.max(0, rawScore(opponentElo));
-        return (int) Math.round(raw * stageMultiplierForRound(stageBeat));
+        double multiplier = stageMultiplierForRound(stageBeat) * (upsetWin ? upsetMultiplier : 1.0);
+        return (int) Math.round(raw * multiplier);
     }
 
     /**

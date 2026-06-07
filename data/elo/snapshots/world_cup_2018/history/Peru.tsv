@@ -1,0 +1,30 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2016	03	24	Peru	Venezuela	2	2	WQ		-13	1773	1625	−2	+3	24	51
+2016	03	29	Uruguay	Peru	1	0	WQ		7	1963	1766	0	−1	8	27
+2016	05	23	Peru	Trinidad and Tobago	4	0	F		6	1772	1581	+2	−1	25	62
+2016	05	28	Peru	El Salvador	3	1	F	US	4	1776	1436	+2	0	23	100
+2016	06	04	Peru	Haiti	1	0	CA	US	8	1784	1490	+1	−3	21	86
+2016	06	08	Ecuador	Peru	2	2	CA	US	-7	1875	1791	0	0	14	20
+2016	06	12	Peru	Brazil	1	0	CA	US	39	1830	1977	+3	−3	17	6
+2016	06	17	Colombia	Peru	0	0	CA	US	-10	1962	1840	−2	+1	8	16
+2016	09	01	Bolivia	Peru	2	0	WQ		43	1616	1797	+7	−4	56	21
+2016	09	06	Peru	Ecuador	2	1	WQ		16	1813	1810	+3	−3	18	19
+2016	10	06	Peru	Argentina	2	2	WQ		10	1823	2090	0	0	18	1
+2016	10	11	Chile	Peru	2	1	WQ		9	1957	1814	+1	−2	6	20
+2016	11	10	Paraguay	Peru	1	4	WQ		-40	1722	1854	−8	+3	36	17
+2016	11	15	Peru	Brazil	0	2	WQ		-21	1833	2087	−3	0	20	1
+2017	03	23	Venezuela	Peru	2	2	WQ		3	1685	1830	0	+1	43	18
+2017	03	28	Peru	Uruguay	2	1	WQ		18	1848	1869	+1	+1	17	13
+2017	06	08	Peru	Paraguay	1	0	F		4	1852	1712	0	−1	16	36
+2017	06	13	Peru	Jamaica	3	1	F		2	1854	1522	0	0	15	79
+2017	08	31	Peru	Bolivia	2	1	WQ		7	1861	1678	0	−4	14	45
+2017	09	05	Ecuador	Peru	1	2	WQ		-22	1776	1883	−6	+2	27	11
+2017	10	05	Argentina	Peru	0	0	WQ		-11	1984	1894	−1	0	5	11
+2017	10	10	Peru	Colombia	1	1	WQ		-4	1890	1932	0	0	11	8
+2017	11	11	New Zealand	Peru	0	0	WQ		13	1528	1877	+1	−2	75	13
+2017	11	15	Peru	New Zealand	2	0	WQ		4	1881	1524	0	0	12	75
+2018	03	23	Peru	Croatia	2	0	F	US	14	1895	1842	+2	−2	10	18
+2018	03	27	Peru	Iceland	3	1	F	US	11	1906	1786	+1	−1	10	22
+2018	05	29	Peru	Scotland	2	0	F		5	1911	1712	0	−1	10	40
+2018	06	03	Peru	Saudi Arabia	3	0	F	CH	5	1916	1589	0	−1	10	64
+2018	06	09	Sweden	Peru	0	0	F		1	1793	1915	0	0	20	10

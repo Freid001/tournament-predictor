@@ -250,9 +250,9 @@ public class PathHandler {
         Map<String, List<String[]>> matchRows    = new HashMap<>();
         Map<String, String[]>       matchHeaders = new HashMap<>();
 
-        Path matchupDir = projectRoot.resolve("data").resolve("matchups").resolve(tournament);
+        Path simulationDir = projectRoot.resolve("data").resolve("simulations").resolve(tournament);
         for (String[] roundFile : ROUND_FILES) {
-            Path file = matchupDir.resolve(roundFile[0] + ".csv");
+            Path file = simulationDir.resolve("matchup_paths_" + roundFile[0] + ".csv");
             if (!Files.exists(file)) continue;
             List<String> lines = Files.readAllLines(file);
             if (lines.size() < 2) continue;
@@ -270,9 +270,9 @@ public class PathHandler {
         }
 
         // Find all starting matchIds where team appears in last_32
-        Path last32File = matchupDir.resolve("last_32.csv");
+        Path last32File = simulationDir.resolve("matchup_paths_last_32.csv");
         if (!Files.exists(last32File)) {
-            System.out.println("\n  No matchup data. Run --mode=groups first to generate last_32 matchups.\n");
+            System.out.println("\n  No simulation matchup-path data. Run --mode=groups first to generate last_32 matchups.\n");
             return;
         }
 
@@ -326,7 +326,7 @@ public class PathHandler {
         }
 
         if (startingMatchIds.isEmpty()) {
-            System.out.println("\n  No matchup data found for: " + teamLower);
+            System.out.println("\n  No simulation matchup-path data found for: " + teamLower);
             System.out.println("  Check that --filter matches a team name in the matchup files.\n");
             return;
         }

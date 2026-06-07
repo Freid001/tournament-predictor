@@ -69,18 +69,21 @@ class HtmlReporterTest {
     @Test
     void formDotsRenderInsideEloTableWithContributionTooltip() {
         EloBreakdown breakdown = new EloBreakdown(1900, false, 0,
-                0, 0, 0, 0, 0, 0, 12,
-                List.<String[]>of(new String[]{"W", "Norway", "3-0", "9"}));
+                0, 0, 0, 0, 0, 0, 0, 12,
+                0, 0, 0, 0,
+                "", "", "", "",
+                List.of(), List.<String[]>of(new String[]{"W", "Norway", "3-0", "12"}));
 
         String html = HtmlReporter.buildTeamBreakdownHtml("Spain", breakdown);
 
-        assertTrue(html.contains("Qualification Form"));
+        assertTrue(html.contains("Pre-tournament Form"));
+        assertFalse(html.contains("Qualification Form"));
         assertTrue(html.contains("border-radius:50%"));
         assertTrue(html.contains("Spain vs"));
         assertTrue(html.contains("Norway"));
         assertTrue(html.contains("3-0"));
-        assertTrue(html.contains("ELO +9"));
-        assertTrue(html.indexOf("Qualification Form") < html.indexOf("border-radius:50%"));
+        assertTrue(html.contains("ELO +12"));
+        assertTrue(html.indexOf("Pre-tournament Form") < html.indexOf("border-radius:50%"));
     }
 
 
@@ -114,8 +117,11 @@ class HtmlReporterTest {
         String html = reporter.getHtml();
         assertTrue(html.contains("Most Likely Winner"));
         assertFalse(html.contains("<th>Winner<"));
-        assertTrue(html.contains("78.4%"));
-        assertTrue(html.contains("21.6%"));
+        assertFalse(html.contains("78.4%"));
+        assertFalse(html.contains("21.6%"));
+        assertTrue(html.matches("(?s).*Spain \\([0-9]+%\\).*"));
+        assertFalse(html.contains("head-to-head"));
+        assertFalse(html.contains("tournament routes"));
         assertFalse(html.contains("Odds to Reach Last 16"));
         assertFalse(html.contains("Net Winnings"));
         assertTrue(html.contains("Score model"));
@@ -167,7 +173,8 @@ class HtmlReporterTest {
     @Test
     void matchupRowsShowExactRouteLikelihood() {
         HtmlReporter reporter = new HtmlReporter()
-                .withMatchupLikelihood(Map.of("M1|Spain|Uruguay", "42.0"));
+                .withMatchupLikelihood(Map.of("M1|Spain|Uruguay", "42.0"))
+                .withMatchupSimulationRuns(Map.of("M1|Spain|Uruguay", "10500"));
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo,do_you_disagree",
                 "M1,A1(Spain),B2(Uruguay),predicted,Spain (62%),"
@@ -180,6 +187,16 @@ class HtmlReporterTest {
         String html = reporter.getHtml();
         assertTrue(html.contains("Match Likelihood"));
         assertTrue(html.contains("42.0%"));
+        assertTrue(html.contains("10,500 simulations for this matchup"));
+
+        HtmlReporter reversedReporter = new HtmlReporter()
+                .withMatchupSimulationRuns(Map.of("M1|Spain|Uruguay", "10500"));
+        reversedReporter.printMatchups("Last 32", List.of(
+                "match_id,team1,team2,path,elo,do_you_disagree",
+                "M1,B2(Uruguay),A1(Spain),predicted,Spain (62%),"),
+                new EloCalculator(), null, Map.of(), Map.of(
+                        "Spain", breakdown(1900), "Uruguay", breakdown(1700)));
+        assertTrue(reversedReporter.getHtml().contains("10,500 simulations for this matchup"));
     }
 
     @Test
@@ -215,6 +232,13 @@ class HtmlReporterTest {
         assertTrue(html.contains("<th style=\"width:28px\" aria-label=\"Details\"></th><th>Match</th>"));
         assertTrue(html.contains("</span></td><td>M2</td>"));
         assertTrue(html.contains("icon.classList.toggle('expanded',isHidden)"));
+        assertTrue(html.contains("localStorage.removeItem('predictor_team')"));
+        assertTrue(html.contains("if(teamSel)teamSel.value=''"));
+        assertTrue(html.contains("table-no-results"));
+        assertTrue(html.contains("No results."));
+        assertTrue(html.contains("table-pagination"));
+        assertTrue(html.contains("const pageSize=100"));
+        assertTrue(html.contains("function changeTablePage"));
         assertFalse(html.contains("▶"));
         assertFalse(html.contains("▼"));
         assertTrue(html.indexOf("60.0%") < html.indexOf("25.0%"));
@@ -233,12 +257,13 @@ class HtmlReporterTest {
                 "M89,W77(Spain),W74(France),predicted,Spain (55%),",
                 "M89,W77(Spain),W74(Brazil),alt,Spain (60%),",
                 "M90,W75(Germany),W73(Canada),predicted,Germany (58%),",
-                "M91,W76(Italy),W78(Japan),alt,Italy (51%),"
+                "M91,W76(Italy),W78(Japan),alt,Italy (51%),",
+                "M92,W80(England),W79(DR Congo),upset,DR Congo (17%),"
         );
 
         reporter.printMatchups("Last 16", lines, new EloCalculator(), null,
                 Map.of("Spain", "2/1", "France", "3/1", "Brazil", "4/1"),
-                Map.of("Spain", breakdown(1900), "France", breakdown(1880), "Brazil", breakdown(1850)));
+                Map.of("Spain", breakdown(1900), "France", breakdown(1880), "Brazil", breakdown(1850), "England", breakdown(2020), "DR Congo", breakdown(1655)));
 
         String html = reporter.getHtml();
         assertTrue(html.contains("active path-btn\" data-path=\"both"));
@@ -247,6 +272,9 @@ class HtmlReporterTest {
         assertTrue(html.contains("<th>Path</th>"));
         assertTrue(html.contains(">Predicted</span>"));
         assertTrue(html.contains(">Alternative</span>"));
+        assertTrue(html.contains("data-path=\"upset\""));
+        assertTrue(html.contains(">Upset</button>"));
+        assertTrue(html.contains(">Upset</span>"));
         assertTrue(html.contains("&lt;0.1%"));
         assertTrue(html.contains("Not observed"));
         assertFalse(html.contains(">0.0%"));
@@ -257,7 +285,7 @@ class HtmlReporterTest {
     }
 
 
-    void userOverrideIsTheMainWinnerWithModelContext() {
+    void userOverrideIsTheOnlyWinnerShownInMatchTable() {
         HtmlReporter reporter = new HtmlReporter()
                 .withSimulationAdvance(Map.of("Germany", "60.0", "France", "40.0"));
         reporter.printMatchups("Last 16", List.of(
@@ -266,11 +294,28 @@ class HtmlReporterTest {
         ), new EloCalculator(), null, Map.of(), Map.of());
 
         String html = reporter.getHtml();
-        assertTrue(html.contains("France (45%)"));
+        assertTrue(html.contains("France"));
         assertTrue(html.contains("User Pick"));
-        assertTrue(html.contains("Model: "));
-        assertTrue(html.contains("Germany"));
-        assertTrue(html.contains("Simulation: "));
+        assertFalse(html.contains("Model: "));
+        assertFalse(html.contains("Simulation: "));
+    }
+
+    @Test
+    void tournamentPathLinksToEarlierUpsetMatch() {
+        HtmlReporter reporter = new HtmlReporter()
+                .withPathNavigation("world_cup_2026", "last_16_match");
+        reporter.printMatchups("Last 16", List.of(
+                "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,model_prediction,selection_source",
+                "M91,W76(F2(Japan)),W78(I2(Senegal)),upset,Senegal (52%),1906,0,1867,0,59,123,G|Netherlands:-2 > U@M76|Brazil:-5,G|France:-7 > Ecuador:-6,Senegal (52%),model"
+        ), new EloCalculator(), null, Map.of(), Map.of(
+                "Japan", breakdown(1906), "Senegal", breakdown(1867)));
+
+        String html = reporter.getHtml();
+        assertTrue(html.contains("Brazil (Upset)</a>"));
+        assertTrue(html.contains("/view/path-game?tournament=world_cup_2026&amp;round=last_16_match&amp;team=Japan&amp;opponent=Brazil&amp;match=M76"));
+        assertTrue(html.contains("data-match=\"M91\""));
+        assertTrue(html.contains("focusMatch"));
+        assertTrue(html.contains("path-focus-row"));
     }
 
     private static EloBreakdown breakdown(int elo) {

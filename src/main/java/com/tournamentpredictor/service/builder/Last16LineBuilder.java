@@ -50,7 +50,7 @@ public class Last16LineBuilder {
                 last32PredByTeam.merge(matchId + "|" + eloWinner, path, pathCalculator::bestPredicted);
             }
             if (!eloLoser.isEmpty()) {
-                last32PredByTeam.merge(matchId + "|" + eloLoser, "alt", pathCalculator::bestPredicted);
+                last32PredByTeam.merge(matchId + "|" + eloLoser, "upset", pathCalculator::bestPredicted);
             }
         }
 
@@ -72,20 +72,21 @@ public class Last16LineBuilder {
                         continue;
                     }
                     String path = pathCalculator.computeLast16PredictedMatch(display1, display2, last32PredByTeam);
-                    String[] opp1 = findPriorOpponent(team1, last32Rows, eloRatings);
-                    String[] opp2 = findPriorOpponent(team2, last32Rows, eloRatings);
-                    int t1ContribW = pathFatigueCalc.knockoutWeightedContribution(Integer.parseInt(opp1[1]), "last_32");
-                    int t2ContribW = pathFatigueCalc.knockoutWeightedContribution(Integer.parseInt(opp2[1]), "last_32");
+                    String[] opp1 = findPriorOpponent(team1, sourceMatchId(display1), last32Rows, eloRatings);
+                    String[] opp2 = findPriorOpponent(team2, sourceMatchId(display2), last32Rows, eloRatings);
+                    int t1ContribW = pathFatigueCalc.knockoutWeightedContribution(Integer.parseInt(opp1[1]), "last_32", "true".equals(opp1[4]));
+                    int t2ContribW = pathFatigueCalc.knockoutWeightedContribution(Integer.parseInt(opp2[1]), "last_32", "true".equals(opp2[4]));
                     int t1ExistingTotal = parseInt(opp1[2]);
                     int t2ExistingTotal = parseInt(opp2[2]);
                     int t1NewTotal = t1ExistingTotal + t1ContribW;
                     int t2NewTotal = t2ExistingTotal + t2ContribW;
                     int t1ContribElo = pathFatigueCalc.eloAdjustmentFromWeighted(t1ContribW);
                     int t2ContribElo = pathFatigueCalc.eloAdjustmentFromWeighted(t2ContribW);
-                    String t1Segment = opp1[0].isEmpty() ? "" : opp1[0] + ":" + t1ContribElo;
-                    String t2Segment = opp2[0].isEmpty() ? "" : opp2[0] + ":" + t2ContribElo;
+                    String t1Segment = opp1[0].isEmpty() ? "" : ("true".equals(opp1[4]) ? "U@" : "K@") + opp1[5] + "|" + opp1[0] + ":" + t1ContribElo;
+                    String t2Segment = opp2[0].isEmpty() ? "" : ("true".equals(opp2[4]) ? "U@" : "K@") + opp2[5] + "|" + opp2[0] + ":" + t2ContribElo;
                     String t1Chain = appendChain(opp1[3], t1Segment);
                     String t2Chain = appendChain(opp2[3], t2Segment);
+                    path = pathCalculator.classifyCompletedRoute(path, t1Chain, t2Chain);
                     int t1AdjElo = eloRatings.getOrDefault(team1, 0) + fatigueAdjustedElo(team1, t1NewTotal, snapshots);
                     int t2AdjElo = eloRatings.getOrDefault(team2, 0) + fatigueAdjustedElo(team2, t2NewTotal, snapshots);
                     String adjEloPrediction = predictionHelper.computeEloPredictionFromElos(team1, team2, t1AdjElo, t2AdjElo);
@@ -106,13 +107,15 @@ public class Last16LineBuilder {
         return pathFatigueCalc.applyDepthMultiplier(fatigue, depthLevel);
     }
 
-    /** Returns [loserName, loserElo, existingWeightedTotal, existingChain]. */
-    private String[] findPriorOpponent(String teamName, List<String> priorRows, Map<String, Integer> eloRatings) {
-        String[] fallback = null;
+    /** Returns [opponentName, opponentElo, existingWeightedTotal, existingChain, upsetWin, matchId]. */
+    private String[] findPriorOpponent(String teamName, String sourceMatchId, List<String> priorRows, Map<String, Integer> eloRatings) {
+        String[] winningFallback = null;
+        String[] losingFallback = null;
         for (String row : priorRows) {
             if (row.trim().isEmpty() || row.startsWith("match_id")) continue;
             String[] cols = row.split(",", -1);
             if (cols.length < 5) continue;
+            if (!sourceMatchId.isBlank() && !sourceMatchId.equalsIgnoreCase(cols[0].trim())) continue;
             String t1 = predictionHelper.extractTeamName(cols[1].trim());
             String t2 = predictionHelper.extractTeamName(cols[2].trim());
             String winner = predictionHelper.parseTeamFromPrediction(cols[4].trim());
@@ -121,18 +124,25 @@ public class Last16LineBuilder {
                 boolean winnerIsT1 = winner.equalsIgnoreCase(t1);
                 String loser = winnerIsT1 ? t2 : t1;
                 String[] result = new String[]{loser, String.valueOf(eloRatings.getOrDefault(loser, pathFatigueCalc.getTournamentAvgElo())),
-                        existingPathFatigue(cols, winnerIsT1), existingPathOpponent(cols, winnerIsT1)};
+                        existingPathFatigue(cols, winnerIsT1), existingPathOpponent(cols, winnerIsT1), "false", cols[0].trim()};
                 if (isPredicted) return result;
-                if (fallback == null) fallback = result;
-            } else if (fallback == null) {
-                if (t1.equalsIgnoreCase(teamName)) fallback = new String[]{t2, String.valueOf(eloRatings.getOrDefault(t2, pathFatigueCalc.getTournamentAvgElo())),
-                        existingPathFatigue(cols, true), existingPathOpponent(cols, true)};
-                else if (t2.equalsIgnoreCase(teamName)) fallback = new String[]{t1, String.valueOf(eloRatings.getOrDefault(t1, pathFatigueCalc.getTournamentAvgElo())),
-                        existingPathFatigue(cols, false), existingPathOpponent(cols, false)};
+                if (winningFallback == null) winningFallback = result;
+            } else if (losingFallback == null) {
+                if (t1.equalsIgnoreCase(teamName)) losingFallback = new String[]{t2, String.valueOf(eloRatings.getOrDefault(t2, pathFatigueCalc.getTournamentAvgElo())),
+                        existingPathFatigue(cols, true), existingPathOpponent(cols, true), "true", cols[0].trim()};
+                else if (t2.equalsIgnoreCase(teamName)) losingFallback = new String[]{t1, String.valueOf(eloRatings.getOrDefault(t1, pathFatigueCalc.getTournamentAvgElo())),
+                        existingPathFatigue(cols, false), existingPathOpponent(cols, false), "true", cols[0].trim()};
             }
         }
-        if (fallback != null) return fallback;
-        return new String[]{"", String.valueOf(pathFatigueCalc.getTournamentAvgElo()), "0", ""};
+        if (winningFallback != null) return winningFallback;
+        if (losingFallback != null) return losingFallback;
+        return new String[]{"", String.valueOf(pathFatigueCalc.getTournamentAvgElo()), "0", "", "false", ""};
+    }
+
+    private static String sourceMatchId(String display) {
+        if (display == null) return "";
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("^W(\\d+)\\(").matcher(display.trim());
+        return matcher.find() ? "M" + matcher.group(1) : "";
     }
 
     private static String appendChain(String existingChain, String segment) {

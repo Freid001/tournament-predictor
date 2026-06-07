@@ -1,0 +1,24 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2019	03	21	Kosovo	Denmark	2	2	F		7	1503	1890	+2	0	82	14
+2019	03	26	Switzerland	Denmark	3	3	EQ		-8	1923	1898	−1	+2	11	13
+2019	06	07	Denmark	Ireland	1	1	EQ		-13	1885	1727	−3	+1	15	37
+2019	06	10	Denmark	Georgia	5	1	EQ		5	1890	1527	0	−2	15	74
+2019	09	05	Gibraltar	Denmark	0	6	EQ		-2	1091	1892	−1	0	181	14
+2019	09	08	Georgia	Denmark	0	0	EQ		13	1546	1879	+3	0	70	16
+2019	10	12	Denmark	Switzerland	1	0	EQ		15	1894	1881	+2	−2	14	16
+2019	10	15	Denmark	Luxembourg	4	0	F		1	1895	1344	0	0	14	123
+2019	11	15	Denmark	Gibraltar	6	0	EQ		0	1895	1086	−2	0	16	182
+2019	11	18	Ireland	Denmark	1	1	EQ		4	1729	1891	+1	0	36	16
+2020	09	05	Denmark	Belgium	0	2	ENA		-22	1869	2105	−2	0	17	1
+2020	09	08	Denmark	England	0	0	ENA		0	1869	1966	0	0	16	10
+2020	10	07	Denmark	Faroe Islands	4	0	F		1	1870	1254	+1	0	15	145
+2020	10	11	Iceland	Denmark	0	3	ENA		-27	1660	1897	−6	0	49	15
+2020	10	14	England	Denmark	0	1	ENA		-30	1964	1927	−5	+2	11	13
+2020	11	11	Denmark	Sweden	2	0	F		7	1934	1808	+1	−1	12	21
+2020	11	15	Denmark	Iceland	2	1	ENA		4	1938	1638	0	0	13	49
+2020	11	18	Belgium	Denmark	4	2	ENA		11	2110	1927	0	−1	2	13
+2021	03	25	Israel	Denmark	0	2	WQ		-12	1579	1939	−2	+1	63	12
+2021	03	28	Denmark	Moldova	8	0	WQ		1	1940	1221	0	0	12	155
+2021	03	31	Austria	Denmark	0	4	WQ		-32	1754	1972	−6	+3	33	9
+2021	06	02	Denmark	Germany	1	1	F	AT	-1	1971	1934	0	0	9	12
+2021	06	06	Denmark	Bosnia and Herzegovina	2	0	F		2	1973	1628	0	−2	9	52

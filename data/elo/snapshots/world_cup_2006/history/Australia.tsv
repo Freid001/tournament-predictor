@@ -1,0 +1,29 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2004	02	18	Venezuela	Australia	1	1	F		2	1645	1818	0	+1	52	17
+2004	03	30	Australia	South Africa	1	0	F	EN	4	1822	1571	+2	+1	16	64
+2004	05	21	Australia	Turkey	1	3	F		-18	1804	1861	−1	+3	18	12
+2004	05	24	Australia	Turkey	0	1	F		-11	1793	1872	−2	0	20	12
+2004	05	29	Australia	New Zealand	1	0	WQO		5	1798	1514	+1	−1	19	75
+2004	05	31	Australia	Tahiti	9	0	WQO		4	1802	1285	+1	+1	19	134
+2004	06	02	Australia	Fiji	6	1	WQO		4	1806	1355	0	−2	20	120
+2004	06	04	Australia	Vanuatu	3	0	WQO		2	1808	1261	+1	0	19	142
+2004	06	06	Australia	Solomon Islands	2	2	WQO		-23	1785	1378	−6	+3	25	116
+2004	10	09	Solomon Islands	Australia	1	5	OC		-14	1364	1799	−2	+2	115	23
+2004	10	12	Australia	Solomon Islands	6	0	OC		5	1804	1359	+1	−2	22	117
+2004	11	16	Australia	Norway	2	2	F	EN	0	1804	1798	0	0	22	23
+2005	02	09	South Africa	Australia	1	1	F		3	1586	1801	+1	−1	66	22
+2005	03	26	Australia	Iraq	2	1	F		2	1803	1507	+1	0	21	80
+2005	03	29	Australia	Indonesia	3	0	F		1	1804	1297	0	0	21	133
+2005	06	09	Australia	New Zealand	1	0	F	EN	3	1807	1514	0	−1	25	78
+2005	06	15	Germany	Australia	4	3	CC		13	1900	1794	+2	−2	10	27
+2005	06	18	Argentina	Australia	4	2	CC	DE	16	2031	1778	0	−1	1	27
+2005	06	21	Tunisia	Australia	2	0	CC	DE	51	1693	1727	+14	−7	39	34
+2005	09	03	Australia	Solomon Islands	7	0	WQ		6	1733	1353	+3	−1	33	111
+2005	09	06	Solomon Islands	Australia	1	2	WQ		-7	1346	1740	−3	+1	114	33
+2005	10	09	Australia	Jamaica	5	0	F	EN	16	1756	1645	+2	−3	32	52
+2005	11	12	Uruguay	Australia	1	0	WQ		11	1840	1745	+3	0	16	33
+2005	11	16	Australia	Uruguay	1	0	WQ		20	1765	1820	+4	−3	29	20
+2006	02	22	Bahrain	Australia	1	3	SQ		-17	1489	1782	−5	+4	85	26
+2006	05	25	Australia	Greece	1	0	F		8	1790	1802	+2	0	25	22
+2006	06	04	Netherlands	Australia	1	1	F		-7	1994	1797	0	0	2	25
+2006	06	07	Australia	Liechtenstein	3	1	F	DE	1	1798	1120	0	0	25	170

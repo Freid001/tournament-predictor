@@ -1,0 +1,30 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2004	02	18	Italy	Czechia	2	2	F		-1	1923	1979	0	0	8	6
+2004	03	31	Portugal	Italy	1	2	F		-13	1904	1936	0	0	9	8
+2004	04	28	Italy	Spain	1	1	F		-1	1935	2015	0	0	8	3
+2004	05	30	Tunisia	Italy	0	4	F		-11	1666	1946	−1	+1	45	7
+2004	06	14	Denmark	Italy	0	0	EC	PT	5	1875	1941	0	0	9	7
+2004	06	18	Italy	Sweden	1	1	EC	PT	-7	1934	1851	0	+3	8	13
+2004	06	22	Italy	Bulgaria	2	1	EC	PT	10	1944	1683	0	−1	7	40
+2004	08	18	Iceland	Italy	2	0	F		25	1595	1919	+4	−1	62	8
+2004	09	04	Italy	Norway	2	1	WQ		8	1927	1776	+1	0	7	28
+2004	09	08	Moldova	Italy	0	1	WQ		-3	1407	1930	0	−1	104	8
+2004	10	09	Slovenia	Italy	1	0	WQ		30	1677	1900	+11	0	38	8
+2004	10	13	Italy	Belarus	4	3	WQ		4	1904	1608	0	0	8	60
+2004	11	17	Italy	Finland	1	0	F		3	1907	1679	0	−2	8	41
+2005	02	09	Italy	Russia	2	0	F		6	1913	1760	0	−1	8	30
+2005	03	26	Italy	Scotland	2	0	WQ		5	1918	1598	0	−2	8	63
+2005	03	30	Italy	Iceland	0	0	F		-9	1909	1528	−1	+3	9	73
+2005	06	04	Norway	Italy	0	0	WQ		1	1794	1908	−1	0	25	9
+2005	06	08	Italy	Serbia and Montenegro	1	1	F	CA	-4	1904	1775	0	+1	9	28
+2005	06	11	Ecuador	Italy	1	1	F	US	4	1755	1900	0	−1	30	10
+2005	08	17	Ireland	Italy	1	2	F		-12	1844	1912	−1	+2	16	8
+2005	09	03	Scotland	Italy	1	1	WQ		10	1630	1902	+1	−2	55	10
+2005	09	07	Belarus	Italy	1	4	WQ		-15	1567	1917	−3	+1	64	9
+2005	10	08	Italy	Slovenia	1	0	WQ		4	1921	1643	+2	+1	7	54
+2005	10	12	Italy	Moldova	2	1	WQ		1	1922	1429	−1	0	8	98
+2005	11	12	Netherlands	Italy	1	3	F		-23	1992	1945	0	+1	2	7
+2005	11	16	Italy	Ivory Coast	1	1	F	CH	-6	1939	1701	0	+1	7	41
+2006	03	01	Italy	Germany	4	1	F		10	1949	1881	0	−1	7	11
+2006	05	31	Switzerland	Italy	1	1	F		2	1794	1947	0	0	24	7
+2006	06	02	Italy	Ukraine	0	0	F	CH	-4	1943	1784	0	+1	7	27

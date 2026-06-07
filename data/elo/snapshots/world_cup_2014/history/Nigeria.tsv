@@ -1,0 +1,38 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	01	11	Nigeria	Angola	0	0	F		-7	1656	1492	−1	0	47	92
+2012	02	15	Liberia	Nigeria	0	2	F		-4	1245	1660	−1	0	143	46
+2012	02	29	Rwanda	Nigeria	0	0	FQ		6	1461	1654	+2	−2	96	48
+2012	04	12	Egypt	Nigeria	3	2	F	AE	8	1730	1646	+3	−4	31	51
+2012	05	23	Peru	Nigeria	1	0	F		5	1722	1641	0	0	35	51
+2012	06	03	Nigeria	Namibia	1	0	WQ		3	1644	1300	0	0	50	132
+2012	06	09	Malawi	Nigeria	1	1	WQ		9	1390	1635	+1	−4	110	53
+2012	06	16	Nigeria	Rwanda	2	0	FQ		8	1643	1400	+3	0	48	108
+2012	08	15	Niger	Nigeria	0	0	F		6	1299	1637	+3	−3	134	51
+2012	09	08	Liberia	Nigeria	2	2	FQ		13	1291	1624	+3	−2	139	53
+2012	10	13	Nigeria	Liberia	6	1	FQ		7	1631	1301	+1	−2	52	136
+2012	11	14	Nigeria	Venezuela	3	1	F	US	19	1650	1708	+2	−3	49	35
+2013	01	09	Cape Verde	Nigeria	0	0	F	PT	6	1431	1644	0	0	103	50
+2013	01	21	Burkina Faso	Nigeria	1	1	AR	ZA	13	1459	1631	+4	−1	94	50
+2013	01	25	Nigeria	Zambia	1	1	AR	ZA	-5	1626	1560	−2	+1	53	71
+2013	01	29	Nigeria	Ethiopia	2	0	AR	ZA	11	1637	1305	+4	−5	49	135
+2013	02	03	Nigeria	Ivory Coast	2	1	AR	ZA	38	1675	1805	+5	−3	44	20
+2013	02	06	Nigeria	Mali	4	1	AR	ZA	33	1708	1553	+8	−8	36	71
+2013	02	10	Nigeria	Burkina Faso	1	0	AR	ZA	13	1721	1521	+1	−2	34	80
+2013	03	23	Nigeria	Kenya	1	1	WQ		-17	1704	1401	−1	+1	35	109
+2013	05	31	Mexico	Nigeria	2	2	F	US	-5	1870	1709	−2	0	15	37
+2013	06	05	Kenya	Nigeria	0	1	WQ		-9	1392	1718	−1	+1	111	35
+2013	06	12	Namibia	Nigeria	1	1	WQ		14	1314	1704	+4	−2	131	36
+2013	06	17	Nigeria	Tahiti	6	1	CC	BR	6	1710	1224	+1	0	35	149
+2013	06	20	Uruguay	Nigeria	2	1	CC	BR	16	1852	1694	+3	−6	14	41
+2013	06	23	Spain	Nigeria	3	0	CC	BR	6	2163	1688	0	−1	1	42
+2013	08	14	South Africa	Nigeria	0	2	NMC		-21	1545	1709	−7	+7	74	35
+2013	09	07	Nigeria	Malawi	2	0	WQ		4	1713	1333	+1	0	35	128
+2013	09	10	Nigeria	Burkina Faso	4	1	F		7	1720	1559	+2	−1	33	68
+2013	10	13	Ethiopia	Nigeria	1	2	WQ		-9	1387	1729	−2	+4	110	29
+2013	10	28	Jordan	Nigeria	1	0	F		12	1573	1717	+2	−1	65	32
+2013	11	16	Nigeria	Ethiopia	2	0	WQ		5	1722	1382	+2	0	30	113
+2013	11	18	Italy	Nigeria	2	2	F	EN	-5	1906	1727	−1	0	11	30
+2014	03	05	Mexico	Nigeria	0	0	F	US	-2	1808	1729	−1	+2	22	29
+2014	05	28	Nigeria	Scotland	2	2	F	EN	-1	1728	1710	0	0	30	36
+2014	06	03	Greece	Nigeria	0	0	F	US	-3	1818	1731	0	+1	20	30
+2014	06	07	United States	Nigeria	2	1	F		4	1856	1727	+1	0	13	30

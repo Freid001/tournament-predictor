@@ -1,0 +1,57 @@
+type,stage,match_id,notes
+placeholder,GROUP,A1,Group A
+placeholder,GROUP,A2,Group A
+placeholder,GROUP,A3,Group A
+placeholder,GROUP,A4,Group A
+placeholder,GROUP,B1,Group B
+placeholder,GROUP,B2,Group B
+placeholder,GROUP,B3,Group B
+placeholder,GROUP,B4,Group B
+placeholder,GROUP,C1,Group C
+placeholder,GROUP,C2,Group C
+placeholder,GROUP,C3,Group C
+placeholder,GROUP,C4,Group C
+placeholder,GROUP,D1,Group D
+placeholder,GROUP,D2,Group D
+placeholder,GROUP,D3,Group D
+placeholder,GROUP,D4,Group D
+placeholder,GROUP,E1,Group E
+placeholder,GROUP,E2,Group E
+placeholder,GROUP,E3,Group E
+placeholder,GROUP,E4,Group E
+placeholder,GROUP,F1,Group F
+placeholder,GROUP,F2,Group F
+placeholder,GROUP,F3,Group F
+placeholder,GROUP,F4,Group F
+placeholder,GROUP,G1,Group G
+placeholder,GROUP,G2,Group G
+placeholder,GROUP,G3,Group G
+placeholder,GROUP,G4,Group G
+placeholder,GROUP,H1,Group H
+placeholder,GROUP,H2,Group H
+placeholder,GROUP,H3,Group H
+placeholder,GROUP,H4,Group H
+qualify,QUALIFY,A1,A2
+qualify,QUALIFY,B1,B2
+qualify,QUALIFY,C1,C2
+qualify,QUALIFY,D1,D2
+qualify,QUALIFY,E1,E2
+qualify,QUALIFY,F1,F2
+qualify,QUALIFY,G1,G2
+qualify,QUALIFY,H1,H2
+match,LAST_16,M49,A1,B2
+match,LAST_16,M50,C1,D2
+match,LAST_16,M51,B1,A2
+match,LAST_16,M52,D1,C2
+match,LAST_16,M53,E1,F2
+match,LAST_16,M54,G1,H2
+match,LAST_16,M55,F1,E2
+match,LAST_16,M56,H1,G2
+match,QUARTER,M57,W49,W50
+match,QUARTER,M58,W53,W54
+match,QUARTER,M59,W51,W52
+match,QUARTER,M60,W55,W56
+match,SEMI,M61,W57,W58
+match,SEMI,M62,W59,W60
+match,FINAL,M63,W61,W62
+winner,FINAL,W63,

@@ -239,6 +239,17 @@ public class CsvLoader {
         return intProperty(tournamentProperties, key, defaultValue);
     }
 
+    public Set<String> resolveTournamentMatchTypes(String tournament, String key, Set<String> defaults)
+            throws IOException {
+        String configured = loadTournamentProperties(tournament).getProperty(key, "").trim();
+        if (configured.isEmpty()) return defaults;
+        Set<String> types = Arrays.stream(configured.split(","))
+                .map(String::trim)
+                .filter(value -> value.length() > 0)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+        return types.isEmpty() ? defaults : types;
+    }
+
     public int resolveSnapshotBackedSetting(String tournament, String key, String metadataKey, int defaultValue) throws IOException {
         if (hasTournamentSnapshot(tournament)) {
             Properties metadata = loadSnapshotMetadata(tournament);
@@ -363,6 +374,7 @@ public class CsvLoader {
     private int squadDepthExcellentBonus = 10;
     private int   homeAdvantage         = 100;
     private int   preTournamentFormEloMax = 50;
+    private int   preTournamentFormMaxGames = 3;
     private static final int   PRE_TOURNAMENT_FORM_SINCE_YEAR = 2026;
     private static final int   PRE_TOURNAMENT_FORM_UNTIL_YEAR = 2026;
     private static final java.util.Set<String> QUALIFIER_TYPES =
@@ -387,6 +399,7 @@ public class CsvLoader {
         this.squadDepthExcellentBonus = config.getSquadDepthExcellentBonus();
         this.homeAdvantage         = config.getHomeAdvantageElo();
         this.preTournamentFormEloMax = config.getPreTournamentFormEloMax();
+        this.preTournamentFormMaxGames = config.getPreTournamentFormMaxGames();
         return this;
     }
 
@@ -423,11 +436,13 @@ public class CsvLoader {
                 "pre.tournament.form.until.year", "pre_tournament_form_until", PRE_TOURNAMENT_FORM_UNTIL_YEAR);
         LocalDate tournamentStartDate = resolveSnapshotBackedDate(tournament,
                 "tournament.start.date", "tournament_start_date");
+        Set<String> qualifierTypes = resolveTournamentMatchTypes(tournament,
+                "qual.form.match.types", QUALIFIER_TYPES);
         QualificationFormCalculator friendlyCalc = new QualificationFormCalculator(
                 historyDir,
                 effectivePreTournamentSinceYear, effectivePreTournamentUntilYear,
                 preTournamentFormEloMax,
-                Set.of("F"), 5, tournamentStartDate);
+                Set.of("F"), preTournamentFormMaxGames, tournamentStartDate);
 
         Map<String, EloBreakdown> result = new LinkedHashMap<>();
         try (var reader = Files.newBufferedReader(startPath); var parser = CSV.parse(reader)) {
@@ -466,7 +481,7 @@ public class CsvLoader {
                 String depthNotes = r.isMapped("depth_notes") ? r.get("depth_notes") : "";
                 String qualityNotes = r.isMapped("quality_notes") ? r.get("quality_notes") : "";
                 List<String[]> qualResults = attachContributions(
-                        loadQualResults(historyDir, team, effectiveQualSinceYear, effectiveQualUntilYear, tournamentStartDate), qualBonus);
+                        loadQualResults(historyDir, team, effectiveQualSinceYear, effectiveQualUntilYear, tournamentStartDate, qualifierTypes), qualBonus);
                 List<String[]> friendlyResults = attachContributions(
                         loadFriendlyResults(historyDir, team, effectivePreTournamentSinceYear, effectivePreTournamentUntilYear, tournamentStartDate),
                         preTournamentBonus);
@@ -488,11 +503,11 @@ public class CsvLoader {
         return result;
     }
 
-    private static boolean isAfter(String[] cols, LocalDate maxDate) {
+    private static boolean isOnOrAfter(String[] cols, LocalDate maxDate) {
         if (maxDate == null) return false;
         try {
-            return LocalDate.of(Integer.parseInt(cols[0].trim()), Integer.parseInt(cols[1].trim()),
-                    Integer.parseInt(cols[2].trim())).isAfter(maxDate);
+            return !LocalDate.of(Integer.parseInt(cols[0].trim()), Integer.parseInt(cols[1].trim()),
+                    Integer.parseInt(cols[2].trim())).isBefore(maxDate);
         } catch (DateTimeException | NumberFormatException e) {
             return true;
         }
@@ -510,7 +525,7 @@ public class CsvLoader {
                 if (!"F".equals(cols[7].trim())) continue;
                 int year;
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
-                if (year < sinceYear || year > untilYear || isAfter(cols, maxDate)) continue;
+                if (year < sinceYear || year > untilYear || isOnOrAfter(cols, maxDate)) continue;
                 int homeScore, awayScore;
                 try {
                     homeScore = Integer.parseInt(cols[5].trim());
@@ -526,11 +541,12 @@ public class CsvLoader {
                 results.add(new String[]{result, opponent, score, String.valueOf(pts), String.valueOf(teamScore), String.valueOf(oppScore)});
             }
         } catch (IOException ignored) {}
-        // Show last 5 friendlies
-        return results.size() > 5 ? results.subList(results.size() - 5, results.size()) : results;
+        // Show the same warm-up matches used by the ELO adjustment.
+        return results.size() > preTournamentFormMaxGames
+                ? results.subList(results.size() - preTournamentFormMaxGames, results.size()) : results;
     }
 
-    private List<String[]> loadQualResults(Path historyDir, String teamName, int sinceYear, int untilYear, LocalDate maxDate) {
+    private List<String[]> loadQualResults(Path historyDir, String teamName, int sinceYear, int untilYear, LocalDate maxDate, Set<String> qualifierTypes) {
         Path tsv = historyDir.resolve(teamName + ".tsv");
         if (!Files.exists(tsv)) return List.of();
         List<String[]> results = new ArrayList<>();
@@ -541,8 +557,8 @@ public class CsvLoader {
                 if (cols.length < 8) continue;
                 int year;
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
-                if (year < sinceYear || year > untilYear || isAfter(cols, maxDate)) continue;
-                if (!QUALIFIER_TYPES.contains(cols[7].trim())) continue;
+                if (year < sinceYear || year > untilYear || isOnOrAfter(cols, maxDate)) continue;
+                if (!qualifierTypes.contains(cols[7].trim())) continue;
                 int homeScore, awayScore;
                 try {
                     homeScore = Integer.parseInt(cols[5].trim());

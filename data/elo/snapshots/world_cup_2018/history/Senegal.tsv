@@ -1,0 +1,28 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2016	03	26	Senegal	Niger	2	0	FQ		4	1647	1282	+1	−1	47	135
+2016	03	29	Niger	Senegal	1	2	FQ		-7	1275	1654	−3	+1	138	46
+2016	05	28	Rwanda	Senegal	0	2	F		-6	1317	1660	−1	0	127	46
+2016	06	04	Burundi	Senegal	0	2	FQ		-14	1336	1674	−5	+3	122	43
+2016	09	03	Senegal	Namibia	2	0	FQ		6	1680	1370	+2	0	44	114
+2016	10	08	Senegal	Cape Verde	2	0	WQ		9	1689	1466	+2	−3	43	90
+2016	11	12	South Africa	Senegal	2	1	WQ		20	1617	1669	+4	−4	55	46
+2017	01	08	Senegal	Libya	2	1	F	CG	5	1674	1461	0	−3	45	92
+2017	01	11	Congo	Senegal	0	2	F		-9	1424	1683	−4	+2	101	43
+2017	01	15	Senegal	Tunisia	2	0	AR	GA	27	1710	1560	+5	−8	37	69
+2017	01	19	Senegal	Zimbabwe	2	0	AR	GA	13	1723	1423	+3	−8	34	104
+2017	01	23	Algeria	Senegal	2	2	AR	GA	9	1601	1714	+1	−1	60	35
+2017	01	28	Cameroon	Senegal	0	0	AR	GA	7	1619	1707	+2	−1	56	36
+2017	03	23	Nigeria	Senegal	1	1	F	EN	1	1668	1706	0	0	48	36
+2017	03	27	Ivory Coast	Senegal	1	1	F	FR	0	1695	1706	0	0	39	36
+2017	06	05	Senegal	Uganda	0	0	F		-8	1698	1462	−1	+3	38	91
+2017	06	10	Senegal	Equatorial Guinea	3	0	FQ		5	1703	1337	+2	−1	37	122
+2017	09	02	Senegal	Burkina Faso	0	0	WQ		-10	1693	1617	−1	+1	39	58
+2017	09	05	Burkina Faso	Senegal	2	2	WQ		-1	1616	1694	0	−1	58	41
+2017	10	07	Cape Verde	Senegal	0	2	WQ		-20	1452	1714	−5	+3	96	38
+2017	11	10	South Africa	Senegal	0	2	WQ		-27	1548	1741	−2	+4	71	33
+2017	11	14	Senegal	South Africa	2	1	WQ		6	1747	1542	+5	0	27	71
+2018	03	23	Senegal	Uzbekistan	1	1	F	MA	-4	1743	1614	−3	+4	31	54
+2018	03	27	Bosnia and Herzegovina	Senegal	0	0	F	FR	0	1730	1743	0	+1	34	30
+2018	05	31	Luxembourg	Senegal	0	0	F		7	1332	1736	0	−3	123	33
+2018	06	08	Croatia	Senegal	2	1	F		5	1853	1731	0	−1	17	35
+2018	06	11	Senegal	South Korea	2	0	F	AT	15	1746	1713	+7	−2	28	40

@@ -1,0 +1,39 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	02	01	United States	Costa Rica	1	0	F		6	1726	1651	+2	0	37	48
+2020	11	12	Wales	United States	0	0	F		-5	1804	1731	−2	0	22	37
+2020	11	16	United States	Panama	6	2	F	AT	9	1740	1533	0	0	37	73
+2020	12	09	United States	El Salvador	6	0	F		5	1745	1479	+3	−1	35	88
+2021	01	31	United States	Trinidad and Tobago	7	0	F		2	1747	1343	+1	−2	34	120
+2021	03	25	United States	Jamaica	4	1	F	AT	10	1757	1573	+1	−1	34	64
+2021	03	28	Northern Ireland	United States	1	2	F		-8	1575	1765	−2	+4	62	30
+2021	05	30	Switzerland	United States	2	1	F		4	1889	1761	0	0	15	30
+2021	06	03	United States	Honduras	1	0	CNL		7	1768	1597	+4	−4	26	61
+2021	06	06	United States	Mexico	3	2	CNL		22	1790	1888	+1	−1	25	15
+2021	06	09	United States	Costa Rica	4	0	F		7	1797	1626	+4	−5	22	54
+2021	07	11	United States	Haiti	1	0	CCH		6	1803	1532	0	−1	23	75
+2021	07	15	United States	Martinique	6	1	CCH		6	1809	1406	+2	0	21	101
+2021	07	18	United States	Canada	1	0	CCH		12	1821	1704	+2	−1	19	40
+2021	07	25	United States	Jamaica	1	0	CCH		6	1827	1572	+1	0	18	64
+2021	07	29	United States	Qatar	1	0	CCH		11	1838	1696	+1	−1	17	41
+2021	08	01	United States	Mexico	1	0	CCH		23	1861	1891	0	−1	17	15
+2021	09	02	El Salvador	United States	0	0	WQ		11	1548	1850	+2	0	72	17
+2021	09	05	United States	Canada	1	1	WQ		-12	1838	1723	−1	+2	18	37
+2021	09	08	Honduras	United States	1	4	WQ		-22	1577	1860	−5	+2	63	16
+2021	10	07	United States	Jamaica	2	0	WQ		5	1865	1527	0	−2	16	76
+2021	10	10	Panama	United States	1	0	WQ		30	1610	1835	+5	−2	57	18
+2021	10	13	United States	Costa Rica	2	1	WQ		6	1841	1616	0	0	18	56
+2021	11	12	United States	Mexico	2	0	WQ		25	1866	1860	+2	−1	15	16
+2021	11	16	Jamaica	United States	1	1	WQ		10	1587	1856	+2	0	65	15
+2021	12	18	United States	Bosnia and Herzegovina	1	0	F		2	1858	1600	+1	−1	14	63
+2022	01	27	United States	El Salvador	1	0	WQ		3	1861	1496	−1	−2	15	84
+2022	01	30	Canada	United States	2	0	WQ		27	1826	1834	+3	−7	24	22
+2022	02	02	United States	Honduras	3	0	WQ		4	1838	1437	0	−1	22	94
+2022	03	24	Mexico	United States	0	0	WQ		-6	1836	1844	0	+5	20	17
+2022	03	27	United States	Panama	5	1	WQ		10	1854	1600	+1	0	16	60
+2022	03	30	Costa Rica	United States	2	0	WQ		34	1742	1820	+7	−7	33	23
+2022	06	01	United States	Morocco	3	0	F		9	1829	1727	+2	0	21	34
+2022	06	05	United States	Uruguay	0	0	F		0	1829	1936	0	0	21	12
+2022	06	10	United States	Grenada	5	0	CLA		1	1830	1134	0	0	21	173
+2022	06	14	El Salvador	United States	1	1	CLA		12	1501	1818	+2	−3	80	24
+2022	09	23	Japan	United States	2	0	F	DE	17	1798	1801	+1	−5	27	26
+2022	09	27	Saudi Arabia	United States	0	0	F	ES	5	1633	1796	+1	−1	55	25

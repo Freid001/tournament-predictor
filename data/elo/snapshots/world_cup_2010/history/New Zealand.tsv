@@ -1,0 +1,19 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2008	09	06	New Caledonia	New Zealand	1	3	WQO		-27	1311	1569	−4	+12	126	64
+2008	09	10	New Zealand	New Caledonia	3	0	WQO		10	1579	1301	+1	−1	64	126
+2008	11	19	Fiji	New Zealand	2	0	WQO		59	1318	1520	+12	−19	127	81
+2009	03	28	Thailand	New Zealand	3	1	F		14	1463	1506	+3	0	92	83
+2009	06	03	Tanzania	New Zealand	2	1	F		12	1361	1494	+1	−1	120	86
+2009	06	06	Botswana	New Zealand	0	0	F		3	1292	1491	0	+1	132	85
+2009	06	10	Italy	New Zealand	4	3	F	ZA	1	1991	1490	0	0	5	86
+2009	06	14	Spain	New Zealand	5	0	CC	ZA	3	2125	1487	0	0	1	86
+2009	06	17	South Africa	New Zealand	2	0	CC		21	1568	1466	+2	−5	68	91
+2009	06	20	Iraq	New Zealand	0	0	CC	ZA	-5	1529	1471	−4	+2	80	89
+2009	09	09	Jordan	New Zealand	1	3	F		-19	1458	1490	−4	+3	92	87
+2009	10	10	Bahrain	New Zealand	0	0	WQ		-12	1622	1502	−3	+1	54	86
+2009	11	14	New Zealand	Bahrain	1	0	WQ		21	1523	1607	+3	−2	82	56
+2010	03	03	Mexico	New Zealand	2	0	F	US	3	1899	1520	0	+1	8	84
+2010	05	24	Australia	New Zealand	2	1	F		2	1780	1518	0	−1	22	85
+2010	05	29	New Zealand	Serbia	1	0	F	AT	18	1536	1840	+6	−2	80	15
+2010	06	04	Slovenia	New Zealand	3	1	F		6	1686	1530	+2	−2	41	82
+2010	06	09	Chile	New Zealand	2	0	F	ZA	3	1886	1527	0	0	10	82

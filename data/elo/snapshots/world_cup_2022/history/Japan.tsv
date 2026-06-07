@@ -1,0 +1,31 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	10	09	Cameroon	Japan	0	0	F	NL	4	1582	1740	+1	−3	62	33
+2020	10	13	Japan	Ivory Coast	1	0	F	NL	7	1747	1617	0	−3	34	57
+2020	11	13	Japan	Panama	1	0	F	AT	5	1752	1542	+1	0	34	73
+2020	11	17	Mexico	Japan	2	0	F	AT	8	1928	1744	+1	−1	13	35
+2021	03	25	Japan	South Korea	3	0	F		14	1758	1759	+4	−4	33	32
+2021	03	30	Japan	Mongolia	14	0	WQS		0	1758	730	+1	0	33	216
+2021	05	28	Japan	Myanmar	10	0	WQS		1	1759	1050	+1	0	31	184
+2021	06	07	Japan	Tajikistan	4	1	WQS		2	1761	1253	+1	−1	30	145
+2021	06	11	Japan	Serbia	1	0	F		8	1769	1785	+3	−3	29	27
+2021	06	15	Japan	Kyrgyzstan	5	1	WQS		2	1771	1256	0	−1	29	145
+2021	09	02	Japan	Oman	0	1	WQ		-36	1735	1540	−6	+5	35	75
+2021	09	07	Japan	China	1	0	WQ	QA	8	1743	1483	+2	−1	33	83
+2021	10	07	Saudi Arabia	Japan	1	0	WQ		20	1657	1723	+4	−2	48	35
+2021	10	12	Japan	Australia	2	1	WQ		17	1740	1756	+1	−4	35	33
+2021	11	11	Vietnam	Japan	0	1	WQ		-7	1368	1747	−3	+1	110	33
+2021	11	16	Oman	Japan	0	1	WQ		-13	1506	1760	−3	+1	80	31
+2022	01	27	Japan	China	2	0	WQ		7	1767	1498	+2	−2	30	82
+2022	02	01	Japan	Saudi Arabia	2	0	WQ		13	1780	1625	+1	−5	29	59
+2022	03	24	Australia	Japan	0	2	WQ		-34	1697	1814	−7	+1	41	28
+2022	03	29	Japan	Vietnam	1	1	WQ		-18	1796	1373	−1	+5	29	109
+2022	06	02	Japan	Paraguay	4	1	F		10	1806	1717	+2	−3	27	37
+2022	06	06	Japan	Brazil	0	1	F		-4	1802	2166	−4	0	29	1
+2022	06	10	Japan	Ghana	4	1	KRN		6	1808	1527	+2	0	25	76
+2022	06	14	Japan	Tunisia	0	3	KRN		-43	1765	1685	−5	+5	30	45
+2022	07	19	Japan	Hong Kong	6	0	EAH		1	1766	1150	0	0	30	169
+2022	07	24	Japan	China	0	0	EAH		-17	1749	1464	−3	+4	33	87
+2022	07	27	Japan	South Korea	3	0	EAH		32	1781	1783	+4	−3	29	28
+2022	09	23	Japan	United States	2	0	F	DE	17	1798	1801	+1	−5	27	26
+2022	09	27	Ecuador	Japan	0	0	F	DE	-1	1839	1799	−1	+1	18	24
+2022	11	17	Canada	Japan	2	1	F	AE	11	1775	1788	0	−3	29	26

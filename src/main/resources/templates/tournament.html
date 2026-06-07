@@ -40,7 +40,7 @@
   document.querySelectorAll('form').forEach(function(form) {
     if (!form.action.includes('/run/snapshot-refresh')) return;
     form.addEventListener('submit', function(event) {
-      var message = 'Refreshing now will include newly available matches played before the tournament start date. Generated group rankings and tournament results will be cleared, but your team setup will remain saved. Results after the tournament starts on 11 Jun 2026 are excluded. Do you want to continue?';
+      var message = 'Refreshing now will include newly available matches played before the tournament start date. Generated group rankings and tournament results will be cleared, but your team setup will remain saved. Matches played on or after the tournament start date are excluded. Do you want to continue?';
       if (!window.confirm(message)) event.preventDefault();
     });
   });

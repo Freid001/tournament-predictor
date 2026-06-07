@@ -1,0 +1,30 @@
+group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place
+A,Italy,2013,0,50,0,0,0,0,0,2063,1 (76%),yes,maybe,no
+A,Switzerland,1889,0,43,0,0,0,0,0,1932,2 (54%),maybe,yes,maybe
+A,Wales,1832,0,-8,0,0,0,0,0,1824,3 (35%),no,maybe,yes
+A,Turkey,1800,0,23,0,0,0,0,0,1823,3 (35%),no,no,maybe
+
+B,Belgium,2099,0,13,0,0,0,0,0,2112,1 (83%),yes,maybe,no
+B,Denmark,1973,0,17,0,0,0,0,0,1990,2 (67%),maybe,yes,no
+B,Russia,1745,0,13,0,0,0,0,0,1758,3 (33%),no,no,yes
+B,Finland,1684,0,-39,0,0,0,0,0,1645,4 (18%),no,no,maybe
+
+C,Netherlands,1949,0,20,0,0,0,0,0,1969,1 (79%),yes,maybe,no
+C,Ukraine,1814,0,28,0,0,0,0,0,1842,2 (59%),maybe,yes,maybe
+C,Austria,1746,0,-23,0,0,0,0,0,1723,3 (39%),no,maybe,yes
+C,North Macedonia,1602,0,23,0,0,0,0,0,1625,4 (24%),no,no,maybe
+
+D,England,1981,0,37,0,0,0,0,0,2018,1 (82%),yes,no,no
+D,Croatia,1825,0,-23,0,0,0,0,0,1802,2 (48%),no,yes,maybe
+D,Czechia,1767,0,-7,0,0,0,0,0,1760,3 (41%),no,maybe,yes
+D,Scotland,1678,0,13,0,0,0,0,0,1691,4 (29%),no,no,maybe
+
+E,Spain,2033,0,23,0,0,0,0,0,2056,1 (82%),yes,maybe,no
+E,Sweden,1848,0,41,0,0,0,0,0,1889,2 (57%),maybe,yes,maybe
+E,Poland,1795,0,-10,0,0,0,0,0,1785,3 (41%),no,maybe,yes
+E,Slovakia,1656,0,-10,0,0,0,0,0,1646,4 (20%),no,no,maybe
+
+F,France,2087,0,50,0,0,0,0,0,2137,1 (75%),yes,maybe,no
+F,Portugal,2039,0,23,0,0,0,0,0,2062,2 (63%),maybe,yes,maybe
+F,Germany,1935,0,23,0,0,0,0,0,1958,3 (46%),no,maybe,yes
+F,Hungary,1740,0,13,0,0,0,0,0,1753,4 (16%),no,no,no

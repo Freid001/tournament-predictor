@@ -93,25 +93,16 @@ public class TournamentSnapshotHandler {
                     + ". Run --mode=elo-refresh first or provide data/elo/current/world.csv.");
         }
 
-        int count = 0;
+        List<SnapshotTeam> snapshotTeams = new java.util.ArrayList<>();
         Set<String> found = new LinkedHashSet<>();
-        try (Reader reader = Files.newBufferedReader(source);
-             Writer writer = Files.newBufferedWriter(output);
-             var parser = CSV.parse(reader);
-             CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
-            printer.printRecord("rank", "team_code", "team_name", "rating");
+        try (Reader reader = Files.newBufferedReader(source); var parser = CSV.parse(reader)) {
             for (CSVRecord record : parser) {
                 String team = value(record, "team_name", 2);
-                if (!teams.contains(team)) {
-                    continue;
-                }
-                printer.printRecord(
-                        value(record, "rank", 0),
-                        value(record, "team_code", 1),
-                        team,
-                        value(record, "rating", 3));
+                if (!teams.contains(team)) continue;
+                int currentRating = Integer.parseInt(value(record, "rating", 3));
+                snapshotTeams.add(new SnapshotTeam(
+                        value(record, "team_code", 1), team, ratingBeforeTournament(team, currentRating)));
                 found.add(team);
-                count++;
             }
         }
 
@@ -120,8 +111,48 @@ public class TournamentSnapshotHandler {
         if (!missing.isEmpty()) {
             throw new IOException("Snapshot missing ELO rows for: " + String.join(", ", missing));
         }
-        return count;
+
+        snapshotTeams.sort(java.util.Comparator.comparingInt(SnapshotTeam::rating).reversed());
+        try (Writer writer = Files.newBufferedWriter(output);
+             CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
+            printer.printRecord("rank", "team_code", "team_name", "rating");
+            for (int i = 0; i < snapshotTeams.size(); i++) {
+                SnapshotTeam team = snapshotTeams.get(i);
+                printer.printRecord(i + 1, team.code(), team.name(), team.rating());
+            }
+        }
+        return snapshotTeams.size();
     }
+
+    private int ratingBeforeTournament(String team, int fallbackRating) throws IOException {
+        Path history = projectRoot.resolve("data").resolve("elo").resolve("current")
+                .resolve("history").resolve(team + ".tsv");
+        if (!Files.exists(history)) return fallbackRating;
+
+        int rating = fallbackRating;
+        boolean found = false;
+        List<String> lines = Files.readAllLines(history);
+        for (int i = 1; i < lines.size(); i++) {
+            String[] cols = lines.get(i).split("\t", -1);
+            if (cols.length < 12) continue;
+            try {
+                LocalDate matchDate = LocalDate.of(Integer.parseInt(cols[0].trim()),
+                        Integer.parseInt(cols[1].trim()), Integer.parseInt(cols[2].trim()));
+                if (!matchDate.isBefore(tournamentStartDate)) continue;
+                if (team.equals(cols[3].trim())) {
+                    rating = Integer.parseInt(cols[10].trim());
+                    found = true;
+                } else if (team.equals(cols[4].trim())) {
+                    rating = Integer.parseInt(cols[11].trim());
+                    found = true;
+                }
+            } catch (DateTimeException | NumberFormatException ignored) {
+            }
+        }
+        return found ? rating : fallbackRating;
+    }
+
+    private record SnapshotTeam(String code, String name, int rating) {}
 
     private int writeHistorySnapshot(Path outputDir, Set<String> teams) throws IOException {
         Path sourceDir = projectRoot.resolve("data").resolve("elo").resolve("current").resolve("history");
@@ -154,7 +185,7 @@ public class TournamentSnapshotHandler {
                     int month = Integer.parseInt(cols[1].trim());
                     int day = Integer.parseInt(cols[2].trim());
                     LocalDate matchDate = LocalDate.of(year, month, day);
-                    if (year >= since && year <= until && !matchDate.isAfter(tournamentStartDate)) {
+                    if (year >= since && year <= until && matchDate.isBefore(tournamentStartDate)) {
                         out.add(line);
                     }
                 } catch (NumberFormatException | DateTimeException ignored) {

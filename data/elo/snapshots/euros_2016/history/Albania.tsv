@@ -1,0 +1,22 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	Albania	Malta	2	0	F		3	1520	1248	−1	0	81	144
+2014	05	31	Romania	Albania	1	0	F	CH	5	1729	1515	+1	−2	30	81
+2014	06	04	Hungary	Albania	1	0	F		4	1671	1511	+1	0	45	81
+2014	06	08	San Marino	Albania	0	3	F		-2	876	1513	0	0	203	81
+2014	09	07	Portugal	Albania	0	1	EQ		-38	1880	1551	−3	+9	12	71
+2014	10	11	Albania	Denmark	1	1	EQ		5	1556	1742	+2	0	71	26
+2014	10	14	Serbia	Albania	0	0	EQ		-14	1747	1570	0	+4	25	66
+2014	11	14	France	Albania	1	1	F		-9	1961	1579	0	+2	7	64
+2014	11	18	Italy	Albania	1	0	F		2	1885	1577	0	0	14	64
+2015	03	29	Albania	Armenia	2	1	EQ		13	1590	1536	0	−3	64	71
+2015	06	13	Albania	France	1	0	F		16	1606	1923	+4	−1	58	9
+2015	09	04	Denmark	Albania	0	0	EQ		-13	1768	1619	−1	+5	23	54
+2015	09	07	Albania	Portugal	0	1	EQ		-11	1608	1904	−2	0	58	11
+2015	10	08	Albania	Serbia	0	2	EQ		-30	1578	1742	−6	+7	65	32
+2015	10	11	Armenia	Albania	0	3	EQ		-40	1484	1618	−13	+9	90	56
+2015	11	13	Kosovo	Albania	2	2	F		4	1391	1614	+1	−1	112	57
+2015	11	16	Albania	Georgia	2	2	F		-6	1608	1479	−2	+4	57	90
+2016	03	26	Austria	Albania	2	1	F		3	1804	1605	0	0	19	57
+2016	03	29	Luxembourg	Albania	0	2	F		-6	1244	1611	−2	+2	149	56
+2016	05	29	Albania	Qatar	3	1	F	AT	12	1623	1538	+5	−4	52	74
+2016	06	03	Ukraine	Albania	3	1	F	IT	7	1836	1616	0	−1	16	54

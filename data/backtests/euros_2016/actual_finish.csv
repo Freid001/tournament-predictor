@@ -1,0 +1,25 @@
+group,team,position,finish
+A,France,1,runner_up
+A,Switzerland,2,last_16
+A,Albania,3,group_stage
+A,Romania,4,group_stage
+B,Wales,1,semi_final
+B,England,2,last_16
+B,Slovakia,3,last_16
+B,Russia,4,group_stage
+C,Germany,1,semi_final
+C,Poland,2,quarter_final
+C,Northern Ireland,3,last_16
+C,Ukraine,4,group_stage
+D,Croatia,1,last_16
+D,Spain,2,last_16
+D,Turkey,3,group_stage
+D,Czechia,4,group_stage
+E,Italy,1,quarter_final
+E,Belgium,2,quarter_final
+E,Ireland,3,last_16
+E,Sweden,4,group_stage
+F,Hungary,1,last_16
+F,Iceland,2,quarter_final
+F,Portugal,3,champion
+F,Austria,4,group_stage

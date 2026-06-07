@@ -1,0 +1,28 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	29	Denmark	Russia	0	2	F		-20	1810	1836	−2	+2	17	15
+2012	05	25	Russia	Uruguay	1	1	F		1	1837	1986	0	0	15	5
+2012	05	29	Lithuania	Russia	0	0	F	CH	7	1509	1830	+3	0	85	15
+2012	06	01	Russia	Italy	3	0	F	CH	19	1849	1850	0	−2	15	14
+2012	06	08	Russia	Czechia	4	1	EC	PL	36	1885	1751	+4	−8	11	30
+2012	06	12	Poland	Russia	1	1	EC		5	1722	1880	+1	0	34	11
+2012	06	16	Greece	Russia	1	0	EC	PL	34	1788	1846	+6	−2	23	14
+2012	08	15	Russia	Ivory Coast	1	1	F		-4	1842	1799	0	+1	15	18
+2012	09	07	Russia	Northern Ireland	2	0	WQ		3	1845	1448	0	0	15	98
+2012	09	11	Israel	Russia	0	4	WQ		-27	1619	1872	−7	+1	54	14
+2012	10	12	Russia	Portugal	1	0	WQ		19	1891	1930	+2	0	12	7
+2012	10	16	Russia	Azerbaijan	1	0	WQ		1	1892	1401	0	0	12	109
+2012	11	14	Russia	United States	2	2	F		-6	1886	1769	−1	+1	13	26
+2013	02	06	Russia	Iceland	2	0	F	ES	3	1889	1481	0	−1	13	92
+2013	03	25	Brazil	Russia	1	1	F	EN	-4	2043	1893	0	+1	3	10
+2013	06	07	Portugal	Russia	1	0	WQ		15	1902	1878	+2	−1	8	10
+2013	08	14	Northern Ireland	Russia	1	0	WQ		36	1454	1842	+7	−7	98	17
+2013	09	06	Russia	Luxembourg	4	1	WQ		1	1843	1190	+1	0	16	161
+2013	09	10	Russia	Israel	3	1	WQ		9	1852	1640	−1	−3	17	52
+2013	10	11	Luxembourg	Russia	0	4	WQ		-3	1215	1855	+1	0	152	17
+2013	10	15	Azerbaijan	Russia	1	1	WQ		14	1454	1841	+5	0	97	17
+2013	11	15	Russia	Serbia	1	1	F	AE	-3	1838	1752	−3	0	20	26
+2013	11	19	Russia	South Korea	2	1	F	AE	6	1844	1686	+5	−1	15	42
+2014	03	05	Russia	Armenia	2	0	F		3	1847	1577	+1	+1	14	63
+2014	05	26	Russia	Slovakia	1	0	F		3	1850	1633	+1	0	13	53
+2014	05	31	Norway	Russia	1	1	F		4	1618	1846	+1	−2	54	15
+2014	06	06	Russia	Morocco	2	0	F		2	1848	1516	0	−2	16	80

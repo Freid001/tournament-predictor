@@ -6,8 +6,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class PredictionConfig {
 
+    @Value("${simulation.runs:25000}")
+    private int simulationRuns;
+
+    @Value("${simulation.seed:20260605}")
+    private long simulationSeed;
+
+    @Value("${xg.total.multiplier:1.0}")
+    private double expectedGoalsMultiplier;
+
     @Value("${elo.scale.divisor:400.0}")
     private double eloScaleDivisor;
+
+    @Value("${xg.goal.diff.per.400.elo:1.0}")
+    private double goalDiffPer400Elo;
 
     @Value("${qual.form.since.year:2023}")
     private int qualFormSinceYear;
@@ -15,11 +27,14 @@ public class PredictionConfig {
     @Value("${qual.form.until.year:2026}")
     private int qualFormUntilYear;
 
-    @Value("${qual.form.elo.max:100}")
+    @Value("${qual.form.elo.max:0}")
     private int qualFormEloMax;
 
     @Value("${pre.tournament.form.elo.max:50}")
     private int preTournamentFormEloMax;
+
+    @Value("${pre.tournament.form.max.games:3}")
+    private int preTournamentFormMaxGames;
 
     @Value("${pre.tournament.form.since.year:2026}")
     private int preTournamentFormSinceYear;
@@ -123,6 +138,9 @@ public class PredictionConfig {
     @Value("${path.fatigue.stage.last4.multiplier:1.5}")
     private double pathFatigueStageMultLast4;
 
+    @Value("${path.fatigue.upset.multiplier:1.25}")
+    private double pathFatigueUpsetMultiplier;
+
     @Value("${path.fatigue.depth.excellent.multiplier:0.70}")
     private double pathFatigueDepthExcellentMultiplier;
 
@@ -135,11 +153,16 @@ public class PredictionConfig {
     @Value("${path.fatigue.depth.thin.multiplier:1.30}")
     private double pathFatigueDepthThinMultiplier;
 
+    public int getSimulationRuns() { return simulationRuns; }
+    public long getSimulationSeed() { return simulationSeed; }
+    public double getExpectedGoalsMultiplier() { return expectedGoalsMultiplier; }
     public double getEloScaleDivisor() { return eloScaleDivisor; }
+    public double getGoalDiffPer400Elo() { return goalDiffPer400Elo; }
     public int getQualFormSinceYear() { return qualFormSinceYear; }
     public int getQualFormUntilYear() { return qualFormUntilYear; }
     public int getQualFormEloMax() { return qualFormEloMax; }
     public int getPreTournamentFormEloMax() { return preTournamentFormEloMax; }
+    public int getPreTournamentFormMaxGames() { return preTournamentFormMaxGames; }
     public int getPreTournamentFormSinceYear() { return preTournamentFormSinceYear; }
     public int getPreTournamentFormUntilYear() { return preTournamentFormUntilYear; }
     public int getHomeAdvantageElo() { return homeAdvantageElo; }
@@ -169,6 +192,7 @@ public class PredictionConfig {
     public double getPathFatigueStageMultLast16() { return pathFatigueStageMultLast16; }
     public double getPathFatigueStageMultLast8() { return pathFatigueStageMultLast8; }
     public double getPathFatigueStageMultLast4() { return pathFatigueStageMultLast4; }
+    public double getPathFatigueUpsetMultiplier() { return pathFatigueUpsetMultiplier; }
     public double getPathFatigueDepthExcellentMultiplier() { return pathFatigueDepthExcellentMultiplier; }
     public double getPathFatigueDepthGoodMultiplier() { return pathFatigueDepthGoodMultiplier; }
     public double getPathFatigueDepthLimitedMultiplier() { return pathFatigueDepthLimitedMultiplier; }

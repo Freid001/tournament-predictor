@@ -26,6 +26,8 @@ class TournamentSnapshotHandlerTest {
                 row(2023, "England", "A", 1, 0, "WQ"),
                 row(2024, "England", "B", 2, 0, "WQ"),
                 row(2026, "England", "C", 3, 0, "F"),
+                eloRowDate(2026, 6, 10, "England", "BeforeElo", 1, 0, "F", 1910, 1700),
+                rowDate(2026, 6, 11, "England", "OpeningDay", 5, 0, "F"),
                 rowDate(2026, 6, 12, "England", "After", 5, 0, "F"),
                 row(2027, "England", "D", 4, 0, "F"));
         writeHistory("USA",
@@ -41,14 +43,17 @@ class TournamentSnapshotHandlerTest {
         List<String> teams = Files.readAllLines(snapshot.resolve("teams.csv"));
         assertEquals(3, teams.size(), "header plus two tournament teams");
         assertTrue(teams.stream().anyMatch(line -> line.contains("England")));
+        assertTrue(teams.stream().anyMatch(line -> line.contains("England,1910")),
+                "ELO must come from the last match before the tournament rather than current world.csv");
         assertTrue(teams.stream().anyMatch(line -> line.contains("USA")));
         assertFalse(teams.stream().anyMatch(line -> line.contains("Germany")));
 
         List<String> englandHistory = Files.readAllLines(snapshot.resolve("history/England.tsv"));
-        assertEquals(3, englandHistory.size(), "header plus rows on or before the tournament start date");
+        assertEquals(4, englandHistory.size(), "header plus rows strictly before the tournament start date");
         assertFalse(englandHistory.stream().anyMatch(line -> line.startsWith("2023	")));
         assertTrue(englandHistory.stream().anyMatch(line -> line.startsWith("2024	")));
         assertTrue(englandHistory.stream().anyMatch(line -> line.startsWith("2026	")));
+        assertFalse(englandHistory.stream().anyMatch(line -> line.contains("OpeningDay")));
         assertFalse(englandHistory.stream().anyMatch(line -> line.contains("After")));
         assertFalse(englandHistory.stream().anyMatch(line -> line.startsWith("2027\t")));
 
@@ -107,6 +112,12 @@ class TournamentSnapshotHandlerTest {
 
     private static String row(int year, String home, String away, int homeScore, int awayScore, String type) {
         return rowDate(year, 1, 1, home, away, homeScore, awayScore, type);
+    }
+
+    private static String eloRowDate(int year, int month, int day, String home, String away,
+                                     int homeScore, int awayScore, String type, int homeElo, int awayElo) {
+        return rowDate(year, month, day, home, away, homeScore, awayScore, type)
+                + "\t\t0\t" + homeElo + "\t" + awayElo;
     }
 
     private static String rowDate(int year, int month, int day, String home, String away,

@@ -140,7 +140,7 @@ class Last4LineBuilderTest {
             String t1Chain = m102.split(",", -1)[7];
 
             // Prior chain preserved, Norway appended as latest segment
-            assertTrue(t1Chain.startsWith("Uzbekistan:0 > Senegal:-10 > Norway:"),
+            assertTrue(t1Chain.startsWith("Uzbekistan:0 > Senegal:-10 > K@M99|Norway:"),
                     "Chain should be prior history + Norway: " + t1Chain);
         }
 
@@ -162,7 +162,7 @@ class Last4LineBuilderTest {
             String[] cols = m102.split(",", -1);
             String t2Chain = cols[8]; // Argentina's chain
 
-            assertTrue(t2Chain.startsWith("Uruguay:0 > Paraguay:0 > Portugal:"),
+            assertTrue(t2Chain.startsWith("Uruguay:0 > Paraguay:0 > K@M100|Portugal:"),
                     "Argentina chain should include prior + Portugal: " + t2Chain);
         }
     }

@@ -1,0 +1,24 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2016	03	24	Denmark	Iceland	2	1	F		6	1732	1660	+1	−1	35	45
+2016	03	29	Scotland	Denmark	1	0	F		8	1720	1724	+1	−2	37	36
+2016	06	03	Bosnia and Herzegovina	Denmark	2	2	KRN	JP	-1	1741	1725	+1	0	34	36
+2016	06	07	Denmark	Bulgaria	4	0	KRN	JP	19	1744	1583	+2	−4	34	61
+2016	08	31	Denmark	Liechtenstein	5	0	F		1	1745	1191	0	0	29	165
+2016	09	04	Denmark	Armenia	1	0	WQ		5	1750	1512	+1	0	29	80
+2016	10	08	Poland	Denmark	3	2	WQ		11	1819	1739	0	−2	19	31
+2016	10	11	Denmark	Montenegro	0	1	WQ		-33	1706	1617	−7	+5	39	57
+2016	11	11	Denmark	Kazakhstan	4	1	WQ		7	1713	1405	+2	0	37	105
+2016	11	15	Czechia	Denmark	1	1	F		-2	1697	1715	+1	+2	38	35
+2017	03	26	Romania	Denmark	0	0	WQ		-4	1677	1719	−1	0	44	35
+2017	06	06	Denmark	Germany	1	1	F		6	1725	2040	0	0	34	2
+2017	06	10	Kazakhstan	Denmark	1	3	WQ		-12	1368	1737	−1	0	117	34
+2017	09	01	Denmark	Poland	4	0	WQ		41	1778	1831	+7	−6	26	18
+2017	09	04	Armenia	Denmark	1	4	WQ		-18	1475	1796	−3	+4	89	22
+2017	10	05	Montenegro	Denmark	0	1	WQ		-17	1620	1813	−2	+1	54	19
+2017	10	08	Denmark	Romania	1	1	WQ		-12	1801	1688	−1	+2	21	43
+2017	11	11	Denmark	Ireland	0	0	WQ		-7	1794	1778	0	0	21	24
+2017	11	14	Ireland	Denmark	1	5	WQ		-46	1732	1840	−10	+3	34	19
+2018	03	22	Denmark	Panama	1	0	F		3	1843	1667	+1	0	18	48
+2018	03	27	Denmark	Chile	0	0	F		-2	1841	1873	−1	0	18	15
+2018	06	02	Sweden	Denmark	0	0	F		-2	1792	1843	0	0	20	18
+2018	06	09	Denmark	Mexico	2	0	F		11	1854	1849	+2	−2	16	18

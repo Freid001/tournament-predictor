@@ -1,0 +1,32 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2008	02	06	Ireland	Brazil	0	1	F		-5	1765	2082	+2	0	29	1
+2008	03	26	Brazil	Sweden	1	0	F	EN	3	2085	1793	0	0	1	23
+2008	05	31	Brazil	Canada	3	2	F	US	1	2086	1610	0	0	1	56
+2008	06	06	Venezuela	Brazil	2	0	F	US	28	1678	2058	+5	0	43	1
+2008	06	15	Paraguay	Brazil	2	0	WQ		42	1847	2016	+4	−1	14	3
+2008	06	18	Brazil	Argentina	0	0	WQ		-6	2010	2022	−2	0	5	3
+2008	09	07	Chile	Brazil	0	3	WQ		-22	1753	2032	−7	0	31	2
+2008	09	10	Brazil	Bolivia	0	0	WQ		-18	2014	1589	0	+4	2	59
+2008	10	12	Venezuela	Brazil	0	4	WQ		-13	1634	2027	−3	0	52	2
+2008	10	15	Brazil	Colombia	0	0	WQ		-16	2011	1740	−1	+3	3	35
+2008	11	19	Brazil	Portugal	6	2	F		6	2017	1822	0	−2	3	18
+2009	02	10	Brazil	Italy	2	0	F	EN	14	2031	1990	+1	0	2	4
+2009	03	29	Ecuador	Brazil	1	1	WQ		12	1715	2019	+3	−1	39	3
+2009	04	01	Brazil	Peru	3	0	WQ		3	2022	1566	0	+1	3	66
+2009	06	06	Uruguay	Brazil	0	4	WQ		-31	1832	2053	−1	+1	12	2
+2009	06	10	Brazil	Paraguay	2	1	WQ		4	2057	1788	0	−2	2	24
+2009	06	15	Brazil	Egypt	4	3	CC	ZA	6	2063	1703	0	−2	2	44
+2009	06	18	Brazil	United States	3	0	CC	ZA	15	2078	1775	0	−4	2	26
+2009	06	21	Brazil	Italy	3	0	CC	ZA	30	2108	1938	0	−1	2	6
+2009	06	25	South Africa	Brazil	0	1	CC		-4	1559	2112	−1	0	70	1
+2009	06	28	Brazil	United States	3	2	CC	ZA	10	2122	1870	0	0	1	11
+2009	08	12	Estonia	Brazil	0	1	F		-1	1427	2123	0	0	102	1
+2009	09	05	Argentina	Brazil	1	3	WQ		-20	1888	2143	−3	0	10	1
+2009	09	09	Brazil	Chile	4	2	WQ		5	2148	1830	0	0	1	13
+2009	10	11	Bolivia	Brazil	2	1	WQ		37	1619	2111	+7	0	56	1
+2009	10	14	Brazil	Venezuela	0	0	WQ		-18	2093	1720	0	+1	1	39
+2009	11	14	Brazil	England	1	0	F	QA	7	2100	1985	0	0	1	4
+2009	11	17	Oman	Brazil	0	2	F		-3	1584	2103	−3	0	63	1
+2010	03	02	Brazil	Ireland	2	0	F	EN	4	2107	1763	0	−1	1	27
+2010	06	02	Zimbabwe	Brazil	0	3	F		-1	1340	2108	0	0	121	1
+2010	06	07	Tanzania	Brazil	1	5	F		-1	1331	2109	0	+1	123	1

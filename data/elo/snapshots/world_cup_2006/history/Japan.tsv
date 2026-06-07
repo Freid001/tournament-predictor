@@ -1,0 +1,52 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2004	02	07	Japan	Malaysia	4	0	F		1	1777	1267	0	0	24	137
+2004	02	12	Japan	Iraq	2	0	F		5	1782	1611	0	0	24	55
+2004	02	18	Japan	Oman	1	0	WQ		5	1787	1543	0	−4	24	72
+2004	03	31	Singapore	Japan	1	2	WQ		-2	1167	1789	−2	+2	161	22
+2004	04	25	Hungary	Japan	3	2	F		14	1556	1775	+3	−4	68	26
+2004	04	28	Czechia	Japan	0	1	F		-17	1951	1792	0	+4	6	22
+2004	05	30	Japan	Iceland	3	2	FT	EN	7	1799	1574	+3	0	19	62
+2004	06	01	England	Japan	1	1	FT		-9	1934	1808	0	+1	8	19
+2004	06	09	Japan	India	7	0	WQ		1	1809	1163	0	0	19	162
+2004	07	09	Japan	Slovakia	3	1	KRN		9	1818	1655	+1	−3	19	48
+2004	07	13	Japan	Serbia and Montenegro	1	0	KRN		8	1826	1730	0	0	19	30
+2004	07	20	Japan	Oman	1	0	AC	CN	9	1835	1554	+1	−1	19	67
+2004	07	24	Japan	Thailand	4	1	AC	CN	6	1841	1383	+2	−1	17	110
+2004	07	28	Iran	Japan	0	0	AC	CN	8	1736	1833	+1	−2	31	19
+2004	07	31	Japan	Jordan	1	1	AC	CN	-12	1821	1672	0	+2	19	43
+2004	08	03	Japan	Bahrain	4	3	AC	CN	11	1832	1581	0	−2	19	63
+2004	08	07	China	Japan	1	3	AC		-29	1623	1861	−8	+6	56	13
+2004	08	18	Japan	Argentina	1	2	F		-9	1852	2019	−1	+1	14	1
+2004	09	08	India	Japan	0	4	WQ		-3	1167	1855	0	0	161	14
+2004	10	13	Oman	Japan	0	1	WQ		-12	1589	1867	−2	0	65	14
+2004	11	17	Japan	Singapore	1	0	WQ		0	1867	1166	0	−2	14	164
+2004	12	16	Japan	Germany	0	3	F		-22	1845	1898	−2	+2	16	10
+2005	01	29	Japan	Kazakhstan	4	0	F		1	1846	1347	0	0	16	120
+2005	02	02	Japan	Syria	3	0	F		2	1848	1440	0	−1	16	95
+2005	02	09	Japan	North Korea	2	1	WQ		2	1850	1464	+1	0	15	91
+2005	03	25	Iran	Japan	2	1	WQ		17	1814	1833	+3	−2	21	18
+2005	03	30	Japan	Bahrain	1	0	WQ		5	1838	1609	+1	0	17	55
+2005	05	22	Japan	Peru	0	1	KRN		-25	1813	1699	−4	+6	21	40
+2005	05	27	Japan	United Arab Emirates	0	1	KRN		-28	1785	1436	−5	+4	26	98
+2005	06	03	Bahrain	Japan	0	1	WQ		-16	1596	1801	−7	+2	62	23
+2005	06	08	Japan	North Korea	2	0	WQ	TH	7	1808	1445	−1	0	24	94
+2005	06	16	Mexico	Japan	2	1	CC	DE	18	1928	1790	0	−3	8	27
+2005	06	19	Japan	Greece	1	0	CC	DE	29	1819	1817	+6	−5	20	21
+2005	06	22	Brazil	Japan	2	2	CC	DE	-10	1956	1829	0	+2	5	18
+2005	07	31	North Korea	Japan	1	0	EAH	KR	36	1481	1793	+4	−7	89	25
+2005	08	03	China	Japan	2	2	EAH	KR	9	1642	1784	0	0	54	25
+2005	08	07	South Korea	Japan	0	1	EAH		-20	1669	1804	−5	+2	49	23
+2005	08	17	Japan	Iran	2	1	WQ		16	1820	1818	+6	−2	18	19
+2005	09	07	Japan	Honduras	5	4	F		5	1825	1725	+1	−1	19	37
+2005	10	08	Latvia	Japan	2	2	F		6	1476	1819	+1	−2	88	21
+2005	10	12	Ukraine	Japan	1	0	F		9	1775	1810	+3	0	26	21
+2005	11	16	Japan	Angola	1	0	F		2	1812	1547	0	+2	21	69
+2006	02	10	United States	Japan	3	2	F		7	1835	1805	+1	0	17	22
+2006	02	18	Japan	Finland	2	0	F		6	1811	1640	0	−1	22	52
+2006	02	22	Japan	India	6	0	SQ		1	1812	1185	0	+1	22	159
+2006	02	28	Bosnia and Herzegovina	Japan	2	2	F	DE	5	1635	1807	+1	0	53	22
+2006	03	30	Japan	Ecuador	1	0	F		5	1812	1715	+1	0	22	40
+2006	05	09	Japan	Bulgaria	1	2	KRN		-22	1790	1745	−3	+3	25	36
+2006	05	13	Japan	Scotland	0	0	KRN		-7	1783	1707	−1	+1	26	42
+2006	05	30	Germany	Japan	2	2	F		-5	1887	1788	0	0	11	26
+2006	06	04	Japan	Malta	1	0	F	DE	1	1789	1251	0	0	26	141

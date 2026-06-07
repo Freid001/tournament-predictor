@@ -137,4 +137,22 @@ class PathCalculatorTest {
         assertEquals("alt", pathCalculator.computePredictedMatch(
                 "B2", "B2(Mexico)", "ABCDF3", "ABCDF3(Haiti)", teamGW, teamRU, teamTP));
     }
+
+
+    @Test
+    void completedRouteUsesActualUpsetHistory() {
+        assertEquals("alt", pathCalculator.classifyCompletedRoute("upset",
+                "K@M84|Austria:-1 > K@M101|France:-43",
+                "K@M87|Panama:0 > K@M102|England:-19"));
+        assertEquals("upset", pathCalculator.classifyCompletedRoute("alt",
+                "K@M84|Austria:-1", "U@M102|England:-24"));
+        assertEquals("predicted", pathCalculator.classifyCompletedRoute("predicted",
+                "K@M84|Austria:-1", "K@M86|Uruguay:0"));
+    }
+
+    @Test
+    void upsetParticipantMakesLaterMatchAnUpsetRoute() {
+        assertEquals("upset", pathCalculator.computePathFromSlots("predicted", "upset"));
+        assertEquals("upset", pathCalculator.computePathFromSlots("alt", "upset"));
+    }
 }

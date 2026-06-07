@@ -1,0 +1,27 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	Turkey	Sweden	2	1	F		11	1723	1822	+2	0	32	19
+2014	05	21	Kosovo	Turkey	1	6	F		-8	1371	1731	−1	+3	116	29
+2014	05	25	Ireland	Turkey	1	2	F		-12	1688	1743	−4	0	42	29
+2014	05	29	Turkey	Honduras	2	0	F	US	13	1756	1679	+2	−4	27	44
+2014	06	01	United States	Turkey	2	1	F		5	1852	1751	+1	−2	13	29
+2014	09	03	Denmark	Turkey	1	2	F		-13	1740	1764	−1	+2	28	26
+2014	09	09	Iceland	Turkey	3	0	EQ		47	1585	1717	+11	−5	63	31
+2014	10	10	Turkey	Czechia	1	2	EQ		-23	1694	1787	−6	+3	36	22
+2014	10	13	Latvia	Turkey	1	1	EQ		8	1447	1686	+2	−1	100	40
+2014	11	12	Turkey	Brazil	0	4	F		-7	1679	2037	−2	+1	42	3
+2014	11	16	Turkey	Kazakhstan	3	1	EQ		5	1684	1353	+1	−2	41	120
+2015	03	28	Netherlands	Turkey	1	1	EQ		-17	2012	1701	−1	+1	5	41
+2015	03	31	Luxembourg	Turkey	1	2	F		-2	1221	1703	−1	0	154	41
+2015	06	08	Turkey	Bulgaria	4	0	F		9	1712	1606	0	−2	40	59
+2015	06	12	Kazakhstan	Turkey	0	1	EQ		-7	1341	1719	0	+2	123	38
+2015	09	03	Turkey	Latvia	1	1	EQ		-15	1704	1481	−4	+3	41	91
+2015	09	06	Turkey	Netherlands	3	0	EQ		51	1755	1921	+13	−3	28	9
+2015	10	10	Czechia	Turkey	0	2	EQ		-40	1731	1795	−11	+7	34	19
+2015	10	13	Turkey	Iceland	1	0	EQ		10	1805	1689	+2	−1	18	41
+2015	11	13	Qatar	Turkey	1	2	F		-6	1569	1811	0	0	66	18
+2015	11	17	Turkey	Greece	0	0	F		-7	1804	1610	−1	+3	19	55
+2016	03	24	Turkey	Sweden	2	1	F		6	1810	1762	+1	−2	18	29
+2016	03	29	Austria	Turkey	1	2	F		-13	1791	1823	−1	+2	20	16
+2016	05	22	England	Turkey	2	1	F		4	1962	1819	0	−1	9	17
+2016	05	29	Turkey	Montenegro	1	0	F		2	1821	1556	0	0	17	69
+2016	06	05	Slovenia	Turkey	0	1	F		-7	1613	1828	−2	0	55	17

@@ -1,0 +1,25 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2019	03	22	Moldova	France	1	4	EQ		-1	1312	2093	−1	0	133	2
+2019	03	25	France	Iceland	4	0	EQ		4	2097	1666	0	0	2	46
+2019	06	02	France	Bolivia	2	0	F		1	2098	1637	0	−1	2	51
+2019	06	08	Turkey	France	2	0	EQ		49	1779	2049	+11	0	25	2
+2019	06	11	Andorra	France	0	4	EQ		0	1065	2049	0	0	185	2
+2019	09	07	France	Albania	4	1	EQ		2	2051	1501	0	−2	2	82
+2019	09	10	France	Andorra	3	0	EQ		0	2051	1065	0	0	3	183
+2019	10	11	Iceland	France	0	1	EQ		-6	1653	2057	−1	0	49	3
+2019	10	14	France	Turkey	1	1	EQ		-16	2041	1788	0	+2	3	25
+2019	11	14	France	Moldova	2	1	EQ		0	2041	1244	0	+1	3	146
+2019	11	17	Albania	France	0	2	EQ		-5	1531	2046	−1	0	71	3
+2020	09	05	Sweden	France	0	1	ENA		-15	1848	2061	0	0	19	3
+2020	09	08	France	Croatia	4	2	ENA		11	2072	1890	0	−1	3	14
+2020	10	07	France	Ukraine	7	1	F		6	2078	1852	0	0	3	18
+2020	10	11	France	Portugal	0	0	ENA		-8	2070	2036	0	0	3	5
+2020	10	14	Croatia	France	1	2	ENA		-17	1897	2087	−2	+1	15	2
+2020	11	11	France	Finland	0	2	F		-28	2059	1709	−1	+4	3	39
+2020	11	14	Portugal	France	0	1	ENA		-25	2021	2084	−1	0	5	3
+2020	11	17	France	Sweden	4	2	ENA		7	2091	1820	0	0	3	20
+2021	03	24	France	Ukraine	1	1	WQ		-15	2076	1849	0	+1	3	16
+2021	03	28	Kazakhstan	France	0	2	WQ		-1	1332	2077	−2	0	126	3
+2021	03	31	Bosnia and Herzegovina	France	0	1	WQ		-5	1635	2082	−2	0	51	3
+2021	06	02	France	Wales	3	0	F		4	2086	1840	0	0	3	17
+2021	06	08	France	Bulgaria	3	0	F		1	2087	1499	0	0	3	78

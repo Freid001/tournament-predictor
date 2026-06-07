@@ -1,0 +1,32 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2008	02	06	Honduras	Paraguay	2	0	F		18	1682	1826	+3	−4	41	18
+2008	03	26	South Africa	Paraguay	3	0	F		28	1516	1798	+6	−2	82	20
+2008	05	22	Ivory Coast	Paraguay	1	1	KRN	JP	3	1739	1795	+2	−1	33	21
+2008	05	27	Japan	Paraguay	0	0	KRN		-3	1755	1798	0	+1	32	21
+2008	05	31	France	Paraguay	0	0	F		-7	2003	1805	0	+1	4	20
+2008	06	15	Paraguay	Brazil	2	0	WQ		42	1847	2016	+4	−1	14	3
+2008	06	18	Bolivia	Paraguay	4	2	WQ		45	1600	1802	+10	−5	58	19
+2008	08	20	Paraguay	Saudi Arabia	1	1	F	CH	-3	1799	1684	−1	+1	20	42
+2008	09	06	Argentina	Paraguay	1	1	WQ		-14	2000	1813	−2	+1	5	19
+2008	09	09	Paraguay	Venezuela	2	0	WQ		11	1824	1647	+2	−1	17	48
+2008	10	11	Colombia	Paraguay	0	1	WQ		-21	1724	1845	−6	+6	38	12
+2008	10	15	Paraguay	Peru	1	0	WQ		5	1850	1610	0	−1	12	55
+2008	11	19	Oman	Paraguay	0	1	F		-4	1510	1854	+2	+1	84	11
+2009	02	11	Peru	Paraguay	0	1	F		-6	1590	1860	0	0	59	11
+2009	03	28	Uruguay	Paraguay	2	0	WQ		24	1860	1836	+2	−1	11	12
+2009	04	01	Ecuador	Paraguay	1	1	WQ		1	1716	1835	−3	−1	42	13
+2009	06	06	Paraguay	Chile	0	2	WQ		-43	1792	1821	−9	+12	22	14
+2009	06	10	Brazil	Paraguay	2	1	WQ		4	2057	1788	0	−2	2	24
+2009	08	12	South Korea	Paraguay	1	0	F		9	1736	1779	+2	+1	36	24
+2009	09	05	Paraguay	Bolivia	1	0	WQ		7	1786	1611	+1	0	23	57
+2009	09	09	Paraguay	Argentina	1	0	WQ		20	1806	1868	+4	−1	19	11
+2009	10	10	Venezuela	Paraguay	1	2	WQ		-21	1702	1827	−2	+1	41	18
+2009	10	14	Paraguay	Colombia	0	2	WQ		-46	1781	1759	−5	+10	23	28
+2009	11	04	Chile	Paraguay	2	1	F		5	1874	1776	+1	0	11	23
+2009	11	13	Qatar	Paraguay	2	0	F	FR	24	1547	1752	+6	−8	75	31
+2009	11	18	Netherlands	Paraguay	0	0	F		-8	2031	1760	0	+5	3	28
+2010	03	31	Paraguay	South Africa	1	1	F		-8	1752	1529	−5	+2	30	81
+2010	05	15	Paraguay	North Korea	1	0	F	CH	5	1757	1540	+3	0	26	79
+2010	05	25	Ireland	Paraguay	2	1	F		7	1770	1750	+1	−3	24	30
+2010	05	30	Ivory Coast	Paraguay	2	2	F	FR	1	1725	1749	+2	−1	33	29
+2010	06	02	Paraguay	Greece	2	0	F	CH	15	1764	1736	+4	−3	25	30

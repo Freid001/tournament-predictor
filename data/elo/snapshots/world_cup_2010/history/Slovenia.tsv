@@ -1,0 +1,22 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2008	02	06	Slovenia	Denmark	1	2	F		-5	1536	1827	−1	+1	75	17
+2008	03	26	Hungary	Slovenia	0	1	F		-14	1559	1550	−8	+3	70	73
+2008	05	26	Sweden	Slovenia	1	0	F		2	1795	1548	+1	0	22	73
+2008	08	20	Slovenia	Croatia	2	3	F		-3	1545	1927	−1	−1	71	8
+2008	09	06	Poland	Slovenia	1	1	WQ		-14	1724	1559	−1	+4	35	69
+2008	09	10	Slovenia	Slovakia	2	1	WQ		18	1577	1604	+4	−2	65	56
+2008	10	11	Slovenia	Northern Ireland	2	0	WQ		22	1599	1564	+7	−5	58	67
+2008	10	15	Czechia	Slovenia	1	0	WQ		5	1845	1594	+2	−1	13	59
+2008	11	19	Slovenia	Bosnia and Herzegovina	3	4	F		-14	1580	1576	−1	+7	60	62
+2009	02	11	Belgium	Slovenia	2	0	F		9	1640	1571	+2	−2	51	64
+2009	03	28	Slovenia	Czechia	0	0	WQ		9	1580	1835	+3	−1	62	13
+2009	04	01	Northern Ireland	Slovenia	1	0	WQ		15	1591	1565	+2	−7	61	69
+2009	08	12	Slovenia	San Marino	5	0	WQ		1	1566	915	+1	0	66	197
+2009	09	05	England	Slovenia	2	1	F		1	1998	1565	0	−2	4	68
+2009	09	09	Slovenia	Poland	3	0	WQ		40	1605	1674	+11	−7	57	46
+2009	10	10	Slovakia	Slovenia	0	2	WQ		-44	1632	1649	−7	+7	52	50
+2009	10	14	San Marino	Slovenia	0	3	WQ		-2	913	1651	0	0	197	50
+2009	11	14	Russia	Slovenia	2	1	WQ		5	1878	1646	+1	0	11	50
+2009	11	18	Slovenia	Russia	1	0	WQ		27	1673	1851	+4	−1	46	13
+2010	03	03	Slovenia	Qatar	4	1	F		7	1680	1520	0	0	44	84
+2010	06	04	Slovenia	New Zealand	3	1	F		6	1686	1530	+2	−2	41	82

@@ -1,0 +1,36 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2012	02	28	Brazil	Bosnia and Herzegovina	2	1	F	CH	2	2066	1692	0	0	4	40
+2012	05	26	Brazil	Denmark	3	1	F	DE	6	2072	1804	+1	−1	2	18
+2012	05	30	United States	Brazil	1	4	F		-8	1751	2080	−1	0	30	2
+2012	06	03	Mexico	Brazil	2	0	F	US	23	1889	2057	+2	−1	9	3
+2012	06	09	Argentina	Brazil	4	3	F	US	13	1956	2044	+1	0	6	3
+2012	08	15	Sweden	Brazil	0	3	F		-15	1873	2059	0	+1	12	2
+2012	09	07	Brazil	South Africa	1	0	F		1	2060	1573	0	+1	2	67
+2012	09	10	Brazil	China	8	0	F		2	2062	1632	0	0	2	52
+2012	09	19	Brazil	Argentina	2	1	NLC		8	2070	1970	0	−2	2	6
+2012	10	11	Brazil	Iraq	6	0	F	SE	3	2073	1602	0	−1	2	60
+2012	10	16	Brazil	Japan	4	0	F	PL	7	2080	1808	0	−2	2	21
+2012	11	14	Brazil	Colombia	1	1	F	US	-5	2075	1901	0	−1	2	11
+2012	11	21	Argentina	Brazil	2	1	NLC		14	2014	2061	0	0	4	2
+2013	02	06	England	Brazil	2	1	F		10	1962	2051	0	−1	6	3
+2013	03	21	Brazil	Italy	2	2	F	CH	-4	2047	1919	0	0	3	7
+2013	03	25	Brazil	Russia	1	1	F	EN	-4	2043	1893	0	+1	3	10
+2013	04	06	Bolivia	Brazil	0	4	F		-5	1631	2048	0	0	50	3
+2013	04	24	Brazil	Chile	2	2	F		-7	2041	1822	0	+1	3	16
+2013	06	02	Brazil	England	2	2	F		-5	2036	1951	0	0	3	6
+2013	06	09	Brazil	France	3	0	F		6	2042	1857	0	0	3	13
+2013	06	15	Brazil	Japan	3	0	CC		9	2051	1765	0	−1	3	26
+2013	06	19	Brazil	Mexico	2	0	CC		11	2062	1829	+1	−2	2	18
+2013	06	22	Brazil	Italy	4	2	CC		17	2079	1928	0	0	2	7
+2013	06	26	Brazil	Uruguay	2	1	CC		7	2086	1848	0	−3	2	16
+2013	06	30	Brazil	Spain	3	0	CC		39	2125	2109	+1	−1	1	2
+2013	08	14	Switzerland	Brazil	1	0	F		15	1835	2110	+1	−1	18	2
+2013	09	07	Brazil	Australia	6	0	F		2	2112	1720	0	0	2	33
+2013	09	10	Brazil	Portugal	3	1	F	US	7	2119	1911	+1	0	1	9
+2013	10	12	South Korea	Brazil	0	2	F		-4	1673	2123	0	+1	44	1
+2013	10	15	Brazil	Zambia	2	0	F	CN	1	2124	1537	0	0	1	76
+2013	11	16	Brazil	Honduras	5	0	F	US	3	2127	1680	0	−1	1	44
+2013	11	19	Brazil	Chile	2	1	F	CA	5	2132	1913	0	−1	1	10
+2014	03	05	South Africa	Brazil	0	5	F		-3	1570	2135	0	0	65	1
+2014	06	03	Brazil	Panama	4	0	F		2	2137	1699	0	0	1	38
+2014	06	06	Brazil	Serbia	1	0	F		1	2138	1765	0	0	1	26

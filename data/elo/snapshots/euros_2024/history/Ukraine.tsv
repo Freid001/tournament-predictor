@@ -1,0 +1,23 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2022	06	01	Scotland	Ukraine	1	3	WQ		-31	1698	1848	−6	+7	41	17
+2022	06	05	Wales	Ukraine	1	0	WQ		16	1840	1832	+4	−3	18	19
+2022	06	08	Ireland	Ukraine	0	1	ENB		-16	1649	1848	−2	+3	50	16
+2022	06	11	Ukraine	Armenia	3	0	ENB	PL	9	1857	1506	+1	−2	16	80
+2022	06	14	Ireland	Ukraine	1	1	ENB	PL	9	1689	1848	+1	−1	44	17
+2022	09	21	Scotland	Ukraine	3	0	ENB		39	1744	1809	+6	−6	35	23
+2022	09	24	Armenia	Ukraine	0	5	ENB		-17	1461	1826	−4	+3	87	20
+2022	09	27	Scotland	Ukraine	0	0	ENB	PL	4	1760	1822	+1	0	31	20
+2023	03	26	England	Ukraine	2	0	EQ		10	2002	1812	0	0	7	22
+2023	06	12	Germany	Ukraine	3	3	F		-6	1944	1818	−1	0	11	22
+2023	06	16	North Macedonia	Ukraine	2	3	EQ		-11	1529	1829	−3	0	74	23
+2023	06	19	Ukraine	Malta	1	0	EQ	SK	2	1831	1266	0	−1	22	141
+2023	09	09	England	Ukraine	1	1	EQ	PL	-9	1998	1840	−1	+3	7	20
+2023	09	12	Italy	Ukraine	2	1	EQ		9	1955	1831	+1	−1	10	21
+2023	10	14	Ukraine	North Macedonia	2	0	EQ	CZ	10	1841	1547	+2	−2	19	70
+2023	10	17	Malta	Ukraine	1	3	EQ		-3	1249	1844	−1	+2	152	17
+2023	11	20	Italy	Ukraine	0	0	EQ	DE	-6	1937	1850	0	+1	12	16
+2024	03	21	Bosnia and Herzegovina	Ukraine	1	2	EQ		-7	1478	1857	0	+1	87	15
+2024	03	26	Ukraine	Iceland	2	1	EQ	PL	6	1863	1544	0	0	15	72
+2024	06	03	Germany	Ukraine	0	0	F		-4	1916	1867	0	0	13	15
+2024	06	07	Poland	Ukraine	3	1	F		17	1737	1850	+2	−2	36	17
+2024	06	11	Moldova	Ukraine	0	4	F		-3	1349	1853	0	0	120	17

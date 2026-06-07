@@ -1,0 +1,21 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2014	03	05	Romania	Argentina	0	0	F		5	1724	2015	+2	0	30	4
+2014	05	31	Romania	Albania	1	0	F	CH	5	1729	1515	+1	−2	30	81
+2014	06	04	Algeria	Romania	2	1	F	CH	13	1626	1716	+3	0	54	31
+2014	09	07	Greece	Romania	0	1	EQ		-30	1783	1746	−3	+3	23	29
+2014	10	11	Romania	Hungary	1	1	EQ		-11	1735	1649	−1	+4	28	47
+2014	10	14	Finland	Romania	0	2	EQ		-34	1643	1769	−7	+4	50	24
+2014	11	14	Romania	Northern Ireland	2	0	EQ		7	1776	1502	0	0	24	85
+2014	11	18	Romania	Denmark	2	0	F		10	1786	1754	+1	0	22	25
+2015	03	29	Romania	Faroe Islands	1	0	EQ		1	1787	1224	+1	0	22	151
+2015	06	13	Northern Ireland	Romania	0	0	EQ		9	1538	1778	+3	−1	70	23
+2015	09	04	Hungary	Romania	0	0	EQ		0	1680	1778	+1	+1	44	22
+2015	09	07	Romania	Greece	0	0	EQ		-13	1765	1629	−1	+5	23	53
+2015	10	08	Romania	Finland	1	1	EQ		-13	1752	1609	−4	+3	29	59
+2015	10	11	Faroe Islands	Romania	0	3	EQ		-6	1232	1758	−2	+2	152	25
+2015	11	17	Italy	Romania	2	2	F		-6	1870	1764	0	+1	15	29
+2016	03	23	Romania	Lithuania	1	0	F		1	1765	1425	+1	0	29	102
+2016	03	27	Romania	Spain	0	0	F		4	1769	1996	0	0	27	4
+2016	05	25	DR Congo	Romania	1	1	F	IT	6	1549	1763	0	0	74	27
+2016	05	29	Ukraine	Romania	4	3	F	IT	8	1829	1755	0	−4	16	31
+2016	06	03	Romania	Georgia	5	1	F		4	1759	1465	+1	−1	29	95

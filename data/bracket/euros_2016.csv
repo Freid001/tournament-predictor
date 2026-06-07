@@ -1,0 +1,53 @@
+type,stage,match_id,notes
+placeholder,GROUP,A1,Group A
+placeholder,GROUP,A2,Group A
+placeholder,GROUP,A3,Group A
+placeholder,GROUP,A4,Group A
+placeholder,GROUP,B1,Group B
+placeholder,GROUP,B2,Group B
+placeholder,GROUP,B3,Group B
+placeholder,GROUP,B4,Group B
+placeholder,GROUP,C1,Group C
+placeholder,GROUP,C2,Group C
+placeholder,GROUP,C3,Group C
+placeholder,GROUP,C4,Group C
+placeholder,GROUP,D1,Group D
+placeholder,GROUP,D2,Group D
+placeholder,GROUP,D3,Group D
+placeholder,GROUP,D4,Group D
+placeholder,GROUP,E1,Group E
+placeholder,GROUP,E2,Group E
+placeholder,GROUP,E3,Group E
+placeholder,GROUP,E4,Group E
+placeholder,GROUP,F1,Group F
+placeholder,GROUP,F2,Group F
+placeholder,GROUP,F3,Group F
+placeholder,GROUP,F4,Group F
+qualify,QUALIFY,A1,A2
+qualify,QUALIFY,B1,B2
+qualify,QUALIFY,C1,C2
+qualify,QUALIFY,D1,D2
+qualify,QUALIFY,E1,E2
+qualify,QUALIFY,F1,F2
+placeholder,BEST_THIRD,3A,Best four third-placed teams
+placeholder,BEST_THIRD,3B,
+placeholder,BEST_THIRD,3C,
+placeholder,BEST_THIRD,3D,
+placeholder,BEST_THIRD,3E,
+placeholder,BEST_THIRD,3F,
+match,LAST_16,M37,A2,C2
+match,LAST_16,M38,B1,ACD3
+match,LAST_16,M39,D1,BEF3
+match,LAST_16,M40,A1,CDE3
+match,LAST_16,M41,C1,ABF3
+match,LAST_16,M42,F1,E2
+match,LAST_16,M43,E1,D2
+match,LAST_16,M44,B2,F2
+match,QUARTER,M45,W37,W39
+match,QUARTER,M46,W38,W42
+match,QUARTER,M47,W41,W43
+match,QUARTER,M48,W40,W44
+match,SEMI,M49,W45,W46
+match,SEMI,M50,W47,W48
+match,FINAL,M51,W49,W50
+winner,FINAL,W51,

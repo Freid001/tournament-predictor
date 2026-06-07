@@ -1,0 +1,29 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2016	01	27	Egypt	Jordan	0	1	F		-15	1594	1545	−3	+3	58	72
+2016	01	29	Egypt	Libya	2	0	F		8	1602	1497	+1	−4	57	88
+2016	03	25	Nigeria	Egypt	1	1	FQ		-7	1628	1609	0	+2	50	56
+2016	03	29	Egypt	Nigeria	1	0	FQ		15	1624	1613	+5	−4	51	54
+2016	06	04	Tanzania	Egypt	0	2	FQ		-15	1325	1639	−6	+3	125	48
+2016	08	30	Egypt	Guinea	1	1	F		-6	1633	1526	−1	+3	52	78
+2016	09	06	South Africa	Egypt	1	0	NMC		13	1602	1620	+1	−5	60	55
+2016	10	09	Congo	Egypt	1	2	WQ		-17	1445	1637	−4	+4	98	52
+2016	11	13	Egypt	Ghana	2	0	WQ		19	1656	1590	+2	−3	50	61
+2017	01	08	Egypt	Tunisia	1	0	F		6	1662	1587	0	−1	49	61
+2017	01	17	Egypt	Mali	0	0	AR	GA	-9	1653	1545	+1	+1	48	73
+2017	01	21	Egypt	Uganda	1	0	AR	GA	13	1666	1450	0	−3	48	93
+2017	01	25	Egypt	Ghana	1	0	AR	GA	22	1688	1606	+7	−7	41	61
+2017	01	29	Egypt	Morocco	1	0	AR	GA	20	1708	1598	+5	−2	36	60
+2017	02	01	Burkina Faso	Egypt	1	1	AR	GA	9	1592	1699	+3	−2	63	38
+2017	02	05	Cameroon	Egypt	2	1	AR	GA	28	1686	1671	+9	−8	41	46
+2017	03	28	Egypt	Togo	3	0	F		4	1675	1387	−1	−1	47	111
+2017	06	05	Egypt	Libya	1	0	F		3	1678	1456	+2	−2	45	93
+2017	06	11	Tunisia	Egypt	1	0	FQ		22	1572	1656	+5	−2	66	48
+2017	08	31	Uganda	Egypt	1	0	WQ		24	1510	1632	+5	−3	81	52
+2017	09	05	Egypt	Uganda	1	0	WQ		9	1641	1501	+2	−3	50	83
+2017	10	08	Egypt	Congo	2	1	WQ		5	1646	1379	0	−1	50	111
+2017	11	12	Ghana	Egypt	1	1	WQ		-4	1613	1650	0	0	56	50
+2018	03	23	Portugal	Egypt	2	1	F	CH	2	1995	1648	0	0	4	50
+2018	03	27	Greece	Egypt	1	0	F	CH	10	1663	1638	+2	−1	48	52
+2018	05	25	Kuwait	Egypt	1	1	F		3	1423	1635	0	0	102	52
+2018	06	01	Colombia	Egypt	0	0	F	IT	-7	1927	1642	−1	+1	9	51
+2018	06	06	Belgium	Egypt	3	0	F		3	1929	1639	+1	−1	8	52

@@ -1,0 +1,24 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2019	03	22	Portugal	Ukraine	0	0	EQ		-14	1944	1786	0	+2	8	23
+2019	03	25	Portugal	Serbia	1	1	EQ		-11	1933	1831	0	0	9	19
+2019	06	05	Portugal	Switzerland	3	1	ENL		26	1959	1897	+2	−2	7	13
+2019	06	09	Portugal	Netherlands	1	0	ENL		21	1980	1979	+2	−1	5	6
+2019	09	07	Serbia	Portugal	2	4	EQ		-23	1777	2003	−4	0	25	7
+2019	09	10	Lithuania	Portugal	1	5	EQ		-2	1315	2005	+1	0	129	7
+2019	10	11	Portugal	Luxembourg	3	0	EQ		1	2006	1345	0	0	7	123
+2019	10	14	Ukraine	Portugal	2	1	EQ		24	1851	1982	0	−1	18	7
+2019	11	14	Portugal	Lithuania	6	0	EQ		1	1983	1308	0	0	6	131
+2019	11	17	Luxembourg	Portugal	0	2	EQ		-3	1339	1986	0	0	122	6
+2020	09	05	Portugal	Croatia	4	1	ENA		19	2005	1901	0	0	6	13
+2020	09	08	Sweden	Portugal	0	2	ENA		-25	1823	2030	−2	0	21	5
+2020	10	07	Portugal	Spain	0	0	F		-2	2028	2046	0	0	5	4
+2020	10	11	France	Portugal	0	0	ENA		-8	2070	2036	0	0	3	5
+2020	10	14	Portugal	Sweden	3	0	ENA		10	2046	1815	0	−1	4	20
+2020	11	11	Portugal	Andorra	7	0	F		0	2046	1082	0	0	4	183
+2020	11	14	Portugal	France	0	1	ENA		-25	2021	2084	−1	0	5	3
+2020	11	17	Croatia	Portugal	2	3	ENA		-17	1860	2038	−1	0	16	5
+2021	03	24	Portugal	Azerbaijan	1	0	WQ	IT	1	2039	1382	0	+1	5	106
+2021	03	27	Serbia	Portugal	2	2	WQ		8	1793	2031	+1	−1	25	5
+2021	03	30	Luxembourg	Portugal	1	3	WQ		-3	1393	2034	0	0	104	5
+2021	06	04	Spain	Portugal	0	0	F		-3	2033	2037	−1	+1	5	4
+2021	06	09	Portugal	Israel	4	0	F		2	2039	1606	0	0	4	58

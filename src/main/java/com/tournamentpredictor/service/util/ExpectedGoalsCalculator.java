@@ -15,15 +15,22 @@ public class ExpectedGoalsCalculator {
     private final double eloScaleDivisor;
     private final double baseTotalGoals;
     private final double goalDiffPer400Elo;
+    private final double totalMultiplier;
 
     public ExpectedGoalsCalculator() {
-        this(400.0, DEFAULT_BASE_TOTAL_GOALS, DEFAULT_GOAL_DIFF_PER_400_ELO);
+        this(400.0, DEFAULT_BASE_TOTAL_GOALS, DEFAULT_GOAL_DIFF_PER_400_ELO, 1.0);
     }
 
     ExpectedGoalsCalculator(double eloScaleDivisor, double baseTotalGoals, double goalDiffPer400Elo) {
+        this(eloScaleDivisor, baseTotalGoals, goalDiffPer400Elo, 1.0);
+    }
+
+    public ExpectedGoalsCalculator(double eloScaleDivisor, double baseTotalGoals,
+                                   double goalDiffPer400Elo, double totalMultiplier) {
         this.eloScaleDivisor = eloScaleDivisor;
         this.baseTotalGoals = baseTotalGoals;
         this.goalDiffPer400Elo = goalDiffPer400Elo;
+        this.totalMultiplier = totalMultiplier;
     }
 
     public Projection project(String team1, String team2, int team1Elo, int team2Elo) {
@@ -40,10 +47,10 @@ public class ExpectedGoalsCalculator {
         double noDrawTeam1WinProbability = eloWinProbability(team1Elo, team2Elo);
         double eloDiff = team1Elo - team2Elo;
         double expectedGoalDiff = (eloDiff / 400.0) * goalDiffPer400Elo;
-        double team1ExpectedGoals = clamp((baseTotalGoals + expectedGoalDiff) / 2.0
-                + QUALITY_XG_PER_LEVEL * (team1AttackQuality - team2DefenceQuality));
-        double team2ExpectedGoals = clamp((baseTotalGoals - expectedGoalDiff) / 2.0
-                + QUALITY_XG_PER_LEVEL * (team2AttackQuality - team1DefenceQuality));
+        double team1ExpectedGoals = clamp(totalMultiplier * ((baseTotalGoals + expectedGoalDiff) / 2.0
+                + QUALITY_XG_PER_LEVEL * (team1AttackQuality - team2DefenceQuality)));
+        double team2ExpectedGoals = clamp(totalMultiplier * ((baseTotalGoals - expectedGoalDiff) / 2.0
+                + QUALITY_XG_PER_LEVEL * (team2AttackQuality - team1DefenceQuality)));
 
         ScoreProbability scoreProbability = scoreProbability(team1ExpectedGoals, team2ExpectedGoals);
         double team1AdvanceProbability = scoreProbability.team1WinProbability

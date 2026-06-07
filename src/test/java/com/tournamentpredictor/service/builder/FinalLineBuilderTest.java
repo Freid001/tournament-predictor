@@ -112,7 +112,7 @@ class FinalLineBuilderTest {
             String t1Chain = m103.split(",", -1)[7];
 
             // Full prior chain preserved, France (SF) appended last
-            assertTrue(t1Chain.startsWith("United States:0 > Germany:-14 > Japan:-10 > France:"),
+            assertTrue(t1Chain.startsWith("United States:0 > Germany:-14 > Japan:-10 > K@M101|France:"),
                     "Chain should be full 3-round history then SF opponent: " + t1Chain);
         }
     }

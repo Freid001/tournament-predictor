@@ -1,0 +1,36 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	09	03	Germany	Spain	1	1	ENA		-2	1962	2030	0	0	11	4
+2020	09	06	Spain	Ukraine	4	0	ENA		14	2044	1858	0	−2	4	18
+2020	10	07	Portugal	Spain	0	0	F		-2	2028	2046	0	0	5	4
+2020	10	10	Spain	Switzerland	1	0	ENA		7	2053	1859	0	−1	4	17
+2020	10	13	Ukraine	Spain	1	0	ENA		27	1859	2026	+1	−1	17	5
+2020	11	11	Netherlands	Spain	1	1	F		-1	1972	2027	0	0	8	5
+2020	11	14	Switzerland	Spain	1	1	ENA		3	1870	2024	0	+1	16	4
+2020	11	17	Spain	Germany	6	0	ENA		26	2050	1955	0	−2	4	9
+2021	03	25	Spain	Greece	1	1	WQ		-18	2032	1644	−1	+4	5	48
+2021	03	28	Georgia	Spain	1	2	WQ		-3	1501	2035	+1	0	77	4
+2021	03	31	Spain	Kosovo	3	1	WQ		1	2036	1483	0	0	4	84
+2021	06	04	Spain	Portugal	0	0	F		-3	2033	2037	−1	+1	5	4
+2021	06	08	Spain	Lithuania	4	0	F		0	2033	1319	0	0	5	130
+2021	06	14	Spain	Sweden	0	0	EC		-17	2016	1865	−1	0	6	16
+2021	06	19	Spain	Poland	1	1	EC		-19	1997	1779	0	+5	6	27
+2021	06	23	Spain	Slovakia	5	0	EC		8	2005	1670	0	−1	7	43
+2021	06	28	Spain	Croatia	5	3	EC	DK	22	2027	1825	+2	−1	5	19
+2021	07	02	Spain	Switzerland	1	1	EC	RU	-8	2019	1914	0	0	5	13
+2021	07	06	Italy	Spain	1	1	EC	EN	-5	2088	2024	0	+2	3	5
+2021	09	02	Sweden	Spain	2	1	WQ		23	1886	2001	0	−1	16	8
+2021	09	05	Spain	Georgia	4	0	WQ		2	2003	1497	0	0	8	81
+2021	09	08	Kosovo	Spain	0	2	WQ		-6	1507	2009	−1	0	80	8
+2021	10	06	Italy	Spain	1	2	ENL		-36	2035	2045	−3	+3	7	5
+2021	10	10	France	Spain	2	1	ENL	IT	22	2103	2023	+1	−2	2	7
+2021	11	11	Greece	Spain	0	1	WQ		-8	1685	2031	0	+1	43	6
+2021	11	14	Spain	Sweden	1	0	WQ		6	2037	1820	0	−1	6	23
+2022	03	26	Spain	Albania	2	1	F		1	2038	1585	0	−1	5	64
+2022	03	29	Spain	Iceland	5	0	F		1	2039	1540	0	−2	5	73
+2022	06	02	Spain	Portugal	1	1	ENA		-8	2031	1992	−1	0	6	7
+2022	06	05	Czechia	Spain	2	2	ENA		5	1846	2026	+2	0	16	4
+2022	06	09	Switzerland	Spain	0	1	ENA		-17	1863	2043	0	0	14	4
+2022	06	12	Spain	Czechia	2	0	ENA		9	2052	1826	0	−3	4	23
+2022	09	24	Spain	Switzerland	1	2	ENA		-33	2019	1919	−4	+2	7	13
+2022	09	27	Portugal	Spain	0	1	ENA		-26	2003	2045	−3	+3	7	3
+2022	11	17	Jordan	Spain	1	3	F		-4	1590	2049	0	0	62	3

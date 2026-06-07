@@ -43,8 +43,8 @@ public class FinalHandler {
     }
 
     public void handle(String tournament) throws IOException {
-        Path matchupDir = projectRoot.resolve("data").resolve("matchups").resolve(tournament);
-        Path matchupFile = matchupDir.resolve("final.csv");
+        Path simulationDir = projectRoot.resolve("data").resolve("simulations").resolve(tournament);
+        Path matchupFile = simulationDir.resolve("matchup_paths_final.csv");
         Map<String, String> finalOdds = loader.loadOdds(tournament, "final");
         if (csvHelper.isLocked(matchupFile)) {
             System.out.println("  🔒 Output already exists: " + matchupFile + " — delete to re-run");
@@ -59,7 +59,7 @@ public class FinalHandler {
         predictionsFileValidator.validatePredictionsFile(predictionFile);
         Map<String, String> disagreeMap = disagreeMapMapper.loadDisagreeMap(predictionFile);
 
-        Path last4File = projectRoot.resolve("data").resolve("matchups").resolve(tournament).resolve("last_4.csv");
+        Path last4File = projectRoot.resolve("data").resolve("simulations").resolve(tournament).resolve("matchup_paths_last_4.csv");
         if (!Files.exists(last4File)) {
             throw new IOException("last_4 matchups not found: " + last4File + ". Run mode=last_4 first.");
         }
@@ -68,12 +68,12 @@ public class FinalHandler {
         Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
-        Files.createDirectories(matchupDir);
+        Files.createDirectories(simulationDir);
         List<String> allLines = finalLineBuilder.buildFinalLines(eloRatings, brackets, last4Rows, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> output = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
-        Files.write(matchupDir.resolve("final.csv"), sortedOutput);
+        Files.write(simulationDir.resolve("matchup_paths_final.csv"), sortedOutput);
         consoleReporter.printMatchups("Predicted World Cup champion", sortedOutput, eloCalculator, null, finalOdds);
     }
 }

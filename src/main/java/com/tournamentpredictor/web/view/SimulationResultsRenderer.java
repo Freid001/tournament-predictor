@@ -63,41 +63,44 @@ public final class SimulationResultsRenderer {
 
     public static String renderGroupSimulation(List<Map<String, String>> rows, String tournament) {
         if (rows == null || rows.isEmpty()) return "";
-        List<Map<String, String>> sorted = rows.stream()
-                .sorted(Comparator.comparingDouble((Map<String, String> row) -> pctValue(row, "champion")).reversed()
-                        .thenComparing(row -> row.getOrDefault("team", "")))
-                .toList();
+        Map<String, List<Map<String, String>>> groups = rows.stream()
+                .collect(java.util.stream.Collectors.groupingBy(
+                        row -> row.getOrDefault("group", ""), java.util.TreeMap::new,
+                        java.util.stream.Collectors.toList()));
         StringBuilder html = new StringBuilder();
         html.append("<div class=\"card shadow-sm border-0 mb-4\"><div class=\"card-body\">")
                 .append("<div class=\"d-flex flex-column flex-md-row justify-content-between gap-2 mb-3\">")
-                .append("<div><h2 class=\"h5 mb-1\">End-to-end tournament simulation</h2>")
-                .append("<div class=\"text-muted small\">Group matches and every knockout round are simulated together. ")
-                .append("Percentages include the chance of qualifying from the group.</div></div>")
+                .append("<div><h2 class=\"h5 mb-1\">Most likely group standings</h2>")
+                .append("<div class=\"text-muted small\">Teams are ordered by their average simulated finishing position. The percentage is their chance of reaching the first knockout round.</div></div>")
                 .append("<div class=\"d-flex gap-2 align-self-start\">")
                 .append(metaBadge(rows, "simulation_runs", "runs"))
                 .append(metaBadge(rows, "simulation_seed", "seed"))
-                .append("</div></div>")
-                .append("<div class=\"table-responsive\"><table class=\"table table-sm align-middle mb-0\">")
-                .append("<thead><tr><th>Team</th><th class=\"text-end\">Last 32</th>")
-                .append("<th class=\"text-end\">Last 16</th><th class=\"text-end\">QF</th>")
-                .append("<th class=\"text-end\">SF</th><th class=\"text-end\">Final</th>")
-                .append("<th class=\"text-end\">Champion</th></tr></thead><tbody>");
-        for (Map<String, String> row : sorted) {
-            html.append("<tr><td class=\"fw-semibold\">")
-                    .append(HtmlReporter.flagHtml(row.getOrDefault("team", ""))).append(" ")
-                    .append(escapeHtml(row.getOrDefault("team", ""))).append("</td>")
-                    .append(percentCell(row, "reach_last_32"))
-                    .append(percentCell(row, "reach_last_16"))
-                    .append(percentCell(row, "reach_last_8"))
-                    .append(percentCell(row, "reach_last_4"))
-                    .append(percentCell(row, "reach_final"))
-                    .append("<td class=\"text-end fw-semibold\">")
-                    .append(escapeHtml(row.getOrDefault("champion", ""))).append("%</td></tr>");
+                .append("</div></div><div class=\"row g-3\">");
+        for (Map.Entry<String, List<Map<String, String>>> entry : groups.entrySet()) {
+            List<Map<String, String>> teams = entry.getValue().stream()
+                    .sorted(Comparator.comparingDouble(SimulationResultsRenderer::averageGroupPosition)
+                            .thenComparing(row -> row.getOrDefault("team", "")))
+                    .toList();
+            html.append("<div class=\"col-12 col-md-6 col-xl-4\"><div class=\"border rounded-3 h-100 overflow-hidden\">")
+                    .append("<div class=\"bg-dark text-white fw-semibold px-3 py-2\">Group ")
+                    .append(escapeHtml(entry.getKey())).append("</div><ol class=\"list-group list-group-numbered list-group-flush\">");
+            for (Map<String, String> team : teams) {
+                html.append("<li class=\"list-group-item d-flex justify-content-between align-items-center gap-2\">")
+                        .append("<span class=\"fw-semibold text-truncate\">")
+                        .append(HtmlReporter.flagHtml(team.getOrDefault("team", "")))
+                        .append(escapeHtml(team.getOrDefault("team", ""))).append("</span>")
+                        .append("<span class=\"badge text-bg-light border text-dark\">")
+                        .append(escapeHtml(team.getOrDefault("reach_last_32", team.getOrDefault("reach_last_16", "")))).append("%</span></li>");
+            }
+            html.append("</ol></div></div>");
         }
-        html.append("</tbody></table></div>")
-                .append("<div class=\"text-muted small mt-2\">Group ties use points, goal difference, goals scored, then ELO as the final simulation tie-break.</div>")
-                .append("</div></div>");
+        html.append("</div><div class=\"text-muted small mt-3\">Group ties use the tournament-specific ranking rules. ELO is used only as the final fallback when disciplinary and competition-ranking data are unavailable.</div></div></div>");
         return html.toString();
+    }
+
+    private static double averageGroupPosition(Map<String, String> row) {
+        return pctValue(row, "finish_1st") + 2 * pctValue(row, "finish_2nd")
+                + 3 * pctValue(row, "finish_3rd") + 4 * pctValue(row, "finish_4th");
     }
 
     public static String renderSnapshot(List<Map<String, String>> rows, String tournament) {
@@ -118,7 +121,10 @@ public final class SimulationResultsRenderer {
         String routeMatchups = rows.get(0).getOrDefault("route_matchups", "");
         boolean routeWeighted = "true".equalsIgnoreCase(rows.get(0).getOrDefault("route_weighted", ""));
         String simulationRuns = rows.get(0).getOrDefault("simulation_runs", "");
-        String simulationSubtitle = !routeMatchups.isBlank()
+        String simulationOrigin = rows.get(0).getOrDefault("simulation_origin", "");
+        String simulationSubtitle = "group_stage".equals(simulationOrigin)
+                ? groupSimulationChain(startRound, simulationRuns)
+                : !routeMatchups.isBlank()
                 ? (routeWeighted
                 ? "Weighted across " + formatCount(routeMatchups) + " possible last 32 matchup projections using group outcome likelihood."
                 : "Averaged across " + formatCount(routeMatchups) + " possible last 32 matchup projections.")
@@ -138,7 +144,7 @@ public final class SimulationResultsRenderer {
                     .append("\" style=\"")
                     .append(leaderIndex < 12 ? "" : "display:none")
                     .append("\">")
-                    .append("<div class=\"border rounded-2 bg-white px-2 py-2 h-100 sim-snapshot-team\" role=\"button\" tabindex=\"0\" style=\"cursor:pointer\" data-team=\"")
+                    .append("<div class=\"border rounded-2 bg-white px-2 py-2 h-100 sim-snapshot-team\" role=\"button\" tabindex=\"0\" aria-pressed=\"false\" style=\"cursor:pointer\" data-team=\"")
                     .append(escapeHtml(row.getOrDefault("team", "")))
                     .append("\" onclick=\"filterTeamValue(this.dataset.team)\" onkeydown=\"if(event.key==='Enter'||event.key===' '){event.preventDefault();filterTeamValue(this.dataset.team);}\">")
                     .append("<div class=\"d-flex justify-content-between align-items-center gap-2\"><div class=\"fw-semibold text-truncate\">")
@@ -205,6 +211,18 @@ public final class SimulationResultsRenderer {
             case "final" -> "Champion";
             default -> "Last 16";
         };
+    }
+
+    private static String groupSimulationChain(String startRound, String simulationRuns) {
+        String runs = simulationRuns.isBlank() ? "simulations" : formatCount(simulationRuns) + " simulations";
+        List<String> stages = switch (startRound) {
+            case "last_8" -> List.of("Group Stage", "Last 16", "Quarter Finals");
+            case "last_4" -> List.of("Group Stage", "Last 16", "Quarter Finals", "Semi Finals");
+            case "final" -> List.of("Group Stage", "Last 16", "Quarter Finals", "Semi Finals", "Final");
+            default -> List.of("Group Stage", "Last 16");
+        };
+        return stages.stream().map(stage -> stage + " (" + runs + ")")
+                .collect(java.util.stream.Collectors.joining(" &rarr; "));
     }
 
     private static String simulationChain(String startRound, String simulationRuns) {

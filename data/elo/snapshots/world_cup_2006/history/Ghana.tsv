@@ -1,0 +1,26 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2004	04	28	Ghana	Angola	1	1	F		-3	1445	1458	−1	0	94	90
+2004	06	05	Burkina Faso	Ghana	1	0	WQA		18	1401	1427	+4	−5	108	99
+2004	06	14	Ghana	Togo	0	0	F		-3	1424	1422	−1	0	101	102
+2004	06	20	Ghana	South Africa	3	0	WQA		40	1464	1537	+10	−12	90	74
+2004	06	25	Mozambique	Ghana	0	1	IND		-12	1283	1476	−2	+6	135	83
+2004	07	03	Uganda	Ghana	1	1	WQA		-2	1405	1478	0	0	106	84
+2004	09	05	Ghana	Cape Verde	2	0	WQA		13	1491	1348	+2	−4	82	120
+2004	10	10	Ghana	DR Congo	0	0	WQA		-9	1482	1442	−4	+1	89	96
+2005	03	23	Kenya	Ghana	2	2	F		-1	1411	1483	0	+1	100	85
+2005	03	27	DR Congo	Ghana	1	1	WQA		-4	1444	1487	−1	−1	95	86
+2005	06	05	Ghana	Burkina Faso	2	1	WQA		8	1495	1334	+3	−4	83	122
+2005	06	18	South Africa	Ghana	0	2	WQA		-47	1572	1542	−10	+10	65	71
+2005	08	17	Ghana	Senegal	0	0	F	EN	3	1545	1660	+1	0	72	50
+2005	09	04	Ghana	Uganda	2	0	WQA		8	1553	1320	+2	−3	67	125
+2005	10	08	Cape Verde	Ghana	0	4	WQA		-26	1315	1579	−9	+3	126	63
+2005	11	14	Saudi Arabia	Ghana	1	3	F		-23	1652	1602	−5	+4	52	60
+2006	01	11	Togo	Ghana	1	0	F	TN	11	1583	1591	+3	−3	62	60
+2006	01	15	Tunisia	Ghana	2	0	F		7	1721	1584	+2	−1	37	61
+2006	01	23	Nigeria	Ghana	1	0	AR	EG	14	1765	1570	+4	−5	29	66
+2006	01	27	Ghana	Senegal	1	0	AR	EG	35	1605	1676	+11	−6	56	47
+2006	01	31	Zimbabwe	Ghana	2	1	AR	EG	35	1500	1570	+10	−9	81	66
+2006	03	01	Mexico	Ghana	1	0	F	US	4	1834	1566	−1	−1	19	67
+2006	05	26	Ghana	Turkey	1	1	F	DE	7	1573	1829	+1	−2	66	18
+2006	05	29	Ghana	Jamaica	4	1	F	EN	21	1594	1631	+5	−2	61	52
+2006	06	04	Ghana	South Korea	3	1	F	SQ	22	1616	1743	+7	−3	55	35

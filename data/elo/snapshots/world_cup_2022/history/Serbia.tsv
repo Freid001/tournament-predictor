@@ -1,0 +1,32 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2020	09	03	Russia	Serbia	3	1	ENB		22	1816	1772	+1	−3	21	25
+2020	09	06	Serbia	Turkey	0	0	ENB		-7	1765	1752	−2	0	28	30
+2020	10	08	Norway	Serbia	1	2	EQ		-24	1720	1789	−7	+1	36	25
+2020	10	11	Serbia	Hungary	0	1	ENB		-31	1758	1698	−4	+6	29	41
+2020	10	14	Turkey	Serbia	2	2	ENB		-6	1762	1764	−2	+3	29	28
+2020	11	12	Serbia	Scotland	1	1	EQ		-9	1755	1695	−4	0	32	42
+2020	11	15	Hungary	Serbia	1	1	ENB		-4	1717	1759	−1	+1	39	31
+2020	11	18	Serbia	Russia	5	0	ENB		30	1789	1744	+6	−8	25	35
+2021	01	25	Dominican Republic	Serbia	0	0	F		9	1174	1780	+2	−1	166	26
+2021	01	28	Panama	Serbia	0	0	F		4	1537	1776	0	0	73	26
+2021	03	24	Serbia	Ireland	3	2	WQ		9	1785	1649	−1	−1	27	47
+2021	03	27	Serbia	Portugal	2	2	WQ		8	1793	2031	+1	−1	25	5
+2021	03	30	Azerbaijan	Serbia	1	2	WQ		-6	1372	1799	0	0	110	25
+2021	06	07	Jamaica	Serbia	1	1	F	JP	6	1579	1793	+1	0	64	24
+2021	06	11	Japan	Serbia	1	0	F		8	1769	1785	+3	−3	29	27
+2021	09	01	Serbia	Qatar	4	0	F	HU	14	1799	1682	+2	−1	24	42
+2021	09	04	Serbia	Luxembourg	4	1	WQ		4	1803	1396	0	0	24	102
+2021	09	07	Ireland	Serbia	1	1	WQ		6	1610	1797	+1	−1	56	24
+2021	10	09	Luxembourg	Serbia	0	1	WQ		-6	1395	1803	0	0	100	25
+2021	10	12	Serbia	Azerbaijan	3	1	WQ		2	1805	1350	+2	+1	22	116
+2021	11	11	Serbia	Qatar	4	0	F		7	1812	1648	−1	−1	25	53
+2021	11	14	Portugal	Serbia	1	2	WQ		-34	1972	1846	−1	+7	9	18
+2022	03	24	Hungary	Serbia	0	1	F		-9	1716	1855	−1	+2	40	16
+2022	03	29	Denmark	Serbia	3	0	F		10	1936	1845	+1	−3	11	18
+2022	06	02	Serbia	Norway	0	1	ENB		-30	1815	1777	−7	+2	25	30
+2022	06	05	Serbia	Slovenia	4	1	ENB		10	1825	1593	+2	−2	22	63
+2022	06	09	Sweden	Serbia	0	1	ENB		-24	1779	1849	−3	+5	30	16
+2022	06	12	Slovenia	Serbia	2	2	ENB		8	1615	1841	+2	−1	61	18
+2022	09	24	Serbia	Sweden	4	1	ENB		19	1860	1746	+2	−4	16	35
+2022	09	27	Norway	Serbia	0	2	ENB		-32	1748	1892	−5	0	33	16
+2022	11	18	Bahrain	Serbia	1	5	F		-6	1494	1898	0	0	80	16

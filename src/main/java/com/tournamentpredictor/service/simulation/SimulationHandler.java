@@ -27,7 +27,8 @@ public class SimulationHandler {
     public static final long DEFAULT_SEED = 20260605L;
     private static final double BEST_REALISTIC_THRESHOLD_PCT = 1.0;
     private static final String OUTPUT_HEADER = "team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed";
-    private static final String GROUP_OUTPUT_HEADER = "team,reach_last_32,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,simulation_runs,simulation_seed";
+    private static final String GROUP_OUTPUT_HEADER_PREFIX = "team,finish_1st,finish_2nd,finish_3rd,finish_4th,";
+    private static final String GROUP_ROUTE_HEADER = "run,match_id,team1,team2";
     private static final String PATH_OUTPUT_HEADER = "team,finish,path,count,percentage,simulation_runs,simulation_seed";
     private static final String SCORELINE_OUTPUT_HEADER = "stage,match_id,team1,team2,scoreline,winner,count,scoreline_pct,matchup_runs,matchup_pct,simulation_runs,simulation_seed";
 
@@ -88,49 +89,77 @@ public class SimulationHandler {
     }
 
 
-    /**
-     * Runs the unconditional tournament forecast: each run samples groups and then carries the
-     * actual knockout winners, opponents, and fatigue from that run through the final.
-     * This is independent of the primary-only prediction files used by the staged UI workflow.
-     */
+    /** Samples every group and persists the correlated opening knockout bracket produced by each run. */
     public void handleGroups(String tournament) throws IOException {
-        GroupSimulationResult result = simulateGroups(loader.loadGroups(tournament),
-                loader.loadBrackets(tournament), loader.loadTournamentElo(tournament),
-                loader.loadTeamSnapshots(tournament));
+        List<CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
+        SimulationStage openingStage = openingKnockoutStage(brackets);
+        GroupRankingRules rankingRules = GroupRankingRules.from(loader.loadTournamentProperties(tournament)
+                .getProperty("group.ranking.rules", "fifa"));
+        GroupSimulationResult result = simulateGroups(loader.loadGroups(tournament), brackets,
+                loader.loadTournamentElo(tournament), loader.loadTeamSnapshots(tournament), rankingRules, tournament);
         Path output = projectRoot.resolve("data/simulations").resolve(tournament).resolve("simulation_groups.csv");
         Files.createDirectories(output.getParent());
         List<String> lines = new ArrayList<>();
-        lines.add(GROUP_OUTPUT_HEADER);
+        lines.add(GROUP_OUTPUT_HEADER_PREFIX + "reach_" + openingStage.round + ",simulation_runs,simulation_seed");
         result.counts().values().stream()
-                .sorted(Comparator.comparingInt((GroupTeamCounts c) -> c.champion).reversed().thenComparing(c -> c.team))
-                .forEach(c -> lines.add(String.join(",", csv(c.team), pct(c.reachLast32, runs),
-                        pct(c.reachLast16, runs), pct(c.reachLast8, runs), pct(c.reachLast4, runs),
-                        pct(c.reachFinal, runs), pct(c.champion, runs), String.valueOf(runs), String.valueOf(seed))));
+                .sorted(Comparator.comparingInt((GroupTeamCounts c) -> c.reachKnockout).reversed().thenComparing(c -> c.team))
+                .forEach(c -> lines.add(String.join(",", csv(c.team), pct(c.finishFirst, runs),
+                        pct(c.finishSecond, runs), pct(c.finishThird, runs), pct(c.finishFourth, runs),
+                        pct(c.reachKnockout, runs), String.valueOf(runs), String.valueOf(seed))));
         Files.write(output, lines);
-        System.out.println("Group simulation complete: " + runs + " runs. Output: " + output.toAbsolutePath());
+        writeGroupRoutes(tournament, result.routes());
+        writeGroupScorelineOutput(tournament, result.scorelineCounts());
+        System.out.println("Group-stage simulation complete: " + runs + " runs. Output: " + output.toAbsolutePath());
     }
 
     GroupSimulationResult simulateGroups(Map<String, String> positions, List<CsvLoader.BracketEntry> brackets,
                                           Map<String, Integer> eloRatings,
                                           Map<String, TeamEloSnapshot> snapshots) throws IOException {
+        return simulateGroups(positions, brackets, eloRatings, snapshots, GroupRankingRules.FIFA, null);
+    }
+
+    GroupSimulationResult simulateGroups(Map<String, String> positions, List<CsvLoader.BracketEntry> brackets,
+                                          Map<String, Integer> eloRatings,
+                                          Map<String, TeamEloSnapshot> snapshots,
+                                          GroupRankingRules rankingRules) throws IOException {
+        return simulateGroups(positions, brackets, eloRatings, snapshots, rankingRules, null);
+    }
+
+    private GroupSimulationResult simulateGroups(Map<String, String> positions, List<CsvLoader.BracketEntry> brackets,
+                                                  Map<String, Integer> eloRatings,
+                                                  Map<String, TeamEloSnapshot> snapshots,
+                                                  GroupRankingRules rankingRules,
+                                                  String tournament) throws IOException {
         Map<String, List<String>> groups = new TreeMap<>();
         positions.forEach((position, team) ->
                 groups.computeIfAbsent(position.substring(0, 1), ignored -> new ArrayList<>()).add(team));
         Map<String, GroupTeamCounts> counts = new LinkedHashMap<>();
         positions.values().forEach(team -> counts.putIfAbsent(team, new GroupTeamCounts(team)));
-        Map<String, Map<String, String>> thirdPlaceLookup = loadThirdPlaceLookup(brackets);
+        SimulationStage openingStage = openingKnockoutStage(brackets);
+        int directQualifiers = groups.size() * 2;
+        int openingSlots = (int) brackets.stream()
+                .filter(bracket -> openingStage.bracketStage.equalsIgnoreCase(bracket.stage))
+                .count() * 2;
+        int bestThirdCount = Math.max(0, openingSlots - directQualifiers);
+        Map<String, Map<String, String>> thirdPlaceLookup = loadThirdPlaceLookup(brackets, openingStage, tournament);
         Random random = new Random(seed);
+        List<GroupRoute> routes = new ArrayList<>();
+        Map<ScorelineKey, Integer> scorelineCounts = new HashMap<>();
         for (int run = 0; run < runs; run++) {
             Map<String, String> qualifiers = new HashMap<>();
             List<GroupStanding> thirds = new ArrayList<>();
             for (Map.Entry<String, List<String>> group : groups.entrySet()) {
-                List<GroupStanding> standings = playGroup(group.getKey(), group.getValue(), eloRatings, snapshots, random);
+                List<GroupStanding> standings = playGroup(group.getKey(), group.getValue(), eloRatings, snapshots, scorelineCounts, random, rankingRules);
+                counts.get(standings.get(0).team).finishFirst++;
+                counts.get(standings.get(1).team).finishSecond++;
+                counts.get(standings.get(2).team).finishThird++;
+                counts.get(standings.get(3).team).finishFourth++;
                 qualifiers.put(group.getKey() + "1", standings.get(0).team);
                 qualifiers.put(group.getKey() + "2", standings.get(1).team);
                 thirds.add(standings.get(2));
             }
-            thirds.sort(groupStandingComparator(eloRatings));
-            List<GroupStanding> bestThirds = thirds.subList(0, Math.min(8, thirds.size()));
+            thirds.sort(bestThirdComparator(eloRatings));
+            List<GroupStanding> bestThirds = thirds.subList(0, Math.min(bestThirdCount, thirds.size()));
             String lookupKey = bestThirds.stream().map(s -> s.group).sorted().collect(Collectors.joining());
             Map<String, String> assignment = thirdPlaceLookup.getOrDefault(lookupKey, Map.of());
             Map<String, String> thirdByGroup = bestThirds.stream()
@@ -138,44 +167,130 @@ public class SimulationHandler {
             Map<String, MatchDefinition> definitions = new LinkedHashMap<>();
             for (CsvLoader.BracketEntry bracket : brackets) {
                 SimulationStage stage = SimulationStage.forBracketStage(bracket.stage);
-                if (stage == null) continue;
+                if (stage != openingStage) continue;
                 String team1 = resolveGroupToken(bracket.token1, bracket.matchId, qualifiers, assignment, thirdByGroup);
                 String team2 = resolveGroupToken(bracket.token2, bracket.matchId, qualifiers, assignment, thirdByGroup);
                 definitions.put(bracket.matchId, new MatchDefinition(bracket.matchId, bracket.stage, team1, team2));
             }
-            qualifiers.values().forEach(team -> counts.get(team).reachLast32++);
-            bestThirds.forEach(s -> counts.get(s.team).reachLast32++);
+            qualifiers.values().forEach(team -> counts.get(team).reachKnockout++);
+            bestThirds.forEach(s -> counts.get(s.team).reachKnockout++);
+            routes.add(new GroupRoute(run + 1, definitions));
+        }
+        return new GroupSimulationResult(counts, routes, sortedScorelineCounts(scorelineCounts));
+    }
+
+    /** Continues the exact sampled group routes saved by handleGroups. */
+    public void handleKnockoutsFromGroups(String tournament) throws IOException {
+        List<CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
+        SimulationStage openingStage = openingKnockoutStage(brackets);
+        List<GroupRoute> routes = readGroupRoutes(tournament, openingStage);
+        if (routes.isEmpty()) {
+            throw new IOException("Group-stage simulation routes were not found. Run Group Stage first.");
+        }
+        Map<String, Integer> eloRatings = loader.loadTournamentElo(tournament);
+        Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
+        SimulationResult result = simulateKnockoutsFromGroupRoutes(routes, brackets, eloRatings, snapshots);
+        writeOutput(tournament, openingStage, result);
+        writePathOutput(tournament, openingStage, result);
+        writeScorelineOutput(tournament, openingStage, result);
+        System.out.println("Knockout simulation complete: " + result.runs() + " saved group routes.");
+    }
+
+    SimulationResult simulateKnockoutsFromGroupRoutes(List<GroupRoute> routes, List<CsvLoader.BracketEntry> brackets,
+                                                       Map<String, Integer> eloRatings,
+                                                       Map<String, TeamEloSnapshot> snapshots) {
+        Map<String, TeamCounts> counts = new LinkedHashMap<>();
+        eloRatings.keySet().forEach(team -> counts.put(team, new TeamCounts(team)));
+        Map<PathKey, Integer> pathCounts = new HashMap<>();
+        Map<ScorelineKey, Integer> scorelineCounts = new HashMap<>();
+        Random random = new Random(seed);
+        SimulationStage openingStage = openingKnockoutStage(brackets);
+        for (GroupRoute route : routes) {
+            Map<String, MatchDefinition> definitions = new LinkedHashMap<>(route.matches());
+            for (CsvLoader.BracketEntry bracket : brackets) {
+                SimulationStage stage = SimulationStage.forBracketStage(bracket.stage);
+                if (stage != null && stage != openingStage) {
+                    definitions.put(bracket.matchId,
+                            new MatchDefinition(bracket.matchId, bracket.stage, bracket.token1, bracket.token2));
+                }
+            }
             RunState state = new RunState();
-            Map<ScorelineKey, Integer> ignoredScorelines = new HashMap<>();
-            Map<String, TeamCounts> knockoutCounts = new HashMap<>();
+            Set<String> qualifiedTeams = route.matches().values().stream()
+                    .flatMap(match -> java.util.stream.Stream.of(match.team1, match.team2))
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet());
+            if (openingStage == SimulationStage.LAST_16) {
+                qualifiedTeams.forEach(team -> counts.computeIfAbsent(team, TeamCounts::new).reachLast16++);
+            }
             for (SimulationStage stage : SimulationStage.values()) {
+                if (stage.ordinal() < openingStage.ordinal()) continue;
                 if (stage == SimulationStage.FINAL) {
                     MatchDefinition match = definitions.values().stream()
                             .filter(m -> stage.bracketStage.equals(m.stage)).findFirst().orElseThrow();
-                    PlayedMatch played = playMatch(match, stage.round, state, eloRatings, snapshots, ignoredScorelines, random);
+                    PlayedMatch played = playMatch(match, stage.round, state, eloRatings, snapshots, scorelineCounts, random);
                     state.winners.put(match.matchId, played.winner);
-                    counts.get(played.winner).champion++;
+                    counts.computeIfAbsent(played.winner, TeamCounts::new).champion++;
+                    recordRunPaths(qualifiedTeams, played.winner, state, pathCounts, openingStage);
                 } else {
-                    playStage(stage.bracketStage, stage.round, stage.reachedRound, definitions, state, knockoutCounts,
-                            eloRatings, snapshots, ignoredScorelines, random);
+                    playStage(stage.bracketStage, stage.round, stage.reachedRound, definitions, state, counts,
+                            eloRatings, snapshots, scorelineCounts, random);
                 }
             }
-            knockoutCounts.forEach((team, c) -> {
-                GroupTeamCounts total = counts.get(team);
-                total.reachLast16 += c.reachLast16;
-                total.reachLast8 += c.reachLast8;
-                total.reachLast4 += c.reachLast4;
-                total.reachFinal += c.reachFinal;
-            });
         }
-        return new GroupSimulationResult(counts);
+        return new SimulationResult(counts.values().stream()
+                .sorted(Comparator.comparing((TeamCounts c) -> c.champion).reversed().thenComparing(c -> c.team))
+                .toList(), sortedPathCounts(pathCounts), sortedScorelineCounts(scorelineCounts), routes.size());
+    }
+
+    private void writeGroupRoutes(String tournament, List<GroupRoute> routes) throws IOException {
+        Path output = groupRoutesPath(tournament);
+        List<String> lines = new ArrayList<>();
+        lines.add(GROUP_ROUTE_HEADER);
+        for (GroupRoute route : routes) {
+            for (MatchDefinition match : route.matches().values()) {
+                lines.add(String.join(",", String.valueOf(route.run()), csv(match.matchId),
+                        csv(match.team1), csv(match.team2)));
+            }
+        }
+        Files.write(output, lines);
+    }
+
+    private List<GroupRoute> readGroupRoutes(String tournament, SimulationStage openingStage) throws IOException {
+        Path input = groupRoutesPath(tournament);
+        if (!Files.exists(input)) return List.of();
+        Map<Integer, Map<String, MatchDefinition>> routes = new LinkedHashMap<>();
+        for (String line : Files.readAllLines(input).stream().skip(1).toList()) {
+            String[] cols = line.split(",", -1);
+            if (cols.length < 4) continue;
+            int run = Integer.parseInt(cols[0]);
+            routes.computeIfAbsent(run, ignored -> new LinkedHashMap<>()).put(cols[1],
+                    new MatchDefinition(cols[1], openingStage.bracketStage, cols[2], cols[3]));
+        }
+        return routes.entrySet().stream().map(entry -> new GroupRoute(entry.getKey(), entry.getValue())).toList();
+    }
+
+    private static SimulationStage openingKnockoutStage(List<CsvLoader.BracketEntry> brackets) {
+        for (SimulationStage stage : SimulationStage.values()) {
+            if (brackets.stream().anyMatch(bracket -> stage.bracketStage.equalsIgnoreCase(bracket.stage))) {
+                return stage;
+            }
+        }
+        throw new IllegalArgumentException("Bracket has no knockout matches");
+    }
+
+    private Path groupRoutesPath(String tournament) {
+        return projectRoot.resolve("data/simulations").resolve(tournament).resolve("simulation_group_routes.csv");
     }
 
     private List<GroupStanding> playGroup(String group, List<String> teams,
                                            Map<String, Integer> eloRatings,
-                                           Map<String, TeamEloSnapshot> snapshots, Random random) {
+                                           Map<String, TeamEloSnapshot> snapshots,
+                                           Map<ScorelineKey, Integer> scorelineCounts, Random random,
+                                           GroupRankingRules rankingRules) {
         Map<String, GroupStanding> table = new HashMap<>();
         teams.forEach(team -> table.put(team, new GroupStanding(group, team)));
+        List<GroupMatch> matches = new ArrayList<>();
+        int fixture = 0;
         for (int i = 0; i < teams.size(); i++) {
             for (int j = i + 1; j < teams.size(); j++) {
                 String team1 = teams.get(i);
@@ -189,21 +304,35 @@ public class SimulationHandler {
                                 profile2 != null ? profile2.attackQuality() : 0,
                                 profile2 != null ? profile2.defenceQuality() : 0)
                         .sampleScoreline(random);
+                fixture++;
+                String result = score.team1Goals() > score.team2Goals() ? team1
+                        : score.team1Goals() < score.team2Goals() ? team2 : "Draw";
+                scorelineCounts.merge(new ScorelineKey("groups", group + fixture, team1, team2,
+                        score.scoreText(), result), 1, Integer::sum);
                 GroupStanding a = table.get(team1);
                 GroupStanding b = table.get(team2);
                 a.goalsFor += score.team1Goals();
                 a.goalsAgainst += score.team2Goals();
                 b.goalsFor += score.team2Goals();
                 b.goalsAgainst += score.team1Goals();
-                if (score.team1Goals() > score.team2Goals()) a.points += 3;
-                else if (score.team1Goals() < score.team2Goals()) b.points += 3;
+                matches.add(new GroupMatch(team1, team2, score.team1Goals(), score.team2Goals()));
+                if (score.team1Goals() > score.team2Goals()) {
+                    a.points += 3;
+                    a.wins++;
+                } else if (score.team1Goals() < score.team2Goals()) {
+                    b.points += 3;
+                    b.wins++;
+                }
                 else {
                     a.points++;
                     b.points++;
                 }
             }
         }
-        return table.values().stream().sorted(groupStandingComparator(eloRatings)).toList();
+        List<GroupStanding> standings = new ArrayList<>(table.values());
+        return rankingRules == GroupRankingRules.UEFA
+                ? rankUefaGroup(standings, matches, eloRatings)
+                : standings.stream().sorted(groupStandingComparator(eloRatings)).toList();
     }
 
     private static Comparator<GroupStanding> groupStandingComparator(Map<String, Integer> eloRatings) {
@@ -215,6 +344,93 @@ public class SimulationHandler {
                 .thenComparing(s -> s.team);
     }
 
+
+    static List<GroupStanding> rankUefaGroup(List<GroupStanding> standings, List<GroupMatch> matches,
+                                              Map<String, Integer> eloRatings) {
+        Map<Integer, List<GroupStanding>> byPoints = new TreeMap<>(Comparator.reverseOrder());
+        standings.forEach(standing -> byPoints.computeIfAbsent(standing.points, ignored -> new ArrayList<>())
+                .add(standing));
+        List<GroupStanding> ranked = new ArrayList<>();
+        byPoints.values().forEach(tied -> ranked.addAll(resolveUefaTie(tied, matches, eloRatings)));
+        return ranked;
+    }
+
+    private static List<GroupStanding> resolveUefaTie(List<GroupStanding> tied, List<GroupMatch> matches,
+                                                       Map<String, Integer> eloRatings) {
+        if (tied.size() < 2) return tied;
+        Set<String> teams = tied.stream().map(standing -> standing.team).collect(Collectors.toSet());
+        Map<String, MiniStanding> mini = new HashMap<>();
+        teams.forEach(team -> mini.put(team, new MiniStanding()));
+        for (GroupMatch match : matches) {
+            if (!teams.contains(match.team1) || !teams.contains(match.team2)) continue;
+            MiniStanding team1 = mini.get(match.team1);
+            MiniStanding team2 = mini.get(match.team2);
+            team1.goalsFor += match.team1Goals;
+            team1.goalsAgainst += match.team2Goals;
+            team2.goalsFor += match.team2Goals;
+            team2.goalsAgainst += match.team1Goals;
+            if (match.team1Goals > match.team2Goals) team1.points += 3;
+            else if (match.team1Goals < match.team2Goals) team2.points += 3;
+            else {
+                team1.points++;
+                team2.points++;
+            }
+        }
+
+        Comparator<GroupStanding> headToHead = Comparator
+                .comparingInt((GroupStanding standing) -> mini.get(standing.team).points).reversed()
+                .thenComparing(Comparator.comparingInt(
+                        (GroupStanding standing) -> mini.get(standing.team).goalDifference()).reversed())
+                .thenComparing(Comparator.comparingInt(
+                        (GroupStanding standing) -> mini.get(standing.team).goalsFor).reversed());
+        List<GroupStanding> sorted = tied.stream().sorted(headToHead).toList();
+        List<List<GroupStanding>> partitions = new ArrayList<>();
+        for (GroupStanding standing : sorted) {
+            if (partitions.isEmpty() || !sameHeadToHead(
+                    partitions.get(partitions.size() - 1).get(0), standing, mini)) {
+                partitions.add(new ArrayList<>());
+            }
+            partitions.get(partitions.size() - 1).add(standing);
+        }
+        if (partitions.size() == 1) {
+            return tied.stream().sorted(uefaOverallComparator(eloRatings)).toList();
+        }
+        List<GroupStanding> resolved = new ArrayList<>();
+        for (List<GroupStanding> partition : partitions) {
+            resolved.addAll(partition.size() == 1
+                    ? partition
+                    : resolveUefaTie(partition, matches, eloRatings));
+        }
+        return resolved;
+    }
+
+    private static boolean sameHeadToHead(GroupStanding first, GroupStanding second,
+                                           Map<String, MiniStanding> mini) {
+        MiniStanding a = mini.get(first.team);
+        MiniStanding b = mini.get(second.team);
+        return a.points == b.points && a.goalDifference() == b.goalDifference()
+                && a.goalsFor == b.goalsFor;
+    }
+
+    private static Comparator<GroupStanding> uefaOverallComparator(Map<String, Integer> eloRatings) {
+        return Comparator.comparingInt(GroupStanding::goalDifference).reversed()
+                .thenComparing(Comparator.comparingInt((GroupStanding standing) -> standing.goalsFor).reversed())
+                .thenComparing(Comparator.comparingInt((GroupStanding standing) -> standing.wins).reversed())
+                .thenComparing(Comparator.comparingInt((GroupStanding standing) ->
+                        eloRatings.getOrDefault(standing.team, 0)).reversed())
+                .thenComparing(standing -> standing.team);
+    }
+
+    private static Comparator<GroupStanding> bestThirdComparator(Map<String, Integer> eloRatings) {
+        return Comparator.comparingInt((GroupStanding standing) -> standing.points).reversed()
+                .thenComparing(Comparator.comparingInt(GroupStanding::goalDifference).reversed())
+                .thenComparing(Comparator.comparingInt((GroupStanding standing) -> standing.goalsFor).reversed())
+                .thenComparing(Comparator.comparingInt((GroupStanding standing) -> standing.wins).reversed())
+                .thenComparing(Comparator.comparingInt((GroupStanding standing) ->
+                        eloRatings.getOrDefault(standing.team, 0)).reversed())
+                .thenComparing(standing -> standing.team);
+    }
+
     private static String resolveGroupToken(String token, String matchId, Map<String, String> qualifiers,
                                             Map<String, String> assignment, Map<String, String> thirdByGroup) {
         if (token == null || token.startsWith("W")) return token;
@@ -223,11 +439,13 @@ public class SimulationHandler {
         return token;
     }
 
-    private Map<String, Map<String, String>> loadThirdPlaceLookup(List<CsvLoader.BracketEntry> brackets)
+    private Map<String, Map<String, String>> loadThirdPlaceLookup(List<CsvLoader.BracketEntry> brackets,
+                                                                    SimulationStage openingStage,
+                                                                    String tournament)
             throws IOException {
         Map<String, String> columnToMatch = new HashMap<>();
         for (CsvLoader.BracketEntry bracket : brackets) {
-            if (!"LAST_32".equalsIgnoreCase(bracket.stage)) continue;
+            if (!openingStage.bracketStage.equalsIgnoreCase(bracket.stage)) continue;
             String winnerToken = bracket.token1 != null && bracket.token1.matches("[A-L]1")
                     ? bracket.token1 : bracket.token2;
             String thirdToken = bracket.token1 != null && bracket.token1.matches("[A-L]+3")
@@ -237,7 +455,13 @@ public class SimulationHandler {
                 columnToMatch.put("1" + winnerToken.charAt(0), bracket.matchId);
             }
         }
-        List<String> lines = Files.readAllLines(projectRoot.resolve("data/bracket/third_place_lookup.csv"));
+        Path tournamentLookup = tournament == null ? null : projectRoot.resolve("data/bracket")
+                .resolve("third_place_lookup_" + openingStage.round + "_" + tournament + ".csv");
+        Path stageLookup = projectRoot.resolve("data/bracket/third_place_lookup_" + openingStage.round + ".csv");
+        Path lookup = tournamentLookup != null && Files.exists(tournamentLookup) ? tournamentLookup
+                : Files.exists(stageLookup) ? stageLookup
+                : projectRoot.resolve("data/bracket/third_place_lookup.csv");
+        List<String> lines = Files.readAllLines(lookup);
         String[] headers = lines.get(0).split(",", -1);
         Map<String, Map<String, String>> result = new HashMap<>();
         for (int row = 1; row < lines.size(); row++) {
@@ -493,13 +717,22 @@ public class SimulationHandler {
         Files.write(output, lines);
     }
 
+    private void writeGroupScorelineOutput(String tournament, List<ScorelineCount> scorelineCounts) throws IOException {
+        Path output = projectRoot.resolve("data/simulations").resolve(tournament)
+                .resolve("simulation_scorelines_groups.csv");
+        writeScorelineRows(output, scorelineCounts, runs);
+    }
+
     private void writeScorelineOutput(String tournament, SimulationStage startStage, SimulationResult result) throws IOException {
-        Path output = scorelineOutputPath(tournament, startStage);
+        writeScorelineRows(scorelineOutputPath(tournament, startStage), result.scorelineCounts(), result.runs());
+    }
+
+    private void writeScorelineRows(Path output, List<ScorelineCount> scorelineCounts, int totalRuns) throws IOException {
         Files.createDirectories(output.getParent());
         List<String> lines = new ArrayList<>();
         lines.add(SCORELINE_OUTPUT_HEADER);
-        Map<MatchupKey, Integer> matchupRuns = matchupRuns(result.scorelineCounts());
-        for (ScorelineCount scorelineCount : result.scorelineCounts()) {
+        Map<MatchupKey, Integer> matchupRuns = matchupRuns(scorelineCounts);
+        for (ScorelineCount scorelineCount : scorelineCounts) {
             int matchupCount = matchupRuns.getOrDefault(new MatchupKey(scorelineCount.stage(), scorelineCount.matchId(), scorelineCount.team1(), scorelineCount.team2()), 0);
             lines.add(String.join(",",
                     csv(scorelineCount.stage()),
@@ -511,8 +744,8 @@ public class SimulationHandler {
                     String.valueOf(scorelineCount.count()),
                     pct(scorelineCount.count(), Math.max(1, matchupCount)),
                     String.valueOf(matchupCount),
-                    pct(matchupCount, result.runs()),
-                    String.valueOf(result.runs()),
+                    observedPct(matchupCount, totalRuns),
+                    String.valueOf(totalRuns),
                     String.valueOf(seed)));
         }
         Files.write(output, lines);
@@ -594,6 +827,14 @@ public class SimulationHandler {
                 new FinishOutcome("Runner-up", counts.reachFinal - counts.champion, 4),
                 new FinishOutcome("Champion", counts.champion, 5)
         );
+    }
+
+    private static String observedPct(int count, int total) {
+        double value = (count * 100.0) / total;
+        if (count > 0 && value < 0.1) {
+            return String.format(Locale.ROOT, "%.3f", value);
+        }
+        return String.format(Locale.ROOT, "%.1f", value);
     }
 
     private static String pct(int count, int total) {
@@ -700,11 +941,41 @@ public class SimulationHandler {
             }
         }
     }
-    record GroupSimulationResult(Map<String, GroupTeamCounts> counts) {
+    enum GroupRankingRules {
+        FIFA, UEFA;
+
+        static GroupRankingRules from(String configured) {
+            return "uefa".equalsIgnoreCase(configured) ? UEFA : FIFA;
+        }
+    }
+
+    static final class MiniStanding {
+        int points;
+        int goalsFor;
+        int goalsAgainst;
+        int wins;
+
+        int goalDifference() {
+            return goalsFor - goalsAgainst;
+        }
+    }
+
+    record GroupMatch(String team1, String team2, int team1Goals, int team2Goals) {
+    }
+
+    record GroupSimulationResult(Map<String, GroupTeamCounts> counts, List<GroupRoute> routes,
+                                 List<ScorelineCount> scorelineCounts) {
+    }
+
+    record GroupRoute(int run, Map<String, MatchDefinition> matches) {
     }
 
     static final class GroupTeamCounts extends TeamCounts {
-        int reachLast32;
+        int reachKnockout;
+        int finishFirst;
+        int finishSecond;
+        int finishThird;
+        int finishFourth;
 
         GroupTeamCounts(String team) {
             super(team);
@@ -717,6 +988,7 @@ public class SimulationHandler {
         int points;
         int goalsFor;
         int goalsAgainst;
+        int wins;
 
         GroupStanding(String group, String team) {
             this.group = group;

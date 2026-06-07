@@ -18,6 +18,12 @@
         </div>
 
         <div th:if="${groupsMode}">
+            <div class="alert alert-info py-2" th:if="${groupSimulationReady}">
+                Group-stage simulation results are shown beside each team. Keep the model selections, adjust them now, or update them later with real results.
+            </div>
+            <div class="alert alert-warning py-2" th:unless="${groupSimulationReady}">
+                Run Group Stage first so the finishing probabilities can guide these selections.
+            </div>
             <div th:each="entry : ${groupedRows}" class="mb-4">
                 <h5 class="fw-semibold mb-2" th:text="${'Group ' + entry.key}">Group A</h5>
                 <div class="table-responsive shadow-sm rounded border">
@@ -25,6 +31,11 @@
                         <colgroup>
                             <col style="width:28px">
                             <col>
+                            <col style="width:64px">
+                            <col style="width:64px">
+                            <col style="width:64px">
+                            <col style="width:64px">
+                            <col style="width:72px">
                             <col style="width:105px">
                             <col style="width:105px">
                             <col style="width:95px">
@@ -34,6 +45,11 @@
                         <tr>
                             <th aria-label="Details"></th>
                             <th>Team</th>
+                            <th class="text-center">1st</th>
+                            <th class="text-center">2nd</th>
+                            <th class="text-center">3rd</th>
+                            <th class="text-center">4th</th>
+                            <th class="text-center" style="white-space:nowrap">Last 32</th>
                             <th class="text-center" style="white-space:nowrap">Winner</th>
                             <th class="text-center" style="white-space:nowrap">Runner-up</th>
                             <th class="text-center" style="white-space:nowrap">3rd Place</th>
@@ -45,6 +61,13 @@
                         <tr class="group-main-row" style="cursor:pointer" onclick="toggleGroupDetail(this)">
                             <td class="text-center text-muted"><span class="expand-icon" aria-hidden="true"></span></td>
                             <td><span th:utext="${row.teamHtml}"></span></td>
+                            <th:block th:with="sim=${groupSimulationByTeam[row.team]}">
+                                <td class="text-center small" th:text="${sim != null ? sim['finish_1st'] + '%' : '—'}">—</td>
+                                <td class="text-center small" th:text="${sim != null ? sim['finish_2nd'] + '%' : '—'}">—</td>
+                                <td class="text-center small" th:text="${sim != null ? sim['finish_3rd'] + '%' : '—'}">—</td>
+                                <td class="text-center small" th:text="${sim != null ? sim['finish_4th'] + '%' : '—'}">—</td>
+                                <td class="text-center small fw-semibold" th:text="${sim != null ? sim['reach_last_32'] + '%' : '—'}">—</td>
+                            </th:block>
                             <td class="text-center">
                                 <select class="form-select form-select-sm group-pick" data-category="groupWinner" th:name="${'groupWinner' + row.rowIndex}" onclick="event.stopPropagation()">
                                     <option value="yes" th:selected="${row.groupWinner == 'yes'}">yes</option>
@@ -68,7 +91,7 @@
                             </td>
                             <td class="text-center text-muted small" th:text="${row.predictedPosition}"></td>
                         </tr>
-                        <tr th:replace="~{fragments :: groupDetailRow(6, ${row.breakdownHtml})}"></tr>
+                        <tr th:replace="~{fragments :: groupDetailRow(11, ${row.breakdownHtml})}"></tr>
                         </th:block>
                         </tbody>
                     </table>

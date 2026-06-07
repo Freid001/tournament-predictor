@@ -32,6 +32,7 @@ class PathFatigueCalculatorTest {
         setField(config, "pathFatigueStageMultLast16",     m16);
         setField(config, "pathFatigueStageMultLast8",      m8);
         setField(config, "pathFatigueStageMultLast4",      m4);
+        setField(config, "pathFatigueUpsetMultiplier",       1.25);
         setField(config, "pathFatigueDepthLimitedMultiplier", depthLimited);
         setField(config, "pathFatigueDepthThinMultiplier",    depthThin);
         return config;
@@ -97,6 +98,13 @@ class PathFatigueCalculatorTest {
         assertEquals(50, calculator.knockoutWeightedContribution(1950, "last_32"));
         assertEquals(0, calculator.knockoutWeightedContribution(1850, "last_32"));
         assertEquals(0, calculator.knockoutWeightedContribution(1750, "last_32"));
+    }
+
+    @Test
+    void upsetWinAmplifiesKnockoutFatigueContribution() {
+        assertEquals(63, calculator.knockoutWeightedContribution(1950, "last_32", true));
+        assertEquals(50, calculator.knockoutWeightedContribution(1950, "last_32", false));
+        assertEquals(0, calculator.knockoutWeightedContribution(1750, "last_32", true));
     }
 
     // ─── Positive cap ─────────────────────────────────────────────────────────

@@ -1,0 +1,21 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2016	03	25	Nigeria	Egypt	1	1	FQ		-7	1628	1609	0	+2	50	56
+2016	03	29	Egypt	Nigeria	1	0	FQ		15	1624	1613	+5	−4	51	54
+2016	05	27	Nigeria	Mali	1	0	F	FR	8	1621	1547	+3	−4	52	74
+2016	05	31	Luxembourg	Nigeria	1	3	F		-5	1239	1626	−1	+2	151	51
+2016	09	03	Nigeria	Tanzania	1	0	FQ		4	1630	1321	+2	−1	52	125
+2016	10	09	Zambia	Nigeria	1	2	WQ		-15	1419	1645	−3	+3	103	50
+2016	11	12	Nigeria	Algeria	3	1	WQ		22	1667	1630	+4	−4	48	53
+2017	03	23	Nigeria	Senegal	1	1	F	EN	1	1668	1706	0	0	48	36
+2017	06	01	Nigeria	Togo	3	0	F	FR	6	1674	1381	+1	−1	48	112
+2017	06	10	Nigeria	South Africa	0	2	FQ		-44	1630	1649	−5	+9	54	51
+2017	09	01	Nigeria	Cameroon	4	0	WQ		31	1661	1636	+6	−5	47	51
+2017	09	04	Cameroon	Nigeria	1	1	WQ		-4	1632	1665	−2	0	52	47
+2017	10	07	Nigeria	Zambia	1	0	WQ		7	1672	1495	0	−3	46	84
+2017	11	10	Algeria	Nigeria	1	1	WQ		2	1531	1670	+1	0	73	45
+2017	11	14	Nigeria	Argentina	4	2	F	RU	26	1696	1983	+3	−2	44	6
+2018	03	23	Poland	Nigeria	0	1	F		-16	1825	1712	0	+6	19	38
+2018	03	27	Serbia	Nigeria	2	0	F	EN	13	1783	1699	+1	−4	23	43
+2018	05	28	Nigeria	DR Congo	1	1	F		-6	1693	1584	0	+1	43	66
+2018	06	02	England	Nigeria	2	1	F		2	1942	1691	0	0	7	43
+2018	06	06	Czechia	Nigeria	1	0	F	AT	10	1712	1681	+1	0	41	43

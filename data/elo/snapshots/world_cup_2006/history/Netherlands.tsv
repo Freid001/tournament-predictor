@@ -1,0 +1,33 @@
+year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
+2004	02	18	Netherlands	United States	1	0	F		4	1994	1828	0	0	4	16
+2004	03	31	Netherlands	France	0	0	F		-1	1993	2059	0	0	4	1
+2004	04	28	Netherlands	Greece	4	0	F		6	1999	1804	0	0	4	19
+2004	05	29	Netherlands	Belgium	0	1	F		-17	1982	1789	−1	+3	5	24
+2004	06	01	Netherlands	Faroe Islands	3	0	F	CH	0	1982	1238	0	0	5	147
+2004	06	05	Netherlands	Ireland	0	1	F		-16	1966	1844	0	+2	5	14
+2004	06	15	Germany	Netherlands	1	1	EC	PT	7	1874	1959	0	−1	10	6
+2004	06	19	Czechia	Netherlands	3	2	EC	PT	25	1986	1934	0	−1	5	7
+2004	06	23	Netherlands	Latvia	3	0	EC	PT	8	1942	1531	0	−2	8	74
+2004	06	26	Netherlands	Sweden	0	0	EC	PT	-6	1936	1860	0	+1	8	12
+2004	06	30	Portugal	Netherlands	2	1	EC		20	1924	1916	+1	−1	8	9
+2004	08	18	Sweden	Netherlands	2	2	F		-1	1859	1917	+2	0	12	9
+2004	09	03	Netherlands	Liechtenstein	3	0	F		0	1917	1052	0	0	9	183
+2004	09	08	Netherlands	Czechia	2	0	WQ		28	1945	1963	+1	−2	7	6
+2004	10	09	Macedonia	Netherlands	2	2	WQ		14	1543	1931	+5	0	70	7
+2004	10	13	Netherlands	Finland	3	1	WQ		7	1938	1682	0	−4	7	40
+2004	11	17	Netherlands	Andorra	3	0	WQ	ES	1	1939	1093	0	0	7	175
+2005	02	09	England	Netherlands	0	0	F		-4	1973	1943	0	0	4	7
+2005	03	26	Romania	Netherlands	0	2	WQ		-28	1793	1971	−6	+2	25	5
+2005	03	30	Netherlands	Armenia	2	0	WQ		1	1972	1417	0	−1	5	100
+2005	06	04	Netherlands	Romania	2	0	WQ		10	1982	1792	+1	−4	4	26
+2005	06	08	Finland	Netherlands	0	4	WQ		-21	1692	2003	−2	+3	40	2
+2005	08	17	Netherlands	Germany	2	2	F		-5	1998	1911	0	−1	2	9
+2005	09	03	Armenia	Netherlands	0	1	WQ		-2	1395	2000	−1	0	104	2
+2005	09	07	Netherlands	Andorra	4	0	WQ		0	2000	1123	0	−1	2	170
+2005	10	08	Czechia	Netherlands	0	2	WQ		-34	1918	2034	−4	0	8	2
+2005	10	12	Netherlands	Macedonia	0	0	WQ		-19	2015	1478	−1	+4	2	87
+2005	11	12	Netherlands	Italy	1	3	F		-23	1992	1945	0	+1	2	7
+2006	03	01	Netherlands	Ecuador	1	0	F		2	1994	1720	0	0	2	40
+2006	05	27	Netherlands	Cameroon	1	0	F		3	1997	1781	0	−1	2	27
+2006	06	01	Netherlands	Mexico	2	1	F		4	2001	1838	0	−2	2	17
+2006	06	04	Netherlands	Australia	1	1	F		-7	1994	1797	0	0	2	25

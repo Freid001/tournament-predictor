@@ -1,4 +1,4 @@
-# Football Tournament Prediction Engine
+# International Football Tournament Prediction Engine
 
 An international football tournament prediction engine combining ELO-based match forecasting, xG and Poisson score modelling, bracket prediction, Monte Carlo simulation, and route analysis.
 
@@ -11,7 +11,12 @@ An international football tournament prediction engine combining ELO-based match
 
 ## About
 
-The browser UI is the primary way to use the predictor. Configure the teams, review the group-stage selections, then use one Run Tournament action to calculate every knockout round and simulation. The completed round pages expose predicted and alternate bracket paths.
+The browser UI is the primary way to use the predictor. Configure the teams and review the model-selected group outcomes, then run the simulation in two explicit steps:
+
+1. **Run Group Stage** simulates every group fixture and saves the correlated Last 32 bracket from each run.
+2. **Run Knockout Rounds** resumes those saved brackets and carries each route through the final.
+
+The completed round pages expose the primary model-selected bracket and alternate matchups, while the Monte Carlo probabilities retain unlikely routes that the primary bracket does not select.
 
 The engine is both:
 
@@ -25,10 +30,14 @@ The engine is both:
 - Match predictions using adjusted ELO, attack/defence-shaped xG, Poisson score probabilities, route fatigue, and model-selected paths
 - Bracket paths showing every route a team could take to the final
 - Round-by-round and end-to-end Monte Carlo probabilities, including group qualification, third-place routing, every knockout round, and champion chances
+- Tournament-specific group ranking: UEFA head-to-head mini-tables for EURO tournaments; FIFA-style overall criteria remain the default
+- Best-third ranking uses points, goal difference, goals scored and wins, with ELO only as the final fallback when disciplinary/competition-ranking data is unavailable
+- Historical training datasets currently included: FIFA World Cups 2006, 2010, 2014, 2018 and 2022 plus UEFA EURO 2016, 2020 and 2024; each snapshot excludes results from tournament kickoff onward
+- Repeatable calibration reports from committed actual results via `./predict.sh --mode=training`
 - **Tournament path fatigue** - route-specific depletion based on opponents already faced
 
 **What it does not do:**
-- Claim statistically proven calibration or a guaranteed betting edge. Attack/Defence and other custom weights remain user inputs that need historical backtesting.
+- Claim statistically proven calibration or a guaranteed betting edge. Attack/Defence and other custom weights remain user inputs that need historical training evaluation.
 
 ## Quick start
 
@@ -101,16 +110,39 @@ The score model converts xG into 90-minute win/draw/loss and exact-score probabi
 
 The plus/minus ELO values are temporary pre-match deltas, not permanent World Football Elo updates. Attack and Defence are separate xG inputs, not ELO deltas.
 
+
+### Historical training report
+
+Run every committed historical tournament:
+
+```bash
+./predict.sh --mode=training
+```
+
+Run one tournament:
+
+```bash
+./predict.sh --mode=training --tournament=world_cup_2022
+```
+
+Actual group results and final tournament finishes live under `data/backtests/<tournament>/`. The command compares them with the saved Monte Carlo outputs and writes:
+
+- `data/backtests/training_report.csv` - Brier score, log loss, goals, progression accuracy and champion ranking
+- `data/backtests/training_calibration.csv` - favourite probability bands versus actual win rates
+- `data/backtests/training_scorelines.csv` - predicted versus actual exact-score frequencies
+
+Use the same committed inputs when comparing model changes. Do not tune against one tournament and report that same tournament as independent validation.
+
 ### Model accuracy and calibration
 
 This is an explainable tournament model, not a fully calibrated market-grade forecasting system yet. It should be useful for ranking teams, exposing why a route is hard, comparing close matchups, and stress-testing bracket assumptions. It should not be treated as a proven edge over bookmaker odds or professional forecasting models.
 
-The project includes an xG/Poisson score model, a true group-to-final Monte Carlo simulation, and separate round-conditional simulations. Its main remaining gap is calibration: the custom ELO and xG weights have not yet been fitted against held-out historical tournaments.
+The project includes an xG/Poisson score model, a two-process group-to-final Monte Carlo simulation that preserves each sampled route between steps, and separate round-conditional simulations. Calibration now covers World Cups 2006-2022 and EURO 2016-2024. The older added datasets use frozen historical ELO/form with neutral manual squad adjustments, while the originally curated tournaments retain their tournament-specific squad inputs. This is a stronger calibration sample, but it is still not evidence of a market-grade betting edge.
 
 The highest-value accuracy upgrades would be:
 
 1. Backtest every signal against past World Cups and recent international matches, then tune weights against log loss or Brier score instead of intuition.
-2. Calibrate the `0.15 xG` Attack/Defence step and Poisson assumptions against historical score distributions.
+2. Continue validating the `0.15 xG` Attack/Defence step and Poisson assumptions against historical score distributions.
 3. Add external cross-checks such as market odds, external xG/xGA, rest days, travel distance, and venue/weather by match.
 4. Track prediction calibration so a 70% model pick wins about 70% of comparable historical games.
 
@@ -122,8 +154,8 @@ Applied once at the group stage to calculate each team's effective ELO ranking. 
 | Signal | Max impact | Notes |
 |---|---|---|
 | **Home advantage** | +100 ELO | Official host-country advantage. |
-| **Qualification form** | +/-100 ELO | Recent qualifying results; intentionally re-emphasizes current-cycle form already partly present in base ELO. |
-| **Friendly form** | +/-50 ELO | Recent pre-tournament friendlies with a smaller weight. |
+| **Qualification form** | Removed | No extra ELO because qualifying results are already present in base ELO. |
+| **Pre-tournament form** | +/-50 ELO | The three most recent friendlies before tournament kickoff. |
 | **Injuries** | -22 / -45 / -90 ELO | Current selected-squad availability. |
 | **Heat advantage** | +9 / +18 / +35 ELO | Venue and climate adaptation. |
 | **Squad omissions** | -18 / -35 / -70 ELO | Players missing from the selected squad. |
@@ -193,7 +225,8 @@ Heat is currently a static ELO overlay. It does not directly multiply path fatig
 Base ELO already reflects historical team strength, including prior qualifying matches, friendlies, coaching stability, and squad effects once they appear in results.
 
 - **Low double-count risk:** home advantage, active-squad injuries, current squad omissions, venue heat, and knockout path fatigue.
-- **Medium double-count risk:** qualification and friendly form. They deliberately re-emphasize recent observed results already present in base ELO.
+- **Qualification form:** excluded from Adjusted ELO and the adjustment breakdown to avoid double counting.
+- **Pre-tournament form:** the last three pre-tournament friendlies remain a small current-form overlay because they may post-date the frozen base ELO.
 - **Subjective profile risk:** Attack and Defence can remain alongside form when they come from separate current-squad evidence such as personnel, tactical role, chance creation, finishing, or defensive structure. Do not set them merely because the same recent results were good or bad.
 - Attack/Defence are excluded from Adjusted ELO. Their xG effect already changes scorelines, win/draw probabilities, advancement probabilities, Monte Carlo outcomes, and betting comparisons.
 

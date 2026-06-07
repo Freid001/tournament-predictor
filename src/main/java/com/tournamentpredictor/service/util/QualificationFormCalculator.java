@@ -56,7 +56,7 @@ public class QualificationFormCalculator {
                             try {
                                 LocalDate matchDate = LocalDate.of(year,
                                         Integer.parseInt(cols[1].trim()), Integer.parseInt(cols[2].trim()));
-                                if (matchDate.isAfter(maxDate)) continue;
+                                if (!matchDate.isBefore(maxDate)) continue;
                             } catch (DateTimeException | NumberFormatException e) {
                                 continue;
                             }

@@ -48,9 +48,9 @@ public class Last32Handler {
     }
 
     public void handle(String tournament) throws IOException {
-        Path matchupDir = projectRoot.resolve("data").resolve("matchups").resolve(tournament);
+        Path simulationDir = projectRoot.resolve("data").resolve("simulations").resolve(tournament);
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
-        Path matchupFile = matchupDir.resolve("last_32.csv");
+        Path matchupFile = simulationDir.resolve("matchup_paths_last_32.csv");
         if (csvHelper.isLocked(matchupFile)) {
             System.out.println("  🔒 Output already exists: " + matchupFile + " — delete to re-run");
             Map<String, String> last32Odds = loader.loadOdds(tournament, "last_16");
@@ -73,38 +73,19 @@ public class Last32Handler {
         Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<com.tournamentpredictor.loader.CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
 
-        Files.createDirectories(matchupDir);
+        Files.createDirectories(simulationDir);
         List<String> allLines = last32LineBuilder.buildLast32Lines(groups, groupWinner, runnerUp, thirdPlace,
                 eloRatings, brackets, snapshots);
         predictionScorer.setSnapshots(snapshots);
         List<String> detailed = predictionScorer.scoreLines(allLines, disagreeMap);
         List<String> sortedDetailed = csvHelper.sortGroupsPrimaryFirst(detailed);
-        Files.write(matchupDir.resolve("last_32.csv"), sortedDetailed);
+        Files.write(simulationDir.resolve("matchup_paths_last_32.csv"), sortedDetailed);
 
         List<String> allLast16 = last16LineBuilder.buildLast16Lines(groups, groupWinner, runnerUp, thirdPlace,
                 eloRatings, brackets, detailed, snapshots);
-        // Build the staged UI bracket from model-selected rows only. The independent group-to-final
-        // Monte Carlo still carries every sampled Last 32 upset into later rounds within that run.
-        List<String> primaryOnly = new ArrayList<>();
-        primaryOnly.add(allLast16.get(0));
-        boolean addedForMatch = false;
-        for (int i = 1; i < allLast16.size(); i++) {
-            String row = allLast16.get(i);
-            if (row.trim().isEmpty()) {
-                if (addedForMatch) {
-                    primaryOnly.add("");
-                }
-                addedForMatch = false;
-                continue;
-            }
-            String[] cols = row.split(",", -1);
-            if (cols.length >= 4 && "predicted".equals(cols[3].trim())) {
-                primaryOnly.add(row);
-                addedForMatch = true;
-            }
-        }
-        Files.createDirectories(predictionDir);
-        Files.write(predictionDir.resolve("last_16.csv"), primaryOnly);
+        // Preserve every plausible Last 32 winner in the staged UI. The model-selected
+        // winner keeps its path; the predicted loser continues as an upset route.
+        Files.write(predictionDir.resolve("last_16.csv"), allLast16);
         Map<String, String> last32Odds = loader.loadOdds(tournament, "last_16");
         consoleReporter.printMatchups("Last 32 matchups", sortedDetailed, eloCalculator, predictionDir.resolve("last_16.csv"), last32Odds);
     }
