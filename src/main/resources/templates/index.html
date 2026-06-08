@@ -13,11 +13,11 @@
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h2 class="h5 card-title" th:text="${t.name}">world_cup_2026</h2>
-                    <p class="card-text text-muted mb-2" th:text="${t.stage}">Group Setup complete</p>
+                    <p class="card-text text-muted mb-2" th:text="${t.stage}">Team Setup complete</p>
                     <span class="badge text-bg-secondary" th:text="${t.completedSteps + ' / 4 complete'}">0 / 4 complete</span>
                 </div>
                 <div class="card-footer bg-white border-0 pt-0">
-                    <a class="btn btn-primary" th:href="@{/tournament/{name}(name=${t.name})}">Predictions</a>\n                    <a th:if="${t.historicalComparison}" class="btn btn-outline-success" th:href="@{/history/{name}(name=${t.name})}">Vs Results</a>
+                    <a class="btn btn-primary" th:href="@{/tournament/{name}(name=${t.name})}">Predictions</a>
                     <a class="btn btn-outline-secondary disabled" href="#">Paths</a>
                 </div>
             </div>

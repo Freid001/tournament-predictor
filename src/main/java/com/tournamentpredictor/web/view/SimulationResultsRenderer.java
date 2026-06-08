@@ -7,6 +7,7 @@ import com.tournamentpredictor.service.util.HtmlReporter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public final class SimulationResultsRenderer {
     private static final int TOP_CHAMPION_COUNT = 8;
@@ -104,10 +105,15 @@ public final class SimulationResultsRenderer {
     }
 
     public static String renderSnapshot(List<Map<String, String>> rows, String tournament) {
-        return renderSnapshot(rows, tournament, "last_32");
+        return renderSnapshot(rows, tournament, "last_32", Set.of());
     }
 
     public static String renderSnapshot(List<Map<String, String>> rows, String tournament, String startRound) {
+        return renderSnapshot(rows, tournament, startRound, Set.of());
+    }
+
+    public static String renderSnapshot(List<Map<String, String>> rows, String tournament, String startRound,
+                                        Set<String> actualAdvancingTeams) {
         if (rows == null || rows.isEmpty()) {
             return "";
         }
@@ -129,6 +135,7 @@ public final class SimulationResultsRenderer {
                 ? "Weighted across " + formatCount(routeMatchups) + " possible last 32 matchup projections using group outcome likelihood."
                 : "Averaged across " + formatCount(routeMatchups) + " possible last 32 matchup projections.")
                 : simulationChain(startRound, simulationRuns);
+        boolean hasActualResults = actualAdvancingTeams != null && !actualAdvancingTeams.isEmpty();
 
         StringBuilder html = new StringBuilder();
         html.append("<div class=\"border rounded-2 bg-light p-3 mb-3\">")
@@ -139,21 +146,32 @@ public final class SimulationResultsRenderer {
                 .append("<div class=\"row g-2\">");
         for (int leaderIndex = 0; leaderIndex < leaders.size(); leaderIndex++) {
             Map<String, String> row = leaders.get(leaderIndex);
+            String team = row.getOrDefault("team", "");
+            boolean advanced = hasActualResults && actualAdvancingTeams.contains(team);
+            String cardClass = hasActualResults
+                    ? (advanced ? "border border-success bg-success-subtle" : "border border-danger bg-danger-subtle")
+                    : "border rounded-2 bg-white";
             html.append("<div class=\"col-6 col-md-3 col-xl-2 sim-snapshot-card\" data-sim-page=\"")
                     .append(leaderIndex / 12)
                     .append("\" style=\"")
                     .append(leaderIndex < 12 ? "" : "display:none")
                     .append("\">")
-                    .append("<div class=\"border rounded-2 bg-white px-2 py-2 h-100 sim-snapshot-team\" role=\"button\" tabindex=\"0\" aria-pressed=\"false\" style=\"cursor:pointer\" data-team=\"")
-                    .append(escapeHtml(row.getOrDefault("team", "")))
+                    .append("<div class=\"").append(cardClass).append(" px-2 py-2 h-100 sim-snapshot-team\" role=\"button\" tabindex=\"0\" aria-pressed=\"false\" style=\"cursor:pointer\" data-team=\"")
+                    .append(escapeHtml(team))
                     .append("\" onclick=\"filterTeamValue(this.dataset.team)\" onkeydown=\"if(event.key==='Enter'||event.key===' '){event.preventDefault();filterTeamValue(this.dataset.team);}\">")
                     .append("<div class=\"d-flex justify-content-between align-items-center gap-2\"><div class=\"fw-semibold text-truncate\">")
-                    .append(escapeHtml(row.getOrDefault("team", "")))
+                    .append(escapeHtml(team))
                     .append("</div><div class=\"fs-5 flex-shrink-0\">")
-                    .append(HtmlReporter.flagHtml(row.getOrDefault("team", "")))
+                    .append(HtmlReporter.flagHtml(team))
                     .append("</div></div>")
-                    .append("<div class=\"h5 mb-0\">").append(escapeHtml(row.getOrDefault(advanceColumn, ""))).append("%</div>")
-                    .append("<div class=\"text-muted small\">chance to reach ").append(advanceLabel).append("</div>");
+                    .append("<div class=\"h5 mb-0\">")
+                    .append(escapeHtml(row.getOrDefault(advanceColumn, "")))
+                    .append("%</div>")
+                    .append("<div class=\"small fw-semibold ")
+                    .append(hasActualResults ? (advanced ? "text-success" : "text-danger") : "text-muted")
+                    .append("\">")
+                    .append(hasActualResults ? (advanced ? "Advanced" : "Eliminated") : "chance to reach " + advanceLabel)
+                    .append("</div>");
             String marketOdds = row.getOrDefault("market_odds", "");
             if (!marketOdds.isBlank()) {
                 String netProfit = netWinnings(marketOdds, 10.0);

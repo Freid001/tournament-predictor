@@ -18,6 +18,7 @@ Game predictions combine adjusted ELO, knockout path fatigue, Attack/Defence-sha
 |---|---|---|
 | `qual.form.elo.max` | `100` | Max ELO bonus/penalty from qualification form (±100 ELO, **+14.0%**). Calibrated so perfect qual form exactly cancels home advantage — in practice no team scores 1.0, so the theoretical max is unreachable. |
 | `pre.tournament.form.elo.max` | `50` | Max ELO bonus/penalty from pre-tournament friendlies (±50 ELO, **+7.0%**). Set at 50% of qual form — mirrors eloratings.net K-factor ratio (qualifiers K=40, friendlies K=20). |
+| `pre.tournament.form.max.games` | `5` | Number of most recent pre-tournament friendlies to include in the current-form overlay. |
 
 Tournament form windows are set per tournament, for example in `data/predictions/world_cup_2026/tournament.properties`:
 

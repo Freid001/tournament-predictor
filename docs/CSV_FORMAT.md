@@ -29,10 +29,11 @@ Created by `--mode=snapshot-refresh`. These files freeze external ELO inputs for
 | File | Meaning |
 |---|---|
 | `teams.csv` | `rank,team_code,team_name,rating` rows for only teams in `start.csv`. This is the tournament-local base ELO source. |
+| `results.csv` | Tournament matches for the frozen date window, deduplicated from current history and limited to games between snapshot teams. |
 | `history/*.tsv` | Per-team ELO history files filtered to the configured form-year window and capped at the tournament start date. Used for qualification and friendly form. |
 | `metadata.properties` | Snapshot creation time, source paths, team count, form-year ranges, and frozen `tournament_start_date`. |
 
-`start` mode and group ELO breakdowns require the snapshot and use its `metadata.properties` form windows. Refreshable current ELO files are only used by `snapshot-refresh`.
+`start` mode and group ELO breakdowns require the snapshot and use its `metadata.properties` form windows. Refreshable current ELO files are only used by `snapshot-refresh`. The snapshot refresh also freezes a `results.csv` file for the tournament itself.
 
 ## tournament.properties (`data/predictions/<tournament>/tournament.properties`)
 

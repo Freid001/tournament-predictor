@@ -233,7 +233,7 @@ Base ELO already reflects historical team strength, including prior qualifying m
 
 - **Low double-count risk:** home advantage, active-squad injuries, current squad omissions, venue heat, and knockout path fatigue.
 - **Qualification form:** excluded from Adjusted ELO and the adjustment breakdown to avoid double counting.
-- **Pre-tournament form:** the last three pre-tournament friendlies remain a small current-form overlay because they may post-date the frozen base ELO.
+- **Pre-tournament form:** the last five pre-tournament friendlies remain a small current-form overlay because they may post-date the frozen base ELO.
 - **Subjective profile risk:** Attack and Defence can remain alongside form when they come from separate current-squad evidence such as personnel, tactical role, chance creation, finishing, or defensive structure. Do not set them merely because the same recent results were good or bad.
 - Attack/Defence are excluded from Adjusted ELO. Their xG effect already changes scorelines, win/draw probabilities, advancement probabilities, Monte Carlo outcomes, and betting comparisons.
 

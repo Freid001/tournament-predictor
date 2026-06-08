@@ -36,3 +36,4 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2025	11	14	Angola	Argentina	0	2	F		-2	1566	2113	0	0	69	2
 2026	03	27	Argentina	Mauritania	2	1	F		0	2113	1311	0	−1	2	134
 2026	03	31	Argentina	Zambia	5	0	F		0	2113	1371	0	0	2	112
+2026	06	06	Argentina	Honduras	2	0	F	US	1	2114	1570	0	0	2	69

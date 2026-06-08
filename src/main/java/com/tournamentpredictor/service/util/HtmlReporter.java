@@ -251,6 +251,13 @@ public class HtmlReporter extends ConsoleReporter {
     private String editUrl = null;
     private String pathTournament = "";
     private String pathRound = "";
+    private boolean serverPaginationEnabled = false;
+    private String serverPaginationBaseUrl = "";
+    private int serverPaginationPage = 1;
+    private int serverPaginationPageCount = 1;
+    private String activePathFilter = "all";
+    private String activeTeamFilter = "";
+    private List<String> availableTeamNames = List.of();
     private Map<String, String> simulationAdvancePct = Map.of();
     private Map<String, String> matchupLikelihoodPct = Map.of();
     private Map<String, String> matchupSimulationRuns = Map.of();
@@ -274,6 +281,25 @@ public class HtmlReporter extends ConsoleReporter {
         return this;
     }
 
+    public HtmlReporter withServerPagination(String baseUrl, int page, int pageCount) {
+        this.serverPaginationEnabled = baseUrl != null && !baseUrl.isBlank();
+        this.serverPaginationBaseUrl = baseUrl == null ? "" : baseUrl;
+        this.serverPaginationPage = Math.max(1, page);
+        this.serverPaginationPageCount = Math.max(1, pageCount);
+        return this;
+    }
+
+    public HtmlReporter withActiveFilters(String pathFilter, String teamFilter) {
+        this.activePathFilter = normalizePathFilter(pathFilter);
+        this.activeTeamFilter = teamFilter == null ? "" : teamFilter.trim();
+        return this;
+    }
+
+    public HtmlReporter withTeamNames(List<String> teamNames) {
+        this.availableTeamNames = teamNames == null ? List.of() : teamNames;
+        return this;
+    }
+
     public HtmlReporter withSimulationAdvance(Map<String, String> simulationAdvancePct) {
         this.simulationAdvancePct = simulationAdvancePct == null ? Map.of() : simulationAdvancePct;
         return this;
@@ -287,6 +313,26 @@ public class HtmlReporter extends ConsoleReporter {
     public HtmlReporter withMatchupSimulationRuns(Map<String, String> matchupSimulationRuns) {
         this.matchupSimulationRuns = matchupSimulationRuns == null ? Map.of() : matchupSimulationRuns;
         return this;
+    }
+
+    private String normalizePathFilter(String pathFilter) {
+        String normalized = pathFilter == null ? "all" : pathFilter.trim().toLowerCase();
+        if (normalized.isEmpty() || "both".equals(normalized)) {
+            return "all";
+        }
+        return Set.of("all", "actual", "alt", "upset", "predicted").contains(normalized) ? normalized : "all";
+    }
+
+    private String pathButtonHtml(String path, String label) {
+        boolean active = normalizePathFilter(path).equals(activePathFilter);
+        return new StringBuilder()
+                .append("<button type=\"button\" class=\"btn btn-outline-secondary path-btn")
+                .append(active ? " active" : "")
+                .append("\" data-path=\"").append(path)
+                .append("\" onclick=\"filterPath(this)\">")
+                .append(label)
+                .append("</button>")
+                .toString();
     }
 
     public void appendInfo(String message) {
@@ -375,13 +421,15 @@ public class HtmlReporter extends ConsoleReporter {
             }
 
             String matchId = valueAt(cols, matchIdIdx);
-            String key = matchId + "|" + team1 + "|" + team2;
+            String key = matchId + "|" + team1 + "|" + team2 + "|" + rowPath;
             if (seen.contains(key)) continue;
             seen.add(key);
             rowsToPrint.add(cols);
         }
 
-        html.append("<div class=\"output-section mb-4\">");
+        html.append("<div class=\"output-section mb-4\" data-server-paging=\"")
+                .append(serverPaginationEnabled ? "true" : "false")
+                .append("\">");
         appendSummary(primaryMatchIdCount.size());
         appendPathFilterScript();
 
@@ -403,8 +451,10 @@ public class HtmlReporter extends ConsoleReporter {
             String selectionSource = valueAt(cols, selectionSourceIdx);
             String rowPath = valueAt(cols, pathIdx);
             boolean isPrimary = pathIdx < 0 || "predicted".equalsIgnoreCase(rowPath);
+            boolean isActual = "actual".equalsIgnoreCase(rowPath);
             boolean isAlt = !isPrimary;
-            String displayPath = isPrimary ? "predicted"
+            String displayPath = isActual ? "actual"
+                    : isPrimary ? "predicted"
                     : "upset".equalsIgnoreCase(rowPath) ? "upset" : "alt";
             String suffix = isAlt ? "Alt" : "";
             String team1PathDiff = valueAt(cols, team1PathDiffIdx);
@@ -448,45 +498,54 @@ public class HtmlReporter extends ConsoleReporter {
                     matchupLikelihood, selectionSource, modelWinner, modelPct, matchupRuns});
         }
 
-        if (tableRows.isEmpty()) {
-            html.append("<div class=\"alert alert-warning\">No rows available for this view.</div></div>");
-            return;
-        }
-
         long altCount = tableRows.stream().filter(r -> "alt".equals(r[7])).count();
         long upsetCount = tableRows.stream().filter(r -> "upset".equals(r[7])).count();
-        boolean showToggle = altCount > 0 || upsetCount > 0;
+        long actualCount = tableRows.stream().filter(r -> "actual".equals(r[7])).count();
+        boolean showToggle = true;
         boolean roundOf32 = label != null && (label.contains("Last 32") || label.contains("Round of 32"));
         boolean hasSimulationAdvance = tableRows.stream().anyMatch(r -> (r.length > 17 && !r[17].isBlank()) || (r.length > 21 && !r[21].isBlank()));
         boolean showWinnerColumn = !hasSimulationAdvance;
         boolean showOdds = false;
         boolean hasMatchupLikelihood = tableRows.stream().anyMatch(r -> r.length > 25 && !r[25].isBlank());
-        if (hasMatchupLikelihood) {
+        boolean hasActualRows = tableRows.stream().anyMatch(r -> r.length > 7 && "actual".equalsIgnoreCase(r[7]));
+        if (hasMatchupLikelihood && !hasActualRows) {
             tableRows.sort(java.util.Comparator.comparingDouble((String[] row) -> parseDoubleOrZero(row[25])).reversed());
         }
 
-        List<String> teamNames = tableRows.stream()
-                .flatMap(r -> java.util.stream.Stream.of(r[1], r[2]))
-                .filter(t -> t != null && !t.isEmpty())
-                .distinct()
-                .sorted()
-                .collect(java.util.stream.Collectors.toList());
+        List<String> teamNames = availableTeamNames.isEmpty()
+                ? rowsToPrint.stream()
+                        .map(cols -> {
+                            String team1 = eloCalculator.extractTeamName(valueAt(cols, team1Idx));
+                            String team2 = eloCalculator.extractTeamName(valueAt(cols, team2Idx));
+                            return java.util.stream.Stream.of(team1, team2);
+                        })
+                        .flatMap(java.util.function.Function.identity())
+                        .filter(t -> t != null && !t.isEmpty())
+                        .distinct()
+                        .sorted()
+                        .collect(java.util.stream.Collectors.toList())
+                : availableTeamNames;
 
         if (showToggle || !teamNames.isEmpty() || editUrl != null) {
             html.append("<div class=\"d-flex gap-2 align-items-center mb-2 flex-wrap\">");
             if (showToggle) {
                 html.append("<div class=\"btn-group btn-group-sm\" role=\"group\">")
-                        .append("<button type=\"button\" class=\"btn btn-outline-secondary active path-btn\" data-path=\"both\" onclick=\"filterPath(this)\">All</button>")
-                        .append("<button type=\"button\" class=\"btn btn-outline-secondary path-btn\" data-path=\"alt\" onclick=\"filterPath(this)\">Alternative</button>")
-                        .append("<button type=\"button\" class=\"btn btn-outline-secondary path-btn\" data-path=\"upset\" onclick=\"filterPath(this)\">Upset</button>")
-                        .append("<button type=\"button\" class=\"btn btn-outline-secondary path-btn\" data-path=\"predicted\" onclick=\"filterPath(this)\">Predicted</button>")
+                        .append(pathButtonHtml("all", "All"))
+                        .append(pathButtonHtml("actual", "Actual"))
+                        .append(pathButtonHtml("alt", "Alternative"))
+                        .append(pathButtonHtml("upset", "Upset"))
+                        .append(pathButtonHtml("predicted", "Predicted"))
                         .append("</div>");
             }
             if (!teamNames.isEmpty()) {
                 html.append("<select class=\"form-select form-select-sm\" style=\"max-width:180px\" onchange=\"filterTeam(this)\">")
-                        .append("<option value=\"\">All teams</option>");
+                        .append("<option value=\"\"")
+                        .append(activeTeamFilter.isEmpty() ? " selected" : "")
+                        .append(">All teams</option>");
                 for (String t : teamNames) {
-                    html.append("<option value=\"").append(escapeHtml(t)).append("\">").append(escapeHtml(t)).append("</option>");
+                    html.append("<option value=\"").append(escapeHtml(t)).append("\"")
+                            .append(t.equals(activeTeamFilter) ? " selected" : "")
+                            .append(">").append(escapeHtml(t)).append("</option>");
                 }
                 html.append("</select>");
             }
@@ -499,7 +558,7 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("<div class=\"table-responsive\"><table class=\"table table-striped table-hover table-sm align-middle\">");
         html.append("<thead class=\"table-dark\"><tr><th style=\"width:28px\" aria-label=\"Details\"></th><th>Match</th><th>Team 1</th><th>Team 2</th>");
         if (showWinnerColumn) html.append("<th>Winner</th>");
-        if (hasSimulationAdvance) html.append("<th>Most Likely Winner</th>");
+        if (hasSimulationAdvance) html.append("<th>").append(hasActualRows ? "Winner / Result" : "Most Likely Winner").append("</th>");
         if (hasMatchupLikelihood) html.append("<th>Match Likelihood</th>");
         html.append("<th>Path</th>");
         if (showOdds) html.append("<th>").append(escapeHtml(oddsHeaderFor(label))).append("</th><th>Net Winnings (Bet=£10)</th>");
@@ -507,7 +566,9 @@ public class HtmlReporter extends ConsoleReporter {
 
         for (String[] row : tableRows) {
             boolean userPick = row.length > 26 && "user".equalsIgnoreCase(row[26]);
-            html.append("<tr class=\"").append("predicted".equals(row[7]) ? "table-primary" : "").append("\" data-path=\"").append(row[7]).append("\"")
+            boolean actualPath = "actual".equalsIgnoreCase(row[7]);
+            boolean predictedPath = "predicted".equalsIgnoreCase(row[7]);
+            html.append("<tr class=\"").append(actualPath ? "table-warning" : predictedPath ? "table-primary" : "").append("\" data-path=\"").append(row[7]).append("\"")
                     .append(" data-match=\"").append(escapeHtml(row[0])).append("\"")
                     .append(" data-team1=\"").append(escapeHtml(row[1])).append("\"")
                     .append(" data-team2=\"").append(escapeHtml(row[2])).append("\"")
@@ -523,33 +584,42 @@ public class HtmlReporter extends ConsoleReporter {
             html.append("</td>");
             if (showWinnerColumn) {
                 html.append("<td>");
-                if (userPick) html.append("<span class=\"badge text-bg-warning me-1\">User Pick</span>");
-                html.append("<span class=\"")
-                        .append(Integer.parseInt(row[5]) >= 60 ? "fw-semibold text-success" : "fw-semibold text-warning-emphasis")
-                        .append("\">")
-                        .append(teamCell(row[4]))
-                        .append(" (")
-                        .append(escapeHtml(row[5]))
-                        .append("%)</span></td>");
+                if (actualPath) {
+                    appendActualResultCell(html, row[4]);
+                } else {
+                    if (userPick) html.append("<span class=\"badge text-bg-warning me-1\">User Pick</span>");
+                    html.append("<span class=\"")
+                            .append(Integer.parseInt(row[5]) >= 60 ? "fw-semibold text-success" : "fw-semibold text-warning-emphasis")
+                            .append("\">")
+                            .append(teamCell(row[4]))
+                            .append(" (")
+                            .append(escapeHtml(row[5]))
+                            .append("%)</span>");
+                }
+                html.append("</td>");
             }
             if (hasSimulationAdvance) {
                 html.append("<td>");
                 // Match rows must show exactly one direct-match selection. Tournament-wide
                 // progression probabilities belong in the summary cards, never in this cell.
-                String displayedWinner = userPick ? row[4]
-                        : row.length > 21 && !row[21].isBlank() ? row[21]
-                        : !row[4].isBlank() ? row[4]
-                        : row.length > 17 ? row[17] : "";
-                String displayedPct = userPick ? row[5]
-                        : row.length > 22 && !row[22].isBlank() ? row[22]
-                        : row[5];
-                if (displayedWinner.isBlank()) {
-                    html.append("<span class=\"text-muted small\">No prediction</span>");
+                if (actualPath) {
+                    appendActualResultCell(html, row[4]);
                 } else {
-                    html.append("<span class=\"fw-semibold\">").append(teamCell(displayedWinner));
-                    if (!displayedPct.isBlank()) html.append(" (").append(escapeHtml(displayedPct)).append("%)");
-                    html.append("</span>");
-                    if (userPick) html.append(" <span class=\"badge text-bg-warning\">User Pick</span>");
+                    String displayedWinner = userPick ? row[4]
+                            : row.length > 21 && !row[21].isBlank() ? row[21]
+                            : !row[4].isBlank() ? row[4]
+                            : row.length > 17 ? row[17] : "";
+                    String displayedPct = userPick ? row[5]
+                            : row.length > 22 && !row[22].isBlank() ? row[22]
+                            : row[5];
+                    if (displayedWinner.isBlank()) {
+                        html.append("<span class=\"text-muted small\">No prediction</span>");
+                    } else {
+                        html.append("<span class=\"fw-semibold\">").append(teamCell(displayedWinner));
+                        if (!displayedPct.isBlank()) html.append(" (").append(escapeHtml(displayedPct)).append("%)");
+                        html.append("</span>");
+                        if (userPick) html.append(" <span class=\"badge text-bg-warning\">User Pick</span>");
+                    }
                 }
                 html.append("</td>");
             }
@@ -567,12 +637,11 @@ public class HtmlReporter extends ConsoleReporter {
                 }
                 html.append("</td>");
             }
-            boolean predictedPath = "predicted".equals(row[7]);
             boolean upsetPath = "upset".equals(row[7]);
             html.append("<td><span class=\"badge ")
-                    .append(predictedPath ? "text-bg-primary" : upsetPath ? "text-bg-warning" : "text-bg-secondary")
+                    .append(actualPath ? "text-bg-warning" : predictedPath ? "text-bg-primary" : upsetPath ? "text-bg-warning" : "text-bg-secondary")
                     .append("\">")
-                    .append(predictedPath ? "Predicted" : upsetPath ? "Upset" : "Alternative")
+                    .append(actualPath ? "Actual" : predictedPath ? "Predicted" : upsetPath ? "Upset" : "Alternative")
                     .append("</span></td>");
             if (showOdds) {
                 html.append("<td>").append(escapeHtml(row[6])).append("</td>");
@@ -593,12 +662,36 @@ public class HtmlReporter extends ConsoleReporter {
         }
 
         html.append("</tbody></table></div>");
-        html.append("<div class=\"table-no-results alert alert-light border text-muted py-2\" style=\"display:none\">No results.</div>");
-        html.append("<div class=\"table-pagination d-flex justify-content-center align-items-center gap-2 mt-2\" style=\"display:none\">")
-                .append("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary page-prev\" onclick=\"changeTablePage(this,-1)\">Previous</button>")
-                .append("<span class=\"small text-muted page-status\"></span>")
-                .append("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary page-next\" onclick=\"changeTablePage(this,1)\">Next</button>")
-                .append("</div></div>");
+        html.append("<div class=\"table-no-results alert alert-light border text-muted py-2\" style=\"display:")
+                .append(tableRows.isEmpty() ? "block" : "none")
+                .append("\">No results.</div>");
+        if (serverPaginationEnabled) {
+            String prevUrl = pageUrl(serverPaginationPage - 1);
+            String nextUrl = pageUrl(serverPaginationPage + 1);
+            html.append("<div class=\"table-pagination d-flex justify-content-center align-items-center gap-2 mt-2\">")
+                    .append("<a class=\"btn btn-sm btn-outline-secondary page-prev")
+                    .append(serverPaginationPage <= 1 ? " disabled" : "")
+                    .append("\" href=\"").append(prevUrl).append("\">Previous</a>")
+                    .append("<span class=\"small text-muted page-status\">Page ")
+                    .append(serverPaginationPage).append(" of ").append(serverPaginationPageCount)
+                    .append("</span>")
+                    .append("<a class=\"btn btn-sm btn-outline-secondary page-next")
+                    .append(serverPaginationPage >= serverPaginationPageCount ? " disabled" : "")
+                    .append("\" href=\"").append(nextUrl).append("\">Next</a>")
+                    .append("</div></div>");
+        } else {
+            html.append("<div class=\"table-pagination d-flex justify-content-center align-items-center gap-2 mt-2\" style=\"display:none\">")
+                    .append("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary page-prev\" onclick=\"changeTablePage(this,-1)\">Previous</button>")
+                    .append("<span class=\"small text-muted page-status\"></span>")
+                    .append("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary page-next\" onclick=\"changeTablePage(this,1)\">Next</button>")
+                    .append("</div></div>");
+        }
+    }
+
+    private String pageUrl(int page) {
+        if (serverPaginationBaseUrl.isBlank()) return "#";
+        String separator = serverPaginationBaseUrl.contains("?") ? "&" : "?";
+        return serverPaginationBaseUrl + separator + "page=" + Math.max(1, page);
     }
 
     public String getHtml() {
@@ -677,6 +770,16 @@ public class HtmlReporter extends ConsoleReporter {
         }
 
         html.append("</div></td></tr>");
+    }
+
+    private static void appendActualResultCell(StringBuilder html, String result) {
+        if (result == null || result.isBlank()) {
+            html.append("<span class=\"text-muted small\">Actual result unavailable</span>");
+            return;
+        }
+        html.append("<span class=\"fw-semibold\">")
+                .append(escapeHtml(result))
+                .append("</span>");
     }
 
     private void appendExpectedGoalsPanel(StringBuilder html, String team1, EloBreakdown b1, String originSlot1,
@@ -1225,15 +1328,16 @@ public class HtmlReporter extends ConsoleReporter {
         }
         html.append("<style>.path-focus-row{outline:3px solid #fd7e14;outline-offset:-2px}.expand-icon{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;opacity:.55;vertical-align:middle;transform-origin:35% 50%;transition:transform .15s ease}.expand-icon.expanded{transform:rotate(90deg)}</style><script>")
                 .append("function applyFilters(section){")
-                .append("const pathBtn=section.querySelector('.path-btn.active');const path=pathBtn?pathBtn.dataset.path:'both';const teamSel=section.querySelector('select');const team=teamSel?teamSel.value:'';")
-                .append("const rows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(row=>!row.classList.contains('detail-row'));const matches=rows.filter(row=>(path==='both'||row.dataset.path===path)&&(!team||row.dataset.team1===team||row.dataset.team2===team));")
-                .append("const pageSize=100;const pageCount=Math.max(1,Math.ceil(matches.length/pageSize));let page=Math.min(Math.max(1,Number(section.dataset.tablePage||1)),pageCount);section.dataset.tablePage=String(page);const start=(page-1)*pageSize;const pageRows=new Set(matches.slice(start,start+pageSize));")
+                .append("const serverPaging=section.dataset.serverPaging==='true';const pathBtn=section.querySelector('.path-btn.active');const path=pathBtn?pathBtn.dataset.path:'all';const teamSel=section.querySelector('select');const team=teamSel?teamSel.value:'';const rows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(row=>!row.classList.contains('detail-row'));const matches=rows.filter(row=>(path==='all'||row.dataset.path===path)&&(!team||row.dataset.team1===team||row.dataset.team2===team));")
+                .append("if(serverPaging){rows.forEach(row=>{row.style.display='';const detail=row.nextElementSibling;if(detail&&detail.classList.contains('detail-row')){detail.style.display=detail.dataset.expanded==='true'?'table-row':'none';if(detail.dataset.expanded!=='true'){row.setAttribute('aria-expanded','false');const icon=row.querySelector('.expand-icon');if(icon)icon.classList.remove('expanded');}}});const empty=section.querySelector('.table-no-results');if(empty)empty.style.display=rows.length?'none':'block';return;}")
+                .append("const pageSize=50;const pageCount=Math.max(1,Math.ceil(matches.length/pageSize));let page=Math.min(Math.max(1,Number(section.dataset.tablePage||1)),pageCount);section.dataset.tablePage=String(page);const start=(page-1)*pageSize;const pageRows=new Set(matches.slice(start,start+pageSize));")
                 .append("rows.forEach(row=>{const show=pageRows.has(row);row.style.display=show?'':'none';const detail=row.nextElementSibling;if(detail&&detail.classList.contains('detail-row')){detail.style.display=(show&&detail.dataset.expanded==='true')?'table-row':'none';if(!show){detail.dataset.expanded='false';row.setAttribute('aria-expanded','false');const icon=row.querySelector('.expand-icon');if(icon)icon.classList.remove('expanded');}}});")
                 .append("const empty=section.querySelector('.table-no-results');if(empty)empty.style.display=matches.length?'none':'';const pager=section.querySelector('.table-pagination');if(pager){pager.style.display=pageCount>1?'flex':'none';const status=pager.querySelector('.page-status');if(status)status.textContent='Page '+page+' of '+pageCount+' · '+matches.length+' results';const prev=pager.querySelector('.page-prev');const next=pager.querySelector('.page-next');if(prev)prev.disabled=page<=1;if(next)next.disabled=page>=pageCount;}")
                 .append("}")
                 .append("function changeTablePage(btn,delta){const section=btn.closest('.output-section');section.dataset.tablePage=String(Number(section.dataset.tablePage||1)+delta);applyFilters(section);section.querySelector('.table-responsive').scrollIntoView({behavior:'smooth',block:'start'});}")
-                .append("function filterPath(btn){const section=btn.closest('.output-section');section.dataset.tablePage='1';btn.closest('.btn-group').querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('predictor_path_v2',btn.dataset.path);localStorage.removeItem('predictor_team');const teamSel=section.querySelector('select');if(teamSel)teamSel.value='';document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}")
-                .append("function filterTeam(sel){const section=sel.closest('.output-section');section.dataset.tablePage='1';localStorage.setItem('predictor_team',sel.value);document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}function filterTeamValue(team){const section=document.querySelector('.output-section');if(!section)return;section.dataset.tablePage='1';const sel=section.querySelector('select');const active=sel&&sel.value===team;const next=active?'':team;localStorage.setItem('predictor_team',next);if(sel){const opt=Array.from(sel.options).find(o=>o.value===next);if(opt)sel.value=next;}document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{const selected=!active&&tile.dataset.team===team;tile.classList.toggle('border-primary',selected);tile.classList.toggle('bg-primary-subtle',selected);tile.setAttribute('aria-pressed',selected?'true':'false');});applyFilters(section);section.scrollIntoView({behavior:'smooth',block:'start'});}")
+                .append("function navigateWithFilters(section,overrides){const url=new URL(window.location.href);const activePath=overrides.path!==undefined?overrides.path:(section.querySelector('.path-btn.active')?.dataset.path||'all');const teamSel=section.querySelector('select');const activeTeam=overrides.team!==undefined?overrides.team:(teamSel?teamSel.value:'');url.searchParams.set('path',activePath);if(activeTeam){url.searchParams.set('team',activeTeam);}else{url.searchParams.delete('team');}url.searchParams.set('page',String(overrides.page||1));window.location.href=url.pathname+'?'+url.searchParams.toString();}")
+                .append("function filterPath(btn){const section=btn.closest('.output-section');if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{path:btn.dataset.path,page:1});return;}section.dataset.tablePage='1';btn.closest('.btn-group').querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('predictor_path_v2',btn.dataset.path);localStorage.removeItem('predictor_team');const teamSel=section.querySelector('select');if(teamSel)teamSel.value='';document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}")
+                .append("function filterTeam(sel){const section=sel.closest('.output-section');if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{team:sel.value,page:1});return;}section.dataset.tablePage='1';localStorage.setItem('predictor_team',sel.value);document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}function filterTeamValue(team){const section=document.querySelector('.output-section');if(!section)return;const sel=section.querySelector('select');const active=sel&&sel.value===team;const next=active?'':team;if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{team:next,page:1});return;}section.dataset.tablePage='1';localStorage.setItem('predictor_team',next);if(sel){const opt=Array.from(sel.options).find(o=>o.value===next);if(opt)sel.value=next;}document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{const selected=!active&&tile.dataset.team===team;tile.classList.toggle('border-primary',selected);tile.classList.toggle('bg-primary-subtle',selected);tile.setAttribute('aria-pressed',selected?'true':'false');});applyFilters(section);section.scrollIntoView({behavior:'smooth',block:'start'});}")
                 .append("function toggleDetail(row){")
                 .append("const detail=row.nextElementSibling;")
                 .append("if(!detail||!detail.classList.contains('detail-row'))return;")
@@ -1248,12 +1352,11 @@ public class HtmlReporter extends ConsoleReporter {
                 .append("const savedPath=localStorage.getItem('predictor_path_v2');")
                 .append("const savedTeam=localStorage.getItem('predictor_team');")
                 .append("document.querySelectorAll('.output-section').forEach(function(section){")
-                .append("if(savedPath){const btn=section.querySelector('.path-btn[data-path=\"'+savedPath+'\"]');if(btn){section.querySelectorAll('.path-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}}")
-                .append("const sel=section.querySelector('select');if(sel&&savedTeam){const opt=Array.from(sel.options).find(o=>o.value===savedTeam);if(opt)sel.value=savedTeam;}")
-                .append("applyFilters(section);")
+                .append("const serverPaging=section.dataset.serverPaging==='true';if(!serverPaging&&savedPath){const btn=section.querySelector('.path-btn[data-path=\"'+savedPath+'\"]');if(btn){section.querySelectorAll('.path-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}}")
+                .append("const sel=section.querySelector('select');if(sel&&!serverPaging&&savedTeam){const opt=Array.from(sel.options).find(o=>o.value===savedTeam);if(opt)sel.value=savedTeam;}")
                 .append("});")
-                .append("const params=new URLSearchParams(window.location.search);const focusMatch=params.get('focusMatch');const focusTeam=params.get('focusTeam');const focusOpponent=params.get('focusOpponent');if(focusMatch&&focusTeam&&focusOpponent){const section=document.querySelector('.output-section');if(section){const allBtn=section.querySelector('.path-btn[data-path=\"both\"]');if(allBtn){section.querySelectorAll('.path-btn').forEach(b=>b.classList.remove('active'));allBtn.classList.add('active');}const sel=section.querySelector('select');if(sel)sel.value='';localStorage.removeItem('predictor_team');applyFilters(section);const rows=Array.from(section.querySelectorAll('tbody tr[data-match]'));const row=rows.find(r=>r.dataset.match===focusMatch&&((r.dataset.team1===focusTeam&&r.dataset.team2===focusOpponent)||(r.dataset.team1===focusOpponent&&r.dataset.team2===focusTeam)));if(row){const mainRows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(r=>!r.classList.contains('detail-row'));section.dataset.tablePage=String(Math.floor(mainRows.indexOf(row)/100)+1);applyFilters(section);row.style.display='';row.classList.add('path-focus-row');toggleDetail(row);setTimeout(()=>row.scrollIntoView({behavior:'smooth',block:'center'}),50);setTimeout(()=>row.classList.remove('path-focus-row'),3000);}}}")
-                .append("document.querySelectorAll('[data-bs-toggle=\"tooltip\"]').forEach(function(el){new bootstrap.Tooltip(el);});")
+                .append("const params=new URLSearchParams(window.location.search);const focusMatch=params.get('focusMatch');const focusTeam=params.get('focusTeam');const focusOpponent=params.get('focusOpponent');if(focusMatch&&focusTeam&&focusOpponent){const section=document.querySelector('.output-section');if(section){const allBtn=section.querySelector('.path-btn[data-path=\"all\"]');if(allBtn){section.querySelectorAll('.path-btn').forEach(b=>b.classList.remove('active'));allBtn.classList.add('active');}const sel=section.querySelector('select');if(sel)sel.value='';localStorage.removeItem('predictor_team');applyFilters(section);const rows=Array.from(section.querySelectorAll('tbody tr[data-match]'));const row=rows.find(r=>r.dataset.match===focusMatch&&((r.dataset.team1===focusTeam&&r.dataset.team2===focusOpponent)||(r.dataset.team1===focusOpponent&&r.dataset.team2===focusTeam)));if(row){const mainRows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(r=>!r.classList.contains('detail-row'));section.dataset.tablePage=String(Math.floor(mainRows.indexOf(row)/50)+1);applyFilters(section);row.style.display='';row.classList.add('path-focus-row');toggleDetail(row);setTimeout(()=>row.scrollIntoView({behavior:'smooth',block:'center'}),50);setTimeout(()=>row.classList.remove('path-focus-row'),3000);}}}")
+.append("document.querySelectorAll('[data-bs-toggle=\"tooltip\"]').forEach(function(el){new bootstrap.Tooltip(el);});")
                 .append("});")
                 .append("</script>");
         pathFilterScriptAdded = true;

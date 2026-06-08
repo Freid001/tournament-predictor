@@ -374,7 +374,7 @@ public class CsvLoader {
     private int squadDepthExcellentBonus = 10;
     private int   homeAdvantage         = 100;
     private int   preTournamentFormEloMax = 50;
-    private int   preTournamentFormMaxGames = 3;
+    private int   preTournamentFormMaxGames = 5;
     private static final int   PRE_TOURNAMENT_FORM_SINCE_YEAR = 2026;
     private static final int   PRE_TOURNAMENT_FORM_UNTIL_YEAR = 2026;
     private static final java.util.Set<String> QUALIFIER_TYPES =

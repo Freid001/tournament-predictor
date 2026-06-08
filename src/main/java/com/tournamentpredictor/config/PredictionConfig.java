@@ -33,7 +33,7 @@ public class PredictionConfig {
     @Value("${pre.tournament.form.elo.max:50}")
     private int preTournamentFormEloMax;
 
-    @Value("${pre.tournament.form.max.games:3}")
+    @Value("${pre.tournament.form.max.games:5}")
     private int preTournamentFormMaxGames;
 
     @Value("${pre.tournament.form.since.year:2026}")

@@ -88,10 +88,11 @@ public class TournamentSnapshotHandler {
 
         int copiedTeams = writeTeamsSnapshot(snapshotDir.resolve("teams.csv"), teams);
         int copiedHistory = writeHistorySnapshot(historyDir, teams);
-        writeMetadata(snapshotDir.resolve("metadata.properties"), teams.size(), copiedTeams, copiedHistory);
+        int copiedResults = writeResultsSnapshot(snapshotDir.resolve("results.csv"), teams);
+        writeMetadata(snapshotDir.resolve("metadata.properties"), teams.size(), copiedTeams, copiedHistory, copiedResults);
 
         System.out.println("Snapshot refreshed for " + tournament + ": " + copiedTeams
-                + " teams, " + copiedHistory + " history files.");
+                + " teams, " + copiedHistory + " history files, " + copiedResults + " tournament results.");
     }
 
     private int writeTeamsSnapshot(Path output, Set<String> teams) throws IOException {
@@ -206,7 +207,74 @@ public class TournamentSnapshotHandler {
         return count;
     }
 
-    private void writeMetadata(Path output, int requestedTeams, int copiedTeams, int copiedHistory) throws IOException {
+    private int writeResultsSnapshot(Path output, Set<String> teams) throws IOException {
+        Path sourceDir = projectRoot.resolve("data").resolve("elo").resolve("current").resolve("history");
+        if (!Files.exists(sourceDir)) {
+            return 0;
+        }
+
+        List<TournamentResult> results = new java.util.ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        for (String team : teams) {
+            Path source = sourceDir.resolve(team + ".tsv");
+            if (!Files.exists(source)) {
+                continue;
+            }
+            List<String> lines = Files.readAllLines(source);
+            if (lines.isEmpty()) {
+                continue;
+            }
+            for (int i = 1; i < lines.size(); i++) {
+                String[] cols = lines.get(i).split("\t", -1);
+                if (cols.length < 8) {
+                    continue;
+                }
+                String matchType = cols[7].trim();
+                if (matchType.equalsIgnoreCase("F") || matchType.equalsIgnoreCase("FT")) {
+                    continue;
+                }
+                try {
+                    int year = Integer.parseInt(cols[0].trim());
+                    int month = Integer.parseInt(cols[1].trim());
+                    int day = Integer.parseInt(cols[2].trim());
+                    LocalDate matchDate = LocalDate.of(year, month, day);
+                    if (matchDate.isBefore(tournamentStartDate)) {
+                        continue;
+                    }
+                    String home = cols[3].trim();
+                    String away = cols[4].trim();
+                    if (!teams.contains(home) || !teams.contains(away)) {
+                        continue;
+                    }
+                    String homeScore = cols[5].trim();
+                    String awayScore = cols[6].trim();
+                    String neutral = cols.length > 8 ? cols[8].trim() : "";
+                    String key = year + "-" + cols[1].trim() + "-" + cols[2].trim() + "|" + home + "|" + away
+                            + "|" + homeScore + "|" + awayScore + "|" + matchType;
+                    if (seen.add(key)) {
+                        results.add(new TournamentResult(matchDate, home, away, homeScore, awayScore, matchType, neutral));
+                    }
+                } catch (NumberFormatException | DateTimeException ignored) {
+                }
+            }
+        }
+
+        results.sort(java.util.Comparator.comparing(TournamentResult::date)
+                .thenComparing(TournamentResult::homeTeam)
+                .thenComparing(TournamentResult::awayTeam)
+                .thenComparing(TournamentResult::matchType));
+        try (Writer writer = Files.newBufferedWriter(output);
+             CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
+            printer.printRecord("date", "home_team", "away_team", "home_score", "away_score", "match_type", "neutral");
+            for (TournamentResult result : results) {
+                printer.printRecord(result.date(), result.homeTeam(), result.awayTeam(), result.homeScore(),
+                        result.awayScore(), result.matchType(), result.neutral());
+            }
+        }
+        return results.size();
+    }
+
+    private void writeMetadata(Path output, int requestedTeams, int copiedTeams, int copiedHistory, int copiedResults) throws IOException {
         Map<String, String> values = new LinkedHashMap<>();
         values.put("created_at", Instant.now().toString());
         values.put("elo_source", "data/elo/current/world.csv");
@@ -214,6 +282,7 @@ public class TournamentSnapshotHandler {
         values.put("requested_team_count", String.valueOf(requestedTeams));
         values.put("team_count", String.valueOf(copiedTeams));
         values.put("history_file_count", String.valueOf(copiedHistory));
+        values.put("result_match_count", String.valueOf(copiedResults));
         values.put("tournament_start_date", tournamentStartDate.toString());
         values.put("qual_form_since", String.valueOf(effectiveQualSinceYear));
         values.put("qual_form_until", String.valueOf(effectiveQualUntilYear));
@@ -233,4 +302,7 @@ public class TournamentSnapshotHandler {
         }
         return record.size() > fallbackIndex ? record.get(fallbackIndex).trim() : "";
     }
+
+    private record TournamentResult(LocalDate date, String homeTeam, String awayTeam, String homeScore,
+                                    String awayScore, String matchType, String neutral) {}
 }
