@@ -1,9 +1,9 @@
-team1,team2,winner,home_score,away_score
-Netherlands,United States,Netherlands,3,1
-Argentina,Australia,Argentina,2,1
-Japan,Croatia,Croatia,1,3
-Brazil,South Korea,Brazil,4,1
-France,Poland,France,3,1
-England,Senegal,England,3,0
-Morocco,Spain,Morocco,0,0
-Portugal,Switzerland,Portugal,6,1
+round,match_id,team1,team2,winner,home_score,away_score,penalties,note
+last_16,M49,Netherlands,United States,Netherlands,3,1,,
+last_16,M50,Argentina,Australia,Argentina,2,1,,
+last_16,M51,England,Senegal,England,3,0,,
+last_16,M52,France,Poland,France,3,1,,
+last_16,M53,Japan,Croatia,Croatia,1,1,yes,
+last_16,M54,Brazil,South Korea,Brazil,4,1,,
+last_16,M55,Morocco,Spain,Morocco,0,0,yes,
+last_16,M56,Portugal,Switzerland,Portugal,6,1,,

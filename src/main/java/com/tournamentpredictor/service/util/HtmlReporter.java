@@ -252,15 +252,19 @@ public class HtmlReporter extends ConsoleReporter {
     private String pathTournament = "";
     private String pathRound = "";
     private boolean serverPaginationEnabled = false;
+    private boolean actualModeEnabled = false;
     private String serverPaginationBaseUrl = "";
     private int serverPaginationPage = 1;
     private int serverPaginationPageCount = 1;
+    private int serverPaginationPageSize = 50;
     private String activePathFilter = "all";
     private String activeTeamFilter = "";
     private List<String> availableTeamNames = List.of();
     private Map<String, String> simulationAdvancePct = Map.of();
     private Map<String, String> matchupLikelihoodPct = Map.of();
     private Map<String, String> matchupSimulationRuns = Map.of();
+    private Map<String, String> actualScoreLookup = Map.of();
+    private Map<String, String> actualResultLookup = Map.of();
 
     public HtmlReporter() {
         setShowFlags(true);
@@ -281,11 +285,17 @@ public class HtmlReporter extends ConsoleReporter {
         return this;
     }
 
-    public HtmlReporter withServerPagination(String baseUrl, int page, int pageCount) {
+    public HtmlReporter withServerPagination(String baseUrl, int page, int pageCount, int pageSize) {
         this.serverPaginationEnabled = baseUrl != null && !baseUrl.isBlank();
         this.serverPaginationBaseUrl = baseUrl == null ? "" : baseUrl;
         this.serverPaginationPage = Math.max(1, page);
         this.serverPaginationPageCount = Math.max(1, pageCount);
+        this.serverPaginationPageSize = Math.max(1, pageSize);
+        return this;
+    }
+
+    public HtmlReporter withActualMode(boolean actualModeEnabled) {
+        this.actualModeEnabled = actualModeEnabled;
         return this;
     }
 
@@ -297,6 +307,16 @@ public class HtmlReporter extends ConsoleReporter {
 
     public HtmlReporter withTeamNames(List<String> teamNames) {
         this.availableTeamNames = teamNames == null ? List.of() : teamNames;
+        return this;
+    }
+
+    public HtmlReporter withActualResultScores(Map<String, String> actualScoreLookup) {
+        this.actualScoreLookup = actualScoreLookup == null ? Map.of() : actualScoreLookup;
+        return this;
+    }
+
+    public HtmlReporter withActualResultLabels(Map<String, String> actualResultLookup) {
+        this.actualResultLookup = actualResultLookup == null ? Map.of() : actualResultLookup;
         return this;
     }
 
@@ -320,15 +340,18 @@ public class HtmlReporter extends ConsoleReporter {
         if (normalized.isEmpty() || "both".equals(normalized)) {
             return "all";
         }
-        return Set.of("all", "actual", "alt", "upset", "predicted").contains(normalized) ? normalized : "all";
+        if ("predicted".equals(normalized)) return "prediction"; return Set.of("all", "actual", "alt", "upset", "prediction").contains(normalized) ? normalized : "all";
     }
 
     private String pathButtonHtml(String path, String label) {
-        boolean active = normalizePathFilter(path).equals(activePathFilter);
+        String normalizedPath = normalizePathFilter(path);
+        boolean active = normalizedPath.equals(activePathFilter);
+        boolean actual = "all".equals(normalizedPath) || "actual".equals(normalizedPath);
         return new StringBuilder()
                 .append("<button type=\"button\" class=\"btn btn-outline-secondary path-btn")
                 .append(active ? " active" : "")
-                .append("\" data-path=\"").append(path)
+                .append("\" data-path=\"").append(normalizedPath)
+                .append("\" data-actual=\"").append(actual ? "true" : "false")
                 .append("\" onclick=\"filterPath(this)\">")
                 .append(label)
                 .append("</button>")
@@ -410,6 +433,9 @@ public class HtmlReporter extends ConsoleReporter {
             if (line.trim().isEmpty()) continue;
             String[] cols = line.split(",", -1);
             String rowPath = valueAt(cols, pathIdx);
+            if (rowPath.isBlank() && cols.length > 7) {
+                rowPath = valueAt(cols, 7);
+            }
             boolean isPrimary = pathIdx < 0 || "predicted".equalsIgnoreCase(rowPath);
 
             String team1 = eloCalculator.extractTeamName(valueAt(cols, team1Idx));
@@ -429,6 +455,8 @@ public class HtmlReporter extends ConsoleReporter {
 
         html.append("<div class=\"output-section mb-4\" data-server-paging=\"")
                 .append(serverPaginationEnabled ? "true" : "false")
+                .append("\" data-actual-mode=\"")
+                .append(actualModeEnabled ? "true" : "false")
                 .append("\">");
         appendSummary(primaryMatchIdCount.size());
         appendPathFilterScript();
@@ -450,6 +478,9 @@ public class HtmlReporter extends ConsoleReporter {
             String modelPct = modelPrediction.isBlank() ? "" : String.valueOf(eloCalculator.parsePctFromPrediction(modelPrediction));
             String selectionSource = valueAt(cols, selectionSourceIdx);
             String rowPath = valueAt(cols, pathIdx);
+            if (rowPath.isBlank() && cols.length > 7) {
+                rowPath = valueAt(cols, 7);
+            }
             boolean isPrimary = pathIdx < 0 || "predicted".equalsIgnoreCase(rowPath);
             boolean isActual = "actual".equalsIgnoreCase(rowPath);
             boolean isAlt = !isPrimary;
@@ -471,6 +502,9 @@ public class HtmlReporter extends ConsoleReporter {
             String simWinnerPct = "";
             String matchupKey = matchId + "|" + team1 + "|" + team2;
             String matchupLikelihood = matchupLikelihoodPct.getOrDefault(matchupKey, "");
+            if (actualModeEnabled && isActual) {
+                matchupLikelihood = "100.0";
+            }
             String matchupRuns = matchupSimulationRuns.getOrDefault(matchupKey,
                     matchupSimulationRuns.getOrDefault(matchId + "|" + team2 + "|" + team1, ""));
             if (!team1SimPct.isBlank() || !team2SimPct.isBlank()) {
@@ -507,9 +541,29 @@ public class HtmlReporter extends ConsoleReporter {
         boolean showWinnerColumn = !hasSimulationAdvance;
         boolean showOdds = false;
         boolean hasMatchupLikelihood = tableRows.stream().anyMatch(r -> r.length > 25 && !r[25].isBlank());
-        boolean hasActualRows = tableRows.stream().anyMatch(r -> r.length > 7 && "actual".equalsIgnoreCase(r[7]));
-        if (hasMatchupLikelihood && !hasActualRows) {
-            tableRows.sort(java.util.Comparator.comparingDouble((String[] row) -> parseDoubleOrZero(row[25])).reversed());
+        boolean hasActualRows = tableRows.stream().anyMatch(r -> r.length > 7 && ("actual".equalsIgnoreCase(r[7]) || "upset".equalsIgnoreCase(r[7])));
+        if (hasMatchupLikelihood) {
+            java.util.Comparator<String[]> likelihoodSort = java.util.Comparator
+                    .comparingDouble((String[] row) -> parseDoubleOrZero(row[25]))
+                    .reversed();
+            java.util.Comparator<String[]> pathSort = java.util.Comparator.comparingInt((String[] row) -> {
+                String path = row.length > 7 ? row[7] : "";
+                if (actualModeEnabled && hasActualRows) {
+                    return "actual".equalsIgnoreCase(path) ? 0
+                            : "predicted".equalsIgnoreCase(path) ? 1
+                            : "alt".equalsIgnoreCase(path) ? 2
+                            : "upset".equalsIgnoreCase(path) ? 3 : 4;
+                }
+                return "predicted".equalsIgnoreCase(path) ? 0
+                        : "alt".equalsIgnoreCase(path) ? 1
+                        : "upset".equalsIgnoreCase(path) ? 2 : 3;
+            });
+            tableRows.sort(pathSort.thenComparing(likelihoodSort));
+        }
+        if (serverPaginationEnabled && tableRows.size() > serverPaginationPageSize) {
+            int start = Math.max(0, (serverPaginationPage - 1) * serverPaginationPageSize);
+            int end = Math.min(tableRows.size(), start + serverPaginationPageSize);
+            tableRows = new ArrayList<>(tableRows.subList(Math.min(start, tableRows.size()), end));
         }
 
         List<String> teamNames = availableTeamNames.isEmpty()
@@ -532,9 +586,9 @@ public class HtmlReporter extends ConsoleReporter {
                 html.append("<div class=\"btn-group btn-group-sm\" role=\"group\">")
                         .append(pathButtonHtml("all", "All"))
                         .append(pathButtonHtml("actual", "Actual"))
+                        .append(pathButtonHtml("prediction", "Predicted"))
                         .append(pathButtonHtml("alt", "Alternative"))
                         .append(pathButtonHtml("upset", "Upset"))
-                        .append(pathButtonHtml("predicted", "Predicted"))
                         .append("</div>");
             }
             if (!teamNames.isEmpty()) {
@@ -585,7 +639,7 @@ public class HtmlReporter extends ConsoleReporter {
             if (showWinnerColumn) {
                 html.append("<td>");
                 if (actualPath) {
-                    appendActualResultCell(html, row[4]);
+                    appendActualResultCell(html, row[4], resolveActualScore(row[1], row[2], row.length > 8 ? row[8] : "", row.length > 9 ? row[9] : ""));
                 } else {
                     if (userPick) html.append("<span class=\"badge text-bg-warning me-1\">User Pick</span>");
                     html.append("<span class=\"")
@@ -603,7 +657,7 @@ public class HtmlReporter extends ConsoleReporter {
                 // Match rows must show exactly one direct-match selection. Tournament-wide
                 // progression probabilities belong in the summary cards, never in this cell.
                 if (actualPath) {
-                    appendActualResultCell(html, row[4]);
+                    appendActualResultCell(html, row[4], resolveActualScore(row[1], row[2], row.length > 8 ? row[8] : "", row.length > 9 ? row[9] : ""));
                 } else {
                     String displayedWinner = userPick ? row[4]
                             : row.length > 21 && !row[21].isBlank() ? row[21]
@@ -637,7 +691,7 @@ public class HtmlReporter extends ConsoleReporter {
                 }
                 html.append("</td>");
             }
-            boolean upsetPath = "upset".equals(row[7]);
+            boolean upsetPath = "upset".equals(row[7]) && !actualModeEnabled;
             html.append("<td><span class=\"badge ")
                     .append(actualPath ? "text-bg-warning" : predictedPath ? "text-bg-primary" : upsetPath ? "text-bg-warning" : "text-bg-secondary")
                     .append("\">")
@@ -752,8 +806,21 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("<div class=\"px-3 py-2\" style=\"background:#f8f9fa;border-bottom:1px solid #dee2e6\">");
 
         if (b1 != null || b2 != null) {
+            boolean actualResultMode = actualModeEnabled && ("actual".equalsIgnoreCase(rowPath) || "upset".equalsIgnoreCase(rowPath));
+            String actualResult = actualResultLookup.getOrDefault(actualScoreKey(team1, team2), row.length > 4 ? row[4] : "");
+            String resolvedActualScore = resolveActualScore(team1, team2, row.length > 8 ? row[8] : "", row.length > 9 ? row[9] : "");
+            String resolvedHomeScore = row.length > 8 ? row[8] : "";
+            String resolvedAwayScore = row.length > 9 ? row[9] : "";
+            if ((resolvedHomeScore == null || resolvedHomeScore.isBlank() || resolvedAwayScore == null || resolvedAwayScore.isBlank())
+                    && !resolvedActualScore.isBlank() && resolvedActualScore.contains(" - ")) {
+                String[] resolvedScoreParts = resolvedActualScore.split(" - ", 2);
+                if (resolvedScoreParts.length == 2) {
+                    resolvedHomeScore = resolvedScoreParts[0];
+                    resolvedAwayScore = resolvedScoreParts[1];
+                }
+            }
             appendExpectedGoalsPanel(html, team1, b1, row.length > 15 ? row[15] : "", team2, b2, row.length > 16 ? row[16] : "",
-                    row.length > 29 ? row[29] : "");
+                    row.length > 29 ? row[29] : "", actualResultMode, actualResult, resolvedHomeScore, resolvedAwayScore);
             html.append("<div class=\"row g-3 mb-2 w-100 align-items-start\">");
             appendTeamEloBreakdown(html, team1, b1, row.length > 15 ? row[15] : "");
             appendTeamEloBreakdown(html, team2, b2, row.length > 16 ? row[16] : "");
@@ -772,18 +839,24 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("</div></td></tr>");
     }
 
-    private static void appendActualResultCell(StringBuilder html, String result) {
+    private static void appendActualResultCell(StringBuilder html, String result, String scoreText) {
         if (result == null || result.isBlank()) {
             html.append("<span class=\"text-muted small\">Actual result unavailable</span>");
             return;
         }
+        String score = scoreText == null ? "" : scoreText.trim();
         html.append("<span class=\"fw-semibold\">")
-                .append(escapeHtml(result))
-                .append("</span>");
+                .append(flagHtml(result))
+                .append(escapeHtml(result));
+        if (!score.isBlank()) {
+            html.append(" (").append(escapeHtml(score.replace(" - ", "-"))).append(")");
+        }
+        html.append("</span>");
     }
 
     private void appendExpectedGoalsPanel(StringBuilder html, String team1, EloBreakdown b1, String originSlot1,
-                                                 String team2, EloBreakdown b2, String originSlot2, String matchupRuns) {
+                                                 String team2, EloBreakdown b2, String originSlot2, String matchupRuns,
+                                                 boolean actualResultMode, String actualResult, String homeScore, String awayScore) {
         if (b1 == null || b2 == null) {
             return;
         }
@@ -796,38 +869,100 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("<div class=\"row g-2 align-items-stretch text-center\">");
         appendScoreModelTeamColumn(html, team1, b1, originSlot1, projection.team1ExpectedGoals(),
                 projection.team1WinPct(), projection.team1AdvancePct());
-        html.append("<div class=\"col-12 col-lg-2 d-flex align-items-center\">");
-        html.append("<div class=\"w-100 border rounded-3 bg-light px-2 py-3 text-center\">");
-        html.append("<div class=\"text-uppercase text-muted fw-semibold\" style=\"font-size:0.65rem;letter-spacing:.06em\">Most likely score</div>");
-        html.append("<div class=\"display-6 fw-bold lh-1 my-2\">")
-                .append(escapeHtml(projection.mostLikelyScoreText().replace("-", " - ")))
-                .append("</div>");
-        html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.72rem\">")
-                .append(projection.mostLikelyScorePct()).append("% exact-score likelihood</div>");
-        if (!matchupRuns.isBlank()) {
-            html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.68rem\">")
-                    .append(String.format(java.util.Locale.ROOT, "%,d", parseIntOrZero(matchupRuns)))
-                    .append(" simulations for this matchup</div>");
+        html.append("<div class=\"col-12 col-lg-4 d-flex align-items-stretch\">");
+        html.append("<div class=\"w-100 border rounded-3 bg-light px-2 py-3 text-center d-flex flex-column justify-content-center\">");
+        if (actualResultMode) {
+            String actualScore = formatActualScore(homeScore, awayScore);
+            boolean isDraw = isDrawScore(homeScore, awayScore);
+            boolean decidedOnPenalties = isDraw && actualResult != null && !actualResult.isBlank() && !"Draw".equalsIgnoreCase(actualResult);
+            html.append("<div class=\"text-uppercase text-muted fw-semibold\" style=\"font-size:0.65rem;letter-spacing:.06em\">Actual result</div>");
+            html.append("<div class=\"display-6 fw-bold lh-1 my-2\">")
+                    .append(escapeHtml(actualScore.isBlank() ? "Score unavailable" : actualScore))
+                    .append("</div>");
+            if (!actualResult.isBlank() && !"Draw".equalsIgnoreCase(actualResult)) {
+                html.append("<div class=\"text-muted mb-1\" style=\"font-size:0.68rem\">")
+                        .append("Winner: ").append(flagHtml(actualResult)).append(escapeHtml(actualResult)).append("</div>");
+                if (decidedOnPenalties) {
+                    html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.68rem\">(Penalties)</div>");
+                } else {
+                    html.append("<div class=\"mb-3\"></div>");
+                }
+            } else if (isDraw) {
+                html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.68rem\">Draw after 90 min</div>");
+            }
+            html.append("<div class=\"text-muted mb-0\" style=\"font-size:0.68rem\">Played result from the tournament.</div>");
+        } else {
+            html.append("<div class=\"text-uppercase text-muted fw-semibold\" style=\"font-size:0.65rem;letter-spacing:.06em\">Most likely score</div>");
+            html.append("<div class=\"display-6 fw-bold lh-1 my-2\">")
+                    .append(escapeHtml(projection.mostLikelyScoreText().replace("-", " - ")))
+                    .append("</div>");
+            html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.72rem\">")
+                    .append(projection.mostLikelyScorePct()).append("% exact-score likelihood</div>");
+            if (!matchupRuns.isBlank()) {
+                html.append("<div class=\"text-muted mb-3\" style=\"font-size:0.68rem\">")
+                        .append(String.format(java.util.Locale.ROOT, "%,d", parseIntOrZero(matchupRuns)))
+                        .append(" simulations for this matchup</div>");
+            }
+            html.append("<div class=\"d-grid gap-2\">");
+            html.append("<div class=\"border rounded-2 bg-white px-2 py-1\">")
+                    .append("<div class=\"text-muted\" style=\"font-size:0.65rem\">Draw after 90 min</div>")
+                    .append("<div class=\"fw-semibold\">").append(projection.drawPct()).append("%</div></div>");
+            html.append("<div class=\"border rounded-2 bg-white px-2 py-1\">")
+                    .append("<div class=\"text-muted\" style=\"font-size:0.65rem\">")
+                    .append(flagHtml(projection.pick())).append(escapeHtml(projection.pick())).append(" advances</div>")
+                    .append("<div class=\"fw-semibold\">").append(projection.pickAdvancePct()).append("%</div></div>");
+            html.append("</div>");
         }
-        html.append("<div class=\"d-grid gap-2\">");
-        html.append("<div class=\"border rounded-2 bg-white px-2 py-1\">")
-                .append("<div class=\"text-muted\" style=\"font-size:0.65rem\">Draw after 90 min</div>")
-                .append("<div class=\"fw-semibold\">").append(projection.drawPct()).append("%</div></div>");
-        html.append("<div class=\"border rounded-2 bg-white px-2 py-1\">")
-                .append("<div class=\"text-muted\" style=\"font-size:0.65rem\">")
-                .append(flagHtml(projection.pick())).append(escapeHtml(projection.pick())).append(" advances</div>")
-                .append("<div class=\"fw-semibold\">").append(projection.pickAdvancePct()).append("%</div></div>");
-        html.append("</div></div></div>");
+        html.append("</div>");
+        html.append("</div>");
         appendScoreModelTeamColumn(html, team2, b2, originSlot2, projection.team2ExpectedGoals(),
                 projection.team2WinPct(), projection.team2AdvancePct());
         html.append("</div>");
-        html.append("<div class=\"text-muted mt-2\" style=\"font-size:0.72rem\">")
-                .append("Exact-score probabilities are individually low; this is the single most likely score, not a confident result forecast. Simulations sample 90-minute goals; level games are resolved by the Elo-based ET/pens tiebreak.")
-                .append("</div>");
+        if (!actualResultMode) {
+            html.append("<div class=\"text-muted mt-2\" style=\"font-size:0.72rem\">")
+                    .append("Exact-score probabilities are individually low; this is the single most likely score, not a confident result forecast. Simulations sample 90-minute goals; level games are resolved by the Elo-based ET/pens tiebreak.")
+                    .append("</div>");
+        }
         html.append("</div>");
     }
 
+    private static String actualScoreKey(String team1, String team2) {
+        if (team1 == null) team1 = "";
+        if (team2 == null) team2 = "";
+        return team1.compareToIgnoreCase(team2) <= 0 ? team1 + "|" + team2 : team2 + "|" + team1;
+    }
 
+    private static String formatActualScore(String homeScore, String awayScore) {
+        if (homeScore == null || awayScore == null) {
+            return "";
+        }
+        String home = homeScore.trim();
+        String away = awayScore.trim();
+        if (home.isBlank() || away.isBlank()) {
+            return "";
+        }
+        return home + " - " + away;
+    }
+
+    private String resolveActualScore(String team1, String team2, String homeScore, String awayScore) {
+        String direct = formatActualScore(homeScore, awayScore);
+        if (!direct.isBlank()) {
+            return direct;
+        }
+        return actualScoreLookup.getOrDefault(actualScoreKey(team1, team2), "");
+    }
+
+    private static boolean isDrawScore(String homeScore, String awayScore) {
+        if (homeScore == null || awayScore == null) {
+            return false;
+        }
+        String home = homeScore.trim();
+        String away = awayScore.trim();
+        if (home.isBlank() || away.isBlank()) {
+            return false;
+        }
+        return home.equals(away);
+    }
 
     private static String penaltyLevelClass(int level, int maxLevel) {
         if (level >= maxLevel) return "quality-level-neg-2";
@@ -866,7 +1001,7 @@ public class HtmlReporter extends ConsoleReporter {
 
     private void appendScoreModelTeamColumn(StringBuilder html, String team, EloBreakdown breakdown, String originSlot,
                                                    double expectedGoals, int winPct, int advancePct) {
-        html.append("<div class=\"col-12 col-lg-5\">");
+        html.append("<div class=\"col-12 col-lg-4\">");
         html.append("<div class=\"h-100 border rounded bg-light-subtle p-2\">");
         html.append("<div class=\"fs-4 mb-1\">").append(flagHtml(team)).append("</div>");
         html.append("<div class=\"fw-semibold mb-2\">").append(escapeHtml(team)).append("</div>");
@@ -1328,15 +1463,15 @@ public class HtmlReporter extends ConsoleReporter {
         }
         html.append("<style>.path-focus-row{outline:3px solid #fd7e14;outline-offset:-2px}.expand-icon{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;opacity:.55;vertical-align:middle;transform-origin:35% 50%;transition:transform .15s ease}.expand-icon.expanded{transform:rotate(90deg)}</style><script>")
                 .append("function applyFilters(section){")
-                .append("const serverPaging=section.dataset.serverPaging==='true';const pathBtn=section.querySelector('.path-btn.active');const path=pathBtn?pathBtn.dataset.path:'all';const teamSel=section.querySelector('select');const team=teamSel?teamSel.value:'';const rows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(row=>!row.classList.contains('detail-row'));const matches=rows.filter(row=>(path==='all'||row.dataset.path===path)&&(!team||row.dataset.team1===team||row.dataset.team2===team));")
+                .append("const serverPaging=section.dataset.serverPaging==='true';const pathBtn=section.querySelector('.path-btn.active');const path=pathBtn?pathBtn.dataset.path:'all';const rowPath=path==='prediction'?'predicted':path;const teamSel=section.querySelector('select');const team=teamSel?teamSel.value:'';const rows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(row=>!row.classList.contains('detail-row'));const matches=rows.filter(row=>{const rowType=row.dataset.path;const pathMatch=path==='all'?true:path==='actual'?(rowType==='actual'||rowType==='upset'):rowType===rowPath;return pathMatch&&(!team||row.dataset.team1===team||row.dataset.team2===team);});")
                 .append("if(serverPaging){rows.forEach(row=>{row.style.display='';const detail=row.nextElementSibling;if(detail&&detail.classList.contains('detail-row')){detail.style.display=detail.dataset.expanded==='true'?'table-row':'none';if(detail.dataset.expanded!=='true'){row.setAttribute('aria-expanded','false');const icon=row.querySelector('.expand-icon');if(icon)icon.classList.remove('expanded');}}});const empty=section.querySelector('.table-no-results');if(empty)empty.style.display=rows.length?'none':'block';return;}")
                 .append("const pageSize=50;const pageCount=Math.max(1,Math.ceil(matches.length/pageSize));let page=Math.min(Math.max(1,Number(section.dataset.tablePage||1)),pageCount);section.dataset.tablePage=String(page);const start=(page-1)*pageSize;const pageRows=new Set(matches.slice(start,start+pageSize));")
                 .append("rows.forEach(row=>{const show=pageRows.has(row);row.style.display=show?'':'none';const detail=row.nextElementSibling;if(detail&&detail.classList.contains('detail-row')){detail.style.display=(show&&detail.dataset.expanded==='true')?'table-row':'none';if(!show){detail.dataset.expanded='false';row.setAttribute('aria-expanded','false');const icon=row.querySelector('.expand-icon');if(icon)icon.classList.remove('expanded');}}});")
                 .append("const empty=section.querySelector('.table-no-results');if(empty)empty.style.display=matches.length?'none':'';const pager=section.querySelector('.table-pagination');if(pager){pager.style.display=pageCount>1?'flex':'none';const status=pager.querySelector('.page-status');if(status)status.textContent='Page '+page+' of '+pageCount+' · '+matches.length+' results';const prev=pager.querySelector('.page-prev');const next=pager.querySelector('.page-next');if(prev)prev.disabled=page<=1;if(next)next.disabled=page>=pageCount;}")
                 .append("}")
                 .append("function changeTablePage(btn,delta){const section=btn.closest('.output-section');section.dataset.tablePage=String(Number(section.dataset.tablePage||1)+delta);applyFilters(section);section.querySelector('.table-responsive').scrollIntoView({behavior:'smooth',block:'start'});}")
-                .append("function navigateWithFilters(section,overrides){const url=new URL(window.location.href);const activePath=overrides.path!==undefined?overrides.path:(section.querySelector('.path-btn.active')?.dataset.path||'all');const teamSel=section.querySelector('select');const activeTeam=overrides.team!==undefined?overrides.team:(teamSel?teamSel.value:'');url.searchParams.set('path',activePath);if(activeTeam){url.searchParams.set('team',activeTeam);}else{url.searchParams.delete('team');}url.searchParams.set('page',String(overrides.page||1));window.location.href=url.pathname+'?'+url.searchParams.toString();}")
-                .append("function filterPath(btn){const section=btn.closest('.output-section');if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{path:btn.dataset.path,page:1});return;}section.dataset.tablePage='1';btn.closest('.btn-group').querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('predictor_path_v2',btn.dataset.path);localStorage.removeItem('predictor_team');const teamSel=section.querySelector('select');if(teamSel)teamSel.value='';document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}")
+                .append("function navigateWithFilters(section,overrides){const url=new URL(window.location.href);const activePath=overrides.path!==undefined?overrides.path:(section.querySelector('.path-btn.active')?.dataset.path||'all');const teamSel=section.querySelector('select');const activeTeam=overrides.team!==undefined?overrides.team:(teamSel?teamSel.value:'');const actualOverride=overrides.actual!==undefined?overrides.actual:null;const actualValue=actualOverride===null?(activePath==='all'||activePath==='actual'):(actualOverride==='true'||actualOverride===true);url.searchParams.set('path',activePath);if(activeTeam){url.searchParams.set('team',activeTeam);}else{url.searchParams.delete('team');}url.searchParams.set('actual',actualValue?'true':'false');url.searchParams.set('page',String(overrides.page||1));window.location.href=url.pathname+'?'+url.searchParams.toString();}")
+                .append("function filterPath(btn){const section=btn.closest('.output-section');if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{path:btn.dataset.path,page:1,actual:btn.dataset.actual});return;}section.dataset.tablePage='1';btn.closest('.btn-group').querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('predictor_path_v2',btn.dataset.path);localStorage.removeItem('predictor_team');const teamSel=section.querySelector('select');if(teamSel)teamSel.value='';document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}")
                 .append("function filterTeam(sel){const section=sel.closest('.output-section');if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{team:sel.value,page:1});return;}section.dataset.tablePage='1';localStorage.setItem('predictor_team',sel.value);document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{tile.classList.remove('border-primary','bg-primary-subtle');tile.setAttribute('aria-pressed','false');});applyFilters(section);}function filterTeamValue(team){const section=document.querySelector('.output-section');if(!section)return;const sel=section.querySelector('select');const active=sel&&sel.value===team;const next=active?'':team;if(section.dataset.serverPaging==='true'){navigateWithFilters(section,{team:next,page:1});return;}section.dataset.tablePage='1';localStorage.setItem('predictor_team',next);if(sel){const opt=Array.from(sel.options).find(o=>o.value===next);if(opt)sel.value=next;}document.querySelectorAll('.sim-snapshot-team').forEach(tile=>{const selected=!active&&tile.dataset.team===team;tile.classList.toggle('border-primary',selected);tile.classList.toggle('bg-primary-subtle',selected);tile.setAttribute('aria-pressed',selected?'true':'false');});applyFilters(section);section.scrollIntoView({behavior:'smooth',block:'start'});}")
                 .append("function toggleDetail(row){")
                 .append("const detail=row.nextElementSibling;")

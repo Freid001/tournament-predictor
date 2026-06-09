@@ -200,7 +200,7 @@ class HtmlReporterTest {
     }
 
     @Test
-    void matchupRowsDefaultToAllHighlightPredictedAndSortByLikelihood() {
+    void matchupRowsDefaultToAllHighlightPredictedAndSortByPathPriority() {
         HtmlReporter reporter = new HtmlReporter()
                 .withMatchupLikelihood(Map.of(
                         "M1|Spain|Uruguay", "25.0",
@@ -217,15 +217,14 @@ class HtmlReporterTest {
                 "Canada", breakdown(1800)));
 
         String html = reporter.getHtml();
-        assertTrue(html.contains("active path-btn\" data-path=\"both"));
-        assertTrue(html.indexOf(">All</button>") < html.indexOf(">Alternative</button>"));
-        assertTrue(html.indexOf(">Alternative</button>") < html.indexOf(">Predicted</button>"));
+        assertTrue(html.contains("path-btn active\" data-path=\"all"));
+        assertTrue(html.indexOf(">All</button>") < html.indexOf(">Predicted</button>"));
+        assertTrue(html.indexOf(">Predicted</button>") < html.indexOf(">Alternative</button>"));
         assertTrue(html.contains("class=\"table-primary\" data-path=\"predicted"));
         assertTrue(html.contains("<th>Match Likelihood</th>"));
         assertFalse(html.contains("<th class=\"text-end\">Match Likelihood</th>"));
         assertTrue(html.indexOf("Match Likelihood</th>") < html.indexOf("<th>Path</th>"));
         assertTrue(html.contains(">Predicted</span>"));
-        assertTrue(html.contains(">Alternative</span>"));
         assertFalse(html.contains(">Runner-up</span>"));
         assertFalse(html.contains(">Alt</span>"));
         assertTrue(html.contains("class=\"expand-icon\" aria-hidden=\"true\"") );
@@ -237,11 +236,11 @@ class HtmlReporterTest {
         assertTrue(html.contains("table-no-results"));
         assertTrue(html.contains("No results."));
         assertTrue(html.contains("table-pagination"));
-        assertTrue(html.contains("const pageSize=100"));
+        assertTrue(html.contains("const pageSize=50"));
         assertTrue(html.contains("function changeTablePage"));
         assertFalse(html.contains("▶"));
         assertFalse(html.contains("▼"));
-        assertTrue(html.indexOf("60.0%") < html.indexOf("25.0%"));
+        assertTrue(html.indexOf("25.0%") < html.indexOf("60.0%"));
     }
 
     @Test
@@ -266,12 +265,11 @@ class HtmlReporterTest {
                 Map.of("Spain", breakdown(1900), "France", breakdown(1880), "Brazil", breakdown(1850), "England", breakdown(2020), "DR Congo", breakdown(1655)));
 
         String html = reporter.getHtml();
-        assertTrue(html.contains("active path-btn\" data-path=\"both"));
-        assertTrue(html.contains("<th>Most Likely Winner</th>"));
+        assertTrue(html.contains("path-btn active\" data-path=\"all"));
+        assertTrue(html.contains("<th>Most Likely Winner</th>") || html.contains("<th>Winner / Result</th>"));
         assertTrue(html.contains("<th>Match Likelihood</th>"));
         assertTrue(html.contains("<th>Path</th>"));
         assertTrue(html.contains(">Predicted</span>"));
-        assertTrue(html.contains(">Alternative</span>"));
         assertTrue(html.contains("data-path=\"upset\""));
         assertTrue(html.contains(">Upset</button>"));
         assertTrue(html.contains(">Upset</span>"));
@@ -317,6 +315,32 @@ class HtmlReporterTest {
         assertTrue(html.contains("focusMatch"));
         assertTrue(html.contains("path-focus-row"));
     }
+
+    @Test
+    void serverPagedMatchupsPreserveActiveFiltersAndToggleSnapshotTiles() {
+        HtmlReporter reporter = new HtmlReporter()
+                .withServerPagination("/view/last_8_match?tournament=world_cup_2022&path=upset&team=Portugal", 2, 3, 50)
+                .withActualMode(true)
+                .withActiveFilters("upset", "Portugal")
+                .withTeamNames(List.of("Argentina", "Portugal"));
+        reporter.printMatchups("Quarter Finals", List.of(
+                "match_id,team1,team2,path,prediction,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,model_prediction,selection_source,matchup_pct,matchup_runs",
+                "M1,Portugal,Spain,upset,Portugal (55%),0,0,,,Portugal (55%),simulation,42.0,1000"
+        ), new EloCalculator(), null, Map.of(), Map.of(
+                "Portugal", breakdown(1800),
+                "Spain", breakdown(1750)));
+
+        String html = reporter.getHtml();
+        assertTrue(html.contains("path-btn active\" data-path=\"upset\""));
+        assertTrue(html.contains("<option value=\"Portugal\" selected>Portugal</option>"));
+        assertTrue(html.contains("href=\"/view/last_8_match?tournament=world_cup_2022&path=upset&team=Portugal&page=1\""));
+        assertTrue(html.contains("href=\"/view/last_8_match?tournament=world_cup_2022&path=upset&team=Portugal&page=3\""));
+        assertTrue(html.contains("const next=active?'':team;"));
+        assertTrue(html.contains("navigateWithFilters(section,{team:next,page:1});"));
+        assertTrue(html.contains("url.searchParams.set('actual',actualValue?'true':'false')"));
+        assertTrue(html.contains("data-path=\"all\" data-actual=\"true\""));
+    }
+
 
     private static EloBreakdown breakdown(int elo) {
         return new EloBreakdown(elo, false, 0,

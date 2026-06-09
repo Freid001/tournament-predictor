@@ -68,6 +68,26 @@ class TournamentSnapshotHandlerTest {
     }
 
     @Test
+    void snapshotRoundInferenceUsesMatchCounts() throws Exception {
+        TournamentSnapshotHandler handler = new TournamentSnapshotHandler(new CsvLoader(root), root, new PredictionConfig());
+        var startField = TournamentSnapshotHandler.class.getDeclaredField("tournamentStartDate");
+        startField.setAccessible(true);
+        startField.set(handler, java.time.LocalDate.parse("2026-06-11"));
+
+        var roundMethod = TournamentSnapshotHandler.class.getDeclaredMethod("roundForMatchIndex", int.class);
+        roundMethod.setAccessible(true);
+
+        assertEquals("group", roundMethod.invoke(handler, 1));
+        assertEquals("group", roundMethod.invoke(handler, 72));
+        assertEquals("last_32", roundMethod.invoke(handler, 73));
+        assertEquals("last_16", roundMethod.invoke(handler, 89));
+        assertEquals("last_8", roundMethod.invoke(handler, 97));
+        assertEquals("last_4", roundMethod.invoke(handler, 101));
+        assertEquals("third_place", roundMethod.invoke(handler, 103));
+        assertEquals("final", roundMethod.invoke(handler, 104));
+    }
+
+    @Test
     void snapshotRefreshUsesHistoricalAliasWhenSelectingPreTournamentRating() throws IOException {
         writeStartCsv("euros_test", "Czechia");
         writeTournamentProperties("euros_test");

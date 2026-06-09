@@ -1,6 +1,8 @@
 package com.tournamentpredictor.web;
 
+import com.tournamentpredictor.config.PredictionConfig;
 import org.junit.jupiter.api.Test;
+import org.springframework.ui.ExtendedModelMap;
 
 import java.util.List;
 import java.util.Map;
@@ -162,6 +164,70 @@ class WebControllerFormatTest {
         assertEquals("Home", WebController.outcome(0.50, 0.30, 0.20));
         assertEquals("Draw", WebController.outcome(0.30, 0.40, 0.30));
         assertEquals("Away", WebController.outcome(0.20, 0.30, 0.50));
+    }
+
+    @Test
+    void upsetPathInActualModeRendersActualQuarterfinalRows() throws Exception {
+        WebController controller = new WebController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.viewRound("last_16_match", "world_cup_2022", false, "upset", "", 1, model);
+
+        assertEquals("result", view);
+        String html = (String) model.getAttribute("output");
+        assertNotNull(html);
+        assertTrue(html.contains("data-path=\"actual\""));
+        assertTrue(html.contains("Portugal"));
+        assertTrue(html.contains("Switzerland"));
+        assertTrue(html.contains("Actual"));
+    }
+
+
+    @Test
+    void allPathInActualModeIncludesPredictedAndActualRows() throws Exception {
+        WebController controller = new WebController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.viewRound("final_match", "world_cup_2022", true, "all", "", 1, model);
+
+        assertEquals("result", view);
+        String html = (String) model.getAttribute("output");
+        assertNotNull(html);
+        assertTrue(html.contains("data-path=\"prediction\""));
+        assertTrue(html.contains("data-path=\"actual\""));
+        assertTrue(html.contains("data-server-paging=\"true\" data-actual-mode=\"true\""));
+    }
+
+
+    @Test
+    void actualModeRoundViewShowsPlayedScoreline() throws Exception {
+        WebController controller = new WebController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.viewRound("last_16_match", "world_cup_2022", false, "actual", "", 1, model);
+
+        assertEquals("result", view);
+        String html = (String) model.getAttribute("output");
+        assertNotNull(html);
+        assertTrue(html.contains("data-path=\"actual\""));
+        assertTrue(html.contains("France advances"));
+        assertTrue(html.contains("3-1") || html.contains("3 - 1"));
+        assertFalse(html.contains("exact-score likelihood"));
+    }
+
+    @Test
+    void actualModeRoundViewInfersKnockoutAdvancersFromLaterRounds() throws Exception {
+        WebController controller = new WebController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.viewRound("last_8_match", "world_cup_2022", false, "actual", "", 1, model);
+
+        assertEquals("result", view);
+        String html = (String) model.getAttribute("output");
+        assertNotNull(html);
+        assertTrue(html.contains("Croatia advances"));
+        assertTrue(html.contains("Argentina advances"));
+        assertFalse(html.contains("Draw after 90 min"));
     }
 
     private static String routePct(List<Map<String, String>> rows, String team) {

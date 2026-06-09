@@ -8,7 +8,12 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -208,9 +213,85 @@ public class TournamentSnapshotHandler {
     }
 
     private int writeResultsSnapshot(Path output, Set<String> teams) throws IOException {
+        List<TournamentResult> results = loadResultsFromHistory(teams);
+        if (results.isEmpty()) {
+            results = loadEloRatingsResults(teams);
+        }
+        results = normalizeTournamentResults(results);
+        try (Writer writer = Files.newBufferedWriter(output);
+             CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
+            printer.printRecord("date", "round", "home_team", "away_team", "home_score", "away_score", "match_type", "neutral");
+            for (TournamentResult result : results) {
+                printer.printRecord(result.date(), result.round(), result.homeTeam(), result.awayTeam(), result.homeScore(),
+                        result.awayScore(), result.matchType(), result.neutral());
+            }
+        }
+        return results.size();
+    }
+
+    private List<TournamentResult> loadEloRatingsResults(Set<String> teams) throws IOException {
+        Map<String, String> codeToName = loadCurrentWorldCodeMap();
+        String slug = eloRatingsResultsSlug();
+        if (slug.isBlank()) {
+            return List.of();
+        }
+        URI uri = URI.create("https://www.eloratings.net/" + slug + ".tsv");
+        HttpRequest request = HttpRequest.newBuilder(uri)
+                .timeout(java.time.Duration.ofSeconds(20))
+                .GET()
+                .build();
+        HttpResponse<String> response;
+        try {
+            response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IOException("Failed to fetch EloRatings results from " + uri, e);
+        } catch (Exception e) {
+            return List.of();
+        }
+        if (response.statusCode() < 200 || response.statusCode() >= 300 || response.body() == null || response.body().isBlank()) {
+            return List.of();
+        }
+        List<TournamentResult> results = new java.util.ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        try (Reader reader = new StringReader(response.body())) {
+            CSVFormat rawFormat = CSVFormat.TDF.builder()
+                    .setTrim(true)
+                    .setIgnoreEmptyLines(true)
+                    .build();
+            try (var parser = rawFormat.parse(reader)) {
+                for (CSVRecord record : parser) {
+                    if (record.size() < 8) continue;
+                    String year = value(record, 0).trim();
+                    String month = value(record, 1).trim();
+                    String day = value(record, 2).trim();
+                    String home = codeToName.getOrDefault(value(record, 3).trim(), eloTeamName(value(record, 3)));
+                    String away = codeToName.getOrDefault(value(record, 4).trim(), eloTeamName(value(record, 4)));
+                    String homeScore = value(record, 5).trim();
+                    String awayScore = value(record, 6).trim();
+                    String matchType = value(record, 7).trim();
+                    String neutral = record.size() > 8 ? value(record, 8).trim() : "";
+                    if (home.isBlank() || away.isBlank() || homeScore.isBlank() || awayScore.isBlank()) continue;
+                    if (teams != null && (!teams.contains(home) || !teams.contains(away))) continue;
+                    try {
+                        LocalDate date = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+                        if (date.isBefore(tournamentStartDate)) continue;
+                        String key = tournamentResultKey(date.toString(), home, away, homeScore, awayScore, matchType);
+                        if (seen.add(key)) {
+                            results.add(new TournamentResult(date, home, away, homeScore, awayScore, matchType, neutral, ""));
+                        }
+                    } catch (NumberFormatException | DateTimeException ignored) {
+                    }
+                }
+            }
+        }
+        return results;
+    }
+
+    private List<TournamentResult> loadResultsFromHistory(Set<String> teams) throws IOException {
         Path sourceDir = projectRoot.resolve("data").resolve("elo").resolve("current").resolve("history");
         if (!Files.exists(sourceDir)) {
-            return 0;
+            return List.of();
         }
 
         List<TournamentResult> results = new java.util.ArrayList<>();
@@ -225,7 +306,7 @@ public class TournamentSnapshotHandler {
                 continue;
             }
             for (int i = 1; i < lines.size(); i++) {
-                String[] cols = lines.get(i).split("\t", -1);
+                String[] cols = lines.get(i).split("	", -1);
                 if (cols.length < 8) {
                     continue;
                 }
@@ -249,29 +330,122 @@ public class TournamentSnapshotHandler {
                     String homeScore = cols[5].trim();
                     String awayScore = cols[6].trim();
                     String neutral = cols.length > 8 ? cols[8].trim() : "";
-                    String key = year + "-" + cols[1].trim() + "-" + cols[2].trim() + "|" + home + "|" + away
-                            + "|" + homeScore + "|" + awayScore + "|" + matchType;
+                    String key = tournamentResultKey(matchDate.toString(), home, away, homeScore, awayScore, matchType);
                     if (seen.add(key)) {
-                        results.add(new TournamentResult(matchDate, home, away, homeScore, awayScore, matchType, neutral));
+                        results.add(new TournamentResult(matchDate, home, away, homeScore, awayScore, matchType, neutral, ""));
                     }
                 } catch (NumberFormatException | DateTimeException ignored) {
                 }
             }
         }
+        return results;
+    }
 
-        results.sort(java.util.Comparator.comparing(TournamentResult::date)
+    private static String tournamentResultKey(String date, String home, String away, String homeScore, String awayScore, String matchType) {
+        String teamA = home == null ? "" : home.trim();
+        String teamB = away == null ? "" : away.trim();
+        String scoreA = homeScore == null ? "" : homeScore.trim();
+        String scoreB = awayScore == null ? "" : awayScore.trim();
+        String type = matchType == null ? "" : matchType.trim();
+        if (teamA.compareToIgnoreCase(teamB) <= 0) {
+            return date + "|" + teamA + "|" + teamB + "|" + scoreA + "|" + scoreB + "|" + type;
+        }
+        return date + "|" + teamB + "|" + teamA + "|" + scoreB + "|" + scoreA + "|" + type;
+    }
+
+    private List<TournamentResult> normalizeTournamentResults(List<TournamentResult> results) {
+        if (results == null || results.isEmpty()) {
+            return List.of();
+        }
+        List<TournamentResult> ordered = new java.util.ArrayList<>(results);
+        ordered.sort(java.util.Comparator.comparing(TournamentResult::date)
                 .thenComparing(TournamentResult::homeTeam)
                 .thenComparing(TournamentResult::awayTeam)
                 .thenComparing(TournamentResult::matchType));
-        try (Writer writer = Files.newBufferedWriter(output);
-             CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
-            printer.printRecord("date", "home_team", "away_team", "home_score", "away_score", "match_type", "neutral");
-            for (TournamentResult result : results) {
-                printer.printRecord(result.date(), result.homeTeam(), result.awayTeam(), result.homeScore(),
-                        result.awayScore(), result.matchType(), result.neutral());
+        int maxMatches = expectedTournamentMatchCount();
+        if (maxMatches > 0 && ordered.size() > maxMatches) {
+            ordered = new java.util.ArrayList<>(ordered.subList(0, maxMatches));
+        }
+        List<TournamentResult> normalized = new java.util.ArrayList<>(ordered.size());
+        for (int i = 0; i < ordered.size(); i++) {
+            TournamentResult result = ordered.get(i);
+            normalized.add(new TournamentResult(result.date(), result.homeTeam(), result.awayTeam(),
+                    result.homeScore(), result.awayScore(), result.matchType(), result.neutral(),
+                    roundForMatchIndex(i + 1)));
+        }
+        return normalized;
+    }
+
+    private int expectedTournamentMatchCount() {
+        if (tournamentStartDate == null) {
+            return 0;
+        }
+        return tournamentStartDate.getYear() >= 2026 ? 104 : 64;
+    }
+
+    private String roundForMatchIndex(int matchIndex) {
+        if (matchIndex <= 0) {
+            return "";
+        }
+        if (tournamentStartDate != null && tournamentStartDate.getYear() >= 2026) {
+            if (matchIndex <= 72) return "group";
+            if (matchIndex <= 88) return "last_32";
+            if (matchIndex <= 96) return "last_16";
+            if (matchIndex <= 100) return "last_8";
+            if (matchIndex <= 102) return "last_4";
+            if (matchIndex == 103) return "third_place";
+            return "final";
+        }
+        if (matchIndex <= 48) return "group";
+        if (matchIndex <= 56) return "last_16";
+        if (matchIndex <= 60) return "last_8";
+        if (matchIndex <= 62) return "last_4";
+        if (matchIndex == 63) return "third_place";
+        return "final";
+    }
+
+    private Map<String, String> loadCurrentWorldCodeMap() throws IOException {
+        Path source = projectRoot.resolve("data").resolve("elo").resolve("current").resolve("world.csv");
+        if (!Files.exists(source)) {
+            return Map.of();
+        }
+        Map<String, String> map = new LinkedHashMap<>();
+        try (Reader reader = Files.newBufferedReader(source); var parser = CSV.parse(reader)) {
+            for (CSVRecord record : parser) {
+                String code = value(record, "team_code", 1);
+                String name = value(record, "team_name", 2);
+                if (!code.isBlank() && !name.isBlank()) {
+                    map.put(code, name);
+                }
             }
         }
-        return results.size();
+        return map;
+    }
+
+    private String eloRatingsResultsSlug() {
+        if (tournamentStartDate == null) {
+            return "";
+        }
+        String slug = switch (tournamentStartDate.getYear()) {
+            case 2010 -> "2010_World_Cup_results";
+            case 2014 -> "2014_World_Cup_results";
+            case 2018 -> "2018_World_Cup_results";
+            case 2022 -> "2022_World_Cup_results";
+            case 2026 -> "2026_World_Cup_results";
+            default -> "";
+        };
+        return slug;
+    }
+
+    private static String eloTeamName(String codeOrName) {
+        String v = codeOrName == null ? "" : codeOrName.trim();
+        return switch (v) {
+            case "USA" -> "United States";
+            case "CIV" -> "Ivory Coast";
+            case "CZE" -> "Czechia";
+            case "RUS" -> "Russia";
+            default -> v;
+        };
     }
 
     private void writeMetadata(Path output, int requestedTeams, int copiedTeams, int copiedHistory, int copiedResults) throws IOException {
@@ -296,6 +470,10 @@ public class TournamentSnapshotHandler {
         Files.write(output, lines);
     }
 
+    private static String value(CSVRecord record, int index) {
+        return record.size() > index ? record.get(index).trim() : "";
+    }
+
     private static String value(CSVRecord record, String header, int fallbackIndex) {
         if (record.isMapped(header)) {
             return record.get(header).trim();
@@ -304,5 +482,5 @@ public class TournamentSnapshotHandler {
     }
 
     private record TournamentResult(LocalDate date, String homeTeam, String awayTeam, String homeScore,
-                                    String awayScore, String matchType, String neutral) {}
+                                    String awayScore, String matchType, String neutral, String round) {}
 }

@@ -12,12 +12,24 @@ An international football tournament prediction engine combining ELO-based match
 
 ## About
 
-The browser UI is the primary way to use the predictor. Configure the teams and review the model-selected group outcomes, then run the simulation in two explicit steps:
+The browser UI is the primary way to use the predictor. Configure the teams, save the Team Setup, and then work through the tournament pages stage by stage. Predicted views remain the default; actual results can be loaded into the same stage pages during or after the tournament without rerunning the model.
 
-1. **Run Group Stage** simulates every group fixture and saves the correlated Last 32 bracket from each run.
-2. **Run Knockout Rounds** resumes those saved brackets and carries each route through the final.
+The round pages are split into three useful views:
 
-The completed round pages expose the primary model-selected bracket and alternate matchups, while the Monte Carlo probabilities retain unlikely routes that the primary bracket does not select.
+- **Predicted** keeps the model-selected bracket and route probabilities.
+- **Actual** loads played results into the same stage view, including the final score where available.
+- **Tournament Snapshot** refreshes the actual-data view for the tournament workflow, rather than recalculating predictions.
+
+
+### Live tournament updates
+
+When actual results are loaded during a tournament, the snapshot cards can show three values:
+
+- **Original**: the pre-tournament percentage from the model
+- **Live**: the updated chance after the current round state is known
+- **Delta**: the change from Original to Live, shown with a green up tick or red down tick
+
+This is useful for live tournaments because it keeps the original model view intact while showing how the remaining bracket state changes a team's chance to advance.
 
 The engine is both:
 
@@ -39,6 +51,19 @@ The engine is both:
 
 **What it does not do:**
 - Claim statistically proven calibration or a guaranteed betting edge. Attack/Defence and other custom weights remain user inputs that need historical training evaluation.
+
+
+### Route labels and chains
+
+Knockout path labels are intentionally compact. The UI and report tables use the following labels:
+
+- `predicted` for the main predicted branch
+- `alt` for alternate branches that still advance
+- `upset` for a branch where the predicted loser advances, or where a later route contains an upset in its chain
+- `actual` when a played result is being shown in actual-results mode
+- `all` for the unfiltered view
+
+The underlying bracket builder keeps the advancing branch and the alternate/upset branch for each matchup. Upset history is preserved in the route chain metadata, but the UI collapses repeated history into the current visible label instead of printing verbose labels like `predicted -> upset -> upset`. That is enough to cover the routes that can actually appear in last-32-and-later stage tables.
 
 ## Quick start
 

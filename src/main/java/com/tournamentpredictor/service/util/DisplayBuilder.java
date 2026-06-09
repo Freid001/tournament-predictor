@@ -24,27 +24,20 @@ public class DisplayBuilder {
         }
 
         if (token.matches("^[A-L][1-4]$")) {
-            char group = token.charAt(0);
-            char slotType = token.charAt(1);
-            Set<String> seen = new LinkedHashSet<>();
-            for (int i = 1; i <= 4; i++) {
-                String slot = "" + group + i;
-                String gw = groupWinner.getOrDefault(slot, "");
-                String ru = runnerUp.getOrDefault(slot, "");
-                if (slotType == '1' && "no".equalsIgnoreCase(gw)) {
-                    continue;
-                }
-                if (slotType == '2' && "no".equalsIgnoreCase(ru)) {
-                    continue;
-                }
-                String team = groups.getOrDefault(slot, "");
-                if (team == null || team.isEmpty()) {
-                    team = slot;
-                }
-                if (seen.add(team)) {
-                    out.add(token + "(" + team + ")");
-                }
+            String status = switch (token.charAt(1)) {
+                case '1' -> groupWinner.getOrDefault(token, "");
+                case '2' -> runnerUp.getOrDefault(token, "");
+                case '3' -> thirdPlace.getOrDefault(token, "");
+                default -> "";
+            };
+            if ("no".equalsIgnoreCase(status) || status.isBlank()) {
+                return out;
             }
+            String team = groups.getOrDefault(token, "");
+            if (team == null || team.isEmpty()) {
+                team = token;
+            }
+            out.add(token + "(" + team + ")");
             return out;
         }
 

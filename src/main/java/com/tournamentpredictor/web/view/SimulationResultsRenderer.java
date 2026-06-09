@@ -69,34 +69,70 @@ public final class SimulationResultsRenderer {
                         row -> row.getOrDefault("group", ""), java.util.TreeMap::new,
                         java.util.stream.Collectors.toList()));
         StringBuilder html = new StringBuilder();
-        html.append("<div class=\"card shadow-sm border-0 mb-4\"><div class=\"card-body\">")
-                .append("<div class=\"d-flex flex-column flex-md-row justify-content-between gap-2 mb-3\">")
-                .append("<div><h2 class=\"h5 mb-1\">Most likely group standings</h2>")
-                .append("<div class=\"text-muted small\">Teams are ordered by their average simulated finishing position. The percentage is their chance of reaching the first knockout round.</div></div>")
-                .append("<div class=\"d-flex gap-2 align-self-start\">")
+        html.append("""
+                <div class="card shadow-sm border-0 mb-4"><div class="card-body">
+                <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-3">
+                <div><h2 class="h5 mb-1">Most likely group standings</h2>
+                <div class="text-muted small">Teams are ordered by their average simulated finishing position. Each group card shows the chance of finishing 1st through 4th, plus the current qualification chance.</div></div>
+                <div class="d-flex gap-2 align-self-start">
+                """)
                 .append(metaBadge(rows, "simulation_runs", "runs"))
                 .append(metaBadge(rows, "simulation_seed", "seed"))
-                .append("</div></div><div class=\"row g-3\">");
+                .append("""
+                </div></div><div class="row g-3">
+                """);
         for (Map.Entry<String, List<Map<String, String>>> entry : groups.entrySet()) {
             List<Map<String, String>> teams = entry.getValue().stream()
                     .sorted(Comparator.comparingDouble(SimulationResultsRenderer::averageGroupPosition)
                             .thenComparing(row -> row.getOrDefault("team", "")))
                     .toList();
-            html.append("<div class=\"col-12 col-md-6 col-xl-4\"><div class=\"border rounded-3 h-100 overflow-hidden\">")
-                    .append("<div class=\"bg-dark text-white fw-semibold px-3 py-2\">Group ")
-                    .append(escapeHtml(entry.getKey())).append("</div><ol class=\"list-group list-group-numbered list-group-flush\">");
+            html.append("""
+                    <div class="col-12 col-xl-6"><div class="border rounded-3 h-100 overflow-hidden bg-white">
+                    <div class="bg-dark text-white fw-semibold px-3 py-2 d-flex justify-content-between align-items-center">
+                    """)
+                    .append("<span>Group ").append(escapeHtml(entry.getKey())).append("</span>")
+                    .append("""
+                    <span class="small text-white-50">1st / 2nd / 3rd / 4th</span>
+                    </div>
+                    <div class="table-responsive"><table class="table table-sm mb-0 align-middle">
+                    <thead class="table-light"><tr>
+                    <th class="text-nowrap">Team</th>
+                    <th class="text-end text-nowrap">1st</th>
+                    <th class="text-end text-nowrap">2nd</th>
+                    <th class="text-end text-nowrap">3rd</th>
+                    <th class="text-end text-nowrap">4th</th>
+                    <th class="text-end text-nowrap">Qualify</th>
+                    </tr></thead><tbody>
+                    """);
             for (Map<String, String> team : teams) {
-                html.append("<li class=\"list-group-item d-flex justify-content-between align-items-center gap-2\">")
-                        .append("<span class=\"fw-semibold text-truncate\">")
-                        .append(HtmlReporter.flagHtml(team.getOrDefault("team", "")))
-                        .append(escapeHtml(team.getOrDefault("team", ""))).append("</span>")
-                        .append("<span class=\"badge text-bg-light border text-dark\">")
-                        .append(escapeHtml(team.getOrDefault("reach_last_32", team.getOrDefault("reach_last_16", "")))).append("%</span></li>");
+                String teamName = team.getOrDefault("team", "");
+                html.append("<tr>")
+                        .append("<td class=\"fw-semibold text-truncate text-primary text-decoration-underline\" style=\"cursor:pointer\" role=\"button\" tabindex=\"0\" data-team=\"")
+                        .append(escapeHtml(teamName))
+                        .append("\" onclick=\"filterTeamValue(this.dataset.team)\" onkeydown=\"if(event.key==='Enter'||event.key===' '){event.preventDefault();filterTeamValue(this.dataset.team);}\">")
+                        .append(HtmlReporter.flagHtml(teamName))
+                        .append(escapeHtml(teamName)).append("</td>")
+                        .append(positionPctCell(team, "finish_1st"))
+                        .append(positionPctCell(team, "finish_2nd"))
+                        .append(positionPctCell(team, "finish_3rd"))
+                        .append(positionPctCell(team, "finish_4th"))
+                        .append("<td class=\"text-end\"><span class=\"fw-semibold\">")
+                        .append(escapeHtml(team.getOrDefault("reach_last_32", team.getOrDefault("reach_last_16", ""))))
+                        .append("%</span></td>")
+                        .append("</tr>");
             }
-            html.append("</ol></div></div>");
+            html.append("""
+                    </tbody></table></div></div></div>
+                    """);
         }
-        html.append("</div><div class=\"text-muted small mt-3\">Group ties use the tournament-specific ranking rules. ELO is used only as the final fallback when disciplinary and competition-ranking data are unavailable.</div></div></div>");
+        html.append("""
+                </div><div class="text-muted small mt-3">Group ties use the tournament-specific ranking rules. ELO is used only as the final fallback when disciplinary and competition-ranking data are unavailable.</div></div></div>
+                """);
         return html.toString();
+    }
+
+    private static String positionPctCell(Map<String, String> row, String key) {
+        return "<td class=\"text-end\"><span class=\"fw-semibold\">" + escapeHtml(row.getOrDefault(key, "")) + "%</span></td>";
     }
 
     private static double averageGroupPosition(Map<String, String> row) {
