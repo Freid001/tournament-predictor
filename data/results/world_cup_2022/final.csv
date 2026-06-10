@@ -1,2 +1,2 @@
-round,match_id,team1,team2,winner,home_score,away_score,penalties,note
-final,M63,Argentina,France,Argentina,3,3,yes,
+round,match_id,team1,team2,winner,home_score,away_score,penalties
+final,M63,Argentina,France,Argentina,3,3,yes

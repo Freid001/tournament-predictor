@@ -1,0 +1,17 @@
+team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed
+Brazil,100.0,82.7,68.8,52.2,41.8,Champion,41.8,Champion,41.8,25000,20260605
+Germany,100.0,84.3,60.0,25.6,15.6,Exit SF,34.4,Champion,15.6,25000,20260605
+Argentina,100.0,67.1,45.4,29.5,12.6,Exit Last 16,32.9,Champion,12.6,25000,20260605
+Netherlands,100.0,64.7,46.4,25.4,9.4,Exit Last 16,35.3,Champion,9.4,25000,20260605
+France,100.0,68.6,27.8,7.6,3.5,Exit QF,40.8,Champion,3.5,25000,20260605
+Belgium,100.0,51.4,20.5,9.9,2.5,Exit Last 16,48.6,Champion,2.5,25000,20260605
+United States,100.0,48.6,18.5,8.7,2.3,Exit Last 16,51.4,Champion,2.3,25000,20260605
+Uruguay,100.0,53.3,13.0,5.2,2.3,Exit Last 16,46.7,Champion,2.3,25000,20260605
+Switzerland,100.0,32.9,15.6,7.3,2.1,Exit Last 16,67.1,Champion,2.1,25000,20260605
+Mexico,100.0,35.3,20.0,8.1,2.0,Exit Last 16,64.7,Champion,2.0,25000,20260605
+Greece,100.0,61.4,23.0,8.3,1.9,Exit Last 16,38.6,Champion,1.9,25000,20260605
+Colombia,100.0,46.7,10.0,4.1,1.7,Exit Last 16,53.3,Champion,1.7,25000,20260605
+Chile,100.0,17.3,8.2,3.4,1.4,Exit Last 16,82.7,Champion,1.4,25000,20260605
+Costa Rica,100.0,38.6,10.6,2.9,0.4,Exit Last 16,61.4,Runner-up,2.5,25000,20260605
+Nigeria,100.0,31.4,7.4,1.2,0.3,Exit Last 16,68.6,Exit SF,6.2,25000,20260605
+Algeria,100.0,15.7,4.8,0.7,0.2,Exit Last 16,84.3,Exit SF,4.1,25000,20260605

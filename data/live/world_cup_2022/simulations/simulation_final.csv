@@ -1,0 +1,3 @@
+team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed
+Argentina,100.0,100.0,100.0,100.0,67.4,Champion,67.4,Champion,67.4,25000,20260605
+France,100.0,100.0,100.0,100.0,32.6,Runner-up,67.4,Champion,32.6,25000,20260605

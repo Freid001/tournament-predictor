@@ -1,3 +1,3 @@
-round,match_id,team1,team2,winner,home_score,away_score,penalties,note
-last_4,M61,Argentina,Croatia,Argentina,3,0,,
-last_4,M62,France,Morocco,France,2,0,,
+round,match_id,team1,team2,winner,home_score,away_score,penalties
+last_4,M61,Argentina,Croatia,Argentina,3,0,
+last_4,M62,France,Morocco,France,2,0,

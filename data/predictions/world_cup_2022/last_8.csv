@@ -1,0 +1,21 @@
+match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent
+M57,W49(A1(Netherlands)),W50(C1(Argentina)),predicted,Argentina (65%),1,124,G|Qatar:0 > K@M49|Iran:0,K@M50|Denmark:-15
+M57,W49(A1(Netherlands)),W50(D2(Denmark)),upset,Netherlands (68%),1,439,G|Qatar:0 > K@M49|Iran:0,G|France:-4 > U@M50|Argentina:-49
+M57,W49(B2(Iran)),W50(C1(Argentina)),upset,Argentina (90%),287,124,G|England:-3 > U@M49|Netherlands:-31,K@M50|Denmark:-15
+M57,W49(B2(Iran)),W50(D2(Denmark)),upset,Denmark (70%),287,439,G|England:-3 > U@M49|Netherlands:-31,G|France:-4 > U@M50|Argentina:-49
+
+M58,W53(E1(Spain)),W54(G1(Brazil)),predicted,Brazil (71%),131,120,G|Germany:-4 > K@M53|Croatia:-12,G|Serbia:-2 > G|Switzerland:-1 > K@M54|Uruguay:-12
+M58,W53(E1(Spain)),W54(H2(Uruguay)),upset,Spain (73%),131,531,G|Germany:-4 > K@M53|Croatia:-12,G|Portugal:-6 > U@M54|Brazil:-58
+M58,W53(F2(Croatia)),W54(G1(Brazil)),upset,Brazil (85%),329,120,G|Belgium:-5 > U@M53|Spain:-35,G|Serbia:-2 > G|Switzerland:-1 > K@M54|Uruguay:-12
+M58,W53(F2(Croatia)),W54(H2(Uruguay)),upset,Croatia (53%),329,531,G|Belgium:-5 > U@M53|Spain:-35,G|Portugal:-6 > U@M54|Brazil:-58
+
+M59,W51(B1(England)),W52(D1(France)),predicted,France (52%),3,31,K@M51|Qatar:0,G|Denmark:-4 > K@M52|Mexico:0
+M59,W51(B1(England)),W52(C2(Mexico)),upset,England (70%),3,245,K@M51|Qatar:0,G|Argentina:-10 > U@M52|France:-20
+M59,W51(A2(Qatar)),W52(D1(France)),upset,France (70%),192,31,G|Netherlands:-6 > U@M51|England:-17,G|Denmark:-4 > K@M52|Mexico:0
+M59,W51(A2(Qatar)),W52(C2(Mexico)),upset,Qatar (53%),192,245,G|Netherlands:-6 > U@M51|England:-17,G|Argentina:-10 > U@M52|France:-20
+
+M60,W55(F1(Belgium)),W56(H1(Portugal)),predicted,Portugal (58%),159,87,G|Croatia:-3 > K@M55|Germany:-16,G|Uruguay:-3 > K@M56|Serbia:-7
+M60,W55(F1(Belgium)),W56(G2(Serbia)),upset,Belgium (66%),159,357,G|Croatia:-3 > K@M55|Germany:-16,G|Brazil:-12 > G|Switzerland:-1 > U@M56|Portugal:-31
+M60,W55(E2(Germany)),W56(H1(Portugal)),upset,Portugal (62%),254,87,G|Spain:-7 > U@M55|Belgium:-24,G|Uruguay:-3 > K@M56|Serbia:-7
+M60,W55(E2(Germany)),W56(G2(Serbia)),upset,Germany (62%),254,357,G|Spain:-7 > U@M55|Belgium:-24,G|Brazil:-12 > G|Switzerland:-1 > U@M56|Portugal:-31
+

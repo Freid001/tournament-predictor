@@ -1,0 +1,1115 @@
+team,finish,path,count,percentage,simulation_runs,simulation_seed
+Algeria,Exit Last 16,None,21080,84.3,25000,20260605
+Algeria,Exit QF,Germany,2712,10.8,25000,20260605
+Algeria,Exit SF,Germany > France,570,2.3,25000,20260605
+Algeria,Exit SF,Germany > Nigeria,466,1.9,25000,20260605
+Algeria,Runner-up,Germany > France > Brazil,37,0.1,25000,20260605
+Algeria,Runner-up,Germany > France > Colombia,18,0.1,25000,20260605
+Algeria,Runner-up,Germany > France > Uruguay,15,0.1,25000,20260605
+Algeria,Runner-up,Germany > Nigeria > Brazil,15,0.1,25000,20260605
+Algeria,Runner-up,Germany > France > Chile,14,0.1,25000,20260605
+Algeria,Runner-up,Germany > Nigeria > Uruguay,13,0.1,25000,20260605
+Algeria,Runner-up,Germany > Nigeria > Colombia,12,0.0,25000,20260605
+Algeria,Runner-up,Germany > Nigeria > Chile,7,0.0,25000,20260605
+Algeria,Champion,Germany > France > Brazil > Netherlands,3,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Uruguay > Netherlands,3,0.0,25000,20260605
+Algeria,Champion,Germany > France > Brazil > Greece,2,0.0,25000,20260605
+Algeria,Champion,Germany > France > Colombia > Argentina,2,0.0,25000,20260605
+Algeria,Champion,Germany > France > Uruguay > Argentina,2,0.0,25000,20260605
+Algeria,Champion,Germany > France > Uruguay > Netherlands,2,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Chile > Greece,2,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Colombia > Mexico,2,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Colombia > Netherlands,2,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Uruguay > Argentina,2,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Uruguay > Mexico,2,0.0,25000,20260605
+Algeria,Champion,Germany > France > Brazil > Argentina,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Brazil > United States,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Chile > Argentina,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Chile > Costa Rica,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Chile > Greece,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Chile > Netherlands,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Chile > United States,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Colombia > Greece,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Colombia > Mexico,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Colombia > Switzerland,1,0.0,25000,20260605
+Algeria,Champion,Germany > France > Uruguay > Costa Rica,1,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Brazil > Argentina,1,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Brazil > Costa Rica,1,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Brazil > Greece,1,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Chile > United States,1,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Colombia > Belgium,1,0.0,25000,20260605
+Algeria,Champion,Germany > Nigeria > Colombia > Switzerland,1,0.0,25000,20260605
+Argentina,Exit Last 16,None,8224,32.9,25000,20260605
+Argentina,Exit QF,Switzerland,5438,21.8,25000,20260605
+Argentina,Exit SF,Switzerland > Belgium,2030,8.1,25000,20260605
+Argentina,Exit SF,Switzerland > United States,1943,7.8,25000,20260605
+Argentina,Runner-up,Switzerland > Belgium > Netherlands,855,3.4,25000,20260605
+Argentina,Runner-up,Switzerland > United States > Netherlands,840,3.4,25000,20260605
+Argentina,Runner-up,Switzerland > United States > Greece,571,2.3,25000,20260605
+Argentina,Runner-up,Switzerland > Belgium > Greece,513,2.1,25000,20260605
+Argentina,Runner-up,Switzerland > Belgium > Mexico,468,1.9,25000,20260605
+Argentina,Runner-up,Switzerland > United States > Mexico,442,1.8,25000,20260605
+Argentina,Runner-up,Switzerland > Belgium > Costa Rica,280,1.1,25000,20260605
+Argentina,Runner-up,Switzerland > United States > Costa Rica,244,1.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Brazil,206,0.8,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Germany,189,0.8,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Brazil,178,0.7,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Germany,177,0.7,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Brazil,165,0.7,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Brazil,151,0.6,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Germany,124,0.5,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Brazil,124,0.5,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Brazil,120,0.5,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Germany,118,0.5,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Germany,102,0.4,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Germany,100,0.4,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > France,77,0.3,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > France,77,0.3,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Brazil,70,0.3,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Germany,69,0.3,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Brazil,67,0.3,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Colombia,54,0.2,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Uruguay,49,0.2,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > France,46,0.2,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Germany,45,0.2,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Uruguay,44,0.2,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Colombia,42,0.2,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > France,41,0.2,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Chile,40,0.2,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > France,38,0.2,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Chile,38,0.2,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Uruguay,37,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Uruguay,36,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Uruguay,33,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > France,32,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Uruguay,27,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Chile,26,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Colombia,26,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Colombia,25,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Uruguay,25,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Colombia,23,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Uruguay,23,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > France,22,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > France,21,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Chile,21,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Colombia,20,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Nigeria,20,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Chile,19,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Chile,17,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Chile,16,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Nigeria,16,0.1,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Colombia,13,0.1,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Colombia,11,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Nigeria,10,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Chile,9,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Algeria,8,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Nigeria,8,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Netherlands > Algeria,8,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Greece > Nigeria,7,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Mexico > Algeria,7,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Netherlands > Algeria,7,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Nigeria,6,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Nigeria,6,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Nigeria,5,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Mexico > Algeria,5,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Greece > Algeria,4,0.0,25000,20260605
+Argentina,Champion,Switzerland > Belgium > Costa Rica > Algeria,1,0.0,25000,20260605
+Argentina,Champion,Switzerland > United States > Costa Rica > Algeria,1,0.0,25000,20260605
+Belgium,Exit Last 16,None,12153,48.6,25000,20260605
+Belgium,Exit QF,United States,7713,30.9,25000,20260605
+Belgium,Exit SF,United States > Argentina,1483,5.9,25000,20260605
+Belgium,Exit SF,United States > Switzerland,1175,4.7,25000,20260605
+Belgium,Runner-up,United States > Argentina > Netherlands,369,1.5,25000,20260605
+Belgium,Runner-up,United States > Switzerland > Netherlands,325,1.3,25000,20260605
+Belgium,Runner-up,United States > Argentina > Greece,275,1.1,25000,20260605
+Belgium,Runner-up,United States > Argentina > Mexico,220,0.9,25000,20260605
+Belgium,Runner-up,United States > Switzerland > Greece,216,0.9,25000,20260605
+Belgium,Runner-up,United States > Switzerland > Mexico,166,0.7,25000,20260605
+Belgium,Runner-up,United States > Argentina > Costa Rica,151,0.6,25000,20260605
+Belgium,Runner-up,United States > Switzerland > Costa Rica,125,0.5,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Germany,39,0.2,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Brazil,30,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Germany,29,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Germany,27,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Brazil,27,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Germany,27,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Brazil,23,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Brazil,23,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Brazil,21,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > Germany,20,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Uruguay,19,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Germany,19,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > Germany,18,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Brazil,18,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > France,18,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > Brazil,16,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > France,15,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > Brazil,15,0.1,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > France,14,0.1,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Germany,12,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Chile,11,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Colombia,11,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > France,10,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > France,10,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Uruguay,9,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > France,8,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Chile,8,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Colombia,7,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > France,7,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Uruguay,7,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Colombia,7,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Chile,6,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Uruguay,6,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Chile,6,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > Colombia,6,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Nigeria,5,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Colombia,5,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > France,5,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Colombia,5,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Nigeria,5,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Colombia,4,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Nigeria,4,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Uruguay,4,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Chile,4,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Uruguay,4,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > Chile,3,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > Uruguay,3,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Algeria,3,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Chile,3,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > Chile,3,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > Uruguay,3,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > Nigeria,2,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Greece > Algeria,2,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Nigeria,2,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Nigeria,2,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Mexico > Algeria,2,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Netherlands > Algeria,2,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Costa Rica > Colombia,1,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Mexico > Nigeria,1,0.0,25000,20260605
+Belgium,Champion,United States > Argentina > Netherlands > Algeria,1,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Costa Rica > Algeria,1,0.0,25000,20260605
+Belgium,Champion,United States > Switzerland > Greece > Algeria,1,0.0,25000,20260605
+Brazil,Exit Last 16,None,4328,17.3,25000,20260605
+Brazil,Exit QF,Chile,3480,13.9,25000,20260605
+Brazil,Exit SF,Chile > Uruguay,2192,8.8,25000,20260605
+Brazil,Exit SF,Chile > Colombia,1948,7.8,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Argentina,800,3.2,25000,20260605
+Brazil,Runner-up,Chile > Uruguay > Germany,782,3.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Netherlands,733,2.9,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Netherlands,732,2.9,25000,20260605
+Brazil,Runner-up,Chile > Colombia > Germany,696,2.8,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Argentina,687,2.7,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Argentina,483,1.9,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Argentina,418,1.7,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Netherlands,412,1.6,25000,20260605
+Brazil,Runner-up,Chile > Uruguay > France,402,1.6,25000,20260605
+Brazil,Runner-up,Chile > Colombia > France,377,1.5,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Netherlands,356,1.4,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Belgium,310,1.2,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Belgium,305,1.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Greece,280,1.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > United States,263,1.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > United States,257,1.0,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Mexico,245,1.0,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Greece,223,0.9,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Mexico,220,0.9,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Switzerland,217,0.9,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Switzerland,212,0.8,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Belgium,180,0.7,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > United States,161,0.6,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Belgium,153,0.6,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Greece,146,0.6,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Mexico,145,0.6,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Mexico,139,0.6,25000,20260605
+Brazil,Champion,Chile > Colombia > France > United States,138,0.6,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Argentina,136,0.5,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Greece,134,0.5,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Switzerland,132,0.5,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Argentina,129,0.5,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Switzerland,119,0.5,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Netherlands,114,0.5,25000,20260605
+Brazil,Runner-up,Chile > Uruguay > Nigeria,108,0.4,25000,20260605
+Brazil,Runner-up,Chile > Colombia > Nigeria,104,0.4,25000,20260605
+Brazil,Champion,Chile > Uruguay > Germany > Costa Rica,103,0.4,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Netherlands,100,0.4,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Argentina,83,0.3,25000,20260605
+Brazil,Runner-up,Chile > Uruguay > Algeria,82,0.3,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Netherlands,80,0.3,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Netherlands,76,0.3,25000,20260605
+Brazil,Champion,Chile > Colombia > Germany > Costa Rica,69,0.3,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Argentina,67,0.3,25000,20260605
+Brazil,Champion,Chile > Colombia > France > Costa Rica,62,0.2,25000,20260605
+Brazil,Runner-up,Chile > Colombia > Algeria,60,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Belgium,55,0.2,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Belgium,52,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > France > Costa Rica,52,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > United States,50,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Mexico,49,0.2,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > United States,45,0.2,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Greece,43,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Greece,41,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Mexico,40,0.2,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Belgium,35,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Switzerland,34,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Belgium,33,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Mexico,31,0.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Greece,30,0.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Switzerland,28,0.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > United States,27,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > United States,26,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Mexico,24,0.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Switzerland,24,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Greece,23,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Switzerland,23,0.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Nigeria > Costa Rica,19,0.1,25000,20260605
+Brazil,Champion,Chile > Colombia > Nigeria > Costa Rica,18,0.1,25000,20260605
+Brazil,Champion,Chile > Uruguay > Algeria > Costa Rica,11,0.0,25000,20260605
+Brazil,Champion,Chile > Colombia > Algeria > Costa Rica,9,0.0,25000,20260605
+Chile,Exit Last 16,None,20672,82.7,25000,20260605
+Chile,Exit QF,Brazil,2274,9.1,25000,20260605
+Chile,Exit SF,Brazil > Uruguay,637,2.5,25000,20260605
+Chile,Exit SF,Brazil > Colombia,579,2.3,25000,20260605
+Chile,Runner-up,Brazil > Colombia > Germany,122,0.5,25000,20260605
+Chile,Runner-up,Brazil > Uruguay > Germany,113,0.5,25000,20260605
+Chile,Runner-up,Brazil > Uruguay > France,86,0.3,25000,20260605
+Chile,Runner-up,Brazil > Colombia > France,80,0.3,25000,20260605
+Chile,Runner-up,Brazil > Uruguay > Nigeria,30,0.1,25000,20260605
+Chile,Runner-up,Brazil > Colombia > Nigeria,28,0.1,25000,20260605
+Chile,Runner-up,Brazil > Uruguay > Algeria,24,0.1,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Argentina,19,0.1,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Netherlands,18,0.1,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Argentina,15,0.1,25000,20260605
+Chile,Runner-up,Brazil > Colombia > Algeria,15,0.1,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Netherlands,14,0.1,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Netherlands,14,0.1,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Switzerland,12,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Mexico,12,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Argentina,11,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Netherlands,11,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Belgium,11,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Mexico,10,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Belgium,9,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Argentina,9,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Mexico,9,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Greece,8,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Greece,8,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Argentina,8,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Belgium,8,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > United States,8,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Mexico,7,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Belgium,7,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > United States,7,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > United States,7,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Switzerland,6,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Greece,6,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > United States,6,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Netherlands,4,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > United States,4,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Algeria > Netherlands,4,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Greece,4,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Argentina,3,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > Costa Rica,3,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Belgium,3,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Greece,3,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Netherlands,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Algeria > Argentina,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Costa Rica,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > France > Switzerland,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Switzerland,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > Argentina,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > Mexico,3,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > Netherlands,3,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Costa Rica,2,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Mexico,2,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Switzerland,2,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > United States,2,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > France > United States,2,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Costa Rica,2,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Algeria > Belgium,2,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Algeria > Mexico,2,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > Greece,2,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Belgium,1,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Algeria > Greece,1,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Germany > Costa Rica,1,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Mexico,1,0.0,25000,20260605
+Chile,Champion,Brazil > Colombia > Nigeria > Switzerland,1,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Algeria > Costa Rica,1,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Algeria > Switzerland,1,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Germany > Costa Rica,1,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > Belgium,1,0.0,25000,20260605
+Chile,Champion,Brazil > Uruguay > Nigeria > Costa Rica,1,0.0,25000,20260605
+Colombia,Exit Last 16,None,13337,53.3,25000,20260605
+Colombia,Exit QF,Uruguay,9153,36.6,25000,20260605
+Colombia,Exit SF,Uruguay > Brazil,902,3.6,25000,20260605
+Colombia,Exit SF,Uruguay > Chile,583,2.3,25000,20260605
+Colombia,Runner-up,Uruguay > Brazil > Germany,178,0.7,25000,20260605
+Colombia,Runner-up,Uruguay > Chile > Germany,119,0.5,25000,20260605
+Colombia,Runner-up,Uruguay > Brazil > France,113,0.5,25000,20260605
+Colombia,Runner-up,Uruguay > Chile > France,72,0.3,25000,20260605
+Colombia,Runner-up,Uruguay > Brazil > Nigeria,39,0.2,25000,20260605
+Colombia,Runner-up,Uruguay > Brazil > Algeria,35,0.1,25000,20260605
+Colombia,Runner-up,Uruguay > Chile > Nigeria,27,0.1,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Argentina,25,0.1,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Argentina,24,0.1,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Argentina,23,0.1,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Netherlands,22,0.1,25000,20260605
+Colombia,Runner-up,Uruguay > Chile > Algeria,20,0.1,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Netherlands,18,0.1,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Mexico,16,0.1,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Belgium,14,0.1,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Mexico,14,0.1,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > Argentina,12,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Switzerland,12,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Greece,11,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Costa Rica,11,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > United States,10,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Netherlands,9,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > Netherlands,9,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Belgium,8,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Mexico,8,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Greece,8,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Nigeria > Argentina,8,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Belgium,8,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Switzerland,7,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > Switzerland,7,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Nigeria > Netherlands,7,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Greece,7,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Germany > United States,6,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Nigeria > Greece,6,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > Belgium,6,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Netherlands,6,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > Netherlands,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Nigeria > Belgium,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Nigeria > United States,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > Switzerland,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Argentina,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Belgium,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Greece,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Mexico,5,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > Argentina,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > Belgium,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > Greece,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > United States,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Nigeria > Mexico,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > Greece,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > United States,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Germany > Costa Rica,4,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > France > Costa Rica,3,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Algeria > Belgium,3,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Algeria > Mexico,3,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Algeria > Netherlands,3,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > France > Mexico,3,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > Costa Rica,2,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > Mexico,2,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Algeria > Switzerland,2,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Algeria > United States,2,0.0,25000,20260605
+Colombia,Champion,Uruguay > Brazil > Algeria > United States,1,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Algeria > Argentina,1,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Costa Rica,1,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > Switzerland,1,0.0,25000,20260605
+Colombia,Champion,Uruguay > Chile > Nigeria > United States,1,0.0,25000,20260605
+Costa Rica,Exit Last 16,None,15346,61.4,25000,20260605
+Costa Rica,Exit QF,Greece,7004,28.0,25000,20260605
+Costa Rica,Exit SF,Greece > Netherlands,1063,4.3,25000,20260605
+Costa Rica,Exit SF,Greece > Mexico,862,3.4,25000,20260605
+Costa Rica,Runner-up,Greece > Netherlands > Argentina,102,0.4,25000,20260605
+Costa Rica,Runner-up,Greece > Mexico > Argentina,90,0.4,25000,20260605
+Costa Rica,Runner-up,Greece > Mexico > United States,86,0.3,25000,20260605
+Costa Rica,Runner-up,Greece > Mexico > Belgium,71,0.3,25000,20260605
+Costa Rica,Runner-up,Greece > Netherlands > Switzerland,71,0.3,25000,20260605
+Costa Rica,Runner-up,Greece > Netherlands > Belgium,69,0.3,25000,20260605
+Costa Rica,Runner-up,Greece > Netherlands > United States,67,0.3,25000,20260605
+Costa Rica,Runner-up,Greece > Mexico > Switzerland,62,0.2,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Germany,9,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Switzerland > Germany,7,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > United States > Germany,7,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Argentina > Germany,6,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Brazil,5,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Argentina > Germany,4,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > United States > France,4,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Argentina > Brazil,4,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Switzerland > Germany,4,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Argentina > Brazil,3,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Nigeria,3,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Switzerland > Uruguay,3,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > United States > Brazil,3,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > United States > Brazil,3,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Argentina > France,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Argentina > Uruguay,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Switzerland > Brazil,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > United States > Colombia,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > United States > Germany,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Argentina > Colombia,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Argentina > France,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Belgium > Brazil,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Switzerland > Brazil,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Switzerland > Chile,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > United States > Colombia,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > United States > Uruguay,2,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Argentina > Algeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Argentina > Chile,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Algeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Chile,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Colombia,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > France,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Belgium > Uruguay,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Switzerland > France,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Mexico > Switzerland > Nigeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Argentina > Nigeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Belgium > Colombia,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Belgium > France,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Belgium > Germany,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Belgium > Nigeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Switzerland > Algeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > Switzerland > Colombia,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > United States > Algeria,1,0.0,25000,20260605
+Costa Rica,Champion,Greece > Netherlands > United States > Chile,1,0.0,25000,20260605
+France,Exit QF,Nigeria,10200,40.8,25000,20260605
+France,Exit Last 16,None,7861,31.4,25000,20260605
+France,Exit SF,Nigeria > Germany,3608,14.4,25000,20260605
+France,Exit SF,Nigeria > Algeria,1421,5.7,25000,20260605
+France,Runner-up,Nigeria > Germany > Brazil,315,1.3,25000,20260605
+France,Runner-up,Nigeria > Germany > Uruguay,169,0.7,25000,20260605
+France,Runner-up,Nigeria > Algeria > Brazil,133,0.5,25000,20260605
+France,Runner-up,Nigeria > Germany > Colombia,129,0.5,25000,20260605
+France,Runner-up,Nigeria > Germany > Chile,109,0.4,25000,20260605
+France,Runner-up,Nigeria > Algeria > Uruguay,78,0.3,25000,20260605
+France,Runner-up,Nigeria > Algeria > Colombia,60,0.2,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Argentina,54,0.2,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Netherlands,39,0.2,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Netherlands,37,0.1,25000,20260605
+France,Runner-up,Nigeria > Algeria > Chile,37,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Argentina,33,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Belgium,32,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Netherlands,28,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Argentina,27,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Mexico,26,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Netherlands,25,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Argentina,24,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Argentina,24,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Greece,23,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Netherlands,23,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > United States,21,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Greece,20,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Switzerland,18,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Mexico,18,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Belgium,17,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Greece,17,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Netherlands,16,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Switzerland,16,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > United States,16,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Greece,15,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Switzerland,15,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Argentina,14,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Belgium,14,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > United States,14,0.1,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Belgium,14,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Greece,13,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Netherlands,13,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > United States,13,0.1,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Argentina,12,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Brazil > Costa Rica,11,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Chile > United States,11,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > United States,10,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Netherlands,10,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Mexico,10,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Argentina,9,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Mexico,9,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Switzerland,8,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > United States,8,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > United States,8,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Switzerland,8,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Belgium,7,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Uruguay > Costa Rica,7,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Mexico,6,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Greece,6,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Belgium,6,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Greece,6,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Switzerland,5,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Mexico,5,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Switzerland,5,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Belgium,5,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Mexico,4,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Brazil > Costa Rica,3,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Belgium,3,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Mexico,3,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Uruguay > Costa Rica,3,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Chile > Costa Rica,3,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Costa Rica,2,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Chile > Switzerland,2,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Costa Rica,2,0.0,25000,20260605
+France,Champion,Nigeria > Algeria > Colombia > Greece,2,0.0,25000,20260605
+France,Champion,Nigeria > Germany > Colombia > Costa Rica,2,0.0,25000,20260605
+Germany,Exit QF,Algeria,6089,24.4,25000,20260605
+Germany,Exit SF,Algeria > France,5472,21.9,25000,20260605
+Germany,Exit Last 16,None,3920,15.7,25000,20260605
+Germany,Exit SF,Algeria > Nigeria,3129,12.5,25000,20260605
+Germany,Runner-up,Algeria > France > Brazil,844,3.4,25000,20260605
+Germany,Runner-up,Algeria > Nigeria > Brazil,498,2.0,25000,20260605
+Germany,Runner-up,Algeria > France > Uruguay,318,1.3,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Netherlands,273,1.1,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Argentina,242,1.0,25000,20260605
+Germany,Runner-up,Algeria > France > Colombia,233,0.9,25000,20260605
+Germany,Runner-up,Algeria > Nigeria > Uruguay,188,0.8,25000,20260605
+Germany,Runner-up,Algeria > France > Chile,180,0.7,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Argentina,167,0.7,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Netherlands,146,0.6,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Netherlands,137,0.5,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Belgium,126,0.5,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Argentina,123,0.5,25000,20260605
+Germany,Runner-up,Algeria > Nigeria > Colombia,123,0.5,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Greece,122,0.5,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Mexico,119,0.5,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Netherlands,112,0.4,25000,20260605
+Germany,Champion,Algeria > France > Brazil > United States,109,0.4,25000,20260605
+Germany,Runner-up,Algeria > Nigeria > Chile,107,0.4,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Switzerland,102,0.4,25000,20260605
+Germany,Champion,Algeria > France > Chile > Argentina,101,0.4,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Belgium,88,0.4,25000,20260605
+Germany,Champion,Algeria > France > Chile > Netherlands,82,0.3,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Argentina,80,0.3,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Greece,75,0.3,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Mexico,75,0.3,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Argentina,74,0.3,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Netherlands,67,0.3,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Netherlands,61,0.2,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > United States,57,0.2,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Switzerland,56,0.2,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Belgium,54,0.2,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Mexico,54,0.2,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > United States,54,0.2,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Argentina,54,0.2,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Greece,53,0.2,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Switzerland,48,0.2,25000,20260605
+Germany,Champion,Algeria > France > Brazil > Costa Rica,47,0.2,25000,20260605
+Germany,Champion,Algeria > France > Colombia > United States,47,0.2,25000,20260605
+Germany,Champion,Algeria > France > Chile > Belgium,45,0.2,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Belgium,45,0.2,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Argentina,44,0.2,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Greece,43,0.2,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Greece,41,0.2,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Switzerland,39,0.2,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Netherlands,38,0.2,25000,20260605
+Germany,Champion,Algeria > France > Chile > United States,37,0.1,25000,20260605
+Germany,Champion,Algeria > France > Chile > Greece,33,0.1,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Mexico,33,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Belgium,33,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Greece,31,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > United States,31,0.1,25000,20260605
+Germany,Champion,Algeria > France > Uruguay > Costa Rica,28,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Greece,27,0.1,25000,20260605
+Germany,Champion,Algeria > France > Chile > Switzerland,25,0.1,25000,20260605
+Germany,Champion,Algeria > France > Colombia > Costa Rica,25,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > United States,25,0.1,25000,20260605
+Germany,Champion,Algeria > France > Chile > Mexico,24,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Belgium,24,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Mexico,24,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Brazil > Costa Rica,23,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Mexico,22,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Switzerland,22,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Belgium,21,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > United States,21,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Switzerland,20,0.1,25000,20260605
+Germany,Champion,Algeria > France > Chile > Costa Rica,15,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Mexico,13,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Uruguay > Costa Rica,13,0.1,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Switzerland,12,0.0,25000,20260605
+Germany,Champion,Algeria > Nigeria > Colombia > Costa Rica,11,0.0,25000,20260605
+Germany,Champion,Algeria > Nigeria > Chile > Costa Rica,6,0.0,25000,20260605
+Greece,Exit Last 16,None,9654,38.6,25000,20260605
+Greece,Exit QF,Costa Rica,9593,38.4,25000,20260605
+Greece,Exit SF,Costa Rica > Netherlands,2051,8.2,25000,20260605
+Greece,Exit SF,Costa Rica > Mexico,1635,6.5,25000,20260605
+Greece,Runner-up,Costa Rica > Netherlands > Argentina,298,1.2,25000,20260605
+Greece,Runner-up,Costa Rica > Mexico > Argentina,252,1.0,25000,20260605
+Greece,Runner-up,Costa Rica > Netherlands > United States,212,0.8,25000,20260605
+Greece,Runner-up,Costa Rica > Netherlands > Belgium,210,0.8,25000,20260605
+Greece,Runner-up,Costa Rica > Mexico > Belgium,169,0.7,25000,20260605
+Greece,Runner-up,Costa Rica > Mexico > United States,165,0.7,25000,20260605
+Greece,Runner-up,Costa Rica > Netherlands > Switzerland,147,0.6,25000,20260605
+Greece,Runner-up,Costa Rica > Mexico > Switzerland,143,0.6,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Brazil,28,0.1,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Germany,26,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Germany,26,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Germany,23,0.1,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > Germany,22,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Brazil,17,0.1,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > Germany,16,0.1,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > Brazil,15,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > Brazil,15,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > Germany,15,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Brazil,14,0.1,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > Germany,13,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > France,13,0.1,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Brazil,13,0.1,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > Brazil,12,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > Brazil,11,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > France,11,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Colombia,10,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Uruguay,9,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > France,9,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > Colombia,9,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Uruguay,9,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Chile,8,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Colombia,7,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > Chile,7,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > France,7,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > Colombia,7,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > Uruguay,6,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > France,6,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Colombia,6,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > Uruguay,5,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Chile,5,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Uruguay,5,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Colombia,5,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Germany,5,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > Chile,4,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > Colombia,4,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > France,4,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Nigeria,4,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Algeria,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > Nigeria,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > Colombia,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > Uruguay,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > United States > Nigeria,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Chile,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > France,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > Uruguay,3,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Argentina > France,2,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Nigeria,2,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Chile,2,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Belgium > Nigeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > Algeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Mexico > Switzerland > Chile,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Argentina > Algeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Belgium > Algeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Algeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Nigeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > Switzerland > Uruguay,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > Algeria,1,0.0,25000,20260605
+Greece,Champion,Costa Rica > Netherlands > United States > Nigeria,1,0.0,25000,20260605
+Mexico,Exit Last 16,None,16167,64.7,25000,20260605
+Mexico,Exit QF,Netherlands,3836,15.3,25000,20260605
+Mexico,Exit SF,Netherlands > Greece,1658,6.6,25000,20260605
+Mexico,Exit SF,Netherlands > Costa Rica,1324,5.3,25000,20260605
+Mexico,Runner-up,Netherlands > Greece > Argentina,280,1.1,25000,20260605
+Mexico,Runner-up,Netherlands > Greece > Belgium,228,0.9,25000,20260605
+Mexico,Runner-up,Netherlands > Costa Rica > Argentina,223,0.9,25000,20260605
+Mexico,Runner-up,Netherlands > Greece > United States,189,0.8,25000,20260605
+Mexico,Runner-up,Netherlands > Greece > Switzerland,173,0.7,25000,20260605
+Mexico,Runner-up,Netherlands > Costa Rica > Belgium,151,0.6,25000,20260605
+Mexico,Runner-up,Netherlands > Costa Rica > United States,138,0.6,25000,20260605
+Mexico,Runner-up,Netherlands > Costa Rica > Switzerland,127,0.5,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Brazil,28,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Germany,27,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Brazil,24,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Germany,24,0.1,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Germany,23,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > Brazil,22,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > Brazil,22,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > Germany,21,0.1,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > Brazil,16,0.1,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Germany,14,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > Germany,14,0.1,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > France,13,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Colombia,13,0.1,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Uruguay,13,0.1,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Brazil,12,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > France,12,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > Brazil,11,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > Germany,11,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Uruguay,10,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > France,10,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > France,9,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > France,9,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > France,8,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > France,8,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > Germany,8,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > France,8,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > Uruguay,8,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Brazil,7,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Colombia,6,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Uruguay,6,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > Chile,6,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Chile,5,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > Chile,5,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > Uruguay,5,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Colombia,5,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > Colombia,5,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Nigeria,4,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Uruguay,4,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > Uruguay,4,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Nigeria,4,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > Colombia,4,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Chile,3,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Chile,3,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Nigeria,3,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > Chile,3,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > Colombia,3,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Argentina > Algeria,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Algeria,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Belgium > Colombia,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > Colombia,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > Uruguay,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > Chile,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > United States > Nigeria,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Argentina > Algeria,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Belgium > Nigeria,2,0.0,25000,20260605
+Mexico,Champion,Netherlands > Costa Rica > Switzerland > Nigeria,1,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Algeria,1,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Chile,1,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > Switzerland > Nigeria,1,0.0,25000,20260605
+Mexico,Champion,Netherlands > Greece > United States > Nigeria,1,0.0,25000,20260605
+Netherlands,Exit Last 16,None,8833,35.3,25000,20260605
+Netherlands,Exit QF,Mexico,4567,18.3,25000,20260605
+Netherlands,Exit SF,Mexico > Greece,3076,12.3,25000,20260605
+Netherlands,Exit SF,Mexico > Costa Rica,2168,8.7,25000,20260605
+Netherlands,Runner-up,Mexico > Greece > Argentina,888,3.6,25000,20260605
+Netherlands,Runner-up,Mexico > Costa Rica > Argentina,614,2.5,25000,20260605
+Netherlands,Runner-up,Mexico > Greece > Belgium,537,2.1,25000,20260605
+Netherlands,Runner-up,Mexico > Greece > United States,485,1.9,25000,20260605
+Netherlands,Runner-up,Mexico > Greece > Switzerland,429,1.7,25000,20260605
+Netherlands,Runner-up,Mexico > Costa Rica > Belgium,401,1.6,25000,20260605
+Netherlands,Runner-up,Mexico > Costa Rica > United States,354,1.4,25000,20260605
+Netherlands,Runner-up,Mexico > Costa Rica > Switzerland,295,1.2,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Germany,152,0.6,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Brazil,138,0.6,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Germany,114,0.5,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Brazil,113,0.5,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Brazil,111,0.4,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Brazil,109,0.4,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Germany,93,0.4,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Germany,90,0.4,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Germany,88,0.4,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Brazil,85,0.3,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Brazil,82,0.3,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Germany,73,0.3,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > Germany,71,0.3,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Brazil,66,0.3,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > France,66,0.3,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > Brazil,59,0.2,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Germany,47,0.2,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Uruguay,46,0.2,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > France,42,0.2,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Colombia,41,0.2,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > France,38,0.2,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > France,35,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Uruguay,31,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Chile,29,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > France,28,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > France,26,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Uruguay,26,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Chile,25,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > France,25,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Colombia,24,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Uruguay,24,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Uruguay,23,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Chile,21,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Chile,19,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Colombia,19,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Uruguay,18,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > Colombia,18,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > France,17,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Colombia,16,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > Uruguay,16,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Colombia,15,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > Chile,14,0.1,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Uruguay,13,0.1,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Nigeria,12,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Chile,12,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Chile,11,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Nigeria,11,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Colombia,11,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Chile,10,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Colombia,9,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Nigeria,9,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Algeria,9,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > United States > Nigeria,8,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > Belgium > Algeria,7,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Algeria,6,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > Argentina > Algeria,6,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Algeria,5,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > United States > Nigeria,5,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Argentina > Nigeria,4,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Belgium > Nigeria,4,0.0,25000,20260605
+Netherlands,Champion,Mexico > Greece > Switzerland > Algeria,4,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Algeria,2,0.0,25000,20260605
+Netherlands,Champion,Mexico > Costa Rica > Switzerland > Nigeria,2,0.0,25000,20260605
+Nigeria,Exit Last 16,None,17139,68.6,25000,20260605
+Nigeria,Exit QF,France,5999,24.0,25000,20260605
+Nigeria,Exit SF,France > Germany,982,3.9,25000,20260605
+Nigeria,Exit SF,France > Algeria,576,2.3,25000,20260605
+Nigeria,Runner-up,France > Germany > Brazil,49,0.2,25000,20260605
+Nigeria,Runner-up,France > Algeria > Brazil,37,0.1,25000,20260605
+Nigeria,Runner-up,France > Germany > Uruguay,32,0.1,25000,20260605
+Nigeria,Runner-up,France > Algeria > Uruguay,26,0.1,25000,20260605
+Nigeria,Runner-up,France > Algeria > Colombia,23,0.1,25000,20260605
+Nigeria,Runner-up,France > Germany > Chile,21,0.1,25000,20260605
+Nigeria,Runner-up,France > Germany > Colombia,21,0.1,25000,20260605
+Nigeria,Runner-up,France > Algeria > Chile,12,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Mexico,5,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Netherlands,5,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > Argentina,4,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Brazil > Netherlands,3,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Brazil > United States,3,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Switzerland,3,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Greece,3,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > Netherlands,3,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > Greece,3,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > Switzerland,3,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Brazil > Argentina,2,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Brazil > Belgium,2,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Brazil > Mexico,2,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Colombia > Netherlands,2,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Uruguay > Netherlands,2,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Argentina,2,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Costa Rica,2,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > United States,2,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > Belgium,2,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > Mexico,2,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > Netherlands,2,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Brazil > Greece,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Chile > Argentina,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Chile > Belgium,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Chile > Netherlands,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Colombia > Argentina,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Colombia > Greece,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Colombia > Switzerland,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Colombia > United States,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Uruguay > Costa Rica,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Uruguay > Greece,1,0.0,25000,20260605
+Nigeria,Champion,France > Algeria > Uruguay > Switzerland,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Belgium,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > Greece,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Brazil > United States,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Argentina,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Belgium,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Costa Rica,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Mexico,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Netherlands,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Chile > Switzerland,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > Belgium,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > Costa Rica,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > Mexico,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Colombia > Switzerland,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > Argentina,1,0.0,25000,20260605
+Nigeria,Champion,France > Germany > Uruguay > United States,1,0.0,25000,20260605
+Switzerland,Exit Last 16,None,16776,67.1,25000,20260605
+Switzerland,Exit QF,Argentina,4312,17.2,25000,20260605
+Switzerland,Exit SF,Argentina > United States,1043,4.2,25000,20260605
+Switzerland,Exit SF,Argentina > Belgium,1039,4.2,25000,20260605
+Switzerland,Runner-up,Argentina > United States > Netherlands,244,1.0,25000,20260605
+Switzerland,Runner-up,Argentina > Belgium > Netherlands,232,0.9,25000,20260605
+Switzerland,Runner-up,Argentina > United States > Greece,175,0.7,25000,20260605
+Switzerland,Runner-up,Argentina > Belgium > Greece,165,0.7,25000,20260605
+Switzerland,Runner-up,Argentina > Belgium > Mexico,145,0.6,25000,20260605
+Switzerland,Runner-up,Argentina > United States > Mexico,140,0.6,25000,20260605
+Switzerland,Runner-up,Argentina > Belgium > Costa Rica,109,0.4,25000,20260605
+Switzerland,Runner-up,Argentina > United States > Costa Rica,101,0.4,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Brazil,33,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Germany,26,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > Brazil,26,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Germany,25,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > Germany,22,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Germany,21,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > Brazil,18,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > France,17,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Brazil,16,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Brazil,16,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > France,14,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > France,14,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > Germany,14,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > Germany,13,0.1,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > France,13,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Germany,13,0.1,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > Brazil,12,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > Germany,11,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Brazil,11,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Uruguay,10,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > Uruguay,10,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > Brazil,9,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > Colombia,9,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Colombia,9,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > Uruguay,8,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > France,8,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > France,7,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > Chile,7,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Chile,7,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > Uruguay,7,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Chile,7,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Uruguay,7,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > France,6,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > Chile,6,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > France,6,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > Colombia,5,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Chile,5,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Colombia,5,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Nigeria,5,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Uruguay,4,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > Uruguay,3,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Nigeria,3,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > Colombia,3,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > Nigeria,3,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Netherlands > Algeria,3,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > Chile,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > Chile,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Uruguay,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Algeria,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Colombia,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Greece > Nigeria,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Mexico > Colombia,2,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Costa Rica > Algeria,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Greece > Algeria,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Mexico > Nigeria,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > Belgium > Netherlands > Nigeria,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Algeria,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Chile,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Colombia,1,0.0,25000,20260605
+Switzerland,Champion,Argentina > United States > Costa Rica > Nigeria,1,0.0,25000,20260605
+United States,Exit Last 16,None,12847,51.4,25000,20260605
+United States,Exit QF,Belgium,7537,30.1,25000,20260605
+United States,Exit SF,Belgium > Argentina,1393,5.6,25000,20260605
+United States,Exit SF,Belgium > Switzerland,1057,4.2,25000,20260605
+United States,Runner-up,Belgium > Argentina > Netherlands,322,1.3,25000,20260605
+United States,Runner-up,Belgium > Argentina > Greece,249,1.0,25000,20260605
+United States,Runner-up,Belgium > Switzerland > Netherlands,247,1.0,25000,20260605
+United States,Runner-up,Belgium > Switzerland > Greece,185,0.7,25000,20260605
+United States,Runner-up,Belgium > Argentina > Mexico,179,0.7,25000,20260605
+United States,Runner-up,Belgium > Switzerland > Mexico,168,0.7,25000,20260605
+United States,Runner-up,Belgium > Argentina > Costa Rica,119,0.5,25000,20260605
+United States,Runner-up,Belgium > Switzerland > Costa Rica,113,0.5,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > Germany,39,0.2,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Germany,33,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Brazil,28,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > Brazil,27,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Brazil,25,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Greece > Germany,25,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > Brazil,22,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > Germany,20,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Germany,19,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Greece > Brazil,18,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > Brazil,16,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > France,16,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Brazil,15,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Germany,15,0.1,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > France,15,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > France,14,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > Germany,13,0.1,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > Uruguay,12,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Colombia,12,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > France,11,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Uruguay,11,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Germany,11,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Brazil,11,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Uruguay,11,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > France,9,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > Colombia,8,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Greece > Colombia,8,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > Colombia,7,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > Uruguay,7,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Greece > France,7,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Greece > Uruguay,7,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > France,7,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > Colombia,6,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Colombia,6,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > Chile,5,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > France,5,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > Chile,5,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Chile,5,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Chile,5,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Nigeria,5,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Nigeria,4,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Uruguay,4,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Chile,4,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Colombia,4,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > Uruguay,3,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Colombia,3,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Uruguay,3,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Netherlands > Algeria,3,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > Chile,2,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Mexico > Algeria,2,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Greece > Algeria,2,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Nigeria,2,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Costa Rica > Algeria,1,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Greece > Algeria,1,0.0,25000,20260605
+United States,Champion,Belgium > Argentina > Netherlands > Algeria,1,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Algeria,1,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Chile,1,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Costa Rica > Nigeria,1,0.0,25000,20260605
+United States,Champion,Belgium > Switzerland > Mexico > Algeria,1,0.0,25000,20260605
+Uruguay,Exit Last 16,None,11663,46.7,25000,20260605
+Uruguay,Exit QF,Colombia,10093,40.4,25000,20260605
+Uruguay,Exit SF,Colombia > Brazil,1198,4.8,25000,20260605
+Uruguay,Exit SF,Colombia > Chile,737,2.9,25000,20260605
+Uruguay,Runner-up,Colombia > Brazil > Germany,208,0.8,25000,20260605
+Uruguay,Runner-up,Colombia > Brazil > France,152,0.6,25000,20260605
+Uruguay,Runner-up,Colombia > Chile > Germany,132,0.5,25000,20260605
+Uruguay,Runner-up,Colombia > Chile > France,84,0.3,25000,20260605
+Uruguay,Runner-up,Colombia > Brazil > Nigeria,54,0.2,25000,20260605
+Uruguay,Runner-up,Colombia > Brazil > Algeria,53,0.2,25000,20260605
+Uruguay,Runner-up,Colombia > Chile > Nigeria,38,0.2,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Netherlands,30,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Argentina,29,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Argentina,27,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Argentina,26,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Argentina,25,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Netherlands,22,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Netherlands,20,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Belgium,20,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > United States,18,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Belgium,16,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Belgium,16,0.1,25000,20260605
+Uruguay,Runner-up,Colombia > Chile > Algeria,15,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Belgium,14,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Netherlands,14,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Argentina,13,0.1,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Mexico,13,0.1,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Switzerland,12,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Greece,12,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Greece,12,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Greece,12,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > United States,11,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Mexico,10,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Costa Rica,10,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Mexico,10,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Germany > Switzerland,10,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Netherlands,8,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Greece,8,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Belgium,8,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Mexico,8,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Argentina,8,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > United States,7,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Netherlands,7,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Netherlands,7,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Costa Rica,6,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Switzerland,6,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Belgium,6,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > France > Costa Rica,5,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Switzerland,5,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > United States,5,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > United States,5,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Netherlands,5,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Belgium,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Greece,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Mexico,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Switzerland,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Switzerland,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Germany > Costa Rica,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Greece,4,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Argentina,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Mexico,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Argentina,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Mexico,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > United States,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > France > Switzerland,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Mexico,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Switzerland,3,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > Costa Rica,2,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Algeria > United States,2,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Costa Rica,2,0.0,25000,20260605
+Uruguay,Champion,Colombia > Brazil > Nigeria > Greece,2,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Belgium,2,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > United States,2,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Costa Rica,1,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Algeria > Greece,1,0.0,25000,20260605
+Uruguay,Champion,Colombia > Chile > Nigeria > Costa Rica,1,0.0,25000,20260605

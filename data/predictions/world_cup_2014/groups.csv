@@ -1,0 +1,40 @@
+group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place
+A,Brazil,2138,0,50,0,0,0,2,0,2306,1 (95%),yes,no,no
+A,Mexico,1814,0,2,0,0,0,2,-1,1851,2 (45%),no,yes,maybe
+A,Croatia,1818,0,21,0,0,0,-1,0,1839,3 (44%),no,maybe,yes
+A,Cameroon,1606,0,-5,0,0,0,-1,1,1636,4 (16%),no,no,no
+
+B,Spain,2107,0,41,0,0,0,2,0,2148,1 (80%),yes,maybe,no
+B,Netherlands,1985,0,7,0,0,0,2,0,1992,2 (57%),maybe,yes,maybe
+B,Chile,1919,0,25,0,0,0,2,-1,1944,3 (49%),no,maybe,yes
+B,Australia,1708,0,-28,1,0,0,2,-1,1686,4 (13%),no,no,no
+
+C,Colombia,1922,0,10,0,0,0,2,1,1915,1 (63%),yes,maybe,no
+C,Japan,1785,0,40,0,0,0,1,-2,1843,2 (50%),maybe,yes,maybe
+C,Greece,1823,0,-7,0,0,0,-1,1,1816,3 (45%),no,maybe,yes
+C,Ivory Coast,1772,0,-3,0,0,0,2,-1,1804,4 (42%),no,no,maybe
+
+D,England,1931,0,17,0,0,0,2,1,1948,1 (64%),yes,maybe,no
+D,Uruguay,1918,0,23,0,0,0,2,0,1941,2 (63%),maybe,yes,maybe
+D,Italy,1887,0,-19,0,0,0,2,-2,1868,3 (50%),no,maybe,yes
+D,Costa Rica,1711,0,-22,0,0,0,0,2,1707,4 (23%),no,no,no
+
+E,France,1896,0,38,0,0,0,1,1,1934,1 (68%),yes,maybe,no
+E,Switzerland,1854,0,23,0,0,0,0,1,1877,2 (58%),maybe,yes,maybe
+E,Ecuador,1835,0,-7,0,0,0,0,0,1846,3 (53%),no,maybe,yes
+E,Honduras,1668,0,-15,0,0,0,0,0,1653,4 (21%),no,no,no
+
+F,Argentina,2018,0,28,0,0,0,2,0,2046,1 (84%),yes,no,no
+F,Bosnia and Herzegovina,1785,0,10,0,0,0,2,1,1795,2 (45%),no,yes,maybe
+F,Nigeria,1727,0,-17,0,0,0,1,0,1745,3 (37%),no,maybe,yes
+F,Iran,1715,0,-5,0,0,0,2,1,1728,4 (34%),no,no,maybe
+
+G,Germany,2072,0,20,0,0,0,2,-2,2092,1 (78%),yes,maybe,no
+G,Portugal,1942,0,35,0,0,0,1,0,1977,2 (60%),maybe,yes,maybe
+G,United States,1857,0,13,0,0,0,2,0,1870,3 (42%),no,maybe,yes
+G,Ghana,1704,0,-6,1,0,0,2,0,1721,4 (20%),no,no,maybe
+
+H,Belgium,1851,0,32,0,0,0,1,2,1883,1 (68%),yes,maybe,no
+H,Russia,1848,0,28,0,0,0,1,1,1876,2 (67%),maybe,yes,no
+H,Algeria,1626,0,41,0,0,0,1,0,1702,3 (37%),no,no,yes
+H,South Korea,1667,0,-30,0,0,0,-1,0,1655,4 (29%),no,no,maybe

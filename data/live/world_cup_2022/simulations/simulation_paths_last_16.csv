@@ -1,0 +1,1001 @@
+team,finish,path,count,percentage,simulation_runs,simulation_seed
+Argentina,Exit QF,Australia,6634,26.5,25000,20260605
+Argentina,Exit SF,Australia > Netherlands,4850,19.4,25000,20260605
+Argentina,Exit Last 16,None,3939,15.8,25000,20260605
+Argentina,Exit SF,Australia > United States,1943,7.8,25000,20260605
+Argentina,Runner-up,Australia > Netherlands > Brazil,1100,4.4,25000,20260605
+Argentina,Runner-up,Australia > Netherlands > Croatia,457,1.8,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > Spain,452,1.8,25000,20260605
+Argentina,Runner-up,Australia > United States > Brazil,414,1.7,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > Portugal,390,1.6,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > England,341,1.4,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > France,297,1.2,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > Spain,250,1.0,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > Spain,221,0.9,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > Portugal,198,0.8,25000,20260605
+Argentina,Runner-up,Australia > United States > Croatia,196,0.8,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > England,192,0.8,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > France,188,0.8,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > England,179,0.7,25000,20260605
+Argentina,Runner-up,Australia > Netherlands > Japan,169,0.7,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > Portugal,162,0.6,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > France,158,0.6,25000,20260605
+Argentina,Runner-up,Australia > Netherlands > South Korea,133,0.5,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > Spain,107,0.4,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > Spain,107,0.4,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > Switzerland,105,0.4,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > Poland,100,0.4,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > Spain,87,0.3,25000,20260605
+Argentina,Runner-up,Australia > United States > South Korea,81,0.3,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > Portugal,79,0.3,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > Portugal,74,0.3,25000,20260605
+Argentina,Runner-up,Australia > United States > Japan,72,0.3,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > France,71,0.3,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > France,71,0.3,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > England,69,0.3,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > England,69,0.3,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > Portugal,68,0.3,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > Morocco,66,0.3,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > Poland,56,0.2,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > England,55,0.2,25000,20260605
+Argentina,Champion,Australia > Netherlands > Brazil > Senegal,47,0.2,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > Switzerland,47,0.2,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > France,45,0.2,25000,20260605
+Argentina,Champion,Australia > United States > Japan > Spain,43,0.2,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > Poland,42,0.2,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > Spain,39,0.2,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > Switzerland,38,0.2,25000,20260605
+Argentina,Champion,Australia > United States > Japan > England,33,0.1,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > France,33,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > Morocco,32,0.1,25000,20260605
+Argentina,Champion,Australia > United States > Japan > France,32,0.1,25000,20260605
+Argentina,Champion,Australia > United States > Japan > Portugal,31,0.1,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > Portugal,31,0.1,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > Morocco,27,0.1,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > England,26,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > Switzerland,23,0.1,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > Poland,20,0.1,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > Switzerland,20,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > Croatia > Senegal,19,0.1,25000,20260605
+Argentina,Champion,Australia > United States > Brazil > Senegal,19,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > Switzerland,18,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > Poland,17,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > Poland,16,0.1,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > Morocco,12,0.0,25000,20260605
+Argentina,Champion,Australia > United States > Japan > Switzerland,12,0.0,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > Morocco,11,0.0,25000,20260605
+Argentina,Champion,Australia > Netherlands > Japan > Senegal,9,0.0,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > Morocco,9,0.0,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > Poland,9,0.0,25000,20260605
+Argentina,Champion,Australia > United States > Japan > Morocco,8,0.0,25000,20260605
+Argentina,Champion,Australia > Netherlands > South Korea > Senegal,7,0.0,25000,20260605
+Argentina,Champion,Australia > United States > Japan > Poland,6,0.0,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > Switzerland,6,0.0,25000,20260605
+Argentina,Champion,Australia > United States > Croatia > Senegal,5,0.0,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > Senegal,4,0.0,25000,20260605
+Argentina,Champion,Australia > United States > South Korea > Morocco,3,0.0,25000,20260605
+Argentina,Champion,Australia > United States > Japan > Senegal,1,0.0,25000,20260605
+Australia,Exit Last 16,None,21061,84.2,25000,20260605
+Australia,Exit QF,Argentina,2915,11.7,25000,20260605
+Australia,Exit SF,Argentina > Netherlands,468,1.9,25000,20260605
+Australia,Exit SF,Argentina > United States,365,1.5,25000,20260605
+Australia,Runner-up,Argentina > Netherlands > Brazil,35,0.1,25000,20260605
+Australia,Runner-up,Argentina > Netherlands > Croatia,27,0.1,25000,20260605
+Australia,Runner-up,Argentina > United States > Brazil,25,0.1,25000,20260605
+Australia,Runner-up,Argentina > United States > Croatia,19,0.1,25000,20260605
+Australia,Runner-up,Argentina > United States > Japan,13,0.1,25000,20260605
+Australia,Runner-up,Argentina > Netherlands > Japan,11,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Brazil > France,7,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Brazil > Portugal,4,0.0,25000,20260605
+Australia,Runner-up,Argentina > United States > South Korea,4,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Croatia > England,3,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Brazil > England,3,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Croatia > Spain,3,0.0,25000,20260605
+Australia,Runner-up,Argentina > Netherlands > South Korea,3,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Croatia > Portugal,2,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Croatia > Spain,2,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Japan > England,2,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Japan > Portugal,2,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Japan > Spain,2,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Brazil > England,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Brazil > France,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Brazil > Poland,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Brazil > Spain,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Croatia > Morocco,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Croatia > Senegal,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Japan > France,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Japan > Morocco,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Japan > Poland,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > Japan > Spain,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > South Korea > England,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > South Korea > Portugal,1,0.0,25000,20260605
+Australia,Champion,Argentina > Netherlands > South Korea > Switzerland,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Brazil > Senegal,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Brazil > Switzerland,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Croatia > England,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Croatia > France,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Croatia > Morocco,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Croatia > Poland,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Japan > England,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > Japan > Portugal,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > South Korea > Portugal,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > South Korea > Spain,1,0.0,25000,20260605
+Australia,Champion,Argentina > United States > South Korea > Switzerland,1,0.0,25000,20260605
+Brazil,Exit QF,South Korea,4092,16.4,25000,20260605
+Brazil,Exit SF,South Korea > Croatia,3769,15.1,25000,20260605
+Brazil,Exit Last 16,None,3623,14.5,25000,20260605
+Brazil,Exit SF,South Korea > Japan,2294,9.2,25000,20260605
+Brazil,Runner-up,South Korea > Croatia > Argentina,1089,4.4,25000,20260605
+Brazil,Runner-up,South Korea > Croatia > Netherlands,675,2.7,25000,20260605
+Brazil,Runner-up,South Korea > Japan > Argentina,675,2.7,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > Spain,606,2.4,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > Portugal,517,2.1,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > England,477,1.9,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > Spain,455,1.8,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > France,442,1.8,25000,20260605
+Brazil,Runner-up,South Korea > Japan > Netherlands,430,1.7,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > Spain,419,1.7,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > Portugal,378,1.5,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > England,341,1.4,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > England,335,1.3,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > France,335,1.3,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > Spain,330,1.3,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > Portugal,325,1.3,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > France,284,1.1,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > Portugal,245,1.0,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > England,219,0.9,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > France,210,0.8,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > Switzerland,125,0.5,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > Poland,124,0.5,25000,20260605
+Brazil,Runner-up,South Korea > Croatia > Australia,123,0.5,25000,20260605
+Brazil,Runner-up,South Korea > Croatia > United States,103,0.4,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > Spain,92,0.4,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > Switzerland,90,0.4,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > Switzerland,88,0.4,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > Poland,87,0.3,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > Poland,87,0.3,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > Morocco,83,0.3,25000,20260605
+Brazil,Runner-up,South Korea > Japan > United States,75,0.3,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > Spain,70,0.3,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > England,66,0.3,25000,20260605
+Brazil,Runner-up,South Korea > Japan > Australia,66,0.3,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > Poland,65,0.3,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > France,62,0.2,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > France,61,0.2,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > Portugal,59,0.2,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > Morocco,56,0.2,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > Portugal,54,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > Spain,54,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > Morocco,51,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > Spain,51,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > Switzerland,50,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > Portugal,48,0.2,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > England,47,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > Morocco,44,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > France,44,0.2,25000,20260605
+Brazil,Champion,South Korea > Croatia > Argentina > Senegal,40,0.2,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > France,37,0.1,25000,20260605
+Brazil,Champion,South Korea > Croatia > Netherlands > Senegal,36,0.1,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > England,36,0.1,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > Portugal,31,0.1,25000,20260605
+Brazil,Champion,South Korea > Japan > Argentina > Senegal,30,0.1,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > England,30,0.1,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > Switzerland,22,0.1,25000,20260605
+Brazil,Champion,South Korea > Japan > Netherlands > Senegal,22,0.1,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > Poland,17,0.1,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > Poland,13,0.1,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > Switzerland,11,0.0,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > Morocco,10,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > Switzerland,10,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > Morocco,9,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > Switzerland,9,0.0,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > Morocco,8,0.0,25000,20260605
+Brazil,Champion,South Korea > Croatia > United States > Senegal,7,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > Morocco,7,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > Poland,7,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > Senegal,6,0.0,25000,20260605
+Brazil,Champion,South Korea > Croatia > Australia > Senegal,4,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > Australia > Poland,4,0.0,25000,20260605
+Brazil,Champion,South Korea > Japan > United States > Senegal,4,0.0,25000,20260605
+Croatia,Exit QF,Japan,11307,45.2,25000,20260605
+Croatia,Exit Last 16,None,8977,35.9,25000,20260605
+Croatia,Exit SF,Japan > Brazil,2099,8.4,25000,20260605
+Croatia,Exit SF,Japan > South Korea,978,3.9,25000,20260605
+Croatia,Runner-up,Japan > Brazil > Argentina,266,1.1,25000,20260605
+Croatia,Runner-up,Japan > Brazil > Netherlands,231,0.9,25000,20260605
+Croatia,Runner-up,Japan > South Korea > Argentina,161,0.6,25000,20260605
+Croatia,Runner-up,Japan > South Korea > Netherlands,131,0.5,25000,20260605
+Croatia,Runner-up,Japan > Brazil > United States,62,0.2,25000,20260605
+Croatia,Runner-up,Japan > Brazil > Australia,49,0.2,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > Spain,47,0.2,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > Spain,38,0.2,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > Portugal,37,0.1,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > France,35,0.1,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > Portugal,34,0.1,25000,20260605
+Croatia,Runner-up,Japan > South Korea > United States,32,0.1,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > England,30,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > Spain,29,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > England,29,0.1,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > France,28,0.1,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > England,26,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > Portugal,26,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > Spain,24,0.1,25000,20260605
+Croatia,Runner-up,Japan > South Korea > Australia,22,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > England,18,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > France,17,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > Portugal,17,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > Portugal,16,0.1,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > France,14,0.1,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > Poland,12,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > Switzerland,10,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > Spain,10,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > Poland,10,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > France,10,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > Spain,10,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > Switzerland,9,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > Poland,9,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > Switzerland,9,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > England,9,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > England,8,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > Portugal,8,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > France,6,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > Portugal,6,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > Morocco,5,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > Morocco,5,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > England,5,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > Spain,5,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Argentina > Senegal,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > Poland,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > Portugal,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > Switzerland,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > Morocco,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > England,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > Poland,4,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > Morocco,4,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > Poland,4,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > Morocco,4,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Netherlands > Senegal,3,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > Switzerland,3,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > Switzerland,3,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > France,3,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Netherlands > Senegal,3,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > France,3,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > Morocco,2,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > Switzerland,2,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > Poland,2,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > Spain,2,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > Switzerland,2,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > Australia > Senegal,1,0.0,25000,20260605
+Croatia,Champion,Japan > Brazil > United States > Senegal,1,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Argentina > Senegal,1,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > Morocco,1,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > Australia > Poland,1,0.0,25000,20260605
+Croatia,Champion,Japan > South Korea > United States > Senegal,1,0.0,25000,20260605
+England,Exit QF,Senegal,8635,34.5,25000,20260605
+England,Exit Last 16,None,6152,24.6,25000,20260605
+England,Exit SF,Senegal > France,3476,13.9,25000,20260605
+England,Exit SF,Senegal > Poland,2265,9.1,25000,20260605
+England,Runner-up,Senegal > France > Spain,692,2.8,25000,20260605
+England,Runner-up,Senegal > France > Portugal,635,2.5,25000,20260605
+England,Runner-up,Senegal > Poland > Spain,524,2.1,25000,20260605
+England,Runner-up,Senegal > Poland > Portugal,461,1.8,25000,20260605
+England,Runner-up,Senegal > France > Switzerland,258,1.0,25000,20260605
+England,Runner-up,Senegal > Poland > Switzerland,188,0.8,25000,20260605
+England,Runner-up,Senegal > France > Morocco,168,0.7,25000,20260605
+England,Runner-up,Senegal > Poland > Morocco,130,0.5,25000,20260605
+England,Champion,Senegal > France > Spain > Brazil,100,0.4,25000,20260605
+England,Champion,Senegal > France > Portugal > Brazil,92,0.4,25000,20260605
+England,Champion,Senegal > Poland > Spain > Brazil,84,0.3,25000,20260605
+England,Champion,Senegal > France > Spain > Argentina,82,0.3,25000,20260605
+England,Champion,Senegal > Poland > Portugal > Brazil,74,0.3,25000,20260605
+England,Champion,Senegal > Poland > Spain > Argentina,67,0.3,25000,20260605
+England,Champion,Senegal > Poland > Portugal > Argentina,63,0.3,25000,20260605
+England,Champion,Senegal > France > Portugal > Argentina,62,0.2,25000,20260605
+England,Champion,Senegal > France > Spain > Netherlands,56,0.2,25000,20260605
+England,Champion,Senegal > France > Portugal > Netherlands,53,0.2,25000,20260605
+England,Champion,Senegal > Poland > Spain > Netherlands,52,0.2,25000,20260605
+England,Champion,Senegal > France > Spain > Croatia,45,0.2,25000,20260605
+England,Champion,Senegal > France > Switzerland > Brazil,41,0.2,25000,20260605
+England,Champion,Senegal > Poland > Portugal > Netherlands,41,0.2,25000,20260605
+England,Champion,Senegal > France > Switzerland > Argentina,38,0.2,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > Argentina,33,0.1,25000,20260605
+England,Champion,Senegal > France > Morocco > Brazil,30,0.1,25000,20260605
+England,Champion,Senegal > France > Portugal > Croatia,30,0.1,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > Brazil,28,0.1,25000,20260605
+England,Champion,Senegal > France > Switzerland > Netherlands,25,0.1,25000,20260605
+England,Champion,Senegal > France > Morocco > Argentina,24,0.1,25000,20260605
+England,Champion,Senegal > Poland > Morocco > Brazil,23,0.1,25000,20260605
+England,Champion,Senegal > Poland > Morocco > Argentina,22,0.1,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > Netherlands,21,0.1,25000,20260605
+England,Champion,Senegal > Poland > Spain > Croatia,19,0.1,25000,20260605
+England,Champion,Senegal > Poland > Portugal > Croatia,18,0.1,25000,20260605
+England,Champion,Senegal > France > Portugal > Japan,15,0.1,25000,20260605
+England,Champion,Senegal > France > Morocco > Netherlands,13,0.1,25000,20260605
+England,Champion,Senegal > France > Morocco > Croatia,11,0.0,25000,20260605
+England,Champion,Senegal > France > Switzerland > Croatia,11,0.0,25000,20260605
+England,Champion,Senegal > Poland > Morocco > Netherlands,11,0.0,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > Croatia,10,0.0,25000,20260605
+England,Champion,Senegal > Poland > Portugal > Japan,9,0.0,25000,20260605
+England,Champion,Senegal > France > Spain > Japan,8,0.0,25000,20260605
+England,Champion,Senegal > Poland > Spain > South Korea,8,0.0,25000,20260605
+England,Champion,Senegal > France > Spain > Australia,7,0.0,25000,20260605
+England,Champion,Senegal > Poland > Morocco > Croatia,7,0.0,25000,20260605
+England,Champion,Senegal > Poland > Spain > Japan,7,0.0,25000,20260605
+England,Champion,Senegal > France > Morocco > Japan,6,0.0,25000,20260605
+England,Champion,Senegal > France > Portugal > Australia,6,0.0,25000,20260605
+England,Champion,Senegal > France > Portugal > South Korea,6,0.0,25000,20260605
+England,Champion,Senegal > France > Portugal > United States,6,0.0,25000,20260605
+England,Champion,Senegal > Poland > Spain > Australia,6,0.0,25000,20260605
+England,Champion,Senegal > Poland > Spain > United States,5,0.0,25000,20260605
+England,Champion,Senegal > France > Spain > South Korea,4,0.0,25000,20260605
+England,Champion,Senegal > Poland > Portugal > United States,4,0.0,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > Japan,4,0.0,25000,20260605
+England,Champion,Senegal > France > Spain > United States,3,0.0,25000,20260605
+England,Champion,Senegal > France > Switzerland > Australia,3,0.0,25000,20260605
+England,Champion,Senegal > France > Switzerland > South Korea,3,0.0,25000,20260605
+England,Champion,Senegal > Poland > Portugal > Australia,3,0.0,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > United States,3,0.0,25000,20260605
+England,Champion,Senegal > France > Switzerland > Japan,2,0.0,25000,20260605
+England,Champion,Senegal > France > Switzerland > United States,2,0.0,25000,20260605
+England,Champion,Senegal > Poland > Morocco > Japan,2,0.0,25000,20260605
+England,Champion,Senegal > Poland > Portugal > South Korea,2,0.0,25000,20260605
+England,Champion,Senegal > Poland > Switzerland > South Korea,2,0.0,25000,20260605
+England,Champion,Senegal > France > Morocco > Australia,1,0.0,25000,20260605
+England,Champion,Senegal > France > Morocco > South Korea,1,0.0,25000,20260605
+England,Champion,Senegal > France > Morocco > United States,1,0.0,25000,20260605
+England,Champion,Senegal > Poland > Morocco > South Korea,1,0.0,25000,20260605
+France,Exit Last 16,None,8442,33.8,25000,20260605
+France,Exit QF,Poland,6971,27.9,25000,20260605
+France,Exit SF,Poland > England,3492,14.0,25000,20260605
+France,Exit SF,Poland > Senegal,1680,6.7,25000,20260605
+France,Runner-up,Poland > England > Spain,797,3.2,25000,20260605
+France,Runner-up,Poland > England > Portugal,660,2.6,25000,20260605
+France,Runner-up,Poland > Senegal > Portugal,346,1.4,25000,20260605
+France,Runner-up,Poland > Senegal > Spain,318,1.3,25000,20260605
+France,Runner-up,Poland > England > Switzerland,293,1.2,25000,20260605
+France,Runner-up,Poland > England > Morocco,210,0.8,25000,20260605
+France,Champion,Poland > England > Spain > Brazil,132,0.5,25000,20260605
+France,Runner-up,Poland > Senegal > Switzerland,132,0.5,25000,20260605
+France,Champion,Poland > England > Portugal > Brazil,122,0.5,25000,20260605
+France,Runner-up,Poland > Senegal > Morocco,116,0.5,25000,20260605
+France,Champion,Poland > England > Spain > Argentina,105,0.4,25000,20260605
+France,Champion,Poland > England > Portugal > Argentina,99,0.4,25000,20260605
+France,Champion,Poland > Senegal > Spain > Brazil,75,0.3,25000,20260605
+France,Champion,Poland > England > Spain > Netherlands,69,0.3,25000,20260605
+France,Champion,Poland > Senegal > Spain > Argentina,63,0.3,25000,20260605
+France,Champion,Poland > England > Portugal > Netherlands,59,0.2,25000,20260605
+France,Champion,Poland > England > Switzerland > Argentina,59,0.2,25000,20260605
+France,Champion,Poland > Senegal > Portugal > Brazil,50,0.2,25000,20260605
+France,Champion,Poland > Senegal > Spain > Netherlands,43,0.2,25000,20260605
+France,Champion,Poland > Senegal > Portugal > Argentina,42,0.2,25000,20260605
+France,Champion,Poland > England > Morocco > Brazil,41,0.2,25000,20260605
+France,Champion,Poland > England > Morocco > Argentina,39,0.2,25000,20260605
+France,Champion,Poland > England > Portugal > Croatia,39,0.2,25000,20260605
+France,Champion,Poland > England > Switzerland > Brazil,39,0.2,25000,20260605
+France,Champion,Poland > England > Switzerland > Netherlands,35,0.1,25000,20260605
+France,Champion,Poland > Senegal > Portugal > Netherlands,35,0.1,25000,20260605
+France,Champion,Poland > England > Spain > Croatia,34,0.1,25000,20260605
+France,Champion,Poland > Senegal > Morocco > Brazil,26,0.1,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > Brazil,26,0.1,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > Argentina,25,0.1,25000,20260605
+France,Champion,Poland > Senegal > Morocco > Argentina,21,0.1,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > Netherlands,20,0.1,25000,20260605
+France,Champion,Poland > England > Morocco > Netherlands,19,0.1,25000,20260605
+France,Champion,Poland > Senegal > Portugal > Croatia,18,0.1,25000,20260605
+France,Champion,Poland > Senegal > Spain > Croatia,16,0.1,25000,20260605
+France,Champion,Poland > England > Switzerland > Croatia,15,0.1,25000,20260605
+France,Champion,Poland > England > Spain > Japan,12,0.0,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > Croatia,11,0.0,25000,20260605
+France,Champion,Poland > England > Morocco > Croatia,10,0.0,25000,20260605
+France,Champion,Poland > England > Portugal > Japan,10,0.0,25000,20260605
+France,Champion,Poland > England > Portugal > Australia,9,0.0,25000,20260605
+France,Champion,Poland > England > Portugal > South Korea,9,0.0,25000,20260605
+France,Champion,Poland > England > Spain > United States,9,0.0,25000,20260605
+France,Champion,Poland > England > Switzerland > South Korea,9,0.0,25000,20260605
+France,Champion,Poland > Senegal > Morocco > Netherlands,8,0.0,25000,20260605
+France,Champion,Poland > Senegal > Spain > South Korea,8,0.0,25000,20260605
+France,Champion,Poland > England > Switzerland > Japan,6,0.0,25000,20260605
+France,Champion,Poland > Senegal > Morocco > Croatia,6,0.0,25000,20260605
+France,Champion,Poland > Senegal > Spain > United States,6,0.0,25000,20260605
+France,Champion,Poland > England > Portugal > United States,5,0.0,25000,20260605
+France,Champion,Poland > England > Spain > Australia,5,0.0,25000,20260605
+France,Champion,Poland > England > Spain > South Korea,5,0.0,25000,20260605
+France,Champion,Poland > Senegal > Portugal > Japan,5,0.0,25000,20260605
+France,Champion,Poland > Senegal > Portugal > United States,5,0.0,25000,20260605
+France,Champion,Poland > Senegal > Spain > Japan,5,0.0,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > Japan,5,0.0,25000,20260605
+France,Champion,Poland > Senegal > Portugal > Australia,4,0.0,25000,20260605
+France,Champion,Poland > Senegal > Spain > Australia,4,0.0,25000,20260605
+France,Champion,Poland > England > Morocco > Australia,3,0.0,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > Australia,3,0.0,25000,20260605
+France,Champion,Poland > England > Morocco > Japan,2,0.0,25000,20260605
+France,Champion,Poland > England > Morocco > United States,2,0.0,25000,20260605
+France,Champion,Poland > Senegal > Morocco > South Korea,2,0.0,25000,20260605
+France,Champion,Poland > Senegal > Portugal > South Korea,2,0.0,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > South Korea,2,0.0,25000,20260605
+France,Champion,Poland > England > Morocco > South Korea,1,0.0,25000,20260605
+France,Champion,Poland > England > Switzerland > United States,1,0.0,25000,20260605
+France,Champion,Poland > Senegal > Morocco > Australia,1,0.0,25000,20260605
+France,Champion,Poland > Senegal > Morocco > Japan,1,0.0,25000,20260605
+France,Champion,Poland > Senegal > Switzerland > United States,1,0.0,25000,20260605
+Japan,Exit Last 16,None,16023,64.1,25000,20260605
+Japan,Exit QF,Croatia,7345,29.4,25000,20260605
+Japan,Exit SF,Croatia > Brazil,753,3.0,25000,20260605
+Japan,Exit SF,Croatia > South Korea,500,2.0,25000,20260605
+Japan,Runner-up,Croatia > Brazil > Argentina,72,0.3,25000,20260605
+Japan,Runner-up,Croatia > Brazil > Netherlands,64,0.3,25000,20260605
+Japan,Runner-up,Croatia > South Korea > Argentina,40,0.2,25000,20260605
+Japan,Runner-up,Croatia > South Korea > Netherlands,39,0.2,25000,20260605
+Japan,Runner-up,Croatia > Brazil > United States,19,0.1,25000,20260605
+Japan,Runner-up,Croatia > South Korea > United States,18,0.1,25000,20260605
+Japan,Runner-up,Croatia > Brazil > Australia,14,0.1,25000,20260605
+Japan,Runner-up,Croatia > South Korea > Australia,14,0.1,25000,20260605
+Japan,Champion,Croatia > South Korea > Netherlands > England,7,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > England,6,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Netherlands > France,6,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > England,6,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > Spain,6,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Netherlands > Portugal,5,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Netherlands > Spain,5,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > Portugal,4,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Netherlands > France,4,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > France,3,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > Portugal,3,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > Spain,3,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > United States > Portugal,3,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > France,3,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > Morocco,3,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Netherlands > Spain,3,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > Morocco,2,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > Switzerland,2,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Australia > France,2,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > United States > England,2,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > United States > France,2,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > Poland,2,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Netherlands > Portugal,2,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Argentina > Poland,1,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Australia > Poland,1,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Australia > Switzerland,1,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > Netherlands > Poland,1,0.0,25000,20260605
+Japan,Champion,Croatia > Brazil > United States > Spain,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Argentina > Switzerland,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Australia > France,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Australia > Poland,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Australia > Spain,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Netherlands > Senegal,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > Netherlands > Switzerland,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > United States > France,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > United States > Morocco,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > United States > Poland,1,0.0,25000,20260605
+Japan,Champion,Croatia > South Korea > United States > Spain,1,0.0,25000,20260605
+Morocco,Exit Last 16,None,19020,76.1,25000,20260605
+Morocco,Exit QF,Spain,4158,16.6,25000,20260605
+Morocco,Exit SF,Spain > Portugal,634,2.5,25000,20260605
+Morocco,Exit SF,Spain > Switzerland,511,2.0,25000,20260605
+Morocco,Runner-up,Spain > Portugal > France,134,0.5,25000,20260605
+Morocco,Runner-up,Spain > Portugal > England,104,0.4,25000,20260605
+Morocco,Runner-up,Spain > Switzerland > England,95,0.4,25000,20260605
+Morocco,Runner-up,Spain > Switzerland > France,70,0.3,25000,20260605
+Morocco,Runner-up,Spain > Portugal > Poland,48,0.2,25000,20260605
+Morocco,Runner-up,Spain > Switzerland > Poland,41,0.2,25000,20260605
+Morocco,Runner-up,Spain > Portugal > Senegal,40,0.2,25000,20260605
+Morocco,Runner-up,Spain > Switzerland > Senegal,20,0.1,25000,20260605
+Morocco,Champion,Spain > Portugal > France > Brazil,9,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > England > Brazil,7,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > Brazil,7,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > England > Argentina,6,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > Argentina,6,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > Netherlands,6,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > England > Croatia,5,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > France > Argentina,5,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > France > Croatia,5,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Poland > Argentina,5,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > England > Brazil,4,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Poland > Brazil,4,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Poland > Netherlands,4,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > England > Netherlands,3,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Poland > Argentina,3,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Senegal > Brazil,3,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Senegal > Croatia,3,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > England > Argentina,3,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > England > Netherlands,3,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Poland > Brazil,3,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Senegal > Brazil,3,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Senegal > Croatia,3,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > England > South Korea,2,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > France > Netherlands,2,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Poland > Croatia,2,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Poland > Netherlands,2,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Senegal > Argentina,2,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > England > Croatia,2,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > Croatia,2,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Senegal > Argentina,2,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > England > Japan,1,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > France > Australia,1,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Senegal > Netherlands,1,0.0,25000,20260605
+Morocco,Champion,Spain > Portugal > Senegal > United States,1,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > Australia,1,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > Japan,1,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > France > United States,1,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Poland > Croatia,1,0.0,25000,20260605
+Morocco,Champion,Spain > Switzerland > Senegal > Netherlands,1,0.0,25000,20260605
+Netherlands,Exit QF,United States,10735,42.9,25000,20260605
+Netherlands,Exit Last 16,None,5918,23.7,25000,20260605
+Netherlands,Exit SF,United States > Argentina,3557,14.2,25000,20260605
+Netherlands,Exit SF,United States > Australia,1389,5.6,25000,20260605
+Netherlands,Runner-up,United States > Argentina > Brazil,577,2.3,25000,20260605
+Netherlands,Runner-up,United States > Argentina > Croatia,323,1.3,25000,20260605
+Netherlands,Runner-up,United States > Australia > Brazil,279,1.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > Spain,143,0.6,25000,20260605
+Netherlands,Runner-up,United States > Argentina > Japan,138,0.6,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > Portugal,127,0.5,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > England,118,0.5,25000,20260605
+Netherlands,Runner-up,United States > Australia > Croatia,117,0.5,25000,20260605
+Netherlands,Runner-up,United States > Argentina > South Korea,107,0.4,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > France,103,0.4,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > Spain,79,0.3,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > England,73,0.3,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > Portugal,68,0.3,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > Spain,63,0.3,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > France,62,0.2,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > Portugal,54,0.2,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > England,52,0.2,25000,20260605
+Netherlands,Runner-up,United States > Australia > Japan,49,0.2,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > France,43,0.2,25000,20260605
+Netherlands,Runner-up,United States > Australia > South Korea,43,0.2,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > England,39,0.2,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > Spain,39,0.2,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > England,34,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > Portugal,34,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > Portugal,32,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > Spain,32,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > France,31,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > France,30,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > Morocco,29,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > Switzerland,29,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > Portugal,29,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > Spain,28,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > Poland,25,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > France,25,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > Poland,24,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > England,23,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > Switzerland,22,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > Poland,20,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > Spain,18,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > Switzerland,16,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > Morocco,15,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > Portugal,15,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > France,15,0.1,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > Morocco,14,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > Spain,14,0.1,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > France,12,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > Brazil > Senegal,11,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > Croatia > Senegal,10,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Brazil > Senegal,9,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > England,9,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > Morocco,8,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > Poland,8,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > Switzerland,8,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > Poland,8,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > Senegal,8,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > Switzerland,8,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > England,8,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > Morocco,5,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > Portugal,5,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > Poland,4,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > Poland,4,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > Switzerland,4,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > Japan > Senegal,3,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > Senegal,3,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > Senegal,3,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > Switzerland,3,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > Morocco,2,0.0,25000,20260605
+Netherlands,Champion,United States > Argentina > South Korea > Switzerland,2,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Croatia > Morocco,2,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > Morocco,2,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > Japan > Senegal,1,0.0,25000,20260605
+Netherlands,Champion,United States > Australia > South Korea > Poland,1,0.0,25000,20260605
+Poland,Exit Last 16,None,16558,66.2,25000,20260605
+Poland,Exit QF,France,4999,20.0,25000,20260605
+Poland,Exit SF,France > England,1512,6.0,25000,20260605
+Poland,Exit SF,France > Senegal,864,3.5,25000,20260605
+Poland,Runner-up,France > England > Spain,196,0.8,25000,20260605
+Poland,Runner-up,France > England > Portugal,176,0.7,25000,20260605
+Poland,Runner-up,France > Senegal > Spain,115,0.5,25000,20260605
+Poland,Runner-up,France > Senegal > Portugal,103,0.4,25000,20260605
+Poland,Runner-up,France > England > Switzerland,90,0.4,25000,20260605
+Poland,Runner-up,France > England > Morocco,67,0.3,25000,20260605
+Poland,Runner-up,France > Senegal > Switzerland,47,0.2,25000,20260605
+Poland,Runner-up,France > Senegal > Morocco,36,0.1,25000,20260605
+Poland,Champion,France > England > Portugal > Brazil,13,0.1,25000,20260605
+Poland,Champion,France > England > Spain > Netherlands,13,0.1,25000,20260605
+Poland,Champion,France > Senegal > Spain > Argentina,13,0.1,25000,20260605
+Poland,Champion,France > England > Spain > Argentina,12,0.0,25000,20260605
+Poland,Champion,France > England > Spain > Croatia,12,0.0,25000,20260605
+Poland,Champion,France > England > Spain > Brazil,10,0.0,25000,20260605
+Poland,Champion,France > Senegal > Portugal > Argentina,10,0.0,25000,20260605
+Poland,Champion,France > Senegal > Spain > Brazil,10,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > Netherlands,9,0.0,25000,20260605
+Poland,Champion,France > Senegal > Portugal > Brazil,9,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > Croatia,8,0.0,25000,20260605
+Poland,Champion,France > England > Switzerland > Argentina,8,0.0,25000,20260605
+Poland,Champion,France > Senegal > Spain > Croatia,7,0.0,25000,20260605
+Poland,Champion,France > Senegal > Switzerland > Argentina,7,0.0,25000,20260605
+Poland,Champion,France > Senegal > Switzerland > Brazil,7,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > Argentina,6,0.0,25000,20260605
+Poland,Champion,France > England > Switzerland > Netherlands,6,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > Netherlands,5,0.0,25000,20260605
+Poland,Champion,France > England > Switzerland > Brazil,5,0.0,25000,20260605
+Poland,Champion,France > Senegal > Morocco > Argentina,5,0.0,25000,20260605
+Poland,Champion,France > Senegal > Switzerland > Croatia,5,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > Australia,4,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > Croatia,3,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > United States,3,0.0,25000,20260605
+Poland,Champion,France > England > Switzerland > Croatia,3,0.0,25000,20260605
+Poland,Champion,France > Senegal > Morocco > Brazil,3,0.0,25000,20260605
+Poland,Champion,France > Senegal > Morocco > Netherlands,3,0.0,25000,20260605
+Poland,Champion,France > Senegal > Portugal > Croatia,3,0.0,25000,20260605
+Poland,Champion,France > Senegal > Portugal > Netherlands,3,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > Brazil,2,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > South Korea,2,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > United States,2,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > Japan,2,0.0,25000,20260605
+Poland,Champion,France > England > Portugal > South Korea,2,0.0,25000,20260605
+Poland,Champion,France > England > Spain > Japan,2,0.0,25000,20260605
+Poland,Champion,France > Senegal > Morocco > Croatia,2,0.0,25000,20260605
+Poland,Champion,France > Senegal > Portugal > South Korea,2,0.0,25000,20260605
+Poland,Champion,France > Senegal > Spain > Netherlands,2,0.0,25000,20260605
+Poland,Champion,France > Senegal > Switzerland > Netherlands,2,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > Argentina,1,0.0,25000,20260605
+Poland,Champion,France > England > Morocco > Japan,1,0.0,25000,20260605
+Poland,Champion,France > England > Spain > Australia,1,0.0,25000,20260605
+Poland,Champion,France > England > Spain > South Korea,1,0.0,25000,20260605
+Poland,Champion,France > England > Spain > United States,1,0.0,25000,20260605
+Poland,Champion,France > England > Switzerland > Japan,1,0.0,25000,20260605
+Poland,Champion,France > Senegal > Morocco > Australia,1,0.0,25000,20260605
+Poland,Champion,France > Senegal > Morocco > United States,1,0.0,25000,20260605
+Poland,Champion,France > Senegal > Spain > Australia,1,0.0,25000,20260605
+Poland,Champion,France > Senegal > Spain > Japan,1,0.0,25000,20260605
+Poland,Champion,France > Senegal > Spain > United States,1,0.0,25000,20260605
+Poland,Champion,France > Senegal > Switzerland > South Korea,1,0.0,25000,20260605
+Portugal,Exit QF,Switzerland,7937,31.7,25000,20260605
+Portugal,Exit Last 16,None,7853,31.4,25000,20260605
+Portugal,Exit SF,Switzerland > Spain,2374,9.5,25000,20260605
+Portugal,Exit SF,Switzerland > Morocco,1192,4.8,25000,20260605
+Portugal,Runner-up,Switzerland > Spain > England,864,3.5,25000,20260605
+Portugal,Runner-up,Switzerland > Spain > France,774,3.1,25000,20260605
+Portugal,Runner-up,Switzerland > Morocco > England,409,1.6,25000,20260605
+Portugal,Runner-up,Switzerland > Morocco > France,390,1.6,25000,20260605
+Portugal,Runner-up,Switzerland > Spain > Poland,339,1.4,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > Brazil,214,0.9,25000,20260605
+Portugal,Runner-up,Switzerland > Spain > Senegal,214,0.9,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > Brazil,199,0.8,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > Argentina,178,0.7,25000,20260605
+Portugal,Runner-up,Switzerland > Morocco > Poland,172,0.7,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > Argentina,146,0.6,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > Brazil,120,0.5,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > Brazil,116,0.5,25000,20260605
+Portugal,Runner-up,Switzerland > Morocco > Senegal,103,0.4,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > Argentina,102,0.4,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > Brazil,100,0.4,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > Netherlands,95,0.4,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > Argentina,89,0.4,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > Netherlands,86,0.3,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > Argentina,63,0.3,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > Argentina,58,0.2,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > Brazil,55,0.2,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > Netherlands,55,0.2,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > Croatia,51,0.2,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > Brazil,47,0.2,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > Netherlands,45,0.2,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > Croatia,45,0.2,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > Netherlands,43,0.2,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > Argentina,39,0.2,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > Croatia,31,0.1,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > Croatia,29,0.1,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > Brazil,26,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > Netherlands,26,0.1,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > Argentina,24,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > Croatia,22,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > Japan,21,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > South Korea,20,0.1,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > Croatia,18,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > South Korea,18,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > Croatia,17,0.1,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > Netherlands,16,0.1,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > Netherlands,13,0.1,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > Japan,12,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > Japan,10,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > South Korea,8,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > Croatia,8,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > United States,8,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > Japan,8,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > Australia,7,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > United States,7,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > United States,7,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > England > Australia,7,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > Australia,7,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > South Korea,7,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > South Korea,6,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > England > Japan,5,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > France > Australia,5,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > Japan,5,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > Japan,4,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > France > United States,4,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > United States,4,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > United States,3,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > Australia,3,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Senegal > South Korea,3,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > Australia,2,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Poland > South Korea,2,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > Australia,2,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > Japan,2,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > South Korea,2,0.0,25000,20260605
+Portugal,Champion,Switzerland > Morocco > Senegal > United States,2,0.0,25000,20260605
+Portugal,Champion,Switzerland > Spain > Poland > United States,2,0.0,25000,20260605
+Senegal,Exit Last 16,None,18848,75.4,25000,20260605
+Senegal,Exit QF,England,4395,17.6,25000,20260605
+Senegal,Exit SF,England > France,748,3.0,25000,20260605
+Senegal,Exit SF,England > Poland,635,2.5,25000,20260605
+Senegal,Runner-up,England > France > Spain,62,0.2,25000,20260605
+Senegal,Runner-up,England > France > Portugal,60,0.2,25000,20260605
+Senegal,Runner-up,England > Poland > Portugal,49,0.2,25000,20260605
+Senegal,Runner-up,England > Poland > Spain,48,0.2,25000,20260605
+Senegal,Runner-up,England > France > Switzerland,39,0.2,25000,20260605
+Senegal,Runner-up,England > Poland > Switzerland,28,0.1,25000,20260605
+Senegal,Runner-up,England > Poland > Morocco,24,0.1,25000,20260605
+Senegal,Runner-up,England > France > Morocco,21,0.1,25000,20260605
+Senegal,Champion,England > France > Spain > Brazil,6,0.0,25000,20260605
+Senegal,Champion,England > France > Switzerland > Argentina,3,0.0,25000,20260605
+Senegal,Champion,England > France > Portugal > Netherlands,2,0.0,25000,20260605
+Senegal,Champion,England > France > Spain > Argentina,2,0.0,25000,20260605
+Senegal,Champion,England > France > Spain > Croatia,2,0.0,25000,20260605
+Senegal,Champion,England > France > Spain > Netherlands,2,0.0,25000,20260605
+Senegal,Champion,England > Poland > Portugal > Argentina,2,0.0,25000,20260605
+Senegal,Champion,England > Poland > Spain > Argentina,2,0.0,25000,20260605
+Senegal,Champion,England > Poland > Spain > Brazil,2,0.0,25000,20260605
+Senegal,Champion,England > Poland > Switzerland > Netherlands,2,0.0,25000,20260605
+Senegal,Champion,England > Poland > Switzerland > South Korea,2,0.0,25000,20260605
+Senegal,Champion,England > France > Morocco > Croatia,1,0.0,25000,20260605
+Senegal,Champion,England > France > Portugal > Argentina,1,0.0,25000,20260605
+Senegal,Champion,England > France > Portugal > Brazil,1,0.0,25000,20260605
+Senegal,Champion,England > France > Portugal > South Korea,1,0.0,25000,20260605
+Senegal,Champion,England > France > Spain > United States,1,0.0,25000,20260605
+Senegal,Champion,England > France > Switzerland > Brazil,1,0.0,25000,20260605
+Senegal,Champion,England > France > Switzerland > Croatia,1,0.0,25000,20260605
+Senegal,Champion,England > France > Switzerland > Netherlands,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Morocco > Brazil,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Morocco > Netherlands,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Portugal > Netherlands,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Portugal > United States,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Spain > Croatia,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Spain > Netherlands,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Switzerland > Argentina,1,0.0,25000,20260605
+Senegal,Champion,England > Poland > Switzerland > Brazil,1,0.0,25000,20260605
+South Korea,Exit Last 16,None,21377,85.5,25000,20260605
+South Korea,Exit QF,Brazil,2256,9.0,25000,20260605
+South Korea,Exit SF,Brazil > Croatia,575,2.3,25000,20260605
+South Korea,Exit SF,Brazil > Japan,476,1.9,25000,20260605
+South Korea,Runner-up,Brazil > Croatia > Argentina,49,0.2,25000,20260605
+South Korea,Runner-up,Brazil > Croatia > Netherlands,49,0.2,25000,20260605
+South Korea,Runner-up,Brazil > Japan > Argentina,40,0.2,25000,20260605
+South Korea,Runner-up,Brazil > Japan > Netherlands,36,0.1,25000,20260605
+South Korea,Runner-up,Brazil > Croatia > United States,13,0.1,25000,20260605
+South Korea,Runner-up,Brazil > Croatia > Australia,12,0.0,25000,20260605
+South Korea,Runner-up,Brazil > Japan > United States,11,0.0,25000,20260605
+South Korea,Runner-up,Brazil > Japan > Australia,9,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > Portugal,6,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > France,5,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Netherlands > England,5,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Netherlands > France,5,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Netherlands > Spain,5,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > Portugal,5,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > England,4,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Netherlands > Portugal,4,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Argentina > France,4,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > Poland,3,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > Spain,3,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > United States > France,3,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > England,3,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > Spain,3,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > Morocco,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > Senegal,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Australia > England,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Australia > Spain,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > United States > Senegal,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Argentina > England,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Argentina > Portugal,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > Senegal,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > Switzerland,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > United States > France,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > United States > Portugal,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > United States > Switzerland,2,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Argentina > Switzerland,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Australia > France,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Netherlands > Poland,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > Netherlands > Switzerland,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > United States > England,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > United States > Portugal,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > United States > Spain,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Croatia > United States > Switzerland,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Argentina > Spain,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Australia > England,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Australia > Morocco,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Australia > Spain,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > Morocco,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > Netherlands > Poland,1,0.0,25000,20260605
+South Korea,Champion,Brazil > Japan > United States > England,1,0.0,25000,20260605
+Spain,Exit QF,Morocco,7744,31.0,25000,20260605
+Spain,Exit Last 16,None,5980,23.9,25000,20260605
+Spain,Exit SF,Morocco > Portugal,2481,9.9,25000,20260605
+Spain,Exit SF,Morocco > Switzerland,1521,6.1,25000,20260605
+Spain,Runner-up,Morocco > Portugal > England,983,3.9,25000,20260605
+Spain,Runner-up,Morocco > Portugal > France,897,3.6,25000,20260605
+Spain,Runner-up,Morocco > Switzerland > England,601,2.4,25000,20260605
+Spain,Runner-up,Morocco > Switzerland > France,539,2.2,25000,20260605
+Spain,Runner-up,Morocco > Portugal > Poland,417,1.7,25000,20260605
+Spain,Champion,Morocco > Portugal > England > Brazil,281,1.1,25000,20260605
+Spain,Champion,Morocco > Portugal > France > Brazil,264,1.1,25000,20260605
+Spain,Runner-up,Morocco > Switzerland > Poland,231,0.9,25000,20260605
+Spain,Runner-up,Morocco > Portugal > Senegal,221,0.9,25000,20260605
+Spain,Champion,Morocco > Portugal > England > Argentina,210,0.8,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > Brazil,200,0.8,25000,20260605
+Spain,Champion,Morocco > Portugal > France > Argentina,192,0.8,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > Argentina,161,0.6,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > Brazil,149,0.6,25000,20260605
+Spain,Runner-up,Morocco > Switzerland > Senegal,137,0.5,25000,20260605
+Spain,Champion,Morocco > Portugal > England > Netherlands,129,0.5,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > Argentina,122,0.5,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > Brazil,113,0.5,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > Netherlands,110,0.4,25000,20260605
+Spain,Champion,Morocco > Portugal > France > Netherlands,109,0.4,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > Netherlands,95,0.4,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > Argentina,88,0.4,25000,20260605
+Spain,Champion,Morocco > Portugal > England > Croatia,83,0.3,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > Brazil,75,0.3,25000,20260605
+Spain,Champion,Morocco > Portugal > France > Croatia,60,0.2,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > Argentina,60,0.2,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > Netherlands,56,0.2,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > Croatia,56,0.2,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > Brazil,54,0.2,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > Argentina,53,0.2,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > Brazil,48,0.2,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > Croatia,44,0.2,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > Croatia,36,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > Netherlands,36,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > Argentina,28,0.1,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > Croatia,23,0.1,25000,20260605
+Spain,Champion,Morocco > Portugal > France > Japan,22,0.1,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > Netherlands,22,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > Croatia,21,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > Netherlands,19,0.1,25000,20260605
+Spain,Champion,Morocco > Portugal > England > Japan,16,0.1,25000,20260605
+Spain,Champion,Morocco > Portugal > England > South Korea,16,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > Japan,14,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > Japan,13,0.1,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > United States,12,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > France > South Korea,11,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > South Korea,11,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > South Korea,11,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > England > United States,10,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > France > United States,9,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > England > Australia,9,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > Japan,9,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > England > Australia,8,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > Japan,8,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > Japan,7,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > United States,7,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > France > Australia,6,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > South Korea,6,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > South Korea,6,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > France > Australia,6,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > Australia,5,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > South Korea,5,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > South Korea,4,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > United States,4,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > Croatia,4,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Poland > United States,3,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > United States,3,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > Australia,2,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Senegal > Japan,2,0.0,25000,20260605
+Spain,Champion,Morocco > Portugal > Senegal > United States,1,0.0,25000,20260605
+Spain,Champion,Morocco > Switzerland > Poland > Australia,1,0.0,25000,20260605
+Switzerland,Exit Last 16,None,17147,68.6,25000,20260605
+Switzerland,Exit QF,Portugal,5161,20.6,25000,20260605
+Switzerland,Exit SF,Portugal > Spain,992,4.0,25000,20260605
+Switzerland,Exit SF,Portugal > Morocco,623,2.5,25000,20260605
+Switzerland,Runner-up,Portugal > Spain > England,196,0.8,25000,20260605
+Switzerland,Runner-up,Portugal > Spain > France,156,0.6,25000,20260605
+Switzerland,Runner-up,Portugal > Morocco > France,126,0.5,25000,20260605
+Switzerland,Runner-up,Portugal > Morocco > England,123,0.5,25000,20260605
+Switzerland,Runner-up,Portugal > Spain > Poland,95,0.4,25000,20260605
+Switzerland,Runner-up,Portugal > Morocco > Poland,52,0.2,25000,20260605
+Switzerland,Runner-up,Portugal > Spain > Senegal,51,0.2,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > Brazil,26,0.1,25000,20260605
+Switzerland,Runner-up,Portugal > Morocco > Senegal,25,0.1,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > Brazil,17,0.1,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > Argentina,16,0.1,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > Netherlands,13,0.1,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > Netherlands,13,0.1,25000,20260605
+Switzerland,Champion,Portugal > Morocco > England > Brazil,11,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > France > Brazil,10,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Poland > Argentina,10,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > Argentina,10,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > England > Croatia,8,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > France > Argentina,8,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Poland > Netherlands,7,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > Croatia,7,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Poland > Brazil,7,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > England > Argentina,6,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > France > Croatia,5,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Senegal > Brazil,5,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > Croatia,5,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Poland > Argentina,5,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > Japan,4,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Poland > Croatia,4,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Poland > United States,4,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Senegal > Argentina,4,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > England > Netherlands,3,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Poland > Brazil,3,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > United States,3,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Poland > Netherlands,3,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > England > Japan,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > England > United States,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > France > Japan,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > France > Netherlands,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Poland > Croatia,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Senegal > Croatia,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Senegal > United States,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > Australia,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > Japan,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > South Korea,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Senegal > Brazil,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Senegal > Croatia,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Senegal > Netherlands,2,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > France > South Korea,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Poland > Japan,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Poland > South Korea,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Senegal > Argentina,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Morocco > Senegal > Japan,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > England > South Korea,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > Australia,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > France > United States,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Poland > Japan,1,0.0,25000,20260605
+Switzerland,Champion,Portugal > Spain > Senegal > Japan,1,0.0,25000,20260605
+United States,Exit Last 16,None,19082,76.3,25000,20260605
+United States,Exit QF,Netherlands,4716,18.9,25000,20260605
+United States,Exit SF,Netherlands > Argentina,594,2.4,25000,20260605
+United States,Exit SF,Netherlands > Australia,390,1.6,25000,20260605
+United States,Runner-up,Netherlands > Argentina > Brazil,39,0.2,25000,20260605
+United States,Runner-up,Netherlands > Australia > Brazil,34,0.1,25000,20260605
+United States,Runner-up,Netherlands > Argentina > Croatia,26,0.1,25000,20260605
+United States,Runner-up,Netherlands > Australia > Croatia,19,0.1,25000,20260605
+United States,Runner-up,Netherlands > Argentina > South Korea,16,0.1,25000,20260605
+United States,Runner-up,Netherlands > Argentina > Japan,12,0.0,25000,20260605
+United States,Runner-up,Netherlands > Australia > South Korea,11,0.0,25000,20260605
+United States,Runner-up,Netherlands > Australia > Japan,6,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Brazil > France,5,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Croatia > Spain,5,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Brazil > Portugal,4,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Brazil > Spain,4,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Brazil > Portugal,4,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Japan > France,3,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Croatia > Portugal,3,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Japan > Spain,3,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Brazil > Poland,2,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Japan > Spain,2,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Brazil > England,2,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Brazil > France,2,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Brazil > Spain,2,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Croatia > France,2,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > South Korea > Portugal,2,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Croatia > England,1,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Croatia > Morocco,1,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Croatia > Portugal,1,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > Japan > England,1,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > South Korea > France,1,0.0,25000,20260605
+United States,Champion,Netherlands > Argentina > South Korea > Portugal,1,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Brazil > Poland,1,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Croatia > Poland,1,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Croatia > Switzerland,1,0.0,25000,20260605
+United States,Champion,Netherlands > Australia > Japan > Poland,1,0.0,25000,20260605

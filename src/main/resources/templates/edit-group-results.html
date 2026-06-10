@@ -26,7 +26,6 @@
                         <th style="width:160px">Predicted</th>
                         <th style="width:160px">Winner</th>
                         <th style="width:180px">Score</th>
-                        <th>Note</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,11 +38,9 @@
                             <span class="fw-semibold" th:text="${row.matchId}">M1</span>
                         </td>
                         <td>
-                            <div class="d-flex flex-column gap-1 small">
-                                <span th:utext="${row.team1Html}">Team 1</span>
-                                <span class="text-muted">vs</span>
-                                <span th:utext="${row.team2Html}">Team 2</span>
-                            </div>
+                            <span th:utext="${row.team1Html}">Team 1</span>
+                            <span class="text-muted px-2">vs</span>
+                            <span th:utext="${row.team2Html}">Team 2</span>
                         </td>
                         <td class="text-muted small" th:text="${row.predictedOutcome}">Draw (35%)</td>
                         <td>
@@ -60,9 +57,6 @@
                                 <span class="text-muted">-</span>
                                 <input class="form-control form-control-sm" style="max-width:72px" inputmode="numeric" th:name="${'awayScore' + row.rowIndex}" th:value="${row.awayScore}" placeholder="0">
                             </div>
-                        </td>
-                        <td>
-                            <input class="form-control form-control-sm" th:name="${'note' + row.rowIndex}" th:value="${row.note}" placeholder="Optional note">
                         </td>
                     </tr>
                     </tbody>

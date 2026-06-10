@@ -22,13 +22,11 @@
                     <thead class="table-dark">
                     <tr>
                         <th style="width:96px">Match</th>
-                        <th>Team 1</th>
-                        <th>Team 2</th>
+                        <th>Fixture</th>
                         <th style="width:180px">Winner</th>
                         <th style="width:92px" class="text-center">Home</th>
                         <th style="width:92px" class="text-center">Away</th>
                         <th style="width:92px" class="text-center">Pens</th>
-                        <th>Note</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,8 +37,11 @@
                             <input type="hidden" th:name="${'team2_' + roundView.round + '_' + row.rowIndex}" th:value="${row.team2}">
                             <span class="fw-semibold" th:text="${row.matchId}">M1</span>
                         </td>
-                        <td th:utext="${row.team1Html}">Team 1</td>
-                        <td th:utext="${row.team2Html}">Team 2</td>
+                        <td>
+                            <span th:utext="${row.team1Html}">Team 1</span>
+                            <span class="text-muted px-2">vs</span>
+                            <span th:utext="${row.team2Html}">Team 2</span>
+                        </td>
                         <td>
                             <select class="form-select form-select-sm" th:name="${'winner_' + roundView.round + '_' + row.rowIndex}">
                                 <option value="" th:selected="${row.winner == null or row.winner.isBlank()}">—</option>
@@ -54,7 +55,6 @@
                         <td class="text-center">
                             <input class="form-check-input mt-2" type="checkbox" th:name="${'penalties_' + roundView.round + '_' + row.rowIndex}" th:checked="${row.penalties}">
                         </td>
-                        <td><input class="form-control form-control-sm" th:name="${'note_' + roundView.round + '_' + row.rowIndex}" th:value="${row.note}" placeholder="Optional note"></td>
                     </tr>
                     </tbody>
                 </table>

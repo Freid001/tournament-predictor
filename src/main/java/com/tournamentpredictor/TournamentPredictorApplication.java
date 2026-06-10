@@ -1,7 +1,7 @@
 package com.tournamentpredictor;
 
+import com.tournamentpredictor.controller.cli.TournamentPredictorCommand;
 import org.fusesource.jansi.AnsiConsole;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
@@ -15,13 +15,15 @@ import java.util.Arrays;
 @SpringBootApplication
 public class TournamentPredictorApplication implements CommandLineRunner, ExitCodeGenerator {
 
-    @Autowired
-    private TournamentPredictorCommand command;
-
-    @Autowired
-    private IFactory factory;
+    private final TournamentPredictorCommand command;
+    private final IFactory factory;
 
     private int exitCode;
+
+    public TournamentPredictorApplication(TournamentPredictorCommand command, IFactory factory) {
+        this.command = command;
+        this.factory = factory;
+    }
 
     public static void main(String[] args) {
         AnsiConsole.systemInstall();

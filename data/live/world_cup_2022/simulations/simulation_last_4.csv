@@ -1,0 +1,5 @@
+team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed
+Argentina,100.0,100.0,100.0,75.5,54.1,Champion,54.1,Champion,54.1,25000,20260605
+France,100.0,100.0,100.0,71.9,29.2,Runner-up,42.7,Champion,29.2,25000,20260605
+Croatia,100.0,100.0,100.0,24.5,10.5,Exit SF,75.5,Champion,10.5,25000,20260605
+Morocco,100.0,100.0,100.0,28.1,6.2,Exit SF,71.9,Champion,6.2,25000,20260605
