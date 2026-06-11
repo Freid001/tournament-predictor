@@ -20,12 +20,9 @@ public final class PredictionLabelService {
             case "fixture" -> labels.add(hasActual ? "Result" : "Fixture");
             case "live" -> labels.add("Live Prediction");
             case "predicted", "prediction", "" -> labels.add("Predicted Matchup");
-            case "result_upset" -> {
-                labels.add("Result");
-                labels.add("Upset");
-            }
-            case "upset" -> labels.add("Upset");
-            default -> labels.add("Alternative");
+            case "result_upset" -> labels.add("Result");
+            case "upset" -> labels.add("Alternative Matchup");
+            default -> labels.add("Alternative Matchup");
         }
         return List.copyOf(labels);
     }

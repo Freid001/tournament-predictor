@@ -275,7 +275,7 @@ class HtmlReporterTest {
     }
 
     @Test
-    void predictedOnlyMatchTableDoesNotShowEmptyAlternativeOrUpsetFilters() {
+    void predictedOnlyGroupTableDoesNotShowEmptyAlternativeFilter() {
         HtmlReporter reporter = new HtmlReporter()
                 .withSimulationAdvance(Map.of("Mexico", "91.3", "South Korea", "76.3"));
         List<String> lines = List.of(
@@ -314,7 +314,7 @@ class HtmlReporterTest {
         String html = reporter.getHtml();
         assertTrue(html.contains("path-btn active\" data-path=\"all"));
         assertTrue(html.indexOf(">All</button>") < html.indexOf(">Predicted Matchups</button>"));
-        assertTrue(html.indexOf(">Predicted Matchups</button>") < html.indexOf(">Alternative</button>"));
+        assertTrue(html.indexOf(">Predicted Matchups</button>") < html.indexOf(">Alternative Matchups</button>"));
         assertTrue(html.contains("class=\"table-primary\" data-path=\"predicted"));
         assertTrue(html.contains("<th>Match Likelihood</th>"));
         assertFalse(html.contains("<th class=\"text-end\">Match Likelihood</th>"));
@@ -356,7 +356,7 @@ class HtmlReporterTest {
         assertTrue(html.contains("data-path=\"prediction\""));
         assertTrue(html.contains(">Predicted Matchups</button>"));
         assertTrue(html.contains("data-path=\"alt\""));
-        assertTrue(html.contains("data-path=\"upset\""));
+        assertFalse(html.contains("data-path=\"upset\""));
     }
 
     @Test
@@ -387,9 +387,10 @@ class HtmlReporterTest {
         assertTrue(html.contains("<th>Path</th>"));
         assertTrue(html.contains(">Predicted Matchup</span>"));
         assertTrue(html.contains("data-path=\"upset\""));
-        assertTrue(html.contains(">Upset</button>"));
-        assertTrue(html.contains("<span class=\"badge path-badge-upset\">Upset</span>"));
-        assertFalse(html.contains("<span class=\"badge text-bg-warning\">Upset</span>"));
+        assertTrue(html.contains(">Alternative Matchups</button>"));
+        assertTrue(html.contains("<span class=\"badge text-bg-secondary\">Alternative Matchup</span>"));
+        assertFalse(html.contains(">Upset</button>"));
+        assertFalse(html.contains(">Upset</span>"));
         assertTrue(html.contains("&lt;0.1%"));
         assertTrue(html.contains("Not observed"));
         assertFalse(html.contains(">0.0%"));
@@ -436,7 +437,7 @@ class HtmlReporterTest {
     @Test
     void serverPagedMatchupsPreserveActiveFiltersAndToggleSnapshotTiles() {
         HtmlReporter reporter = new HtmlReporter()
-                .withServerPagination("/view/last_8_match?tournament=world_cup_2022&path=upset&team=Portugal", 2, 3, 50)
+                .withServerPagination("/view/last_8_match?tournament=world_cup_2022&path=alt&team=Portugal", 2, 3, 50)
                 .withActualMode(true)
                 .withActiveFilters("upset", "Portugal")
                 .withTeamNames(List.of("Argentina", "Portugal"));
@@ -448,10 +449,10 @@ class HtmlReporterTest {
                 "Spain", breakdown(1750)));
 
         String html = reporter.getHtml();
-        assertTrue(html.contains("path-btn active\" data-path=\"upset\""));
+        assertTrue(html.contains("path-btn active\" data-path=\"alt\""));
         assertTrue(html.contains("<option value=\"Portugal\" selected>Portugal</option>"));
-        assertTrue(html.contains("href=\"/view/last_8_match?tournament=world_cup_2022&path=upset&team=Portugal&page=1\""));
-        assertTrue(html.contains("href=\"/view/last_8_match?tournament=world_cup_2022&path=upset&team=Portugal&page=3\""));
+        assertTrue(html.contains("href=\"/view/last_8_match?tournament=world_cup_2022&path=alt&team=Portugal&page=1\""));
+        assertTrue(html.contains("href=\"/view/last_8_match?tournament=world_cup_2022&path=alt&team=Portugal&page=3\""));
         assertTrue(html.contains("const next=active?'':team;"));
         assertTrue(html.contains("navigateWithFilters(section,{team:next,page:1});"));
         assertTrue(html.contains("url.searchParams.set('results',actualValue?'true':'false')"));
@@ -494,7 +495,7 @@ class HtmlReporterTest {
     }
 
     @Test
-    void resultUpsetRowRendersResultsUpsetLabel() {
+    void resultUpsetRowRendersResultLabel() {
         HtmlReporter reporter = new HtmlReporter().withActualMode(true);
 
         reporter.printMatchups("Last 32", List.of(
@@ -504,7 +505,29 @@ class HtmlReporterTest {
                 "France", breakdown(1900),
                 "Spain", breakdown(1850)));
 
-        assertTrue(reporter.getHtml().contains(">Result / Upset</span>"));
+        assertTrue(reporter.getHtml().contains(">Result</span>"));
+        assertFalse(reporter.getHtml().contains("Result / Upset"));
+    }
+
+
+    @Test
+    void alternativeMatchupDoesNotShowActualResultPanelInResultsMode() {
+        HtmlReporter reporter = new HtmlReporter()
+                .withActualMode(true)
+                .withActualResultLabels(Map.of("Argentina|Tunisia", "Argentina"));
+
+        reporter.printMatchups("Last 16", List.of(
+                "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus",
+                "M50,Argentina,Tunisia,upset,Argentina (84%),2100,0,1800,0"
+        ), new EloCalculator(), null, Map.of(), Map.of(
+                "Argentina", breakdown(2100),
+                "Tunisia", breakdown(1800)));
+
+        String html = reporter.getHtml();
+        assertTrue(html.contains("Alternative Matchup"));
+        assertTrue(html.contains("Most likely score"));
+        assertFalse(html.contains("Score unavailable"));
+        assertFalse(html.contains("Played result from the tournament."));
     }
 
     @Test
@@ -678,15 +701,6 @@ class HtmlReporterTest {
         String html = reporter.getHtml();
         assertTrue(html.contains("class=\"table-danger\" data-path=\"predicted\" data-match=\"M49\""));
         assertTrue(html.contains("<span class=\"badge text-bg-danger\">Predicted Matchup</span>"));
-    }
-
-    @Test
-    void sharedCssKeepsUpsetBadgeOrange() throws Exception {
-        String fragments = Files.readString(Path.of("src/main/resources/templates/fragments.html"));
-
-        assertTrue(fragments.contains(".path-badge-upset"));
-        assertTrue(fragments.contains("background-color:#fd7e14"));
-        assertTrue(fragments.contains("border:1px solid #d96500"));
     }
 
     private static EloBreakdown breakdown(int elo) {

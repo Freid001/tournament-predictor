@@ -348,7 +348,8 @@ public class HtmlReporter extends ConsoleReporter {
         }
         if ("predicted".equals(normalized)) return "prediction";
         if ("actual".equals(normalized)) return "results";
-        return Set.of("all", "results", "alt", "upset", "prediction", "live").contains(normalized) ? normalized : "all";
+        if ("upset".equals(normalized)) return "alt";
+        return Set.of("all", "results", "alt", "prediction", "live").contains(normalized) ? normalized : "all";
     }
 
     private List<PathFilterButton> pathFilterButtons(String label, List<String[]> tableRows) {
@@ -357,8 +358,7 @@ public class HtmlReporter extends ConsoleReporter {
                     new PathFilterButton("all", "All"),
                     new PathFilterButton("results", resultsFilterLabel(tableRows)),
                     new PathFilterButton("prediction", "Predicted Matchups"),
-                    new PathFilterButton("alt", "Alternative"),
-                    new PathFilterButton("upset", "Upset"));
+                    new PathFilterButton("alt", "Alternative Matchups"));
         }
         boolean hasResults = tableRows.stream().anyMatch(row -> isResultsFilterPath(valueAt(row, 7)));
         boolean hasPrediction = tableRows.stream().anyMatch(row -> isPredictionFilterPath(valueAt(row, 7)));
@@ -402,11 +402,6 @@ public class HtmlReporter extends ConsoleReporter {
         return "predicted".equalsIgnoreCase(path)
                 || "prediction".equalsIgnoreCase(path)
                 || "live".equalsIgnoreCase(path);
-    }
-
-    private boolean isUpsetFilterPath(String path) {
-        return "upset".equalsIgnoreCase(path)
-                || "result_upset".equalsIgnoreCase(path);
     }
 
     private String pathButtonHtml(String path, String label) {
@@ -610,8 +605,7 @@ public class HtmlReporter extends ConsoleReporter {
                     matchupLikelihood, selectionSource, modelWinner, modelPct, matchupRuns, homeScore, awayScore});
         }
 
-        long altCount = tableRows.stream().filter(r -> "alt".equals(r[7])).count();
-        long upsetCount = tableRows.stream().filter(r -> "upset".equals(r[7])).count();
+        long altCount = tableRows.stream().filter(r -> "alt".equals(r[7]) || "upset".equals(r[7])).count();
         long actualCount = tableRows.stream().filter(r -> "results".equals(r[7]) || "fixture".equals(r[7])).count();
         List<PathFilterButton> pathButtons = pathFilterButtons(label, tableRows);
         boolean showToggle = pathButtons.size() > 1;
@@ -620,7 +614,7 @@ public class HtmlReporter extends ConsoleReporter {
         boolean showWinnerColumn = !hasSimulationAdvance;
         boolean showOdds = false;
         boolean hasMatchupLikelihood = tableRows.stream().anyMatch(r -> r.length > 25 && !r[25].isBlank());
-        boolean hasActualRows = tableRows.stream().anyMatch(r -> r.length > 7 && ("results".equalsIgnoreCase(r[7]) || "fixture".equalsIgnoreCase(r[7]) || "actual".equalsIgnoreCase(r[7]) || "result_upset".equalsIgnoreCase(r[7]) || "upset".equalsIgnoreCase(r[7])));
+        boolean hasActualRows = tableRows.stream().anyMatch(r -> r.length > 7 && ("results".equalsIgnoreCase(r[7]) || "fixture".equalsIgnoreCase(r[7]) || "actual".equalsIgnoreCase(r[7]) || "result_upset".equalsIgnoreCase(r[7])));
         if (hasMatchupLikelihood) {
             java.util.Comparator<String[]> likelihoodSort = java.util.Comparator
                     .comparingDouble((String[] row) -> parseDoubleOrZero(row[25]))
@@ -631,13 +625,11 @@ public class HtmlReporter extends ConsoleReporter {
                     return ("results".equalsIgnoreCase(path) || "fixture".equalsIgnoreCase(path) || "actual".equalsIgnoreCase(path) || "result_upset".equalsIgnoreCase(path)) ? 0
                             : "live".equalsIgnoreCase(path) ? 1
                             : "predicted".equalsIgnoreCase(path) ? 2
-                            : "alt".equalsIgnoreCase(path) ? 3
-                            : "upset".equalsIgnoreCase(path) ? 4 : 5;
+                            : ("alt".equalsIgnoreCase(path) || "upset".equalsIgnoreCase(path)) ? 3 : 4;
                 }
                 return "live".equalsIgnoreCase(path) ? 0
                         : "predicted".equalsIgnoreCase(path) ? 1
-                        : "alt".equalsIgnoreCase(path) ? 2
-                        : "upset".equalsIgnoreCase(path) ? 3 : 4;
+                        : ("alt".equalsIgnoreCase(path) || "upset".equalsIgnoreCase(path)) ? 2 : 3;
             });
             tableRows.sort(pathSort.thenComparing(likelihoodSort));
         }
@@ -790,11 +782,10 @@ public class HtmlReporter extends ConsoleReporter {
                 }
                 html.append("</td>");
             }
-            boolean upsetPath = "upset".equals(row[7]) || "result_upset".equals(row[7]);
             String pathBadgeClass = (resultPath || fixturePath) ? "text-bg-warning"
                     : livePath ? "text-bg-info"
                     : predictedPath ? (predictionSettled ? (predictionWrong ? "text-bg-danger" : "text-bg-success") : "text-bg-primary")
-                    : upsetPath ? "path-badge-upset" : "text-bg-secondary";
+                    : "text-bg-secondary";
             String pathLabel = PredictionLabelService.combinedLabel(row[7], row[4], resultWinner);
             html.append("<td><span class=\"badge ")
                     .append(pathBadgeClass)
@@ -953,7 +944,6 @@ public class HtmlReporter extends ConsoleReporter {
             boolean actualResultMode = actualModeEnabled && ("results".equalsIgnoreCase(rowPath)
                     || "actual".equalsIgnoreCase(rowPath)
                     || "result_upset".equalsIgnoreCase(rowPath)
-                    || "upset".equalsIgnoreCase(rowPath)
                     || fixtureWithResult);
             String actualResult = lookupResult.isBlank() ? (row.length > 4 ? row[4] : "") : lookupResult;
             String resolvedActualScore = resolveActualScore(team1, team2, actualHomeScore(row), actualAwayScore(row));
@@ -1653,7 +1643,7 @@ public class HtmlReporter extends ConsoleReporter {
         }
         html.append("<style>.path-focus-row{outline:3px solid #fd7e14;outline-offset:-2px}.expand-icon{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;opacity:.55;vertical-align:middle;transform-origin:35% 50%;transition:transform .15s ease}.expand-icon.expanded{transform:rotate(90deg)}</style><script>")
                 .append("function applyFilters(section){")
-                .append("const serverPaging=section.dataset.serverPaging==='true';const pathBtn=section.querySelector('.path-btn.active');const path=pathBtn?pathBtn.dataset.path:'all';const rowPath=path==='prediction'?'predicted':path;const teamSel=section.querySelector('select');const team=teamSel?teamSel.value:'';const rows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(row=>!row.classList.contains('detail-row'));const matches=rows.filter(row=>{const rowType=row.dataset.path;const pathMatch=path==='all'?true:path==='results'?(rowType==='results'||rowType==='fixture'||rowType==='actual'||rowType==='result_upset'):(path==='prediction'?(rowType==='predicted'||rowType==='live'):(path==='upset'?(rowType==='upset'||rowType==='result_upset'):rowType===rowPath));return pathMatch&&(!team||row.dataset.team1===team||row.dataset.team2===team);});")
+                .append("const serverPaging=section.dataset.serverPaging==='true';const pathBtn=section.querySelector('.path-btn.active');const path=pathBtn?pathBtn.dataset.path:'all';const rowPath=path==='prediction'?'predicted':path;const teamSel=section.querySelector('select');const team=teamSel?teamSel.value:'';const rows=Array.from(section.querySelectorAll('tbody tr[data-path]')).filter(row=>!row.classList.contains('detail-row'));const matches=rows.filter(row=>{const rowType=row.dataset.path;const pathMatch=path==='all'?true:path==='results'?(rowType==='results'||rowType==='fixture'||rowType==='actual'||rowType==='result_upset'):(path==='prediction'?(rowType==='predicted'||rowType==='live'):(path==='alt'?(rowType==='alt'||rowType==='upset'):rowType===rowPath));return pathMatch&&(!team||row.dataset.team1===team||row.dataset.team2===team);});")
                 .append("if(serverPaging){rows.forEach(row=>{row.style.display='';const detail=row.nextElementSibling;if(detail&&detail.classList.contains('detail-row')){detail.style.display=detail.dataset.expanded==='true'?'table-row':'none';if(detail.dataset.expanded!=='true'){row.setAttribute('aria-expanded','false');const icon=row.querySelector('.expand-icon');if(icon)icon.classList.remove('expanded');}}});const empty=section.querySelector('.table-no-results');if(empty)empty.style.display=rows.length?'none':'block';return;}")
                 .append("const pageSize=50;const pageCount=Math.max(1,Math.ceil(matches.length/pageSize));let page=Math.min(Math.max(1,Number(section.dataset.tablePage||1)),pageCount);section.dataset.tablePage=String(page);const start=(page-1)*pageSize;const pageRows=new Set(matches.slice(start,start+pageSize));")
                 .append("rows.forEach(row=>{const show=pageRows.has(row);row.style.display=show?'':'none';const detail=row.nextElementSibling;if(detail&&detail.classList.contains('detail-row')){detail.style.display=(show&&detail.dataset.expanded==='true')?'table-row':'none';if(!show){detail.dataset.expanded='false';row.setAttribute('aria-expanded','false');const icon=row.querySelector('.expand-icon');if(icon)icon.classList.remove('expanded');}}});")

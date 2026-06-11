@@ -41,9 +41,15 @@ class PredictionLabelServiceTest {
     }
 
     @Test
-    void resultUpsetShowsResultsAndUpsetLabels() {
-        assertEquals(List.of("Result", "Upset"),
+    void resultUpsetShowsResultLabelOnly() {
+        assertEquals(List.of("Result"),
                 PredictionLabelService.labelsForPath("result_upset", "France", "Morocco"));
+    }
+
+    @Test
+    void upsetPathShowsAlternativeMatchupLabel() {
+        assertEquals(List.of("Alternative Matchup"),
+                PredictionLabelService.labelsForPath("upset", "France", ""));
     }
 
     @Test

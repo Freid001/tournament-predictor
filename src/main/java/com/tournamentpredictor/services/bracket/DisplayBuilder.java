@@ -24,20 +24,7 @@ public class DisplayBuilder {
         }
 
         if (token.matches("^[A-L][1-4]$")) {
-            String status = switch (token.charAt(1)) {
-                case '1' -> groupWinner.getOrDefault(token, "");
-                case '2' -> runnerUp.getOrDefault(token, "");
-                case '3' -> thirdPlace.getOrDefault(token, "");
-                default -> "";
-            };
-            if ("no".equalsIgnoreCase(status) || status.isBlank()) {
-                return out;
-            }
-            String team = groups.getOrDefault(token, "");
-            if (team == null || team.isEmpty()) {
-                team = token;
-            }
-            out.add(token + "(" + team + ")");
+            addGroupPositionDisplays(token, groups, groupWinner, runnerUp, thirdPlace, out);
             return out;
         }
 
@@ -96,13 +83,9 @@ public class DisplayBuilder {
                 if ("predicted".equalsIgnoreCase(path)) {
                     yesDisplays.add(display1);
                     yesDisplays.add(display2);
-                } else if ("alt".equalsIgnoreCase(path)) {
-                    if (!isCompositeDisplay(display1)) {
-                        maybeDisplays.add(display1);
-                    }
-                    if (!isCompositeDisplay(display2)) {
-                        maybeDisplays.add(display2);
-                    }
+                } else if ("alt".equalsIgnoreCase(path) || "upset".equalsIgnoreCase(path)) {
+                    maybeDisplays.add(display1);
+                    maybeDisplays.add(display2);
                 }
             }
             Set<String> allDisplays = new LinkedHashSet<>(yesDisplays);
@@ -150,5 +133,41 @@ public class DisplayBuilder {
 
     public String safe(String value) {
         return value == null ? "" : value.replaceAll(",", " ");
+    }
+
+    private void addGroupPositionDisplays(String token, Map<String, String> groups,
+                                          Map<String, String> groupWinner,
+                                          Map<String, String> runnerUp,
+                                          Map<String, String> thirdPlace,
+                                          List<String> out) {
+        Map<String, String> statusBySlot = switch (token.charAt(1)) {
+            case '1' -> groupWinner;
+            case '2' -> runnerUp;
+            case '3' -> thirdPlace;
+            default -> Map.of();
+        };
+        Set<String> seen = new LinkedHashSet<>();
+        addSlotDisplay(token, token, groups.getOrDefault(token, ""), statusBySlot.getOrDefault(token, ""), seen, out);
+
+        String group = token.substring(0, 1);
+        for (int i = 1; i <= 4; i++) {
+            String sourceSlot = group + i;
+            if (sourceSlot.equalsIgnoreCase(token)) {
+                continue;
+            }
+            addSlotDisplay(token, sourceSlot, groups.getOrDefault(sourceSlot, ""),
+                    statusBySlot.getOrDefault(sourceSlot, ""), seen, out);
+        }
+    }
+
+    private void addSlotDisplay(String targetToken, String sourceSlot, String team, String status,
+                                Set<String> seen, List<String> out) {
+        if (status == null || status.isBlank() || "no".equalsIgnoreCase(status)) {
+            return;
+        }
+        String resolved = team == null || team.isEmpty() ? sourceSlot : team;
+        if (seen.add(resolved)) {
+            out.add(targetToken + "(" + resolved + ")");
+        }
     }
 }

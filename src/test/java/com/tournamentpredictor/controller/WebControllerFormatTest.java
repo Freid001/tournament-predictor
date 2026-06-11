@@ -167,7 +167,7 @@ class WebControllerFormatTest {
     }
 
     @Test
-    void upsetPathInActualModeRendersActualQuarterfinalRows() throws Exception {
+    void oldUpsetPathAliasesToAlternativeMatchups() throws Exception {
         WebController controller = new WebController(new PredictionConfig());
         ExtendedModelMap model = new ExtendedModelMap();
 
@@ -176,10 +176,10 @@ class WebControllerFormatTest {
         assertEquals("result", view);
         String html = (String) model.getAttribute("output");
         assertNotNull(html);
-        assertTrue(html.contains("data-path=\"result_upset\"") || html.contains("data-path=\"upset\""));
-        assertTrue(html.contains("Croatia"));
-        assertTrue(html.contains("Brazil"));
-        assertTrue(html.contains("Result / Upset"));
+        assertTrue(html.contains("data-path=\"upset\"") || html.contains("data-path=\"alt\""));
+        assertTrue(html.contains("Alternative Matchup"));
+        assertFalse(html.contains("Result / Upset"));
+        assertFalse(html.contains(">Upset</span>"));
     }
 
 

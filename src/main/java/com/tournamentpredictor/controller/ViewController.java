@@ -340,7 +340,11 @@ public class ViewController {
             String resultsRound = safeRound.endsWith("_match")
                     ? safeRound.substring(0, safeRound.length() - "_match".length())
                     : safeRound;
-            boolean actualViewRequested = actualMode || "results".equalsIgnoreCase(path) || "actual".equalsIgnoreCase(path) || "upset".equalsIgnoreCase(path);
+            String requestedPath = WebText.trim(path);
+            if ("upset".equalsIgnoreCase(requestedPath)) {
+                requestedPath = "alt";
+            }
+            boolean actualViewRequested = actualMode || "results".equalsIgnoreCase(requestedPath) || "actual".equalsIgnoreCase(requestedPath);
             List<Map<String, String>> actualRows = actualViewRequested
                     ? web.loadActualRoundResultRows(safeTournament, resultsRound)
                     : List.of();
@@ -383,7 +387,7 @@ public class ViewController {
                     && web.hasResultsData(safeTournament, "groups")) {
                 actualAdvancingTeams = web.actualGroupAdvancers(safeTournament);
             }
-            String safePathFilter = WebText.trim(path);
+            String safePathFilter = requestedPath;
             if ("both".equalsIgnoreCase(safePathFilter)) {
                 safePathFilter = "all";
             }
@@ -393,7 +397,10 @@ public class ViewController {
             if ("actual".equalsIgnoreCase(safePathFilter)) {
                 safePathFilter = "results";
             }
-            if (!Set.of("all", "results", "alt", "upset", "prediction").contains(safePathFilter)) {
+            if ("upset".equalsIgnoreCase(safePathFilter)) {
+                safePathFilter = "alt";
+            }
+            if (!Set.of("all", "results", "alt", "prediction").contains(safePathFilter)) {
                 safePathFilter = "all";
             }
             String safeTeamFilter = WebText.trim(team);

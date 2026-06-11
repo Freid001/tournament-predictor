@@ -51,6 +51,9 @@ public final class ViewLineService {
         if ("both".equals(normalizedPath)) {
             normalizedPath = "all";
         }
+        if ("upset".equals(normalizedPath)) {
+            normalizedPath = "alt";
+        }
         String normalizedTeam = teamFilter == null ? "" : teamFilter.trim().toLowerCase();
         EloCalculator elo = new EloCalculator();
         List<String> out = new ArrayList<>();
@@ -67,6 +70,7 @@ public final class ViewLineService {
                 case "all" -> true;
                 case "actual", "results" -> "actual".equals(rowPath) || "results".equals(rowPath) || "fixture".equals(rowPath) || "result_upset".equals(rowPath);
                 case "prediction" -> "predicted".equals(rowPath) || "prediction".equals(rowPath) || "live".equals(rowPath);
+                case "alt" -> "alt".equals(rowPath) || "upset".equals(rowPath);
                 default -> normalizedPath.equals(rowPath);
             };
             if (!pathMatches) continue;

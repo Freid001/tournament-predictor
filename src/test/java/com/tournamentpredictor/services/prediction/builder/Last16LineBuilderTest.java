@@ -92,4 +92,35 @@ class Last16LineBuilderTest {
         assertTrue(cols[7].contains("United States:0"));
     }
 
+
+    @Test
+    void carriesAlternativeGroupPositionWinnerFromLast32IntoLast16() {
+        Map<String, String> groups = Map.of(
+                "H1", "Spain", "H2", "Uruguay", "J1", "Argentina", "J2", "Austria",
+                "K1", "Portugal", "K2", "Colombia", "L1", "England", "L2", "Croatia");
+        Map<String, String> groupWinner = Map.of(
+                "H1", "yes", "J1", "yes", "K1", "yes", "K2", "maybe", "L1", "yes", "L2", "maybe");
+        Map<String, String> runnerUp = Map.of(
+                "H2", "yes", "J2", "yes", "K2", "yes", "K1", "maybe", "L2", "yes", "L1", "maybe");
+        Map<String, String> thirdPlace = Map.of();
+        Map<String, Integer> eloRatings = Map.of(
+                "Spain", 2157, "Austria", 1830, "Colombia", 1982, "England", 2024,
+                "Portugal", 1989, "Croatia", 1912, "Uruguay", 1892, "Argentina", 2115);
+        List<CsvLoader.BracketEntry> brackets = List.of(
+                new CsvLoader.BracketEntry("M83", "K2", "L2", "LAST_32"),
+                new CsvLoader.BracketEntry("M84", "H1", "J2", "LAST_32"),
+                new CsvLoader.BracketEntry("M93", "W84", "W83", "LAST_16"));
+        List<String> last32Rows = List.of(
+                "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent",
+                "M83,K2(Colombia),L2(Croatia),predicted,Colombia (67%),1982,0,1912,0,42,36,G|Portugal:-5,G|England:-4",
+                "M83,K2(Colombia),L2(England),alt,England (52%),1982,0,2024,0,42,3,G|Portugal:-5,G|Croatia:0",
+                "M84,H1(Spain),J2(Austria),predicted,Spain (83%),2157,0,1830,0,0,73,,G|Argentina:-9");
+
+        List<String> lines = builder.buildLast16Lines(groups, groupWinner, runnerUp, thirdPlace,
+                eloRatings, brackets, last32Rows, Map.of());
+
+        assertTrue(lines.stream().anyMatch(line -> line.startsWith("M93,W84(H1(Spain)),W83(L2(England)),alt,")),
+                "Expected England's alternative L2 route from Last 32 to feed the Last 16 alternatives");
+    }
+
 }

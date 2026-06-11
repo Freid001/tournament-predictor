@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DisplayBuilderTest {
 
     private final DisplayBuilder displayBuilder = new DisplayBuilder(new TokenResolver());
 
     @Test
-    void groupSlotUsesExactSlotTeamOnly() {
+    void groupSlotIncludesSameGroupPositionAlternatives() {
         Map<String, String> groups = new HashMap<>();
         groups.put("F1", "Belgium");
         groups.put("F2", "Croatia");
@@ -41,7 +41,19 @@ class DisplayBuilderTest {
 
         List<String> displays = displayBuilder.buildDisplays("F2", groups, groupWinner, runnerUp, thirdPlace);
 
-        assertEquals(List.of("F2(Croatia)"), displays);
-        assertFalse(displays.contains("F2(Belgium)"));
+        assertEquals(List.of("F2(Croatia)", "F2(Belgium)", "F2(Morocco)"), displays);
+    }
+
+    @Test
+    void winnerDisplaysCarryAlternativeCompositeRowsForward() {
+        List<String> rows = List.of(
+                "match_id,team1,team2,path,prediction",
+                "M80,L1(England),EHIJK3(Senegal),predicted,England (63%)",
+                "M80,L1(England),EHIJK3(Ivory Coast),alt,England (84%)");
+
+        List<String> displays = displayBuilder.buildWinnerDisplays("W80", Map.of(), Map.of(), Map.of(), Map.of(),
+                List.of(), rows);
+
+        assertTrue(displays.contains("W80(EHIJK3(Ivory Coast))"));
     }
 }

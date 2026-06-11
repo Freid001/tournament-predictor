@@ -485,6 +485,7 @@ public final class KnockoutViewRows {
                 ? "all"
                 : pathFilter.trim().toLowerCase();
         if ("both".equals(normalizedPath)) normalizedPath = "all";
+        if ("upset".equals(normalizedPath)) normalizedPath = "alt";
         String normalizedTeam = teamFilter == null ? "" : teamFilter.trim().toLowerCase();
         EloCalculator elo = new EloCalculator();
         List<String> out = new ArrayList<>();
@@ -499,7 +500,7 @@ public final class KnockoutViewRows {
                 case "all" -> true;
                 case "results" -> "results".equals(rowPath) || "fixture".equals(rowPath) || "result_upset".equals(rowPath);
                 case "prediction" -> "predicted".equals(rowPath) || "live".equals(rowPath);
-                case "upset" -> "upset".equals(rowPath) || "result_upset".equals(rowPath);
+                case "alt" -> "alt".equals(rowPath) || "upset".equals(rowPath);
                 default -> normalizedPath.equals(rowPath);
             };
             if (!pathMatches) continue;
