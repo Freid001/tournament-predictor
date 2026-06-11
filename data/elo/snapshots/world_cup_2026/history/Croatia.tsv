@@ -19,20 +19,20 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	09	05	Portugal	Croatia	2	1	ENA		12	1971	1903	+1	0	8	12
 2024	09	08	Croatia	Poland	1	0	ENA		8	1911	1747	0	−2	13	32
 2024	10	12	Croatia	Scotland	2	1	ENA		6	1917	1698	0	−1	13	45
-2024	10	15	Poland	Croatia	3	3	ENA		5	1733	1912	0	0	37	12
+2024	10	15	Poland	Croatia	3	3	ENA		5	1733	1912	−1	0	38	12
 2024	11	15	Scotland	Croatia	1	0	ENA		26	1734	1886	+7	0	37	12
 2024	11	18	Croatia	Portugal	1	1	ENA		0	1886	1993	0	0	12	7
 2025	03	20	Croatia	France	2	0	ENL		45	1931	2010	+3	0	11	3
 2025	03	23	France	Croatia	2	0	ENL		20	2030	1911	0	−3	3	13
 2025	06	06	Croatia	Gibraltar	7	0	WQ	PT	1	1912	1051	+1	+1	10	180
-2025	06	09	Croatia	Czechia	5	1	WQ		14	1926	1749	+1	−4	9	35
-2025	09	05	Faroe Islands	Croatia	0	1	WQ		-2	1273	1928	−1	0	147	9
-2025	09	08	Croatia	Montenegro	4	0	WQ		3	1931	1491	0	−1	9	81
-2025	10	09	Czechia	Croatia	0	0	WQ		4	1765	1927	−1	0	34	10
-2025	10	12	Croatia	Gibraltar	3	0	WQ		0	1927	1023	0	0	10	184
-2025	11	14	Croatia	Faroe Islands	3	1	WQ		1	1928	1369	0	0	10	112
-2025	11	17	Montenegro	Croatia	2	3	WQ		-4	1443	1932	−1	+1	93	9
-2026	03	26	Croatia	Colombia	2	1	F	US	12	1944	1986	+1	0	9	5
-2026	03	31	Brazil	Croatia	3	1	F	US	14	1984	1930	+2	−1	5	10
-2026	06	02	Croatia	Belgium	0	2	F		-22	1908	1888	−2	+3	12	17
-2026	06	07	Croatia	Slovenia	2	1	F		3	1911	1682	+1	0	12	50
+2025	06	09	Croatia	Czechia	5	1	WQ		15	1927	1749	+1	−4	9	35
+2025	09	05	Faroe Islands	Croatia	0	1	WQ		-2	1273	1929	−1	0	147	9
+2025	09	08	Croatia	Montenegro	4	0	WQ		3	1932	1492	0	−1	9	81
+2025	10	09	Czechia	Croatia	0	0	WQ		4	1765	1928	−1	0	34	10
+2025	10	12	Croatia	Gibraltar	3	0	WQ		0	1928	1023	0	0	10	184
+2025	11	14	Croatia	Faroe Islands	3	1	WQ		1	1929	1369	+1	0	9	112
+2025	11	17	Montenegro	Croatia	2	3	WQ		-4	1444	1933	−1	0	91	9
+2026	03	26	Croatia	Colombia	2	1	F	US	12	1945	1986	0	0	9	5
+2026	03	31	Brazil	Croatia	3	1	F	US	14	1984	1931	+2	−1	5	10
+2026	06	02	Croatia	Belgium	0	2	F		-22	1909	1889	−2	+1	12	17
+2026	06	07	Croatia	Slovenia	2	1	F		3	1912	1682	+1	0	12	50

@@ -1,8 +1,8 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
-2023	03	24	Japan	Uruguay	1	1	F		-1	1850	1905	0	0	17	13
+2023	03	24	Japan	Uruguay	1	1	F		-1	1850	1905	−1	0	18	13
 2023	03	28	Japan	Colombia	1	2	F		-11	1839	1929	−1	0	19	12
 2023	06	15	Japan	El Salvador	6	0	F		3	1842	1467	0	−4	19	88
-2023	06	20	Japan	Peru	4	1	F		13	1855	1842	+5	−4	15	20
+2023	06	20	Japan	Peru	4	1	F		13	1855	1843	+5	−4	15	20
 2023	09	09	Germany	Japan	1	4	F		-25	1888	1880	0	+1	13	14
 2023	09	12	Japan	Turkey	4	2	F	BE	8	1888	1705	0	−2	14	41
 2023	10	13	Japan	Canada	4	1	F		6	1894	1718	0	−2	14	41
@@ -19,22 +19,22 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	03	21	Japan	North Korea	1	0	WQS		1	1852	1369	−1	0	16	110
 2024	06	06	Myanmar	Japan	0	5	WQS		-1	922	1853	0	0	197	17
 2024	06	11	Japan	Syria	5	0	WQS		4	1857	1419	0	−1	16	100
-2024	09	05	Japan	China	7	0	WQ		3	1860	1395	0	−2	17	108
+2024	09	05	Japan	China	7	0	WQ		3	1860	1396	0	−2	17	108
 2024	09	10	Bahrain	Japan	0	5	WQ		-14	1478	1874	−1	+2	87	14
 2024	10	10	Saudi Arabia	Japan	0	2	WQ		-15	1574	1889	−7	0	68	14
-2024	10	15	Japan	Australia	1	1	WQ		-13	1876	1741	0	+3	14	34
+2024	10	15	Japan	Australia	1	1	WQ		-13	1876	1741	0	+2	14	35
 2024	11	15	Indonesia	Japan	0	4	WQ		-6	1353	1882	+1	+1	118	15
-2024	11	19	China	Japan	1	3	WQ		-7	1412	1889	−1	0	101	13
+2024	11	19	China	Japan	1	3	WQ		-7	1413	1889	−1	0	101	13
 2025	03	20	Japan	Bahrain	2	0	WQ		4	1893	1526	−1	−1	14	78
 2025	03	25	Japan	Saudi Arabia	0	0	WQ		-17	1876	1562	0	+6	14	66
 2025	06	05	Australia	Japan	1	0	WQ		22	1758	1854	+4	−1	32	15
 2025	06	10	Japan	Indonesia	6	0	WQ		3	1857	1357	0	−2	16	121
-2025	07	08	Japan	Hong Kong	6	1	EAH	KR	1	1858	1146	0	0	17	164
-2025	07	12	Japan	China	2	0	EAH	KR	4	1862	1394	+1	−4	16	105
+2025	07	08	Japan	Hong Kong	6	1	EAH	KR	1	1858	1147	0	0	17	164
+2025	07	12	Japan	China	2	0	EAH	KR	4	1862	1395	+1	−4	16	105
 2025	07	15	South Korea	Japan	0	1	EAH		-21	1754	1883	−4	+3	34	13
 2025	09	06	Japan	Mexico	0	0	F	US	-1	1882	1862	0	0	13	16
 2025	09	09	United States	Japan	2	0	F		19	1698	1863	+3	−3	45	17
-2025	10	10	Japan	Paraguay	2	2	F		-3	1860	1846	0	+1	17	20
+2025	10	10	Japan	Paraguay	2	2	F		-3	1860	1847	0	+1	17	20
 2025	10	14	Japan	Brazil	3	2	F		11	1871	1978	+1	0	17	7
 2025	11	14	Japan	Ghana	2	0	F		2	1873	1511	0	+1	17	79
 2025	11	18	Japan	Bolivia	3	0	F		5	1878	1676	0	0	16	49

@@ -9,6 +9,7 @@ import com.tournamentpredictor.services.web.PredictionLabelService;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -350,6 +351,64 @@ public class HtmlReporter extends ConsoleReporter {
         return Set.of("all", "results", "alt", "upset", "prediction", "live").contains(normalized) ? normalized : "all";
     }
 
+    private List<PathFilterButton> pathFilterButtons(String label, List<String[]> tableRows) {
+        if (!isGroupTable(label)) {
+            return List.of(
+                    new PathFilterButton("all", "All"),
+                    new PathFilterButton("results", resultsFilterLabel(tableRows)),
+                    new PathFilterButton("prediction", "Predicted Matchups"),
+                    new PathFilterButton("alt", "Alternative"),
+                    new PathFilterButton("upset", "Upset"));
+        }
+        boolean hasResults = tableRows.stream().anyMatch(row -> isResultsFilterPath(valueAt(row, 7)));
+        boolean hasPrediction = tableRows.stream().anyMatch(row -> isPredictionFilterPath(valueAt(row, 7)));
+        List<PathFilterButton> buttons = new ArrayList<>();
+        if (hasResults || hasPrediction) {
+            buttons.add(new PathFilterButton("all", "All"));
+        }
+        if (hasResults) {
+            buttons.add(new PathFilterButton("results", resultsFilterLabel(tableRows)));
+        }
+        if (hasPrediction) {
+            buttons.add(new PathFilterButton("prediction", "Predicted Matchups"));
+        }
+        return buttons;
+    }
+
+    private boolean isGroupTable(String label) {
+        return label != null && label.toLowerCase(java.util.Locale.ROOT).contains("group");
+    }
+
+    private String resultsFilterLabel(List<String[]> tableRows) {
+        boolean hasFixture = tableRows.stream().anyMatch(row -> "fixture".equalsIgnoreCase(valueAt(row, 7)));
+        boolean hasResult = tableRows.stream().anyMatch(row -> {
+            String path = valueAt(row, 7);
+            return "results".equalsIgnoreCase(path) || "actual".equalsIgnoreCase(path) || "result_upset".equalsIgnoreCase(path);
+        });
+        if (hasResult) {
+            return "Results";
+        }
+        return hasFixture ? "Fixtures" : "Results";
+    }
+
+    private boolean isResultsFilterPath(String path) {
+        return "results".equalsIgnoreCase(path)
+                || "fixture".equalsIgnoreCase(path)
+                || "actual".equalsIgnoreCase(path)
+                || "result_upset".equalsIgnoreCase(path);
+    }
+
+    private boolean isPredictionFilterPath(String path) {
+        return "predicted".equalsIgnoreCase(path)
+                || "prediction".equalsIgnoreCase(path)
+                || "live".equalsIgnoreCase(path);
+    }
+
+    private boolean isUpsetFilterPath(String path) {
+        return "upset".equalsIgnoreCase(path)
+                || "result_upset".equalsIgnoreCase(path);
+    }
+
     private String pathButtonHtml(String path, String label) {
         String normalizedPath = normalizePathFilter(path);
         boolean active = normalizedPath.equals(activePathFilter);
@@ -415,6 +474,10 @@ public class HtmlReporter extends ConsoleReporter {
         int team2PathOppIdx = indexOf(headers, "team2_path_opponent");
         int modelPredictionIdx = indexOf(headers, "model_prediction");
         int selectionSourceIdx = indexOf(headers, "selection_source");
+        int homeScoreIdx = indexOf(headers, "home_score");
+        int awayScoreIdx = indexOf(headers, "away_score");
+        if (homeScoreIdx < 0) homeScoreIdx = indexOf(headers, "team1_score");
+        if (awayScoreIdx < 0) awayScoreIdx = indexOf(headers, "team2_score");
         if (predIdx < 0) predIdx = indexOf(headers, "predicted_winner");
         if (predIdx < 0) predIdx = indexOf(headers, "elo");
 
@@ -484,12 +547,17 @@ public class HtmlReporter extends ConsoleReporter {
             String modelWinner = eloCalculator.parseTeamFromPrediction(modelPrediction);
             String modelPct = modelPrediction.isBlank() ? "" : String.valueOf(eloCalculator.parsePctFromPrediction(modelPrediction));
             String selectionSource = valueAt(cols, selectionSourceIdx);
+            String homeScore = valueAt(cols, homeScoreIdx);
+            String awayScore = valueAt(cols, awayScoreIdx);
             String rowPath = valueAt(cols, pathIdx);
             if (rowPath.isBlank() && cols.length > 7) {
                 rowPath = valueAt(cols, 7);
             }
             boolean isPrimary = pathIdx < 0 || "predicted".equalsIgnoreCase(rowPath);
-            boolean isActual = "results".equalsIgnoreCase(rowPath) || "actual".equalsIgnoreCase(rowPath) || "fixture".equalsIgnoreCase(rowPath);
+            boolean isActual = "results".equalsIgnoreCase(rowPath)
+                    || "actual".equalsIgnoreCase(rowPath)
+                    || "fixture".equalsIgnoreCase(rowPath);
+            boolean isObservedResult = isActual || "result_upset".equalsIgnoreCase(rowPath);
             boolean isLive = "live".equalsIgnoreCase(rowPath);
             boolean isAlt = !isPrimary && !isLive;
             String displayPath = isActual ? ("fixture".equalsIgnoreCase(rowPath) ? "fixture" : "results")
@@ -512,7 +580,7 @@ public class HtmlReporter extends ConsoleReporter {
             String simWinnerPct = "";
             String matchupKey = matchId + "|" + team1 + "|" + team2;
             String matchupLikelihood = matchupLikelihoodPct.getOrDefault(matchupKey, "");
-            if (actualModeEnabled && isActual) {
+            if (actualModeEnabled && isObservedResult) {
                 matchupLikelihood = "100.0";
             }
             String matchupRuns = matchupSimulationRuns.getOrDefault(matchupKey,
@@ -539,13 +607,14 @@ public class HtmlReporter extends ConsoleReporter {
                     originSlot(rawTeam1), originSlot(rawTeam2),
                     simWinner, simWinnerPct, team1SimPct, team2SimPct,
                     rowProjection.winner(), rowProjection.winnerPct(), rowProjection.team1Pct(), rowProjection.team2Pct(),
-                    matchupLikelihood, selectionSource, modelWinner, modelPct, matchupRuns});
+                    matchupLikelihood, selectionSource, modelWinner, modelPct, matchupRuns, homeScore, awayScore});
         }
 
         long altCount = tableRows.stream().filter(r -> "alt".equals(r[7])).count();
         long upsetCount = tableRows.stream().filter(r -> "upset".equals(r[7])).count();
         long actualCount = tableRows.stream().filter(r -> "results".equals(r[7]) || "fixture".equals(r[7])).count();
-        boolean showToggle = true;
+        List<PathFilterButton> pathButtons = pathFilterButtons(label, tableRows);
+        boolean showToggle = pathButtons.size() > 1;
         boolean roundOf32 = label != null && (label.contains("Last 32") || label.contains("Round of 32"));
         boolean hasSimulationAdvance = tableRows.stream().anyMatch(r -> (r.length > 17 && !r[17].isBlank()) || (r.length > 21 && !r[21].isBlank()));
         boolean showWinnerColumn = !hasSimulationAdvance;
@@ -595,13 +664,11 @@ public class HtmlReporter extends ConsoleReporter {
         if (showToggle || !teamNames.isEmpty() || editUrl != null) {
             html.append("<div class=\"d-flex gap-2 align-items-center mb-2 flex-wrap\">");
             if (showToggle) {
-                html.append("<div class=\"btn-group btn-group-sm\" role=\"group\">")
-                        .append(pathButtonHtml("all", "All"))
-                        .append(pathButtonHtml("results", "Results"))
-                        .append(pathButtonHtml("prediction", "Predicted"))
-                        .append(pathButtonHtml("alt", "Alternative"))
-                        .append(pathButtonHtml("upset", "Upset"))
-                        .append("</div>");
+                html.append("<div class=\"btn-group btn-group-sm\" role=\"group\">");
+                for (PathFilterButton button : pathButtons) {
+                    html.append(pathButtonHtml(button.path(), button.label()));
+                }
+                html.append("</div>");
             }
             if (!teamNames.isEmpty()) {
                 html.append("<select class=\"form-select form-select-sm\" style=\"max-width:180px\" onchange=\"filterTeam(this)\">")
@@ -630,6 +697,8 @@ public class HtmlReporter extends ConsoleReporter {
         if (showOdds) html.append("<th>").append(escapeHtml(oddsHeaderFor(label))).append("</th><th>Net Winnings (Bet=£10)</th>");
         html.append("</tr></thead><tbody>");
 
+        Map<String, String> actualWinnerByMatch = actualWinnerByMatch(tableRows);
+        Map<String, String> actualMatchupByMatch = actualMatchupByMatch(tableRows);
         for (String[] row : tableRows) {
             boolean userPick = row.length > 26 && "user".equalsIgnoreCase(row[26]);
             boolean actualPath = "results".equalsIgnoreCase(row[7]) || "actual".equalsIgnoreCase(row[7]);
@@ -638,7 +707,21 @@ public class HtmlReporter extends ConsoleReporter {
             boolean resultPath = actualPath || resultUpsetPath;
             boolean livePath = "live".equalsIgnoreCase(row[7]);
             boolean predictedPath = "predicted".equalsIgnoreCase(row[7]);
-            html.append("<tr class=\"").append((resultPath || fixturePath) ? "table-warning" : livePath ? "table-info" : predictedPath ? "table-primary" : "").append("\" data-path=\"").append(row[7]).append("\"")
+            String exactResultWinner = resolveActualResult(row[1], row[2], "");
+            String resultWinner = !exactResultWinner.isBlank() ? exactResultWinner : actualWinnerByMatch.getOrDefault(row[0], "");
+            boolean fixtureWithResult = actualModeEnabled && fixturePath && !exactResultWinner.isBlank() && !"Draw".equalsIgnoreCase(exactResultWinner);
+            if (fixtureWithResult) {
+                resultPath = true;
+            }
+            boolean predictionSettled = actualModeEnabled && predictedPath && !resultWinner.isBlank() && !"Draw".equalsIgnoreCase(resultWinner);
+            boolean predictionWrong = predictionSettled
+                    && (!actualScoreKey(row[1], row[2]).equals(actualMatchupByMatch.getOrDefault(row[0], actualScoreKey(row[1], row[2])))
+                    || !resultWinner.equalsIgnoreCase(predictedTeamName(row[4])));
+            String rowClass = (resultPath || fixturePath) ? "table-warning"
+                    : livePath ? "table-info"
+                    : predictedPath ? (predictionSettled ? (predictionWrong ? "table-danger" : "table-success") : "table-primary")
+                    : "";
+            html.append("<tr class=\"").append(rowClass).append("\" data-path=\"").append(row[7]).append("\"")
                     .append(" data-match=\"").append(escapeHtml(row[0])).append("\"")
                     .append(" data-team1=\"").append(escapeHtml(row[1])).append("\"")
                     .append(" data-team2=\"").append(escapeHtml(row[2])).append("\"")
@@ -655,7 +738,7 @@ public class HtmlReporter extends ConsoleReporter {
             if (showWinnerColumn) {
                 html.append("<td>");
                 if (resultPath) {
-                    appendActualResultCell(html, row[1], row[2], row[4], resolveActualScore(row[1], row[2], row.length > 8 ? row[8] : "", row.length > 9 ? row[9] : ""));
+                    appendActualResultCell(html, row[1], row[2], resolveActualResult(row[1], row[2], row[4]), resolveActualScore(row[1], row[2], actualHomeScore(row), actualAwayScore(row)));
                 } else {
                     if (userPick) html.append("<span class=\"badge text-bg-warning me-1\">User Pick</span>");
                     html.append("<span class=\"")
@@ -673,7 +756,7 @@ public class HtmlReporter extends ConsoleReporter {
                 // Match rows must show exactly one direct-match selection. Tournament-wide
                 // progression probabilities belong in the summary cards, never in this cell.
                 if (resultPath) {
-                    appendActualResultCell(html, row[1], row[2], row[4], resolveActualScore(row[1], row[2], row.length > 8 ? row[8] : "", row.length > 9 ? row[9] : ""));
+                    appendActualResultCell(html, row[1], row[2], resolveActualResult(row[1], row[2], row[4]), resolveActualScore(row[1], row[2], actualHomeScore(row), actualAwayScore(row)));
                 } else {
                     String displayedWinner = userPick ? row[4]
                             : row.length > 21 && !row[21].isBlank() ? row[21]
@@ -708,17 +791,10 @@ public class HtmlReporter extends ConsoleReporter {
                 html.append("</td>");
             }
             boolean upsetPath = "upset".equals(row[7]) || "result_upset".equals(row[7]);
-            String resultWinner = actualResultLookup.getOrDefault(actualScoreKey(row[1], row[2]), "");
-            boolean fixtureWithResult = actualModeEnabled && fixturePath && !resultWinner.isBlank() && !"Draw".equalsIgnoreCase(resultWinner);
-            if (fixtureWithResult) {
-                resultPath = true;
-            }
-            boolean predictionSettled = actualModeEnabled && predictedPath && !resultWinner.isBlank() && !"Draw".equalsIgnoreCase(resultWinner);
-            boolean predictionWrong = predictionSettled && !resultWinner.equalsIgnoreCase(row[4]);
             String pathBadgeClass = (resultPath || fixturePath) ? "text-bg-warning"
                     : livePath ? "text-bg-info"
-                    : predictedPath ? (predictionWrong ? "text-bg-danger" : "text-bg-primary")
-                    : upsetPath ? "text-bg-warning" : "text-bg-secondary";
+                    : predictedPath ? (predictionSettled ? (predictionWrong ? "text-bg-danger" : "text-bg-success") : "text-bg-primary")
+                    : upsetPath ? "path-badge-upset" : "text-bg-secondary";
             String pathLabel = PredictionLabelService.combinedLabel(row[7], row[4], resultWinner);
             html.append("<td><span class=\"badge ")
                     .append(pathBadgeClass)
@@ -768,6 +844,42 @@ public class HtmlReporter extends ConsoleReporter {
                     .append("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary page-next\" onclick=\"changeTablePage(this,1)\">Next</button>")
                     .append("</div></div>");
         }
+    }
+
+    private Map<String, String> actualWinnerByMatch(List<String[]> tableRows) {
+        Map<String, String> winners = new LinkedHashMap<>();
+        for (String[] row : tableRows) {
+            if (row.length <= 7) continue;
+            String path = row[7];
+            boolean actualRow = "results".equalsIgnoreCase(path)
+                    || "actual".equalsIgnoreCase(path)
+                    || "fixture".equalsIgnoreCase(path)
+                    || "result_upset".equalsIgnoreCase(path);
+            if (!actualModeEnabled || !actualRow) continue;
+            String winner = resolveActualResult(row[1], row[2], "");
+            if (!winner.isBlank() && !"Draw".equalsIgnoreCase(winner)) {
+                winners.putIfAbsent(row[0], winner);
+            }
+        }
+        return winners;
+    }
+
+    private Map<String, String> actualMatchupByMatch(List<String[]> tableRows) {
+        Map<String, String> matchups = new LinkedHashMap<>();
+        for (String[] row : tableRows) {
+            if (row.length <= 7) continue;
+            String path = row[7];
+            boolean actualRow = "results".equalsIgnoreCase(path)
+                    || "actual".equalsIgnoreCase(path)
+                    || "fixture".equalsIgnoreCase(path)
+                    || "result_upset".equalsIgnoreCase(path);
+            if (!actualModeEnabled || !actualRow) continue;
+            String winner = resolveActualResult(row[1], row[2], "");
+            if (!winner.isBlank() && !"Draw".equalsIgnoreCase(winner)) {
+                matchups.putIfAbsent(row[0], actualScoreKey(row[1], row[2]));
+            }
+        }
+        return matchups;
     }
 
     private String pageUrl(int page) {
@@ -834,11 +946,19 @@ public class HtmlReporter extends ConsoleReporter {
         html.append("<div class=\"px-3 py-2\" style=\"background:#f8f9fa;border-bottom:1px solid #dee2e6\">");
 
         if (b1 != null || b2 != null) {
-            boolean actualResultMode = actualModeEnabled && ("results".equalsIgnoreCase(rowPath) || "actual".equalsIgnoreCase(rowPath) || "result_upset".equalsIgnoreCase(rowPath) || "upset".equalsIgnoreCase(rowPath));
-            String actualResult = actualResultLookup.getOrDefault(actualScoreKey(team1, team2), row.length > 4 ? row[4] : "");
-            String resolvedActualScore = resolveActualScore(team1, team2, row.length > 8 ? row[8] : "", row.length > 9 ? row[9] : "");
-            String resolvedHomeScore = row.length > 8 ? row[8] : "";
-            String resolvedAwayScore = row.length > 9 ? row[9] : "";
+            String lookupResult = actualResultLookup.getOrDefault(actualScoreKey(team1, team2), "");
+            boolean fixtureWithResult = "fixture".equalsIgnoreCase(rowPath)
+                    && !lookupResult.isBlank()
+                    && !"Draw".equalsIgnoreCase(lookupResult);
+            boolean actualResultMode = actualModeEnabled && ("results".equalsIgnoreCase(rowPath)
+                    || "actual".equalsIgnoreCase(rowPath)
+                    || "result_upset".equalsIgnoreCase(rowPath)
+                    || "upset".equalsIgnoreCase(rowPath)
+                    || fixtureWithResult);
+            String actualResult = lookupResult.isBlank() ? (row.length > 4 ? row[4] : "") : lookupResult;
+            String resolvedActualScore = resolveActualScore(team1, team2, actualHomeScore(row), actualAwayScore(row));
+            String resolvedHomeScore = actualHomeScore(row);
+            String resolvedAwayScore = actualAwayScore(row);
             if ((resolvedHomeScore == null || resolvedHomeScore.isBlank() || resolvedAwayScore == null || resolvedAwayScore.isBlank())
                     && !resolvedActualScore.isBlank() && resolvedActualScore.contains(" - ")) {
                 String[] resolvedScoreParts = resolvedActualScore.split(" - ", 2);
@@ -865,6 +985,14 @@ public class HtmlReporter extends ConsoleReporter {
         }
 
         html.append("</div></td></tr>");
+    }
+
+    private static String actualHomeScore(String[] row) {
+        return row.length > 30 ? row[30] : "";
+    }
+
+    private static String actualAwayScore(String[] row) {
+        return row.length > 31 ? row[31] : "";
     }
 
     private static void appendActualResultCell(StringBuilder html, String team1, String team2, String result, String scoreText) {
@@ -961,9 +1089,28 @@ public class HtmlReporter extends ConsoleReporter {
     }
 
     private static String actualScoreKey(String team1, String team2) {
-        if (team1 == null) team1 = "";
-        if (team2 == null) team2 = "";
+        team1 = normalizeActualTeamName(team1);
+        team2 = normalizeActualTeamName(team2);
         return team1.compareToIgnoreCase(team2) <= 0 ? team1 + "|" + team2 : team2 + "|" + team1;
+    }
+
+    private static String normalizeActualTeamName(String value) {
+        if (value == null) return "";
+        String trimmed = value.trim();
+        while (trimmed.matches("^[A-Z0-9]+\\(.+\\)$")) {
+            trimmed = trimmed.substring(trimmed.indexOf('(') + 1, trimmed.length() - 1).trim();
+        }
+        return trimmed;
+    }
+
+    private static String predictedTeamName(String value) {
+        if (value == null) return "";
+        String trimmed = value.trim();
+        int pctStart = trimmed.lastIndexOf(" (");
+        if (pctStart > 0 && trimmed.endsWith(")")) {
+            trimmed = trimmed.substring(0, pctStart).trim();
+        }
+        return normalizeActualTeamName(trimmed);
     }
 
     private static String formatActualScore(String homeScore, String awayScore) {
@@ -976,6 +1123,11 @@ public class HtmlReporter extends ConsoleReporter {
             return "";
         }
         return home + " - " + away;
+    }
+
+    private String resolveActualResult(String team1, String team2, String fallbackResult) {
+        String actualResult = actualResultLookup.getOrDefault(actualScoreKey(team1, team2), "");
+        return actualResult.isBlank() ? fallbackResult : actualResult;
     }
 
     private String resolveActualScore(String team1, String team2, String homeScore, String awayScore) {
@@ -1072,7 +1224,7 @@ public class HtmlReporter extends ConsoleReporter {
             for (String segment : segments) {
                 if ("G".equals(pathFatigueSegmentStage(segment))) continue;
                 String name = pathFatigueSegmentName(segment);
-                if (name.isEmpty()) continue;
+                if (name.isEmpty() || "Group stage".equalsIgnoreCase(name)) continue;
                 if (hasPathItem) html.append(" <span class='text-muted'>›</span> ");
                 if (!pathTournament.isBlank() && !pathRound.isBlank()) {
                     String href = "/view/path-game?tournament=" + urlEncode(pathTournament)
@@ -1080,7 +1232,7 @@ public class HtmlReporter extends ConsoleReporter {
                             + "&team=" + urlEncode(team)
                             + "&opponent=" + urlEncode(name)
                             + "&match=" + urlEncode(pathFatigueSegmentMatchId(segment));
-                    html.append("<a class='text-decoration-none path-opponent-link' href='")
+                    html.append("<a class='text-decoration-none path-opponent-link' target='_blank' rel='noopener' href='")
                             .append(escapeHtml(href))
                             .append("' title='Open the earlier ").append(escapeHtml(team)).append(" vs ")
                             .append(escapeHtml(name)).append(" match'>")
@@ -1129,6 +1281,7 @@ public class HtmlReporter extends ConsoleReporter {
             String opponent = entry.length > 1 ? entry[1] : "";
             String score    = entry.length > 2 ? entry[2] : "";
             String contribution = entry.length > 3 ? entry[3] : "";
+            String date = entry.length > 4 ? entry[4] : "";
             String color = switch (result) {
                 case "W" -> "#198754";
                 case "D" -> "#adb5bd";
@@ -1139,6 +1292,9 @@ public class HtmlReporter extends ConsoleReporter {
                     + "<br>" + escapeHtml(score);
             if (!contribution.isBlank()) {
                 tooltipHtml += "<br>ELO " + signedEloText(parseIntOrZero(contribution));
+            }
+            if (!date.isBlank()) {
+                tooltipHtml += "<br>" + escapeHtml(date);
             }
             html.append("<span data-bs-toggle='tooltip' data-bs-html='true' data-bs-title='")
                 .append(tooltipHtml.replace("'", "&#39;"))
@@ -1196,7 +1352,7 @@ public class HtmlReporter extends ConsoleReporter {
                 for (String segment : segments) {
                     if ("G".equals(pathFatigueSegmentStage(segment))) continue;
                     String name = pathFatigueSegmentName(segment);
-                    if (name.isEmpty()) continue;
+                    if (name.isEmpty() || "Group stage".equalsIgnoreCase(name)) continue;
                     if (hasPathItem) sb.append(" <span class='text-muted'>›</span> ");
                     sb.append(flagHtml(name)).append(escapeHtml(name));
                     hasPathItem = true;
@@ -1220,12 +1376,12 @@ public class HtmlReporter extends ConsoleReporter {
             sb.append("</div>");
             sb.append("<div class=\"border-top px-2 py-1 text-muted\" style=\"font-size:0.68rem\">Affects xG, scorelines and match probabilities. Excluded from Adjusted ELO.</div>");
             sb.append("</div>");
-            sb.append("<div class=\"border rounded bg-white overflow-hidden shadow-sm\">");
-            sb.append("<div class=\"d-flex justify-content-between align-items-center px-2 py-1 border-bottom bg-light\">");
-            sb.append("<span class=\"text-muted small fw-semibold\">ELO calculation</span>");
-            sb.append("<span class=\"small text-muted\">Base <span class=\"fw-semibold text-body\">").append(b.baseElo).append("</span></span>");
+            sb.append("<div class=\"border rounded-2 bg-white overflow-hidden shadow-sm elo-calc-card\">");
+            sb.append("<div class=\"d-flex justify-content-between align-items-center px-2 py-2 elo-calc-header\">");
+            sb.append("<span class=\"small fw-semibold text-uppercase text-muted\" style=\"letter-spacing:.04em\">ELO calculation</span>");
+            sb.append("<span class=\"small text-muted\">Base <span class=\"elo-base-pill fw-semibold\">").append(b.baseElo).append("</span></span>");
             sb.append("</div>");
-            sb.append("<table class=\"table table-sm mb-0 align-middle\">");
+            sb.append("<table class=\"table table-sm mb-0 align-middle elo-calc-table\">");
             sb.append("<tbody>");
             // Path difficulty first
             if (b.pathFatigueAdjustment != 0 || !b.pathOpponent.isEmpty()) {
@@ -1247,9 +1403,9 @@ public class HtmlReporter extends ConsoleReporter {
                     if (breakdownHtml.length() > 0) breakdownHtml.append("<br>");
                     breakdownHtml.append("<span class='fw-semibold'>KO:</span> ").append(knockoutHtml);
                 }
-                sb.append("<tr class=\"").append(b.pathFatigueAdjustment > 0 ? "table-success" : "table-warning").append("\">");
-                sb.append("<td class=\"small text-nowrap border-end-0\" style=\"width:48%\">😴 Path Fatigue</td>");
-                sb.append("<td class=\"text-end fw-bold border-start-0 ").append(b.pathFatigueAdjustment > 0 ? "text-success" : "text-warning").append("\">");
+                sb.append("<tr class=\"").append(b.pathFatigueAdjustment > 0 ? "table-success elo-positive" : "table-danger elo-negative").append("\">");
+                sb.append("<td class=\"border-end-0\" style=\"width:58%\"><div class=\"elo-signal-label\">Path Fatigue</div></td>");
+                sb.append("<td class=\"text-end border-start-0 elo-value\" style=\"width:42%\">");
                 if (breakdownHtml.length() > 0) {
                     sb.append("<span class=\"d-inline-flex align-items-center justify-content-end gap-2 flex-wrap\">");
                     appendPathFatigueChips(sb, pathSegs);
@@ -1318,7 +1474,7 @@ public class HtmlReporter extends ConsoleReporter {
 
     private static String pathFatigueChipHtml(String segment) {
         String name = pathFatigueSegmentName(segment);
-        if (name.isEmpty()) return "";
+        if (name.isEmpty() || "Group stage".equalsIgnoreCase(name)) return "";
         String value = pathFatigueSegmentValue(segment);
         String stage = pathFatigueSegmentStage(segment);
         String tooltip = escapeHtml(name) + (pathFatigueSegmentUpset(segment) ? " (Upset)" : "");
@@ -1375,7 +1531,7 @@ public class HtmlReporter extends ConsoleReporter {
 
     private static String pathFatigueSegmentHtml(String segment) {
         String name = pathFatigueSegmentName(segment);
-        if (name.isEmpty()) return "";
+        if (name.isEmpty() || "Group stage".equalsIgnoreCase(name)) return "";
         StringBuilder html = new StringBuilder();
         String flag = flagHtml(name);
         html.append(flag);
@@ -1654,4 +1810,6 @@ public class HtmlReporter extends ConsoleReporter {
             default -> "";
         };
     }
+    private record PathFilterButton(String path, String label) {}
+
 }

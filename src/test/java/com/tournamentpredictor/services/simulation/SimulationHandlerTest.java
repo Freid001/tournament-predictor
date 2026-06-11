@@ -144,7 +144,8 @@ class SimulationHandlerTest {
                 SimulationHandler.SimulationStage.LAST_16, last16, brackets, elo, Map.of());
 
         assertEquals(4, result.teamCounts().size());
-        assertTrue(result.teamCounts().stream().allMatch(counts -> counts.reachLast16 == 20));
+        assertTrue(result.teamCounts().stream().allMatch(counts -> counts.reachLast16 == 40));
+        assertEquals(40, result.runs());
         assertTrue(result.scorelineCounts().stream().noneMatch(row -> "last_32".equals(row.stage())));
         assertTrue(result.scorelineCounts().stream().anyMatch(row -> "last_16".equals(row.stage())));
     }

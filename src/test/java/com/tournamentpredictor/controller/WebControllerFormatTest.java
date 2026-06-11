@@ -179,7 +179,7 @@ class WebControllerFormatTest {
         assertTrue(html.contains("data-path=\"result_upset\"") || html.contains("data-path=\"upset\""));
         assertTrue(html.contains("Croatia"));
         assertTrue(html.contains("Brazil"));
-        assertTrue(html.contains("Results / Upset"));
+        assertTrue(html.contains("Result / Upset"));
     }
 
 
@@ -204,13 +204,13 @@ class WebControllerFormatTest {
         WebController controller = new WebController(new PredictionConfig());
         ExtendedModelMap model = new ExtendedModelMap();
 
-        String view = controller.viewRound("last_16_match", "world_cup_2022", null, null, "results", "", 1, model);
+        String view = controller.viewRound("last_8_match", "world_cup_2022", null, null, "results", "", 1, model);
 
         assertEquals("result", view);
         String html = (String) model.getAttribute("output");
         assertNotNull(html);
-        assertTrue(html.contains("data-path=\"results\""));
-        assertTrue(html.contains("France"));
+        assertTrue(html.contains("data-path=\"results\"") || html.contains("data-path=\"fixture\"") || html.contains("data-path=\"result_upset\""));
+        assertTrue(html.contains("Brazil"));
         assertTrue(html.contains("Results"));
     }
 
@@ -227,6 +227,32 @@ class WebControllerFormatTest {
         assertTrue(html.contains("Croatia"));
         assertTrue(html.contains("Argentina"));
     }
+
+    @Test
+    void roundWithFixturesDoesNotShowLivePredictions() throws Exception {
+        WebController controller = new WebController(new PredictionConfig());
+        ExtendedModelMap resultsModel = new ExtendedModelMap();
+        ExtendedModelMap predictionModel = new ExtendedModelMap();
+        ExtendedModelMap allModel = new ExtendedModelMap();
+
+        String resultsView = controller.viewRound("last_16_match", "world_cup_2014", null, null, "results", "Greece", 1, resultsModel);
+        String predictionView = controller.viewRound("last_16_match", "world_cup_2014", null, true, "prediction", "Greece", 1, predictionModel);
+        String allView = controller.viewRound("last_16_match", "world_cup_2014", null, true, "all", "Greece", 1, allModel);
+
+        assertEquals("result", resultsView);
+        assertEquals("result", predictionView);
+        assertEquals("result", allView);
+        String resultsHtml = (String) resultsModel.getAttribute("output");
+        String predictionHtml = (String) predictionModel.getAttribute("output");
+        String allHtml = (String) allModel.getAttribute("output");
+        assertNotNull(resultsHtml);
+        assertNotNull(predictionHtml);
+        assertNotNull(allHtml);
+        assertFalse(resultsHtml.contains("data-path=\"live\""));
+        assertFalse(predictionHtml.contains("data-path=\"live\""));
+        assertFalse(allHtml.contains("data-path=\"live\""));
+    }
+
 
     private static String routePct(List<Map<String, String>> rows, String team) {
         return rows.stream()

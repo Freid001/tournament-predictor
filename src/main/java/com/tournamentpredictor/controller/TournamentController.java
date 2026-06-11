@@ -140,6 +140,9 @@ public class TournamentController {
             if ("snapshot-refresh".equals(safeMode)) {
                 MatchResolver.forWeb(reporter, predictionConfig).resolveAndWrite("elo-refresh", null);
             }
+            if ("last_32".equals(safeMode)) {
+                web.ensureLast32PredictionSeed(safeTournament, reporter);
+            }
             if (List.of("last_32", "last_16", "last_8", "last_4", "final").contains(safeMode)) {
                 web.cascadeDeleteAfterRoundEdit(safeTournament, safeMode);
             }

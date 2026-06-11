@@ -77,6 +77,21 @@ public final class KnockoutViewRows {
     public static List<String> buildFixtureRows(List<String> baseLines,
                                                 List<ResultEntryRow> fixtures,
                                                 Map<String, String> resultLabels) {
+        return buildFixtureRows(baseLines, fixtures, resultLabels, baseLines);
+    }
+
+    public static List<String> buildFixtureRows(List<String> baseLines,
+                                                List<ResultEntryRow> fixtures,
+                                                Map<String, String> resultLabels,
+                                                List<String> contextLines) {
+        return buildFixtureRows(baseLines, fixtures, resultLabels, contextLines, Map.of());
+    }
+
+    public static List<String> buildFixtureRows(List<String> baseLines,
+                                                List<ResultEntryRow> fixtures,
+                                                Map<String, String> resultLabels,
+                                                List<String> contextLines,
+                                                Map<String, String[]> slotsByMatch) {
         if (baseLines == null || baseLines.isEmpty() || fixtures == null || fixtures.isEmpty()) {
             return List.of();
         }
@@ -88,10 +103,15 @@ public final class KnockoutViewRows {
         int predIdx = indexOf(headers, "prediction");
         int homeScoreIdx = indexOf(headers, "home_score");
         int awayScoreIdx = indexOf(headers, "away_score");
+        int team1PathDiffIdx = indexOf(headers, "team1_path_fatigue");
+        int team2PathDiffIdx = indexOf(headers, "team2_path_fatigue");
+        int team1PathOppIdx = indexOf(headers, "team1_path_opponent");
+        int team2PathOppIdx = indexOf(headers, "team2_path_opponent");
         if (team1Idx < 0 || team2Idx < 0 || pathIdx < 0 || predIdx < 0) {
             return List.of();
         }
         Map<String, String[]> templateByKey = new LinkedHashMap<>();
+        Map<String, String[]> predictedTemplateByMatch = new LinkedHashMap<>();
         EloCalculator elo = new EloCalculator();
         for (int i = 1; i < baseLines.size(); i++) {
             String line = baseLines.get(i);
@@ -105,7 +125,11 @@ public final class KnockoutViewRows {
             if (!templateByKey.containsKey(key) || "predicted".equalsIgnoreCase(rowPath)) {
                 templateByKey.put(key, cols);
             }
+            if (matchIdIdx >= 0 && "predicted".equalsIgnoreCase(rowPath)) {
+                predictedTemplateByMatch.putIfAbsent(valueAt(cols, matchIdIdx), cols);
+            }
         }
+        Map<String, TeamPathContext> teamPathContext = teamPathContext(contextLines);
         List<String> out = new ArrayList<>();
         out.add(baseLines.get(0));
         Set<String> emittedKeys = new LinkedHashSet<>();
@@ -117,21 +141,193 @@ public final class KnockoutViewRows {
             String key = matchKey(team1, team2);
             if (!emittedKeys.add(key)) continue;
             String[] source = templateByKey.get(key);
-            if (source == null) continue;
-            String[] cols = source.clone();
+            String[] fallback = matchIdIdx >= 0 ? predictedTemplateByMatch.get(safeTrim(fixture.getMatchId())) : null;
+            String[] cols = source == null
+                    ? blankColumns(headers.length)
+                    : source.clone();
+            if (source == null && fallback != null) {
+                copySharedContext(cols, fallback, matchIdIdx, pathIdx, predIdx, team1Idx, team2Idx);
+            }
             if (matchIdIdx >= 0 && !safeTrim(fixture.getMatchId()).isBlank()) {
                 cols[matchIdIdx] = safeTrim(fixture.getMatchId());
             }
-            cols[team1Idx] = team1;
-            cols[team2Idx] = team2;
-            cols[pathIdx] = "fixture";
+            String[] matchSlots = slotsByMatch == null ? null : slotsByMatch.get(safeTrim(fixture.getMatchId()));
+            cols[team1Idx] = slotWrappedTeam(team1, matchSlots == null || matchSlots.length < 1 ? "" : matchSlots[0]);
+            cols[team2Idx] = slotWrappedTeam(team2, matchSlots == null || matchSlots.length < 2 ? "" : matchSlots[1]);
+            applyTeamPathContext(cols, team1, teamPathContext, team1PathDiffIdx, team1PathOppIdx);
+            applyTeamPathContext(cols, team2, teamPathContext, team2PathDiffIdx, team2PathOppIdx);
             String resultWinner = labels.getOrDefault(key, "");
+            String predictedWinner = source == null ? "" : elo.parseTeamFromPrediction(valueAt(cols, predIdx));
+            boolean actualUpset = !resultWinner.isBlank()
+                    && !"Draw".equalsIgnoreCase(resultWinner)
+                    && !predictedWinner.isBlank()
+                    && !resultWinner.equalsIgnoreCase(predictedWinner);
+            cols[pathIdx] = actualUpset ? "result_upset" : "fixture";
             cols[predIdx] = resultWinner.isBlank() ? valueAt(cols, predIdx) : resultWinner;
             if (homeScoreIdx >= 0) cols[homeScoreIdx] = safeTrim(fixture.getHomeScore());
             if (awayScoreIdx >= 0) cols[awayScoreIdx] = safeTrim(fixture.getAwayScore());
             out.add(String.join(",", cols));
         }
         return out;
+    }
+
+    private static String slotWrappedTeam(String team, String slot) {
+        String cleanTeam = safeTrim(team);
+        String cleanSlot = safeTrim(slot);
+        return cleanSlot.isBlank() ? cleanTeam : cleanSlot + "(" + cleanTeam + ")";
+    }
+
+    private static Map<String, TeamPathContext> teamPathContext(List<String> lines) {
+        if (lines == null || lines.isEmpty()) {
+            return Map.of();
+        }
+        String[] headers = lines.get(0).split(",", -1);
+        int team1Idx = indexOf(headers, "team1");
+        int team2Idx = indexOf(headers, "team2");
+        int team1PathDiffIdx = indexOf(headers, "team1_path_fatigue");
+        int team2PathDiffIdx = indexOf(headers, "team2_path_fatigue");
+        int team1PathOppIdx = indexOf(headers, "team1_path_opponent");
+        int team2PathOppIdx = indexOf(headers, "team2_path_opponent");
+        if (team1Idx < 0 || team2Idx < 0 || team1PathDiffIdx < 0 || team2PathDiffIdx < 0
+                || team1PathOppIdx < 0 || team2PathOppIdx < 0) {
+            return Map.of();
+        }
+        Map<String, TeamPathContext> contexts = new LinkedHashMap<>();
+        EloCalculator elo = new EloCalculator();
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line == null || line.isBlank()) continue;
+            String[] cols = line.split(",", -1);
+            putTeamPathContext(contexts, elo.extractTeamName(valueAt(cols, team1Idx)),
+                    valueAt(cols, team1PathDiffIdx), valueAt(cols, team1PathOppIdx));
+            putTeamPathContext(contexts, elo.extractTeamName(valueAt(cols, team2Idx)),
+                    valueAt(cols, team2PathDiffIdx), valueAt(cols, team2PathOppIdx));
+        }
+        return contexts;
+    }
+
+    private static void putTeamPathContext(Map<String, TeamPathContext> contexts, String team, String fatigue, String opponent) {
+        if (safeTrim(team).isBlank()) return;
+        TeamPathContext context = new TeamPathContext(safeTrim(fatigue), safeTrim(opponent));
+        if (!context.hasSpecificPath()) return;
+        contexts.putIfAbsent(safeTrim(team), context);
+    }
+
+    private static void applyTeamPathContext(String[] cols, String team, Map<String, TeamPathContext> contexts,
+                                             int fatigueIdx, int opponentIdx) {
+        TeamPathContext context = contexts.get(safeTrim(team));
+        if (context == null || !context.hasSpecificPath()) return;
+        if (fatigueIdx >= 0 && fatigueIdx < cols.length) cols[fatigueIdx] = context.fatigue();
+        if (opponentIdx >= 0 && opponentIdx < cols.length) cols[opponentIdx] = context.opponent();
+    }
+
+    private record TeamPathContext(String fatigue, String opponent) {
+        boolean hasSpecificPath() {
+            return !fatigue.isBlank() || (!opponent.isBlank() && !"Group stage".equalsIgnoreCase(opponent));
+        }
+    }
+
+    private static String[] blankColumns(int length) {
+        String[] cols = new String[length];
+        java.util.Arrays.fill(cols, "");
+        return cols;
+    }
+
+    private static void copySharedContext(String[] target, String[] source, int... excludedIndexes) {
+        Set<Integer> excluded = java.util.Arrays.stream(excludedIndexes).boxed().collect(Collectors.toSet());
+        for (int i = 0; i < target.length && i < source.length; i++) {
+            if (!excluded.contains(i)) {
+                target[i] = source[i];
+            }
+        }
+    }
+
+    public static List<String> enrichPathContext(List<String> baseLines, List<String> contextLines) {
+        if (baseLines == null || baseLines.isEmpty() || contextLines == null || contextLines.isEmpty()) {
+            return baseLines == null ? List.of() : baseLines;
+        }
+        String[] headers = baseLines.get(0).split(",", -1);
+        int matchIdIdx = indexOf(headers, "match_id");
+        int team1Idx = indexOf(headers, "team1");
+        int team2Idx = indexOf(headers, "team2");
+        int pathIdx = indexOf(headers, "path");
+        int team1PathDiffIdx = indexOf(headers, "team1_path_fatigue");
+        int team2PathDiffIdx = indexOf(headers, "team2_path_fatigue");
+        int team1PathOppIdx = indexOf(headers, "team1_path_opponent");
+        int team2PathOppIdx = indexOf(headers, "team2_path_opponent");
+        if (matchIdIdx < 0 || team1Idx < 0 || team2Idx < 0 || pathIdx < 0
+                || team1PathDiffIdx < 0 || team2PathDiffIdx < 0 || team1PathOppIdx < 0 || team2PathOppIdx < 0) {
+            return baseLines;
+        }
+        Map<String, PathContextRow> contextByPath = pathContextRows(contextLines);
+        if (contextByPath.isEmpty()) {
+            return baseLines;
+        }
+        EloCalculator elo = new EloCalculator();
+        List<String> out = new ArrayList<>();
+        out.add(baseLines.get(0));
+        for (int i = 1; i < baseLines.size(); i++) {
+            String line = baseLines.get(i);
+            if (line == null || line.isBlank()) continue;
+            String[] cols = line.split(",", -1);
+            String team1 = elo.extractTeamName(valueAt(cols, team1Idx));
+            String team2 = elo.extractTeamName(valueAt(cols, team2Idx));
+            String key = pathContextKey(valueAt(cols, matchIdIdx), team1, team2, valueAt(cols, pathIdx));
+            PathContextRow context = contextByPath.get(key);
+            if (context == null) {
+                context = contextByPath.get(pathContextKey(valueAt(cols, matchIdIdx), team1, team2, ""));
+            }
+            if (context != null) {
+                cols[team1Idx] = context.team1();
+                cols[team2Idx] = context.team2();
+                cols[team1PathDiffIdx] = context.team1Fatigue();
+                cols[team2PathDiffIdx] = context.team2Fatigue();
+                cols[team1PathOppIdx] = context.team1Opponent();
+                cols[team2PathOppIdx] = context.team2Opponent();
+            }
+            out.add(String.join(",", cols));
+        }
+        return out;
+    }
+
+    private static Map<String, PathContextRow> pathContextRows(List<String> contextLines) {
+        String[] headers = contextLines.get(0).split(",", -1);
+        int matchIdIdx = indexOf(headers, "match_id");
+        int team1Idx = indexOf(headers, "team1");
+        int team2Idx = indexOf(headers, "team2");
+        int pathIdx = indexOf(headers, "path");
+        int team1PathDiffIdx = indexOf(headers, "team1_path_fatigue");
+        int team2PathDiffIdx = indexOf(headers, "team2_path_fatigue");
+        int team1PathOppIdx = indexOf(headers, "team1_path_opponent");
+        int team2PathOppIdx = indexOf(headers, "team2_path_opponent");
+        if (matchIdIdx < 0 || team1Idx < 0 || team2Idx < 0 || pathIdx < 0
+                || team1PathDiffIdx < 0 || team2PathDiffIdx < 0 || team1PathOppIdx < 0 || team2PathOppIdx < 0) {
+            return Map.of();
+        }
+        Map<String, PathContextRow> rows = new LinkedHashMap<>();
+        EloCalculator elo = new EloCalculator();
+        for (int i = 1; i < contextLines.size(); i++) {
+            String line = contextLines.get(i);
+            if (line == null || line.isBlank()) continue;
+            String[] cols = line.split(",", -1);
+            String team1 = elo.extractTeamName(valueAt(cols, team1Idx));
+            String team2 = elo.extractTeamName(valueAt(cols, team2Idx));
+            PathContextRow context = new PathContextRow(
+                    valueAt(cols, team1Idx), valueAt(cols, team2Idx),
+                    valueAt(cols, team1PathDiffIdx), valueAt(cols, team2PathDiffIdx),
+                    valueAt(cols, team1PathOppIdx), valueAt(cols, team2PathOppIdx));
+            rows.putIfAbsent(pathContextKey(valueAt(cols, matchIdIdx), team1, team2, valueAt(cols, pathIdx)), context);
+            rows.putIfAbsent(pathContextKey(valueAt(cols, matchIdIdx), team1, team2, ""), context);
+        }
+        return rows;
+    }
+
+    private static String pathContextKey(String matchId, String team1, String team2, String path) {
+        return safeTrim(matchId) + "|" + matchKey(team1, team2) + "|" + safeTrim(path).toLowerCase();
+    }
+
+    private record PathContextRow(String team1, String team2, String team1Fatigue, String team2Fatigue,
+                                  String team1Opponent, String team2Opponent) {
     }
 
     public static List<String> buildResultRows(List<String> baseLines, List<Map<String, String>> resultRows) {
@@ -247,6 +443,31 @@ public final class KnockoutViewRows {
             predicted.put(matchKey(team1, team2), winner);
         }
         return predicted;
+    }
+
+    public static List<String> relabelPredictedRowsAsLive(List<String> lines) {
+        if (lines == null || lines.size() <= 1) {
+            return lines;
+        }
+        String[] headers = lines.get(0).split(",", -1);
+        int pathIdx = indexOf(headers, "path");
+        if (pathIdx < 0) {
+            return lines;
+        }
+        List<String> out = new ArrayList<>();
+        out.add(lines.get(0));
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line == null || line.isBlank()) continue;
+            String[] cols = line.split(",", -1);
+            if ("predicted".equalsIgnoreCase(valueAt(cols, pathIdx)) || "prediction".equalsIgnoreCase(valueAt(cols, pathIdx))) {
+                cols[pathIdx] = "live";
+                out.add(String.join(",", cols));
+            } else {
+                out.add(line);
+            }
+        }
+        return out;
     }
 
     public static List<String> filter(List<String> lines, String pathFilter, String teamFilter) {

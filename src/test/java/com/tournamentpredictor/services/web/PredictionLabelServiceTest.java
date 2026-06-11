@@ -10,39 +10,39 @@ class PredictionLabelServiceTest {
 
     @Test
     void predictedStaysPredictedWhenNoResultExists() {
-        assertEquals(List.of("Predicted"),
+        assertEquals(List.of("Predicted Matchup"),
                 PredictionLabelService.labelsForPath("predicted", "France", ""));
     }
 
     @Test
-    void predictedBecomesPredictedWrongWhenOriginalPredictionLoses() {
-        assertEquals("Predicted / Wrong",
+    void predictedMatchupTextStaysStableWhenOriginalPredictionLoses() {
+        assertEquals("Predicted Matchup",
                 PredictionLabelService.combinedLabel("predicted", "France", "Spain"));
     }
 
     @Test
-    void predictedBecomesPredictedLiveWhenOriginalPredictionWins() {
-        assertEquals("Predicted / Live",
+    void predictedStaysPredictedWhenOriginalPredictionWins() {
+        assertEquals("Predicted Matchup",
                 PredictionLabelService.combinedLabel("predicted", "France", "France"));
     }
 
     @Test
     void livePredictionUsesTwoLabels() {
-        assertEquals(List.of("Predicted", "Live"),
+        assertEquals(List.of("Live Prediction"),
                 PredictionLabelService.labelsForPath("live", "Brazil", ""));
     }
 
     @Test
-    void fixtureLabelGainsResultsWhenActualWinnerExists() {
+    void fixtureLabelBecomesResultsWhenActualWinnerExists() {
         assertEquals("Fixture",
                 PredictionLabelService.combinedLabel("fixture", "Brazil", ""));
-        assertEquals("Fixture / Results",
+        assertEquals("Result",
                 PredictionLabelService.combinedLabel("fixture", "Brazil", "Germany"));
     }
 
     @Test
     void resultUpsetShowsResultsAndUpsetLabels() {
-        assertEquals(List.of("Results", "Upset"),
+        assertEquals(List.of("Result", "Upset"),
                 PredictionLabelService.labelsForPath("result_upset", "France", "Morocco"));
     }
 

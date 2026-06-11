@@ -113,8 +113,8 @@ class SimulationResultsRendererTest {
                 )
         ), "world_cup_2026");
 
-        assertTrue(html.contains("Most likely teams to proceed to Last 16"));
-        assertTrue(html.contains("Last 32 (25,000 simulations)"));
+        assertTrue(html.contains("Likelihood of advancing to last 16"));
+        assertTrue(html.contains("Last 32 (25,000 runs)"));
         assertFalse(html.contains("Monte Carlo proceed chance"));
         assertTrue(html.contains("Spain"));
         assertTrue(html.contains("data-team=\"Spain\""));
@@ -147,6 +147,35 @@ class SimulationResultsRendererTest {
     }
 
     @Test
+    void renderSnapshotUsesIncreasingRunsForGroupOriginChain() {
+        String html = SimulationResultsRenderer.renderSnapshot(List.of(Map.of(
+                "team", "France",
+                "reach_last_8", "74.2",
+                "simulation_runs", "25000",
+                "simulation_origin", "group_stage"
+        )), "world_cup_2026", "last_8");
+
+        assertTrue(html.contains("Group Stage (25,000 runs) &rarr; Last 16 (50,000 runs) &rarr; Quarter Finals (75,000 runs)"));
+    }
+
+    @Test
+    void renderSnapshotLabelsLiveRowsAsLivePrediction() {
+        String html = SimulationResultsRenderer.renderSnapshot(List.of(Map.of(
+                "team", "France",
+                "reach_last_8", "74.2",
+                "simulation_runs", "25000"
+        )), "world_cup_2026", "last_16", Set.of(), List.of(Map.of(
+                "team", "France",
+                "reach_last_8", "82.0",
+                "simulation_runs", "25000"
+        )));
+
+        assertTrue(html.contains("Live Prediction"));
+        assertFalse(html.contains("Prediction (Live)"));
+        assertTrue(html.contains("82.0%"));
+    }
+
+    @Test
     void renderSnapshotUsesLaterRoundLabelsAndAdvanceColumn() {
         String html = SimulationResultsRenderer.renderSnapshot(List.of(
                 Map.of(
@@ -158,8 +187,8 @@ class SimulationResultsRendererTest {
                         "simulation_runs", "25000")
         ), "world_cup_2026", "last_16");
 
-        assertTrue(html.contains("Most likely teams to proceed to Quarter Finals"));
-        assertTrue(html.contains("Last 32 (25,000 simulations) &rarr; Last 16 (25,000 simulations)"));
+        assertTrue(html.contains("Likelihood of advancing to quarter finals"));
+        assertTrue(html.contains("Last 32 (25,000 runs) &rarr; Last 16 (50,000 runs)"));
         assertFalse(html.contains("Probability measured from the start of the Last 32"));
         assertTrue(html.contains("74.2%"));
         assertTrue(html.contains("chance to reach Quarter Finals"));

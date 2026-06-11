@@ -1,24 +1,24 @@
 rank,team_code,team_name,rating
-1,ES,Spain,2155
-2,AR,Argentina,2114
-3,FR,France,2062
-4,EN,England,2021
+1,ES,Spain,2157
+2,AR,Argentina,2115
+3,FR,France,2063
+4,EN,England,2024
 5,BR,Brazil,1991
-6,PT,Portugal,1986
+6,PT,Portugal,1989
 7,CO,Colombia,1982
-8,NL,Netherlands,1944
+8,NL,Netherlands,1948
 9,EC,Ecuador,1938
 10,DE,Germany,1932
 11,NO,Norway,1914
-12,HR,Croatia,1911
+12,HR,Croatia,1912
 13,TR,Turkey,1911
 14,JP,Japan,1906
-15,BE,Belgium,1893
+15,BE,Belgium,1894
 16,UY,Uruguay,1892
 17,CH,Switzerland,1891
 18,MX,Mexico,1875
-19,SN,Senegal,1867
-20,PY,Paraguay,1833
+19,SN,Senegal,1860
+20,PY,Paraguay,1834
 21,AT,Austria,1830
 22,MA,Morocco,1827
 23,CA,Canada,1788
@@ -30,20 +30,20 @@ rank,team_code,team_name,rating
 29,CZ,Czechia,1740
 30,PA,Panama,1730
 31,US,United States,1726
-32,UZ,Uzbekistan,1718
+32,UZ,Uzbekistan,1714
 33,SE,Sweden,1712
 34,EG,Egypt,1696
 35,CI,Ivory Coast,1695
 36,JO,Jordan,1680
-37,CD,DR Congo,1661
+37,CD,DR Congo,1652
 38,TN,Tunisia,1628
-39,IQ,Iraq,1618
+39,IQ,Iraq,1607
 40,BA,Bosnia and Herzegovina,1595
 41,CV,Cape Verde,1578
-42,SA,Saudi Arabia,1569
+42,SA,Saudi Arabia,1576
 43,NZ,New Zealand,1562
 44,HT,Haiti,1548
-45,ZA,South Africa,1518
+45,ZA,South Africa,1517
 46,GH,Ghana,1510
 47,CW,Curaçao,1434
 48,QA,Qatar,1421

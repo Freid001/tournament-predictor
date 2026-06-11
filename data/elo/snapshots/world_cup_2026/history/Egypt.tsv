@@ -23,7 +23,7 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	10	11	Egypt	Mauritania	2	0	FQ		5	1671	1343	+2	−1	50	123
 2024	10	15	Mauritania	Egypt	0	1	FQ		-8	1335	1679	−3	+1	127	49
 2024	11	15	Cape Verde	Egypt	1	1	FQ		5	1495	1674	0	−2	83	50
-2024	11	19	Egypt	Botswana	1	1	FQ		-17	1657	1355	−2	+3	52	123
+2024	11	19	Egypt	Botswana	1	1	FQ		-17	1657	1355	−2	+4	52	122
 2025	03	21	Egypt	Ethiopia	2	0	WQ	MA	6	1663	1269	0	−1	50	148
 2025	03	25	Egypt	Sierra Leone	1	0	WQ		3	1666	1325	0	+3	50	127
 2025	09	05	Egypt	Ethiopia	2	0	WQ		3	1669	1276	+1	−1	50	146
@@ -32,13 +32,13 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2025	10	12	Egypt	Guinea-Bissau	1	0	WQ		2	1668	1244	−1	0	51	151
 2025	11	14	Uzbekistan	Egypt	2	0	FT	AE	20	1734	1648	+4	−2	36	54
 2025	11	17	Cape Verde	Egypt	1	1	FT	AE	4	1561	1644	+1	0	70	53
-2025	12	02	Egypt	Kuwait	1	1	ARC	QA	-14	1630	1353	−3	+7	56	116
+2025	12	02	Egypt	Kuwait	1	1	ARC	QA	-14	1630	1354	−3	+7	56	116
 2025	12	06	Egypt	United Arab Emirates	1	1	ARC	QA	-6	1624	1522	−2	0	58	79
 2025	12	09	Jordan	Egypt	3	0	ARC	QA	34	1669	1590	+5	−7	50	66
 2025	12	16	Egypt	Nigeria	2	1	F		8	1598	1619	+2	−1	63	59
 2025	12	22	Egypt	Zimbabwe	2	1	AR	MA	10	1608	1342	+3	−4	60	120
-2025	12	26	Egypt	South Africa	1	0	AR	MA	21	1629	1538	+2	−2	59	76
-2025	12	29	Angola	Egypt	0	0	AR	MA	6	1543	1623	+2	0	75	60
+2025	12	26	Egypt	South Africa	1	0	AR	MA	21	1629	1537	+2	−2	59	76
+2025	12	29	Angola	Egypt	0	0	AR	MA	6	1543	1623	+1	0	75	60
 2026	01	05	Egypt	Benin	3	1	AR	MA	18	1641	1410	+3	−5	57	97
 2026	01	10	Egypt	Ivory Coast	3	2	AR	MA	27	1668	1637	+6	−6	51	58
 2026	01	14	Senegal	Egypt	1	0	AR	MA	15	1838	1653	+3	−3	20	54

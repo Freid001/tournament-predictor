@@ -1,14 +1,14 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
 2023	01	07	Qatar	Kuwait	2	0	GLF	IQ	11	1588	1304	+1	−4	64	135
 2023	01	10	Bahrain	Qatar	2	1	GLF	IQ	24	1538	1564	+4	−3	75	68
-2023	01	13	Qatar	United Arab Emirates	1	1	GLF	IQ	-7	1557	1451	0	+3	68	89
+2023	01	13	Qatar	United Arab Emirates	1	1	GLF	IQ	-7	1557	1451	0	+3	68	88
 2023	01	16	Iraq	Qatar	2	1	GLF		12	1611	1545	+1	−1	60	69
 2023	06	15	Qatar	Jamaica	2	1	F	AT	10	1555	1538	+3	−3	68	73
 2023	06	19	New Zealand	Qatar	1	0	F	AT	11	1535	1544	+2	−1	73	71
 2023	06	25	Haiti	Qatar	2	1	CCH	US	25	1570	1519	+5	−2	67	75
-2023	06	29	Honduras	Qatar	1	1	CCH	US	5	1460	1514	+1	−2	89	77
+2023	06	29	Honduras	Qatar	1	1	CCH	US	5	1460	1514	0	−2	89	77
 2023	07	02	Qatar	Mexico	1	0	CCH	US	43	1557	1776	+7	−3	70	28
-2023	07	08	Panama	Qatar	4	0	CCH	US	33	1692	1524	+4	−4	45	74
+2023	07	08	Panama	Qatar	4	0	CCH	US	33	1692	1524	+4	−5	45	74
 2023	09	07	Qatar	Kenya	1	2	F		-17	1507	1362	−6	+1	79	116
 2023	09	12	Qatar	Russia	1	1	F		4	1511	1759	+2	−1	77	31
 2023	10	13	Iraq	Qatar	0	0	FT	JO	-4	1597	1515	0	+2	61	75
@@ -18,8 +18,8 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2023	12	31	Qatar	Cambodia	3	0	F		0	1534	848	0	0	70	205
 2024	01	05	Qatar	Jordan	1	2	F		-14	1520	1517	−3	+1	73	75
 2024	01	12	Qatar	Lebanon	3	0	AC		13	1533	1296	+2	−7	70	142
-2024	01	17	Qatar	Tajikistan	1	0	AC		10	1543	1372	+1	−2	69	113
-2024	01	22	Qatar	China	1	0	AC		11	1554	1409	+2	−2	67	103
+2024	01	17	Qatar	Tajikistan	1	0	AC		10	1543	1373	+1	−2	69	113
+2024	01	22	Qatar	China	1	0	AC		11	1554	1410	+2	−2	67	103
 2024	01	29	Qatar	Palestine	2	1	AC		10	1564	1412	+1	0	65	102
 2024	02	03	Qatar	Uzbekistan	1	1	AC		0	1564	1663	−1	0	68	47
 2024	02	07	Qatar	Iran	3	2	AC		37	1601	1816	+5	−5	63	20
@@ -35,20 +35,20 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	11	14	Qatar	Uzbekistan	3	2	WQ		22	1587	1678	+4	−2	64	49
 2024	11	19	United Arab Emirates	Qatar	5	0	WQ		35	1563	1552	+9	−9	68	72
 2024	12	21	Qatar	United Arab Emirates	1	1	GLF	KW	1	1553	1562	0	0	72	68
-2024	12	24	Oman	Qatar	2	1	GLF	KW	24	1510	1529	+3	−4	79	76
-2024	12	27	Kuwait	Qatar	1	1	GLF		5	1351	1524	0	−1	124	77
+2024	12	24	Oman	Qatar	2	1	GLF	KW	24	1511	1529	+3	−4	79	76
+2024	12	27	Kuwait	Qatar	1	1	GLF		5	1352	1524	0	−1	124	77
 2025	03	20	Qatar	North Korea	5	1	WQ		17	1541	1394	+5	−7	73	108
 2025	03	25	Kyrgyzstan	Qatar	3	1	WQ		43	1322	1498	+13	−9	130	83
 2025	06	05	Qatar	Iran	1	0	WQ		32	1530	1798	+7	−7	75	27
 2025	06	10	Uzbekistan	Qatar	3	0	WQ		13	1707	1517	+5	−2	42	78
 2025	08	24	Qatar	Lebanon	0	1	F		-17	1500	1344	−3	+4	82	124
-2025	09	03	Qatar	Bahrain	2	2	F		-4	1496	1453	0	+2	82	91
+2025	09	03	Qatar	Bahrain	2	2	F		-4	1496	1453	0	+2	82	90
 2025	09	07	Qatar	Russia	1	4	F		-9	1487	1796	−2	+2	82	26
-2025	10	08	Qatar	Oman	0	0	WQ		-4	1483	1520	0	0	84	78
-2025	10	14	Qatar	United Arab Emirates	2	1	WQ		19	1502	1548	+3	−2	81	73
+2025	10	08	Qatar	Oman	0	0	WQ		-4	1483	1521	0	0	84	77
+2025	10	14	Qatar	United Arab Emirates	2	1	WQ		19	1502	1548	+2	−2	82	73
 2025	11	17	Qatar	Zimbabwe	1	2	F		-16	1486	1352	−1	+12	84	115
-2025	12	01	Qatar	Palestine	0	1	ARC		-28	1458	1475	−6	+6	89	85
-2025	12	04	Qatar	Syria	1	1	ARC		-4	1454	1491	−1	0	90	83
-2025	12	07	Qatar	Tunisia	0	3	ARC		-29	1425	1641	−6	+7	96	54
+2025	12	01	Qatar	Palestine	0	1	ARC		-28	1458	1475	−6	+5	89	85
+2025	12	04	Qatar	Syria	1	1	ARC		-4	1454	1491	0	0	89	83
+2025	12	07	Qatar	Tunisia	0	3	ARC		-29	1425	1641	−7	+7	96	54
 2026	05	28	Ireland	Qatar	1	0	F		2	1694	1423	0	−1	49	96
 2026	06	06	El Salvador	Qatar	0	0	F	US	2	1342	1421	−1	0	123	97

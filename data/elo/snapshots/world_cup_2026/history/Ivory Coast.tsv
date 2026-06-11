@@ -1,30 +1,30 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
-2023	03	24	Ivory Coast	Comoros	3	1	FQ		3	1671	1244	+1	0	48	150
-2023	03	28	Comoros	Ivory Coast	0	2	FQ		-8	1236	1679	−3	+3	153	46
+2023	03	24	Ivory Coast	Comoros	3	1	FQ		3	1671	1244	+1	−1	48	151
+2023	03	28	Comoros	Ivory Coast	0	2	FQ		-8	1236	1679	−3	+3	154	46
 2023	06	17	Zambia	Ivory Coast	3	0	FQ		47	1507	1632	+13	−5	77	52
 2023	09	09	Ivory Coast	Lesotho	1	0	FQ		2	1634	1217	+2	0	51	155
 2023	09	12	Ivory Coast	Mali	0	0	F		-3	1631	1613	−1	+1	52	58
 2023	10	14	Ivory Coast	Morocco	1	1	F		3	1634	1838	+1	−1	50	20
-2023	10	17	Ivory Coast	South Africa	1	1	F		-6	1628	1523	−2	+1	53	73
+2023	10	17	Ivory Coast	South Africa	1	1	F		-6	1628	1522	−2	+1	53	73
 2023	11	17	Ivory Coast	Seychelles	9	0	WQ		1	1629	860	−1	−1	55	204
 2023	11	20	Ivory Coast	Gambia	2	0	WQ	TZ	13	1642	1396	+5	−5	50	107
 2024	01	06	Ivory Coast	Sierra Leone	5	1	F		3	1645	1308	+1	−2	50	136
 2024	01	13	Ivory Coast	Guinea-Bissau	2	0	AR		9	1654	1398	+1	−1	50	105
 2024	01	18	Ivory Coast	Nigeria	0	1	AR		-38	1616	1599	−7	+3	57	63
-2024	01	22	Ivory Coast	Equatorial Guinea	0	4	AR		-69	1547	1604	−12	+9	70	61
+2024	01	22	Ivory Coast	Equatorial Guinea	0	4	AR		-69	1547	1604	−12	+10	70	61
 2024	01	29	Ivory Coast	Senegal	1	1	AR		9	1556	1769	+1	−1	67	28
 2024	02	03	Ivory Coast	Mali	2	1	AR		24	1580	1625	+6	−5	63	56
 2024	02	07	Ivory Coast	DR Congo	1	0	AR		16	1596	1527	0	0	64	72
 2024	02	11	Ivory Coast	Nigeria	2	1	AR		22	1618	1634	+6	−4	58	54
 2024	03	23	Benin	Ivory Coast	2	2	F	FR	7	1348	1611	+4	−2	119	60
 2024	03	26	Ivory Coast	Uruguay	2	1	F	FR	18	1629	1988	+5	−2	56	8
-2024	06	07	Ivory Coast	Gabon	1	0	WQ		6	1635	1424	0	−1	53	98
+2024	06	07	Ivory Coast	Gabon	1	0	WQ		6	1635	1424	0	0	53	97
 2024	06	11	Ivory Coast	Kenya	0	0	WQ	MW	-12	1623	1407	−4	+3	57	103
 2024	09	06	Ivory Coast	Zambia	2	0	FQ		6	1629	1345	+1	−3	55	123
 2024	09	10	Ivory Coast	Chad	2	0	FQ	CM	4	1633	1158	−1	0	56	164
 2024	10	11	Ivory Coast	Sierra Leone	4	1	FQ		5	1638	1294	+1	−3	55	142
 2024	10	15	Sierra Leone	Ivory Coast	1	0	FQ	LR	35	1329	1603	+11	−3	128	59
-2024	11	15	Zambia	Ivory Coast	1	0	FQ		28	1383	1575	+9	−8	111	68
+2024	11	15	Zambia	Ivory Coast	1	0	FQ		28	1383	1575	+10	−8	110	68
 2024	11	19	Ivory Coast	Chad	4	0	FQ		4	1579	1166	+4	0	63	164
 2025	03	21	Ivory Coast	Burundi	1	0	WQ	MA	6	1585	1274	0	−5	61	147
 2025	03	24	Ivory Coast	Gambia	1	0	WQ		6	1591	1373	0	−3	62	116
@@ -35,12 +35,12 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2025	10	10	Ivory Coast	Seychelles	7	0	WQ	MU	1	1590	845	−1	0	63	204
 2025	10	14	Ivory Coast	Kenya	3	0	WQ		9	1599	1354	0	−2	64	116
 2025	11	14	Saudi Arabia	Ivory Coast	1	0	F		8	1593	1591	+2	−1	64	65
-2025	11	18	Oman	Ivory Coast	0	2	F		-16	1492	1607	−1	+3	83	62
-2025	12	24	Ivory Coast	Mozambique	1	0	AR	MA	11	1618	1369	+1	−3	60	110
+2025	11	18	Oman	Ivory Coast	0	2	F		-16	1493	1607	−2	+3	83	62
+2025	12	24	Ivory Coast	Mozambique	1	0	AR	MA	11	1618	1369	+1	−2	60	110
 2025	12	28	Cameroon	Ivory Coast	1	1	AR	MA	3	1581	1615	0	0	68	61
 2025	12	31	Ivory Coast	Gabon	3	2	AR	MA	12	1627	1405	+1	−1	59	99
 2026	01	06	Ivory Coast	Burkina Faso	3	0	AR	MA	37	1664	1534	+8	−6	52	76
 2026	01	10	Egypt	Ivory Coast	3	2	AR	MA	27	1668	1637	+6	−6	51	58
 2026	03	28	Ivory Coast	South Korea	4	0	F	EN	26	1663	1758	+4	−4	53	31
 2026	03	31	Ivory Coast	Scotland	1	0	F	EN	13	1676	1767	+1	−2	52	29
-2026	06	04	France	Ivory Coast	1	2	F		-19	2062	1695	0	+5	3	47
+2026	06	04	France	Ivory Coast	1	2	F		-19	2062	1695	0	+4	3	48

@@ -1,21 +1,21 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
-2023	03	24	South Africa	Liberia	2	2	FQ		-15	1526	1322	−5	+9	75	127
-2023	03	28	Liberia	South Africa	1	2	FQ		-14	1308	1540	−7	+3	135	72
-2023	06	17	South Africa	Morocco	2	1	FQ		32	1572	1838	+4	−5	67	20
-2023	07	05	South Africa	Namibia	1	1	CSF		-14	1558	1399	−2	+1	69	108
-2023	07	08	South Africa	Botswana	2	1	CSF		6	1564	1351	+1	0	68	117
-2023	07	11	South Africa	Eswatini	2	1	CSF		4	1568	1272	+1	−1	67	144
-2023	07	14	South Africa	Zambia	1	2	CSF		-30	1538	1516	−4	+9	71	77
-2023	07	16	South Africa	Malawi	0	0	CSF		-15	1523	1332	−3	+8	74	121
-2023	09	09	South Africa	Namibia	0	0	F		-6	1517	1377	−2	+1	75	113
-2023	09	12	South Africa	DR Congo	1	0	F		7	1524	1517	+2	−3	73	76
-2023	10	13	South Africa	Eswatini	0	0	F		-7	1517	1293	−1	+1	74	140
-2023	10	17	Ivory Coast	South Africa	1	1	F		-6	1628	1523	−2	+1	53	73
-2023	11	18	South Africa	Benin	2	1	WQ		7	1530	1347	+1	−3	72	121
-2023	11	21	Rwanda	South Africa	2	0	WQ		44	1305	1486	+13	−12	136	84
-2024	01	10	South Africa	Lesotho	0	0	F		-8	1478	1239	−2	+1	86	156
-2024	01	16	Mali	South Africa	2	0	AR	CI	23	1643	1455	+5	−5	51	93
-2024	01	21	South Africa	Namibia	4	0	AR	CI	43	1498	1385	+12	−8	81	107
+2023	03	24	South Africa	Liberia	2	2	FQ		-15	1525	1322	−5	+10	75	126
+2023	03	28	Liberia	South Africa	1	2	FQ		-14	1308	1539	−8	+2	135	73
+2023	06	17	South Africa	Morocco	2	1	FQ		32	1571	1838	+3	−5	68	20
+2023	07	05	South Africa	Namibia	1	1	CSF		-14	1557	1399	−2	+1	69	108
+2023	07	08	South Africa	Botswana	2	1	CSF		6	1563	1351	+1	0	68	117
+2023	07	11	South Africa	Eswatini	2	1	CSF		4	1567	1272	0	−1	68	144
+2023	07	14	South Africa	Zambia	1	2	CSF		-30	1537	1516	−3	+9	71	77
+2023	07	16	South Africa	Malawi	0	0	CSF		-15	1522	1332	−3	+8	74	121
+2023	09	09	South Africa	Namibia	0	0	F		-6	1516	1377	−3	+1	76	113
+2023	09	12	South Africa	DR Congo	1	0	F		7	1523	1517	+2	−3	73	76
+2023	10	13	South Africa	Eswatini	0	0	F		-7	1516	1293	−1	+1	74	140
+2023	10	17	Ivory Coast	South Africa	1	1	F		-6	1628	1522	−2	+1	53	73
+2023	11	18	South Africa	Benin	2	1	WQ		7	1529	1347	+1	−3	73	121
+2023	11	21	Rwanda	South Africa	2	0	WQ		43	1304	1486	+13	−11	136	84
+2024	01	10	South Africa	Lesotho	0	0	F		-8	1478	1239	−3	+1	87	156
+2024	01	16	Mali	South Africa	2	0	AR	CI	23	1643	1455	+5	−4	51	92
+2024	01	21	South Africa	Namibia	4	0	AR	CI	43	1498	1385	+11	−8	81	107
 2024	01	24	South Africa	Tunisia	0	0	AR	CI	12	1510	1674	+5	0	77	45
 2024	01	30	South Africa	Morocco	2	0	AR	CI	65	1575	1773	+15	−8	63	26
 2024	02	03	Cape Verde	South Africa	0	0	AR	CI	1	1559	1574	−1	−1	69	64
@@ -24,35 +24,35 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	03	21	Andorra	South Africa	1	1	FFS	DZ	13	1115	1563	+2	−2	170	68
 2024	03	26	Algeria	South Africa	3	3	FFS		-8	1663	1571	−2	+1	48	66
 2024	06	07	Nigeria	South Africa	1	1	WQ		-8	1618	1579	−3	+1	59	65
-2024	06	11	South Africa	Zimbabwe	3	1	WQ		6	1585	1279	+1	−3	65	146
+2024	06	11	South Africa	Zimbabwe	3	1	WQ		6	1585	1278	+1	−3	65	146
 2024	06	26	South Africa	Mozambique	1	1	CSF		-14	1571	1407	−2	+6	66	103
 2024	06	29	South Africa	Botswana	0	0	CSF		-15	1556	1340	−4	+5	70	125
-2024	07	02	South Africa	Eswatini	1	0	CSF		3	1559	1229	0	−1	69	157
-2024	09	06	South Africa	Uganda	2	2	FQ		-14	1545	1375	−2	+4	73	110
+2024	07	02	South Africa	Eswatini	1	0	CSF		3	1559	1228	0	−1	69	157
+2024	09	06	South Africa	Uganda	2	2	FQ		-14	1545	1375	−2	+5	73	110
 2024	09	10	South Sudan	South Africa	2	3	FQ		-5	1114	1550	−2	−1	171	73
 2024	10	11	South Africa	Congo	5	0	FQ		8	1558	1254	+1	−2	71	150
-2024	10	15	Congo	South Africa	1	1	FQ		11	1265	1547	+3	−1	145	71
+2024	10	15	Congo	South Africa	1	1	FQ		11	1265	1547	+3	−2	145	72
 2024	11	15	Uganda	South Africa	0	2	FQ		-26	1377	1573	−10	+3	113	69
 2024	11	19	South Africa	South Sudan	3	0	FQ		3	1576	1121	+5	−1	64	169
 2025	03	21	South Africa	Lesotho	2	0	WQ		4	1580	1226	+1	0	62	156
 2025	03	25	South Africa	Benin	2	0	WQ	CI	18	1598	1408	+3	−5	60	100
 2025	06	04	South Africa	Mozambique	0	1	CSF		-32	1566	1495	−7	+6	67	83
 2025	06	06	South Africa	Tanzania	0	0	F		-6	1560	1410	0	+2	68	99
-2025	06	07	South Africa	Zimbabwe	2	0	CSF		10	1570	1360	+1	−3	67	120
-2025	06	10	South Africa	Mozambique	2	0	F		7	1577	1471	−3	−9	70	95
-2025	06	10	South Africa	Mauritius	0	0	CSF		-19	1558	1095	−3	0	70	175
-2025	06	13	South Africa	Comoros	3	1	CSF		12	1570	1412	+2	0	68	97
-2025	06	15	South Africa	Angola	0	3	CSF		-46	1524	1607	−7	+10	75	61
-2025	09	05	South Africa	Lesotho	3	0	WQ		6	1530	1216	+1	0	76	157
-2025	09	09	South Africa	Nigeria	1	1	WQ		-3	1527	1584	−1	+1	76	66
-2025	10	10	South Africa	Zimbabwe	0	0	WQ		-13	1514	1368	−3	+6	79	113
-2025	10	14	South Africa	Rwanda	3	0	WQ		11	1525	1309	+1	−3	77	136
-2025	11	15	South Africa	Zambia	3	1	F		6	1531	1368	0	−1	77	111
-2025	12	22	South Africa	Angola	2	1	AR	MA	28	1559	1550	+5	−6	72	74
-2025	12	26	Egypt	South Africa	1	0	AR	MA	21	1629	1538	+2	−2	59	76
-2025	12	29	South Africa	Zimbabwe	3	2	AR	MA	13	1551	1342	+3	−4	73	120
-2026	01	04	Cameroon	South Africa	2	1	AR	MA	22	1616	1529	+3	−3	61	77
-2026	03	27	South Africa	Panama	1	1	F		3	1532	1730	−1	−3	79	41
-2026	03	31	South Africa	Panama	1	2	F		-7	1525	1737	−1	+2	79	36
-2026	05	29	South Africa	Nicaragua	0	0	F		-7	1518	1334	0	+2	79	126
-2026	06	06	Jamaica	South Africa	1	1	F	MX	0	1527	1518	0	0	77	80
+2025	06	07	South Africa	Zimbabwe	2	0	CSF		9	1569	1360	+1	−2	67	120
+2025	06	10	South Africa	Mozambique	2	0	F		7	1576	1471	−3	−9	70	95
+2025	06	10	South Africa	Mauritius	0	0	CSF		-19	1557	1095	−3	0	70	175
+2025	06	13	South Africa	Comoros	3	1	CSF		12	1569	1412	+2	−1	68	97
+2025	06	15	South Africa	Angola	0	3	CSF		-46	1523	1607	−7	+9	75	61
+2025	09	05	South Africa	Lesotho	3	0	WQ		6	1529	1216	+1	0	76	157
+2025	09	09	South Africa	Nigeria	1	1	WQ		-3	1526	1584	−1	+2	76	65
+2025	10	10	South Africa	Zimbabwe	0	0	WQ		-13	1513	1368	−3	+6	79	113
+2025	10	14	South Africa	Rwanda	3	0	WQ		11	1524	1308	0	−3	78	136
+2025	11	15	South Africa	Zambia	3	1	F		6	1530	1368	0	−1	77	111
+2025	12	22	South Africa	Angola	2	1	AR	MA	28	1558	1550	+4	−6	73	74
+2025	12	26	Egypt	South Africa	1	0	AR	MA	21	1629	1537	+2	−2	59	76
+2025	12	29	South Africa	Zimbabwe	3	2	AR	MA	13	1550	1342	+2	−4	74	120
+2026	01	04	Cameroon	South Africa	2	1	AR	MA	22	1616	1528	+3	−3	61	77
+2026	03	27	South Africa	Panama	1	1	F		3	1531	1730	−1	−3	79	41
+2026	03	31	South Africa	Panama	1	2	F		-7	1524	1737	−1	+2	79	36
+2026	05	29	South Africa	Nicaragua	0	0	F		-7	1517	1334	0	+3	79	126
+2026	06	06	Jamaica	South Africa	1	1	F	MX	0	1527	1517	0	0	77	80

@@ -231,7 +231,7 @@ public final class SimulationResultsRenderer {
         StringBuilder html = new StringBuilder();
         html.append("<div class=\"border rounded-2 bg-light p-3 mb-3\">")
                 .append("<div class=\"d-flex flex-column flex-md-row justify-content-between gap-2 align-items-md-center mb-2\">")
-                .append("<div><div class=\"fw-semibold\">Most likely teams to proceed to ").append(advanceLabel).append("</div>")
+                .append("<div><div class=\"fw-semibold\">Likelihood of advancing to ").append(lowerRoundLabel(advanceLabel)).append("</div>")
                 .append("<div class=\"text-muted small\">").append(simulationSubtitle).append("</div></div>")
                 .append("</div>")
                 .append("<div class=\"row g-2\">");
@@ -252,7 +252,7 @@ public final class SimulationResultsRenderer {
             String arrowClass = deltaValue > 0.05 ? "text-success" : deltaValue < -0.05 ? "text-danger" : "text-muted";
             String arrowSymbol = deltaValue > 0.05 ? "&#9650;" : deltaValue < -0.05 ? "&#9660;" : "&#8212;";
             boolean showMovementArrow = hasActualResults || (hasLiveRows && !livePct.isBlank());
-            String pctLabel = hasLiveRows && !livePct.isBlank() ? "Prediction (Live)" : "Prediction";
+            String pctLabel = hasLiveRows && !livePct.isBlank() ? "Live Prediction" : "Prediction";
             html.append("<div class=\"col-6 col-md-3 col-xl-2 sim-snapshot-card\" data-sim-page=\"")
                     .append(leaderIndex / 12)
                     .append("\" style=\"")
@@ -341,19 +341,20 @@ public final class SimulationResultsRenderer {
     }
 
     private static String groupSimulationChain(String startRound, String simulationRuns) {
-        String runs = simulationRuns.isBlank() ? "simulations" : formatCount(simulationRuns) + " simulations";
+        int baseRuns = parseRuns(simulationRuns);
         List<String> stages = switch (startRound) {
             case "last_8" -> List.of("Group Stage", "Last 16", "Quarter Finals");
             case "last_4" -> List.of("Group Stage", "Last 16", "Quarter Finals", "Semi Finals");
             case "final" -> List.of("Group Stage", "Last 16", "Quarter Finals", "Semi Finals", "Final");
             default -> List.of("Group Stage", "Last 16");
         };
-        return stages.stream().map(stage -> stage + " (" + runs + ")")
+        return java.util.stream.IntStream.range(0, stages.size())
+                .mapToObj(i -> stages.get(i) + " (" + formatStageRuns(baseRuns, i) + ")")
                 .collect(java.util.stream.Collectors.joining(" &rarr; "));
     }
 
     private static String simulationChain(String startRound, String simulationRuns) {
-        String runs = simulationRuns.isBlank() ? "simulations" : formatCount(simulationRuns) + " simulations";
+        int baseRuns = parseRuns(simulationRuns);
         List<String> stages = switch (startRound) {
             case "last_16" -> List.of("Last 32", "Last 16");
             case "last_8" -> List.of("Last 32", "Last 16", "Quarter Finals");
@@ -361,9 +362,27 @@ public final class SimulationResultsRenderer {
             case "final" -> List.of("Last 32", "Last 16", "Quarter Finals", "Semi Finals", "Final");
             default -> List.of("Last 32");
         };
-        return stages.stream()
-                .map(stage -> stage + " (" + runs + ")")
+        return java.util.stream.IntStream.range(0, stages.size())
+                .mapToObj(i -> stages.get(i) + " (" + formatStageRuns(baseRuns, i) + ")")
                 .collect(java.util.stream.Collectors.joining(" &rarr; "));
+    }
+
+    private static String lowerRoundLabel(String label) {
+        return label == null ? "" : label.toLowerCase(java.util.Locale.ROOT);
+    }
+
+    private static int parseRuns(String simulationRuns) {
+        if (simulationRuns == null || simulationRuns.isBlank()) return 0;
+        try {
+            return Integer.parseInt(simulationRuns.replace(",", "").trim());
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private static String formatStageRuns(int baseRuns, int stageIndex) {
+        if (baseRuns <= 0) return "runs";
+        return formatCount(String.valueOf(baseRuns * (stageIndex + 1))) + " runs";
     }
 
     private static String snapshotStartLabel(String startRound) {

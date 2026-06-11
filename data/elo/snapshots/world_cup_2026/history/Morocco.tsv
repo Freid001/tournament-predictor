@@ -1,8 +1,8 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
 2023	03	25	Morocco	Brazil	2	1	F		14	1880	2119	0	0	16	2
-2023	03	28	Morocco	Peru	0	0	F	ES	-1	1879	1844	0	+1	15	18
+2023	03	28	Morocco	Peru	0	0	F	ES	-1	1879	1845	0	+1	15	18
 2023	06	12	Morocco	Cape Verde	0	0	F		-9	1870	1488	0	+1	15	81
-2023	06	17	South Africa	Morocco	2	1	FQ		32	1572	1838	+4	−5	67	20
+2023	06	17	South Africa	Morocco	2	1	FQ		32	1571	1838	+3	−5	68	20
 2023	09	12	Morocco	Burkina Faso	1	0	F	FR	3	1841	1551	+2	−1	19	69
 2023	10	14	Ivory Coast	Morocco	1	1	F		3	1634	1838	+1	−1	50	20
 2023	10	17	Morocco	Liberia	3	0	FQ		2	1840	1294	0	+1	20	140
@@ -20,20 +20,20 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	09	09	Morocco	Lesotho	1	0	FQ		1	1779	1204	0	−1	26	159
 2024	10	12	Morocco	Central African Republic	5	0	FQ		3	1782	1328	0	0	27	127
 2024	10	15	Morocco	Central African Republic	4	0	FQ		3	1785	1325	+2	−4	26	130
-2024	11	15	Gabon	Morocco	1	5	FQ		-15	1429	1800	−2	+5	95	23
+2024	11	15	Gabon	Morocco	1	5	FQ		-15	1429	1800	−3	+5	95	23
 2024	11	18	Morocco	Lesotho	7	0	FQ		2	1802	1230	0	−1	24	156
-2025	03	21	Morocco	Niger	2	1	WQ		1	1803	1319	0	0	23	134
+2025	03	21	Morocco	Niger	2	1	WQ		1	1803	1320	0	0	23	133
 2025	03	25	Morocco	Tanzania	2	0	WQ		3	1806	1404	0	0	26	102
 2025	06	06	Morocco	Tunisia	2	0	F		5	1811	1613	+1	−2	25	58
 2025	06	09	Morocco	Benin	1	0	F		1	1812	1407	0	+1	24	98
 2025	09	05	Morocco	Niger	5	0	WQ		3	1815	1334	0	−2	25	128
-2025	09	08	Zambia	Morocco	0	2	WQ		-8	1376	1823	−1	+2	111	23
-2025	10	09	Morocco	Bahrain	1	0	F		1	1824	1447	0	0	23	90
+2025	09	08	Zambia	Morocco	0	2	WQ		-8	1376	1823	−1	+1	111	24
+2025	10	09	Morocco	Bahrain	1	0	F		1	1824	1447	0	0	23	89
 2025	10	14	Morocco	Congo	1	0	WQ		1	1825	1207	0	0	23	158
 2025	11	14	Morocco	Mozambique	1	0	F		1	1826	1396	0	0	23	106
 2025	11	18	Morocco	Uganda	4	0	F		2	1828	1433	0	−1	22	96
 2025	12	02	Morocco	Comoros	3	1	ARC	QA	5	1833	1388	+1	−2	21	108
-2025	12	05	Morocco	Oman	0	0	ARC	QA	-16	1817	1476	−2	+2	23	86
+2025	12	05	Morocco	Oman	0	0	ARC	QA	-16	1817	1477	−2	+2	23	86
 2025	12	08	Morocco	Saudi Arabia	1	0	ARC	QA	9	1826	1597	+1	−1	22	65
 2025	12	11	Morocco	Syria	1	0	ARC	QA	5	1831	1486	0	−1	22	84
 2025	12	15	Morocco	United Arab Emirates	3	0	ARC	QA	11	1842	1537	+2	−2	20	76
@@ -46,7 +46,7 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2026	01	14	Morocco	Nigeria	0	0	AR		-14	1838	1745	−1	+3	20	35
 2026	01	18	Morocco	Senegal	0	1	AR		-32	1806	1870	−4	+3	24	17
 2026	03	27	Ecuador	Morocco	1	1	F	ES	-4	1929	1810	0	0	10	24
-2026	03	31	Morocco	Paraguay	2	1	F	FR	11	1821	1832	0	0	24	22
+2026	03	31	Morocco	Paraguay	2	1	F	FR	11	1821	1833	0	0	24	22
 2026	05	26	Morocco	Burundi	5	0	F		1	1822	1285	0	−1	24	143
 2026	06	02	Morocco	Madagascar	4	0	F		2	1824	1380	0	−1	24	107
 2026	06	07	Morocco	Norway	1	1	F	US	3	1827	1914	0	0	24	11

@@ -1,5 +1,5 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
-2023	03	25	Germany	Peru	2	0	F		7	1962	1843	0	−2	9	19
+2023	03	25	Germany	Peru	2	0	F		7	1962	1844	0	−2	9	19
 2023	03	28	Germany	Belgium	2	3	F		-12	1950	1987	−1	+1	10	7
 2023	06	12	Germany	Ukraine	3	3	F		-6	1944	1818	−1	0	11	22
 2023	06	16	Poland	Germany	1	0	F		12	1795	1932	+1	0	25	10
@@ -13,7 +13,7 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	03	23	France	Germany	0	2	F		-26	2083	1911	0	0	2	13
 2024	03	26	Germany	Netherlands	2	1	F		9	1920	1968	0	0	13	10
 2024	06	03	Germany	Ukraine	0	0	F		-4	1916	1867	0	0	13	15
-2024	06	07	Germany	Greece	2	1	F		3	1919	1736	0	−1	13	37
+2024	06	07	Germany	Greece	2	1	F		3	1919	1736	0	−2	13	38
 2024	06	14	Germany	Scotland	5	1	EC		18	1937	1751	0	−1	13	30
 2024	06	19	Germany	Hungary	2	0	EC		15	1952	1776	+1	−6	11	26
 2024	06	23	Germany	Switzerland	1	1	EC		-14	1938	1851	0	+2	11	16
@@ -30,9 +30,9 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2025	06	04	Germany	Portugal	1	2	ENL		-32	1955	2020	−1	+2	8	4
 2025	06	08	Germany	France	0	2	ENL		-42	1913	2055	−1	+1	9	3
 2025	09	04	Slovakia	Germany	2	0	WQ		42	1707	1871	+9	−4	42	14
-2025	09	07	Germany	Northern Ireland	3	1	WQ		6	1877	1585	0	−2	14	65
+2025	09	07	Germany	Northern Ireland	3	1	WQ		6	1877	1584	0	0	14	65
 2025	10	10	Germany	Luxembourg	4	0	WQ		3	1880	1413	−1	−1	15	101
-2025	10	13	Northern Ireland	Germany	0	1	WQ		-11	1607	1891	−1	0	60	15
+2025	10	13	Northern Ireland	Germany	0	1	WQ		-11	1606	1891	−1	0	60	15
 2025	11	14	Luxembourg	Germany	0	2	WQ		-6	1401	1897	−2	+1	105	14
 2025	11	17	Germany	Slovakia	6	0	WQ		13	1910	1687	+2	−4	13	48
 2026	03	27	Switzerland	Germany	3	4	F		-12	1885	1922	−2	+1	15	11

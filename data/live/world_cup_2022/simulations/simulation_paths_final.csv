@@ -1,5 +1,5 @@
 team,finish,path,count,percentage,simulation_runs,simulation_seed
-Argentina,Champion,France,16845,67.4,25000,20260605
-Argentina,Runner-up,None,8155,32.6,25000,20260605
-France,Runner-up,None,16845,67.4,25000,20260605
-France,Champion,Argentina,8155,32.6,25000,20260605
+Argentina,Champion,France,84251,67.4,125000,20260605
+Argentina,Runner-up,None,40749,32.6,125000,20260605
+France,Runner-up,None,84251,67.4,125000,20260605
+France,Champion,Argentina,40749,32.6,125000,20260605

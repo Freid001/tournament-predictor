@@ -1,12 +1,12 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
 2023	03	23	Ghana	Angola	1	0	FQ		6	1599	1400	+2	−2	62	103
 2023	03	27	Angola	Ghana	1	1	FQ		6	1406	1593	+1	−3	103	64
-2023	06	18	Madagascar	Ghana	0	0	FQ		13	1237	1580	+2	0	153	64
-2023	09	07	Ghana	Central African Republic	2	1	FQ		4	1584	1317	+1	−1	63	130
+2023	06	18	Madagascar	Ghana	0	0	FQ		13	1237	1580	+1	0	154	64
+2023	09	07	Ghana	Central African Republic	2	1	FQ		4	1584	1317	+2	−1	63	130
 2023	09	12	Ghana	Liberia	3	1	F		3	1587	1305	+2	0	63	136
 2023	10	14	Mexico	Ghana	2	0	F	US	6	1838	1581	0	−1	20	64
 2023	10	17	United States	Ghana	4	0	F		5	1804	1576	0	+1	26	63
-2023	11	17	Ghana	Madagascar	1	0	WQ		4	1580	1286	0	+1	64	143
+2023	11	17	Ghana	Madagascar	1	0	WQ		4	1580	1286	+1	+1	64	143
 2023	11	21	Comoros	Ghana	1	0	WQ		32	1274	1548	+7	−5	147	68
 2024	01	08	Ghana	Namibia	0	0	F		-7	1541	1384	0	+3	69	109
 2024	01	14	Cape Verde	Ghana	2	1	AR	CI	30	1505	1511	+11	−6	77	75
@@ -17,19 +17,19 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	06	06	Mali	Ghana	1	2	WQ		-32	1614	1532	−7	+7	59	75
 2024	06	10	Ghana	Central African Republic	4	3	WQ		6	1538	1324	0	−3	75	128
 2024	09	05	Ghana	Angola	0	1	FQ		-25	1513	1576	−3	+7	79	65
-2024	09	09	Ghana	Niger	1	1	FQ	MA	-14	1499	1239	−3	+1	84	153
+2024	09	09	Ghana	Niger	1	1	FQ	MA	-14	1499	1240	−3	+1	84	153
 2024	10	10	Ghana	Sudan	0	0	FQ		-11	1488	1397	−1	+2	86	106
-2024	10	15	Sudan	Ghana	2	0	FQ	LY	38	1435	1450	+9	−7	97	92
-2024	11	15	Angola	Ghana	1	1	FQ		-12	1580	1462	−5	+3	66	87
-2024	11	18	Ghana	Niger	1	2	FQ		-33	1429	1320	−8	+8	95	131
+2024	10	15	Sudan	Ghana	2	0	FQ	LY	38	1435	1450	+9	−6	97	91
+2024	11	15	Angola	Ghana	1	1	FQ		-12	1580	1462	−5	+2	66	87
+2024	11	18	Ghana	Niger	1	2	FQ		-33	1429	1321	−8	+9	95	130
 2025	03	21	Ghana	Chad	5	0	WQ		9	1438	1157	+1	0	93	163
 2025	03	24	Ghana	Madagascar	3	0	WQ	MA	24	1462	1298	+3	−3	90	135
-2025	05	28	Nigeria	Ghana	2	1	UTC	EN	11	1569	1451	+4	−3	65	92
-2025	05	31	Ghana	Trinidad and Tobago	4	0	UTC	EN	26	1477	1395	+5	−7	87	105
+2025	05	28	Nigeria	Ghana	2	1	UTC	EN	11	1569	1451	+4	−2	65	91
+2025	05	31	Ghana	Trinidad and Tobago	4	0	UTC	EN	26	1477	1395	+4	−7	87	105
 2025	09	04	Chad	Ghana	1	1	WQ		11	1162	1466	0	−1	164	86
 2025	09	08	Ghana	Mali	1	0	WQ		23	1489	1597	+4	−3	82	61
 2025	10	08	Ghana	Central African Republic	5	0	WQ	MA	15	1504	1217	+1	−1	81	154
-2025	10	12	Ghana	Comoros	1	0	WQ		9	1513	1390	+1	−2	80	108
+2025	10	12	Ghana	Comoros	1	0	WQ		9	1513	1390	+2	−2	79	108
 2025	11	14	Japan	Ghana	2	0	F		2	1873	1511	0	+1	17	79
 2025	11	18	South Korea	Ghana	1	0	F		2	1784	1509	−1	−1	28	80
 2026	03	27	Austria	Ghana	5	1	F		3	1821	1506	0	−1	23	81

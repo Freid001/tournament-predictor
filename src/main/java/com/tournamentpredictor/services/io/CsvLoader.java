@@ -526,8 +526,10 @@ public class CsvLoader {
                 int year;
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
                 if (year < sinceYear || year > untilYear || isOnOrAfter(cols, maxDate)) continue;
-                int homeScore, awayScore;
+                int homeScore, awayScore, month, day;
                 try {
+                    month = Integer.parseInt(cols[1].trim());
+                    day = Integer.parseInt(cols[2].trim());
                     homeScore = Integer.parseInt(cols[5].trim());
                     awayScore = Integer.parseInt(cols[6].trim());
                 } catch (Exception e) { continue; }
@@ -538,7 +540,8 @@ public class CsvLoader {
                 String result = teamScore > oppScore ? "W" : teamScore == oppScore ? "D" : "L";
                 int pts = teamScore > oppScore ? 3 : teamScore == oppScore ? 1 : 0;
                 String score = teamScore + "–" + oppScore;
-                results.add(new String[]{result, opponent, score, String.valueOf(pts), String.valueOf(teamScore), String.valueOf(oppScore)});
+                String date = String.format(java.util.Locale.ROOT, "%04d-%02d-%02d", year, month, day);
+                results.add(new String[]{result, opponent, score, String.valueOf(pts), String.valueOf(teamScore), String.valueOf(oppScore), date});
             }
         } catch (IOException ignored) {}
         // Show the same warm-up matches used by the ELO adjustment.
@@ -559,8 +562,10 @@ public class CsvLoader {
                 try { year = Integer.parseInt(cols[0].trim()); } catch (Exception e) { continue; }
                 if (year < sinceYear || year > untilYear || isOnOrAfter(cols, maxDate)) continue;
                 if (!qualifierTypes.contains(cols[7].trim())) continue;
-                int homeScore, awayScore;
+                int homeScore, awayScore, month, day;
                 try {
+                    month = Integer.parseInt(cols[1].trim());
+                    day = Integer.parseInt(cols[2].trim());
                     homeScore = Integer.parseInt(cols[5].trim());
                     awayScore = Integer.parseInt(cols[6].trim());
                 } catch (Exception e) { continue; }
@@ -571,7 +576,8 @@ public class CsvLoader {
                 String result = teamScore > oppScore ? "W" : teamScore == oppScore ? "D" : "L";
                 int pts = teamScore > oppScore ? 3 : teamScore == oppScore ? 1 : 0;
                 String score = teamScore + "–" + oppScore;
-                results.add(new String[]{result, opponent, score, String.valueOf(pts), String.valueOf(teamScore), String.valueOf(oppScore)});
+                String date = String.format(java.util.Locale.ROOT, "%04d-%02d-%02d", year, month, day);
+                results.add(new String[]{result, opponent, score, String.valueOf(pts), String.valueOf(teamScore), String.valueOf(oppScore), date});
             }
         } catch (IOException ignored) {}
         int limit = 8;
@@ -579,8 +585,8 @@ public class CsvLoader {
     }
 
     /**
-     * Takes 6-element raw result arrays [result, opponent, score, pts, gf, ga] and
-     * returns 4-element arrays [result, opponent, score, eloContrib] where contributions
+     * Takes raw result arrays [result, opponent, score, pts, gf, ga, date] and
+     * returns arrays [result, opponent, score, eloContrib, date] where contributions
      * are computed using the same linear formula as QualificationFormCalculator and
      * scaled so they sum to totalBonus.
      */
@@ -603,14 +609,15 @@ public class CsvLoader {
             // Degenerate: distribute evenly
             int each = totalBonus / n;
             for (String[] r : results)
-                out.add(new String[]{r[0], r[1], r[2], String.valueOf(each)});
+                out.add(new String[]{r[0], r[1], r[2], String.valueOf(each), r.length > 6 ? r[6] : ""});
         } else {
             double scale = totalBonus / totalWeight;
             int assigned = 0;
             for (int i = 0; i < n; i++) {
                 int contrib = (i < n - 1) ? (int) Math.round(weights[i] * scale) : (totalBonus - assigned);
                 assigned += contrib;
-                out.add(new String[]{results.get(i)[0], results.get(i)[1], results.get(i)[2], String.valueOf(contrib)});
+                String[] result = results.get(i);
+                out.add(new String[]{result[0], result[1], result[2], String.valueOf(contrib), result.length > 6 ? result[6] : ""});
             }
         }
         return out;

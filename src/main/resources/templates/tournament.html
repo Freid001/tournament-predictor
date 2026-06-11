@@ -26,12 +26,12 @@
                     <div class="text-muted small" style="white-space: pre-line" th:text="${stage.description}">Description</div>
                 </div>
                 <div class="d-flex flex-wrap gap-2">
+                    <a th:if="${stage.canView}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl}">View</a>
+                    <a th:if="${stage.canView2}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl2}" th:text="${stage.viewLabel2}">View Rankings</a>
                     <form th:if="${stage.canRun}" th:action="@{/run/{mode}(mode=${stage.runMode}, tournament=${tournament.name})}" method="post" class="d-inline" th:attr="data-confirm-message=${stage.runMode == 'snapshot-refresh' ? 'Refreshing now will first update the shared current ELO history, then freeze this tournament snapshot. Generated group rankings and tournament results will be cleared, but your team setup will remain saved. Matches played on or after the tournament start date are excluded. Do you want to continue?' : null}">
                         <button class="btn btn-sm" th:classappend="${stage.runButtonClass}" type="submit" th:text="${stage.runLabel}">Review</button>
                     </form>
-                    <a th:if="${stage.canView}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl}">View</a>
                     <a th:if="${stage.canLoadActual}" class="btn btn-outline-primary btn-sm" th:href="${stage.loadActualUrl}" th:classappend="${stage.loadActualUrl == '#'} ? ' disabled' : ''">Refresh</a>
-                    <a th:if="${stage.canView2}" class="btn btn-outline-primary btn-sm" th:href="${stage.viewUrl2}" th:text="${stage.viewLabel2}">View Rankings</a>
                     <a th:if="${stage.canEdit}" class="btn btn-outline-secondary btn-sm" th:href="${stage.editUrl}"
                        th:text="${stage.label == 'Team Setup' ? 'Edit' : 'Results'}">Edit</a>
                     <a th:if="${stage.canReset}" class="btn btn-outline-danger btn-sm" th:href="${stage.resetUrl}">Reset</a>

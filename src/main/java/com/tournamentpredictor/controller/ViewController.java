@@ -143,6 +143,34 @@ public class ViewController {
         return "redirect:/view/" + safeRound + "?tournament=" + WebText.webEncode(safeTournament);
     }
 
+
+    private Map<String, String[]> fixtureSlotsByMatch(String tournament, String round) {
+        try {
+            Map<String, String[]> slots = new LinkedHashMap<>();
+            for (CsvLoader.BracketEntry entry : new CsvLoader(web.projectRoot).loadBrackets(tournament)) {
+                if (round.equalsIgnoreCase(knockoutRoundForStage(entry.stage))
+                        && entry.matchId != null && !entry.matchId.isBlank()) {
+                    slots.put(entry.matchId, new String[]{entry.token1, entry.token2});
+                }
+            }
+            return slots;
+        } catch (IOException e) {
+            return Map.of();
+        }
+    }
+
+
+    private String knockoutRoundForStage(String stage) {
+        return switch (WebText.trim(stage).toUpperCase(java.util.Locale.ROOT)) {
+            case "LAST_32" -> "last_32";
+            case "LAST_16" -> "last_16";
+            case "QUARTER_FINAL", "QUARTER_FINALS", "LAST_8" -> "last_8";
+            case "SEMI_FINAL", "SEMI_FINALS", "LAST_4" -> "last_4";
+            case "FINAL" -> "final";
+            default -> "";
+        };
+    }
+
     public String viewRound(String round, String tournament, boolean actual, String path, String team, int page, Model model) throws IOException {
         return viewRound(round, tournament, actual, null, path, team, page, model);
     }
@@ -161,6 +189,9 @@ public class ViewController {
         Path file = web.roundFileForView(safeTournament, safeRound);
         CsvData csvData = web.readCsv(file);
         if (csvData.rows().isEmpty()) {
+            if ("groups".equals(safeRound) && Files.exists(web.predictionFile(safeTournament, "start.csv"))) {
+                return "redirect:/view/start?tournament=" + WebText.webEncode(safeTournament);
+            }
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, file.getFileName() + " not found");
         }
 
@@ -306,22 +337,36 @@ public class ViewController {
                     .withPathNavigation(safeTournament, safeRound);
             List<String> lines = java.nio.file.Files.readAllLines(file);
             Map<String, String> predictedWinners = KnockoutViewRows.predictedWinnersByMatch(lines);
+            String resultsRound = safeRound.endsWith("_match")
+                    ? safeRound.substring(0, safeRound.length() - "_match".length())
+                    : safeRound;
             boolean actualViewRequested = actualMode || "results".equalsIgnoreCase(path) || "actual".equalsIgnoreCase(path) || "upset".equalsIgnoreCase(path);
             List<Map<String, String>> actualRows = actualViewRequested
-                    ? web.loadActualRoundResultRows(safeTournament, safeRound)
+                    ? web.loadActualRoundResultRows(safeTournament, resultsRound)
                     : List.of();
             Map<String, String> actualResultLabels = actualViewRequested
-                    ? web.loadActualRoundResultLabels(safeTournament, safeRound)
+                    ? web.loadActualRoundResultLabels(safeTournament, resultsRound)
                     : Map.of();
             List<ResultEntryRow> fixtureRows = actualViewRequested
-                    ? web.buildActualResultsEditorRows(safeTournament, safeRound)
+                    ? web.buildActualResultsEditorRows(safeTournament, resultsRound)
                     : List.of();
+            List<String> fixtureContextLines = lines;
+            Path fixtureContextFile = web.matchupFile(safeTournament, resultsRound + ".csv");
+            if (Files.exists(fixtureContextFile)) {
+                fixtureContextLines = java.nio.file.Files.readAllLines(fixtureContextFile);
+                lines = KnockoutViewRows.enrichPathContext(lines, fixtureContextLines);
+            }
+            Map<String, String[]> fixtureSlotsByMatch = actualViewRequested && !fixtureRows.isEmpty()
+                    ? fixtureSlotsByMatch(safeTournament, resultsRound)
+                    : Map.of();
             List<String> fixtureLines = actualViewRequested && !fixtureRows.isEmpty()
-                    ? KnockoutViewRows.buildFixtureRows(lines, fixtureRows, actualResultLabels)
+                    ? KnockoutViewRows.buildFixtureRows(lines, fixtureRows, actualResultLabels, fixtureContextLines, fixtureSlotsByMatch)
                     : List.of();
-            List<String> actualLines = actualViewRequested && !actualRows.isEmpty()
+            List<String> actualLines = actualViewRequested && fixtureLines.isEmpty() && !actualRows.isEmpty()
                     ? KnockoutViewRows.buildResultRows(lines, actualRows, predictedWinners)
-                    : actualResultLabels.isEmpty() ? List.of() : KnockoutViewRows.buildResultOnlyRows(lines, actualResultLabels);
+                    : actualViewRequested && fixtureLines.isEmpty() && !actualResultLabels.isEmpty()
+                            ? KnockoutViewRows.buildResultOnlyRows(lines, actualResultLabels)
+                            : List.of();
             boolean hasActualRows = actualViewRequested ? (!fixtureLines.isEmpty() || !actualLines.isEmpty()) : !actualResultLabels.isEmpty();
             if (actualViewRequested && !fixtureLines.isEmpty()) {
                 lines = KnockoutViewRows.merge(lines, fixtureLines);
@@ -334,6 +379,10 @@ public class ViewController {
                             .filter(label -> label != null && !label.isBlank() && !"Draw".equalsIgnoreCase(label))
                             .collect(java.util.stream.Collectors.toCollection(LinkedHashSet::new))
                     : Set.of();
+            if (actualViewRequested && resultsRound.equals(web.openingKnockoutRound(safeTournament))
+                    && web.hasResultsData(safeTournament, "groups")) {
+                actualAdvancingTeams = web.actualGroupAdvancers(safeTournament);
+            }
             String safePathFilter = WebText.trim(path);
             if ("both".equalsIgnoreCase(safePathFilter)) {
                 safePathFilter = "all";
@@ -401,8 +450,16 @@ public class ViewController {
             List<Map<String, String>> liveSimulationRows = actualViewRequested && simulationRound != null
                     ? web.loadLiveSimulationRows(safeTournament, simulationRound)
                     : List.of();
-            if (actualViewRequested && simulationRound != null && !liveSimulationRows.isEmpty()) {
+            boolean currentRoundHasFixturesOrResults = actualViewRequested
+                    && (!fixtureLines.isEmpty() || !actualLines.isEmpty() || !actualRows.isEmpty() || !actualResultLabels.isEmpty());
+            boolean predictionFilterAllowsLiveRows = "all".equalsIgnoreCase(safePathFilter)
+                    || "prediction".equalsIgnoreCase(safePathFilter);
+            if (actualViewRequested && simulationRound != null && !liveSimulationRows.isEmpty()
+                    && !currentRoundHasFixturesOrResults && predictionFilterAllowsLiveRows) {
                 lines = KnockoutViewRows.merge(lines, web.buildLiveRoundRows(safeTournament, simulationRound));
+            } else if (actualViewRequested && simulationRound != null && !currentRoundHasFixturesOrResults
+                    && predictionFilterAllowsLiveRows && web.hasEarlierResultsForLivePrediction(safeTournament, simulationRound)) {
+                lines = KnockoutViewRows.relabelPredictedRowsAsLive(lines);
             }
             List<Map<String, String>> snapshotLiveRows = liveSimulationRows;
             if (actualViewRequested && simulationRound != null && web.isResultsRoundComplete(safeTournament, simulationRound)) {

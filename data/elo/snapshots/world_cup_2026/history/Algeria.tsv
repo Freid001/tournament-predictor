@@ -1,13 +1,13 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
-2023	03	23	Algeria	Niger	2	1	FQ		2	1706	1239	0	−1	42	152
-2023	03	27	Algeria	Niger	1	0	FQ	TN	3	1709	1236	0	0	42	153
+2023	03	23	Algeria	Niger	2	1	FQ		1	1706	1240	0	0	42	152
+2023	03	27	Algeria	Niger	1	0	FQ	TN	3	1709	1237	0	0	42	153
 2023	06	18	Algeria	Uganda	2	1	FQ	CM	5	1714	1376	0	−2	39	111
 2023	06	20	Algeria	Tunisia	1	1	F		-3	1711	1728	0	+1	40	36
 2023	09	07	Algeria	Tanzania	0	0	FQ		-18	1693	1342	−4	+7	44	119
 2023	09	12	Senegal	Algeria	0	1	F		-14	1736	1707	−1	+4	34	39
 2023	10	12	Algeria	Cape Verde	5	1	F		5	1712	1491	−2	−1	41	82
 2023	10	16	Algeria	Egypt	1	1	F	AE	-1	1711	1676	+1	0	40	47
-2023	11	16	Algeria	Somalia	3	1	WQ		0	1711	897	+1	0	41	200
+2023	11	16	Algeria	Somalia	3	1	WQ		0	1711	897	+2	0	41	200
 2023	11	19	Mozambique	Algeria	0	2	WQ		-12	1354	1723	−5	+2	117	39
 2024	01	05	Togo	Algeria	0	3	F		-7	1387	1730	−2	+1	107	38
 2024	01	09	Algeria	Burundi	4	0	F	TG	3	1733	1284	+1	−1	36	145
@@ -24,12 +24,12 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	10	14	Togo	Algeria	0	1	FQ		-9	1356	1684	−3	+1	118	48
 2024	11	14	Equatorial Guinea	Algeria	0	0	FQ		3	1541	1681	+1	+1	74	47
 2024	11	17	Algeria	Liberia	5	1	FQ		4	1685	1265	+1	−1	47	147
-2025	03	21	Botswana	Algeria	1	3	WQ		-13	1342	1698	−3	+2	126	46
+2025	03	21	Botswana	Algeria	1	3	WQ		-13	1342	1698	−4	+2	126	46
 2025	03	25	Algeria	Mozambique	5	1	WQ		10	1708	1463	+1	−1	45	88
-2025	06	05	Algeria	Rwanda	2	0	F		2	1710	1321	0	−4	45	132
+2025	06	05	Algeria	Rwanda	2	0	F		2	1710	1320	0	−2	45	132
 2025	06	10	Sweden	Algeria	4	3	F		6	1760	1704	+1	+1	33	43
 2025	09	04	Algeria	Botswana	3	1	WQ		4	1708	1348	+1	−1	41	122
-2025	09	08	Algeria	Guinea	0	0	WQ	MA	-12	1696	1466	−3	+4	46	86
+2025	09	08	Algeria	Guinea	0	0	WQ	MA	-12	1696	1466	−3	+3	46	86
 2025	10	09	Algeria	Somalia	3	0	WQ		0	1696	906	0	+1	46	198
 2025	10	14	Algeria	Uganda	2	1	WQ		4	1700	1432	+3	−1	43	96
 2025	11	13	Algeria	Zimbabwe	3	1	F	SA	3	1703	1336	0	−1	43	127

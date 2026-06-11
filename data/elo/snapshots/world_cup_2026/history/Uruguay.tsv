@@ -1,5 +1,5 @@
 year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_change	home_elo	away_elo	_c12	_c13	home_rank	away_rank
-2023	03	24	Japan	Uruguay	1	1	F		-1	1850	1905	0	0	17	13
+2023	03	24	Japan	Uruguay	1	1	F		-1	1850	1905	−1	0	18	13
 2023	03	28	South Korea	Uruguay	1	2	F		-10	1779	1915	−3	0	28	13
 2023	06	14	Uruguay	Nicaragua	4	1	F		0	1915	1278	0	0	13	141
 2023	06	20	Uruguay	Cuba	2	0	F		1	1916	1341	+1	0	12	120
@@ -17,19 +17,19 @@ year	month	day	home_team	away_team	home_score	away_score	match_type	neutral	elo_
 2024	07	01	United States	Uruguay	0	1	CA		-15	1746	2026	−1	+1	31	5
 2024	07	06	Brazil	Uruguay	0	0	CA	US	0	2020	2026	0	0	6	5
 2024	07	10	Colombia	Uruguay	1	0	CA	US	24	2069	2002	+1	−1	3	6
-2024	07	13	Canada	Uruguay	2	2	CA	US	16	1755	1986	+1	−1	31	7
+2024	07	13	Canada	Uruguay	2	2	CA	US	16	1755	1986	+2	−1	31	7
 2024	09	01	Guatemala	Uruguay	1	1	F	US	9	1481	1977	+1	−1	88	7
-2024	09	06	Uruguay	Paraguay	0	0	WQ		-17	1960	1678	−2	+3	9	48
+2024	09	06	Uruguay	Paraguay	0	0	WQ		-17	1960	1679	−2	+3	9	48
 2024	09	10	Venezuela	Uruguay	0	0	WQ		5	1770	1955	+2	−1	27	10
-2024	10	11	Peru	Uruguay	1	0	WQ		28	1741	1927	+6	−2	35	12
+2024	10	11	Peru	Uruguay	1	0	WQ		28	1742	1927	+6	−2	35	12
 2024	10	15	Uruguay	Ecuador	0	0	WQ		-9	1918	1866	0	+1	11	16
 2024	11	15	Uruguay	Colombia	3	2	WQ		21	1939	2009	0	−1	11	4
 2024	11	19	Brazil	Uruguay	1	1	WQ		-9	1996	1948	+1	+1	5	9
 2025	03	21	Uruguay	Argentina	0	1	WQ		-17	1931	2125	−1	0	10	2
 2025	03	25	Bolivia	Uruguay	0	0	WQ		10	1651	1921	0	0	52	10
-2025	06	05	Paraguay	Uruguay	2	0	WQ		32	1831	1889	+7	−3	20	13
+2025	06	05	Paraguay	Uruguay	2	0	WQ		32	1832	1889	+7	−3	20	13
 2025	06	10	Uruguay	Venezuela	2	0	WQ		12	1901	1745	0	−3	12	36
-2025	09	04	Uruguay	Peru	3	0	WQ		13	1914	1730	+2	−1	10	39
+2025	09	04	Uruguay	Peru	3	0	WQ		13	1914	1731	+2	−1	10	39
 2025	09	09	Chile	Uruguay	0	0	WQ		7	1690	1907	−1	−1	48	11
 2025	10	10	Uruguay	Dominican Republic	1	0	F	MY	1	1908	1285	0	0	11	143
 2025	10	13	Uruguay	Uzbekistan	2	1	F	MY	5	1913	1714	0	0	12	39

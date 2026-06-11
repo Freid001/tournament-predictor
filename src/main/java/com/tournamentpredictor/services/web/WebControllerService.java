@@ -277,7 +277,15 @@ public class WebControllerService {
         Map<String, Integer> primaryRuns = new LinkedHashMap<>();
         summaries.values().forEach(summary -> primaryRuns.merge(
                 summary.matchId, summary.matchupRuns, Math::max));
-        Map<String, Integer> eloRatings = new CsvLoader(projectRoot).withConfig(predictionConfig).loadTournamentElo(tournament);
+        CsvLoader csvLoader = new CsvLoader(projectRoot).withConfig(predictionConfig);
+        Map<String, Integer> eloRatings = csvLoader.loadTournamentElo(tournament);
+        List<Map<String, String>> groupRows = readCsv(predictionFile(tournament, "groups.csv")).rows();
+        Map<String, String> teamGW = teamStatusMap(groupRows, "group_winner");
+        Map<String, String> teamRU = teamStatusMap(groupRows, "runner_up");
+        Map<String, String> teamTP = teamStatusMap(groupRows, "3rd_place");
+        Map<String, CsvLoader.BracketEntry> bracketByMatch = csvLoader.loadBrackets(tournament).stream()
+                .filter(entry -> round.equalsIgnoreCase(knockoutRoundForStage(entry.stage)))
+                .collect(Collectors.toMap(entry -> entry.matchId, entry -> entry, (first, ignored) -> first, LinkedHashMap::new));
         List<DirectMatchupSummary> ordered = summaries.values().stream()
                 .sorted(java.util.Comparator.comparing((DirectMatchupSummary summary) -> summary.matchId)
                         .thenComparing(java.util.Comparator.comparingInt(
@@ -299,7 +307,11 @@ public class WebControllerService {
             row.put("match_id", summary.matchId);
             row.put("team1", summary.team1);
             row.put("team2", summary.team2);
-            row.put("path", DirectMatchupPathService.classify(summary, winner.getKey(), primaryRuns, eloRatings));
+            CsvLoader.BracketEntry bracket = bracketByMatch.get(summary.matchId);
+            row.put("path", bracket == null
+                    ? DirectMatchupPathService.classify(summary, winner.getKey(), primaryRuns, eloRatings)
+                    : DirectMatchupPathService.classifyOpeningRoute(summary, winner.getKey(), bracket.token1, bracket.token2,
+                            teamGW, teamRU, teamTP, primaryRuns, eloRatings));
             row.put("prediction", prediction);
             row.put("team1_path_fatigue", "0");
             row.put("team2_path_fatigue", "0");
@@ -311,9 +323,32 @@ public class WebControllerService {
             row.put("matchup_runs", String.valueOf(summary.matchupRuns));
             rows.add(row);
         }
-        Path output = matchupFile(tournament, round + ".csv");
+        Path output = matchupViewFile(tournament, round + ".csv");
         Files.createDirectories(output.getParent());
         writeCsv(output, headers, rows);
+    }
+
+    private Map<String, String> teamStatusMap(List<Map<String, String>> rows, String column) {
+        Map<String, String> status = new LinkedHashMap<>();
+        for (Map<String, String> row : rows) {
+            String team = WebText.trim(row.getOrDefault("team", ""));
+            if (!team.isBlank()) {
+                status.put(team, WebText.trim(row.getOrDefault(column, "")).toLowerCase(java.util.Locale.ROOT));
+            }
+        }
+        return status;
+    }
+
+    private String knockoutRoundForStage(String stage) {
+        if (stage == null) return "";
+        return switch (stage.toUpperCase(java.util.Locale.ROOT)) {
+            case "LAST_32" -> "last_32";
+            case "LAST_16" -> "last_16";
+            case "QUARTER" -> "last_8";
+            case "SEMI" -> "last_4";
+            case "FINAL" -> "final";
+            default -> "";
+        };
     }
 
     public StageStatus status(boolean complete, boolean ready) {
@@ -337,12 +372,36 @@ public class WebControllerService {
         if (!Files.exists(simulationFile(tournament, "simulation_group_routes.csv"))) {
             throw new IOException("Run Group Stage before running the knockout rounds.");
         }
-        MatchResolver resolver = MatchResolver.forWeb(reporter, predictionConfig);
-        if ("last_16".equals(round)) {
-            resolver.resolveAndWriteKnockoutsFromGroups(tournament);
+        List<String> directRounds = List.of("last_16", "last_8", "last_4", "final");
+        if (!directRounds.contains(round)) {
+            throw new IOException("Unsupported direct knockout round: " + round);
         }
-        resolver.resolveAndWrite(round, tournament);
+        if (!"last_16".equals(round)) {
+            cascadeDeleteAfterRoundEdit(tournament, "last_16");
+        }
+        MatchResolver resolver = MatchResolver.forWeb(reporter, predictionConfig);
+        resolver.resolveAndWriteKnockoutsFromGroups(tournament);
+        for (String directRound : directRounds) {
+            resolver.resolveAndWrite(directRound, tournament);
+            if (directRound.equals(round)) {
+                break;
+            }
+        }
+        if (Files.exists(simulationFile(tournament, "simulation_scorelines_last_16.csv"))) {
+            writeDirectOpeningMatchups(tournament, "last_16");
+        }
         reporter.appendInfo("Updated " + displayMode(round) + " using the saved group-stage routes.");
+    }
+
+    public void ensureLast32PredictionSeed(String tournament, HtmlReporter reporter) throws IOException {
+        if (Files.exists(predictionFile(tournament, "last_32.csv"))) {
+            return;
+        }
+        if (!Files.exists(simulationFile(tournament, "simulation_group_routes.csv"))) {
+            throw new IOException("Run Group Stage before running Last 32.");
+        }
+        MatchResolver.forWeb(reporter, predictionConfig).resolveAndWrite("groups", tournament);
+        reporter.appendInfo("Generated Last 32 predictions from the completed group stage.");
     }
 
     public void runTournamentPipeline(String tournament, HtmlReporter reporter) throws IOException {
@@ -414,6 +473,7 @@ public class WebControllerService {
                 matchupFile(tournament, "last_32.csv"),
                 predictionFile(tournament, "last_16.csv"),
                 matchupFile(tournament, "last_16.csv"),
+                matchupViewFile(tournament, "last_16.csv"),
                 predictionFile(tournament, "last_8.csv"),
                 matchupFile(tournament, "last_8.csv"),
                 predictionFile(tournament, "last_4.csv"),
@@ -430,6 +490,7 @@ public class WebControllerService {
                 matchupFile(tournament, "last_32.csv"),
                 predictionFile(tournament, "last_16.csv"),
                 matchupFile(tournament, "last_16.csv"),
+                matchupViewFile(tournament, "last_16.csv"),
                 predictionFile(tournament, "last_8.csv"),
                 matchupFile(tournament, "last_8.csv"),
                 predictionFile(tournament, "last_4.csv"),
@@ -448,6 +509,7 @@ public class WebControllerService {
                     matchupFile(tournament, "last_32.csv"),
                     predictionFile(tournament, "last_16.csv"),
                     matchupFile(tournament, "last_16.csv"),
+                    matchupViewFile(tournament, "last_16.csv"),
                     predictionFile(tournament, "last_8.csv"),
                     matchupFile(tournament, "last_8.csv"),
                     predictionFile(tournament, "last_4.csv"),
@@ -457,6 +519,7 @@ public class WebControllerService {
             ));
             case "last_16" -> paths.addAll(List.of(
                     matchupFile(tournament, "last_16.csv"),
+                    matchupViewFile(tournament, "last_16.csv"),
                     predictionFile(tournament, "last_8.csv"),
                     matchupFile(tournament, "last_8.csv"),
                     predictionFile(tournament, "last_4.csv"),
@@ -512,6 +575,7 @@ public class WebControllerService {
                     matchupFile(tournament, "last_32.csv"),
                     predictionFile(tournament, "last_16.csv"),
                     matchupFile(tournament, "last_16.csv"),
+                    matchupViewFile(tournament, "last_16.csv"),
                     predictionFile(tournament, "last_8.csv"),
                     matchupFile(tournament, "last_8.csv"),
                     predictionFile(tournament, "last_4.csv"),
@@ -663,6 +727,8 @@ public class WebControllerService {
     }
 
     public Path viewMatchFile(String tournament, String fileName) {
+        Path view = matchupViewFile(tournament, fileName);
+        if (Files.exists(view)) return view;
         Path matchup = matchupFile(tournament, fileName);
         return Files.exists(matchup) ? matchup : predictionFile(tournament, fileName);
     }
@@ -811,6 +877,29 @@ public class WebControllerService {
             rowsByKey.put(matchId, row);
         }
         return rowsByKey;
+    }
+
+    public boolean hasEarlierResultsForLivePrediction(String tournament, String round) {
+        String safeRound = WebText.trim(round).toLowerCase(java.util.Locale.ROOT);
+        if (safeRound.isBlank()) {
+            return false;
+        }
+        List<String> rounds = new ArrayList<>();
+        rounds.add("groups");
+        if (bracketHasStage(tournament, "LAST_32")) {
+            rounds.add("last_32");
+        }
+        rounds.addAll(List.of("last_16", "last_8", "last_4", "final"));
+        int index = rounds.indexOf(safeRound);
+        if (index <= 0) {
+            return false;
+        }
+        for (int i = 0; i < index; i++) {
+            if (Files.exists(resultsFile(tournament, rounds.get(i)))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean hasResultsPrerequisite(String tournament, String round) {
@@ -1007,6 +1096,22 @@ public class WebControllerService {
             return thirdPlaceByMatch.getOrDefault(matchId, "");
         }
         return "";
+    }
+
+    public Set<String> actualGroupAdvancers(String tournament) throws IOException {
+        Map<String, List<GroupStandingRow>> standings = actualGroupStandings(tournament);
+        Set<String> advancers = new LinkedHashSet<>();
+        for (List<GroupStandingRow> table : standings.values()) {
+            for (int i = 0; i < table.size() && i < 2; i++) {
+                advancers.add(table.get(i).team());
+            }
+        }
+        List<CsvLoader.BracketEntry> brackets = new CsvLoader(projectRoot).loadBrackets(tournament);
+        if (brackets.stream().anyMatch(entry -> entry.token1 != null && entry.token1.matches("^[A-L]+3$")
+                || entry.token2 != null && entry.token2.matches("^[A-L]+3$"))) {
+            advancers.addAll(actualThirdPlaceAssignments(tournament, brackets).values());
+        }
+        return advancers;
     }
 
     public Map<String, String> actualGroupSlotMap(String tournament) throws IOException {
@@ -1337,6 +1442,14 @@ public class WebControllerService {
                 : fileName;
         return projectRoot.resolve("data").resolve("simulations").resolve(tournament)
                 .resolve("matchup_paths_" + round + ".csv");
+    }
+
+    public Path matchupViewFile(String tournament, String fileName) {
+        String round = fileName.endsWith(".csv")
+                ? fileName.substring(0, fileName.length() - 4)
+                : fileName;
+        return projectRoot.resolve("data").resolve("simulations").resolve(tournament)
+                .resolve("matchup_paths_" + round + "_view.csv");
     }
 
     public Path resultsFile(String tournament, String round) {

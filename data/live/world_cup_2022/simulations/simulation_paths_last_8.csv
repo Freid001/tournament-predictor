@@ -1,1 +1,97 @@
 team,finish,path,count,percentage,simulation_runs,simulation_seed
+Argentina,Exit QF,None,28295,37.7,75000,20260605
+Argentina,Exit SF,Netherlands,23503,31.3,75000,20260605
+Argentina,Runner-up,Netherlands > Brazil,5781,7.7,75000,20260605
+Argentina,Champion,Netherlands > Brazil > Portugal,3862,5.1,75000,20260605
+Argentina,Runner-up,Netherlands > Croatia,2711,3.6,75000,20260605
+Argentina,Champion,Netherlands > Brazil > France,2470,3.3,75000,20260605
+Argentina,Champion,Netherlands > Brazil > England,2239,3.0,75000,20260605
+Argentina,Champion,Netherlands > Croatia > Portugal,2174,2.9,75000,20260605
+Argentina,Champion,Netherlands > Croatia > France,1390,1.9,75000,20260605
+Argentina,Champion,Netherlands > Croatia > England,1220,1.6,75000,20260605
+Argentina,Champion,Netherlands > Brazil > Morocco,850,1.1,75000,20260605
+Argentina,Champion,Netherlands > Croatia > Morocco,505,0.7,75000,20260605
+Brazil,Exit SF,Croatia,21781,29.0,75000,20260605
+Brazil,Exit QF,None,16964,22.6,75000,20260605
+Brazil,Runner-up,Croatia > Argentina,6243,8.3,75000,20260605
+Brazil,Champion,Croatia > Argentina > Portugal,6045,8.1,75000,20260605
+Brazil,Champion,Croatia > Netherlands > Portugal,4754,6.3,75000,20260605
+Brazil,Runner-up,Croatia > Netherlands,4409,5.9,75000,20260605
+Brazil,Champion,Croatia > Argentina > France,3728,5.0,75000,20260605
+Brazil,Champion,Croatia > Argentina > England,3381,4.5,75000,20260605
+Brazil,Champion,Croatia > Netherlands > France,2817,3.8,75000,20260605
+Brazil,Champion,Croatia > Netherlands > England,2518,3.4,75000,20260605
+Brazil,Champion,Croatia > Argentina > Morocco,1380,1.8,75000,20260605
+Brazil,Champion,Croatia > Netherlands > Morocco,980,1.3,75000,20260605
+Croatia,Exit QF,None,58036,77.4,75000,20260605
+Croatia,Exit SF,Brazil,11866,15.8,75000,20260605
+Croatia,Runner-up,Brazil > Argentina,1727,2.3,75000,20260605
+Croatia,Runner-up,Brazil > Netherlands,1442,1.9,75000,20260605
+Croatia,Champion,Brazil > Argentina > Portugal,405,0.5,75000,20260605
+Croatia,Champion,Brazil > Netherlands > Portugal,360,0.5,75000,20260605
+Croatia,Champion,Brazil > Argentina > France,250,0.3,75000,20260605
+Croatia,Champion,Brazil > Netherlands > France,244,0.3,75000,20260605
+Croatia,Champion,Brazil > Argentina > England,243,0.3,75000,20260605
+Croatia,Champion,Brazil > Netherlands > England,221,0.3,75000,20260605
+Croatia,Champion,Brazil > Netherlands > Morocco,105,0.1,75000,20260605
+Croatia,Champion,Brazil > Argentina > Morocco,101,0.1,75000,20260605
+England,Exit QF,None,39140,52.2,75000,20260605
+England,Exit SF,France,19416,25.9,75000,20260605
+England,Runner-up,France > Portugal,7224,9.6,75000,20260605
+England,Runner-up,France > Morocco,3868,5.2,75000,20260605
+England,Champion,France > Portugal > Brazil,1195,1.6,75000,20260605
+England,Champion,France > Portugal > Argentina,981,1.3,75000,20260605
+England,Champion,France > Morocco > Brazil,800,1.1,75000,20260605
+England,Champion,France > Morocco > Argentina,647,0.9,75000,20260605
+England,Champion,France > Portugal > Netherlands,639,0.9,75000,20260605
+England,Champion,France > Morocco > Netherlands,442,0.6,75000,20260605
+England,Champion,France > Portugal > Croatia,404,0.5,75000,20260605
+England,Champion,France > Morocco > Croatia,244,0.3,75000,20260605
+France,Exit QF,None,35860,47.8,75000,20260605
+France,Exit SF,England,20364,27.2,75000,20260605
+France,Runner-up,England > Portugal,8004,10.7,75000,20260605
+France,Runner-up,England > Morocco,4268,5.7,75000,20260605
+France,Champion,England > Portugal > Brazil,1558,2.1,75000,20260605
+France,Champion,England > Portugal > Argentina,1273,1.7,75000,20260605
+France,Champion,England > Morocco > Brazil,943,1.3,75000,20260605
+France,Champion,England > Morocco > Argentina,752,1.0,75000,20260605
+France,Champion,England > Portugal > Netherlands,743,1.0,75000,20260605
+France,Champion,England > Portugal > Croatia,475,0.6,75000,20260605
+France,Champion,England > Morocco > Netherlands,451,0.6,75000,20260605
+France,Champion,England > Morocco > Croatia,309,0.4,75000,20260605
+Morocco,Exit QF,None,56795,75.7,75000,20260605
+Morocco,Exit SF,Portugal,12724,17.0,75000,20260605
+Morocco,Runner-up,Portugal > France,2280,3.0,75000,20260605
+Morocco,Runner-up,Portugal > England,2202,2.9,75000,20260605
+Morocco,Champion,Portugal > France > Brazil,192,0.3,75000,20260605
+Morocco,Champion,Portugal > England > Brazil,167,0.2,75000,20260605
+Morocco,Champion,Portugal > France > Argentina,162,0.2,75000,20260605
+Morocco,Champion,Portugal > England > Argentina,134,0.2,75000,20260605
+Morocco,Champion,Portugal > England > Netherlands,112,0.1,75000,20260605
+Morocco,Champion,Portugal > France > Netherlands,86,0.1,75000,20260605
+Morocco,Champion,Portugal > England > Croatia,78,0.1,75000,20260605
+Morocco,Champion,Portugal > France > Croatia,68,0.1,75000,20260605
+Netherlands,Exit QF,None,46705,62.3,75000,20260605
+Netherlands,Exit SF,Argentina,17850,23.8,75000,20260605
+Netherlands,Runner-up,Argentina > Brazil,3352,4.5,75000,20260605
+Netherlands,Runner-up,Argentina > Croatia,1775,2.4,75000,20260605
+Netherlands,Champion,Argentina > Brazil > Portugal,1240,1.7,75000,20260605
+Netherlands,Champion,Argentina > Croatia > Portugal,874,1.2,75000,20260605
+Netherlands,Champion,Argentina > Brazil > France,836,1.1,75000,20260605
+Netherlands,Champion,Argentina > Brazil > England,801,1.1,75000,20260605
+Netherlands,Champion,Argentina > Croatia > France,537,0.7,75000,20260605
+Netherlands,Champion,Argentina > Croatia > England,469,0.6,75000,20260605
+Netherlands,Champion,Argentina > Brazil > Morocco,350,0.5,75000,20260605
+Netherlands,Champion,Argentina > Croatia > Morocco,211,0.3,75000,20260605
+Portugal,Exit SF,Morocco,22496,30.0,75000,20260605
+Portugal,Exit QF,None,18205,24.3,75000,20260605
+Portugal,Runner-up,Morocco > France,10069,13.4,75000,20260605
+Portugal,Runner-up,Morocco > England,9645,12.9,75000,20260605
+Portugal,Champion,Morocco > France > Brazil,3029,4.0,75000,20260605
+Portugal,Champion,Morocco > England > Brazil,2768,3.7,75000,20260605
+Portugal,Champion,Morocco > France > Argentina,2309,3.1,75000,20260605
+Portugal,Champion,Morocco > England > Argentina,2234,3.0,75000,20260605
+Portugal,Champion,Morocco > France > Netherlands,1362,1.8,75000,20260605
+Portugal,Champion,Morocco > England > Netherlands,1292,1.7,75000,20260605
+Portugal,Champion,Morocco > France > Croatia,807,1.1,75000,20260605
+Portugal,Champion,Morocco > England > Croatia,784,1.0,75000,20260605

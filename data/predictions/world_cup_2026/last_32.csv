@@ -5,15 +5,15 @@ M74,E1(Germany),ABCDF3(Scotland),predicted,Germany (80%),Germany (80%)
 
 M75,F1(Japan),C2(Morocco),predicted,Japan (60%),Japan (60%)
 
-M76,C1(Brazil),F2(Netherlands),predicted,Brazil (61%),Brazil (61%)
+M76,C1(Brazil),F2(Netherlands),predicted,Brazil (59%),Brazil (59%)
 
 M77,I1(France),CDFGH3(United States),predicted,France (85%),France (85%)
 
-M78,E2(Ecuador),I2(Senegal),predicted,Ecuador (56%),Ecuador (56%)
+M78,E2(Ecuador),I2(Norway),predicted,Ecuador (57%),Ecuador (57%)
 
 M79,A1(Mexico),CEFHI3(Ivory Coast),predicted,Mexico (82%),Mexico (82%)
 
-M80,L1(England),EHIJK3(Norway),predicted,England (60%),England (60%)
+M80,L1(England),EHIJK3(Senegal),predicted,England (63%),England (63%)
 
 M81,D1(Turkey),BEFIJ3(Algeria),predicted,Turkey (78%),Turkey (78%)
 
@@ -21,7 +21,7 @@ M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (72%),Belgium (72%)
 
 M83,K2(Colombia),L2(Croatia),predicted,Colombia (67%),Colombia (67%)
 
-M84,H1(Spain),J2(Austria),predicted,Spain (82%),Spain (82%)
+M84,H1(Spain),J2(Austria),predicted,Spain (83%),Spain (83%)
 
 M85,B1(Switzerland),EFGIJ3(Egypt),predicted,Switzerland (74%),Switzerland (74%)
 
@@ -29,5 +29,5 @@ M86,J1(Argentina),H2(Uruguay),predicted,Argentina (86%),Argentina (86%)
 
 M87,K1(Portugal),DEIJL3(Panama),predicted,Portugal (84%),Portugal (84%)
 
-M88,D2(Paraguay),G2(Iran),predicted,Paraguay (62%),Paraguay (62%)
+M88,D2(Paraguay),G2(Iran),predicted,Paraguay (63%),Paraguay (63%)
 

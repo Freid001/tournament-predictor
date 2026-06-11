@@ -1,9 +1,9 @@
 team,reach_last_16,reach_last_8,reach_last_4,reach_final,champion,predicted_finish,predicted_finish_pct,best_realistic_finish,best_realistic_pct,simulation_runs,simulation_seed
-Argentina,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-Brazil,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-Croatia,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-England,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-France,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-Morocco,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-Netherlands,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
-Portugal,NaN,NaN,NaN,NaN,NaN,Champion,NaN,Champion,NaN,0,0
+Brazil,100.0,100.0,77.4,48.3,34.1,Champion,34.1,Champion,34.1,75000,20260605
+Argentina,100.0,100.0,62.3,30.9,19.6,Exit QF,37.7,Champion,19.6,75000,20260605
+Portugal,100.0,100.0,75.7,45.7,19.4,Exit SF,30.0,Champion,19.4,75000,20260605
+France,100.0,100.0,52.2,25.0,8.7,Exit QF,47.8,Champion,8.7,75000,20260605
+England,100.0,100.0,47.8,21.9,7.1,Exit QF,52.2,Champion,7.1,75000,20260605
+Netherlands,100.0,100.0,37.7,13.9,7.1,Exit QF,62.3,Champion,7.1,75000,20260605
+Croatia,100.0,100.0,22.6,6.8,2.6,Exit QF,77.4,Champion,2.6,75000,20260605
+Morocco,100.0,100.0,24.3,7.3,1.3,Exit QF,75.7,Champion,1.3,75000,20260605

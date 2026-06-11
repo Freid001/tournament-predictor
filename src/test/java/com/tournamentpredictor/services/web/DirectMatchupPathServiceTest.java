@@ -28,6 +28,28 @@ class DirectMatchupPathServiceTest {
     }
 
     @Test
+    void openingRouteWithPossibleButNonPrimarySlotsIsAlternative() {
+        DirectMatchupSummary summary = new DirectMatchupSummary("M49", "Brazil", "Spain");
+        summary.matchupRuns = 40;
+
+        assertEquals("alt", DirectMatchupPathService.classifyOpeningRoute(summary, "Brazil", "A1", "B2",
+                Map.of("Brazil", "yes", "Spain", "maybe"),
+                Map.of("Brazil", "no", "Spain", "maybe"),
+                Map.of(), Map.of("M49", 100), Map.of("Brazil", 2100, "Spain", 2050)));
+    }
+
+    @Test
+    void openingRouteWithImpossibleSlotIsUpset() {
+        DirectMatchupSummary summary = new DirectMatchupSummary("M49", "Cameroon", "Australia");
+        summary.matchupRuns = 10;
+
+        assertEquals("upset", DirectMatchupPathService.classifyOpeningRoute(summary, "Cameroon", "A1", "B2",
+                Map.of("Cameroon", "no", "Australia", "no"),
+                Map.of("Cameroon", "no", "Australia", "no"),
+                Map.of(), Map.of("M49", 100), Map.of("Cameroon", 1600, "Australia", 1700)));
+    }
+
+    @Test
     void lowerEloWinnerIsUpsetEvenWhenMatchupIsPrimary() {
         DirectMatchupSummary summary = new DirectMatchupSummary("M1", "Morocco", "Spain");
         summary.matchupRuns = 100;

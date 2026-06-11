@@ -1,196 +1,69 @@
 match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent
-M97,W89(W77(I1(France))),W90(W75(F1(Japan))),predicted,France (69%),138,16,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
-M97,W89(W77(I1(France))),W90(W73(A2(South Korea))),upset,France (82%),138,35,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Mexico:-3 > U@M73|Canada:-1 > K@M90|Scotland:0
-M97,W89(W77(I1(France))),W90(W73(B2(Canada))),alt,France (73%),138,4,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W77(I1(France))),W90(W73(B2(Switzerland))),alt,France (72%),138,3,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Canada:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W77(I1(France))),W90(W73(A2(Czechia))),upset,France (86%),138,40,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Mexico:-3 > U@M73|Switzerland:-1 > K@M90|Scotland:0
-M97,W89(W77(I1(France))),W90(W75(C2(Morocco))),upset,France (77%),138,53,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W77(I1(France))),W90(W75(C2(Brazil))),alt,France (63%),138,23,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,K@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W77(I1(France))),W90(W75(C2(Scotland))),upset,France (87%),138,53,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Brazil:-3 > U@M75|Japan:-3 > U@M90|South Korea:0
-M97,W89(W77(I1(France))),W90(W75(F1(Netherlands))),alt,France (72%),138,11,G|Senegal:-2 > G|Norway:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Japan:-1 > K@M75|Morocco:0 > K@M90|South Korea:0
-M97,W89(W74(E1(Germany))),W90(W75(F1(Japan))),alt,Germany (59%),26,16,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
-M97,W89(W74(E1(Germany))),W90(W73(A2(South Korea))),upset,Germany (75%),26,35,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Mexico:-3 > U@M73|Canada:-1 > K@M90|Scotland:0
+M97,W89(W77(I1(France))),W90(W75(F1(Japan))),predicted,France (70%),135,19,G|Norway:-2 > G|Senegal:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
+M97,W89(W77(I1(France))),W90(W73(A2(South Korea))),upset,France (84%),135,91,G|Norway:-2 > G|Senegal:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Mexico:-3 > U@M73|Canada:-1 > U@M90|Japan:-7
+M97,W89(W77(I1(France))),W90(W73(B2(Canada))),alt,France (74%),135,4,G|Norway:-2 > G|Senegal:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
+M97,W89(W77(I1(France))),W90(W75(C2(Morocco))),upset,France (78%),135,53,G|Norway:-2 > G|Senegal:-2 > K@M77|United States:0 > K@M89|Germany:-13,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
+M97,W89(W74(E1(Germany))),W90(W75(F1(Japan))),alt,Germany (59%),26,19,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
+M97,W89(W74(E1(Germany))),W90(W73(A2(South Korea))),upset,Germany (75%),26,91,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Mexico:-3 > U@M73|Canada:-1 > U@M90|Japan:-7
 M97,W89(W74(E1(Germany))),W90(W73(B2(Canada))),alt,Germany (63%),26,4,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W74(E1(Germany))),W90(W73(B2(Switzerland))),alt,Germany (62%),26,3,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Canada:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W74(E1(Germany))),W90(W73(A2(Czechia))),upset,Germany (79%),26,40,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Mexico:-3 > U@M73|Switzerland:-1 > K@M90|Scotland:0
 M97,W89(W74(E1(Germany))),W90(W75(C2(Morocco))),upset,Germany (68%),26,53,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W74(E1(Germany))),W90(W75(C2(Brazil))),alt,Germany (51%),26,23,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,K@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W74(E1(Germany))),W90(W75(C2(Scotland))),upset,Germany (80%),26,53,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Brazil:-3 > U@M75|Japan:-3 > U@M90|South Korea:0
-M97,W89(W74(E1(Germany))),W90(W75(F1(Netherlands))),alt,Germany (61%),26,11,G|Ecuador:-3 > K@M74|Scotland:0 > K@M89|United States:0,G|Japan:-1 > K@M75|Morocco:0 > K@M90|South Korea:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W75(F1(Japan))),upset,Japan (77%),336,16,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
-M97,W89(W74(ABCDF3(Scotland))),W90(W73(A2(South Korea))),upset,South Korea (62%),336,35,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Mexico:-3 > U@M73|Canada:-1 > K@M90|Scotland:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W73(B2(Canada))),upset,Canada (74%),336,4,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W73(B2(Switzerland))),upset,Switzerland (75%),336,3,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Canada:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W73(A2(Czechia))),upset,Czechia (56%),336,40,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Mexico:-3 > U@M73|Switzerland:-1 > K@M90|Scotland:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W75(C2(Morocco))),upset,Morocco (69%),336,53,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W75(C2(Brazil))),upset,Brazil (82%),336,23,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,K@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W74(ABCDF3(Scotland))),W90(W75(F1(Netherlands))),upset,Netherlands (75%),336,11,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-29,G|Japan:-1 > K@M75|Morocco:0 > K@M90|South Korea:0
-M97,W89(W74(E1(Ecuador))),W90(W75(F1(Japan))),alt,Ecuador (58%),27,16,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
-M97,W89(W74(E1(Ecuador))),W90(W73(A2(South Korea))),upset,Ecuador (74%),27,35,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Mexico:-3 > U@M73|Canada:-1 > K@M90|Scotland:0
-M97,W89(W74(E1(Ecuador))),W90(W73(B2(Canada))),alt,Ecuador (63%),27,4,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W74(E1(Ecuador))),W90(W73(B2(Switzerland))),alt,Ecuador (62%),27,3,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Canada:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W74(E1(Ecuador))),W90(W73(A2(Czechia))),upset,Ecuador (79%),27,40,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Mexico:-3 > U@M73|Switzerland:-1 > K@M90|Scotland:0
-M97,W89(W74(E1(Ecuador))),W90(W75(C2(Morocco))),upset,Ecuador (68%),27,53,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W74(E1(Ecuador))),W90(W75(C2(Brazil))),alt,Ecuador (51%),27,23,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,K@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W74(E1(Ecuador))),W90(W75(C2(Scotland))),upset,Ecuador (80%),27,53,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Brazil:-3 > U@M75|Japan:-3 > U@M90|South Korea:0
-M97,W89(W74(E1(Ecuador))),W90(W75(F1(Netherlands))),alt,Ecuador (61%),27,11,G|Germany:-3 > K@M74|South Korea:0 > K@M89|United States:0,G|Japan:-1 > K@M75|Morocco:0 > K@M90|South Korea:0
-M97,W89(W77(CDFGH3(United States))),W90(W75(F1(Japan))),upset,Japan (71%),148,16,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
-M97,W89(W77(CDFGH3(United States))),W90(W73(A2(South Korea))),upset,South Korea (55%),148,35,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Mexico:-3 > U@M73|Canada:-1 > K@M90|Scotland:0
-M97,W89(W77(CDFGH3(United States))),W90(W73(B2(Canada))),upset,Canada (67%),148,4,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W77(CDFGH3(United States))),W90(W73(B2(Switzerland))),upset,Switzerland (68%),148,3,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Canada:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W77(CDFGH3(United States))),W90(W73(A2(Czechia))),upset,United States (51%),148,40,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Mexico:-3 > U@M73|Switzerland:-1 > K@M90|Scotland:0
-M97,W89(W77(CDFGH3(United States))),W90(W75(C2(Morocco))),upset,Morocco (62%),148,53,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W77(CDFGH3(United States))),W90(W75(C2(Brazil))),upset,Brazil (77%),148,23,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,K@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W77(CDFGH3(United States))),W90(W75(C2(Scotland))),upset,United States (54%),148,53,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Brazil:-3 > U@M75|Japan:-3 > U@M90|South Korea:0
-M97,W89(W77(CDFGH3(United States))),W90(W75(F1(Netherlands))),upset,Netherlands (69%),148,11,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Japan:-1 > K@M75|Morocco:0 > K@M90|South Korea:0
-M97,W89(W77(I1(Senegal))),W90(W75(F1(Japan))),alt,Senegal (53%),64,16,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
-M97,W89(W77(I1(Senegal))),W90(W73(A2(South Korea))),upset,Senegal (70%),64,35,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Mexico:-3 > U@M73|Canada:-1 > K@M90|Scotland:0
-M97,W89(W77(I1(Senegal))),W90(W73(B2(Canada))),alt,Senegal (57%),64,4,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W77(I1(Senegal))),W90(W73(B2(Switzerland))),alt,Senegal (56%),64,3,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Canada:0 > K@M73|South Korea:0 > K@M90|Morocco:0
-M97,W89(W77(I1(Senegal))),W90(W73(A2(Czechia))),upset,Senegal (75%),64,40,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Mexico:-3 > U@M73|Switzerland:-1 > K@M90|Scotland:0
-M97,W89(W77(I1(Senegal))),W90(W75(C2(Morocco))),upset,Senegal (63%),64,53,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W77(I1(Senegal))),W90(W75(C2(Brazil))),alt,Brazil (55%),64,23,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,K@M75|Japan:-3 > K@M90|South Korea:0
-M97,W89(W77(I1(Senegal))),W90(W75(C2(Scotland))),upset,Senegal (76%),64,53,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Brazil:-3 > U@M75|Japan:-3 > U@M90|South Korea:0
-M97,W89(W77(I1(Senegal))),W90(W75(F1(Netherlands))),alt,Senegal (56%),64,11,G|France:-6 > G|Norway:-2 > K@M77|Morocco:0 > K@M89|Scotland:0,G|Japan:-1 > K@M75|Morocco:0 > K@M90|South Korea:0
+M97,W89(W74(ABCDF3(Scotland))),W90(W75(F1(Japan))),upset,Japan (78%),347,19,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-31,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
+M97,W89(W74(ABCDF3(Scotland))),W90(W73(A2(South Korea))),upset,South Korea (62%),347,91,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-31,G|Mexico:-3 > U@M73|Canada:-1 > U@M90|Japan:-7
+M97,W89(W74(ABCDF3(Scotland))),W90(W73(B2(Canada))),upset,Canada (74%),347,4,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-31,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
+M97,W89(W74(ABCDF3(Scotland))),W90(W75(C2(Morocco))),upset,Morocco (70%),347,53,G|Brazil:-3 > U@M74|Germany:-8 > U@M89|France:-31,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
+M97,W89(W77(CDFGH3(United States))),W90(W75(F1(Japan))),upset,Japan (71%),153,19,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Netherlands:-1 > K@M75|Morocco:0 > K@M90|Canada:-1
+M97,W89(W77(CDFGH3(United States))),W90(W73(A2(South Korea))),upset,South Korea (54%),153,91,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Mexico:-3 > U@M73|Canada:-1 > U@M90|Japan:-7
+M97,W89(W77(CDFGH3(United States))),W90(W73(B2(Canada))),upset,Canada (67%),153,4,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Switzerland:0 > K@M73|South Korea:0 > K@M90|Morocco:0
+M97,W89(W77(CDFGH3(United States))),W90(W75(C2(Morocco))),upset,Morocco (62%),153,53,G|Turkey:-3 > G|Paraguay:0 > U@M77|France:-15 > K@M89|Scotland:0,G|Brazil:-3 > U@M75|Japan:-3 > K@M90|South Korea:0
 
-M98,W93(W84(H1(Spain))),W94(W81(D1(Turkey))),predicted,Spain (73%),144,38,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W84(H1(Spain))),W94(W82(G1(Belgium))),alt,Spain (79%),144,0,K@M84|Austria:-1 > K@M93|Colombia:-16,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W84(H1(Spain))),W94(W82(AEHIJ3(Czechia))),upset,Spain (91%),144,171,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W84(H1(Spain))),W94(W82(G1(Iran))),alt,Spain (88%),144,9,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W84(H1(Spain))),W94(W81(BEFIJ3(Algeria))),upset,Spain (90%),144,138,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W84(H1(Spain))),W94(W81(D1(Paraguay))),alt,Spain (82%),144,24,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W83(K2(Colombia))),W94(W81(D1(Turkey))),alt,Colombia (55%),68,38,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W83(K2(Colombia))),W94(W82(G1(Belgium))),alt,Colombia (62%),68,0,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(K2(Colombia))),W94(W82(AEHIJ3(Czechia))),upset,Colombia (82%),68,171,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W83(K2(Colombia))),W94(W82(G1(Iran))),alt,Colombia (77%),68,9,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(K2(Colombia))),W94(W81(BEFIJ3(Algeria))),upset,Colombia (81%),68,138,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W83(K2(Colombia))),W94(W81(D1(Paraguay))),alt,Colombia (67%),68,24,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W83(L2(Croatia))),W94(W81(D1(Turkey))),upset,Turkey (63%),115,38,G|England:-4 > U@M83|Colombia:-10 > K@M93|Algeria:0,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W83(L2(Croatia))),W94(W82(G1(Belgium))),upset,Belgium (56%),115,0,G|England:-4 > U@M83|Colombia:-10 > K@M93|Algeria:0,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(L2(Croatia))),W94(W82(AEHIJ3(Czechia))),upset,Croatia (69%),115,171,G|England:-4 > U@M83|Colombia:-10 > K@M93|Algeria:0,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W83(L2(Croatia))),W94(W82(G1(Iran))),upset,Croatia (62%),115,9,G|England:-4 > U@M83|Colombia:-10 > K@M93|Algeria:0,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(L2(Croatia))),W94(W81(BEFIJ3(Algeria))),upset,Croatia (67%),115,138,G|England:-4 > U@M83|Colombia:-10 > K@M93|Algeria:0,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W83(L2(Croatia))),W94(W81(D1(Paraguay))),upset,Paraguay (50%),115,24,G|England:-4 > U@M83|Colombia:-10 > K@M93|Algeria:0,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W83(K2(Portugal))),W94(W81(D1(Turkey))),alt,Portugal (58%),120,38,G|Colombia:-4 > K@M83|England:-8 > K@M93|Austria:-3,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W83(K2(Portugal))),W94(W82(G1(Belgium))),alt,Portugal (66%),120,0,G|Colombia:-4 > K@M83|England:-8 > K@M93|Austria:-3,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(K2(Portugal))),W94(W82(AEHIJ3(Czechia))),upset,Portugal (84%),120,171,G|Colombia:-4 > K@M83|England:-8 > K@M93|Austria:-3,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W83(K2(Portugal))),W94(W82(G1(Iran))),alt,Portugal (80%),120,9,G|Colombia:-4 > K@M83|England:-8 > K@M93|Austria:-3,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(K2(Portugal))),W94(W81(BEFIJ3(Algeria))),upset,Portugal (83%),120,138,G|Colombia:-4 > K@M83|England:-8 > K@M93|Austria:-3,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W83(K2(Portugal))),W94(W81(D1(Paraguay))),alt,Portugal (70%),120,24,G|Colombia:-4 > K@M83|England:-8 > K@M93|Austria:-3,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W83(L2(England))),W94(W81(D1(Turkey))),upset,England (54%),126,38,G|Croatia:0 > U@M83|Portugal:-12 > K@M93|Austria:-3,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W83(L2(England))),W94(W82(G1(Belgium))),upset,England (61%),126,0,G|Croatia:0 > U@M83|Portugal:-12 > K@M93|Austria:-3,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(L2(England))),W94(W82(AEHIJ3(Czechia))),upset,England (81%),126,171,G|Croatia:0 > U@M83|Portugal:-12 > K@M93|Austria:-3,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W83(L2(England))),W94(W82(G1(Iran))),upset,England (77%),126,9,G|Croatia:0 > U@M83|Portugal:-12 > K@M93|Austria:-3,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(L2(England))),W94(W81(BEFIJ3(Algeria))),upset,England (80%),126,138,G|Croatia:0 > U@M83|Portugal:-12 > K@M93|Austria:-3,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W83(L2(England))),W94(W81(D1(Paraguay))),upset,England (66%),126,24,G|Croatia:0 > U@M83|Portugal:-12 > K@M93|Austria:-3,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W83(L2(Panama))),W94(W81(D1(Turkey))),upset,Turkey (84%),481,38,G|England:-4 > G|Croatia:0 > U@M83|Portugal:-12 > U@M93|Spain:-42,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W83(L2(Panama))),W94(W82(G1(Belgium))),upset,Belgium (79%),481,0,G|England:-4 > G|Croatia:0 > U@M83|Portugal:-12 > U@M93|Spain:-42,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(L2(Panama))),W94(W82(AEHIJ3(Czechia))),upset,Czechia (57%),481,171,G|England:-4 > G|Croatia:0 > U@M83|Portugal:-12 > U@M93|Spain:-42,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W83(L2(Panama))),W94(W82(G1(Iran))),upset,Iran (64%),481,9,G|England:-4 > G|Croatia:0 > U@M83|Portugal:-12 > U@M93|Spain:-42,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W83(L2(Panama))),W94(W81(BEFIJ3(Algeria))),upset,Algeria (59%),481,138,G|England:-4 > G|Croatia:0 > U@M83|Portugal:-12 > U@M93|Spain:-42,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W83(L2(Panama))),W94(W81(D1(Paraguay))),upset,Paraguay (75%),481,24,G|England:-4 > G|Croatia:0 > U@M83|Portugal:-12 > U@M93|Spain:-42,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W84(J2(Austria))),W94(W81(D1(Turkey))),upset,Turkey (63%),256,38,G|Argentina:-9 > U@M84|Spain:-21 > K@M93|Croatia:-1,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W84(J2(Austria))),W94(W82(G1(Belgium))),upset,Belgium (56%),256,0,G|Argentina:-9 > U@M84|Spain:-21 > K@M93|Croatia:-1,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W84(J2(Austria))),W94(W82(AEHIJ3(Czechia))),upset,Austria (69%),256,171,G|Argentina:-9 > U@M84|Spain:-21 > K@M93|Croatia:-1,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W84(J2(Austria))),W94(W82(G1(Iran))),upset,Austria (62%),256,9,G|Argentina:-9 > U@M84|Spain:-21 > K@M93|Croatia:-1,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W84(J2(Austria))),W94(W81(BEFIJ3(Algeria))),upset,Austria (67%),256,138,G|Argentina:-9 > U@M84|Spain:-21 > K@M93|Croatia:-1,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
-M98,W93(W84(J2(Austria))),W94(W81(D1(Paraguay))),upset,Paraguay (50%),256,24,G|Argentina:-9 > U@M84|Spain:-21 > K@M93|Croatia:-1,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
-M98,W93(W84(J2(Algeria))),W94(W81(D1(Turkey))),upset,Turkey (79%),252,38,G|Argentina:-9 > G|Austria:-1 > U@M84|Spain:-21 > K@M93|Panama:0,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-4
-M98,W93(W84(J2(Algeria))),W94(W82(G1(Belgium))),upset,Belgium (73%),252,0,G|Argentina:-9 > G|Austria:-1 > U@M84|Spain:-21 > K@M93|Panama:0,K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W84(J2(Algeria))),W94(W82(AEHIJ3(Czechia))),upset,Algeria (50%),252,171,G|Argentina:-9 > G|Austria:-1 > U@M84|Spain:-21 > K@M93|Panama:0,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
-M98,W93(W84(J2(Algeria))),W94(W82(G1(Iran))),upset,Iran (57%),252,9,G|Argentina:-9 > G|Austria:-1 > U@M84|Spain:-21 > K@M93|Panama:0,G|Belgium:-1 > K@M82|Czechia:0 > K@M94|Algeria:0
-M98,W93(W84(J2(Algeria))),W94(W81(D1(Paraguay))),upset,Paraguay (69%),252,24,G|Argentina:-9 > G|Austria:-1 > U@M84|Spain:-21 > K@M93|Panama:0,G|Turkey:-3 > K@M81|Bosnia and Herzegovina:0 > K@M94|Czechia:0
+M98,W93(W84(H1(Spain))),W94(W81(D1(Turkey))),predicted,Spain (74%),144,39,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-5
+M98,W93(W84(H1(Spain))),W94(W82(G1(Belgium))),alt,Spain (80%),144,0,K@M84|Austria:-1 > K@M93|Colombia:-16,K@M82|Czechia:0 > K@M94|Algeria:0
+M98,W93(W84(H1(Spain))),W94(W82(AEHIJ3(Czechia))),upset,Spain (92%),144,172,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
+M98,W93(W84(H1(Spain))),W94(W81(BEFIJ3(Algeria))),upset,Spain (91%),144,138,K@M84|Austria:-1 > K@M93|Colombia:-16,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
+M98,W93(W83(K2(Colombia))),W94(W81(D1(Turkey))),alt,Colombia (55%),71,39,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-5
+M98,W93(W83(K2(Colombia))),W94(W82(G1(Belgium))),alt,Colombia (62%),71,0,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,K@M82|Czechia:0 > K@M94|Algeria:0
+M98,W93(W83(K2(Colombia))),W94(W82(AEHIJ3(Czechia))),upset,Colombia (82%),71,172,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
+M98,W93(W83(K2(Colombia))),W94(W81(BEFIJ3(Algeria))),upset,Colombia (81%),71,138,G|Portugal:-5 > K@M83|Croatia:-1 > K@M93|Austria:-3,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
+M98,W93(W83(L2(Croatia))),W94(W81(D1(Turkey))),upset,Turkey (63%),142,39,G|England:-4 > U@M83|Colombia:-10 > K@M93|Austria:-3,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-5
+M98,W93(W83(L2(Croatia))),W94(W82(G1(Belgium))),upset,Belgium (56%),142,0,G|England:-4 > U@M83|Colombia:-10 > K@M93|Austria:-3,K@M82|Czechia:0 > K@M94|Algeria:0
+M98,W93(W83(L2(Croatia))),W94(W82(AEHIJ3(Czechia))),upset,Croatia (69%),142,172,G|England:-4 > U@M83|Colombia:-10 > K@M93|Austria:-3,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
+M98,W93(W83(L2(Croatia))),W94(W81(BEFIJ3(Algeria))),upset,Croatia (67%),142,138,G|England:-4 > U@M83|Colombia:-10 > K@M93|Austria:-3,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
+M98,W93(W84(J2(Austria))),W94(W81(D1(Turkey))),upset,Turkey (65%),417,39,G|Argentina:-9 > U@M84|Spain:-21 > U@M93|Colombia:-20,G|Paraguay:0 > K@M81|Algeria:0 > K@M94|Belgium:-5
+M98,W93(W84(J2(Austria))),W94(W82(G1(Belgium))),upset,Belgium (58%),417,0,G|Argentina:-9 > U@M84|Spain:-21 > U@M93|Colombia:-20,K@M82|Czechia:0 > K@M94|Algeria:0
+M98,W93(W84(J2(Austria))),W94(W82(AEHIJ3(Czechia))),upset,Austria (67%),417,172,G|Argentina:-9 > U@M84|Spain:-21 > U@M93|Colombia:-20,G|Mexico:-3 > U@M82|Belgium:-3 > U@M94|Turkey:-14
+M98,W93(W84(J2(Austria))),W94(W81(BEFIJ3(Algeria))),upset,Austria (65%),417,138,G|Argentina:-9 > U@M84|Spain:-21 > U@M93|Colombia:-20,G|Argentina:-9 > G|Austria:-1 > U@M81|Turkey:-7 > K@M94|Czechia:0
 
-M99,W91(W78(E2(Ecuador))),W92(W80(L1(England))),predicted,England (54%),160,149,G|Germany:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W78(E2(Ecuador))),W92(W79(A1(Mexico))),alt,Mexico (53%),160,61,G|Germany:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W78(E2(Ecuador))),W92(W79(CEFHI3(Ivory Coast))),upset,Ecuador (82%),160,284,G|Germany:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W78(E2(Ecuador))),W92(W80(EHIJK3(Norway))),alt,Ecuador (55%),160,71,G|Germany:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W78(E2(Ecuador))),W92(W80(L1(Croatia))),alt,Ecuador (62%),160,32,G|Germany:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W76(C1(Brazil))),W92(W80(L1(England))),alt,England (53%),81,149,K@M76|Netherlands:-1 > K@M91|Senegal:-8,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W76(C1(Brazil))),W92(W79(A1(Mexico))),alt,Mexico (53%),81,61,K@M76|Netherlands:-1 > K@M91|Senegal:-8,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W76(C1(Brazil))),W92(W79(CEFHI3(Ivory Coast))),upset,Brazil (82%),81,284,K@M76|Netherlands:-1 > K@M91|Senegal:-8,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W76(C1(Brazil))),W92(W80(EHIJK3(Norway))),alt,Brazil (55%),81,71,K@M76|Netherlands:-1 > K@M91|Senegal:-8,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W76(C1(Brazil))),W92(W80(L1(Croatia))),alt,Brazil (62%),81,32,K@M76|Netherlands:-1 > K@M91|Senegal:-8,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W78(I2(Senegal))),W92(W80(L1(England))),upset,England (59%),153,149,G|France:-6 > G|Norway:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-3,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W78(I2(Senegal))),W92(W79(A1(Mexico))),upset,Mexico (58%),153,61,G|France:-6 > G|Norway:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-3,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W78(I2(Senegal))),W92(W79(CEFHI3(Ivory Coast))),upset,Senegal (79%),153,284,G|France:-6 > G|Norway:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-3,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W78(I2(Senegal))),W92(W80(EHIJK3(Norway))),upset,Senegal (50%),153,71,G|France:-6 > G|Norway:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-3,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W78(I2(Senegal))),W92(W80(L1(Croatia))),upset,Senegal (57%),153,32,G|France:-6 > G|Norway:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-3,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W78(E2(Germany))),W92(W80(L1(England))),alt,England (53%),159,149,G|Ecuador:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W78(E2(Germany))),W92(W79(A1(Mexico))),alt,Mexico (53%),159,61,G|Ecuador:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W78(E2(Germany))),W92(W79(CEFHI3(Ivory Coast))),upset,Germany (82%),159,284,G|Ecuador:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W78(E2(Germany))),W92(W80(EHIJK3(Norway))),alt,Germany (55%),159,71,G|Ecuador:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W78(E2(Germany))),W92(W80(L1(Croatia))),alt,Germany (62%),159,32,G|Ecuador:-3 > K@M78|Senegal:-4 > K@M91|Brazil:-12,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W78(I2(France))),W92(W80(L1(England))),alt,France (60%),183,149,G|Senegal:-2 > G|Norway:-2 > K@M78|Germany:-6 > K@M91|Brazil:-12,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W78(I2(France))),W92(W79(A1(Mexico))),alt,France (60%),183,61,G|Senegal:-2 > G|Norway:-2 > K@M78|Germany:-6 > K@M91|Brazil:-12,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W78(I2(France))),W92(W79(CEFHI3(Ivory Coast))),upset,France (89%),183,284,G|Senegal:-2 > G|Norway:-2 > K@M78|Germany:-6 > K@M91|Brazil:-12,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W78(I2(France))),W92(W80(EHIJK3(Norway))),alt,France (68%),183,71,G|Senegal:-2 > G|Norway:-2 > K@M78|Germany:-6 > K@M91|Brazil:-12,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W78(I2(France))),W92(W80(L1(Croatia))),alt,France (73%),183,32,G|Senegal:-2 > G|Norway:-2 > K@M78|Germany:-6 > K@M91|Brazil:-12,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W78(I2(Norway))),W92(W80(L1(England))),upset,England (60%),155,149,G|France:-6 > G|Senegal:-2 > U@M78|Germany:-8 > K@M91|Netherlands:-3,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W78(I2(Norway))),W92(W79(A1(Mexico))),upset,Mexico (59%),155,61,G|France:-6 > G|Senegal:-2 > U@M78|Germany:-8 > K@M91|Netherlands:-3,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W78(I2(Norway))),W92(W79(CEFHI3(Ivory Coast))),upset,Norway (78%),155,284,G|France:-6 > G|Senegal:-2 > U@M78|Germany:-8 > K@M91|Netherlands:-3,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W78(I2(Norway))),W92(W80(L1(Croatia))),upset,Norway (55%),155,32,G|France:-6 > G|Senegal:-2 > U@M78|Germany:-8 > K@M91|Netherlands:-3,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W76(F2(Netherlands))),W92(W80(L1(England))),upset,England (65%),142,149,G|Japan:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W76(F2(Netherlands))),W92(W79(A1(Mexico))),upset,Mexico (64%),142,61,G|Japan:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W76(F2(Netherlands))),W92(W79(CEFHI3(Ivory Coast))),upset,Netherlands (74%),142,284,G|Japan:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W76(F2(Netherlands))),W92(W80(EHIJK3(Norway))),upset,Norway (56%),142,71,G|Japan:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W76(F2(Netherlands))),W92(W80(L1(Croatia))),upset,Netherlands (50%),142,32,G|Japan:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W76(F2(Japan))),W92(W80(L1(England))),upset,England (62%),137,149,G|Netherlands:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W76(F2(Japan))),W92(W79(A1(Mexico))),upset,Mexico (61%),137,61,G|Netherlands:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W76(F2(Japan))),W92(W79(CEFHI3(Ivory Coast))),upset,Japan (76%),137,284,G|Netherlands:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W76(F2(Japan))),W92(W80(EHIJK3(Norway))),upset,Norway (53%),137,71,G|Netherlands:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W76(F2(Japan))),W92(W80(L1(Croatia))),upset,Japan (53%),137,32,G|Netherlands:-1 > K@M76|Morocco:0 > U@M91|Ecuador:-16,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
-M99,W91(W76(C1(Morocco))),W92(W80(L1(England))),upset,England (71%),184,149,G|Brazil:-3 > U@M76|Japan:-3 > U@M91|Ecuador:-16,G|Croatia:0 > K@M80|Norway:-4 > K@M92|Mexico:-14
-M99,W91(W76(C1(Morocco))),W92(W79(A1(Mexico))),upset,Mexico (70%),184,61,G|Brazil:-3 > U@M76|Japan:-3 > U@M91|Ecuador:-16,K@M79|Ivory Coast:0 > K@M92|Norway:-7
-M99,W91(W76(C1(Morocco))),W92(W79(CEFHI3(Ivory Coast))),upset,Morocco (68%),184,284,G|Brazil:-3 > U@M76|Japan:-3 > U@M91|Ecuador:-16,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-19
-M99,W91(W76(C1(Morocco))),W92(W80(EHIJK3(Norway))),upset,Norway (63%),184,71,G|Brazil:-3 > U@M76|Japan:-3 > U@M91|Ecuador:-16,G|France:-6 > G|Senegal:-2 > K@M80|Croatia:-1 > K@M92|Ivory Coast:0
-M99,W91(W76(C1(Morocco))),W92(W80(L1(Croatia))),upset,Croatia (57%),184,32,G|Brazil:-3 > U@M76|Japan:-3 > U@M91|Ecuador:-16,G|England:-4 > K@M80|Ivory Coast:0 > K@M92|Ivory Coast:0
+M99,W91(W78(E2(Ecuador))),W92(W80(L1(England))),predicted,England (56%),156,146,G|Germany:-3 > K@M78|Norway:-4 > K@M91|Brazil:-12,G|Croatia:0 > K@M80|Senegal:-3 > K@M92|Mexico:-14
+M99,W91(W78(E2(Ecuador))),W92(W79(A1(Mexico))),alt,Mexico (53%),156,55,G|Germany:-3 > K@M78|Norway:-4 > K@M91|Brazil:-12,K@M79|Ivory Coast:0 > K@M92|Senegal:-7
+M99,W91(W78(E2(Ecuador))),W92(W79(CEFHI3(Ivory Coast))),upset,Ecuador (82%),156,304,G|Germany:-3 > K@M78|Norway:-4 > K@M91|Brazil:-12,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-21
+M99,W91(W78(E2(Ecuador))),W92(W80(EHIJK3(Senegal))),upset,Ecuador (57%),156,155,G|Germany:-3 > K@M78|Norway:-4 > K@M91|Brazil:-12,G|France:-6 > G|Norway:-2 > U@M80|England:-11 > K@M92|Ivory Coast:0
+M99,W91(W76(C1(Brazil))),W92(W80(L1(England))),alt,England (56%),80,146,K@M76|Netherlands:-2 > K@M91|Norway:-7,G|Croatia:0 > K@M80|Senegal:-3 > K@M92|Mexico:-14
+M99,W91(W76(C1(Brazil))),W92(W79(A1(Mexico))),alt,Mexico (53%),80,55,K@M76|Netherlands:-2 > K@M91|Norway:-7,K@M79|Ivory Coast:0 > K@M92|Senegal:-7
+M99,W91(W76(C1(Brazil))),W92(W79(CEFHI3(Ivory Coast))),upset,Brazil (82%),80,304,K@M76|Netherlands:-2 > K@M91|Norway:-7,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-21
+M99,W91(W76(C1(Brazil))),W92(W80(EHIJK3(Senegal))),upset,Brazil (57%),80,155,K@M76|Netherlands:-2 > K@M91|Norway:-7,G|France:-6 > G|Norway:-2 > U@M80|England:-11 > K@M92|Ivory Coast:0
+M99,W91(W78(I2(Norway))),W92(W80(L1(England))),upset,England (62%),168,146,G|France:-6 > G|Senegal:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-4,G|Croatia:0 > K@M80|Senegal:-3 > K@M92|Mexico:-14
+M99,W91(W78(I2(Norway))),W92(W79(A1(Mexico))),upset,Mexico (59%),168,55,G|France:-6 > G|Senegal:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-4,K@M79|Ivory Coast:0 > K@M92|Senegal:-7
+M99,W91(W78(I2(Norway))),W92(W79(CEFHI3(Ivory Coast))),upset,Norway (78%),168,304,G|France:-6 > G|Senegal:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-4,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-21
+M99,W91(W78(I2(Norway))),W92(W80(EHIJK3(Senegal))),upset,Norway (51%),168,155,G|France:-6 > G|Senegal:-2 > U@M78|Ecuador:-8 > K@M91|Netherlands:-4,G|France:-6 > G|Norway:-2 > U@M80|England:-11 > K@M92|Ivory Coast:0
+M99,W91(W76(F2(Netherlands))),W92(W80(L1(England))),upset,England (66%),203,146,G|Japan:-1 > U@M76|Brazil:-7 > U@M91|Ecuador:-16,G|Croatia:0 > K@M80|Senegal:-3 > K@M92|Mexico:-14
+M99,W91(W76(F2(Netherlands))),W92(W79(A1(Mexico))),upset,Mexico (63%),203,55,G|Japan:-1 > U@M76|Brazil:-7 > U@M91|Ecuador:-16,K@M79|Ivory Coast:0 > K@M92|Senegal:-7
+M99,W91(W76(F2(Netherlands))),W92(W79(CEFHI3(Ivory Coast))),upset,Netherlands (75%),203,304,G|Japan:-1 > U@M76|Brazil:-7 > U@M91|Ecuador:-16,G|Germany:-3 > G|Ecuador:-3 > U@M79|Mexico:-9 > U@M92|England:-21
+M99,W91(W76(F2(Netherlands))),W92(W80(EHIJK3(Senegal))),upset,Senegal (53%),203,155,G|Japan:-1 > U@M76|Brazil:-7 > U@M91|Ecuador:-16,G|France:-6 > G|Norway:-2 > U@M80|England:-11 > K@M92|Ivory Coast:0
 
-M100,W95(W86(J1(Argentina))),W96(W87(K1(Portugal))),predicted,Argentina (69%),8,50,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W86(J1(Argentina))),W96(W85(B1(Switzerland))),alt,Argentina (83%),8,3,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W86(J1(Argentina))),W96(W85(EFGIJ3(Egypt))),upset,Argentina (94%),8,220,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W86(J1(Argentina))),W96(W85(B1(Canada))),alt,Argentina (83%),8,4,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W86(J1(Argentina))),W96(W87(DEIJL3(Panama))),upset,Argentina (92%),8,135,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W86(J1(Argentina))),W96(W87(K1(Colombia))),alt,Argentina (72%),8,58,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W88(D2(Paraguay))),W96(W87(K1(Portugal))),alt,Portugal (71%),24,50,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W88(D2(Paraguay))),W96(W85(B1(Switzerland))),alt,Switzerland (53%),24,3,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W88(D2(Paraguay))),W96(W85(EFGIJ3(Egypt))),upset,Paraguay (75%),24,220,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W88(D2(Paraguay))),W96(W85(B1(Canada))),alt,Canada (52%),24,4,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W88(D2(Paraguay))),W96(W87(DEIJL3(Panama))),upset,Paraguay (69%),24,135,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W88(D2(Paraguay))),W96(W87(K1(Colombia))),alt,Colombia (68%),24,58,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W88(G2(Iran))),W96(W87(K1(Portugal))),upset,Portugal (84%),374,50,G|Belgium:-1 > K@M88|United States:0 > U@M95|Argentina:-44,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W88(G2(Iran))),W96(W85(B1(Switzerland))),upset,Switzerland (69%),374,3,G|Belgium:-1 > K@M88|United States:0 > U@M95|Argentina:-44,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W88(G2(Iran))),W96(W85(EFGIJ3(Egypt))),upset,Iran (59%),374,220,G|Belgium:-1 > K@M88|United States:0 > U@M95|Argentina:-44,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W88(G2(Iran))),W96(W85(B1(Canada))),upset,Canada (69%),374,4,G|Belgium:-1 > K@M88|United States:0 > U@M95|Argentina:-44,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W88(G2(Iran))),W96(W87(DEIJL3(Panama))),upset,Iran (52%),374,135,G|Belgium:-1 > K@M88|United States:0 > U@M95|Argentina:-44,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W88(G2(Iran))),W96(W87(K1(Colombia))),upset,Colombia (81%),374,58,G|Belgium:-1 > K@M88|United States:0 > U@M95|Argentina:-44,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W88(D2(Turkey))),W96(W87(K1(Portugal))),alt,Portugal (59%),20,50,G|Paraguay:0 > K@M88|Belgium:-2 > K@M95|Uruguay:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W88(D2(Turkey))),W96(W85(B1(Switzerland))),alt,Turkey (61%),20,3,G|Paraguay:0 > K@M88|Belgium:-2 > K@M95|Uruguay:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W88(D2(Turkey))),W96(W85(EFGIJ3(Egypt))),upset,Turkey (83%),20,220,G|Paraguay:0 > K@M88|Belgium:-2 > K@M95|Uruguay:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W88(D2(Turkey))),W96(W85(B1(Canada))),alt,Turkey (62%),20,4,G|Paraguay:0 > K@M88|Belgium:-2 > K@M95|Uruguay:0,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W88(D2(Turkey))),W96(W87(DEIJL3(Panama))),upset,Turkey (79%),20,135,G|Paraguay:0 > K@M88|Belgium:-2 > K@M95|Uruguay:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W88(D2(Turkey))),W96(W87(K1(Colombia))),alt,Colombia (55%),20,58,G|Paraguay:0 > K@M88|Belgium:-2 > K@M95|Uruguay:0,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W88(G2(Belgium))),W96(W87(K1(Portugal))),alt,Portugal (66%),1,50,K@M88|Paraguay:0 > K@M95|Uruguay:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W88(G2(Belgium))),W96(W85(B1(Switzerland))),alt,Belgium (53%),1,3,K@M88|Paraguay:0 > K@M95|Uruguay:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W88(G2(Belgium))),W96(W85(EFGIJ3(Egypt))),upset,Belgium (79%),1,220,K@M88|Paraguay:0 > K@M95|Uruguay:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W88(G2(Belgium))),W96(W85(B1(Canada))),alt,Belgium (54%),1,4,K@M88|Paraguay:0 > K@M95|Uruguay:0,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W88(G2(Belgium))),W96(W87(DEIJL3(Panama))),upset,Belgium (74%),1,135,K@M88|Paraguay:0 > K@M95|Uruguay:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W88(G2(Belgium))),W96(W87(K1(Colombia))),alt,Colombia (63%),1,58,K@M88|Paraguay:0 > K@M95|Uruguay:0,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W88(G2(Egypt))),W96(W87(K1(Portugal))),upset,Portugal (89%),433,50,G|Belgium:-1 > U@M88|Turkey:-7 > U@M95|Argentina:-44,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W88(G2(Egypt))),W96(W85(B1(Switzerland))),upset,Switzerland (79%),433,3,G|Belgium:-1 > U@M88|Turkey:-7 > U@M95|Argentina:-44,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W88(G2(Egypt))),W96(W85(B1(Canada))),upset,Canada (78%),433,4,G|Belgium:-1 > U@M88|Turkey:-7 > U@M95|Argentina:-44,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W88(G2(Egypt))),W96(W87(DEIJL3(Panama))),upset,Panama (60%),433,135,G|Belgium:-1 > U@M88|Turkey:-7 > U@M95|Argentina:-44,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W88(G2(Egypt))),W96(W87(K1(Colombia))),upset,Colombia (87%),433,58,G|Belgium:-1 > U@M88|Turkey:-7 > U@M95|Argentina:-44,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W88(D2(United States))),W96(W87(K1(Portugal))),upset,Portugal (85%),390,50,G|Turkey:-3 > G|Paraguay:0 > K@M88|Egypt:0 > U@M95|Argentina:-44,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W88(D2(United States))),W96(W85(B1(Switzerland))),upset,Switzerland (71%),390,3,G|Turkey:-3 > G|Paraguay:0 > K@M88|Egypt:0 > U@M95|Argentina:-44,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W88(D2(United States))),W96(W85(EFGIJ3(Egypt))),upset,United States (57%),390,220,G|Turkey:-3 > G|Paraguay:0 > K@M88|Egypt:0 > U@M95|Argentina:-44,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W88(D2(United States))),W96(W85(B1(Canada))),upset,Canada (70%),390,4,G|Turkey:-3 > G|Paraguay:0 > K@M88|Egypt:0 > U@M95|Argentina:-44,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W88(D2(United States))),W96(W87(DEIJL3(Panama))),upset,United States (50%),390,135,G|Turkey:-3 > G|Paraguay:0 > K@M88|Egypt:0 > U@M95|Argentina:-44,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W88(D2(United States))),W96(W87(K1(Colombia))),upset,Colombia (82%),390,58,G|Turkey:-3 > G|Paraguay:0 > K@M88|Egypt:0 > U@M95|Argentina:-44,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
-M100,W95(W86(H2(Uruguay))),W96(W87(K1(Portugal))),upset,Portugal (76%),252,50,G|Spain:-8 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
-M100,W95(W86(H2(Uruguay))),W96(W85(B1(Switzerland))),upset,Switzerland (59%),252,3,G|Spain:-8 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
-M100,W95(W86(H2(Uruguay))),W96(W85(EFGIJ3(Egypt))),upset,Uruguay (70%),252,220,G|Spain:-8 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-24
-M100,W95(W86(H2(Uruguay))),W96(W85(B1(Canada))),upset,Canada (58%),252,4,G|Spain:-8 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Switzerland:0 > K@M85|Ivory Coast:0 > K@M96|Panama:0
-M100,W95(W86(H2(Uruguay))),W96(W87(DEIJL3(Panama))),upset,Uruguay (64%),252,135,G|Spain:-8 > U@M86|Argentina:-22 > K@M95|Iran:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
-M100,W95(W86(H2(Uruguay))),W96(W87(K1(Colombia))),upset,Colombia (73%),252,58,G|Spain:-8 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Portugal:-5 > K@M87|Paraguay:0 > K@M96|Switzerland:-2
+M100,W95(W86(J1(Argentina))),W96(W87(K1(Portugal))),predicted,Argentina (68%),9,50,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
+M100,W95(W86(J1(Argentina))),W96(W85(B1(Switzerland))),alt,Argentina (83%),9,3,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
+M100,W95(W86(J1(Argentina))),W96(W85(EFGIJ3(Egypt))),upset,Argentina (94%),9,230,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-25
+M100,W95(W86(J1(Argentina))),W96(W87(DEIJL3(Panama))),upset,Argentina (92%),9,143,G|Austria:-1 > K@M86|Uruguay:0 > K@M95|Paraguay:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
+M100,W95(W88(D2(Paraguay))),W96(W87(K1(Portugal))),alt,Portugal (72%),24,50,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
+M100,W95(W88(D2(Paraguay))),W96(W85(B1(Switzerland))),alt,Switzerland (52%),24,3,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
+M100,W95(W88(D2(Paraguay))),W96(W85(EFGIJ3(Egypt))),upset,Paraguay (75%),24,230,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-25
+M100,W95(W88(D2(Paraguay))),W96(W87(DEIJL3(Panama))),upset,Paraguay (70%),24,143,G|Turkey:-3 > K@M88|Iran:0 > K@M95|Uruguay:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
+M100,W95(W88(G2(Iran))),W96(W87(K1(Portugal))),upset,Portugal (84%),378,50,G|Belgium:-1 > U@M88|Paraguay:0 > U@M95|Argentina:-44,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
+M100,W95(W88(G2(Iran))),W96(W85(B1(Switzerland))),upset,Switzerland (69%),378,3,G|Belgium:-1 > U@M88|Paraguay:0 > U@M95|Argentina:-44,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
+M100,W95(W88(G2(Iran))),W96(W85(EFGIJ3(Egypt))),upset,Iran (59%),378,230,G|Belgium:-1 > U@M88|Paraguay:0 > U@M95|Argentina:-44,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-25
+M100,W95(W88(G2(Iran))),W96(W87(DEIJL3(Panama))),upset,Iran (53%),378,143,G|Belgium:-1 > U@M88|Paraguay:0 > U@M95|Argentina:-44,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
+M100,W95(W86(H2(Uruguay))),W96(W87(K1(Portugal))),upset,Portugal (77%),255,50,G|Spain:-9 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Colombia:-4 > K@M87|Panama:0 > K@M96|Switzerland:-2
+M100,W95(W86(H2(Uruguay))),W96(W85(B1(Switzerland))),upset,Switzerland (59%),255,3,G|Spain:-9 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Canada:0 > K@M85|Egypt:0 > K@M96|Panama:0
+M100,W95(W86(H2(Uruguay))),W96(W85(EFGIJ3(Egypt))),upset,Uruguay (70%),255,230,G|Spain:-9 > U@M86|Argentina:-22 > K@M95|Iran:0,G|Belgium:-1 > U@M85|Switzerland:-1 > U@M96|Portugal:-25
+M100,W95(W86(H2(Uruguay))),W96(W87(DEIJL3(Panama))),upset,Uruguay (64%),255,143,G|Spain:-9 > U@M86|Argentina:-22 > K@M95|Iran:0,G|England:-4 > G|Croatia:0 > U@M87|Portugal:-12 > K@M96|Egypt:0
 

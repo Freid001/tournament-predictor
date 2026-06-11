@@ -16,22 +16,12 @@ public final class PredictionLabelService {
         boolean predictionWrong = hasActual && !predicted.isBlank() && !actual.equalsIgnoreCase(predicted);
         List<String> labels = new ArrayList<>();
         switch (path) {
-            case "results", "actual" -> labels.add("Results");
-            case "fixture" -> labels.add(hasActual ? "Fixture / Results" : "Fixture");
-            case "live" -> {
-                labels.add("Predicted");
-                labels.add("Live");
-            }
-            case "predicted", "prediction", "" -> {
-                labels.add("Predicted");
-                if (predictionWrong) {
-                    labels.add("Wrong");
-                } else if (hasActual) {
-                    labels.add("Live");
-                }
-            }
+            case "results", "actual" -> labels.add("Result");
+            case "fixture" -> labels.add(hasActual ? "Result" : "Fixture");
+            case "live" -> labels.add("Live Prediction");
+            case "predicted", "prediction", "" -> labels.add("Predicted Matchup");
             case "result_upset" -> {
-                labels.add("Results");
+                labels.add("Result");
                 labels.add("Upset");
             }
             case "upset" -> labels.add("Upset");

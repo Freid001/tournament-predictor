@@ -82,7 +82,7 @@ public class SimulationHandler {
         List<CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
         SimulationResult result = simulateFromRound(startStage, Files.readAllLines(input), brackets, eloRatings, snapshots);
         writeOutputs(tournament, startStage, result, false);
-        System.out.println("Simulation complete: " + runs + " runs from " + startStage.label + ". Output: "
+        System.out.println("Simulation complete: " + result.runs() + " runs from " + startStage.label + ". Output: "
                 + outputPath(tournament, startStage, false).toAbsolutePath());
     }
 
@@ -504,15 +504,16 @@ public class SimulationHandler {
         Map<String, TeamCounts> counts = new LinkedHashMap<>();
         for (MatchDefinition match : matchDefinitions.values()) {
             if (startStage.bracketStage.equals(match.stage)) {
-                initialiseCounts(counts.computeIfAbsent(match.team1, TeamCounts::new), startStage);
-                initialiseCounts(counts.computeIfAbsent(match.team2, TeamCounts::new), startStage);
+                initialiseCounts(counts.computeIfAbsent(match.team1, TeamCounts::new), startStage, runsForStartStage(startStage));
+                initialiseCounts(counts.computeIfAbsent(match.team2, TeamCounts::new), startStage, runsForStartStage(startStage));
             }
         }
 
+        int totalRuns = runsForStartStage(startStage);
         Map<PathKey, Integer> pathCounts = new HashMap<>();
         Map<ScorelineKey, Integer> scorelineCounts = new HashMap<>();
-        Random random = new Random(seed);
-        for (int run = 0; run < runs; run++) {
+        Random random = new Random(seed + startStage.ordinal());
+        for (int run = 0; run < totalRuns; run++) {
             RunState runState = new RunState();
             runState.pathFatigueByTeam.putAll(startData.pathFatigueByTeam());
             for (SimulationStage stage : SimulationStage.values()) {
@@ -537,14 +538,18 @@ public class SimulationHandler {
         }
         return new SimulationResult(counts.values().stream()
                 .sorted(Comparator.comparing((TeamCounts c) -> c.champion).reversed().thenComparing(c -> c.team))
-                .toList(), sortedPathCounts(pathCounts), sortedScorelineCounts(scorelineCounts), runs);
+                .toList(), sortedPathCounts(pathCounts), sortedScorelineCounts(scorelineCounts), totalRuns);
     }
 
-    private void initialiseCounts(TeamCounts counts, SimulationStage startStage) {
-        if (startStage.ordinal() >= SimulationStage.LAST_16.ordinal()) counts.reachLast16 = runs;
-        if (startStage.ordinal() >= SimulationStage.LAST_8.ordinal()) counts.reachLast8 = runs;
-        if (startStage.ordinal() >= SimulationStage.LAST_4.ordinal()) counts.reachLast4 = runs;
-        if (startStage.ordinal() >= SimulationStage.FINAL.ordinal()) counts.reachFinal = runs;
+    private int runsForStartStage(SimulationStage startStage) {
+        return runs * (startStage.ordinal() + 1);
+    }
+
+    private void initialiseCounts(TeamCounts counts, SimulationStage startStage, int totalRuns) {
+        if (startStage.ordinal() >= SimulationStage.LAST_16.ordinal()) counts.reachLast16 = totalRuns;
+        if (startStage.ordinal() >= SimulationStage.LAST_8.ordinal()) counts.reachLast8 = totalRuns;
+        if (startStage.ordinal() >= SimulationStage.LAST_4.ordinal()) counts.reachLast4 = totalRuns;
+        if (startStage.ordinal() >= SimulationStage.FINAL.ordinal()) counts.reachFinal = totalRuns;
     }
 
     private void playStage(String stage, String fatigueStage, String reachedRound,
