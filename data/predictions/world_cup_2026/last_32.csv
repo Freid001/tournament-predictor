@@ -1,33 +1,34 @@
-match_id,team1,team2,path,elo,prediction
-M73,A2(South Korea),B2(Canada),predicted,Canada (63%),Canada (63%)
+match_id,team1,team2,path,elo,prediction,team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot
+M73,South Korea,Canada,predicted,Canada (63%),Canada (63%),A2,South Korea,,A2,A2,B2,Canada,,B2,B2
 
-M74,E1(Germany),ABCDF3(Scotland),predicted,Germany (80%),Germany (80%)
+M74,Germany,United States,predicted,Germany (79%),Germany (79%),E1,Germany,,E1,E1,ABCDF3,United States,,D3,ABCDF3
+M74,Ecuador,United States,predicted,Ecuador (79%),Ecuador (79%),E1,Ecuador,,E2,E1,ABCDF3,United States,,D3,ABCDF3
 
-M75,F1(Japan),C2(Morocco),predicted,Japan (60%),Japan (60%)
+M75,Japan,Morocco,predicted,Japan (58%),Japan (58%),F1,Japan,,F1,F1,C2,Morocco,,C2,C2
 
-M76,C1(Brazil),F2(Netherlands),predicted,Brazil (59%),Brazil (59%)
+M76,Brazil,Netherlands,predicted,Brazil (59%),Brazil (59%),C1,Brazil,,C1,C1,F2,Netherlands,,F2,F2
 
-M77,I1(France),CDFGH3(United States),predicted,France (85%),France (85%)
+M77,France,Sweden,predicted,France (92%),France (92%),I1,France,,I1,I1,CDFGH3,Sweden,,F3,CDFGH3
 
-M78,E2(Ecuador),I2(Norway),predicted,Ecuador (57%),Ecuador (57%)
+M78,Ivory Coast,Norway,predicted,Norway (78%),Norway (78%),E2,Ivory Coast,,E3,E2,I2,Norway,,I2,I2
 
-M79,A1(Mexico),CEFHI3(Ivory Coast),predicted,Mexico (82%),Mexico (82%)
+M79,Mexico,Scotland,predicted,Mexico (79%),Mexico (79%),A1,Mexico,,A1,A1,CEFHI3,Scotland,,C3,CEFHI3
 
-M80,L1(England),EHIJK3(Senegal),predicted,England (63%),England (63%)
+M80,England,Senegal,predicted,England (65%),England (65%),L1,England,,L1,L1,EHIJK3,Senegal,,I3,EHIJK3
 
-M81,D1(Turkey),BEFIJ3(Algeria),predicted,Turkey (78%),Turkey (78%)
+M81,Turkey,Algeria,predicted,Turkey (77%),Turkey (77%),D1,Turkey,,D1,D1,BEFIJ3,Algeria,,J3,BEFIJ3
 
-M82,G1(Belgium),AEHIJ3(Czechia),predicted,Belgium (72%),Belgium (72%)
+M82,Belgium,Czechia,predicted,Belgium (72%),Belgium (72%),G1,Belgium,,G1,G1,AEHIJ3,Czechia,,A3,AEHIJ3
 
-M83,K2(Colombia),L2(Croatia),predicted,Colombia (67%),Colombia (67%)
+M83,Colombia,Croatia,predicted,Colombia (67%),Colombia (67%),K2,Colombia,,K2,K2,L2,Croatia,,L2,L2
 
-M84,H1(Spain),J2(Austria),predicted,Spain (83%),Spain (83%)
+M84,Spain,Austria,predicted,Spain (83%),Spain (83%),H1,Spain,,H1,H1,J2,Austria,,J2,J2
 
-M85,B1(Switzerland),EFGIJ3(Egypt),predicted,Switzerland (74%),Switzerland (74%)
+M85,Switzerland,Egypt,predicted,Switzerland (75%),Switzerland (75%),B1,Switzerland,,B1,B1,EFGIJ3,Egypt,,G3,EFGIJ3
 
-M86,J1(Argentina),H2(Uruguay),predicted,Argentina (86%),Argentina (86%)
+M86,Argentina,Uruguay,predicted,Argentina (86%),Argentina (86%),J1,Argentina,,J1,J1,H2,Uruguay,,H2,H2
 
-M87,K1(Portugal),DEIJL3(Panama),predicted,Portugal (84%),Portugal (84%)
+M87,Portugal,Panama,predicted,Portugal (86%),Portugal (86%),K1,Portugal,,K1,K1,DEIJL3,Panama,,L3,DEIJL3
 
-M88,D2(Paraguay),G2(Iran),predicted,Paraguay (63%),Paraguay (63%)
+M88,Paraguay,Iran,predicted,Paraguay (66%),Paraguay (66%),D2,Paraguay,,D2,D2,G2,Iran,,G2,G2
 

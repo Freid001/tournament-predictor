@@ -15,16 +15,17 @@ public class DisplayBuilder {
         this.tokenResolver = tokenResolver;
     }
 
-    public List<String> buildDisplays(String token, Map<String, String> groups, Map<String, String> groupWinner,
-                                      Map<String, String> runnerUp, Map<String, String> thirdPlace) {
-        List<String> out = new ArrayList<>();
+
+    public List<RouteOption> buildOptions(String token, Map<String, String> groups, Map<String, String> groupWinner,
+                                          Map<String, String> runnerUp, Map<String, String> thirdPlace) {
+        List<RouteOption> out = new ArrayList<>();
         if (token == null || token.isEmpty()) {
-            out.add("");
+            out.add(new RouteOption(token, "", "", "", token));
             return out;
         }
 
         if (token.matches("^[A-L][1-4]$")) {
-            addGroupPositionDisplays(token, groups, groupWinner, runnerUp, thirdPlace, out);
+            addGroupPositionOptions(token, groups, groupWinner, runnerUp, thirdPlace, out);
             return out;
         }
 
@@ -35,17 +36,17 @@ public class DisplayBuilder {
                 }
                 Set<String> seen = new LinkedHashSet<>();
                 for (int i = 1; i <= 4; i++) {
-                    String slot = "" + group + i;
-                    String thirdPlaceValue = thirdPlace.getOrDefault(slot, "");
+                    String sourceSlot = "" + group + i;
+                    String thirdPlaceValue = thirdPlace.getOrDefault(sourceSlot, "");
                     if ("no".equalsIgnoreCase(thirdPlaceValue)) {
                         continue;
                     }
-                    String team = groups.getOrDefault(slot, "");
+                    String team = groups.getOrDefault(sourceSlot, "");
                     if (team == null || team.isEmpty()) {
-                        team = slot;
+                        team = sourceSlot;
                     }
                     if (seen.add(team)) {
-                        out.add(token + "(" + team + ")");
+                        out.add(new RouteOption(token, team, "", sourceSlot, token));
                     }
                 }
             }
@@ -53,24 +54,25 @@ public class DisplayBuilder {
         }
 
         String resolved = tokenResolver.resolveToken(token, groups);
-        out.add(displayTokenWithName(token, resolved));
+        out.add(new RouteOption(token, resolved == null ? "" : resolved, sourceMatchIdFromToken(token), groupFinishForTeam(resolved, groups), token));
         return out;
     }
 
-    public List<String> buildWinnerDisplays(String token, Map<String, String> groups, Map<String, String> groupWinner,
-                                            Map<String, String> runnerUp, Map<String, String> thirdPlace,
-                                            List<CsvLoader.BracketEntry> brackets, List<String> last32Rows) {
-        List<String> out = new ArrayList<>();
+    public List<RouteOption> buildWinnerOptions(String token, Map<String, String> groups, Map<String, String> groupWinner,
+                                                Map<String, String> runnerUp, Map<String, String> thirdPlace,
+                                                List<CsvLoader.BracketEntry> brackets, List<String> last32Rows) {
+        List<RouteOption> out = new ArrayList<>();
         if (token == null || token.isEmpty()) {
-            out.add("");
+            out.add(new RouteOption(token, "", "", "", token));
             return out;
         }
         if (token.matches("^W\\d+$")) {
             String matchId = "M" + token.substring(1);
-            Set<String> yesDisplays = new LinkedHashSet<>();
-            Set<String> maybeDisplays = new LinkedHashSet<>();
+            Set<RouteOption> yesOptions = new LinkedHashSet<>();
+            Set<RouteOption> maybeOptions = new LinkedHashSet<>();
+            Map<String, Integer> header = header(last32Rows);
             for (String row : last32Rows) {
-                if (row.trim().isEmpty()) {
+                if (row.trim().isEmpty() || row.startsWith("match_id")) {
                     continue;
                 }
                 String[] cols = row.split(",", -1);
@@ -78,21 +80,21 @@ public class DisplayBuilder {
                     continue;
                 }
                 String path = cols[3].trim();
-                String display1 = cols[1].trim();
-                String display2 = cols[2].trim();
+                RouteOption option1 = optionForSide(cols, header, true);
+                RouteOption option2 = optionForSide(cols, header, false);
                 if ("predicted".equalsIgnoreCase(path)) {
-                    yesDisplays.add(display1);
-                    yesDisplays.add(display2);
+                    yesOptions.add(option1);
+                    yesOptions.add(option2);
                 } else if ("alt".equalsIgnoreCase(path) || "upset".equalsIgnoreCase(path)) {
-                    maybeDisplays.add(display1);
-                    maybeDisplays.add(display2);
+                    maybeOptions.add(option1);
+                    maybeOptions.add(option2);
                 }
             }
-            Set<String> allDisplays = new LinkedHashSet<>(yesDisplays);
-            allDisplays.addAll(maybeDisplays);
-            if (!allDisplays.isEmpty()) {
-                for (String display : allDisplays) {
-                    out.add(token + "(" + display + ")");
+            Set<RouteOption> allOptions = new LinkedHashSet<>(yesOptions);
+            allOptions.addAll(maybeOptions);
+            if (!allOptions.isEmpty()) {
+                for (RouteOption option : allOptions) {
+                    out.add(option.withSlot(token).withSourceMatch(matchId));
                 }
                 return out;
             }
@@ -100,46 +102,59 @@ public class DisplayBuilder {
                 if (matchId.equalsIgnoreCase(source.matchId)) {
                     boolean token1Composite = source.token1 != null && source.token1.matches("^[A-L]+3$");
                     boolean token2Composite = source.token2 != null && source.token2.matches("^[A-L]+3$");
-                    Set<String> seen = new LinkedHashSet<>();
+                    Set<RouteOption> seen = new LinkedHashSet<>();
                     if (!token1Composite || token2Composite) {
-                        seen.addAll(buildDisplays(source.token1, groups, groupWinner, runnerUp, thirdPlace));
+                        seen.addAll(buildOptions(source.token1, groups, groupWinner, runnerUp, thirdPlace));
                     }
                     if (!token2Composite || token1Composite) {
-                        seen.addAll(buildDisplays(source.token2, groups, groupWinner, runnerUp, thirdPlace));
+                        seen.addAll(buildOptions(source.token2, groups, groupWinner, runnerUp, thirdPlace));
                     }
-                    for (String display : seen) {
-                        out.add(token + "(" + display + ")");
+                    for (RouteOption option : seen) {
+                        out.add(option.withSlot(token).withSourceMatch(matchId));
                     }
                     return out;
                 }
             }
         }
-        return buildDisplays(token, groups, groupWinner, runnerUp, thirdPlace);
+        return buildOptions(token, groups, groupWinner, runnerUp, thirdPlace);
     }
 
-    public String displayTokenWithName(String token, String resolved) {
-        if (token == null || token.isEmpty()) {
-            return "";
+    private static Map<String, Integer> header(List<String> rows) {
+        java.util.Map<String, Integer> header = new java.util.LinkedHashMap<>();
+        if (rows == null || rows.isEmpty()) return header;
+        String[] cols = rows.get(0).split(",", -1);
+        for (int i = 0; i < cols.length; i++) {
+            header.put(cols[i].trim(), i);
         }
-        if (resolved == null || resolved.isEmpty() || resolved.equals(token)) {
-            return token;
-        }
-        return token + "(" + resolved + ")";
+        return header;
     }
 
-    public boolean isCompositeDisplay(String display) {
-        return display != null && display.matches("^[A-L]{2,}3\\(.*\\)$");
+    private static RouteOption optionForSide(String[] cols, Map<String, Integer> header, boolean team1) {
+        String prefix = team1 ? "team1_" : "team2_";
+        String team = valueAt(cols, header, prefix + "team", "");
+        String bracketSlot = valueAt(cols, header, prefix + "bracket_slot", "");
+        String groupFinish = valueAt(cols, header, prefix + "group_finish", "");
+        String sourceMatch = valueAt(cols, header, prefix + "source_match", "");
+        return new RouteOption(bracketSlot, team, sourceMatch, groupFinish, bracketSlot);
     }
+
+    private static String valueAt(String[] cols, Map<String, Integer> header, String column, String fallback) {
+        Integer index = header.get(column);
+        if (index == null || index < 0 || index >= cols.length) return fallback;
+        String value = cols[index].trim();
+        return value.isBlank() ? fallback : value;
+    }
+
 
     public String safe(String value) {
         return value == null ? "" : value.replaceAll(",", " ");
     }
 
-    private void addGroupPositionDisplays(String token, Map<String, String> groups,
-                                          Map<String, String> groupWinner,
-                                          Map<String, String> runnerUp,
-                                          Map<String, String> thirdPlace,
-                                          List<String> out) {
+    private void addGroupPositionOptions(String token, Map<String, String> groups,
+                                         Map<String, String> groupWinner,
+                                         Map<String, String> runnerUp,
+                                         Map<String, String> thirdPlace,
+                                         List<RouteOption> out) {
         Map<String, String> statusBySlot = switch (token.charAt(1)) {
             case '1' -> groupWinner;
             case '2' -> runnerUp;
@@ -147,7 +162,7 @@ public class DisplayBuilder {
             default -> Map.of();
         };
         Set<String> seen = new LinkedHashSet<>();
-        addSlotDisplay(token, token, groups.getOrDefault(token, ""), statusBySlot.getOrDefault(token, ""), seen, out);
+        addSlotOption(token, token, groups.getOrDefault(token, ""), statusBySlot.getOrDefault(token, ""), seen, out);
 
         String group = token.substring(0, 1);
         for (int i = 1; i <= 4; i++) {
@@ -155,19 +170,54 @@ public class DisplayBuilder {
             if (sourceSlot.equalsIgnoreCase(token)) {
                 continue;
             }
-            addSlotDisplay(token, sourceSlot, groups.getOrDefault(sourceSlot, ""),
+            addSlotOption(token, sourceSlot, groups.getOrDefault(sourceSlot, ""),
                     statusBySlot.getOrDefault(sourceSlot, ""), seen, out);
         }
     }
 
-    private void addSlotDisplay(String targetToken, String sourceSlot, String team, String status,
-                                Set<String> seen, List<String> out) {
-        if (status == null || status.isBlank() || "no".equalsIgnoreCase(status)) {
+    private void addSlotOption(String targetToken, String sourceSlot, String team, String status,
+                               Set<String> seen, List<RouteOption> out) {
+        if (team == null || team.isBlank()) {
             return;
         }
-        String resolved = team == null || team.isEmpty() ? sourceSlot : team;
-        if (seen.add(resolved)) {
-            out.add(targetToken + "(" + resolved + ")");
+        if (seen.add(team)) {
+            out.add(new RouteOption(targetToken, team, "", sourceSlot, targetToken));
+        }
+    }
+
+    private static String sourceMatchIdFromToken(String token) {
+        if (token == null || !token.matches("^W\\d+$")) return "";
+        return "M" + token.substring(1);
+    }
+
+
+
+
+    private static String groupFinishForTeam(String teamName, Map<String, String> groups) {
+        if (teamName == null || teamName.isBlank()) return "";
+        for (Map.Entry<String, String> entry : groups.entrySet()) {
+            if (teamName.equalsIgnoreCase(entry.getValue())) {
+                return entry.getKey() == null ? "" : entry.getKey().trim().toUpperCase();
+            }
+        }
+        return "";
+    }
+
+
+
+    public record RouteOption(String slot, String team, String sourceMatchId, String groupFinish, String bracketSlot) {
+        public String display() {
+            if (slot == null || slot.isBlank()) return team == null ? "" : team;
+            if (team == null || team.isBlank() || team.equals(slot)) return slot;
+            return slot + "(" + team + ")";
+        }
+
+        public RouteOption withSlot(String newSlot) {
+            return new RouteOption(newSlot, team, sourceMatchId, groupFinish, bracketSlot);
+        }
+
+        public RouteOption withSourceMatch(String newSourceMatchId) {
+            return new RouteOption(slot, team, newSourceMatchId, groupFinish, bracketSlot);
         }
     }
 }

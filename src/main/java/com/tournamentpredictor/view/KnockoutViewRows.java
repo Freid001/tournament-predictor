@@ -32,6 +32,7 @@ public final class KnockoutViewRows {
         int team2Idx = indexOf(headers, "team2");
         int pathIdx = indexOf(headers, "path");
         int predIdx = indexOf(headers, "prediction");
+        int matchIdIdx = indexOf(headers, "match_id");
         int homeScoreIdx = indexOf(headers, "home_score");
         int awayScoreIdx = indexOf(headers, "away_score");
         if (team1Idx < 0 || team2Idx < 0 || pathIdx < 0 || predIdx < 0) {
@@ -51,17 +52,23 @@ public final class KnockoutViewRows {
             String team2 = elo.extractTeamName(valueAt(cols, team2Idx));
             if (team1.isBlank() || team2.isBlank()) continue;
             String key = matchKey(team1, team2);
-            if (!emittedKeys.add(key)) continue;
-            String winner = results.labels().get(key);
+            String matchId = valueAt(cols, matchIdIdx);
+            String resultKey = resultKey(matchId, team1, team2);
+            String winner = results.labelsByMatch().get(resultKey);
+            String score = results.scoresByMatch().getOrDefault(resultKey, "");
+            String emitKey = resultKey;
+            if (winner == null && !results.hasMatchKeys()) {
+                winner = results.labels().get(key);
+                score = results.scores().getOrDefault(key, "");
+                emitKey = key;
+            }
             if (winner == null || winner.isBlank()) continue;
+            if (!emittedKeys.add(emitKey)) continue;
             String[] resultCols = cols.clone();
             String predictedWinner = predictedWinners == null ? "" : predictedWinners.getOrDefault(key, "");
-            boolean upset = !predictedWinner.isBlank() && !"Draw".equalsIgnoreCase(winner)
-                    && !winner.equalsIgnoreCase(predictedWinner);
-            resultCols[pathIdx] = upset ? "result_upset" : "results";
+            resultCols[pathIdx] = "results";
             resultCols[predIdx] = winner;
             if (homeScoreIdx >= 0 && awayScoreIdx >= 0) {
-                String score = results.scores().getOrDefault(key, "");
                 String[] scoreParts = score.split(" - ", 2);
                 if (scoreParts.length == 2) {
                     resultCols[homeScoreIdx] = scoreParts[0];
@@ -158,11 +165,7 @@ public final class KnockoutViewRows {
             applyTeamPathContext(cols, team2, teamPathContext, team2PathDiffIdx, team2PathOppIdx);
             String resultWinner = labels.getOrDefault(key, "");
             String predictedWinner = source == null ? "" : elo.parseTeamFromPrediction(valueAt(cols, predIdx));
-            boolean actualUpset = !resultWinner.isBlank()
-                    && !"Draw".equalsIgnoreCase(resultWinner)
-                    && !predictedWinner.isBlank()
-                    && !resultWinner.equalsIgnoreCase(predictedWinner);
-            cols[pathIdx] = actualUpset ? "result_upset" : "fixture";
+            cols[pathIdx] = "fixture";
             cols[predIdx] = resultWinner.isBlank() ? valueAt(cols, predIdx) : resultWinner;
             if (homeScoreIdx >= 0) cols[homeScoreIdx] = safeTrim(fixture.getHomeScore());
             if (awayScoreIdx >= 0) cols[awayScoreIdx] = safeTrim(fixture.getAwayScore());
@@ -243,6 +246,15 @@ public final class KnockoutViewRows {
     }
 
     public static List<String> enrichPathContext(List<String> baseLines, List<String> contextLines) {
+        return enrichPathContext(baseLines, contextLines, List.of());
+    }
+
+    public static List<String> enrichPathContext(List<String> baseLines, List<String> contextLines, List<String> groupLines) {
+        return enrichPathContext(baseLines, contextLines, groupLines, Map.of());
+    }
+
+    public static List<String> enrichPathContext(List<String> baseLines, List<String> contextLines, List<String> groupLines,
+                                                 Map<String, String[]> slotsByMatch) {
         if (baseLines == null || baseLines.isEmpty() || contextLines == null || contextLines.isEmpty()) {
             return baseLines == null ? List.of() : baseLines;
         }
@@ -260,7 +272,10 @@ public final class KnockoutViewRows {
             return baseLines;
         }
         Map<String, PathContextRow> contextByPath = pathContextRows(contextLines);
-        if (contextByPath.isEmpty()) {
+        Map<String, String> predictedGroupSlotByTeam = groupSlotByTeam(groupLines);
+        Map<String, String> groupByTeam = groupByTeam(groupLines);
+        Map<String, String[]> matchSlots = slotsByMatch == null ? Map.of() : slotsByMatch;
+        if (contextByPath.isEmpty() && predictedGroupSlotByTeam.isEmpty() && matchSlots.isEmpty()) {
             return baseLines;
         }
         EloCalculator elo = new EloCalculator();
@@ -278,16 +293,145 @@ public final class KnockoutViewRows {
                 context = contextByPath.get(pathContextKey(valueAt(cols, matchIdIdx), team1, team2, ""));
             }
             if (context != null) {
-                cols[team1Idx] = context.team1();
-                cols[team2Idx] = context.team2();
+                String matchId = valueAt(cols, matchIdIdx);
+                cols[team1Idx] = normalizedContextTeam(context.team1(), team1, matchId, groupByTeam, matchSlots);
+                cols[team2Idx] = normalizedContextTeam(context.team2(), team2, matchId, groupByTeam, matchSlots);
                 cols[team1PathDiffIdx] = context.team1Fatigue();
                 cols[team2PathDiffIdx] = context.team2Fatigue();
                 cols[team1PathOppIdx] = context.team1Opponent();
                 cols[team2PathOppIdx] = context.team2Opponent();
+            } else if (!predictedGroupSlotByTeam.isEmpty() || !matchSlots.isEmpty()) {
+                String matchId = valueAt(cols, matchIdIdx);
+                applyGroupSlotFallback(cols, team1Idx, team1, matchId, predictedGroupSlotByTeam, groupByTeam, matchSlots);
+                applyGroupSlotFallback(cols, team2Idx, team2, matchId, predictedGroupSlotByTeam, groupByTeam, matchSlots);
             }
             out.add(String.join(",", cols));
         }
         return out;
+    }
+
+
+    private static String normalizedContextTeam(String contextTeam, String team, String matchId,
+                                                Map<String, String> groupByTeam, Map<String, String[]> slotsByMatch) {
+        String safeTeam = safeTrim(team);
+        String slot = originSlot(contextTeam);
+        if (safeTeam.isBlank() || slot.isBlank() || !isCompositeThirdPlaceSlot(slot)) {
+            return contextTeam;
+        }
+        String group = groupByTeam.getOrDefault(safeTeam.toLowerCase(java.util.Locale.ROOT), "");
+        String normalizedSlot = bracketSlotForTeam(matchId, group, slotsByMatch);
+        return normalizedSlot.isBlank() ? contextTeam : slotWrappedTeam(safeTeam, normalizedSlot);
+    }
+
+    private static boolean isCompositeThirdPlaceSlot(String slot) {
+        String safeSlot = safeTrim(slot);
+        return safeSlot.length() > 2 && safeSlot.endsWith("3");
+    }
+
+
+    private static void applyGroupSlotFallback(String[] cols, int teamIdx, String team, String matchId,
+                                               Map<String, String> predictedGroupSlotByTeam,
+                                               Map<String, String> groupByTeam,
+                                               Map<String, String[]> slotsByMatch) {
+        if (teamIdx < 0 || teamIdx >= cols.length) return;
+        String safeTeam = safeTrim(team);
+        if (safeTeam.isBlank() || !originSlot(cols[teamIdx]).isBlank()) return;
+        String key = safeTeam.toLowerCase(java.util.Locale.ROOT);
+        String slot = bracketSlotForTeam(matchId, groupByTeam.getOrDefault(key, ""), slotsByMatch);
+        if (safeTrim(slot).isBlank()) {
+            slot = predictedGroupSlotByTeam.get(key);
+        }
+        if (!safeTrim(slot).isBlank()) {
+            cols[teamIdx] = slotWrappedTeam(safeTeam, slot);
+        }
+    }
+
+    private static String bracketSlotForTeam(String matchId, String group, Map<String, String[]> slotsByMatch) {
+        String safeGroup = safeTrim(group);
+        String[] slots = slotsByMatch == null ? null : slotsByMatch.get(safeTrim(matchId));
+        if (safeGroup.isBlank() || slots == null) return "";
+        for (String slot : slots) {
+            String safeSlot = safeTrim(slot);
+            if (safeSlot.length() < 2) continue;
+            String slotGroups = safeSlot.substring(0, safeSlot.length() - 1);
+            String position = safeSlot.substring(safeSlot.length() - 1);
+            if (slotGroups.equalsIgnoreCase(safeGroup)) {
+                return safeSlot;
+            }
+            if ("3".equals(position) && slotGroups.toUpperCase(java.util.Locale.ROOT)
+                    .contains(safeGroup.toUpperCase(java.util.Locale.ROOT))) {
+                return safeGroup.toUpperCase(java.util.Locale.ROOT) + "3";
+            }
+        }
+        return "";
+    }
+
+    private static Map<String, String> groupSlotByTeam(List<String> groupLines) {
+        if (groupLines == null || groupLines.isEmpty()) {
+            return Map.of();
+        }
+        String[] headers = groupLines.get(0).split(",", -1);
+        int groupIdx = indexOf(headers, "group");
+        int teamIdx = indexOf(headers, "team");
+        int positionIdx = indexOf(headers, "predicted_position");
+        if (groupIdx < 0 || teamIdx < 0 || positionIdx < 0) {
+            return Map.of();
+        }
+        Map<String, String> slots = new LinkedHashMap<>();
+        for (int i = 1; i < groupLines.size(); i++) {
+            String line = groupLines.get(i);
+            if (line == null || line.isBlank()) continue;
+            String[] cols = line.split(",", -1);
+            String group = safeTrim(valueAt(cols, groupIdx));
+            String team = safeTrim(valueAt(cols, teamIdx));
+            String position = predictedPositionNumber(valueAt(cols, positionIdx));
+            if (!group.isBlank() && !team.isBlank() && !position.isBlank()) {
+                slots.putIfAbsent(team.toLowerCase(java.util.Locale.ROOT), group + position);
+            }
+        }
+        return slots;
+    }
+
+    private static Map<String, String> groupByTeam(List<String> groupLines) {
+        if (groupLines == null || groupLines.isEmpty()) {
+            return Map.of();
+        }
+        String[] headers = groupLines.get(0).split(",", -1);
+        int groupIdx = indexOf(headers, "group");
+        int teamIdx = indexOf(headers, "team");
+        if (groupIdx < 0 || teamIdx < 0) {
+            return Map.of();
+        }
+        Map<String, String> groups = new LinkedHashMap<>();
+        for (int i = 1; i < groupLines.size(); i++) {
+            String line = groupLines.get(i);
+            if (line == null || line.isBlank()) continue;
+            String[] cols = line.split(",", -1);
+            String group = safeTrim(valueAt(cols, groupIdx));
+            String team = safeTrim(valueAt(cols, teamIdx));
+            if (!group.isBlank() && !team.isBlank()) {
+                groups.putIfAbsent(team.toLowerCase(java.util.Locale.ROOT), group);
+            }
+        }
+        return groups;
+    }
+
+    private static String predictedPositionNumber(String predictedPosition) {
+        String value = safeTrim(predictedPosition);
+        StringBuilder digits = new StringBuilder();
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (Character.isDigit(c)) {
+                digits.append(c);
+            } else if (!digits.isEmpty()) {
+                break;
+            }
+        }
+        return digits.toString();
+    }
+
+    private static String originSlot(String rawDisplay) {
+        return "";
     }
 
     private static Map<String, PathContextRow> pathContextRows(List<String> contextLines) {
@@ -550,10 +694,13 @@ public final class KnockoutViewRows {
 
     private static ResultMaps resultMaps(List<Map<String, String>> rows) {
         if (rows == null || rows.isEmpty()) {
-            return new ResultMaps(Map.of(), Map.of());
+            return new ResultMaps(Map.of(), Map.of(), Map.of(), Map.of(), false);
         }
         Map<String, String> labels = new LinkedHashMap<>();
         Map<String, String> scores = new LinkedHashMap<>();
+        Map<String, String> labelsByMatch = new LinkedHashMap<>();
+        Map<String, String> scoresByMatch = new LinkedHashMap<>();
+        boolean hasMatchKeys = false;
         for (Map<String, String> row : rows) {
             String team1 = first(row, "team1", "home_team");
             String team2 = first(row, "team2", "away_team");
@@ -567,12 +714,26 @@ public final class KnockoutViewRows {
                 winner = home > away ? team1 : away > home ? team2 : "Draw";
             }
             String key = matchKey(team1, team2);
+            String matchId = safeTrim(row.getOrDefault("match_id", ""));
+            String resultKey = resultKey(matchId, team1, team2);
             labels.put(key, winner);
+            if (!matchId.isBlank()) {
+                hasMatchKeys = true;
+                labelsByMatch.put(resultKey, winner);
+            }
             if (!homeScore.isBlank() && !awayScore.isBlank()) {
-                scores.put(key, homeScore + " - " + awayScore);
+                String score = homeScore + " - " + awayScore;
+                scores.put(key, score);
+                if (!matchId.isBlank()) {
+                    scoresByMatch.put(resultKey, score);
+                }
             }
         }
-        return new ResultMaps(labels, scores);
+        return new ResultMaps(labels, scores, labelsByMatch, scoresByMatch, hasMatchKeys);
+    }
+
+    private static String resultKey(String matchId, String team1, String team2) {
+        return safeTrim(matchId) + "|" + matchKey(team1, team2);
     }
 
     private static String first(Map<String, String> row, String firstKey, String secondKey) {
@@ -605,6 +766,8 @@ public final class KnockoutViewRows {
         }
     }
 
-    private record ResultMaps(Map<String, String> labels, Map<String, String> scores) {
+    private record ResultMaps(Map<String, String> labels, Map<String, String> scores,
+                              Map<String, String> labelsByMatch, Map<String, String> scoresByMatch,
+                              boolean hasMatchKeys) {
     }
 }

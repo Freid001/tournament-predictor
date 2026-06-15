@@ -12,9 +12,9 @@ class ViewLineServiceTest {
     @Test
     void allStageTeamNamesExtractsSortedUniqueTeamNames() {
         List<String> teams = ViewLineService.allStageTeamNames(List.of(
-                "match_id,team1,team2,path,prediction",
-                "1,A1(France),B2(Spain),predicted,France (55%)",
-                "2,C1(Brazil),A2(France),alt,Brazil (60%)"
+                "match_id,team1,team2,path,prediction,team1_team,team1_group_finish,team1_bracket_slot,team2_team,team2_group_finish,team2_bracket_slot",
+                "1,France,Spain,predicted,France (55%),France,A1,A1,Spain,B2,B2",
+                "2,Brazil,France,alt,Brazil (60%),Brazil,C1,C1,France,A2,A2"
         ));
 
         assertEquals(List.of("Brazil", "France", "Spain"), teams);

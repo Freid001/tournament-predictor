@@ -1,5 +1,6 @@
 package com.tournamentpredictor.services.training;
 
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 import com.tournamentpredictor.services.calculation.ExpectedGoalsCalculator;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -8,6 +9,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,10 +36,12 @@ public class TrainingCoreGridHandler {
 
     private final Path root;
     private final double eloScaleDivisor;
+    private final GeneratedDataStore generatedDataStore;
 
     public TrainingCoreGridHandler(Path root, double eloScaleDivisor) {
         this.root = root;
         this.eloScaleDivisor = eloScaleDivisor;
+        this.generatedDataStore = new GeneratedDataStore(root);
     }
 
     public void handle() throws IOException {
@@ -156,7 +160,7 @@ public class TrainingCoreGridHandler {
                 Path actual = path.resolve("actual_results.csv");
                 Path groups = root.resolve("data/predictions").resolve(name).resolve("groups.csv");
                 Path start = root.resolve("data/predictions").resolve(name).resolve("start.csv");
-                if (!Files.exists(actual) || !Files.exists(groups) || !Files.exists(start)) continue;
+                if (!Files.exists(actual) || !generatedExists(groups) || !generatedExists(start)) continue;
                 Map<String, Boolean> hosts = loadHosts(start);
                 Map<String, Profile> profiles = loadProfiles(groups, hosts);
                 List<Match> matches = loadMatches(actual, profiles);
@@ -169,20 +173,17 @@ public class TrainingCoreGridHandler {
         return tournaments;
     }
 
-    private static Map<String, Boolean> loadHosts(Path path) throws IOException {
+    private Map<String, Boolean> loadHosts(Path path) throws IOException {
         Map<String, Boolean> hosts = new HashMap<>();
-        try (Reader reader = Files.newBufferedReader(path);
-             CSVParser parser = CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true).build().parse(reader)) {
+        try (CSVParser parser = generatedParser(path)) {
             for (CSVRecord row : parser) hosts.put(row.get("team").trim(), "yes".equalsIgnoreCase(row.get("host").trim()));
         }
         return hosts;
     }
 
-    private static Map<String, Profile> loadProfiles(Path path, Map<String, Boolean> hosts) throws IOException {
+    private Map<String, Profile> loadProfiles(Path path, Map<String, Boolean> hosts) throws IOException {
         Map<String, Profile> profiles = new HashMap<>();
-        try (Reader reader = Files.newBufferedReader(path);
-             CSVParser parser = CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true)
-                     .setIgnoreEmptyLines(true).build().parse(reader)) {
+        try (CSVParser parser = generatedParser(path)) {
             for (CSVRecord row : parser) {
                 String team = row.get("team").trim();
                 profiles.put(team, new Profile(i(row, "elo_ranking"), hosts.getOrDefault(team, false),
@@ -190,6 +191,24 @@ public class TrainingCoreGridHandler {
             }
         }
         return profiles;
+    }
+
+
+    private CSVParser generatedParser(Path path) throws IOException {
+        List<String> lines = generatedDataStore.readLines(path);
+        if (lines.isEmpty()) {
+            throw new IOException("Generated data not found: " + path);
+        }
+        return CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true)
+                .setIgnoreEmptyLines(true).build().parse(new StringReader(String.join("\n", lines)));
+    }
+
+    private boolean generatedExists(Path path) {
+        try {
+            return generatedDataStore.exists(path);
+        } catch (IOException e) {
+            return Files.exists(path);
+        }
     }
 
     private static List<Match> loadMatches(Path path, Map<String, Profile> profiles) throws IOException {

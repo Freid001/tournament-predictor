@@ -24,8 +24,8 @@ rank,team_code,team_name,rating
 23,CA,Canada,1788
 24,SQ,Scotland,1782
 25,AU,Australia,1777
-26,IR,Iran,1772
-27,DZ,Algeria,1760
+26,DZ,Algeria,1772
+27,IR,Iran,1772
 28,KR,South Korea,1758
 29,CZ,Czechia,1740
 30,PA,Panama,1730
@@ -45,5 +45,5 @@ rank,team_code,team_name,rating
 44,HT,Haiti,1548
 45,ZA,South Africa,1517
 46,GH,Ghana,1510
-47,CW,Curaçao,1434
+47,CW,Curaçao,1427
 48,QA,Qatar,1421

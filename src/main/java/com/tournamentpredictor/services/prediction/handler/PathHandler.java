@@ -3,6 +3,7 @@ package com.tournamentpredictor.services.prediction.handler;
 import com.tournamentpredictor.services.io.CsvLoader;
 import com.tournamentpredictor.services.report.ConsoleReporter;
 import com.tournamentpredictor.services.calculation.EloCalculator;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,7 @@ public class PathHandler {
     private final Path projectRoot;
     private final EloCalculator eloCalculator;
     private final ConsoleReporter consoleReporter;
+    private final GeneratedDataStore generatedDataStore;
 
     public PathHandler(CsvLoader loader, Path projectRoot, EloCalculator eloCalculator,
                        ConsoleReporter consoleReporter) {
@@ -49,6 +51,7 @@ public class PathHandler {
         this.projectRoot = projectRoot;
         this.eloCalculator = eloCalculator;
         this.consoleReporter = consoleReporter;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
     }
 
     private static class MatchStep {
@@ -253,8 +256,8 @@ public class PathHandler {
         Path simulationDir = projectRoot.resolve("data").resolve("simulations").resolve(tournament);
         for (String[] roundFile : ROUND_FILES) {
             Path file = simulationDir.resolve("matchup_paths_" + roundFile[0] + ".csv");
-            if (!Files.exists(file)) continue;
-            List<String> lines = Files.readAllLines(file);
+            if (!generatedDataStore.exists(file)) continue;
+            List<String> lines = generatedDataStore.readLines(file);
             if (lines.size() < 2) continue;
             String[] headers = lines.get(0).split(",", -1);
             int mIdx = indexOf(headers, "match_id");
@@ -271,12 +274,12 @@ public class PathHandler {
 
         // Find all starting matchIds where team appears in last_32
         Path last32File = simulationDir.resolve("matchup_paths_last_32.csv");
-        if (!Files.exists(last32File)) {
+        if (!generatedDataStore.exists(last32File)) {
             System.out.println("\n  No simulation matchup-path data. Run --mode=groups first to generate last_32 matchups.\n");
             return;
         }
 
-        List<String> last32Lines = Files.readAllLines(last32File);
+        List<String> last32Lines = generatedDataStore.readLines(last32File);
         String[] last32Headers   = last32Lines.get(0).split(",", -1);
         int t1Idx   = indexOf(last32Headers, "team1");
         int t2Idx   = indexOf(last32Headers, "team2");
@@ -587,10 +590,7 @@ public class PathHandler {
         }
     }
 
-    /**
-     * Extracts the slot label (e.g. "L1", "L2", "W80") from a display like "L1(England)" or
-     * "W80(L1(England))". Returns the outermost label before the first '('.
-     */
+    /** Extracts the outer slot token from a bracket reference. */
     private String extractSlot(String display) {
         if (display == null) return "";
         int paren = display.indexOf('(');

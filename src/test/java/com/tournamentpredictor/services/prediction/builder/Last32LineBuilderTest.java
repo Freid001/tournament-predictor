@@ -118,6 +118,30 @@ class Last32LineBuilderTest {
         return paths;
     }
 
+
+    @Test
+    void outputStoresRawTeamsWithStructuredRouteMetadata() {
+        var lines = builderNoResolver().buildLast32Lines(
+                baseGroups(), baseGroupWinner(), baseRunnerUp(), baseThirdPlace(), baseElos(),
+                List.of(new CsvLoader.BracketEntry("M1", "A1", "B2", "LAST_32")));
+
+        String row = lines.stream().filter(line -> line.startsWith("M1,")).findFirst().orElseThrow();
+        String[] cols = row.split(",", -1);
+
+        assertEquals("England", cols[1]);
+        assertEquals("France", cols[2]);
+        assertFalse(cols[1].contains("("), "team1 should store the raw team name: " + row);
+        assertFalse(cols[2].contains("("), "team2 should store the raw team name: " + row);
+        assertEquals("A1", cols[9]);
+        assertEquals("England", cols[10]);
+        assertEquals("A1", cols[12]);
+        assertEquals("A1", cols[13]);
+        assertEquals("B2", cols[14]);
+        assertEquals("France", cols[15]);
+        assertEquals("B2", cols[17]);
+        assertEquals("B2", cols[18]);
+    }
+
     // ─── Fallback: resolver=null ──────────────────────────────────────────────
 
     @Nested
@@ -252,7 +276,9 @@ class Last32LineBuilderTest {
                     baseGroups(), baseGroupWinner(), baseRunnerUp(), baseThirdPlace(), baseElos(),
                     List.of(new CsvLoader.BracketEntry("M10", "A1", "AB3", "LAST_32")));
 
-            assertEquals("match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent", lines.get(0));
+            assertEquals("match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+                    + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+                    + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot", lines.get(0));
         }
 
 
@@ -274,6 +300,22 @@ class Last32LineBuilderTest {
             assertTrue(cols[7].contains("G|France:-6"));
             assertTrue(cols[7].contains("G|Scotland:-2"));
             assertTrue(cols[8].contains("G|England:-5"));
+        }
+
+
+        @Test
+        void simpleGroupPositionPermutationsDefaultToAltInsteadOfBlankPath() {
+            var lines = builderNoResolver().buildLast32Lines(
+                    baseGroups(), baseGroupWinner(), baseRunnerUp(), baseThirdPlace(), baseElos(),
+                    List.of(new CsvLoader.BracketEntry("M12", "A2", "B2", "LAST_32")));
+
+            List<String> paths = pathsFor(lines, "M12");
+            assertFalse(paths.isEmpty(), "Expected group-position permutation rows");
+            assertTrue(paths.stream().noneMatch(String::isBlank),
+                    "Every generated permutation row must have an explicit path label: " + paths);
+            assertTrue(lines.stream().anyMatch(line -> line.startsWith("M12,England,Spain,alt,")
+                            && line.endsWith(",A2,England,,A1,A2,B2,Spain,,B1,B2")),
+                    "No-status group-position permutations should be retained as alternative paths with route metadata outside team columns");
         }
 
         /** Each LAST_32 match produces exactly one trailing blank line. */

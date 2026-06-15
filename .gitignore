@@ -21,3 +21,22 @@ data/elo/snapshots/*/
 # Python caches are never source artifacts.
 __pycache__/
 *.pyc
+
+# Generated SQLite query/cache databases.
+data/cache/*.sqlite
+data/cache/*.sqlite-wal
+data/cache/*.sqlite-shm
+
+# SQLite database files.
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+
+# Generated tournament prediction outputs.
+data/predictions/*/last_16.csv
+data/predictions/*/last_8.csv
+data/predictions/*/last_4.csv
+data/predictions/*/final.csv

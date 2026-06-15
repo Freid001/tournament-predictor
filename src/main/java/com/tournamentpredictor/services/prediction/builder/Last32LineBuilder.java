@@ -2,6 +2,7 @@ package com.tournamentpredictor.services.prediction.builder;
 
 import com.tournamentpredictor.services.io.CsvLoader;
 import com.tournamentpredictor.services.bracket.DisplayBuilder;
+import com.tournamentpredictor.services.bracket.DisplayBuilder.RouteOption;
 import com.tournamentpredictor.services.calculation.EloCalculator;
 import com.tournamentpredictor.services.calculation.PathCalculator;
 import com.tournamentpredictor.services.calculation.PathFatigueCalculator;
@@ -18,7 +19,9 @@ import java.util.Map;
 public class Last32LineBuilder {
     private final DisplayBuilder displayBuilder;
     private final PathCalculator pathCalculator;
-    private static final String HEADER = "match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent";
+    private static final String HEADER = "match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+            + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+            + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot";
 
     private final EloCalculator predictionHelper;
     private final ThirdPlaceResolver thirdPlaceResolver;
@@ -86,15 +89,15 @@ public class Last32LineBuilder {
             boolean token1IsComposite = bracket.token1 != null && bracket.token1.matches("^[A-L]+3$");
             boolean hasComposite = token1IsComposite || token2IsComposite;
 
-            List<String> displays1 = displayBuilder.buildDisplays(bracket.token1, groups, groupWinner, runnerUp, thirdPlace);
-            List<String> displays2 = displayBuilder.buildDisplays(bracket.token2, groups, groupWinner, runnerUp, thirdPlace);
-            for (String display1 : displays1) {
-                for (String display2 : displays2) {
-                    String team1Name = predictionHelper.extractTeamName(display1);
-                    String team2Name = predictionHelper.extractTeamName(display2);
+            List<RouteOption> options1 = displayBuilder.buildOptions(bracket.token1, groups, groupWinner, runnerUp, thirdPlace);
+            List<RouteOption> options2 = displayBuilder.buildOptions(bracket.token2, groups, groupWinner, runnerUp, thirdPlace);
+            for (RouteOption option1 : options1) {
+                for (RouteOption option2 : options2) {
+                    String team1Name = option1.team();
+                    String team2Name = option2.team();
                     String path;
                     if (hasComposite && !resolvedAssignments.isEmpty()) {
-                        path = computeCompositeResolvedPath(bracket, display1, display2,
+                        path = computeCompositeResolvedPath(bracket,
                                 team1Name, team2Name, token1IsComposite, token2IsComposite,
                                 teamGW, teamRU, teamTP, resolvedAssignments);
                         if (path == null) {
@@ -103,28 +106,68 @@ public class Last32LineBuilder {
                         }
                     } else if (hasComposite) {
                         // Resolver unavailable — safe fallback: show composites as alt only to avoid duplicates
-                        path = computeCompositeFallbackPath(bracket, display1, display2,
+                        path = computeCompositeFallbackPath(bracket,
                                 team1Name, team2Name, token1IsComposite, token2IsComposite,
                                 teamGW, teamRU, teamTP);
                         if (path == null) continue;
                     } else {
-                        path = pathCalculator.computePredictedMatch(bracket.token1, display1, bracket.token2, display2,
+                        path = pathCalculator.computePredictedMatchForTeams(bracket.token1, team1Name, bracket.token2, team2Name,
                                 teamGW, teamRU, teamTP);
                     }
+                    path = defaultAlternativePath(path);
+                    path = enforceExactGroupSlotPath(path, bracket.token1, option1, bracket.token2, option2);
                     GroupLoadResult groupLoad1 = groupLoadFor(team1Name, groups, eloRatings, snapshots);
                     GroupLoadResult groupLoad2 = groupLoadFor(team2Name, groups, eloRatings, snapshots);
                     int team1AdjustedElo = eloRatings.getOrDefault(team1Name, 0) + groupLoad1.adjustedElo;
                     int team2AdjustedElo = eloRatings.getOrDefault(team2Name, 0) + groupLoad2.adjustedElo;
                     String eloPrediction = predictionHelper.computeEloPredictionFromElos(team1Name, team2Name, team1AdjustedElo, team2AdjustedElo);
-                    lines.add(String.join(",", bracket.matchId, displayBuilder.safe(display1),
-                            displayBuilder.safe(display2), path, eloPrediction,
+                    lines.add(String.join(",", bracket.matchId, team1Name,
+                            team2Name, path, eloPrediction,
                             String.valueOf(groupLoad1.weightedTotal), String.valueOf(groupLoad2.weightedTotal),
-                            groupLoad1.chain, groupLoad2.chain));
+                            groupLoad1.chain, groupLoad2.chain,
+                            bracket.token1, team1Name, option1.sourceMatchId(), option1.groupFinish(), option1.bracketSlot(),
+                            bracket.token2, team2Name, option2.sourceMatchId(), option2.groupFinish(), option2.bracketSlot()));
                 }
             }
             lines.add("");
         }
         return lines;
+    }
+
+    private String defaultAlternativePath(String path) {
+        return path == null || path.isBlank() ? "alt" : path;
+    }
+
+    private String enforceExactGroupSlotPath(String path, String token1, RouteOption option1,
+                                             String token2, RouteOption option2) {
+        boolean exact = exactGroupSlot(token1, option1) && exactGroupSlot(token2, option2);
+        boolean composite = isCompositeThirdPlaceToken(token1) || isCompositeThirdPlaceToken(token2);
+        if (exact && !composite) {
+            return "predicted";
+        }
+        if ("predicted".equals(path)) {
+            return exact ? "predicted" : "alt";
+        }
+        return path;
+    }
+
+    private boolean isCompositeThirdPlaceToken(String token) {
+        return token != null && token.matches("^[A-L]+3$");
+    }
+
+    private boolean exactGroupSlot(String token, RouteOption option) {
+        if (token == null || option == null) {
+            return false;
+        }
+        if (token.matches("^[A-L][1-2]$")) {
+            return token.equalsIgnoreCase(option.groupFinish());
+        }
+        if (token.matches("^[A-L]+3$")) {
+            String finish = option.groupFinish();
+            return finish != null && finish.matches("^[A-L]3$")
+                    && token.toUpperCase(java.util.Locale.ROOT).contains(finish.substring(0, 1).toUpperCase(java.util.Locale.ROOT));
+        }
+        return true;
     }
 
     private GroupLoadResult groupLoadFor(String teamName, Map<String, String> groups, Map<String, Integer> eloRatings,
@@ -166,11 +209,16 @@ public class Last32LineBuilder {
     }
 
     private static String groupForTeam(String teamName, Map<String, String> groups) {
+        String slot = groupFinishForTeam(teamName, groups);
+        return slot.isBlank() ? "" : slot.substring(0, 1).toUpperCase();
+    }
+
+    private static String groupFinishForTeam(String teamName, Map<String, String> groups) {
         for (Map.Entry<String, String> entry : groups.entrySet()) {
             String team = entry.getValue();
             if (team != null && team.equalsIgnoreCase(teamName)) {
                 String slot = entry.getKey();
-                return slot == null || slot.isBlank() ? "" : slot.substring(0, 1).toUpperCase();
+                return slot == null ? "" : slot.trim().toUpperCase();
             }
         }
         return "";
@@ -184,7 +232,6 @@ public class Last32LineBuilder {
      * Returns "alt" if the composite team's group is not the resolver-assigned group (genuine alternative path).
      */
     private String computeCompositeResolvedPath(CsvLoader.BracketEntry bracket,
-                                                 String display1, String display2,
                                                  String team1Name, String team2Name,
                                                  boolean token1IsComposite, boolean token2IsComposite,
                                                  Map<String, String> teamGW, Map<String, String> teamRU,
@@ -192,7 +239,6 @@ public class Last32LineBuilder {
                                                  Map<String, List<String>> resolvedAssignments) {
         String compositeTeam = token2IsComposite ? team2Name : team1Name;
         String nonCompositeToken = token2IsComposite ? bracket.token1 : bracket.token2;
-        String nonCompositeDisplay = token2IsComposite ? display1 : display2;
         String nonCompositeTeam = token2IsComposite ? team1Name : team2Name;
 
         List<String> resolved = resolvedAssignments.get(bracket.matchId);
@@ -222,7 +268,6 @@ public class Last32LineBuilder {
      * Returns null for teams with third_place=no (skip those rows).
      */
     private String computeCompositeFallbackPath(CsvLoader.BracketEntry bracket,
-                                                 String display1, String display2,
                                                  String team1Name, String team2Name,
                                                  boolean token1IsComposite, boolean token2IsComposite,
                                                  Map<String, String> teamGW, Map<String, String> teamRU,

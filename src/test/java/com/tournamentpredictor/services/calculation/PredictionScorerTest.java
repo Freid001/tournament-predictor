@@ -36,9 +36,9 @@ class PredictionScorerTest {
     void blankSeparatorLinesArePreserved() {
         List<String> input = List.of(
                 "match_id,team1,team2,path,eloPrediction",
-                "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%)",
+                "M1,Germany,France,predicted,Germany (55%)",
                 "",
-                "M2,🏴C1(England),🇪🇸D2(Spain),predicted,England (60%)"
+                "M2,England,Spain,predicted,England (60%)"
         );
         List<String> result = scorer.scoreLines(input);
         assertEquals(4, result.size());
@@ -58,16 +58,18 @@ class PredictionScorerTest {
     @Test
     void validRowIncludesModelAndSelectionMetadata() {
         List<String> input = List.of(
-                "match_id,team1,team2,path,eloPrediction",
-                "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%)"
+                "match_id,team1,team2,path,eloPrediction,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+                        + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+                        + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot",
+                "M1,Germany,France,predicted,Germany (55%),0,0,,,B2,Germany,,B2,B2,A1,France,,A1,A1"
         );
         List<String> result = scorer.scoreLines(input);
         assertEquals(2, result.size());
         String[] cols = result.get(1).split(",", -1);
-        assertEquals(15, cols.length);
+        assertEquals(25, cols.length);
         assertEquals("M1", cols[0]);
-        assertEquals("🇩🇪B2(Germany)", cols[1]);
-        assertEquals("🇫🇷A1(France)", cols[2]);
+        assertEquals("Germany", cols[1]);
+        assertEquals("France", cols[2]);
         assertEquals("predicted", cols[3]);
         assertEquals("0", cols[9]);
         assertEquals("0", cols[10]);
@@ -75,14 +77,63 @@ class PredictionScorerTest {
         assertEquals("", cols[12]); // team2_path_opponent
         assertEquals("Germany (55%)", cols[13]);
         assertEquals("model", cols[14]);
+        assertEquals("B2", cols[15]);
+        assertEquals("Germany", cols[16]);
+        assertEquals("", cols[17]);
+        assertEquals("B2", cols[18]);
+        assertEquals("B2", cols[19]);
+        assertEquals("A1", cols[20]);
+        assertEquals("France", cols[21]);
+        assertEquals("", cols[22]);
+        assertEquals("A1", cols[23]);
+        assertEquals("A1", cols[24]);
+    }
+
+
+    @Test
+    void structuredInputKeepsRawTeamColumnsInScoredOutput() {
+        List<String> input = List.of(
+                "match_id,team1,team2,path,eloPrediction,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+                        + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+                        + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot",
+                "M80,England,Norway,alt,England (63%),0,0,,,L1,England,,L1,L1,EHIJK3,Norway,,I3,EHIJK3"
+        );
+
+        String[] cols = scorer.scoreLines(input).get(1).split(",", -1);
+
+        assertEquals("England", cols[1]);
+        assertEquals("Norway", cols[2]);
+        assertFalse(cols[1].contains("("));
+        assertFalse(cols[2].contains("("));
+        assertEquals("L1", cols[15]);
+        assertEquals("England", cols[16]);
+        assertEquals("EHIJK3", cols[20]);
+        assertEquals("Norway", cols[21]);
+    }
+
+    @Test
+    void explicitRouteMetadataIsPreservedWhenPresent() {
+        List<String> input = List.of(
+                "match_id,team1,team2,path,eloPrediction,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+                        + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+                        + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot",
+                "M80,England,Norway,alt,England (63%),0,0,,,L1,England,,L1,L1,EHIJK3,Norway,,I3,EHIJK3"
+        );
+
+        String[] cols = scorer.scoreLines(input).get(1).split(",", -1);
+
+        assertEquals("L1", cols[18]);
+        assertEquals("L1", cols[19]);
+        assertEquals("I3", cols[23]);
+        assertEquals("EHIJK3", cols[24]);
     }
 
     @Test
     void multipleValidRowsAllScored() {
         List<String> input = List.of(
                 "match_id,team1,team2,path,eloPrediction",
-                "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%)",
-                "M2,🏴C1(England),🇪🇸D2(Spain),alt,England (60%)"
+                "M1,Germany,France,predicted,Germany (55%)",
+                "M2,England,Spain,alt,England (60%)"
         );
         List<String> result = scorer.scoreLines(input);
         assertEquals(3, result.size());
@@ -92,7 +143,7 @@ class PredictionScorerTest {
     void pathDifficultyColumnsArePassedThrough() {
         List<String> result = scorer.scoreLines(List.of(
                 "match_id,team1,team2,path,eloPrediction,team1_path_fatigue,team2_path_fatigue",
-                "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%),100,-80"
+                "M1,Germany,France,predicted,Germany (55%),100,-80"
         ));
         String[] cols = result.get(1).split(",", -1);
         assertEquals("100", cols[9]);
@@ -106,8 +157,10 @@ class PredictionScorerTest {
                 "France", new TeamEloSnapshot(1880, -4, 1876)
         ));
         List<String> result = scorer.scoreLines(List.of(
-                "match_id,team1,team2,path,eloPrediction",
-                "M1,🇩🇪B2(Germany),🇫🇷A1(France),predicted,Germany (55%)"
+                "match_id,team1,team2,path,eloPrediction,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+                        + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+                        + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot",
+                "M1,Germany,France,predicted,Germany (55%),0,0,,,B2,Germany,,B2,B2,A1,France,,A1,A1"
         ));
         String[] cols = result.get(1).split(",", -1);
         assertEquals("1900", cols[5]);

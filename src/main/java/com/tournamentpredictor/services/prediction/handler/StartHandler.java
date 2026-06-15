@@ -8,6 +8,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -52,6 +53,7 @@ public class StartHandler {
     private final CsvLoader loader;
     private final Path projectRoot;
     private final CsvHelper csvHelper;
+    private final GeneratedDataStore generatedDataStore;
 
     public StartHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper) {
         this(loader, projectRoot, csvHelper,
@@ -84,6 +86,7 @@ public class StartHandler {
         this.loader = loader;
         this.projectRoot = projectRoot;
         this.csvHelper = csvHelper;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
         this.HOME_ADVANTAGE = homeAdvantageElo;
         this.INJURY_PENALTIES = injuryPenalties;
         this.HEAT_ADVANTAGES = heatAdvantages;
@@ -117,6 +120,7 @@ public class StartHandler {
         this.loader = loader;
         this.projectRoot = projectRoot;
         this.csvHelper = csvHelper;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
         this.HOME_ADVANTAGE = homeAdvantageElo;
         this.INJURY_PENALTIES = injuryPenalties;
         this.HEAT_ADVANTAGES = heatAdvantages;
@@ -142,18 +146,18 @@ public class StartHandler {
     public void handle(String tournament) throws IOException {
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Path groupsFile = predictionDir.resolve("groups.csv");
-        if (csvHelper.isLocked(groupsFile)) {
+        if (generatedDataStore.exists(groupsFile)) {
             System.out.println("  🔒 Output already exists: " + groupsFile + " — delete to re-run");
             System.out.println("  Run --mode=groups to continue");
             return;
         }
 
         Path startFile = predictionDir.resolve("start.csv");
-        if (!Files.exists(startFile)) {
+        if (!generatedDataStore.exists(startFile)) {
             throw new IOException("start.csv not found: " + startFile + ". Create data/predictions/" + tournament + "/start.csv first.");
         }
 
-        List<String> startLines = Files.readAllLines(startFile);
+        List<String> startLines = generatedDataStore.readLines(startFile);
         Map<String, Integer> startIndexes = validateStartCsv(startLines, startFile);
         int groupIdx = startIndexes.get("group");
         int teamIdx = startIndexes.get("team");
@@ -167,6 +171,7 @@ public class StartHandler {
         int squadQualityIdx = startIndexes.getOrDefault("squad_quality", -1);
         int attackQualityIdx = startIndexes.getOrDefault("attack_quality", -1);
         int defenceQualityIdx = startIndexes.getOrDefault("defence_quality", -1);
+        int confederationIdx = startIndexes.getOrDefault("confederation", -1);
 
         Map<String, Integer> eloRatings = loader.loadEloForTournament(tournament);
         Path historyDir = loader.historyDirForTournament(tournament);
@@ -219,6 +224,8 @@ public class StartHandler {
                     ? Integer.parseInt(cols[attackQualityIdx].trim()) : legacyQuality;
             int defenceQuality = (defenceQualityIdx >= 0 && cols.length > defenceQualityIdx && !cols[defenceQualityIdx].trim().isEmpty())
                     ? Integer.parseInt(cols[defenceQualityIdx].trim()) : legacyQuality;
+            String confederation = (confederationIdx >= 0 && cols.length > confederationIdx) ? cols[confederationIdx].trim() : "";
+            int leagueAdjustment = confederationAdjustment(confederation);
             int[] SQUAD_AGE_PENALTIES = {0, squadAgeYoungPenalty, squadAgeAgingPenalty};
             int[] COHESION_PENALTIES = {0, squadCohesionUnsettledPenalty, squadCohesionDisruptedPenalty, squadCohesionFracturedPenalty};
             int[] DEPTH_PENALTIES = {0, squadDepthLimitedPenalty, squadDepthThinPenalty};
@@ -234,7 +241,7 @@ public class StartHandler {
             int preTournamentBonus = friendlyCalc.getQualBonus(team);
             int adjustedElo = baseElo + homeBonus - INJURY_PENALTIES[injuryLevel]
                     + HEAT_ADVANTAGES[heatLevel] - SQUAD_DROPOUT_PENALTIES[squadDropoutLevel] + qualBonus
-                    + preTournamentBonus - SQUAD_AGE_PENALTIES[Math.min(ageLevel, SQUAD_AGE_PENALTIES.length - 1)]
+                    + preTournamentBonus + leagueAdjustment - SQUAD_AGE_PENALTIES[Math.min(ageLevel, SQUAD_AGE_PENALTIES.length - 1)]
                     - COHESION_PENALTIES[Math.min(cohesionLevel, COHESION_PENALTIES.length - 1)]
                     - depthPenalty;
             groups.computeIfAbsent(group, k -> new ArrayList<>()).add(new String[]{
@@ -247,12 +254,13 @@ public class StartHandler {
                     String.valueOf(cohesionLevel),
                     String.valueOf(depthLevel),
                     String.valueOf(attackQuality),
-                    String.valueOf(defenceQuality)
+                    String.valueOf(defenceQuality),
+                    String.valueOf(leagueAdjustment)
             });
         }
 
         List<String> output = new ArrayList<>();
-        output.add("group,team,base_elo,qual_bonus,pre_tournament_bonus,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place");
+        output.add("group,team,base_elo,qual_bonus,pre_tournament_bonus,confederation_adjustment,squad_age_profile,squad_cohesion,squad_depth,attack_quality,defence_quality,elo_ranking,predicted_position,group_winner,runner_up,3rd_place");
         boolean first = true;
         for (Map.Entry<String, List<String[]>> entry : groups.entrySet()) {
             if (!first) {
@@ -278,14 +286,15 @@ public class StartHandler {
                 int qualBonus = Integer.parseInt(team[2]);
                 int adjustedElo = Integer.parseInt(team[3]);
                 int preTournamentBonus = Integer.parseInt(team[4]);
-                int ageLevel = Integer.parseInt(team[5]);
-                int cohesionLevel = Integer.parseInt(team[6]);
-                int depthLevel = Integer.parseInt(team[7]);
-                int attackQuality = Integer.parseInt(team[8]);
-                int defenceQuality = Integer.parseInt(team[9]);
+                int leagueAdjustment = Integer.parseInt(team[5]);
+                int ageLevel = Integer.parseInt(team[6]);
+                int cohesionLevel = Integer.parseInt(team[7]);
+                int depthLevel = Integer.parseInt(team[8]);
+                int attackQuality = Integer.parseInt(team[9]);
+                int defenceQuality = Integer.parseInt(team[10]);
                 String[] s = scores.get(name);
                 String[] pred = autoFillPredictions(i, gap12, gap23, gap34, CONFIDENCE_GAP);
-                output.add(group + "," + name + "," + baseElo + "," + qualBonus + "," + preTournamentBonus + ","
+                output.add(group + "," + name + "," + baseElo + "," + qualBonus + "," + preTournamentBonus + "," + leagueAdjustment + ","
                         + ageLevel + "," + cohesionLevel + "," + depthLevel + "," + attackQuality + "," + defenceQuality + ","
                         + adjustedElo + "," + s[0] + ","
                         + pred[0] + "," + pred[1] + "," + pred[2]);
@@ -293,8 +302,21 @@ public class StartHandler {
         }
 
         Files.createDirectories(predictionDir);
-        Files.write(groupsFile, output);
+        generatedDataStore.writeLines(groupsFile, output);
         System.out.println("Generated groups.csv for " + groups.size() + " groups. Model-selected display positions are ready for group simulation.");
+    }
+
+    private int confederationAdjustment(String confederation) {
+        if (confederation == null) return 0;
+        return switch (confederation.trim().toUpperCase(java.util.Locale.ROOT)) {
+            case "UEFA" -> 0;
+            case "CONMEBOL" -> 0;
+            case "CONCACAF" -> -25;
+            case "CAF" -> -10;
+            case "AFC" -> -25;
+            case "OFC" -> -50;
+            default -> 0;
+        };
     }
 
     private Map<String, String[]> computeGroupScores(List<String[]> teams) {

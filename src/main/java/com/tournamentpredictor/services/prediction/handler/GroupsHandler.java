@@ -6,6 +6,7 @@ import com.tournamentpredictor.services.report.ConsoleReporter;
 import com.tournamentpredictor.services.io.CsvHelper;
 import com.tournamentpredictor.services.calculation.EloCalculator;
 import com.tournamentpredictor.services.calculation.TeamEloSnapshot;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +21,7 @@ public class GroupsHandler {
     private final CsvHelper csvHelper;
     private final Last32LineBuilder last32LineBuilder;
     private final EloCalculator eloCalculator;
+    private final GeneratedDataStore generatedDataStore;
 
     public GroupsHandler(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                          Last32LineBuilder last32LineBuilder, EloCalculator eloCalculator) {
@@ -28,14 +30,15 @@ public class GroupsHandler {
         this.csvHelper = csvHelper;
         this.last32LineBuilder = last32LineBuilder;
         this.eloCalculator = eloCalculator;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
     }
 
     public void handle(String tournament) throws IOException {
         Path predictionDir = projectRoot.resolve("data").resolve("predictions").resolve(tournament);
         Path last32Pred = predictionDir.resolve("last_32.csv");
-        if (csvHelper.isLocked(last32Pred)) {
+        if ((csvHelper.isLocked(last32Pred) || generatedDataStore.exists(last32Pred)) && !isLegacyLast32Prediction(last32Pred)) {
             System.out.println("  🔒 Output already exists: " + last32Pred + " — delete to re-run");
-            List<String> existing = Files.readAllLines(last32Pred);
+            List<String> existing = generatedDataStore.readLines(last32Pred);
             ConsoleReporter.printGeneratedFile(last32Pred, existing.size() - 1, "last_32");
             return;
         }
@@ -55,7 +58,8 @@ public class GroupsHandler {
         List<String> allLines = last32LineBuilder.buildLast32Lines(groups, groupWinner, runnerUp, thirdPlace,
                 eloRatings, loader.loadBrackets(tournament), snapshots);
         List<String> output = new ArrayList<>();
-        output.add("match_id,team1,team2,path,elo,prediction");
+        output.add("match_id,team1,team2,path,elo,prediction,team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+                + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot");
         boolean addedForMatch = false;
         for (int i = 1; i < allLines.size(); i++) {
             String row = allLines.get(i);
@@ -74,13 +78,27 @@ public class GroupsHandler {
                 String path = cols[3].trim();
                 String eloPrediction = cols[4].trim();
                 output.add(String.join(",", matchId, team1Display, team2Display, path, eloPrediction,
-                        eloPrediction));
+                        eloPrediction, valueAt(cols, 9), valueAt(cols, 10), valueAt(cols, 11), valueAt(cols, 12),
+                        valueAt(cols, 13), valueAt(cols, 14), valueAt(cols, 15), valueAt(cols, 16),
+                        valueAt(cols, 17), valueAt(cols, 18)));
                 addedForMatch = true;
             }
         }
 
         Files.createDirectories(predictionDir);
-        Files.write(predictionDir.resolve("last_32.csv"), output);
+        generatedDataStore.writeLines(predictionDir.resolve("last_32.csv"), output);
         ConsoleReporter.printGeneratedFile(predictionDir.resolve("last_32.csv"), output.size() - 1, "last_32");
     }
+
+    private boolean isLegacyLast32Prediction(Path file) throws IOException {
+        if (!generatedDataStore.exists(file)) return false;
+        List<String> lines = generatedDataStore.readLines(file);
+        if (lines.isEmpty()) return false;
+        String header = lines.get(0);
+        return !header.contains("team1_slot") || !header.contains("team2_bracket_slot");
+    }
+    private static String valueAt(String[] cols, int index) {
+        return index >= 0 && index < cols.length ? cols[index].trim() : "";
+    }
+
 }

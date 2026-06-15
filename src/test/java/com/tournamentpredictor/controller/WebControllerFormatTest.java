@@ -4,6 +4,7 @@ import com.tournamentpredictor.config.PredictionConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.ExtendedModelMap;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,9 +61,9 @@ class WebControllerFormatTest {
     @Test
     void routeAverageLast16RowsAveragesPredictedAndAlternativeMatchups() {
         List<Map<String, String>> rows = WebController.routeAverageLast16Rows(List.of(
-                Map.of("team1", "A1(France)", "team2", "B2(Egypt)", "prediction", "France (90%)"),
-                Map.of("team1", "A1(France)", "team2", "C2(Brazil)", "prediction", "Brazil (60%)"),
-                Map.of("team1", "D1(Canada)", "team2", "A2(France)", "prediction", "France (70%)"),
+                matchupRow("France", "A1", "Egypt", "B2", "France (90%)"),
+                matchupRow("France", "A1", "Brazil", "C2", "Brazil (60%)"),
+                matchupRow("Canada", "D1", "France", "A2", "France (70%)"),
                 Map.of("team1", "Broken", "team2", "", "prediction", "")
         ));
 
@@ -78,8 +79,8 @@ class WebControllerFormatTest {
     @Test
     void routeAverageLast16RowsWeightsRoutesByGroupSlotLikelihood() {
         List<Map<String, String>> matchups = List.of(
-                Map.of("team1", "A1(France)", "team2", "B2(Egypt)", "prediction", "France (90%)"),
-                Map.of("team1", "A2(France)", "team2", "C2(Brazil)", "prediction", "Brazil (60%)")
+                matchupRow("France", "A1", "Egypt", "B2", "France (90%)"),
+                matchupRow("France", "A2", "Brazil", "C2", "Brazil (60%)")
         );
         List<Map<String, String>> groups = List.of(
                 Map.of("team", "France", "predicted_position", "1 (80%)", "group_winner", "yes", "runner_up", "maybe", "3rd_place", "no"),
@@ -98,8 +99,8 @@ class WebControllerFormatTest {
     @Test
     void matchupLikelihoodMapShowsLikelihoodForEachExactRoute() {
         List<Map<String, String>> matchups = List.of(
-                Map.of("match_id", "M77", "team1", "A1(France)", "team2", "B2(Egypt)"),
-                Map.of("match_id", "M78", "team1", "A2(France)", "team2", "C2(Brazil)")
+                row("M77", "France", "A1", "Egypt", "B2"),
+                row("M78", "France", "A2", "Brazil", "C2")
         );
         List<Map<String, String>> groups = List.of(
                 Map.of("team", "France", "predicted_position", "1 (80%)", "group_winner", "yes", "runner_up", "maybe", "3rd_place", "no"),
@@ -116,9 +117,9 @@ class WebControllerFormatTest {
     @Test
     void recursiveRouteLikelihoodPropagatesAlternativeWinners() {
         List<Map<String, String>> feederRows = List.of(
-                Map.of("match_id", "M89", "team1", "W77(France)", "team2", "W74(Germany)", "prediction", "France (75%)"),
-                Map.of("match_id", "M89", "team1", "W77(Egypt)", "team2", "W74(Germany)", "prediction", "Germany (80%)"),
-                Map.of("match_id", "M90", "team1", "W75(Netherlands)", "team2", "W73(Canada)", "prediction", "Netherlands (60%)")
+                row("M89", "France", "W77", "M77", "Germany", "W74", "M74", "France (75%)"),
+                row("M89", "Egypt", "W77", "M77", "Germany", "W74", "M74", "Germany (80%)"),
+                row("M90", "Netherlands", "W75", "M75", "Canada", "W73", "M73", "Netherlands (60%)")
         );
         Map<String, String> feederLikelihoods = Map.of(
                 "M89|France|Germany", "60.0",
@@ -126,8 +127,8 @@ class WebControllerFormatTest {
                 "M90|Netherlands|Canada", "100.0"
         );
         List<Map<String, String>> nextRows = List.of(
-                Map.of("match_id", "M97", "team1", "W89(France)", "team2", "W90(Netherlands)"),
-                Map.of("match_id", "M97", "team1", "W89(Egypt)", "team2", "W90(Canada)")
+                row("M97", "France", "W89", "M89", "Netherlands", "W90", "M90", ""),
+                row("M97", "Egypt", "W89", "M89", "Canada", "W90", "M90", "")
         );
 
         Map<String, String> likelihoods = WebController.routeWeightedNextRoundMatchupLikelihoodMap(
@@ -166,6 +167,32 @@ class WebControllerFormatTest {
         assertEquals("Away", WebController.outcome(0.20, 0.30, 0.50));
     }
 
+
+    @Test
+    void visualizePageRequiresTeamSelectionBeforeRenderingGraph() throws Exception {
+        ViewController controller = new ViewController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.visualizePaths("world_cup_2026", true, null, "all", "", model);
+
+        assertEquals("path-visualization", view);
+        assertEquals(true, model.getAttribute("teamRequired"));
+        assertEquals("{\"nodes\":[],\"edges\":[]}", model.getAttribute("graphJson"));
+        @SuppressWarnings("unchecked")
+        List<String> teams = (List<String>) model.getAttribute("teamOptions");
+        assertNotNull(teams);
+    }
+
+
+    @Test
+    void roundSpecificVisualizeUrlRedirectsToTournamentVisualize() {
+        ViewController controller = new ViewController(new PredictionConfig());
+
+        String view = controller.redirectRoundVisualization("last_16_match", "world_cup_2026", false, null, "all", "Germany");
+
+        assertEquals("redirect:/view/visualize?tournament=world_cup_2026&path=all&results=false&team=Germany", view);
+    }
+
     @Test
     void oldUpsetPathAliasesToAlternativeMatchups() throws Exception {
         WebController controller = new WebController(new PredictionConfig());
@@ -182,6 +209,86 @@ class WebControllerFormatTest {
         assertFalse(html.contains(">Upset</span>"));
     }
 
+
+
+    @Test
+    void alternativeMatchupPageEnrichesSimulatedRowsWithGroupSlots() throws Exception {
+        WebController controller = new WebController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.viewRound("last_16_match", "world_cup_2022", null, false, "alt", "", 1, model);
+
+        assertEquals("result", view);
+        String html = (String) model.getAttribute("output");
+        assertNotNull(html);
+        assertTrue(html.contains("United States"));
+        assertTrue(html.contains("Ecuador"));
+        assertTrue(html.contains(">B1</span>"),
+                "Simulated alternative rows should use the bracket slot for United States instead of an empty Tournament Path");
+        assertTrue(html.contains(">A2</span>"),
+                "Simulated alternative rows should use the bracket slot for Ecuador instead of an empty Tournament Path");
+    }
+
+    @Test
+    void visualizationEnrichesAlternativeRoutesWithGroupSlotFallback() throws Exception {
+        ViewController controller = new ViewController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.visualizePaths("world_cup_2022", false, null, "alt", "United States", model);
+
+        assertEquals("path-visualization", view);
+        String graphJson = (String) model.getAttribute("graphJson");
+        assertNotNull(graphJson);
+        assertTrue(graphJson.contains("seed:United States:B2"));
+        assertTrue(graphJson.contains("team:United States->seed:United States:B2"));
+        assertTrue(graphJson.contains("\"team\":\"Ecuador\""));
+        assertTrue(graphJson.contains("stage-instance:united_states:b2:root:last_16"));
+    }
+
+
+    @Test
+    void visualizationUsesGroupRouteLikelihoodsToSizeLast32AlternativeNodes() throws Exception {
+        ViewController controller = new ViewController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.visualizePaths("world_cup_2026", true, null, "all", "England", model);
+
+        assertEquals("path-visualization", view);
+        String graphJson = (String) model.getAttribute("graphJson");
+        assertNotNull(graphJson);
+        assertTrue(graphJson.contains("\"team\":\"Norway\"")
+                        && graphJson.contains("\"matchupPct\":\"61.5\"")
+                        && graphJson.contains("\"likelihood\":\"large\""),
+                "Norway should use explicit group-finish metadata for its route likelihood instead of the default tiny fallback");
+        assertTrue(graphJson.contains("\"team\":\"Norway\"")
+                        && graphJson.contains("\"opponentSeed\":\"EHIJK3\""),
+                "Norway should keep the Last 32 composite third-place fixture slot in the tooltip metadata");
+    }
+
+
+    @Test
+    void visualizationIncludesBracketSlotBranchForDirectLast16Tournament() throws Exception {
+        ViewController controller = new ViewController(new PredictionConfig());
+        ExtendedModelMap model = new ExtendedModelMap();
+
+        String view = controller.visualizePaths("world_cup_2022", true, null, "all", "England", model);
+
+        assertEquals("path-visualization", view);
+        String graphJson = (String) model.getAttribute("graphJson");
+        assertNotNull(graphJson);
+        assertTrue(graphJson.contains("seed:England:B1"));
+        assertTrue(graphJson.contains("seed:England:B2"));
+        assertTrue(graphJson.contains("team:England->seed:England:B2"));
+        assertTrue(graphJson.contains("\"team\":\"Netherlands\""));
+        assertTrue(graphJson.contains("stage-instance:england:b1:root:last_16"));
+        assertTrue(graphJson.contains("stage-instance:england:b2:root:last_16"));
+        assertTrue(graphJson.contains("\"source\":\"stage-instance:england:b1:root:last_16\"")
+                        && graphJson.contains("\"team\":\"Senegal\"")
+                        && graphJson.contains("\"path\":\"results\""),
+                "The actual M51 England result should be routed through England's B1 branch");
+        assertFalse(graphJson.contains("stage-instance:england:b2:root:last_16->route-instance:england_b2_b2_m51_senegal_results"),
+                "The actual M51 result must not be copied onto England's B2 alternative branch");
+    }
 
     @Test
     void allPathInActualModeIncludesPredictedAndActualRows() throws Exception {
@@ -253,6 +360,33 @@ class WebControllerFormatTest {
         assertFalse(allHtml.contains("data-path=\"live\""));
     }
 
+
+
+    private static Map<String, String> matchupRow(String team1, String team1Slot, String team2, String team2Slot, String prediction) {
+        return row("", team1, team1Slot, "", team2, team2Slot, "", prediction);
+    }
+
+    private static Map<String, String> row(String matchId, String team1, String team1Slot, String team2, String team2Slot) {
+        return row(matchId, team1, team1Slot, "", team2, team2Slot, "", "");
+    }
+
+    private static Map<String, String> row(String matchId, String team1, String team1Slot, String team1Source,
+                                           String team2, String team2Slot, String team2Source, String prediction) {
+        Map<String, String> row = new LinkedHashMap<>();
+        if (!matchId.isBlank()) row.put("match_id", matchId);
+        row.put("team1", team1);
+        row.put("team2", team2);
+        row.put("team1_team", team1);
+        row.put("team2_team", team2);
+        row.put("team1_slot", team1Slot);
+        row.put("team2_slot", team2Slot);
+        row.put("team1_bracket_slot", team1Slot);
+        row.put("team2_bracket_slot", team2Slot);
+        if (!team1Source.isBlank()) row.put("team1_source_match", team1Source);
+        if (!team2Source.isBlank()) row.put("team2_source_match", team2Source);
+        if (!prediction.isBlank()) row.put("prediction", prediction);
+        return row;
+    }
 
     private static String routePct(List<Map<String, String>> rows, String team) {
         return rows.stream()

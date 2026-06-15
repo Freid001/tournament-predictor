@@ -1,5 +1,6 @@
 package com.tournamentpredictor.services.training;
 
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 import com.tournamentpredictor.services.calculation.ExpectedGoalsCalculator;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -8,6 +9,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,10 +35,12 @@ public class TrainingContextGridHandler {
 
     private final Path root;
     private final double eloScaleDivisor;
+    private final GeneratedDataStore generatedDataStore;
 
     public TrainingContextGridHandler(Path root, double eloScaleDivisor) {
         this.root = root;
         this.eloScaleDivisor = eloScaleDivisor;
+        this.generatedDataStore = new GeneratedDataStore(root);
     }
 
     public void handle() throws IOException {
@@ -119,7 +123,7 @@ public class TrainingContextGridHandler {
                 String name = path.getFileName().toString();
                 Path actual = path.resolve("actual_results.csv");
                 Path prediction = root.resolve("data/predictions").resolve(name);
-                if (!Files.exists(actual) || !Files.exists(prediction.resolve("groups.csv"))) continue;
+                if (!Files.exists(actual) || !generatedExists(prediction.resolve("groups.csv"))) continue;
                 Map<String, Map<String, Integer>> levels = loadLevels(prediction.resolve("start.csv"));
                 Map<String, Profile> profiles = loadProfiles(prediction.resolve("groups.csv"), levels);
                 tournaments.add(new TournamentData(name, profiles, loadMatches(actual, profiles)));
@@ -128,9 +132,9 @@ public class TrainingContextGridHandler {
         return tournaments;
     }
 
-    private static Map<String, Map<String, Integer>> loadLevels(Path path) throws IOException {
+    private Map<String, Map<String, Integer>> loadLevels(Path path) throws IOException {
         Map<String, Map<String, Integer>> result = new HashMap<>();
-        try (Reader reader = Files.newBufferedReader(path); CSVParser csv = format().parse(reader)) {
+        try (CSVParser csv = generatedParser(path)) {
             for (CSVRecord row : csv) {
                 Map<String, Integer> levels = new HashMap<>();
                 for (Signal signal : SIGNALS) levels.put(signal.name, integer(row, signal.column));
@@ -140,9 +144,9 @@ public class TrainingContextGridHandler {
         return result;
     }
 
-    private static Map<String, Profile> loadProfiles(Path path, Map<String, Map<String, Integer>> levels) throws IOException {
+    private Map<String, Profile> loadProfiles(Path path, Map<String, Map<String, Integer>> levels) throws IOException {
         Map<String, Profile> result = new HashMap<>();
-        try (Reader reader = Files.newBufferedReader(path); CSVParser csv = format().parse(reader)) {
+        try (CSVParser csv = generatedParser(path)) {
             for (CSVRecord row : csv) {
                 String team = row.get("team").trim();
                 result.put(team, new Profile(integer(row, "elo_ranking"), integer(row, "attack_quality"),
@@ -150,6 +154,23 @@ public class TrainingContextGridHandler {
             }
         }
         return result;
+    }
+
+
+    private CSVParser generatedParser(Path path) throws IOException {
+        List<String> lines = generatedDataStore.readLines(path);
+        if (lines.isEmpty()) {
+            throw new IOException("Generated data not found: " + path);
+        }
+        return format().parse(new StringReader(String.join("\n", lines)));
+    }
+
+    private boolean generatedExists(Path path) {
+        try {
+            return generatedDataStore.exists(path);
+        } catch (IOException e) {
+            return Files.exists(path);
+        }
     }
 
     private static List<Match> loadMatches(Path path, Map<String, Profile> profiles) throws IOException {

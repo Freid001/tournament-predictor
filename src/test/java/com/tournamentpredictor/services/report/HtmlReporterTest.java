@@ -89,6 +89,25 @@ class HtmlReporterTest {
         assertFalse(html.contains(">Group stage<"));
     }
 
+
+    @Test
+    void tournamentPathShowsWhenFatigueLabelIsNeutralButPathExists() {
+        EloBreakdown breakdown = new EloBreakdown(1900, false, 0,
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                "", "", "", "", "", "",
+                List.of(), List.of(),
+                0, "", "K@M51|Qatar:0");
+
+        String html = HtmlReporter.buildTeamBreakdownHtml("England", breakdown, "B1");
+
+        assertTrue(html.contains("Tournament Path"));
+        assertTrue(html.contains("B1"));
+        assertTrue(html.contains("Qatar"));
+        assertFalse(html.contains(">Group stage<"));
+    }
+
     @Test
     void formDotsRenderInsideEloTableWithContributionTooltip() {
         EloBreakdown breakdown = new EloBreakdown(1900, false, 0,
@@ -149,7 +168,7 @@ class HtmlReporterTest {
         HtmlReporter reporter = new HtmlReporter().withPathNavigation("world_cup_2026", "last_16");
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent",
-                "M1,A1(Spain),B2(Uruguay),predicted,Spain (62%),0,0,K@M9|France:-5,"
+                "M1,Spain,Uruguay,predicted,Spain (62%),0,0,K@M9|France:-5,"
         );
 
         reporter.printMatchups("Last 16", lines, new EloCalculator(), null, Map.of(), Map.of(
@@ -167,7 +186,7 @@ class HtmlReporterTest {
         HtmlReporter reporter = new HtmlReporter();
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo",
-                "M1,A1(Spain),B2(Uruguay),predicted,Spain (62%),"
+                "M1,Spain,Uruguay,predicted,Spain (62%),"
         );
         Map<String, EloBreakdown> breakdowns = Map.of(
                 "Spain", new EloBreakdown(1900, false, 0,
@@ -226,8 +245,8 @@ class HtmlReporterTest {
         HtmlReporter reporter = new HtmlReporter();
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo",
-                "M1,A1(Spain),B2(Uruguay),predicted,Spain (62%),",
-                "M2,A1(Spain),C2(Canada),alt,Spain (62%),"
+                "M1,Spain,Uruguay,predicted,Spain (62%),",
+                "M2,Spain,Canada,alt,Spain (62%),"
         );
         reporter.printMatchups("Last 32", lines, new EloCalculator(), null, Map.of(), Map.of(
                 "Spain", breakdown(1900),
@@ -252,7 +271,7 @@ class HtmlReporterTest {
                 .withMatchupSimulationRuns(Map.of("M1|Spain|Uruguay", "10500"));
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo",
-                "M1,A1(Spain),B2(Uruguay),predicted,Spain (62%),"
+                "M1,Spain,Uruguay,predicted,Spain (62%),"
         );
 
         reporter.printMatchups("Last 32", lines, new EloCalculator(), null, Map.of(), Map.of(
@@ -268,7 +287,7 @@ class HtmlReporterTest {
                 .withMatchupSimulationRuns(Map.of("M1|Spain|Uruguay", "10500"));
         reversedReporter.printMatchups("Last 32", List.of(
                 "match_id,team1,team2,path,elo",
-                "M1,B2(Uruguay),A1(Spain),predicted,Spain (62%),"),
+                "M1,Uruguay,Spain,predicted,Spain (62%),"),
                 new EloCalculator(), null, Map.of(), Map.of(
                         "Spain", breakdown(1900), "Uruguay", breakdown(1700)));
         assertTrue(reversedReporter.getHtml().contains("10,500 simulations for this matchup"));
@@ -302,8 +321,8 @@ class HtmlReporterTest {
                         "M2|Spain|Canada", "60.0"));
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo",
-                "M1,A1(Spain),B2(Uruguay),predicted,Spain (62%),",
-                "M2,A1(Spain),C2(Canada),alt,Spain (55%),"
+                "M1,Spain,Uruguay,predicted,Spain (62%),",
+                "M2,Spain,Canada,alt,Spain (55%),"
         );
 
         reporter.printMatchups("Last 32", lines, new EloCalculator(), null, Map.of(), Map.of(
@@ -369,11 +388,11 @@ class HtmlReporterTest {
                         "M90|Germany|Canada", "0.00042"));
         List<String> lines = List.of(
                 "match_id,team1,team2,path,elo",
-                "M89,W77(Spain),W74(France),predicted,Spain (55%),",
-                "M89,W77(Spain),W74(Brazil),alt,Spain (60%),",
-                "M90,W75(Germany),W73(Canada),predicted,Germany (58%),",
-                "M91,W76(Italy),W78(Japan),alt,Italy (51%),",
-                "M92,W80(England),W79(DR Congo),upset,DR Congo (17%),"
+                "M89,Spain,France,predicted,Spain (55%),",
+                "M89,Spain,Brazil,alt,Spain (60%),",
+                "M90,Germany,Canada,predicted,Germany (58%),",
+                "M91,Italy,Japan,alt,Italy (51%),",
+                "M92,England,DR Congo,upset,DR Congo (17%),"
         );
 
         reporter.printMatchups("Last 16", lines, new EloCalculator(), null,
@@ -406,7 +425,7 @@ class HtmlReporterTest {
                 .withSimulationAdvance(Map.of("Germany", "60.0", "France", "40.0"));
         reporter.printMatchups("Last 16", List.of(
                 "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,model_prediction,selection_source",
-                "M89,W77(Germany),W74(France),predicted,France (45%),1900,0,1880,0,0,0,,,Germany (55%),model"
+                "M89,Germany,France,predicted,France (45%),1900,0,1880,0,0,0,,,Germany (55%),model"
         ), new EloCalculator(), null, Map.of(), Map.of());
 
         String html = reporter.getHtml();
@@ -422,7 +441,7 @@ class HtmlReporterTest {
                 .withPathNavigation("world_cup_2026", "last_16_match");
         reporter.printMatchups("Last 16", List.of(
                 "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,model_prediction,selection_source",
-                "M91,W76(F2(Japan)),W78(I2(Senegal)),upset,Senegal (52%),1906,0,1867,0,59,123,G|Netherlands:-2 > U@M76|Brazil:-5,G|France:-7 > Ecuador:-6,Senegal (52%),model"
+                "M91,Japan,Senegal,upset,Senegal (52%),1906,0,1867,0,59,123,G|Netherlands:-2 > U@M76|Brazil:-5,G|France:-7 > Ecuador:-6,Senegal (52%),model"
         ), new EloCalculator(), null, Map.of(), Map.of(
                 "Japan", breakdown(1906), "Senegal", breakdown(1867)));
 
@@ -539,7 +558,7 @@ class HtmlReporterTest {
 
         reporter.printMatchups("Quarter Finals", List.of(
                 "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,home_score,away_score",
-                "M58,W53(F2(Croatia)),W54(G1(Brazil)),results,Prediction Placeholder,1880,0,1870,0,1,1"
+                "M58,Croatia,Brazil,results,Prediction Placeholder,1880,0,1870,0,1,1"
         ), new EloCalculator(), null, Map.of(), Map.of(
                 "Croatia", breakdown(1880),
                 "Brazil", breakdown(1870)));

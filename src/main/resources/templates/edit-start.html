@@ -14,18 +14,19 @@
                 <thead class="table-dark">
                 <tr>
                     <th style="width:28px" aria-label="Details"></th>
-                    <th>Grp</th>
-                    <th></th>
-                    <th>Team</th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Draw group for the team. Four teams per group for World Cup 2026.">Grp</span></th>
+                    <th aria-label="Flag"></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Team assigned to this group slot. Each team should appear once.">Team</span></th>
                     <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Host-country boost only. Use yes for official hosts playing with home advantage; not for climate familiarity.">Host</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Squad age profile. Use Young for unusually inexperienced tournament squads; Aging for cores with several key 33+ players and recovery risk.">Age</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Chemistry/tactical disruption. Look for new coach, selection rows, political disruption, late reshuffles, or unsettled combinations.">Cohesion</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Replacement quality. Use Limited/Thin when quality drops sharply beyond the starters; also affects knockout fatigue sensitivity.">Bench Depth</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Chance creation and finishing relative to the team average. Changes xG only, not ELO.">Attack</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Preventing chances and goals relative to the team average. Changes opponent xG only, not ELO.">Defence</span></th>
-                    <th><span data-bs-toggle="tooltip" data-bs-title="Players missing from the selected squad: injury ruled them out, coach omission, discipline, retirement, refusal, or federation dispute. Active-squad fitness belongs in Injury.">Squad Omissions</span></th>
-                    <th><span data-bs-toggle="tooltip" data-bs-title="Current availability and fitness: ruled-out players, doubtful starters, managed minutes, recent returns, or players carrying knocks.">Injury</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Players absent from the final selected squad: ruled out before selection, coach omission, discipline, retirement, refusal, or federation dispute. If the player is selected but doubtful, limited, returning, or carrying a knock, use Injury instead.">Squad Omissions</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="Current fitness for players still in the selected squad: doubtful starters, managed minutes, recent returns, carrying knocks, or selected players later ruled out. Do not use this for players already omitted from the squad.">Injury</span></th>
                     <th><span data-bs-toggle="tooltip" data-bs-title="Climate adaptation to hot/humid/altitude venues. Use for teams likely to handle conditions better than opponents.">Heat</span></th>
+                    <th><span data-bs-toggle="tooltip" data-bs-title="FIFA confederation used for a small schedule-strength penalty in adjusted ELO. UEFA/CONMEBOL are baseline; CAF, AFC, CONCACAF and OFC subtract ELO.">Confederation</span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -112,9 +113,20 @@
                             <option value="3" th:selected="${row.heatImpact == 3}">Strong (+35)</option>
                         </select>
                     </td>
+                    <td style="min-width:130px">
+                        <select class="form-select form-select-sm" th:name="${'confederation' + stat.index}">
+                            <option value="" th:selected="${#strings.isEmpty(row.confederation)}">—</option>
+                            <option value="UEFA" th:selected="${row.confederation == 'UEFA'}">UEFA</option>
+                            <option value="CONMEBOL" th:selected="${row.confederation == 'CONMEBOL'}">CONMEBOL</option>
+                            <option value="CONCACAF" th:selected="${row.confederation == 'CONCACAF'}">CONCACAF</option>
+                            <option value="CAF" th:selected="${row.confederation == 'CAF'}">CAF</option>
+                            <option value="AFC" th:selected="${row.confederation == 'AFC'}">AFC</option>
+                            <option value="OFC" th:selected="${row.confederation == 'OFC'}">OFC</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr th:id="${'notes-' + stat.index}" class="notes-row table-light" style="display:none">
-                    <td colspan="13" class="py-2 px-3">
+                    <td colspan="14" class="py-2 px-3">
                         <div class="row g-2">
                             <div class="col-md-2">
                                 <label class="form-label mb-1 small text-muted">👶 Age</label>

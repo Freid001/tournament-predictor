@@ -23,7 +23,7 @@ public class StartRowViewService {
         for (char group = 'A'; group <= 'L'; group++) {
             for (int i = 0; i < 4; i++) {
                 rows.add(new StartRow(String.valueOf(group), "", false,
-                        0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, "", 0, 0, 0, 0, 0, 0, 0,
                         "", "", "", "", "", ""));
             }
         }
@@ -37,6 +37,8 @@ public class StartRowViewService {
                 "yes".equalsIgnoreCase(row.getOrDefault("host", "")),
                 WebText.parseInt(row.getOrDefault("injury_impact", "0"), 0),
                 WebText.parseInt(row.getOrDefault("heat_impact", "0"), 0),
+                row.getOrDefault("confederation", ""),
+                WebText.parseInt(row.getOrDefault("confederation_adjustment", "0"), 0),
                 WebText.parseInt(row.getOrDefault("squad_dropouts", "0"), 0),
                 WebText.parseInt(row.getOrDefault("squad_age_profile", "0"), 0),
                 WebText.parseInt(row.getOrDefault("squad_cohesion", "0"), 0),

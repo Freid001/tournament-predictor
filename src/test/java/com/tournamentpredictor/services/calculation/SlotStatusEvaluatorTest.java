@@ -42,78 +42,86 @@ class SlotStatusEvaluatorTest {
         teamTP.put("Paraguay", "no");
     }
 
+
+    @Test
+    void teamNameStatusChecksAvoidSlotWrappedDisplayInput() {
+        assertTrue(slotStatusEvaluator.isTeamPredicted("A1", "Mexico", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamMaybe("A1", "Canada", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("A1", "Canada", teamGW, teamRU, teamTP));
+    }
+
     @Test
     void x1SlotGwYes_isPredicted() {
-        assertTrue(slotStatusEvaluator.isDisplayPredicted("A1", "A1(Mexico)", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamPredicted("A1", "Mexico", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x1SlotGwMaybe_isNotPredicted() {
-        assertFalse(slotStatusEvaluator.isDisplayPredicted("A1", "A1(Canada)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("A1", "Canada", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x1SlotGwNo_isNotPredicted() {
-        assertFalse(slotStatusEvaluator.isDisplayPredicted("A1", "A1(Qatar)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("A1", "Qatar", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x2SlotRuYes_isPredicted() {
-        assertTrue(slotStatusEvaluator.isDisplayPredicted("B2", "B2(Canada)", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamPredicted("B2", "Canada", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x2SlotRuMaybe_isNotPredicted() {
-        assertFalse(slotStatusEvaluator.isDisplayPredicted("B2", "B2(Mexico)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("B2", "Mexico", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x2SlotRuNo_isNotPredicted() {
-        assertFalse(slotStatusEvaluator.isDisplayPredicted("B2", "B2(Qatar)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("B2", "Qatar", teamGW, teamRU, teamTP));
     }
 
     @Test
     void compositeSlotTpYes_isPredicted() {
-        assertTrue(slotStatusEvaluator.isDisplayPredicted("ABCDF3", "ABCDF3(Scotland)", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamPredicted("ABCDF3", "Scotland", teamGW, teamRU, teamTP));
     }
 
     @Test
     void compositeSlotTpMaybe_isNotPredicted() {
-        assertFalse(slotStatusEvaluator.isDisplayPredicted("CEFHI3", "CEFHI3(SaudiArabia)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("CEFHI3", "SaudiArabia", teamGW, teamRU, teamTP));
     }
 
     @Test
     void compositeSlotTpNo_isNotPredicted() {
-        assertFalse(slotStatusEvaluator.isDisplayPredicted("ABCDF3", "ABCDF3(Paraguay)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamPredicted("ABCDF3", "Paraguay", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x1SlotGwMaybe_isMaybe() {
-        assertTrue(slotStatusEvaluator.isDisplayMaybe("A1", "A1(Canada)", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamMaybe("A1", "Canada", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x1SlotGwYes_isNotMaybe() {
-        assertFalse(slotStatusEvaluator.isDisplayMaybe("A1", "A1(Mexico)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamMaybe("A1", "Mexico", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x2SlotRuMaybe_isMaybe() {
-        assertTrue(slotStatusEvaluator.isDisplayMaybe("B2", "B2(Mexico)", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamMaybe("B2", "Mexico", teamGW, teamRU, teamTP));
     }
 
     @Test
     void x2SlotRuYes_isNotMaybe() {
-        assertFalse(slotStatusEvaluator.isDisplayMaybe("B2", "B2(Canada)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamMaybe("B2", "Canada", teamGW, teamRU, teamTP));
     }
 
     @Test
     void compositeSlotTpMaybe_isMaybe() {
-        assertTrue(slotStatusEvaluator.isDisplayMaybe("CEFHI3", "CEFHI3(SaudiArabia)", teamGW, teamRU, teamTP));
+        assertTrue(slotStatusEvaluator.isTeamMaybe("CEFHI3", "SaudiArabia", teamGW, teamRU, teamTP));
     }
 
     @Test
     void compositeSlotTpYes_isNotMaybe() {
-        assertFalse(slotStatusEvaluator.isDisplayMaybe("ABCDF3", "ABCDF3(Scotland)", teamGW, teamRU, teamTP));
+        assertFalse(slotStatusEvaluator.isTeamMaybe("ABCDF3", "Scotland", teamGW, teamRU, teamTP));
     }
 }

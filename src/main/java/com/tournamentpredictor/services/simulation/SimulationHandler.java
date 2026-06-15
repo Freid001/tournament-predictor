@@ -5,6 +5,7 @@ import com.tournamentpredictor.services.calculation.EloCalculator;
 import com.tournamentpredictor.services.calculation.ExpectedGoalsCalculator;
 import com.tournamentpredictor.services.calculation.PathFatigueCalculator;
 import com.tournamentpredictor.services.calculation.TeamEloSnapshot;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -39,6 +40,7 @@ public class SimulationHandler {
     private final PathFatigueCalculator pathFatigueCalculator;
     private final int runs;
     private final long seed;
+    private final GeneratedDataStore generatedDataStore;
 
     public SimulationHandler(CsvLoader loader, Path projectRoot) {
         this(loader, projectRoot, new ExpectedGoalsCalculator(), new EloCalculator(), new PathFatigueCalculator(), DEFAULT_RUNS, DEFAULT_SEED);
@@ -59,6 +61,7 @@ public class SimulationHandler {
         this.pathFatigueCalculator = Objects.requireNonNull(pathFatigueCalculator);
         this.runs = runs;
         this.seed = seed;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
     }
 
     public void handle(String tournament) throws IOException {
@@ -73,14 +76,14 @@ public class SimulationHandler {
         SimulationStage startStage = SimulationStage.forRound(startRound);
         Path input = projectRoot.resolve("data").resolve("predictions").resolve(tournament)
                 .resolve(startStage.round + ".csv");
-        if (!Files.exists(input)) {
-            throw new IOException(startStage.round + ".csv not found: " + input
+        if (!generatedDataStore.exists(input)) {
+            throw new IOException(startStage.round + " data not found: " + input
                     + ". Run the previous tournament stage first.");
         }
         Map<String, Integer> eloRatings = loader.loadTournamentElo(tournament);
         Map<String, TeamEloSnapshot> snapshots = loader.loadTeamSnapshots(tournament);
         List<CsvLoader.BracketEntry> brackets = loader.loadBrackets(tournament);
-        SimulationResult result = simulateFromRound(startStage, Files.readAllLines(input), brackets, eloRatings, snapshots);
+        SimulationResult result = simulateFromRound(startStage, generatedDataStore.readLines(input), brackets, eloRatings, snapshots);
         writeOutputs(tournament, startStage, result, false);
         System.out.println("Simulation complete: " + result.runs() + " runs from " + startStage.label + ". Output: "
                 + outputPath(tournament, startStage, false).toAbsolutePath());
@@ -104,7 +107,7 @@ public class SimulationHandler {
                 .forEach(c -> lines.add(String.join(",", csv(c.team), pct(c.finishFirst, runs),
                         pct(c.finishSecond, runs), pct(c.finishThird, runs), pct(c.finishFourth, runs),
                         pct(c.reachKnockout, runs), String.valueOf(runs), String.valueOf(seed))));
-        Files.write(output, lines);
+        generatedDataStore.writeLines(output, lines);
         writeGroupRoutes(tournament, result.routes());
         writeGroupScorelineOutput(tournament, result.scorelineCounts());
         System.out.println("Group-stage simulation complete: " + runs + " runs. Output: " + output.toAbsolutePath());
@@ -260,14 +263,14 @@ public class SimulationHandler {
                         csv(match.team1), csv(match.team2)));
             }
         }
-        Files.write(output, lines);
+        generatedDataStore.writeLines(output, lines);
     }
 
     private List<GroupRoute> readGroupRoutes(String tournament, SimulationStage openingStage) throws IOException {
         Path input = groupRoutesPath(tournament);
-        if (!Files.exists(input)) return List.of();
+        if (!generatedDataStore.exists(input)) return List.of();
         Map<Integer, Map<String, MatchDefinition>> routes = new LinkedHashMap<>();
-        for (String line : Files.readAllLines(input).stream().skip(1).toList()) {
+        for (String line : generatedDataStore.readLines(input).stream().skip(1).toList()) {
             String[] cols = line.split(",", -1);
             if (cols.length < 4) continue;
             int run = Integer.parseInt(cols[0]);
@@ -462,6 +465,9 @@ public class SimulationHandler {
                     && thirdToken != null && thirdToken.matches("[A-L]+3")) {
                 columnToMatch.put("1" + winnerToken.charAt(0), bracket.matchId);
             }
+        }
+        if (columnToMatch.isEmpty()) {
+            return Map.of();
         }
         Path tournamentLookup = tournament == null ? null : projectRoot.resolve("data/bracket")
                 .resolve("third_place_lookup_" + openingStage.round + "_" + tournament + ".csv");
@@ -709,7 +715,7 @@ public class SimulationHandler {
                     String.valueOf(result.runs()),
                     String.valueOf(seed)));
         }
-        Files.write(output, lines);
+        generatedDataStore.writeLines(output, lines);
     }
 
     private void writePathOutput(String tournament, SimulationStage startStage, SimulationResult result, boolean live) throws IOException {
@@ -727,7 +733,7 @@ public class SimulationHandler {
                     String.valueOf(result.runs()),
                     String.valueOf(seed)));
         }
-        Files.write(output, lines);
+        generatedDataStore.writeLines(output, lines);
     }
 
     private void writeOutputs(String tournament, SimulationStage startStage, SimulationResult result, boolean live) throws IOException {
@@ -767,7 +773,7 @@ public class SimulationHandler {
                     String.valueOf(totalRuns),
                     String.valueOf(seed)));
         }
-        Files.write(output, lines);
+        generatedDataStore.writeLines(output, lines);
     }
 
     private static Map<MatchupKey, Integer> matchupRuns(List<ScorelineCount> scorelineCounts) {

@@ -19,10 +19,10 @@ public final class PredictionLabelService {
             case "results", "actual" -> labels.add("Result");
             case "fixture" -> labels.add(hasActual ? "Result" : "Fixture");
             case "live" -> labels.add("Live Prediction");
-            case "predicted", "prediction", "" -> labels.add("Predicted Matchup");
+            case "primary", "predicted", "prediction", "" -> labels.add("Primary Path");
             case "result_upset" -> labels.add("Result");
-            case "upset" -> labels.add("Alternative Matchup");
-            default -> labels.add("Alternative Matchup");
+            case "upset" -> labels.add("Alt Path");
+            default -> labels.add("Alt Path");
         }
         return List.copyOf(labels);
     }
@@ -36,7 +36,7 @@ public final class PredictionLabelService {
         String actual = WebText.trim(actualWinner);
         if (!predicted.isBlank() && !actual.isBlank() && !"Draw".equalsIgnoreCase(actual)
                 && !actual.equalsIgnoreCase(predicted)) {
-            return "result_upset";
+            return "results";
         }
         return "results";
     }

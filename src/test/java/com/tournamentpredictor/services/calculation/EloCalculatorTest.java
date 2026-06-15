@@ -14,22 +14,13 @@ class EloCalculatorTest {
     }
 
     @Test
-    void extractTeamName_fromGroupSlotDisplay() {
-        assertEquals("SouthKorea", eloCalculator.extractTeamName("A2(SouthKorea)"));
-    }
-
-    @Test
-    void extractTeamName_fromCompositeSlotDisplay() {
-        assertEquals("SaudiArabia", eloCalculator.extractTeamName("CEFHI3(SaudiArabia)"));
-    }
-
-    @Test
-    void extractTeamName_fromWinnerDisplay() {
-        assertEquals("Germany", eloCalculator.extractTeamName("W74(Germany)"));
-    }
-
-    @Test
-    void extractTeamName_noParens_returnsAsIs() {
+    void extractTeamName_returnsRawTeamNameOnly() {
         assertEquals("Germany", eloCalculator.extractTeamName("Germany"));
+    }
+
+    @Test
+    void extractTeamName_doesNotParseLegacySlotWrappedValues() {
+        assertEquals("Raw Team Value", eloCalculator.extractTeamName("Raw Team Value"));
+        assertEquals("Source Match Token", eloCalculator.extractTeamName("Source Match Token"));
     }
 }

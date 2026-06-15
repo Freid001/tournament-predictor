@@ -12,7 +12,7 @@
             <thead class="table-dark">
             <tr>
                 <th style="width:28px" aria-label="Details"></th>
-                <th>Grp</th>
+                <th><span data-bs-toggle="tooltip" data-bs-title="Draw group for the team. Four teams per group for World Cup 2026.">Grp</span></th>
                 <th></th>
                 <th>Team</th>
                 <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Host-country boost only. Use yes for official hosts playing with home advantage; not for climate familiarity.">Host</span></th>
@@ -21,9 +21,10 @@
                 <th><span data-bs-toggle="tooltip" data-bs-title="Replacement quality. Use Limited/Thin when quality drops sharply beyond the starters; also affects knockout fatigue sensitivity.">Bench Depth</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="xG-only attacking quality from -2 to +2.">Attack</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="xG-only defensive quality from -2 to +2.">Defence</span></th>
-                <th><span data-bs-toggle="tooltip" data-bs-title="Players missing from the selected squad: injury ruled them out, coach omission, discipline, retirement, refusal, or federation dispute. Active-squad fitness belongs in Injury.">Squad Omissions</span></th>
-                <th><span data-bs-toggle="tooltip" data-bs-title="Current availability and fitness: ruled-out players, doubtful starters, managed minutes, recent returns, or players carrying knocks.">Injury</span></th>
+                <th><span data-bs-toggle="tooltip" data-bs-title="Players absent from the final selected squad: ruled out before selection, coach omission, discipline, retirement, refusal, or federation dispute. If the player is selected but doubtful, limited, returning, or carrying a knock, use Injury instead.">Squad Omissions</span></th>
+                <th><span data-bs-toggle="tooltip" data-bs-title="Current fitness for players still in the selected squad: doubtful starters, managed minutes, recent returns, carrying knocks, or selected players later ruled out. Do not use this for players already omitted from the squad.">Injury</span></th>
                 <th><span data-bs-toggle="tooltip" data-bs-title="Climate adaptation to hot/humid/altitude venues. Use for teams likely to handle conditions better than opponents.">Heat</span></th>
+                <th><span data-bs-toggle="tooltip" data-bs-title="FIFA confederation used for a small schedule-strength penalty in adjusted ELO. UEFA/CONMEBOL are baseline; CAF, AFC, CONCACAF and OFC subtract ELO.">Confederation</span></th>
             </tr>
             </thead>
             <tbody>
@@ -96,9 +97,10 @@
                         <span th:case="3" class="badge quality-badge quality-level-pos-2">Strong (+35)</span>
                     </span>
                 </td>
+                <td th:text="${row.confederation}"></td>
             </tr>
             <tr class="notes-row table-light" style="display:none">
-                <td colspan="13" class="py-2 px-3 small">
+                <td colspan="14" class="py-2 px-3 small">
                     <div th:if="${!#strings.isEmpty(row.ageNotes)}"><span class="text-muted">👶</span> <span th:text="${row.ageNotes}"></span></div>
                     <div th:if="${!#strings.isEmpty(row.cohesionNotes)}"><span class="text-muted">🤝</span> <span th:text="${row.cohesionNotes}"></span></div>
                     <div th:if="${!#strings.isEmpty(row.depthNotes)}"><span class="text-muted">⬇️</span> <span th:text="${row.depthNotes}"></span></div>

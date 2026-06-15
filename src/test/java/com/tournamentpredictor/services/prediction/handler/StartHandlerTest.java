@@ -2,6 +2,7 @@ package com.tournamentpredictor.services.prediction.handler;
 
 import com.tournamentpredictor.services.io.CsvLoader;
 import com.tournamentpredictor.services.io.CsvHelper;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -174,6 +175,73 @@ class StartHandlerTest {
         }
     }
 
+
+    @Test
+    void existingCsvOnlyGroupsLocksStartHandlerOutput() throws IOException {
+        Path groupsFile = root.resolve("data/predictions/test/groups.csv");
+        new GeneratedDataStore(root).writeLines(groupsFile, List.of(
+                "group,team,elo_ranking",
+                "A,England,1234"
+        ));
+        assertFalse(Files.exists(groupsFile));
+        writeStartCsv("group,team,host,injury_impact,heat_impact\n" +
+                "A,England,no,0,2\n");
+
+        new StartHandler(loader, root, csvHelper).handle("test");
+
+        assertFalse(Files.exists(groupsFile));
+        assertEquals(1234, new CsvLoader(root).loadGroupElo("test").get("England"));
+    }
+
+    @Test
+    void readsStartDataFromCsvAndWritesGroupsToCsv() throws IOException {
+        String previous = System.getProperty("tournament.generated.exportCsv");
+        System.setProperty("tournament.generated.exportCsv", "false");
+        try {
+            Path startFile = root.resolve("data/predictions/test/start.csv");
+            GeneratedDataStore setupStore = new GeneratedDataStore(root);
+            setupStore.writeLines(startFile, List.of(
+                    "group,team,host,injury_impact,heat_impact",
+                    "A,England,no,0,2"
+            ));
+            assertFalse(Files.exists(startFile));
+
+            new StartHandler(loader, root, csvHelper).handle("test");
+
+            Path groupsFile = root.resolve("data/predictions/test/groups.csv");
+            assertFalse(Files.exists(groupsFile));
+            assertEquals(2015, new CsvLoader(root).loadGroupElo("test").get("England"));
+        } finally {
+            if (previous == null) {
+                System.clearProperty("tournament.generated.exportCsv");
+            } else {
+                System.setProperty("tournament.generated.exportCsv", previous);
+            }
+        }
+    }
+
+    @Test
+    void writesGeneratedGroupsToCsv() throws IOException {
+        String previous = System.getProperty("tournament.generated.exportCsv");
+        System.setProperty("tournament.generated.exportCsv", "false");
+        try {
+            writeStartCsv("group,team,host,injury_impact,heat_impact\n" +
+                    "A,England,no,0,2\n");
+
+            new StartHandler(loader, root, csvHelper).handle("test");
+
+            Path groupsFile = root.resolve("data/predictions/test/groups.csv");
+            assertFalse(Files.exists(groupsFile));
+            assertEquals(2015, new CsvLoader(root).loadGroupElo("test").get("England"));
+        } finally {
+            if (previous == null) {
+                System.clearProperty("tournament.generated.exportCsv");
+            } else {
+                System.setProperty("tournament.generated.exportCsv", previous);
+            }
+        }
+    }
+
     @Test
     void excellentSquadDepth_addsTenElo() throws IOException {
         writeStartCsv("group,team,host,injury_impact,squad_depth\n" +
@@ -198,7 +266,7 @@ class StartHandlerTest {
      */
     private int readAdjustedElo(String tournament, String team) throws IOException {
         Path groupsFile = root.resolve("data/predictions/" + tournament + "/groups.csv");
-        List<String> lines = Files.readAllLines(groupsFile);
+        List<String> lines = new GeneratedDataStore(root).readLines(groupsFile);
         assertTrue(lines.size() >= 2, "groups.csv should have a header and at least one data row");
 
         String[] headers = lines.get(0).split(",", -1);

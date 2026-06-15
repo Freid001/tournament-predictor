@@ -79,4 +79,5 @@ class CsvLoaderSnapshotTest {
         assertEquals(2026, loader.resolveSnapshotBackedSetting(
                 "test", "qual.form.until.year", "qual_form_until", 1999));
     }
+
 }

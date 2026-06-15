@@ -113,6 +113,7 @@ public class TournamentController {
                     && web.bracketHasStage(safeTournament, "LAST_16");
             if ("group-simulation".equals(safeMode)) {
                 web.runGroupStagePipeline(safeTournament, reporter);
+                web.warmGeneratedData(safeTournament);
                 redirect.addFlashAttribute("runOutput", reporter.getHtml());
                 return web.redirectAfterSaveRun(safeMode, safeTournament);
             }
@@ -121,18 +122,20 @@ public class TournamentController {
             }
             if ("tournament".equals(safeMode)) {
                 web.runTournamentPipeline(safeTournament, reporter);
+                web.warmGeneratedData(safeTournament);
                 redirect.addFlashAttribute("runOutput", reporter.getHtml());
                 return web.redirectAfterSaveRun(safeMode, safeTournament);
             }
             if (startsAtLast16 && List.of("last_16", "last_8", "last_4", "final").contains(safeMode)) {
                 web.cascadeDeleteAfterRoundEdit(safeTournament, safeMode);
                 web.runDirectKnockoutRoundFromGroups(safeTournament, safeMode, reporter);
+                web.warmGeneratedData(safeTournament);
                 redirect.addFlashAttribute("runOutput", reporter.getHtml());
                 return web.redirectAfterSaveRun(safeMode, safeTournament);
             }
 
             Path lockedPath = web.outputPathForMode(safeTournament, safeMode);
-            boolean lockedBefore = lockedPath != null && Files.exists(lockedPath);
+            boolean lockedBefore = lockedPath != null && web.generatedDataExists(lockedPath);
             if (lockedBefore && !"start".equals(safeMode) && !"groups".equals(safeMode)) {
                 reporter.appendWarning("Output already exists: " + lockedPath + " — delete or reset to re-run.");
             }
@@ -152,6 +155,7 @@ public class TournamentController {
                 reporter.appendInfo("Current ELO source refreshed and tournament snapshot frozen. Group rankings and tournament results were reset; review Team Setup and run the workflow again.");
             }
             web.autoRunSimulation(safeMode, safeTournament, reporter);
+            web.warmGeneratedData(safeTournament);
             web.appendBrowserOnlyMessages(reporter, safeMode, safeTournament, lockedBefore);
             if (reporter.getHtml().isBlank()) {
                 reporter.appendInfo("Completed " + web.displayMode(safeMode) + ".");

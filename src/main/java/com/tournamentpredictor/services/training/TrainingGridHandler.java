@@ -84,7 +84,7 @@ public class TrainingGridHandler {
             return paths.filter(Files::isDirectory)
                     .filter(path -> Files.exists(path.resolve("actual_results.csv")))
                     .map(path -> path.getFileName().toString())
-                    .filter(name -> Files.exists(root.resolve("data/elo/snapshots").resolve(name).resolve("teams.csv")))
+                    .filter(loader::hasTournamentSnapshot)
                     .sorted()
                     .toList();
         }

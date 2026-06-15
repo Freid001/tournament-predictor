@@ -69,17 +69,8 @@ public class EloCalculator {
         return other + " (" + (100 - eloPct) + "%)";
     }
 
-    public String extractTeamName(String display) {
-        if (display == null) {
-            return "";
-        }
-        int openParen = display.lastIndexOf('(');
-        if (openParen >= 0) {
-            int closeParen = display.indexOf(')', openParen + 1);
-            if (closeParen > openParen) {
-                return display.substring(openParen + 1, closeParen);
-            }
-        }
-        return display;
+    public String extractTeamName(String team) {
+        return team == null ? "" : team.trim();
     }
+
 }

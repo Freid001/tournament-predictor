@@ -20,8 +20,10 @@ class Last4LineBuilderTest {
 
     private Last4LineBuilder builder;
 
-    // Scored format: match_id,team1,team2,path,prediction,t1_base,t1_qual,t2_base,t2_qual,t1_path,t2_path,t1_opp,t2_opp
-    private static final String HEADER = "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent";
+    // Scored prior-round format with structured route metadata.
+    private static final String HEADER = "match_id,team1,team2,path,prediction,team1_base_elo,team1_qual_bonus,team2_base_elo,team2_qual_bonus,team1_path_fatigue,team2_path_fatigue,team1_path_opponent,team2_path_opponent,"
+            + "team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,"
+            + "team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot";
 
     @BeforeEach
     void setUp() {
@@ -36,11 +38,35 @@ class Last4LineBuilderTest {
     }
 
     /** Builds a scored last_8 row in the 13-column format Last4LineBuilder reads. */
-    private String scoredRow(String matchId, String team1Display, String team2Display, String path,
+    private String scoredRow(String matchId, RouteMeta team1, RouteMeta team2, String path,
                               String prediction, int t1Path, int t2Path, String t1Opp, String t2Opp) {
-        return matchId + "," + team1Display + "," + team2Display + "," + path + "," + prediction
-                + ",1900,40,2000,48," + t1Path + "," + t2Path + "," + t1Opp + "," + t2Opp;
+        t1Opp = withoutCurrentOpponent(t1Opp, team2.team);
+        t2Opp = withoutCurrentOpponent(t2Opp, team1.team);
+        return matchId + "," + team1.team + "," + team2.team + "," + path + "," + prediction
+                + ",1900,40,2000,48," + t1Path + "," + t2Path + "," + t1Opp + "," + t2Opp
+                + "," + team1.slot + "," + team1.team + "," + team1.sourceMatch + "," + team1.groupFinish + "," + team1.bracketSlot
+                + "," + team2.slot + "," + team2.team + "," + team2.sourceMatch + "," + team2.groupFinish + "," + team2.bracketSlot;
     }
+
+
+    private String withoutCurrentOpponent(String chain, String currentOpponent) {
+        if (chain == null || chain.isBlank() || currentOpponent == null || currentOpponent.isBlank()) {
+            return chain == null ? "" : chain;
+        }
+        return java.util.Arrays.stream(chain.split(" > "))
+                .map(String::trim)
+                .filter(segment -> !segment.equalsIgnoreCase(currentOpponent + ":0")
+                        && !segment.startsWith(currentOpponent + ":")
+                        && !segment.contains("|" + currentOpponent + ":"))
+                .collect(java.util.stream.Collectors.joining(" > "));
+    }
+
+    private RouteMeta route(String slot, String team, String sourceMatch, String groupFinish, String bracketSlot) {
+        return new RouteMeta(slot, team, sourceMatch, groupFinish, bracketSlot);
+    }
+
+    private record RouteMeta(String slot, String team, String sourceMatch, String groupFinish, String bracketSlot) {}
+
 
     // ─── Prefer predicted over alt ────────────────────────────────────────────
 
@@ -59,13 +85,13 @@ class Last4LineBuilderTest {
                     "England", 2020, "Norway", 1917, "Turkey", 1906, "Argentina", 2113, "Portugal", 1984);
 
             // M98 alt: England wins Turkey (comes first by match ID when scanning)
-            String m98Alt = scoredRow("M98", "W93(W83(L2(England)))", "W94(W81(D1(Turkey)))",
+            String m98Alt = scoredRow("M98", route("W93", "England", "M93", "L2", "L2"), route("W94", "Turkey", "M94", "D1", "D1"),
                     "alt", "England (64%)", 3, -24, "Uzbekistan:0 > Senegal:-10", "Algeria:0 > Belgium:-6");
             // M99 predicted: England beats Norway (the correct QF result)
-            String m99Pred = scoredRow("M99", "W91(W78(I2(Norway)))", "W92(W80(L1(England)))",
+            String m99Pred = scoredRow("M99", route("W91", "Norway", "M91", "I2", "I2"), route("W92", "England", "M92", "L1", "L1"),
                     "predicted", "England (57%)", 110, 3, "Morocco:0 > Germany:-14", "Uzbekistan:0 > Senegal:-10");
             // M100 predicted: Argentina beats Portugal
-            String m100Pred = scoredRow("M100", "W95(W86(J1(Argentina)))", "W96(W87(K1(Portugal)))",
+            String m100Pred = scoredRow("M100", route("W95", "Argentina", "M95", "J1", "J1"), route("W96", "Portugal", "M96", "K1", "K1"),
                     "predicted", "Argentina (65%)", -35, 108, "Uruguay:0 > Paraguay:0", "England:-10 > Austria:-3");
 
             List<String> rows = Arrays.asList(HEADER, m98Alt, m99Pred, m100Pred);
@@ -89,14 +115,14 @@ class Last4LineBuilderTest {
                     "Spain", 2165, "Colombia", 1977, "Turkey", 1906, "France", 2081, "Germany", 1925);
 
             // Two alt rows for Spain (lower match IDs) — Colombia and Turkey are from alt scenarios
-            String m97Alt = scoredRow("M97", "W89(W77(I1(Spain)))", "W90(W75(F1(Colombia)))",
+            String m97Alt = scoredRow("M97", route("W89", "Spain", "M89", "I1", "I1"), route("W90", "Colombia", "M90", "F1", "F1"),
                     "alt", "Spain (61%)", 14, -4, "Austria:-2", "Croatia:-3");
-            String m98Alt = scoredRow("M98", "W93(W84(H1(Spain)))", "W94(W81(D1(Turkey)))",
+            String m98Alt = scoredRow("M98", route("W93", "Spain", "M93", "H1", "H1"), route("W94", "Turkey", "M94", "D1", "D1"),
                     "alt", "Spain (73%)", 14, -24, "Austria:-2", "Algeria:0");
             // M99 predicted: Spain beats France — prior chain uses Japan (unambiguous non-alt team)
-            String m99Pred = scoredRow("M99", "W91(W78(I1(Spain)))", "W92(W80(L1(France)))",
+            String m99Pred = scoredRow("M99", route("W91", "Spain", "M91", "I1", "I1"), route("W92", "France", "M92", "L1", "L1"),
                     "predicted", "Spain (54%)", 113, 78, "Austria:-2 > Japan:-10", "United States:0 > Germany:-14");
-            String m100Pred = scoredRow("M100", "W95(W86(J1(Germany)))", "W96(W87(K1(Germany)))",
+            String m100Pred = scoredRow("M100", route("W95", "Germany", "M95", "J1", "J1"), route("W96", "Germany", "M96", "K1", "K1"),
                     "predicted", "Germany (55%)", 0, 0, "", "");
 
             List<String> rows = Arrays.asList(HEADER, m97Alt, m98Alt, m99Pred, m100Pred);
@@ -127,9 +153,9 @@ class Last4LineBuilderTest {
                     "England", 2020, "Norway", 1917, "Argentina", 2113, "Portugal", 1984);
 
             // England prior chain = "Uzbekistan:0 > Senegal:-10" (accumulated from R32 + R16)
-            String m99Pred = scoredRow("M99", "W91(W78(I2(Norway)))", "W92(W80(L1(England)))",
+            String m99Pred = scoredRow("M99", route("W91", "Norway", "M91", "I2", "I2"), route("W92", "England", "M92", "L1", "L1"),
                     "predicted", "England (57%)", 110, 3, "Morocco:0 > Germany:-14", "Uzbekistan:0 > Senegal:-10");
-            String m100Pred = scoredRow("M100", "W95(W86(J1(Argentina)))", "W96(W87(K1(Portugal)))",
+            String m100Pred = scoredRow("M100", route("W95", "Argentina", "M95", "J1", "J1"), route("W96", "Portugal", "M96", "K1", "K1"),
                     "predicted", "Argentina (65%)", -35, 108, "Uruguay:0 > Paraguay:0", "England:-10 > Austria:-3");
 
             List<String> output = builder.buildLast4Lines(elos, semiBracket(), Arrays.asList(HEADER, m99Pred, m100Pred));
@@ -149,9 +175,9 @@ class Last4LineBuilderTest {
             Map<String, Integer> elos = Map.of(
                     "England", 2020, "Norway", 1917, "Argentina", 2113, "Portugal", 1984);
 
-            String m99Pred = scoredRow("M99", "W91(W78(I2(Norway)))", "W92(W80(L1(England)))",
+            String m99Pred = scoredRow("M99", route("W91", "Norway", "M91", "I2", "I2"), route("W92", "England", "M92", "L1", "L1"),
                     "predicted", "England (57%)", 110, 3, "Morocco:0 > Germany:-14", "Uzbekistan:0 > Senegal:-10");
-            String m100Pred = scoredRow("M100", "W95(W86(J1(Argentina)))", "W96(W87(K1(Portugal)))",
+            String m100Pred = scoredRow("M100", route("W95", "Argentina", "M95", "J1", "J1"), route("W96", "Portugal", "M96", "K1", "K1"),
                     "predicted", "Argentina (65%)", -35, 108, "Uruguay:0 > Paraguay:0", "England:-10 > Austria:-3");
 
             List<String> output = builder.buildLast4Lines(elos, semiBracket(), Arrays.asList(HEADER, m99Pred, m100Pred));
@@ -178,11 +204,11 @@ class Last4LineBuilderTest {
                     "England", 2020, "Turkey", 1906, "Norway", 1917, "Argentina", 2113, "Portugal", 1984);
 
             // No predicted win for England in M99 — only alt wins
-            String m98Alt = scoredRow("M98", "W93(W83(L2(England)))", "W94(W81(D1(Turkey)))",
+            String m98Alt = scoredRow("M98", route("W93", "England", "M93", "L2", "L2"), route("W94", "Turkey", "M94", "D1", "D1"),
                     "alt", "England (64%)", 3, -24, "Uzbekistan:0", "Algeria:0");
-            String m99Alt = scoredRow("M99", "W91(W78(I2(Norway)))", "W92(W80(L1(England)))",
+            String m99Alt = scoredRow("M99", route("W91", "Norway", "M91", "I2", "I2"), route("W92", "England", "M92", "L1", "L1"),
                     "alt", "England (57%)", 110, 3, "Morocco:0", "Uzbekistan:0");
-            String m100Pred = scoredRow("M100", "W95(W86(J1(Argentina)))", "W96(W87(K1(Portugal)))",
+            String m100Pred = scoredRow("M100", route("W95", "Argentina", "M95", "J1", "J1"), route("W96", "Portugal", "M96", "K1", "K1"),
                     "predicted", "Argentina (65%)", -35, 108, "Uruguay:0 > Paraguay:0", "England:-10 > Austria:-3");
 
             List<String> rows = Arrays.asList(HEADER, m98Alt, m99Alt, m100Pred);
@@ -203,9 +229,9 @@ class Last4LineBuilderTest {
         void outputAlwaysStartsWithHeader() {
             Map<String, Integer> elos = Map.of(
                     "England", 2020, "Norway", 1917, "Argentina", 2113, "Portugal", 1984);
-            String m99 = scoredRow("M99", "W91(W78(I2(Norway)))", "W92(W80(L1(England)))",
+            String m99 = scoredRow("M99", route("W91", "Norway", "M91", "I2", "I2"), route("W92", "England", "M92", "L1", "L1"),
                     "predicted", "England (57%)", 110, 3, "", "Uzbekistan:0 > Senegal:-10");
-            String m100 = scoredRow("M100", "W95(W86(J1(Argentina)))", "W96(W87(K1(Portugal)))",
+            String m100 = scoredRow("M100", route("W95", "Argentina", "M95", "J1", "J1"), route("W96", "Portugal", "M96", "K1", "K1"),
                     "predicted", "Argentina (65%)", -35, 108, "Uruguay:0", "");
 
             List<String> output = builder.buildLast4Lines(elos, semiBracket(), Arrays.asList(HEADER, m99, m100));
@@ -217,9 +243,9 @@ class Last4LineBuilderTest {
             // Argentina (2113) should beat England (2020) in the SF prediction
             Map<String, Integer> elos = Map.of(
                     "England", 2020, "Norway", 1917, "Argentina", 2113, "Portugal", 1984);
-            String m99 = scoredRow("M99", "W91(W78(I2(Norway)))", "W92(W80(L1(England)))",
+            String m99 = scoredRow("M99", route("W91", "Norway", "M91", "I2", "I2"), route("W92", "England", "M92", "L1", "L1"),
                     "predicted", "England (57%)", 110, 3, "Morocco:0", "Uzbekistan:0 > Senegal:-10");
-            String m100 = scoredRow("M100", "W95(W86(J1(Argentina)))", "W96(W87(K1(Portugal)))",
+            String m100 = scoredRow("M100", route("W95", "Argentina", "M95", "J1", "J1"), route("W96", "Portugal", "M96", "K1", "K1"),
                     "predicted", "Argentina (65%)", -35, 108, "Uruguay:0", "");
 
             List<String> output = builder.buildLast4Lines(elos, semiBracket(), Arrays.asList(HEADER, m99, m100));

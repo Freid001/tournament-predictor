@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: pageHead}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+<div class="container-fluid px-3 pb-3">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 py-3 border-bottom mb-3">
+    <div>
+      <h1 class="h4 mb-1" th:text="${tournamentLabel} + ' Path Visualization'">Path Visualization</h1>
+      <div class="text-muted small">
+        <span th:text="${roundLabel}">Round</span>
+        <span th:if="${team != null and !team.isBlank()}"> for <span th:text="${team}">Team</span></span>
+        <span> - </span><span th:text="${nodeCount}">0</span><span> nodes, </span><span th:text="${edgeCount}">0</span><span> edges</span>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-2 justify-content-end">
+      <form class="d-flex align-items-center gap-2" method="get" th:action="@{/view/visualize}">
+        <input type="hidden" name="tournament" th:value="${tournament}">
+        <input type="hidden" name="path" th:value="${path}">
+        <input type="hidden" name="results" th:value="${results}">
+        <select class="form-select form-select-sm" style="min-width:190px" name="team" onchange="this.form.submit()" aria-label="Select team to visualize">
+          <option value="" th:selected="${team == null or team.isBlank()}">Select team</option>
+          <option th:each="option : ${teamOptions}" th:value="${option}" th:text="${option}" th:selected="${option == team}">England</option>
+        </select>
+        <button class="btn btn-sm btn-primary" type="submit">Visualize</button>
+      </form>
+      <span class="badge" style="background:#ffc107;color:#212529">Result path</span>
+      <span class="badge" style="background:#0d6efd">Predicted path</span>
+      <span class="badge" style="background:#adb5bd;color:#212529">Alternative path</span>
+    </div>
+  </div>
+  <div class="alert alert-info py-3" th:if="${teamRequired}">
+    Select a team to visualize its tournament path.
+  </div>
+  <div class="alert alert-warning py-2 small" id="viz-load-warning" style="display:none" th:if="${!teamRequired}">
+    The diagram library did not load. Check the local D3 and Dagre vendor files are available.
+  </div>
+  <div id="viz-wrap" class="position-relative border rounded bg-white" th:if="${!teamRequired}" style="height:calc(100vh - 155px); min-height:620px; overflow:hidden;">
+    <div class="position-absolute top-0 end-0 m-2 btn-group btn-group-sm" style="z-index:2" aria-label="Graph zoom controls">
+      <button type="button" class="btn btn-light border" id="viz-zoom-in" title="Zoom in">+</button>
+      <button type="button" class="btn btn-light border" id="viz-zoom-out" title="Zoom out">-</button>
+      <button type="button" class="btn btn-light border" id="viz-zoom-focus" title="Focus selected team">Focus</button>
+    </div>
+    <div id="viz-status" class="position-absolute top-50 start-50 translate-middle text-muted small">Rendering path graph...</div>
+    <div id="node-tooltip" class="position-absolute bg-white border rounded shadow-sm p-2 small" style="display:none; z-index:3; max-width:680px; min-width:360px; pointer-events:none;"></div>
+    <svg id="path-viz" role="img" aria-label="Tournament path graph" style="height:100%; width:100%; display:block;"></svg>
+  </div>
+</div>
+<th:block th:if="${!teamRequired}">
+<script src="/vendor/d3/d3.min.js"></script>
+<script src="/vendor/cytoscape/dagre.min.js"></script>
+<script th:inline="javascript">
+const graph = JSON.parse(/*[[${graphJson}]]*/ '{"nodes":[],"edges":[]}');
+const focusedTeam = /*[[${team}]]*/ '';
+const flagUrlsByTeam = new Map((graph.nodes || [])
+  .map(node => node.data || {})
+  .filter(data => data.team && data.flagUrl)
+  .map(data => [String(data.team).toLowerCase(), data.flagUrl]));
+const warning = document.getElementById('viz-load-warning');
+const status = document.getElementById('viz-status');
+function showStatus(message){ if(status){ status.textContent = message; status.style.display = ''; } }
+function hideStatus(){ if(status){ status.style.display = 'none'; } }
+const edgeColors = { results: '#ffc107', predicted: '#0d6efd', alt: '#adb5bd' };
+const edgeTextColors = { results: '#7a5a00', predicted: '#084298', alt: '#495057' };
+
+function pathTone(path) {
+  if (path === 'results') return { fill: '#fff8df', stroke: '#d39e00', text: '#7a5a00' };
+  if (path === 'predicted') return { fill: '#eef4ff', stroke: '#7aa7e8', text: '#315c8f' };
+  return { fill: '#f1f3f5', stroke: '#adb5bd', text: '#495057' };
+}
+
+function isFocusedTeamNode(data) {
+  return data.type === 'team' && String(data.team || '').toLowerCase() === String(focusedTeam || '').toLowerCase();
+}
+
+const teamNodeSizes = {
+  focused: { width: 150, height: 112 },
+  'very-large': { width: 158, height: 118 },
+  large: { width: 124, height: 94 },
+  medium: { width: 96, height: 74 },
+  small: { width: 74, height: 58 },
+  'very-small': { width: 56, height: 46 }
+};
+
+const teamFlagSizes = {
+  focused: { width: 96, height: 64 },
+  'very-large': { width: 102, height: 68 },
+  large: { width: 78, height: 52 },
+  medium: { width: 60, height: 40 },
+  small: { width: 44, height: 30 },
+  'very-small': { width: 32, height: 22 }
+};
+
+const terminalNodeSize = { width: 98, height: 46 };
+
+function likelihoodKey(data) {
+  return ['very-large', 'large', 'medium', 'small', 'very-small'].includes(data.likelihood)
+    ? data.likelihood
+    : 'very-small';
+}
+
+function nodeSize(data) {
+  if (data.type === 'champion' || data.type === 'eliminated') return terminalNodeSize;
+  if (data.type === 'stage') return { width: 132, height: 36 };
+  if (data.type === 'seed') return { width: 76, height: 50 };
+  if (data.type === 'team') return isFocusedTeamNode(data) ? teamNodeSizes.focused : teamNodeSizes[likelihoodKey(data)];
+  return { width: 82, height: 58 };
+}
+
+function flagOnlyNode(data) {
+  return data.type === 'team' && data.flagUrl && !String(data.label || '').trim();
+}
+
+function linePath(points) {
+  if (!points || points.length === 0) return '';
+  return points.map((point, index) => `${index === 0 ? 'M' : 'L'}${point.x},${point.y}`).join(' ');
+}
+
+function centeredEdgePoints(edge, nodeById) {
+  const source = nodeById.get(edge.data.source);
+  const target = nodeById.get(edge.data.target);
+  if (!source || !target) return edge.data.points || [];
+  const startY = source.y + (source.height / 2);
+  const endY = target.y - (target.height / 2);
+  return [{ x: source.x, y: startY }, { x: target.x, y: endY }];
+}
+
+function horizontalEdgePath(edge) {
+  const points = edge.data.points || [];
+  if (points.length < 2) return linePath(points);
+  const start = points[0];
+  const end = points[points.length - 1];
+  if (Math.abs(start.y - end.y) < 2) return linePath([start, end]);
+  const midX = start.x + ((end.x - start.x) * 0.5);
+  return linePath([start, { x: midX, y: start.y }, { x: midX, y: end.y }, end]);
+}
+
+function routedLinePath(edge, nodeById) {
+  const source = nodeById.get(edge.data.source);
+  const target = nodeById.get(edge.data.target);
+  const touchesStage = source?.type === 'stage' || target?.type === 'stage';
+  const touchesTerminal = source?.type === 'champion' || source?.type === 'eliminated'
+    || target?.type === 'champion' || target?.type === 'eliminated';
+  if (touchesTerminal) {
+    return linePath(edge.data.points || []);
+  }
+  if (edge.data.routeStyle === 'horizontal') {
+    const stageTeamLink = touchesStage && ((source?.type === 'stage' && target?.type === 'team')
+      || (source?.type === 'team' && target?.type === 'stage'));
+    if (stageTeamLink) {
+      return linePath(edge.data.points || []);
+    }
+    return horizontalEdgePath(edge);
+  }
+  if (touchesStage) {
+    return linePath(centeredEdgePoints(edge, nodeById));
+  }
+
+  const points = edge.data.points || [];
+  if (points.length === 0) return '';
+  const offset = edge.data.fanOffset || 0;
+  if (!offset || points.length < 2) return linePath(points);
+
+  const start = points[0];
+  const end = points[points.length - 1];
+  const middle = points.slice(1, -1).map(point => ({ x: point.x + offset, y: point.y }));
+  if (middle.length === 0) {
+    const midY = start.y + ((end.y - start.y) * 0.58);
+    middle.push({ x: start.x + offset, y: midY });
+    middle.push({ x: end.x + offset, y: midY });
+  }
+  return linePath([start, ...middle, end]);
+}
+
+function assignFanOffsets(edges, nodeById) {
+  const incoming = new Map();
+  edges.forEach(edge => {
+    const source = nodeById.get(edge.data.source);
+    const target = nodeById.get(edge.data.target);
+    if (source?.type === 'stage' || target?.type === 'stage') return;
+    if (!edge.data.label) return;
+    const key = edge.data.target;
+    if (!incoming.has(key)) incoming.set(key, []);
+    incoming.get(key).push(edge);
+  });
+  incoming.forEach(group => {
+    if (group.length < 2) return;
+    group.sort((a, b) => String(a.data.source).localeCompare(String(b.data.source)));
+    const spacing = group.length > 5 ? 10 : 16;
+    const maxOffset = 42;
+    group.forEach((edge, index) => {
+      const rawOffset = (index - ((group.length - 1) / 2)) * spacing;
+      edge.data.fanOffset = Math.max(-maxOffset, Math.min(maxOffset, rawOffset));
+    });
+  });
+}
+
+function edgeLabelPoint(edge) {
+  const points = edge.data.points || [];
+  if (points.length === 0) return { x: 0, y: 0 };
+  if (points.length === 2) {
+    return {
+      x: points[0].x + ((points[1].x - points[0].x) * 0.5) + ((edge.data.fanOffset || 0) * 0.6),
+      y: points[0].y + ((points[1].y - points[0].y) * 0.5)
+    };
+  }
+  const point = points[Math.floor(points.length / 2)];
+  return { x: point.x + ((edge.data.fanOffset || 0) * 0.6), y: point.y };
+}
+
+function labelLines(label) {
+  return String(label || '').split('\n').filter(line => line.length > 0);
+}
+
+function terminalLabelLines(data) {
+  return data.type === 'champion' ? ['Champion 🏆'] : ['Eliminated'];
+}
+
+function teamContentMetrics(data) {
+  const flagOnly = flagOnlyNode(data);
+  const lines = flagOnly ? [] : labelLines(data.label).slice(0, data.flagUrl ? 1 : (data.likelihood === 'medium' ? 3 : 4));
+  const focused = isFocusedTeamNode(data);
+  const lineHeight = focused ? 13 : (data.likelihood === 'medium' ? 12 : 12.5);
+  const flagSize = focused ? teamFlagSizes.focused : teamFlagSizes[likelihoodKey(data)];
+  const flagWidth = flagSize.width;
+  const flagHeight = data.flagUrl ? flagSize.height : 0;
+  const gap = data.flagUrl && lines.length > 0 ? 4 : 0;
+  const textHeight = lines.length * lineHeight;
+  const contentHeight = flagHeight + gap + textHeight;
+  const top = -contentHeight / 2;
+  return { lines, lineHeight, flagWidth, flagHeight, flagY: top, textY: top + flagHeight + gap + 10 };
+}
+
+function renderText(selection, lines, yStart, lineHeight, className) {
+  selection.selectAll('tspan')
+    .data(lines)
+    .join('tspan')
+    .attr('x', 0)
+    .attr('dy', (d, i) => i === 0 ? 0 : lineHeight)
+    .attr('y', (d, i) => i === 0 ? yStart : null)
+    .attr('class', (d, i) => `${className} ${i === 0 ? 'primary' : 'secondary'}`)
+    .text(d => d);
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[char]));
+}
+
+function pathSegmentName(token) {
+  const value = String(token || '').trim();
+  if (!value) return '';
+  const parts = value.split('|');
+  if (parts.length < 2) return value;
+  return parts.slice(1).join('|').replace(/:-?\d+(?:\.\d+)?$/, '').trim();
+}
+
+function pathSegmentStage(token) {
+  return String(token || '').trim().split('|')[0] || '';
+}
+
+
+function tooltipTournamentPath(data) {
+  const items = [];
+  const seed = String(data.opponentSeed || '').trim();
+  if (seed) items.push({ label: seed, flagUrl: '' });
+  const path = String(data.opponentPath || '').trim();
+  if (path) {
+    path.split(' > ').forEach(segment => {
+      if (pathSegmentStage(segment) === 'G') return;
+      const name = pathSegmentName(segment);
+      if (name && name.toLowerCase() !== 'group stage') {
+        items.push({ label: name, flagUrl: flagUrlsByTeam.get(name.toLowerCase()) || '' });
+      }
+    });
+  }
+  return items;
+}
+
+function pathItemHtml(item) {
+  const flag = item.flagUrl
+    ? `<img src="${escapeHtml(item.flagUrl)}" alt="" style="width:18px;height:12px;object-fit:cover;border-radius:2px">`
+    : '';
+  return `<span class="d-inline-flex align-items-center gap-1">${flag}<span>${escapeHtml(item.label)}</span></span>`;
+}
+
+function nodeTooltipHtml(data) {
+  if (data.type !== 'team' || !data.team || isFocusedTeamNode(data)) return '';
+  const pathItems = tooltipTournamentPath(data);
+  const likelihood = String(data.matchupPct || '').trim();
+  const route = data.path === 'results' ? 'Result path' : (data.path === 'predicted' ? 'Predicted path' : 'Alternative path');
+  const roundLabel = String(data.roundLabel || '').trim();
+  const heading = `${escapeHtml(data.team)} vs ${escapeHtml(focusedTeam)}${roundLabel ? ` in ${escapeHtml(roundLabel)}` : ''}`;
+  const pathLine = pathItems.length
+    ? pathItems.map(pathItemHtml).join(' <span class="text-muted">›</span> ')
+    : '<span class="text-muted">No prior opposition path available.</span>';
+  return `<div class="fw-semibold mb-1">${heading}</div>`
+    + `<div class="text-muted mb-1">${escapeHtml(route)}${likelihood ? ` · ${escapeHtml(likelihood)}% matchup` : ''}</div>`
+    + `<div class="d-flex align-items-center gap-1 text-nowrap overflow-hidden">${pathLine}</div>`;
+}
+
+function attachNodeTooltips(selection) {
+  const tooltip = document.getElementById('node-tooltip');
+  if (!tooltip) return;
+  selection
+    .on('mousemove', function(event, data) {
+      const html = nodeTooltipHtml(data);
+      if (!html) return;
+      const wrap = document.getElementById('viz-wrap');
+      const bounds = wrap.getBoundingClientRect();
+      tooltip.innerHTML = html;
+      tooltip.style.display = '';
+      const x = Math.min(event.clientX - bounds.left + 14, bounds.width - tooltip.offsetWidth - 12);
+      const y = Math.min(event.clientY - bounds.top + 14, bounds.height - tooltip.offsetHeight - 12);
+      tooltip.style.left = `${Math.max(12, x)}px`;
+      tooltip.style.top = `${Math.max(12, y)}px`;
+    })
+    .on('mouseleave', function() {
+      tooltip.style.display = 'none';
+    });
+}
+
+function edgeEndpoints(edge, nodeById) {
+  const source = nodeById.get(edge.data.source);
+  const target = nodeById.get(edge.data.target);
+  if (!source || !target) return edge.data.points || [];
+  if (edge.data.routeStyle === 'vertical') {
+    const direction = target.y >= source.y ? 1 : -1;
+    return [
+      { x: source.x, y: source.y + (direction * source.height / 2) },
+      { x: target.x, y: target.y - (direction * target.height / 2) }
+    ];
+  }
+  const direction = target.x >= source.x ? 1 : -1;
+  return [
+    { x: source.x + (direction * source.width / 2), y: source.y },
+    { x: target.x - (direction * target.width / 2), y: target.y }
+  ];
+}
+
+function descendantsFrom(seedId, outgoing) {
+  const seen = new Set([seedId]);
+  const stack = [seedId];
+  while (stack.length) {
+    const current = stack.pop();
+    (outgoing.get(current) || []).forEach(edge => {
+      const target = edge.data.target;
+      if (!seen.has(target)) {
+        seen.add(target);
+        stack.push(target);
+      }
+    });
+  }
+  return seen;
+}
+
+function seedSide(seed, index) {
+  const label = String(seed.label || seed.id || '').toUpperCase();
+  if (/^[A-Z]{2,}3$/.test(label)) return 0;
+  if (/1$/.test(label)) return -1;
+  if (/2$/.test(label)) return 1;
+  return index % 2 === 0 ? -1 : 1;
+}
+
+function clearSpineY(node, rawY, centerY) {
+  const clearance = 92;
+  const delta = rawY - centerY;
+  if (Math.abs(delta) >= clearance) return rawY;
+  const fallbackDirection = String(node.id || '').length % 2 === 0 ? -1 : 1;
+  const direction = delta === 0 ? fallbackDirection : Math.sign(delta);
+  return centerY + (direction * clearance);
+}
+
+function clearVerticalSpineX(node, rawX) {
+  const clearance = 126;
+  if (Math.abs(rawX) >= clearance) return rawX;
+  const fallbackDirection = String(node.id || '').length % 2 === 0 ? -1 : 1;
+  const direction = rawX === 0 ? fallbackDirection : Math.sign(rawX);
+  return direction * clearance;
+}
+
+function likelihoodScore(node) {
+  const pct = Number.parseFloat(String(node.matchupPct || '').replace('%', ''));
+  if (Number.isFinite(pct)) return pct;
+  const buckets = { 'very-large': 100, large: 80, medium: 60, small: 40, 'very-small': 20 };
+  return buckets[node.likelihood] || 0;
+}
+
+function outgoingEdgesBySource(edges) {
+  const outgoing = new Map();
+  edges.forEach(edge => {
+    if (!outgoing.has(edge.data.source)) outgoing.set(edge.data.source, []);
+    outgoing.get(edge.data.source).push(edge);
+  });
+  return outgoing;
+}
+
+function nodeLeadsToElimination(node, outgoing, nodeById) {
+  return (outgoing.get(node.id) || []).some(edge => nodeById.get(edge.data.target)?.type === 'eliminated');
+}
+
+function nodeLeadsToChampion(node, outgoing, nodeById) {
+  return (outgoing.get(node.id) || []).some(edge => nodeById.get(edge.data.target)?.type === 'champion');
+}
+
+function terminalTargetsFor(nodes, outgoing, nodeById, terminalType) {
+  const targets = [];
+  const seen = new Set();
+  nodes.forEach(node => {
+    (outgoing.get(node.id) || []).forEach(edge => {
+      const target = nodeById.get(edge.data.target);
+      if (target?.type === terminalType && !seen.has(target.id)) {
+        seen.add(target.id);
+        targets.push(target);
+      }
+    });
+  });
+  return targets;
+}
+
+function eliminatedTargetsFor(nodes, outgoing, nodeById) {
+  return terminalTargetsFor(nodes, outgoing, nodeById, 'eliminated');
+}
+
+function championTargetsFor(nodes, outgoing, nodeById) {
+  return terminalTargetsFor(nodes, outgoing, nodeById, 'champion');
+}
+
+function orderedByLikelihood(nodes) {
+  return [...nodes].sort((a, b) => {
+    const scoreDiff = likelihoodScore(b) - likelihoodScore(a);
+    if (Math.abs(scoreDiff) > 0.0001) return scoreDiff;
+    return String(a.team || a.id).localeCompare(String(b.team || b.id));
+  });
+}
+
+function placeOutcomeLane(nodes, lane, axis) {
+  orderedByLikelihood(nodes).forEach(node => {
+    if (axis === 'y') {
+      const halfHeight = (node.height || 46) / 2;
+      node.y = lane.origin + (lane.direction * (lane.cursor + halfHeight));
+      lane.cursor += (node.height || 46) + 18;
+    } else {
+      const halfWidth = (node.width || 74) / 2;
+      node.x = lane.origin + (lane.direction * (lane.cursor + halfWidth));
+      lane.cursor += (node.width || 74) + 34;
+    }
+  });
+}
+
+function averageCoordinate(nodes, key, fallback) {
+  if (!nodes || nodes.length === 0) return fallback;
+  return nodes.reduce((sum, node) => sum + (Number(node[key]) || 0), 0) / nodes.length;
+}
+
+function terminalXBeyondMatchups(nodes, stageX) {
+  if (!nodes || nodes.length === 0) return stageX;
+  const outward = stageX < 0 ? -1 : 1;
+  const terminalHalfWidth = terminalNodeSize.width / 2;
+  const terminalGap = 142;
+  const outerEdgeX = outward < 0
+    ? Math.min(...nodes.map(node => (Number(node.x) || stageX) - ((node.width || 56) / 2)))
+    : Math.max(...nodes.map(node => (Number(node.x) || stageX) + ((node.width || 56) / 2)));
+  return outerEdgeX + (outward * (terminalGap + terminalHalfWidth));
+}
+
+function continuationStageXFor(nodes, outgoing, nodeById, fallbackX) {
+  const stages = [];
+  const seen = new Set();
+  nodes.forEach(node => {
+    (outgoing.get(node.id) || []).forEach(edge => {
+      const target = nodeById.get(edge.data.target);
+      if (target?.type === 'stage' && !seen.has(target.id)) {
+        seen.add(target.id);
+        stages.push(target);
+      }
+    });
+  });
+  return averageCoordinate(stages, 'x', fallbackX);
+}
+
+function terminalYBeyondMatchups(nodes, stageY) {
+  if (!nodes || nodes.length === 0) return stageY;
+  const terminalHalfHeight = terminalNodeSize.height / 2;
+  const terminalGap = 142;
+  const outerEdgeY = Math.max(...nodes.map(node => (Number(node.y) || stageY) + ((node.height || 46) / 2)));
+  return outerEdgeY + terminalGap + terminalHalfHeight;
+}
+
+function continuationStageYFor(nodes, outgoing, nodeById, fallbackY) {
+  const stages = [];
+  const seen = new Set();
+  nodes.forEach(node => {
+    (outgoing.get(node.id) || []).forEach(edge => {
+      const target = nodeById.get(edge.data.target);
+      if (target?.type === 'stage' && !seen.has(target.id)) {
+        seen.add(target.id);
+        stages.push(target);
+      }
+    });
+  });
+  return averageCoordinate(stages, 'y', fallbackY);
+}
+
+function positionAltNodesAroundSpine(nodes, edges, verticalNodeIds = new Set()) {
+  const nodeById = new Map(nodes.map(node => [node.id, node]));
+  const outgoing = outgoingEdgesBySource(edges);
+  const stageGroups = new Map();
+  edges.forEach(edge => {
+    const source = nodeById.get(edge.data.source);
+    const target = nodeById.get(edge.data.target);
+    if (source?.type !== 'stage' || target?.type !== 'team') return;
+    if (verticalNodeIds.has(source.id)) return;
+    if (!stageGroups.has(source.id)) stageGroups.set(source.id, { stage: source, central: [], advancing: [], eliminated: [] });
+    const group = stageGroups.get(source.id);
+    if (target.path !== 'alt') group.central.push(target);
+    else if (nodeLeadsToElimination(target, outgoing, nodeById)) group.eliminated.push(target);
+    else group.advancing.push(target);
+  });
+  stageGroups.forEach(group => {
+    if (group.advancing.length + group.eliminated.length === 0) return;
+    const centerY = group.stage.y;
+    const centralHeight = group.central.reduce((max, node) => Math.max(max, node.height || 46), 72);
+    const offset = centralHeight / 2 + 18;
+    placeOutcomeLane(group.advancing, { direction: -1, origin: centerY, cursor: offset }, 'y');
+    placeOutcomeLane(group.eliminated, { direction: 1, origin: centerY, cursor: offset }, 'y');
+    const eliminatedCenterY = averageCoordinate(group.eliminated, 'y', centerY);
+    const eliminatedFallbackX = terminalXBeyondMatchups(group.eliminated, group.stage.x);
+    const eliminatedTerminalX = continuationStageXFor(group.advancing, outgoing, nodeById, eliminatedFallbackX);
+    eliminatedTargetsFor(group.eliminated, outgoing, nodeById).forEach(node => {
+      node.x = eliminatedTerminalX;
+      node.y = eliminatedCenterY;
+    });
+    const championNodes = group.advancing.filter(node => nodeLeadsToChampion(node, outgoing, nodeById));
+    const championCenterY = averageCoordinate(championNodes, 'y', centerY);
+    const championTerminalX = terminalXBeyondMatchups(championNodes, group.stage.x);
+    championTargetsFor(championNodes, outgoing, nodeById).forEach(node => {
+      node.x = championTerminalX;
+      node.y = championCenterY;
+    });
+  });
+}
+
+function positionAltNodesAroundVerticalSpine(nodes, edges, verticalNodeIds) {
+  const nodeById = new Map(nodes.map(node => [node.id, node]));
+  const outgoing = outgoingEdgesBySource(edges);
+  const stageGroups = new Map();
+  edges.forEach(edge => {
+    const source = nodeById.get(edge.data.source);
+    const target = nodeById.get(edge.data.target);
+    if (!verticalNodeIds.has(edge.data.source) || !verticalNodeIds.has(edge.data.target)) return;
+    if (source?.type !== 'stage' || target?.type !== 'team') return;
+    if (!stageGroups.has(source.id)) stageGroups.set(source.id, { stage: source, advancing: [], eliminated: [] });
+    const group = stageGroups.get(source.id);
+    if (nodeLeadsToElimination(target, outgoing, nodeById)) group.eliminated.push(target);
+    else group.advancing.push(target);
+  });
+  stageGroups.forEach(group => {
+    const offset = 156;
+    placeOutcomeLane(group.advancing, { direction: -1, origin: group.stage.x, cursor: offset }, 'x');
+    placeOutcomeLane(group.eliminated, { direction: 1, origin: group.stage.x, cursor: offset }, 'x');
+    [...group.advancing, ...group.eliminated].forEach(node => {
+      node.y = Math.max(node.y, group.stage.y + 124);
+    });
+    const eliminatedCenterX = averageCoordinate(group.eliminated, 'x', group.stage.x);
+    const eliminatedFallbackY = terminalYBeyondMatchups(group.eliminated, group.stage.y);
+    const eliminatedTerminalY = continuationStageYFor(group.advancing, outgoing, nodeById, eliminatedFallbackY);
+    eliminatedTargetsFor(group.eliminated, outgoing, nodeById).forEach(node => {
+      node.x = eliminatedCenterX;
+      node.y = eliminatedTerminalY;
+    });
+    const championNodes = group.advancing.filter(node => nodeLeadsToChampion(node, outgoing, nodeById));
+    const championCenterX = averageCoordinate(championNodes, 'x', group.stage.x);
+    const championTerminalY = terminalYBeyondMatchups(championNodes, group.stage.y);
+    championTargetsFor(championNodes, outgoing, nodeById).forEach(node => {
+      node.x = championCenterX;
+      node.y = championTerminalY;
+    });
+  });
+}
+
+function resolveAltNodeCollisions(nodes) {
+  const columns = new Map();
+  nodes.filter(node => node.path === 'alt' && node.type !== 'stage' && node.type !== 'seed' && node.type !== 'eliminated' && node.type !== 'champion')
+    .forEach(node => {
+      const key = `${node.branchKey || ''}:${Math.round(node.x / 90)}`;
+      if (!columns.has(key)) columns.set(key, []);
+      columns.get(key).push(node);
+    });
+  columns.forEach(column => {
+    column.sort((a, b) => a.y === b.y ? String(a.id).localeCompare(String(b.id)) : a.y - b.y);
+    for (let index = 1; index < column.length; index++) {
+      const previous = column[index - 1];
+      const current = column[index];
+      const minimumGap = ((previous.height || 46) + (current.height || 46)) / 2 + 18;
+      if (current.y - previous.y < minimumGap) {
+        current.y = previous.y + minimumGap;
+      }
+    }
+  });
+}
+
+function layoutBranch(ids, edges, side = 1) {
+  const branchRankSep = side === 0 ? 148 : 230;
+  const branch = new dagre.graphlib.Graph({ multigraph: true })
+    .setGraph({ rankdir: side === 0 ? 'TB' : 'LR', ranker: 'network-simplex', nodesep: 62, ranksep: branchRankSep, edgesep: 24, marginx: 12, marginy: 18 })
+    .setDefaultEdgeLabel(() => ({}));
+  graph.nodes.filter(node => ids.has(node.data.id)).forEach(node => {
+    const size = nodeSize(node.data);
+    branch.setNode(node.data.id, { ...node.data, width: size.width, height: size.height });
+  });
+  edges.filter(edge => ids.has(edge.data.source) && ids.has(edge.data.target))
+    .forEach(edge => branch.setEdge(edge.data.source, edge.data.target, { ...edge.data }, edge.data.id));
+  dagre.layout(branch);
+  return branch;
+}
+
+function layoutSplitHorizontal() {
+  const rootId = `team:${focusedTeam}`;
+  const rawNodes = new Map(graph.nodes.map(node => {
+    const size = nodeSize(node.data);
+    return [node.data.id, { ...node.data, width: size.width, height: size.height, x: 0, y: 0 }];
+  }));
+  const rawEdges = (graph.edges || []).map(edge => ({ data: { ...edge.data } }));
+  const outgoing = new Map();
+  rawEdges.forEach(edge => {
+    if (!outgoing.has(edge.data.source)) outgoing.set(edge.data.source, []);
+    outgoing.get(edge.data.source).push(edge);
+  });
+  const root = rawNodes.get(rootId) || Array.from(rawNodes.values()).find(node => node.type === 'team') || Array.from(rawNodes.values())[0];
+  if (!root) return { nodes: [], edges: [], width: 800, height: 420 };
+
+  const seeds = (outgoing.get(root.id) || [])
+    .map(edge => rawNodes.get(edge.data.target))
+    .filter(node => node && node.type === 'seed');
+  if (seeds.length === 0) return layoutDagreTopDown();
+
+  const positioned = new Map();
+  const downNodeIds = new Set();
+  positioned.set(root.id, { ...root, x: 0, y: 0 });
+  const branchLayouts = seeds.map((seed, index) => {
+    const ids = descendantsFrom(seed.id, outgoing);
+    const side = seedSide(seed, index);
+    const branch = layoutBranch(ids, rawEdges, side);
+    const seedNode = branch.node(seed.id);
+    const height = Math.max(branch.graph().height || 120, 120);
+    return { seed, side, branch, seedNode, height };
+  });
+
+  [-1, 1].forEach(side => {
+    const group = branchLayouts.filter(branch => branch.side === side);
+    const totalHeight = group.reduce((sum, branch) => sum + branch.height, 0) + Math.max(0, group.length - 1) * 150;
+    let cursor = -totalHeight / 2;
+    group.forEach(branchLayout => {
+      const centerY = cursor + (branchLayout.height / 2);
+      cursor += branchLayout.height + 150;
+      branchLayout.branch.nodes().forEach(id => {
+        const node = branchLayout.branch.node(id);
+        const mirroredX = branchLayout.side * ((node.x - branchLayout.seedNode.x) + 132);
+        const rawY = (node.y - branchLayout.seedNode.y) + centerY;
+        const alignedPathNode = node.type === 'stage' || node.type === 'seed' || node.path === 'predicted' || node.path === 'results';
+        const y = alignedPathNode ? centerY : clearSpineY(node, rawY, centerY);
+        positioned.set(id, { ...node, x: mirroredX, y, branchKey: branchLayout.seed.id });
+      });
+    });
+  });
+
+  const downBranches = branchLayouts.filter(branch => branch.side === 0);
+  if (downBranches.length > 0) {
+    const totalWidth = downBranches.reduce((sum, branch) => sum + Math.max(branch.branch.graph().width || 120, 120), 0)
+      + Math.max(0, downBranches.length - 1) * 150;
+    let cursorX = -totalWidth / 2;
+    downBranches.forEach(branchLayout => {
+      const branchWidth = Math.max(branchLayout.branch.graph().width || 120, 120);
+      const centerX = cursorX + (branchWidth / 2);
+      cursorX += branchWidth + 150;
+      branchLayout.branch.nodes().forEach(id => {
+        const node = branchLayout.branch.node(id);
+        const rawX = (node.x - branchLayout.seedNode.x) + centerX;
+        const alignedPathNode = node.type === 'stage' || node.type === 'seed' || node.path === 'predicted' || node.path === 'results';
+        const x = alignedPathNode ? 0 : clearVerticalSpineX(node, rawX);
+        const y = (node.y - branchLayout.seedNode.y) + 176;
+        positioned.set(id, { ...node, x, y, branchKey: branchLayout.seed.id });
+        downNodeIds.add(id);
+      });
+    });
+  }
+
+  const nodeList = Array.from(positioned.values());
+  const provisionalNodeById = new Map(nodeList.map(node => [node.id, node]));
+  const provisionalEdges = rawEdges.filter(edge => provisionalNodeById.has(edge.data.source) && provisionalNodeById.has(edge.data.target));
+  positionAltNodesAroundSpine(nodeList, provisionalEdges, downNodeIds);
+  positionAltNodesAroundVerticalSpine(nodeList, provisionalEdges, downNodeIds);
+  resolveAltNodeCollisions(nodeList);
+  const nodeById = new Map(nodeList.map(node => [node.id, node]));
+  const edgeList = rawEdges
+    .filter(edge => nodeById.has(edge.data.source) && nodeById.has(edge.data.target))
+    .map(edge => {
+      const routeStyle = downNodeIds.has(edge.data.source) && downNodeIds.has(edge.data.target) ? 'vertical' : 'horizontal';
+      return { data: { ...edge.data, routeStyle } };
+    });
+  edgeList.forEach(edge => { edge.data.points = edgeEndpoints(edge, nodeById); });
+
+  const minX = Math.min(...nodeList.map(node => node.x - node.width / 2), 0);
+  const minY = Math.min(...nodeList.map(node => node.y - node.height / 2), 0);
+  const maxX = Math.max(...nodeList.map(node => node.x + node.width / 2), 1);
+  const maxY = Math.max(...nodeList.map(node => node.y + node.height / 2), 1);
+  const shiftX = 64 - minX;
+  const shiftY = 64 - minY;
+  nodeList.forEach(node => { node.x += shiftX; node.y += shiftY; });
+  edgeList.forEach(edge => { edge.data.points = edge.data.points.map(point => ({ x: point.x + shiftX, y: point.y + shiftY })); });
+
+  return { nodes: nodeList, edges: edgeList, width: (maxX - minX) + 128, height: (maxY - minY) + 128 };
+}
+
+function layoutDagreTopDown() {
+  const dag = new dagre.graphlib.Graph({ multigraph: true })
+    .setGraph({ rankdir: 'TB', ranker: 'network-simplex', nodesep: 74, ranksep: 190, edgesep: 30, marginx: 56, marginy: 48 })
+    .setDefaultEdgeLabel(() => ({}));
+  graph.nodes.forEach(node => {
+    const size = nodeSize(node.data);
+    dag.setNode(node.data.id, { ...node.data, width: size.width, height: size.height });
+  });
+  graph.edges.forEach(edge => {
+    dag.setEdge(edge.data.source, edge.data.target, { ...edge.data }, edge.data.id);
+  });
+  dagre.layout(dag);
+  const layout = dag.graph();
+  return {
+    nodes: dag.nodes().map(id => dag.node(id)),
+    edges: dag.edges().map(edgeRef => ({ ref: edgeRef, data: dag.edge(edgeRef) })),
+    width: Math.max(layout.width || 1, 800),
+    height: Math.max(layout.height || 1, 420)
+  };
+}
+
+function renderGraph() {
+  const svg = d3.select('#path-viz');
+  svg.selectAll('*').remove();
+
+  if (!graph.nodes || graph.nodes.length === 0) {
+    showStatus('No path data available for this selection.');
+    return;
+  }
+
+  const layout = layoutSplitHorizontal();
+  const width = Math.max(layout.width || 1, 800);
+  const height = Math.max(layout.height || 1, 420);
+  svg.attr('viewBox', `0 0 ${width + 96} ${height + 88}`);
+
+  const defs = svg.append('defs');
+  Object.entries(edgeColors).forEach(([path, color]) => {
+    defs.append('marker')
+      .attr('id', `arrow-${path}`)
+      .attr('viewBox', '0 0 10 10')
+      .attr('refX', 9)
+      .attr('refY', 5)
+      .attr('markerWidth', 7)
+      .attr('markerHeight', 7)
+      .attr('orient', 'auto-start-reverse')
+      .append('path')
+      .attr('d', 'M 0 0 L 10 5 L 0 10 z')
+      .attr('fill', color);
+  });
+
+  const viewport = svg.append('g').attr('class', 'viz-viewport').attr('transform', 'translate(48,44)');
+  const edgeLayer = viewport.append('g').attr('class', 'edges');
+  const labelLayer = viewport.append('g').attr('class', 'edge-labels');
+  const nodeLayer = viewport.append('g').attr('class', 'nodes');
+
+  const dagNodes = layout.nodes;
+  const dagNodeById = new Map(dagNodes.map(node => [node.id, node]));
+  const touchesStage = edge => dagNodeById.get(edge.data.source)?.type === 'stage' || dagNodeById.get(edge.data.target)?.type === 'stage';
+  const dagEdges = layout.edges;
+  assignFanOffsets(dagEdges, dagNodeById);
+  edgeLayer.selectAll('path')
+    .data(dagEdges)
+    .join('path')
+    .attr('d', edge => routedLinePath(edge, dagNodeById))
+    .attr('fill', 'none')
+    .attr('stroke', edge => edgeColors[edge.data.path] || edgeColors.alt)
+    .attr('stroke-width', edge => touchesStage(edge) ? 1.7 : (edge.data.path === 'results' ? 3.3 : 3))
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round')
+    .attr('opacity', edge => touchesStage(edge) ? 0.42 : (edge.data.path === 'alt' ? 0.68 : 0.92))
+    .attr('marker-end', edge => `url(#arrow-${edge.data.path || 'alt'})`);
+
+  labelLayer.selectAll('text')
+    .data(dagEdges.filter(edge => edge.data.label))
+    .join('text')
+    .attr('x', edge => edgeLabelPoint(edge).x)
+    .attr('y', edge => edgeLabelPoint(edge).y - 8)
+    .attr('text-anchor', 'middle')
+    .attr('paint-order', 'stroke')
+    .attr('stroke', '#ffffff')
+    .attr('stroke-width', 4)
+    .attr('fill', edge => edgeTextColors[edge.data.path] || edgeTextColors.alt)
+    .attr('font-size', 11)
+    .attr('font-weight', 700)
+    .text(edge => edge.data.label);
+
+  const node = nodeLayer.selectAll('g.node')
+    .data(dagNodes)
+    .join('g')
+    .attr('class', d => `node ${d.type || ''} ${d.path || ''}`)
+    .attr('transform', d => `translate(${d.x},${d.y})`);
+  attachNodeTooltips(node);
+
+  node.append('rect')
+    .attr('x', d => -d.width / 2)
+    .attr('y', d => -d.height / 2)
+    .attr('width', d => d.width)
+    .attr('height', d => d.height)
+    .attr('rx', d => d.type === 'team' || d.type === 'champion' || d.type === 'eliminated' ? 8 : (d.type === 'stage' ? 18 : (d.type === 'seed' ? 10 : 8)))
+    .attr('fill', d => d.type === 'champion' ? '#fff3cd' : (d.type === 'eliminated' ? '#f8d7da' : (d.type === 'stage' ? pathTone(d.path).fill : (d.type === 'seed' ? '#eef2f7' : (d.type === 'team' ? '#f8f9fa' : '#ffffff')))))
+    .attr('stroke', d => d.type === 'champion' ? '#b77900' : (d.type === 'eliminated' ? '#dc3545' : (d.type === 'stage' ? pathTone(d.path).stroke : (d.path === 'results' ? '#d39e00' : (d.path === 'predicted' ? '#86b7fe' : '#adb5bd')))))
+    .attr('stroke-width', d => d.type === 'stage' || d.type === 'champion' || d.type === 'eliminated' ? 2.4 : 2); 
+
+  const teamNode = node.filter(d => d.type === 'team');
+  teamNode.filter(d => d.flagUrl)
+    .append('image')
+    .attr('href', d => d.flagUrl)
+    .attr('x', d => -teamContentMetrics(d).flagWidth / 2)
+    .attr('y', d => teamContentMetrics(d).flagY)
+    .attr('width', d => teamContentMetrics(d).flagWidth)
+    .attr('height', d => teamContentMetrics(d).flagHeight)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  teamNode.append('text')
+    .attr('text-anchor', 'middle')
+    .attr('fill', '#212529')
+    .attr('font-size', d => d.flagUrl ? 10.2 : (d.likelihood === 'medium' ? 9.6 : 10.5))
+    .attr('font-weight', 650)
+    .each(function(d) {
+      const metrics = teamContentMetrics(d);
+      const text = d3.select(this);
+      text.selectAll('tspan')
+        .data(metrics.lines)
+        .join('tspan')
+        .attr('x', 0)
+        .attr('y', (line, i) => metrics.textY + (i * metrics.lineHeight))
+        .attr('class', (line, i) => `team-label ${i === 0 ? 'primary' : 'secondary'}`)
+        .attr('fill', line => line === 'Eliminated' ? '#dc3545' : (line.startsWith('Champion') ? '#b77900' : '#212529'))
+        .attr('font-weight', line => line === 'Eliminated' || line.startsWith('Champion') ? 800 : 650)
+        .text(line => line);
+    });
+
+  node.filter(d => d.type === 'match' || d.type === 'seed' || d.type === 'stage')
+    .append('text')
+    .attr('text-anchor', 'middle')
+    .attr('fill', d => d.type === 'stage' ? pathTone(d.path).text : (d.type === 'seed' ? '#1f2937' : '#343a40'))
+    .attr('font-size', d => d.type === 'seed' ? 12 : (d.type === 'stage' ? 11.5 : 10))
+    .attr('font-weight', d => d.type === 'seed' || d.type === 'stage' ? 800 : 700)
+    .each(function(d) {
+      const lines = labelLines(d.label);
+      renderText(d3.select(this), lines, d.type === 'seed' || d.type === 'stage' ? 4 : -6, 13, d.type === 'seed' ? 'seed-label' : (d.type === 'stage' ? 'stage-label' : 'match-label'));
+    });
+
+  node.filter(d => d.type === 'champion' || d.type === 'eliminated')
+    .append('text')
+    .attr('text-anchor', 'middle')
+    .attr('dominant-baseline', 'central')
+    .attr('fill', d => d.type === 'champion' ? '#8a5a00' : '#842029')
+    .attr('font-size', d => d.type === 'champion' ? 11.2 : 11.4)
+    .attr('font-weight', 850)
+    .each(function(d) {
+      renderText(d3.select(this), terminalLabelLines(d), 0, 0, 'terminal-label');
+    });
+
+  const zoom = d3.zoom()
+    .scaleExtent([0.08, 10])
+    .on('zoom', event => viewport.attr('transform', event.transform));
+  svg.call(zoom);
+
+  const wrap = document.getElementById('viz-wrap');
+  const fitScale = Math.min(wrap.clientWidth / (width + 96), wrap.clientHeight / (height + 88));
+  const readableScale = graph.nodes.length > 80 ? 0.82 : Math.min(Math.max(fitScale, 0.78), 1.35);
+  const focusName = String(focusedTeam || '').toLowerCase();
+  const focusNode = dagNodes.find(d => d.id === `team:${focusedTeam}`)
+    || dagNodes.find(d => focusName && String(d.team || '').toLowerCase() === focusName)
+    || dagNodes.find(d => d.path === 'predicted')
+    || dagNodes[0];
+  const focusX = focusNode ? focusNode.x : width / 2;
+  const focusY = focusNode ? focusNode.y : height / 2;
+  const initialX = focusNode ? (wrap.clientWidth * 0.5) - (focusX * readableScale) : Math.max(18, (wrap.clientWidth - (width + 96) * readableScale) / 2);
+  const initialY = focusNode ? (wrap.clientHeight * 0.16) - (focusY * readableScale) : Math.max(18, (wrap.clientHeight - (height + 88) * readableScale) / 2);
+  const initialTransform = d3.zoomIdentity.translate(initialX, initialY).scale(readableScale);
+  const focusTransform = d3.zoomIdentity
+    .translate((wrap.clientWidth * 0.5) - (focusX * readableScale), (wrap.clientHeight * 0.5) - (focusY * readableScale))
+    .scale(readableScale);
+  svg.call(zoom.transform, initialTransform);
+
+  const zoomIn = document.getElementById('viz-zoom-in');
+  const zoomOut = document.getElementById('viz-zoom-out');
+  const zoomFocus = document.getElementById('viz-zoom-focus');
+  if (zoomIn) zoomIn.onclick = () => svg.transition().duration(140).call(zoom.scaleBy, 1.35);
+  if (zoomOut) zoomOut.onclick = () => svg.transition().duration(140).call(zoom.scaleBy, 0.74);
+  if (zoomFocus) zoomFocus.onclick = () => svg.transition().duration(180).call(zoom.transform, focusTransform);
+
+  hideStatus();
+}
+
+if (!window.d3 || !window.dagre) {
+  warning.style.display = '';
+  showStatus('Diagram library did not load.');
+} else {
+  try {
+    renderGraph();
+    window.addEventListener('resize', renderGraph);
+  } catch (error) {
+    console.error(error);
+    warning.style.display = '';
+    showStatus('Unable to render this graph. Try selecting one team or a narrower path filter.');
+  }
+}
+</script>
+</th:block>
+</body>
+</html>

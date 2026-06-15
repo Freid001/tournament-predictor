@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -37,18 +38,21 @@ public class TournamentPageService {
     }
 
     public List<TournamentSummary> scanTournaments() throws IOException {
+        LinkedHashSet<String> names = new LinkedHashSet<>();
         Path predictionsRoot = web.projectRoot.resolve("data").resolve("predictions");
-        if (!Files.exists(predictionsRoot)) {
-            return Collections.emptyList();
+        if (Files.exists(predictionsRoot)) {
+            try (Stream<Path> stream = Files.list(predictionsRoot)) {
+                stream.filter(Files::isDirectory)
+                        .map(path -> path.getFileName().toString())
+                        .forEach(names::add);
+            }
         }
-        try (Stream<Path> stream = Files.list(predictionsRoot)) {
-            return stream.filter(Files::isDirectory)
-                    .map(path -> path.getFileName().toString())
-                    .sorted()
-                    .map(name -> new TournamentSummary(name, web.describeCurrentStage(name), web.completedStepCount(name),
-                            WebControllerService.HISTORICAL_COMPARISONS.contains(name)))
-                    .collect(Collectors.toList());
-        }
+        if (names.isEmpty()) return Collections.emptyList();
+        return names.stream()
+                .sorted()
+                .map(name -> new TournamentSummary(name, web.describeCurrentStage(name), web.completedStepCount(name),
+                        WebControllerService.HISTORICAL_COMPARISONS.contains(name)))
+                .collect(Collectors.toList());
     }
 
     public HistoricalComparison buildHistoricalComparison(String tournament) throws IOException {
@@ -86,19 +90,19 @@ public class TournamentPageService {
     }
 
     public List<StageView> buildStages(String tournament) {
-        boolean startExists = Files.exists(web.predictionFile(tournament, "start.csv"));
-        boolean snapshotExists = Files.exists(web.projectRoot.resolve("data").resolve("elo").resolve("snapshots").resolve(tournament).resolve("teams.csv"));
-        boolean groupsExists = Files.exists(web.predictionFile(tournament, "groups.csv"));
-        boolean groupSimulationExists = Files.exists(web.simulationFile(tournament, "simulation_groups.csv"))
-                && Files.exists(web.simulationFile(tournament, "simulation_group_routes.csv"));
-        boolean last32MatchExists = Files.exists(web.matchupFile(tournament, "last_32.csv"));
-        boolean last16MatchExists = Files.exists(web.matchupFile(tournament, "last_16.csv"));
-        boolean last8MatchExists = Files.exists(web.matchupFile(tournament, "last_8.csv"));
-        boolean last4MatchExists = Files.exists(web.matchupFile(tournament, "last_4.csv"));
-        boolean finalMatchExists = Files.exists(web.matchupFile(tournament, "final.csv"));
+        boolean startExists = web.generatedDataExistsQuiet(web.predictionFile(tournament, "start.csv"));
+        boolean snapshotExists = snapshotExists(tournament);
+        boolean groupsExists = web.generatedDataExistsQuiet(web.predictionFile(tournament, "groups.csv"));
+        boolean groupSimulationExists = web.generatedDataExistsQuiet(web.simulationFile(tournament, "simulation_groups.csv"))
+                && web.generatedDataExistsQuiet(web.simulationFile(tournament, "simulation_group_routes.csv"));
+        boolean last32MatchExists = web.generatedDataExistsQuiet(web.matchupFile(tournament, "last_32.csv"));
+        boolean last16MatchExists = web.generatedDataExistsQuiet(web.matchupFile(tournament, "last_16.csv"));
+        boolean last8MatchExists = web.generatedDataExistsQuiet(web.matchupFile(tournament, "last_8.csv"));
+        boolean last4MatchExists = web.generatedDataExistsQuiet(web.matchupFile(tournament, "last_4.csv"));
+        boolean finalMatchExists = web.generatedDataExistsQuiet(web.matchupFile(tournament, "final.csv"));
         boolean startsAtLast16 = !web.bracketHasStage(tournament, "LAST_32")
                 && web.bracketHasStage(tournament, "LAST_16");
-        boolean knockoutSimulationExists = Files.exists(web.simulationFile(tournament,
+        boolean knockoutSimulationExists = web.generatedDataExistsQuiet(web.simulationFile(tournament,
                 startsAtLast16 ? "simulation_last_16.csv" : "simulation_last_32.csv"));
         boolean knockoutComplete = startsAtLast16 ? knockoutSimulationExists : finalMatchExists;
 
@@ -179,14 +183,9 @@ public class TournamentPageService {
     }
 
     public String snapshotNote(String tournament, String prefix) {
-        Path metadataPath = web.projectRoot.resolve("data").resolve("elo").resolve("snapshots")
-                .resolve(tournament).resolve("metadata.properties");
-        if (!Files.exists(metadataPath)) {
-            return "";
-        }
-        try (Reader reader = Files.newBufferedReader(metadataPath)) {
-            Properties metadata = new Properties();
-            metadata.load(reader);
+        try {
+            Properties metadata = loadSnapshotMetadata(tournament);
+            if (metadata.isEmpty()) return "";
             String createdAt = metadata.getProperty("created_at", "");
             String teamCount = metadata.getProperty("team_count", "");
             if (createdAt.isBlank()) {
@@ -207,14 +206,9 @@ public class TournamentPageService {
     }
 
     public boolean tournamentHasStarted(String tournament) {
-        Path metadataPath = web.projectRoot.resolve("data").resolve("elo").resolve("snapshots")
-                .resolve(tournament).resolve("metadata.properties");
-        if (!Files.exists(metadataPath)) {
-            return false;
-        }
-        try (Reader reader = Files.newBufferedReader(metadataPath)) {
-            Properties metadata = new Properties();
-            metadata.load(reader);
+        try {
+            Properties metadata = loadSnapshotMetadata(tournament);
+            if (metadata.isEmpty()) return false;
             String startDate = metadata.getProperty("tournament_start_date", "");
             if (startDate.isBlank()) {
                 return false;
@@ -232,14 +226,9 @@ public class TournamentPageService {
         if (!snapshotExists) {
             return base;
         }
-        Path metadataPath = web.projectRoot.resolve("data").resolve("elo").resolve("snapshots")
-                .resolve(tournament).resolve("metadata.properties");
-        if (!Files.exists(metadataPath)) {
-            return base;
-        }
-        try (Reader reader = Files.newBufferedReader(metadataPath)) {
-            Properties metadata = new Properties();
-            metadata.load(reader);
+        try {
+            Properties metadata = loadSnapshotMetadata(tournament);
+            if (metadata.isEmpty()) return base;
             String createdAt = metadata.getProperty("created_at", "");
             String teamCount = metadata.getProperty("team_count", "");
             String startDate = metadata.getProperty("tournament_start_date", "");
@@ -263,6 +252,25 @@ public class TournamentPageService {
         } catch (Exception e) {
             return base;
         }
+    }
+
+    private boolean snapshotExists(String tournament) {
+        Path teams = web.projectRoot.resolve("data").resolve("elo").resolve("snapshots")
+                .resolve(tournament).resolve("teams.csv");
+        return Files.exists(teams);
+    }
+
+    private Properties loadSnapshotMetadata(String tournament) throws IOException {
+        Path metadataPath = web.projectRoot.resolve("data").resolve("elo").resolve("snapshots")
+                .resolve(tournament).resolve("metadata.properties");
+        if (Files.exists(metadataPath)) {
+            Properties metadata = new Properties();
+            try (Reader reader = Files.newBufferedReader(metadataPath)) {
+                metadata.load(reader);
+            }
+            return metadata;
+        }
+        return new Properties();
     }
 
 }

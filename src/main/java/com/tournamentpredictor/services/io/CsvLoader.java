@@ -3,12 +3,15 @@ package com.tournamentpredictor.services.io;
 import com.tournamentpredictor.services.calculation.EloBreakdown;
 import com.tournamentpredictor.services.calculation.QualificationFormCalculator;
 import com.tournamentpredictor.services.calculation.TeamEloSnapshot;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.io.StringReader;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.*;
@@ -24,14 +27,16 @@ public class CsvLoader {
             .build();
 
     private final Path projectRoot;
+    private final GeneratedDataStore generatedDataStore;
 
     public CsvLoader() {
-        this.projectRoot = Path.of(System.getProperty("user.dir"));
+        this(Path.of(System.getProperty("user.dir")));
     }
 
     /** For testing: use a custom root path instead of the working directory. */
     public CsvLoader(Path projectRoot) {
         this.projectRoot = projectRoot;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
     }
 
     public CsvLoader withQualYears(int sinceYear, int untilYear) {
@@ -44,7 +49,7 @@ public class CsvLoader {
         Path p = groupsPath(tournament);
         Map<String,String> map = new HashMap<>();
         Map<String,Integer> groupCounters = new HashMap<>();
-        try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(p)) {
             for (CSVRecord r : parser) {
                 String raw = r.get(0).trim();
                 String team = r.size() > 1 ? r.get(1).trim() : "";
@@ -60,7 +65,7 @@ public class CsvLoader {
         Path p = groupsPath(tournament);
         Map<String,String> map = new HashMap<>();
         Map<String,Integer> groupCounters = new HashMap<>();
-        try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(p)) {
             for (CSVRecord r : parser) {
                 String raw = r.get(0).trim();
                 String qualifies = r.isMapped("qualifies") ? r.get("qualifies").toLowerCase() :
@@ -89,16 +94,35 @@ public class CsvLoader {
         Path p = groupsPath(tournament);
         Map<String,String> map = new HashMap<>();
         Map<String,Integer> groupCounters = new HashMap<>();
-        try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(p)) {
             for (CSVRecord r : parser) {
                 String raw = r.get(0).trim();
-                String val = r.isMapped(columnName) ? r.get(columnName).toLowerCase() : "";
+                String val = r.isMapped(columnName) ? r.get(columnName).trim().toLowerCase() : "";
                 if (raw.isEmpty()) continue;
                 String pos = resolvePosition(raw, groupCounters);
+                if (val.isBlank()) {
+                    val = derivedGroupStatus(columnName, pos, r);
+                }
                 map.put(pos, val);
             }
         }
         return map;
+    }
+
+    private static String derivedGroupStatus(String columnName, String pos, CSVRecord record) {
+        String rank = "";
+        if (record.isMapped("predicted_position")) {
+            rank = record.get("predicted_position").replaceAll("\\s*\\(.*", "").trim();
+        }
+        if (rank.isBlank() && pos != null && pos.matches("[A-La-l][1-4]")) {
+            rank = pos.substring(1);
+        }
+        return switch (columnName) {
+            case "group_winner" -> "1".equals(rank) ? "yes" : "no";
+            case "runner_up" -> "2".equals(rank) ? "yes" : "no";
+            case "3rd_place" -> "3".equals(rank) ? "yes" : "no";
+            default -> "";
+        };
     }
 
     /**
@@ -159,11 +183,11 @@ public class CsvLoader {
 
     public Map<String,Integer> loadEloForTournament(String tournament) throws IOException {
         Path snapshot = snapshotDir(tournament).resolve("teams.csv");
-        if (!Files.exists(snapshot)) {
-            throw new IOException("Tournament snapshot not found: " + snapshot.toAbsolutePath()
-                    + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
+        if (Files.exists(snapshot)) {
+            return loadEloFrom(snapshot);
         }
-        return loadEloFrom(snapshot);
+        throw new IOException("Tournament snapshot not found: " + snapshot.toAbsolutePath()
+                + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
     }
 
     private Map<String,Integer> loadEloFrom(Path p) throws IOException {
@@ -186,11 +210,11 @@ public class CsvLoader {
 
     public Map<String,String> loadTeamCodesForTournament(String tournament) throws IOException {
         Path snapshot = snapshotDir(tournament).resolve("teams.csv");
-        if (!Files.exists(snapshot)) {
-            throw new IOException("Tournament snapshot not found: " + snapshot.toAbsolutePath()
-                    + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
+        if (Files.exists(snapshot)) {
+            return loadTeamCodesFrom(snapshot);
         }
-        return loadTeamCodesFrom(snapshot);
+        throw new IOException("Tournament snapshot not found: " + snapshot.toAbsolutePath()
+                + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
     }
 
     private Map<String,String> loadTeamCodesFrom(Path p) throws IOException {
@@ -209,7 +233,8 @@ public class CsvLoader {
 
 
     public boolean hasTournamentSnapshot(String tournament) {
-        return Files.exists(snapshotDir(tournament).resolve("teams.csv"));
+        if (Files.exists(snapshotDir(tournament).resolve("teams.csv"))) return true;
+        return false;
     }
 
     public Properties loadTournamentProperties(String tournament) throws IOException {
@@ -230,6 +255,7 @@ public class CsvLoader {
             try (var reader = Files.newBufferedReader(path)) {
                 properties.load(reader);
             }
+            return properties;
         }
         return properties;
     }
@@ -293,11 +319,11 @@ public class CsvLoader {
 
     public Path historyDirForTournament(String tournament) throws IOException {
         Path snapshot = snapshotDir(tournament).resolve("history");
-        if (!Files.exists(snapshot)) {
-            throw new IOException("Tournament snapshot history not found: " + snapshot.toAbsolutePath()
-                    + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
+        if (Files.exists(snapshot)) {
+            return snapshot;
         }
-        return snapshot;
+        throw new IOException("Tournament snapshot history not found: " + snapshot.toAbsolutePath()
+                + ". Run --mode=snapshot-refresh --tournament=" + tournament + " first.");
     }
 
     private Path worldEloPath() {
@@ -307,9 +333,9 @@ public class CsvLoader {
     /** Loads the team names from start.csv for a tournament (the team column). */
     public Set<String> loadStartTeams(String tournament) throws IOException {
         Path p = projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("start.csv");
-        if (!Files.exists(p)) throw new IOException("start.csv not found: " + p.toAbsolutePath());
+        if (!generatedDataStore.exists(p)) throw new IOException("start.csv not found: " + p.toAbsolutePath());
         Set<String> teams = new LinkedHashSet<>();
-        try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(p)) {
             for (CSVRecord r : parser) {
                 String team = r.isMapped("team") ? r.get("team") : (r.size() > 1 ? r.get(1) : "");
                 if (!team.isEmpty()) teams.add(team);
@@ -318,19 +344,21 @@ public class CsvLoader {
         return teams;
     }
 
-    /** Loads the combined ELO map for a tournament: world.csv as base, overridden by groups.csv values. */
+    /** Loads the combined ELO map for a tournament: world.csv as base, overridden by groups.csv values when available. */
     public Map<String,Integer> loadTournamentElo(String tournament) throws IOException {
         Map<String,Integer> eloRatings = loadEloForTournament(tournament);
-        eloRatings.putAll(loadGroupElo(tournament));
+        Path groups = projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("groups.csv");
+        if (generatedDataStore.exists(groups)) {
+            eloRatings.putAll(loadGroupElo(tournament));
+        }
         return eloRatings;
     }
 
     /** Loads team ELO ratings from groups.csv (team name + adjusted ELO). */
     public Map<String,Integer> loadGroupElo(String tournament) throws IOException {
         Path p = groupsPath(tournament);
-        if (!Files.exists(p)) return new HashMap<>();
         Map<String,Integer> map = new HashMap<>();
-        try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(p)) {
             for (CSVRecord r : parser) {
                 if (r.size() < 3) continue;
                 String name = r.get(1).trim();
@@ -343,16 +371,16 @@ public class CsvLoader {
 
     public Map<String, TeamEloSnapshot> loadTeamSnapshots(String tournament) throws IOException {
         Path p = groupsPath(tournament);
-        if (!Files.exists(p)) return new HashMap<>();
         Map<String, TeamEloSnapshot> map = new HashMap<>();
-        try (var reader = Files.newBufferedReader(p); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(p)) {
             for (CSVRecord r : parser) {
                 String name = r.size() > 1 ? r.get(1).trim() : "";
                 if (name.isEmpty()) continue;
                 try {
                     int baseElo = r.isMapped("base_elo") ? Integer.parseInt(r.get("base_elo").trim()) : 0;
                     int qualBonus = r.isMapped("qual_bonus") ? Integer.parseInt(r.get("qual_bonus").trim()) : 0;
-                    int adjustedElo = r.isMapped("elo_ranking") ? Integer.parseInt(r.get("elo_ranking").trim()) : baseElo + qualBonus;
+                    int leagueAdjustment = r.isMapped("confederation_adjustment") ? Integer.parseInt(r.get("confederation_adjustment").trim()) : 0;
+                    int adjustedElo = r.isMapped("elo_ranking") ? Integer.parseInt(r.get("elo_ranking").trim()) : baseElo + qualBonus + leagueAdjustment;
                     int squadDepthLevel = r.isMapped("squad_depth") ? Integer.parseInt(r.get("squad_depth").trim()) : 0;
                     int legacyQuality = r.isMapped("squad_quality") ? Integer.parseInt(r.get("squad_quality").trim()) : 0;
                     int attackQuality = r.isMapped("attack_quality") ? Integer.parseInt(r.get("attack_quality").trim()) : legacyQuality;
@@ -411,7 +439,7 @@ public class CsvLoader {
      */
     public Map<String, EloBreakdown> loadEloBreakdowns(String tournament) throws IOException {
         Path startPath = projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("start.csv");
-        if (!Files.exists(startPath)) return new HashMap<>();
+        if (!generatedDataStore.exists(startPath)) return new HashMap<>();
 
         Map<String,Integer> worldElo = new HashMap<>();
         try {
@@ -445,7 +473,7 @@ public class CsvLoader {
                 Set.of("F"), preTournamentFormMaxGames, tournamentStartDate);
 
         Map<String, EloBreakdown> result = new LinkedHashMap<>();
-        try (var reader = Files.newBufferedReader(startPath); var parser = CSV.parse(reader)) {
+        try (var parser = parseGeneratedCsv(startPath)) {
             for (CSVRecord r : parser) {
                 if (!r.isMapped("team")) continue;
                 String team = r.get("team");
@@ -474,6 +502,8 @@ public class CsvLoader {
                         ? -squadDepthExcellentBonus
                         : squadDepthPenalties[Math.min(squadDepthLevel, squadDepthPenalties.length - 1)];
                 int defenceQualityInput = defenceQuality;
+                String confederation = r.isMapped("confederation") ? r.get("confederation").trim() : "";
+                int confederationAdjustment = confederationAdjustment(confederation);
                 String dropoutNotes = r.isMapped("dropout_notes") ? r.get("dropout_notes") : "";
                 String injuryNotes  = r.isMapped("injury_notes")  ? r.get("injury_notes")  : "";
                 String ageNotes     = r.isMapped("age_notes")     ? r.get("age_notes")     : "";
@@ -497,10 +527,22 @@ public class CsvLoader {
                         attackQuality, defenceQualityInput,
                         dropoutNotes, injuryNotes, ageNotes, cohesionNotes, depthNotes, qualityNotes,
                         qualResults, friendlyResults,
-                        0, ""));
+                        confederation, confederationAdjustment,
+                        0, "", ""));
             }
         }
         return result;
+    }
+
+    private static int confederationAdjustment(String confederation) {
+        if (confederation == null) return 0;
+        return switch (confederation.trim().toUpperCase(java.util.Locale.ROOT)) {
+            case "UEFA", "CONMEBOL" -> 0;
+            case "CAF" -> -10;
+            case "AFC", "CONCACAF" -> -25;
+            case "OFC" -> -50;
+            default -> 0;
+        };
     }
 
     private static boolean isOnOrAfter(String[] cols, LocalDate maxDate) {
@@ -642,19 +684,27 @@ public class CsvLoader {
 
     private Path groupsPath(String tournament) throws IOException {
         Path p = projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("groups.csv");
-        if (!Files.exists(p))
-            throw new IOException("Groups file not found: " + p.toAbsolutePath() + ". Expected data/predictions/" + tournament + "/groups.csv");
+        if (!generatedDataStore.exists(p))
+            throw new IOException("Groups data not found: " + p.toAbsolutePath() + ". Expected generated groups data for " + tournament);
         return p;
+    }
+
+    private CSVParser parseGeneratedCsv(Path path) throws IOException {
+        List<String> lines = generatedDataStore.readLines(path);
+        if (lines.isEmpty()) {
+            throw new IOException("Generated data not found: " + path.toAbsolutePath());
+        }
+        return CSV.parse(new StringReader(String.join("\n", lines)));
     }
 
     /** Validates groups.csv and returns a list of error messages. Empty list means valid. */
     public List<String> validateGroups(String tournament) throws IOException {
         Path p = projectRoot.resolve("data").resolve("predictions").resolve(tournament).resolve("groups.csv");
-        if(!Files.exists(p))
-            return List.of("groups.csv not found: " + p.toAbsolutePath());
+        List<String> lines = generatedDataStore.readLines(p);
+        if(lines.isEmpty())
+            return List.of("groups data not found: " + p.toAbsolutePath());
 
         List<String> errors = new ArrayList<>();
-        List<String> lines = Files.readAllLines(p);
 
         String[] headerCols = lines.isEmpty() ? new String[0] : lines.get(0).split(",", -1);
         List<String> headers = Arrays.stream(headerCols).map(String::trim).collect(Collectors.toList());
@@ -715,6 +765,8 @@ public class CsvLoader {
         Set<String> seenTeams = new LinkedHashSet<>();
         Map<String, Integer> gwYes  = new LinkedHashMap<>();
         Map<String, Integer> ruYes  = new LinkedHashMap<>();
+        Map<String, Integer> gwSet  = new LinkedHashMap<>();
+        Map<String, Integer> ruSet  = new LinkedHashMap<>();
         Map<String, Integer> groupTeamCount = new LinkedHashMap<>();
         Set<String> validValues = Set.of("yes", "maybe", "no");
 
@@ -755,12 +807,12 @@ public class CsvLoader {
                 errors.add("Row " + i + ": duplicate position \"" + pos + "\"");
             }
 
-            if(!validValues.contains(gw))
-                errors.add("Row " + i + " (" + pos + "): group_winner must be yes/maybe/no, got \"" + c[gwIdx].trim() + "\"");
-            if(!validValues.contains(ru))
-                errors.add("Row " + i + " (" + pos + "): runner_up must be yes/maybe/no, got \"" + c[ruIdx].trim() + "\"");
-            if(!validValues.contains(tp))
-                errors.add("Row " + i + " (" + pos + "): 3rd_place must be yes/maybe/no, got \"" + c[tpIdx].trim() + "\"");
+            if(!gw.isBlank() && !validValues.contains(gw))
+                errors.add("Row " + i + " (" + pos + "): group_winner must be yes/maybe/no or blank, got \"" + c[gwIdx].trim() + "\"");
+            if(!ru.isBlank() && !validValues.contains(ru))
+                errors.add("Row " + i + " (" + pos + "): runner_up must be yes/maybe/no or blank, got \"" + c[ruIdx].trim() + "\"");
+            if(!tp.isBlank() && !validValues.contains(tp))
+                errors.add("Row " + i + " (" + pos + "): 3rd_place must be yes/maybe/no or blank, got \"" + c[tpIdx].trim() + "\"");
 
             if (baseEloIdx >= 0) validateIntegerColumn(errors, i, pos, c, baseEloIdx, "base_elo");
             if (qualBonusIdx >= 0) validateIntegerColumn(errors, i, pos, c, qualBonusIdx, "qual_bonus");
@@ -777,6 +829,8 @@ public class CsvLoader {
             String grp = pos.isEmpty() ? "" : pos.substring(0, 1).toUpperCase();
             if (!grp.isEmpty()) {
                 groupTeamCount.merge(grp, 1, Integer::sum);
+                if(!gw.isBlank()) gwSet.merge(grp, 1, Integer::sum);
+                if(!ru.isBlank()) ruSet.merge(grp, 1, Integer::sum);
                 if("yes".equals(gw)) gwYes.merge(grp, 1, Integer::sum);
                 if("yes".equals(ru)) ruYes.merge(grp, 1, Integer::sum);
             }
@@ -787,9 +841,9 @@ public class CsvLoader {
             int count = groupTeamCount.getOrDefault(grp, 0);
             if (count != 4) errors.add("Group " + grp + ": expected 4 teams, found " + count);
             int gw = gwYes.getOrDefault(grp, 0);
-            if(gw != 1) errors.add("Group " + grp + ": must have exactly 1 group_winner=yes, found " + gw);
+            if(gwSet.getOrDefault(grp, 0) > 0 && gw != 1) errors.add("Group " + grp + ": must have exactly 1 group_winner=yes, found " + gw);
             int ru = ruYes.getOrDefault(grp, 0);
-            if(ru != 1) errors.add("Group " + grp + ": must have exactly 1 runner_up=yes, found " + ru);
+            if(ruSet.getOrDefault(grp, 0) > 0 && ru != 1) errors.add("Group " + grp + ": must have exactly 1 runner_up=yes, found " + ru);
         }
 
         return errors;

@@ -322,6 +322,7 @@ public final class SimulationResultsRenderer {
     }
     private static String snapshotAdvanceColumn(String startRound) {
         return switch (startRound) {
+            case "groups" -> "reach_last_32";
             case "last_16" -> "reach_last_8";
             case "last_8" -> "reach_last_4";
             case "last_4" -> "reach_final";
@@ -332,6 +333,7 @@ public final class SimulationResultsRenderer {
 
     private static String snapshotAdvanceLabel(String startRound) {
         return switch (startRound) {
+            case "groups" -> "Last 32";
             case "last_16" -> "Quarter Finals";
             case "last_8" -> "Semi Finals";
             case "last_4" -> "Final";
@@ -343,6 +345,7 @@ public final class SimulationResultsRenderer {
     private static String groupSimulationChain(String startRound, String simulationRuns) {
         int baseRuns = parseRuns(simulationRuns);
         List<String> stages = switch (startRound) {
+            case "groups" -> List.of("Group Stage");
             case "last_8" -> List.of("Group Stage", "Last 16", "Quarter Finals");
             case "last_4" -> List.of("Group Stage", "Last 16", "Quarter Finals", "Semi Finals");
             case "final" -> List.of("Group Stage", "Last 16", "Quarter Finals", "Semi Finals", "Final");

@@ -4,6 +4,7 @@ import com.tournamentpredictor.services.history.HistoricalProfileProvider;
 import com.tournamentpredictor.services.prediction.handler.StartHandler;
 import com.tournamentpredictor.services.snapshot.EloRefreshHandler;
 import com.tournamentpredictor.services.snapshot.TournamentSnapshotHandler;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -216,21 +217,36 @@ public class TrainingDataBootstrapHandler {
         Path backtests = root.resolve("data/backtests").resolve(tournament.name);
         Files.createDirectories(predictions);
         Files.createDirectories(backtests);
-        try (var writer = Files.newBufferedWriter(predictions.resolve("start.csv"));
-             CSVPrinter csv = CSVFormat.DEFAULT.print(writer)) {
-            csv.printRecord((Object[]) START_HEADER.split(","));
-            for (Map.Entry<String, List<SourceTeam>> group : parsed.groups.entrySet()) {
-                for (SourceTeam team : group.getValue()) {
-                    boolean host = tournament.hosts.contains(team.canonical);
-                    var p = profileProvider.profile(tournament.name, tournament.startDate, tournament.euro, team.canonical);
-                    csv.printRecord(group.getKey(), team.canonical, host ? "yes" : "no",
-                            p.age(), p.ageNotes(), p.cohesion(), p.cohesionNotes(), p.depth(), p.depthNotes(),
-                            p.attack(), p.defence(), p.qualityNotes(), p.dropouts(), p.dropoutNotes(),
-                            p.injuries(), p.injuryNotes(), p.heat());
-                }
+        List<String> headers = List.of(START_HEADER.split(","));
+        List<Map<String, String>> rows = new ArrayList<>();
+        for (Map.Entry<String, List<SourceTeam>> group : parsed.groups.entrySet()) {
+            for (SourceTeam team : group.getValue()) {
+                boolean host = tournament.hosts.contains(team.canonical);
+                var p = profileProvider.profile(tournament.name, tournament.startDate, tournament.euro, team.canonical);
+                Map<String, String> row = new LinkedHashMap<>();
+                row.put("group", group.getKey());
+                row.put("team", team.canonical);
+                row.put("host", host ? "yes" : "no");
+                row.put("squad_age_profile", String.valueOf(p.age()));
+                row.put("age_notes", p.ageNotes());
+                row.put("squad_cohesion", String.valueOf(p.cohesion()));
+                row.put("cohesion_notes", p.cohesionNotes());
+                row.put("squad_depth", String.valueOf(p.depth()));
+                row.put("depth_notes", p.depthNotes());
+                row.put("attack_quality", String.valueOf(p.attack()));
+                row.put("defence_quality", String.valueOf(p.defence()));
+                row.put("quality_notes", p.qualityNotes());
+                row.put("squad_dropouts", String.valueOf(p.dropouts()));
+                row.put("dropout_notes", p.dropoutNotes());
+                row.put("injury_impact", String.valueOf(p.injuries()));
+                row.put("injury_notes", p.injuryNotes());
+                row.put("heat_impact", String.valueOf(p.heat()));
+                rows.add(row);
             }
         }
-        Files.deleteIfExists(predictions.resolve("groups.csv"));
+        new GeneratedDataStore(root).writeRows(predictions.resolve("start.csv"), headers, rows);
+        Path groups = predictions.resolve("groups.csv");
+        Files.deleteIfExists(groups);
         int year = tournament.startDate.getYear();
         Files.writeString(predictions.resolve("tournament.properties"),
                 "# Generated historical calibration boundary.\n"

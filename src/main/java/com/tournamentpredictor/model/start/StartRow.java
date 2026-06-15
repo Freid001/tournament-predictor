@@ -13,6 +13,8 @@ public final class StartRow {
         private final boolean host;
         private final int injuryImpact;
         private final int heatImpact;
+        private final String confederation;
+        private final int confederationAdjustment;
         private final int squadDropouts;
         private final int squadAgeProfile;
         private final int squadCohesion;
@@ -27,7 +29,7 @@ public final class StartRow {
         private final String qualityNotes;
 
         public StartRow(String group, String team, boolean host, int injuryImpact,
-                        int heatImpact, int squadDropouts, int squadAgeProfile,
+                        int heatImpact, String confederation, int confederationAdjustment, int squadDropouts, int squadAgeProfile,
                         int squadCohesion, int squadDepth, int attackQuality, int defenceQuality,
                         String dropoutNotes, String injuryNotes,
                         String ageNotes, String cohesionNotes,
@@ -37,6 +39,8 @@ public final class StartRow {
             this.host = host;
             this.injuryImpact = injuryImpact;
             this.heatImpact = heatImpact;
+            this.confederation = confederation;
+            this.confederationAdjustment = confederationAdjustment;
             this.squadDropouts = squadDropouts;
             this.squadAgeProfile = squadAgeProfile;
             this.squadCohesion = squadCohesion;
@@ -57,6 +61,8 @@ public final class StartRow {
         public boolean isHost() { return host; }
         public int getInjuryImpact() { return injuryImpact; }
         public int getHeatImpact() { return heatImpact; }
+        public String getConfederation() { return confederation; }
+        public int getConfederationAdjustment() { return confederationAdjustment; }
         public int getSquadDropouts() { return squadDropouts; }
         public int getSquadAgeProfile() { return squadAgeProfile; }
         public int getSquadCohesion() { return squadCohesion; }

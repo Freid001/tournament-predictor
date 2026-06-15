@@ -10,8 +10,15 @@ import java.util.Map;
 
 public class PredictionsFileValidator {
     public void validatePredictionsFile(Path file) throws IOException {
+        validatePredictions(file.getFileName().toString(), Files.readAllLines(file));
+    }
+
+    public void validatePredictionLines(String label, List<String> lines) throws IOException {
+        validatePredictions(label, lines);
+    }
+
+    private void validatePredictions(String label, List<String> lines) throws IOException {
         List<String> errors = new ArrayList<>();
-        List<String> lines = Files.readAllLines(file);
         if (lines.isEmpty()) {
             return;
         }
@@ -58,7 +65,7 @@ public class PredictionsFileValidator {
         }
 
         if (!errors.isEmpty()) {
-            throw new IOException("Validation failed for " + file.getFileName() + ":\n" + String.join("\n", errors));
+            throw new IOException("Validation failed for " + label + ":\n" + String.join("\n", errors));
         }
     }
 

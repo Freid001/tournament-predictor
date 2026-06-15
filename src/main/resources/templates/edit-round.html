@@ -43,17 +43,17 @@
                         </colgroup>
                         <thead class="table-dark">
                         <tr>
-                            <th aria-label="Details"></th>
-                            <th>Team</th>
-                            <th class="text-center">1st</th>
-                            <th class="text-center">2nd</th>
-                            <th class="text-center">3rd</th>
-                            <th class="text-center">4th</th>
-                            <th class="text-center" style="white-space:nowrap">Last 32</th>
-                            <th class="text-center" style="white-space:nowrap">Winner</th>
-                            <th class="text-center" style="white-space:nowrap">Runner-up</th>
-                            <th class="text-center" style="white-space:nowrap">3rd Place</th>
-                            <th class="text-center" style="white-space:nowrap">Pos.</th>
+                            <th aria-label="Details"><span data-bs-toggle="tooltip" data-bs-title="Expand the row to inspect the full ELO calculation and signal notes."></span></th>
+                            <th><span data-bs-toggle="tooltip" data-bs-title="Team in this group. Click the row to expand the ELO calculation detail.">Team</span></th>
+                            <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Simulation percentage that this team finishes 1st in the group.">1st</span></th>
+                            <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Simulation percentage that this team finishes 2nd in the group.">2nd</span></th>
+                            <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Simulation percentage that this team finishes 3rd in the group.">3rd</span></th>
+                            <th class="text-center"><span data-bs-toggle="tooltip" data-bs-title="Simulation percentage that this team finishes 4th in the group.">4th</span></th>
+                            <th class="text-center" style="white-space:nowrap"><span data-bs-toggle="tooltip" data-bs-title="Simulation percentage that this team reaches the last 32 under the World Cup 2026 qualification rules.">Last 32</span></th>
+                            <th class="text-center" style="white-space:nowrap"><span data-bs-toggle="tooltip" data-bs-title="Manual/model pick for group winner. Use yes for the selected winner, maybe for a plausible alternative, no otherwise.">Winner</span></th>
+                            <th class="text-center" style="white-space:nowrap"><span data-bs-toggle="tooltip" data-bs-title="Manual/model pick for group runner-up. Use yes for the selected second-place team, maybe for a plausible alternative, no otherwise.">Runner-up</span></th>
+                            <th class="text-center" style="white-space:nowrap"><span data-bs-toggle="tooltip" data-bs-title="Manual/model pick for third place. In World Cup 2026, some third-place teams can still advance.">3rd Place</span></th>
+                            <th class="text-center" style="white-space:nowrap"><span data-bs-toggle="tooltip" data-bs-title="Model-generated predicted position label from the group ranking step.">Pos.</span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -102,6 +102,7 @@
         <button class="btn btn-primary mt-3" type="submit">Save Changes</button>
     </form>
 <script>
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => { new bootstrap.Tooltip(el); });
 document.querySelectorAll('select.group-pick').forEach(function(sel) {
     sel.addEventListener('change', function() {
         if (this.value !== 'yes') return;

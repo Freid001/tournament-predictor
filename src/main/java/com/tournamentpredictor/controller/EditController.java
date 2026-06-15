@@ -60,13 +60,13 @@ public class EditController {
         model.addAttribute("prevNavEnabled", false);
         model.addAttribute("nextNavUrl", "/view/start?tournament=" + safeTournament);
         model.addAttribute("nextNavLabel", "View Setup →");
-        model.addAttribute("nextNavEnabled", Files.exists(web.predictionFile(safeTournament, "start.csv")));
+        model.addAttribute("nextNavEnabled", web.generatedDataExists(web.predictionFile(safeTournament, "start.csv")));
         model.addAttribute("hasPrevRound", false);
         model.addAttribute("prevViewUrl", "#");
         model.addAttribute("prevViewEnabled", false);
         model.addAttribute("hasNextRound", true);
         model.addAttribute("nextViewUrl", "/view/start?tournament=" + safeTournament);
-        model.addAttribute("nextViewEnabled", Files.exists(web.predictionFile(safeTournament, "start.csv")));
+        model.addAttribute("nextViewEnabled", web.generatedDataExists(web.predictionFile(safeTournament, "start.csv")));
         model.addAttribute("canNextRun", false);
         model.addAttribute("editUrl", null);
         model.addAttribute("rows", rows);
@@ -88,7 +88,7 @@ public class EditController {
                 "attack_quality", "defence_quality", "quality_notes",
                 "squad_dropouts", "dropout_notes",
                 "injury_impact", "injury_notes",
-                "heat_impact"));
+                "heat_impact", "confederation"));
         for (String header : existing.headers()) {
             if (!headers.contains(header) && !"squad_quality".equals(header)) {
                 headers.add(header);
@@ -125,6 +125,9 @@ public class EditController {
             row.put("injury_impact", String.valueOf(WebText.parseInt(request.getParameter("injuryImpact" + i), 0)));
             row.put("injury_notes", WebText.sanitiseNote(request.getParameter("injuryNotes" + i)));
             row.put("heat_impact", String.valueOf(WebText.parseInt(request.getParameter("heatImpact" + i), 0)));
+            String confederation = normaliseConfederation(request.getParameter("confederation" + i));
+            row.put("confederation", confederation);
+            row.put("confederation_adjustment", String.valueOf(confederationAdjustment(confederation)));
             rows.add(row);
         }
 
@@ -136,6 +139,26 @@ public class EditController {
         web.writeCsv(web.predictionFile(safeTournament, "start.csv"), headers, rows);
         web.cascadeDeleteAfterStart(safeTournament);
         return web.redirectToTournament(safeTournament);
+    }
+
+    private static String normaliseConfederation(String value) {
+        String confederation = WebText.trim(value).toUpperCase(java.util.Locale.ROOT);
+        return switch (confederation) {
+            case "UEFA", "CONMEBOL", "CONCACAF", "CAF", "AFC", "OFC" -> confederation;
+            default -> "";
+        };
+    }
+
+    private static int confederationAdjustment(String confederation) {
+        return switch (normaliseConfederation(confederation)) {
+            case "UEFA" -> 0;
+            case "CONMEBOL" -> 0;
+            case "CONCACAF" -> -25;
+            case "CAF" -> -10;
+            case "AFC" -> -25;
+            case "OFC" -> -50;
+            default -> 0;
+        };
     }
 
     @GetMapping("/edit/{round}")
@@ -160,7 +183,7 @@ public class EditController {
         model.addAttribute("rows", groupPickView.rows());
         model.addAttribute("groupedRows", groupPickView.groupedRows());
         model.addAttribute("groupSimulationByTeam", web.groupSimulationByTeam(safeTournament));
-        model.addAttribute("groupSimulationReady", Files.exists(web.simulationFile(safeTournament, "simulation_group_routes.csv")));
+        model.addAttribute("groupSimulationReady", web.generatedDataExists(web.simulationFile(safeTournament, "simulation_group_routes.csv")));
 
         addEditRoundNavigation(model, safeTournament, safeRound);
 
@@ -199,7 +222,7 @@ public class EditController {
             model.addAttribute("rows", groupPickView.rows());
             model.addAttribute("groupedRows", groupPickView.groupedRows());
             model.addAttribute("groupSimulationByTeam", web.groupSimulationByTeam(safeTournament));
-            model.addAttribute("groupSimulationReady", Files.exists(web.simulationFile(safeTournament, "simulation_group_routes.csv")));
+            model.addAttribute("groupSimulationReady", web.generatedDataExists(web.simulationFile(safeTournament, "simulation_group_routes.csv")));
             addEditRoundNavigation(model, safeTournament, safeRound);
             return "edit-round";
         }
@@ -217,7 +240,7 @@ public class EditController {
     private void addEditRoundNavigation(Model model, String tournament, String round) throws IOException {
         String prevRound = web.editPrevViewRound(round);
         if (prevRound != null) {
-            boolean prevExists = Files.exists(web.roundFileForView(tournament, prevRound));
+            boolean prevExists = web.generatedDataExists(web.roundFileForView(tournament, prevRound));
             model.addAttribute("hasPrevView", prevExists);
             model.addAttribute("prevNavUrl", prevExists ? "/view/" + prevRound + "?tournament=" + tournament : null);
             model.addAttribute("prevNavLabel", "← " + web.displayMode(prevRound));
@@ -236,7 +259,7 @@ public class EditController {
 
         String currentViewRound = web.viewRoundForEdit(round);
         if (currentViewRound != null) {
-            boolean currentExists = Files.exists(web.roundFileForView(tournament, currentViewRound));
+            boolean currentExists = web.generatedDataExists(web.roundFileForView(tournament, currentViewRound));
             model.addAttribute("hasCurrentView", currentExists);
             model.addAttribute("nextNavUrl", currentExists ? "/view/" + currentViewRound + "?tournament=" + tournament : null);
             model.addAttribute("nextNavLabel", web.displayViewMode(currentViewRound) + " →");

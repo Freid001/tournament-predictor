@@ -275,4 +275,3 @@ Where PPG = `(3 x wins + draws) / (3 x played)`. A score above 0.5 gives a posit
 | [Modes](docs/MODES.md) | Browser UI walkthrough and pipeline mode reference |
 | [Configuration](docs/CONFIGURATION.md) | All configurable prediction parameters |
 | [CSV Format](docs/CSV_FORMAT.md) | Matchup file columns and locking behaviour |
-

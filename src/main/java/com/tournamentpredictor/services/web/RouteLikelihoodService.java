@@ -34,8 +34,8 @@ public final class RouteLikelihoodService {
         for (Map<String, String> row : matchupRows) {
             String team1Display = row.getOrDefault("team1", "");
             String team2Display = row.getOrDefault("team2", "");
-            String team1 = eloCalculator.extractTeamName(team1Display);
-            String team2 = eloCalculator.extractTeamName(team2Display);
+            String team1 = teamName(row, "team1", team1Display, eloCalculator);
+            String team2 = teamName(row, "team2", team2Display, eloCalculator);
             String prediction = preferredWinner(row);
             String winner = eloCalculator.parseTeamFromPrediction(prediction);
             int winnerPct = eloCalculator.parsePctFromPrediction(prediction);
@@ -43,8 +43,8 @@ public final class RouteLikelihoodService {
                 continue;
             }
             double routeWeight = weighted
-                    ? slotProbability(team1, slotToken(team1Display), slotProbabilities)
-                    * slotProbability(team2, slotToken(team2Display), slotProbabilities)
+                    ? slotProbability(team1, sideSlotToken(row, "team1", team1Display), slotProbabilities)
+                    * slotProbability(team2, sideSlotToken(row, "team2", team2Display), slotProbabilities)
                     : 1.0;
             if (routeWeight <= 0) {
                 continue;
@@ -84,16 +84,16 @@ public final class RouteLikelihoodService {
             String matchId = row.getOrDefault("match_id", "").trim();
             String team1Display = row.getOrDefault("team1", "");
             String team2Display = row.getOrDefault("team2", "");
-            String team1 = eloCalculator.extractTeamName(team1Display);
-            String team2 = eloCalculator.extractTeamName(team2Display);
+            String team1 = teamName(row, "team1", team1Display, eloCalculator);
+            String team2 = teamName(row, "team2", team2Display, eloCalculator);
             String prediction = preferredWinner(row);
             String winner = eloCalculator.parseTeamFromPrediction(prediction);
             int winnerPct = eloCalculator.parsePctFromPrediction(prediction);
             if (matchId.isBlank() || team1.isBlank() || team2.isBlank() || winner.isBlank() || winnerPct <= 0) continue;
 
             double routeWeight = slotProbabilities.isEmpty() ? 1.0
-                    : slotProbability(team1, slotToken(team1Display), slotProbabilities)
-                    * slotProbability(team2, slotToken(team2Display), slotProbabilities);
+                    : slotProbability(team1, sideSlotToken(row, "team1", team1Display), slotProbabilities)
+                    * slotProbability(team2, sideSlotToken(row, "team2", team2Display), slotProbabilities);
             if (routeWeight <= 0) continue;
             routeTotals.merge(matchId, routeWeight, Double::sum);
             double team1Win = winner.equalsIgnoreCase(team1) ? winnerPct / 100.0 : (100 - winnerPct) / 100.0;
@@ -106,10 +106,10 @@ public final class RouteLikelihoodService {
             String matchId = row.getOrDefault("match_id", "").trim();
             String team1Display = row.getOrDefault("team1", "");
             String team2Display = row.getOrDefault("team2", "");
-            String team1 = eloCalculator.extractTeamName(team1Display);
-            String team2 = eloCalculator.extractTeamName(team2Display);
-            String feeder1 = winnerTokenMatchId(team1Display);
-            String feeder2 = winnerTokenMatchId(team2Display);
+            String team1 = teamName(row, "team1", team1Display, eloCalculator);
+            String team2 = teamName(row, "team2", team2Display, eloCalculator);
+            String feeder1 = sideSourceMatch(row, "team1", team1Display);
+            String feeder2 = sideSourceMatch(row, "team2", team2Display);
             double total1 = routeTotals.getOrDefault(feeder1, 0.0);
             double total2 = routeTotals.getOrDefault(feeder2, 0.0);
             if (matchId.isBlank() || team1.isBlank() || team2.isBlank() || total1 <= 0 || total2 <= 0) continue;
@@ -133,8 +133,8 @@ public final class RouteLikelihoodService {
             String matchId = row.getOrDefault("match_id", "").trim();
             String team1Display = row.getOrDefault("team1", "");
             String team2Display = row.getOrDefault("team2", "");
-            String team1 = eloCalculator.extractTeamName(team1Display);
-            String team2 = eloCalculator.extractTeamName(team2Display);
+            String team1 = teamName(row, "team1", team1Display, eloCalculator);
+            String team2 = teamName(row, "team2", team2Display, eloCalculator);
             String prediction = preferredWinner(row);
             String winner = eloCalculator.parseTeamFromPrediction(prediction);
             int winnerPct = eloCalculator.parsePctFromPrediction(prediction);
@@ -158,10 +158,10 @@ public final class RouteLikelihoodService {
             String matchId = row.getOrDefault("match_id", "").trim();
             String team1Display = row.getOrDefault("team1", "");
             String team2Display = row.getOrDefault("team2", "");
-            String team1 = eloCalculator.extractTeamName(team1Display);
-            String team2 = eloCalculator.extractTeamName(team2Display);
-            String feeder1 = winnerTokenMatchId(team1Display);
-            String feeder2 = winnerTokenMatchId(team2Display);
+            String team1 = teamName(row, "team1", team1Display, eloCalculator);
+            String team2 = teamName(row, "team2", team2Display, eloCalculator);
+            String feeder1 = sideSourceMatch(row, "team1", team1Display);
+            String feeder2 = sideSourceMatch(row, "team2", team2Display);
             double total1 = routeTotals.getOrDefault(feeder1, 0.0);
             double total2 = routeTotals.getOrDefault(feeder2, 0.0);
             if (matchId.isBlank() || team1.isBlank() || team2.isBlank() || total1 <= 0 || total2 <= 0) continue;
@@ -190,11 +190,6 @@ public final class RouteLikelihoodService {
         }
     }
 
-    public static String winnerTokenMatchId(String display) {
-        String token = slotToken(display);
-        return token.matches("W\\d+") ? "M" + token.substring(1) : "";
-    }
-
     public static Map<String, String> matchupLikelihoodMap(List<Map<String, String>> matchupRows,
                                                            List<Map<String, String>> groupRows) {
         Map<String, Map<String, Double>> slotProbabilities = groupSlotProbabilities(groupRows);
@@ -207,10 +202,10 @@ public final class RouteLikelihoodService {
             String matchId = row.getOrDefault("match_id", "").trim();
             String team1Display = row.getOrDefault("team1", "");
             String team2Display = row.getOrDefault("team2", "");
-            String team1 = eloCalculator.extractTeamName(team1Display);
-            String team2 = eloCalculator.extractTeamName(team2Display);
-            double likelihood = slotProbability(team1, slotToken(team1Display), slotProbabilities)
-                    * slotProbability(team2, slotToken(team2Display), slotProbabilities);
+            String team1 = teamName(row, "team1", team1Display, eloCalculator);
+            String team2 = teamName(row, "team2", team2Display, eloCalculator);
+            double likelihood = slotProbability(team1, sideSlotToken(row, "team1", team1Display), slotProbabilities)
+                    * slotProbability(team2, sideSlotToken(row, "team2", team2Display), slotProbabilities);
             if (!matchId.isEmpty() && !team1.isEmpty() && !team2.isEmpty() && likelihood > 0) {
                 likelihoods.put(matchupLikelihoodKey(matchId, team1, team2),
                         formatLikelihoodPct(likelihood));
@@ -252,6 +247,23 @@ public final class RouteLikelihoodService {
         return probabilities;
     }
 
+    public static String teamName(Map<String, String> row, String prefix, String display, EloCalculator eloCalculator) {
+        String explicit = row.getOrDefault(prefix + "_team", "").trim();
+        return explicit.isBlank() ? eloCalculator.extractTeamName(display) : explicit;
+    }
+
+    public static String sideSlotToken(Map<String, String> row, String prefix, String display) {
+        String groupFinish = row.getOrDefault(prefix + "_group_finish", "").trim();
+        if (!groupFinish.isBlank()) return groupFinish;
+        String bracketSlot = row.getOrDefault(prefix + "_bracket_slot", "").trim();
+        if (!bracketSlot.isBlank()) return bracketSlot;
+        return row.getOrDefault(prefix + "_slot", "").trim();
+    }
+
+    public static String sideSourceMatch(Map<String, String> row, String prefix, String display) {
+        return row.getOrDefault(prefix + "_source_match", "").trim();
+    }
+
     public static double slotProbability(String team, String slotToken, Map<String, Map<String, Double>> probabilities) {
         if (probabilities.isEmpty()) {
             return 1.0;
@@ -261,14 +273,6 @@ public final class RouteLikelihoodService {
             return 0.0;
         }
         return probabilities.getOrDefault(team, Map.of()).getOrDefault(slot, 0.0);
-    }
-
-    public static String slotToken(String display) {
-        if (display == null) {
-            return "";
-        }
-        int paren = display.indexOf("(");
-        return (paren >= 0 ? display.substring(0, paren) : display).trim();
     }
 
     public static String slotType(String slotToken) {

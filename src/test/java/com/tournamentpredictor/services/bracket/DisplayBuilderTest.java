@@ -14,18 +14,12 @@ class DisplayBuilderTest {
     private final DisplayBuilder displayBuilder = new DisplayBuilder(new TokenResolver());
 
     @Test
-    void groupSlotIncludesSameGroupPositionAlternatives() {
+    void groupSlotIncludesSameGroupPositionAlternativesAsStructuredOptions() {
         Map<String, String> groups = new HashMap<>();
         groups.put("F1", "Belgium");
         groups.put("F2", "Croatia");
         groups.put("F3", "Morocco");
         groups.put("F4", "Canada");
-
-        Map<String, String> groupWinner = new HashMap<>();
-        groupWinner.put("F1", "yes");
-        groupWinner.put("F2", "no");
-        groupWinner.put("F3", "no");
-        groupWinner.put("F4", "no");
 
         Map<String, String> runnerUp = new HashMap<>();
         runnerUp.put("F1", "maybe");
@@ -33,27 +27,62 @@ class DisplayBuilderTest {
         runnerUp.put("F3", "maybe");
         runnerUp.put("F4", "no");
 
-        Map<String, String> thirdPlace = new HashMap<>();
-        thirdPlace.put("F1", "no");
-        thirdPlace.put("F2", "maybe");
-        thirdPlace.put("F3", "yes");
-        thirdPlace.put("F4", "no");
+        List<DisplayBuilder.RouteOption> options = displayBuilder.buildOptions("F2", groups, Map.of(), runnerUp, Map.of());
 
-        List<String> displays = displayBuilder.buildDisplays("F2", groups, groupWinner, runnerUp, thirdPlace);
-
-        assertEquals(List.of("F2(Croatia)", "F2(Belgium)", "F2(Morocco)"), displays);
+        assertEquals(List.of("Croatia", "Belgium", "Morocco", "Canada"), options.stream().map(DisplayBuilder.RouteOption::team).toList());
+        assertTrue(options.stream().allMatch(option -> option.slot().equals("F2") && option.bracketSlot().equals("F2")));
     }
 
     @Test
-    void winnerDisplaysCarryAlternativeCompositeRowsForward() {
-        List<String> rows = List.of(
-                "match_id,team1,team2,path,prediction",
-                "M80,L1(England),EHIJK3(Senegal),predicted,England (63%)",
-                "M80,L1(England),EHIJK3(Ivory Coast),alt,England (84%)");
+    void groupSlotIncludesNoStatusTeamsAsAlternativeFinishPermutations() {
+        Map<String, String> groups = new HashMap<>();
+        groups.put("E1", "Germany");
+        groups.put("E2", "Ivory Coast");
+        groups.put("E3", "Ecuador");
+        groups.put("E4", "Cape Verde");
 
-        List<String> displays = displayBuilder.buildWinnerDisplays("W80", Map.of(), Map.of(), Map.of(), Map.of(),
+        Map<String, String> groupWinner = Map.of("E1", "yes", "E2", "no", "E3", "maybe", "E4", "no");
+        Map<String, String> runnerUp = Map.of("E1", "no", "E2", "no", "E3", "yes", "E4", "maybe");
+        Map<String, String> thirdPlace = Map.of("E1", "no", "E2", "yes", "E3", "maybe", "E4", "no");
+
+        List<DisplayBuilder.RouteOption> options = displayBuilder.buildOptions("E2", groups, groupWinner, runnerUp, thirdPlace);
+
+        assertTrue(options.stream().anyMatch(option -> option.team().equals("Ivory Coast") && option.slot().equals("E2")),
+                "A team marked no for runner-up should still be available as an alternative group-position permutation");
+    }
+
+    @Test
+    void winnerOptionsCarryAlternativeCompositeRowsForwardFromStructuredMetadata() {
+        List<String> rows = List.of(
+                "match_id,team1,team2,path,prediction,team1_slot,team1_team,team1_source_match,team1_group_finish,team1_bracket_slot,team2_slot,team2_team,team2_source_match,team2_group_finish,team2_bracket_slot",
+                "M80,England,Senegal,predicted,England (63%),L1,England,,L1,L1,EHIJK3,Senegal,,K3,EHIJK3",
+                "M80,England,Ivory Coast,alt,England (84%),L1,England,,L1,L1,EHIJK3,Ivory Coast,,E3,EHIJK3");
+
+        List<DisplayBuilder.RouteOption> options = displayBuilder.buildWinnerOptions("W80", Map.of(), Map.of(), Map.of(), Map.of(),
                 List.of(), rows);
 
-        assertTrue(displays.contains("W80(EHIJK3(Ivory Coast))"));
+        assertTrue(options.stream().anyMatch(option -> option.team().equals("Ivory Coast")
+                && option.slot().equals("W80")
+                && option.sourceMatchId().equals("M80")
+                && option.groupFinish().equals("E3")
+                && option.bracketSlot().equals("EHIJK3")));
+    }
+
+    @Test
+    void routeOptionsKeepTeamAndSlotMetadataSeparate() {
+        Map<String, String> groups = new HashMap<>();
+        groups.put("F1", "Belgium");
+        groups.put("F2", "Croatia");
+        groups.put("F3", "Morocco");
+        groups.put("F4", "Canada");
+
+        Map<String, String> runnerUp = Map.of("F1", "maybe", "F2", "yes", "F3", "maybe", "F4", "no");
+
+        List<DisplayBuilder.RouteOption> options = displayBuilder.buildOptions("F2", groups, Map.of(), runnerUp, Map.of());
+
+        assertEquals("Croatia", options.get(0).team());
+        assertEquals("F2", options.get(0).slot());
+        assertEquals("F2", options.get(0).groupFinish());
+        assertEquals("F2", options.get(0).bracketSlot());
     }
 }

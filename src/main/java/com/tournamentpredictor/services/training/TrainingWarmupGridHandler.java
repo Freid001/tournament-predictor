@@ -1,5 +1,7 @@
 package com.tournamentpredictor.services.training;
 
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
+import com.tournamentpredictor.services.io.CsvLoader;
 import com.tournamentpredictor.services.calculation.ExpectedGoalsCalculator;
 import com.tournamentpredictor.services.calculation.QualificationFormCalculator;
 import org.apache.commons.csv.CSVFormat;
@@ -9,6 +11,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,6 +36,8 @@ public class TrainingWarmupGridHandler {
     private final double eloScaleDivisor;
     private final double goalDiffPer400Elo;
     private final double xgMultiplier;
+    private final GeneratedDataStore generatedDataStore;
+    private final CsvLoader loader;
 
     public TrainingWarmupGridHandler(Path root, double eloScaleDivisor,
                                      double goalDiffPer400Elo, double xgMultiplier) {
@@ -40,6 +45,8 @@ public class TrainingWarmupGridHandler {
         this.eloScaleDivisor = eloScaleDivisor;
         this.goalDiffPer400Elo = goalDiffPer400Elo;
         this.xgMultiplier = xgMultiplier;
+        this.generatedDataStore = new GeneratedDataStore(root);
+        this.loader = new CsvLoader(root);
     }
 
     public void handle() throws IOException {
@@ -73,13 +80,12 @@ public class TrainingWarmupGridHandler {
 
     private Result evaluate(String tournament, int cap) throws IOException {
         Map<String, Profile> profiles = loadProfiles(tournament);
-        Properties metadata = loadProperties(root.resolve("data/elo/snapshots").resolve(tournament)
-                .resolve("metadata.properties"));
+        Properties metadata = loader.loadSnapshotMetadata(tournament);
         int since = Integer.parseInt(metadata.getProperty("pre_tournament_form_since"));
         int until = Integer.parseInt(metadata.getProperty("pre_tournament_form_until"));
         LocalDate cutoff = LocalDate.parse(metadata.getProperty("tournament_start_date"));
         QualificationFormCalculator form = new QualificationFormCalculator(
-                root.resolve("data/elo/snapshots").resolve(tournament).resolve("history"),
+                loader.historyDirForTournament(tournament),
                 since, until, cap, Set.of("F"), MAX_GAMES, cutoff);
         ExpectedGoalsCalculator calculator = new ExpectedGoalsCalculator(
                 eloScaleDivisor, 2.60, goalDiffPer400Elo, xgMultiplier);
@@ -121,9 +127,7 @@ public class TrainingWarmupGridHandler {
     private Map<String, Profile> loadProfiles(String tournament) throws IOException {
         Path path = root.resolve("data/predictions").resolve(tournament).resolve("groups.csv");
         Map<String, Profile> profiles = new HashMap<>();
-        try (Reader reader = Files.newBufferedReader(path);
-             CSVParser parser = CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true)
-                     .setIgnoreEmptyLines(true).build().parse(reader)) {
+        try (CSVParser parser = generatedParser(path)) {
             for (CSVRecord row : parser) {
                 String team = row.get("team").trim();
                 profiles.put(team, new Profile(i(row, "elo_ranking"), i(row, "pre_tournament_bonus"),
@@ -139,10 +143,27 @@ public class TrainingWarmupGridHandler {
             return paths.filter(Files::isDirectory)
                     .filter(path -> Files.exists(path.resolve("actual_results.csv")))
                     .map(path -> path.getFileName().toString())
-                    .filter(name -> Files.exists(root.resolve("data/predictions").resolve(name).resolve("groups.csv")))
-                    .filter(name -> Files.exists(root.resolve("data/elo/snapshots").resolve(name)
-                            .resolve("metadata.properties")))
+                    .filter(name -> generatedExists(root.resolve("data/predictions").resolve(name).resolve("groups.csv")))
+                    .filter(loader::hasTournamentSnapshot)
                     .sorted().toList();
+        }
+    }
+
+
+    private CSVParser generatedParser(Path path) throws IOException {
+        List<String> lines = generatedDataStore.readLines(path);
+        if (lines.isEmpty()) {
+            throw new IOException("Generated data not found: " + path);
+        }
+        return CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true)
+                .setIgnoreEmptyLines(true).build().parse(new StringReader(String.join("\n", lines)));
+    }
+
+    private boolean generatedExists(Path path) {
+        try {
+            return generatedDataStore.exists(path);
+        } catch (IOException e) {
+            return Files.exists(path);
         }
     }
 

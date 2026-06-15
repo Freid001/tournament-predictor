@@ -50,15 +50,15 @@ public class Last16Handler {
         KnockoutRoundFileService.GroupRoundContext context = roundFiles.loadGroupRoundContext(tournament);
         boolean startsAtLast16 = context.brackets().stream().noneMatch(entry -> "LAST_32".equalsIgnoreCase(entry.stage))
                 && context.brackets().stream().anyMatch(entry -> "LAST_16".equalsIgnoreCase(entry.stage));
-        if (Files.exists(overrideFile)) {
+        if (roundFiles.generatedDataExists(overrideFile)) {
             roundFiles.validatePredictionFile(overrideFile, "last_32");
         } else if (!startsAtLast16) {
             throw new IOException("Predictions file not found: " + overrideFile + ". Run mode=last_32 first.");
         }
         Path last32File = simulationDir.resolve("matchup_paths_last_32.csv");
         List<String> last32Rows;
-        if (Files.exists(last32File)) {
-            last32Rows = Files.readAllLines(last32File);
+        if (roundFiles.generatedDataExists(last32File)) {
+            last32Rows = roundFiles.readGeneratedLines(last32File);
         } else if (startsAtLast16) {
             last32Rows = List.of();
         } else {

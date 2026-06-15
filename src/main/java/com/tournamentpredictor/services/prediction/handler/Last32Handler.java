@@ -52,10 +52,10 @@ public class Last32Handler {
                 context.runnerUp(), context.thirdPlace(), context.eloRatings(), context.brackets(), context.snapshots());
         KnockoutRoundFileService.ScoredRows scoredRows = roundFiles.scoreSortAndWrite(tournament, "last_32", allLines, context.snapshots());
 
+        List<String> enrichedLast32Rows = roundFiles.readGeneratedLines(matchupFile);
         List<String> allLast16 = last16LineBuilder.buildLast16Lines(context.groups(), context.groupWinner(),
-                context.runnerUp(), context.thirdPlace(), context.eloRatings(), context.brackets(), scoredRows.output(), context.snapshots());
-        // Preserve every plausible Last 32 winner in the staged UI. The model-selected
-        // winner keeps its path; the predicted loser continues as an upset route.
+                context.runnerUp(), context.thirdPlace(), context.eloRatings(), context.brackets(), enrichedLast32Rows, context.snapshots());
+        // Preserve the model-selected Last 32 winners in the staged UI.
         roundFiles.writePredictionRows(tournament, "last_16.csv", allLast16);
         consoleReporter.printMatchups("Last 32 matchups", scoredRows.sortedOutput(), eloCalculator, predictionDir.resolve("last_16.csv"), last32Odds);
     }

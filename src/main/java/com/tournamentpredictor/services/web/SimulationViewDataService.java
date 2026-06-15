@@ -56,6 +56,55 @@ public final class SimulationViewDataService {
         return percentages;
     }
 
+    public static Map<String, String> matchupLikelihoodMapFromRows(List<Map<String, String>> rows) {
+        Map<String, String> percentages = new LinkedHashMap<>();
+        for (Map<String, String> row : rows) {
+            String matchId = row.getOrDefault("match_id", "").trim();
+            String team1 = row.getOrDefault("team1", "").trim();
+            String team2 = row.getOrDefault("team2", "").trim();
+            String percentage = row.getOrDefault("matchup_pct", "").trim();
+            if (percentage.isBlank()) {
+                percentage = row.getOrDefault("matchup_likelihood", "").trim();
+            }
+            if (!matchId.isBlank() && !team1.isBlank() && !team2.isBlank() && !percentage.isBlank()) {
+                mergePercentage(percentages, RouteLikelihoodService.matchupLikelihoodKey(matchId, team1, team2), percentage);
+            }
+        }
+        return percentages;
+    }
+
+    private static void mergePercentage(Map<String, String> percentages, String key, String percentage) {
+        if (!percentages.containsKey(key)) {
+            percentages.put(key, percentage);
+            return;
+        }
+        try {
+            double current = Double.parseDouble(percentages.get(key));
+            double next = Double.parseDouble(percentage);
+            double total = current + next;
+            percentages.put(key, total > 0 && total < 0.1
+                    ? String.format(java.util.Locale.ROOT, "%.3f", total)
+                    : String.format(java.util.Locale.ROOT, "%.1f", total));
+        } catch (NumberFormatException ignored) {
+            percentages.putIfAbsent(key, percentage);
+        }
+    }
+
+    public static Map<String, String> matchupRunsMapFromRows(List<Map<String, String>> rows) {
+        Map<String, String> runs = new LinkedHashMap<>();
+        for (Map<String, String> row : rows) {
+            String matchId = row.getOrDefault("match_id", "").trim();
+            String team1 = row.getOrDefault("team1", "").trim();
+            String team2 = row.getOrDefault("team2", "").trim();
+            String matchupRuns = row.getOrDefault("matchup_runs", "").trim();
+            if (!matchId.isBlank() && !team1.isBlank() && !team2.isBlank() && !matchupRuns.isBlank()) {
+                runs.putIfAbsent(RouteLikelihoodService.matchupLikelihoodKey(matchId, team1, team2), matchupRuns);
+                runs.putIfAbsent(RouteLikelihoodService.matchupLikelihoodKey(matchId, team2, team1), matchupRuns);
+            }
+        }
+        return runs;
+    }
+
     public static Map<String, String> simulationMatchupRunsMap(List<Map<String, String>> rows, String stage) {
         Map<String, String> runs = new LinkedHashMap<>();
         for (Map<String, String> row : rows) {

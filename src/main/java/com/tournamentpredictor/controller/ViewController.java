@@ -7,6 +7,9 @@ import com.tournamentpredictor.services.web.RouteLikelihoodService;
 import com.tournamentpredictor.services.web.SimulationViewDataService;
 import com.tournamentpredictor.services.web.StartRowViewService;
 import com.tournamentpredictor.services.web.ResultsModeService;
+import com.tournamentpredictor.services.web.RouteInstanceService;
+import com.tournamentpredictor.services.web.RuntimeMatchupRowsService;
+import com.tournamentpredictor.services.web.PathVisualizationService;
 import com.tournamentpredictor.services.orchestration.MatchResolver;
 import com.tournamentpredictor.services.simulation.SimulationHandler;
 import com.tournamentpredictor.services.calculation.EloBreakdown;
@@ -26,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import com.tournamentpredictor.view.KnockoutViewRows;
 import jakarta.servlet.http.HttpServletRequest;
@@ -69,6 +73,9 @@ public class ViewController {
     protected final PredictionConfig predictionConfig;
     protected final WebControllerService web;
     private final StartRowViewService startRowViewService = new StartRowViewService();
+    private final RuntimeMatchupRowsService runtimeMatchupRowsService = new RuntimeMatchupRowsService();
+    private final RouteInstanceService routeInstanceService = new RouteInstanceService();
+    private final Map<String, CachedVisualization> visualizationCache = new ConcurrentHashMap<>();
 
     public ViewController(PredictionConfig predictionConfig, WebControllerService web) {
         this.predictionConfig = predictionConfig;
@@ -94,7 +101,7 @@ public class ViewController {
         model.addAttribute("rows", rows);
 
         String nextRound = "groups";
-        boolean nextExists = Files.exists(web.predictionFile(safeTournament, "groups.csv"));
+        boolean nextExists = web.generatedDataExists(web.predictionFile(safeTournament, "groups.csv"));
         model.addAttribute("editUrl", "/edit/start?tournament=" + safeTournament);
         model.addAttribute("prevNavUrl", null);
         model.addAttribute("nextNavUrl", "/view/" + nextRound + "?tournament=" + safeTournament);
@@ -122,7 +129,7 @@ public class ViewController {
             String candidateRound = WebControllerService.VIEW_ROUND_SEQUENCE.get(i);
             if (!candidateRound.endsWith("_match")) continue;
             Path candidateFile = web.roundFileForView(safeTournament, candidateRound);
-            if (!Files.exists(candidateFile)) continue;
+            if (!web.generatedDataExists(candidateFile)) continue;
             for (Map<String, String> row : web.readCsv(candidateFile).rows()) {
                 String team1 = elo.extractTeamName(row.getOrDefault("team1", ""));
                 String team2 = elo.extractTeamName(row.getOrDefault("team2", ""));
@@ -187,15 +194,18 @@ public class ViewController {
         String safeRound = web.safeRound(round);
         String safeTournament = web.safeTournament(tournament);
         Path file = web.roundFileForView(safeTournament, safeRound);
-        CsvData csvData = web.readCsv(file);
-        if (csvData.rows().isEmpty()) {
-            if ("groups".equals(safeRound) && Files.exists(web.predictionFile(safeTournament, "start.csv"))) {
+        boolean groupsMode = "groups".equals(safeRound);
+        CsvData csvData = groupsMode ? web.readCsv(file) : new CsvData(List.of(), List.of());
+        if (groupsMode && csvData.rows().isEmpty()) {
+            if (web.generatedDataExists(web.predictionFile(safeTournament, "start.csv"))) {
                 return "redirect:/view/start?tournament=" + WebText.webEncode(safeTournament);
             }
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, file.getFileName() + " not found");
         }
+        if (!groupsMode && !web.generatedDataExists(file)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, file.getFileName() + " not found");
+        }
 
-        boolean groupsMode = "groups".equals(safeRound);
         boolean hasStoredResults = web.hasResultsData(safeTournament, safeRound);
         boolean actualMode = ResultsModeService.shouldShowResults(results, actual, hasStoredResults);
         String actualQuery = actualMode ? "&results=true" : "";
@@ -210,7 +220,7 @@ public class ViewController {
         }
 
         String nextRound = web.nextViewRound(safeRound);
-        boolean nextExists = nextRound != null && Files.exists(web.roundFileForView(safeTournament, nextRound));
+        boolean nextExists = nextRound != null && web.generatedDataExists(web.roundFileForView(safeTournament, nextRound));
         model.addAttribute("nextViewUrl", nextRound != null ? "/view/" + nextRound + "?tournament=" + safeTournament + actualQuery : "#");
         model.addAttribute("nextViewLabel", nextRound != null ? "Go to " + web.displayViewMode(nextRound) : "Go to Next");
         model.addAttribute("nextViewEnabled", nextExists);
@@ -223,13 +233,13 @@ public class ViewController {
         String nextRunMode = web.nextRunModeForView(safeRound);
         String nextRunPrereq = web.nextRunPrereqForView(safeRound);
         boolean canNextRun = !nextExists && nextRunMode != null
-                && nextRunPrereq != null && Files.exists(web.predictionFile(safeTournament, nextRunPrereq));
+                && nextRunPrereq != null && web.generatedDataExists(web.predictionFile(safeTournament, nextRunPrereq));
         model.addAttribute("nextRunMode", nextRunMode);
         model.addAttribute("canNextRun", canNextRun);
         model.addAttribute("nextRunLabel", nextRunMode != null ? "Run " + web.displayMode(nextRunMode) : "");
         if (groupsMode && !web.bracketHasStage(safeTournament, "LAST_32")
                 && web.bracketHasStage(safeTournament, "LAST_16")) {
-            boolean directResults = Files.exists(web.simulationFile(safeTournament, "simulation_last_16.csv"));
+            boolean directResults = web.generatedDataExists(web.simulationFile(safeTournament, "simulation_last_16.csv"));
             String directUrl = "/view/last_16_match?tournament=" + safeTournament + actualQuery;
             model.addAttribute("nextViewUrl", directUrl);
             model.addAttribute("nextViewLabel", "Go to Last 16");
@@ -238,7 +248,7 @@ public class ViewController {
             model.addAttribute("nextNavLabel", "Last 16 →");
             model.addAttribute("nextNavEnabled", directResults);
             model.addAttribute("nextRunMode", "tournament");
-            model.addAttribute("canNextRun", !directResults && Files.exists(
+            model.addAttribute("canNextRun", !directResults && web.generatedDataExists(
                     web.simulationFile(safeTournament, "simulation_group_routes.csv")));
             model.addAttribute("nextRunLabel", "Run Knockout Rounds");
         }
@@ -249,7 +259,7 @@ public class ViewController {
                 && web.bracketHasStage(safeTournament, "LAST_16")) {
             prevRound = "groups";
         }
-        boolean prevExists = prevRound != null && Files.exists(web.roundFileForView(safeTournament, prevRound));
+        boolean prevExists = prevRound != null && web.generatedDataExists(web.roundFileForView(safeTournament, prevRound));
         model.addAttribute("prevViewUrl", prevRound != null ? "/view/" + prevRound + "?tournament=" + safeTournament + actualQuery : "#");
         model.addAttribute("prevViewLabel", prevRound != null ? "Back to " + web.displayViewMode(prevRound) : "Back to Previous");
         model.addAttribute("prevViewEnabled", prevExists);
@@ -266,8 +276,8 @@ public class ViewController {
             catch (Exception e) { eloBreakdowns = Map.of(); }
 
 
-            boolean hasGroupSimulation = Files.exists(web.simulationFile(safeTournament, "simulation_groups.csv"))
-                    && Files.exists(web.simulationFile(safeTournament, "simulation_group_routes.csv"));
+            boolean hasGroupSimulation = web.generatedDataExists(web.simulationFile(safeTournament, "simulation_groups.csv"))
+                    && web.generatedDataExists(web.simulationFile(safeTournament, "simulation_group_routes.csv"));
             List<Map<String, String>> groupSimulationRows = hasGroupSimulation
                     ? web.readCsv(web.simulationFile(safeTournament, "simulation_groups.csv")).rows()
                     : List.of();
@@ -309,8 +319,7 @@ public class ViewController {
             model.addAttribute("groupSimulationHtml",
                     SimulationResultsRenderer.renderGroupSimulation(groupSimulationRows, safeTournament));
             List<Map<String, String>> groupScorelineRows = hasGroupSimulation
-                    && Files.exists(web.simulationFile(safeTournament, "simulation_scorelines_groups.csv"))
-                    ? web.readCsv(web.simulationFile(safeTournament, "simulation_scorelines_groups.csv")).rows()
+                    ? web.readMatchupPredictionRows(safeTournament, "groups")
                     : List.of();
             model.addAttribute("groupMatchesHtml",
                     web.renderGroupMatches(safeTournament, groupScorelineRows, eloBreakdowns, actualMode));
@@ -335,8 +344,6 @@ public class ViewController {
         } else {
             HtmlReporter reporter = new HtmlReporter().withConfig(predictionConfig)
                     .withPathNavigation(safeTournament, safeRound);
-            List<String> lines = java.nio.file.Files.readAllLines(file);
-            Map<String, String> predictedWinners = KnockoutViewRows.predictedWinnersByMatch(lines);
             String resultsRound = safeRound.endsWith("_match")
                     ? safeRound.substring(0, safeRound.length() - "_match".length())
                     : safeRound;
@@ -345,6 +352,7 @@ public class ViewController {
                 requestedPath = "alt";
             }
             boolean actualViewRequested = actualMode || "results".equalsIgnoreCase(requestedPath) || "actual".equalsIgnoreCase(requestedPath);
+            List<String> lines = List.of();
             List<Map<String, String>> actualRows = actualViewRequested
                     ? web.loadActualRoundResultRows(safeTournament, resultsRound)
                     : List.of();
@@ -354,30 +362,9 @@ public class ViewController {
             List<ResultEntryRow> fixtureRows = actualViewRequested
                     ? web.buildActualResultsEditorRows(safeTournament, resultsRound)
                     : List.of();
-            List<String> fixtureContextLines = lines;
-            Path fixtureContextFile = web.matchupFile(safeTournament, resultsRound + ".csv");
-            if (Files.exists(fixtureContextFile)) {
-                fixtureContextLines = java.nio.file.Files.readAllLines(fixtureContextFile);
-                lines = KnockoutViewRows.enrichPathContext(lines, fixtureContextLines);
-            }
-            Map<String, String[]> fixtureSlotsByMatch = actualViewRequested && !fixtureRows.isEmpty()
-                    ? fixtureSlotsByMatch(safeTournament, resultsRound)
-                    : Map.of();
-            List<String> fixtureLines = actualViewRequested && !fixtureRows.isEmpty()
-                    ? KnockoutViewRows.buildFixtureRows(lines, fixtureRows, actualResultLabels, fixtureContextLines, fixtureSlotsByMatch)
-                    : List.of();
-            List<String> actualLines = actualViewRequested && fixtureLines.isEmpty() && !actualRows.isEmpty()
-                    ? KnockoutViewRows.buildResultRows(lines, actualRows, predictedWinners)
-                    : actualViewRequested && fixtureLines.isEmpty() && !actualResultLabels.isEmpty()
-                            ? KnockoutViewRows.buildResultOnlyRows(lines, actualResultLabels)
-                            : List.of();
-            boolean hasActualRows = actualViewRequested ? (!fixtureLines.isEmpty() || !actualLines.isEmpty()) : !actualResultLabels.isEmpty();
-            if (actualViewRequested && !fixtureLines.isEmpty()) {
-                lines = KnockoutViewRows.merge(lines, fixtureLines);
-            }
-            if (actualViewRequested && !actualLines.isEmpty()) {
-                lines = KnockoutViewRows.merge(lines, actualLines);
-            }
+            boolean hasActualRows = actualViewRequested
+                    ? (!fixtureRows.isEmpty() || !actualRows.isEmpty() || !actualResultLabels.isEmpty())
+                    : !actualResultLabels.isEmpty();
             Set<String> actualAdvancingTeams = actualViewRequested
                     ? actualResultLabels.values().stream()
                             .filter(label -> label != null && !label.isBlank() && !"Draw".equalsIgnoreCase(label))
@@ -404,12 +391,63 @@ public class ViewController {
                 safePathFilter = "all";
             }
             String safeTeamFilter = WebText.trim(team);
-            List<String> teamNameSourceLines = lines;
-            lines = KnockoutViewRows.filter(lines, safePathFilter, safeTeamFilter);
+            if (!safeTeamFilter.isBlank() && safeRound.endsWith("_match") && !web.generatedDataExists(file)) {
+                lines = KnockoutViewRows.merge(lines, runtimeMatchupRowsService.matchupLinesForRound(
+                        visualizationRoundRowsThrough(safeTournament, actualViewRequested, safeRound), safeRound, safeTeamFilter, lines));
+            }
             int pageSize = WebControllerService.VIEW_PAGE_SIZE;
-            int totalRows = Math.max(0, lines.size() - 1);
-            int pageCount = Math.max(1, (totalRows + pageSize - 1) / pageSize);
-            int currentPage = Math.min(Math.max(1, page), pageCount);
+            List<String> teamNameSourceLines = lines;
+            int totalRows;
+            int pageCount;
+            int currentPage;
+            List<String> displayLines;
+            List<Map<String, String>> displayRows;
+            if (!actualViewRequested) {
+                WebControllerService.MatchupPageLines pageLines = web.readCachedMatchupPage(
+                        safeTournament, resultsRound, file, safePathFilter, safeTeamFilter, page, pageSize);
+                totalRows = pageLines.totalRows();
+                pageCount = Math.max(1, (totalRows + pageSize - 1) / pageSize);
+                currentPage = Math.min(Math.max(1, page), pageCount);
+                if (currentPage != Math.max(1, page)) {
+                    pageLines = web.readCachedMatchupPage(safeTournament, resultsRound, file, safePathFilter, safeTeamFilter, currentPage, pageSize);
+                }
+                displayLines = pageLines.lines();
+                displayRows = pageLines.rows();
+                teamNameSourceLines = matchupTeamNameLines(pageLines.lines(), web.readCachedMatchupTeamNames(safeTournament, resultsRound, file));
+                lines = displayLines;
+            } else {
+                WebControllerService.MatchupPageLines pageLines = web.readCachedMatchupPage(
+                        safeTournament, resultsRound, file, safePathFilter, safeTeamFilter, page, pageSize);
+                totalRows = pageLines.totalRows();
+                pageCount = Math.max(1, (totalRows + pageSize - 1) / pageSize);
+                currentPage = Math.min(Math.max(1, page), pageCount);
+                if (currentPage != Math.max(1, page)) {
+                    pageLines = web.readCachedMatchupPage(safeTournament, resultsRound, file, safePathFilter, safeTeamFilter, currentPage, pageSize);
+                }
+                displayLines = pageLines.lines();
+                displayRows = pageLines.rows();
+                teamNameSourceLines = matchupTeamNameLines(pageLines.lines(), web.readCachedMatchupTeamNames(safeTournament, resultsRound, file));
+
+                Map<String, String> predictedWinners = KnockoutViewRows.predictedWinnersByMatch(displayLines);
+                List<String> fixtureContextLines = displayLines;
+                Map<String, String[]> fixtureSlotsByMatch = fixtureSlotsByMatch(safeTournament, resultsRound);
+                List<String> fixtureLines = !fixtureRows.isEmpty()
+                        ? KnockoutViewRows.buildFixtureRows(displayLines, fixtureRows, actualResultLabels, fixtureContextLines, fixtureSlotsByMatch)
+                        : List.of();
+                List<String> actualLines = fixtureLines.isEmpty() && !actualRows.isEmpty()
+                        ? KnockoutViewRows.buildResultRows(displayLines, actualRows, predictedWinners)
+                        : fixtureLines.isEmpty() && !actualResultLabels.isEmpty()
+                                ? KnockoutViewRows.buildResultOnlyRows(displayLines, actualResultLabels)
+                                : List.of();
+                if (!fixtureLines.isEmpty()) {
+                    displayLines = KnockoutViewRows.merge(displayLines, fixtureLines);
+                }
+                if (!actualLines.isEmpty()) {
+                    displayLines = KnockoutViewRows.merge(displayLines, actualLines);
+                }
+                displayRows = csvLinesToRows(displayLines);
+                lines = displayLines;
+            }
             model.addAttribute("actualViewUrl", hasActualRows ? "/view/" + safeRound + "?tournament=" + safeTournament + (actualViewRequested ? "&results=false" : "&results=true") : null);
             model.addAttribute("actualViewLabel", actualViewRequested ? "Hide Results" : "Load Results");
             model.addAttribute("actualViewEnabled", hasActualRows);
@@ -423,64 +461,23 @@ public class ViewController {
                 eloBreakdowns = Map.of();
             }
             String simulationRound = SimulationViewDataService.simulationRoundForMatchView(safeRound);
-            boolean directLast16 = simulationRound != null
-                    && !web.bracketHasStage(safeTournament, "LAST_32")
-                    && web.bracketHasStage(safeTournament, "LAST_16");
-            if (!directLast16) {
-                web.ensureSimulationExists(safeTournament, "last_32");
-            }
-            List<Map<String, String>> baselineSimulationRows = simulationRound == null
+            String likelihoodRound = simulationRound != null ? simulationRound : "last_32".equals(safeRound) ? "last_32" : null;
+            List<Map<String, String>> currentSimulationRows = likelihoodRound == null
                     ? List.of()
-                    : web.readCsv(web.simulationFile(safeTournament, directLast16
-                            ? "simulation_last_16.csv"
-                            : "simulation_last_32.csv")).rows();
-            if (directLast16) {
-                baselineSimulationRows.forEach(row -> row.put("simulation_origin", "group_stage"));
+                    : web.generatedDataExists(web.simulationFile(safeTournament, "simulation_" + likelihoodRound + ".csv"))
+                            ? web.readCsv(web.simulationFile(safeTournament, "simulation_" + likelihoodRound + ".csv")).rows()
+                            : List.of();
+            String snapshotSimulationRound = simulationRound;
+            List<Map<String, String>> snapshotSimulationRows = currentSimulationRows;
+            if (snapshotSimulationRows.isEmpty() && "last_32".equals(simulationRound)) {
+                snapshotSimulationRows = web.matchupAdvanceRows(safeTournament, resultsRound, file);
+                snapshotSimulationRound = "last_32";
             }
-            List<Map<String, String>> groupProbabilityRows = simulationRound == null
+            List<Map<String, String>> scorelineRows = likelihoodRound == null
                     ? List.of()
-                    : web.readCsv(web.predictionFile(safeTournament, "groups.csv")).rows();
-            List<Map<String, String>> snapshotRows = directLast16
-                    ? baselineSimulationRows
-                    : "last_32_match".equals(safeRound)
-                            ? RouteLikelihoodService.routeAverageLast16Rows(csvData.rows(), groupProbabilityRows)
-                            : baselineSimulationRows;
-            web.ensureSimulationExists(safeTournament, simulationRound);
-            List<Map<String, String>> currentSimulationRows = simulationRound == null
-                    ? List.of()
-                    : directLast16
-                            ? baselineSimulationRows
-                            : web.readCsv(web.simulationFile(safeTournament, "simulation_" + simulationRound + ".csv")).rows();
-            if (actualViewRequested && simulationRound != null) {
-                web.ensureLiveSimulationExists(safeTournament, simulationRound);
-            }
-            List<Map<String, String>> liveSimulationRows = actualViewRequested && simulationRound != null
-                    ? web.loadLiveSimulationRows(safeTournament, simulationRound)
-                    : List.of();
-            boolean currentRoundHasFixturesOrResults = actualViewRequested
-                    && (!fixtureLines.isEmpty() || !actualLines.isEmpty() || !actualRows.isEmpty() || !actualResultLabels.isEmpty());
-            boolean predictionFilterAllowsLiveRows = "all".equalsIgnoreCase(safePathFilter)
-                    || "prediction".equalsIgnoreCase(safePathFilter);
-            if (actualViewRequested && simulationRound != null && !liveSimulationRows.isEmpty()
-                    && !currentRoundHasFixturesOrResults && predictionFilterAllowsLiveRows) {
-                lines = KnockoutViewRows.merge(lines, web.buildLiveRoundRows(safeTournament, simulationRound));
-            } else if (actualViewRequested && simulationRound != null && !currentRoundHasFixturesOrResults
-                    && predictionFilterAllowsLiveRows && web.hasEarlierResultsForLivePrediction(safeTournament, simulationRound)) {
-                lines = KnockoutViewRows.relabelPredictedRowsAsLive(lines);
-            }
-            List<Map<String, String>> snapshotLiveRows = liveSimulationRows;
-            if (actualViewRequested && simulationRound != null && web.isResultsRoundComplete(safeTournament, simulationRound)) {
-                snapshotLiveRows = web.resolvedSnapshotLiveRows(snapshotRows, liveSimulationRows,
-                        SimulationViewDataService.advanceColumnForRound(simulationRound), actualAdvancingTeams);
-            }
-            Map<String, String> currentRoundAdvance = SimulationViewDataService.simulationAdvanceMap(
-                    currentSimulationRows, SimulationViewDataService.advanceColumnForRound(simulationRound));
-            for (Map<String, String> row : snapshotRows) {
-                String marketOdds = odds.getOrDefault(row.getOrDefault("team", ""), "");
-                if (!marketOdds.isBlank()) row.put("market_odds", marketOdds);
-                String currentRoundPct = currentRoundAdvance.getOrDefault(row.getOrDefault("team", ""), "");
-                if (!currentRoundPct.isBlank()) row.put("bet_probability", currentRoundPct);
-            }
+                    : web.generatedDataExists(web.simulationFile(safeTournament, "simulation_scorelines_" + likelihoodRound + ".csv"))
+                            ? web.readCsv(web.simulationFile(safeTournament, "simulation_scorelines_" + likelihoodRound + ".csv")).rows()
+                            : List.of();
             String filterQuery = "&path=" + WebText.webEncode(safePathFilter) + (!safeTeamFilter.isBlank() ? "&team=" + WebText.webEncode(safeTeamFilter) : "");
             String pageBaseUrl = "/view/" + safeRound + "?tournament=" + safeTournament + (actualViewRequested ? "&results=true" : "") + filterQuery;
             reporter.withServerPagination(pageBaseUrl, currentPage, pageCount, pageSize)
@@ -489,30 +486,354 @@ public class ViewController {
                     .withTeamNames(KnockoutViewRows.allTeamNames(teamNameSourceLines))
                     .withActualResultScores(web.actualScoreMap(actualRows))
                     .withActualResultLabels(actualResultLabels);
-            if (simulationRound != null) {
-                reporter.withSimulationAdvance(SimulationViewDataService.simulationAdvanceMap(snapshotRows, SimulationViewDataService.advanceColumnForRound(simulationRound)));
-                Path tournamentScorelines = web.simulationFile(safeTournament, directLast16
-                        ? "simulation_scorelines_last_16.csv"
-                        : "simulation_scorelines_last_32.csv");
-                if (Files.exists(tournamentScorelines)) {
-                    List<Map<String, String>> scorelineRows = web.readCsv(tournamentScorelines).rows();
-                    reporter.withMatchupLikelihood(directLast16
-                            ? SimulationViewDataService.simulationMatchupLikelihoodMap(scorelineRows, simulationRound)
-                            : web.routeWeightedMatchupLikelihoods(
-                                    safeTournament, simulationRound, csvData.rows(), groupProbabilityRows));
-                    reporter.withMatchupSimulationRuns(SimulationViewDataService.simulationMatchupRunsMap(scorelineRows, simulationRound));
+            if (likelihoodRound != null) {
+                reporter.withSimulationAdvance(SimulationViewDataService.simulationAdvanceMap(currentSimulationRows, SimulationViewDataService.advanceColumnForRound(likelihoodRound)));
+                Map<String, String> matchupLikelihoods = !safeTeamFilter.isBlank()
+                        ? SimulationViewDataService.matchupLikelihoodMapFromRows(displayRows)
+                        : "last_32".equals(likelihoodRound)
+                                ? new LinkedHashMap<>(SimulationViewDataService.matchupLikelihoodMapFromRows(displayRows))
+                                : web.routeWeightedMatchupLikelihoods(safeTournament, likelihoodRound, displayRows, web.readCsv(web.predictionFile(safeTournament, "groups.csv")).rows());
+                if ("last_32".equals(likelihoodRound) && !scorelineRows.isEmpty()) {
+                    matchupLikelihoods.putAll(SimulationViewDataService.simulationMatchupLikelihoodMap(scorelineRows, likelihoodRound));
                 }
+                reporter.withMatchupLikelihood(matchupLikelihoods);
+                Map<String, String> matchupRuns = new LinkedHashMap<>(SimulationViewDataService.matchupRunsMapFromRows(displayRows));
+                if (!scorelineRows.isEmpty()) {
+                    matchupRuns.putAll(SimulationViewDataService.simulationMatchupRunsMap(scorelineRows, likelihoodRound));
+                }
+                reporter.withMatchupSimulationRuns(matchupRuns);
             }
-            reporter.printMatchups(web.displayViewMode(safeRound), lines, new EloCalculator(), null, Map.of(), eloBreakdowns);
+            reporter.printMatchups(web.displayViewMode(safeRound), displayLines, new EloCalculator(), null, Map.of(), eloBreakdowns);
             String outputHtml = reporter.getHtml();
-            boolean showActualSnapshotColors = actualViewRequested && ("all".equalsIgnoreCase(safePathFilter) || "results".equalsIgnoreCase(safePathFilter));
-            if (simulationRound != null && !snapshotRows.isEmpty()) {
-                outputHtml = SimulationResultsRenderer.renderSnapshot(snapshotRows, safeTournament, simulationRound,
-                        showActualSnapshotColors ? actualAdvancingTeams : Set.of(), snapshotLiveRows) + outputHtml;
+            if (snapshotSimulationRound != null && !snapshotSimulationRows.isEmpty()) {
+                boolean showActualSnapshotColors = actualViewRequested && ("all".equalsIgnoreCase(safePathFilter) || "results".equalsIgnoreCase(safePathFilter));
+                outputHtml = SimulationResultsRenderer.renderSnapshot(snapshotSimulationRows, safeTournament, snapshotSimulationRound,
+                        showActualSnapshotColors ? actualAdvancingTeams : Set.of(), actualViewRequested && simulationRound != null ? web.loadLiveSimulationRows(safeTournament, simulationRound) : List.of())
+                        + outputHtml;
             }
             model.addAttribute("output", outputHtml);
             model.addAttribute("mode", web.displayViewMode(safeRound));
             return "result";
+        }
+    }
+
+
+    @GetMapping("/view/{round}/visualize")
+    public String redirectRoundVisualization(@PathVariable("round") String round,
+                                             @RequestParam("tournament") String tournament,
+                                             @RequestParam(value = "results", required = false) Boolean results,
+                                             @RequestParam(value = "actual", required = false) Boolean actual,
+                                             @RequestParam(value = "path", defaultValue = "all") String path,
+                                             @RequestParam(value = "team", defaultValue = "") String team) {
+        String safeRound = web.safeRound(round);
+        if (!safeRound.endsWith("_match")) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Visualization is only available for knockout match pages");
+        }
+        StringBuilder url = new StringBuilder("redirect:/view/visualize?tournament=")
+                .append(WebText.webEncode(web.safeTournament(tournament)))
+                .append("&path=").append(WebText.webEncode(WebText.trim(path).isBlank() ? "all" : WebText.trim(path)));
+        if (results != null) {
+            url.append("&results=").append(results);
+        }
+        if (actual != null) {
+            url.append("&actual=").append(actual);
+        }
+        if (!WebText.trim(team).isBlank()) {
+            url.append("&team=").append(WebText.webEncode(WebText.trim(team)));
+        }
+        return url.toString();
+    }
+
+    @GetMapping("/view/visualize")
+    public String visualizePaths(@RequestParam("tournament") String tournament,
+                                 @RequestParam(value = "results", required = false) Boolean results,
+                                 @RequestParam(value = "actual", required = false) Boolean actual,
+                                 @RequestParam(value = "path", defaultValue = "all") String path,
+                                 @RequestParam(value = "team", defaultValue = "") String team,
+                                 Model model) throws IOException {
+        String safeTournament = web.safeTournament(tournament);
+        boolean actualMode = ResultsModeService.shouldShowResults(results, actual, hasAnyVisualizationResultsData(safeTournament));
+        PathVisualizationService visualizer = new PathVisualizationService();
+        String selectedTeam = WebText.trim(team);
+        List<PathVisualizationService.RoundRows> roundRows = selectedTeam.isBlank()
+                ? visualizationRoundRows(safeTournament, actualMode)
+                : List.of();
+        CachedVisualization cachedVisualization = selectedTeam.isBlank()
+                ? new CachedVisualization(List.of(), new PathVisualizationService.Graph(List.of(), List.of(), Set.of()),
+                        visualizationTeamOptions(roundRows, List.of()), visualizer.toJson(new PathVisualizationService.Graph(List.of(), List.of(), Set.of())))
+                : cachedVisualization(safeTournament, actualMode, selectedTeam, path, visualizer);
+        List<Map<String, String>> routeInstanceRows = cachedVisualization.routeInstanceRows();
+        PathVisualizationService.Graph graph = cachedVisualization.graph();
+        model.addAttribute("tournament", safeTournament);
+        model.addAttribute("tournamentLabel", web.displayTournament(safeTournament));
+        model.addAttribute("roundLabel", "Full Tournament");
+        model.addAttribute("path", WebText.trim(path).isBlank() ? "all" : WebText.trim(path));
+        model.addAttribute("team", selectedTeam);
+        model.addAttribute("teamRequired", selectedTeam.isBlank());
+        model.addAttribute("teamOptions", selectedTeam.isBlank()
+                ? visualizationTeamOptions(roundRows, routeInstanceRows)
+                : cachedVisualization.teamOptions());
+        model.addAttribute("results", actualMode);
+        model.addAttribute("graphJson", cachedVisualization.graphJson());
+        model.addAttribute("nodeCount", graph.nodes().size());
+        model.addAttribute("edgeCount", graph.edges().size());
+        return "path-visualization";
+    }
+
+    private List<PathVisualizationService.RoundRows> visualizationRoundRows(String tournament, boolean actualMode) throws IOException {
+        return visualizationRoundRowsThrough(tournament, actualMode, "");
+    }
+
+    private List<PathVisualizationService.RoundRows> visualizationRoundRowsThrough(String tournament, boolean actualMode, String finalRound) throws IOException {
+        List<PathVisualizationService.RoundRows> roundRows = new ArrayList<>();
+        String stopRound = WebText.trim(finalRound);
+        for (String candidateRound : WebControllerService.VIEW_ROUND_SEQUENCE) {
+            if (!candidateRound.endsWith("_match")) continue;
+            Path candidateFile = web.roundFileForView(tournament, candidateRound);
+            if (!web.generatedDataExists(candidateFile)) continue;
+            roundRows.add(new PathVisualizationService.RoundRows(candidateRound,
+                    web.displayViewMode(candidateRound), visualizationRowsForRound(tournament, candidateRound, actualMode)));
+            if (!stopRound.isBlank() && candidateRound.equalsIgnoreCase(stopRound)) {
+                break;
+            }
+        }
+        return roundRows;
+    }
+
+    private boolean hasAnyVisualizationResultsData(String tournament) {
+        for (String candidateRound : WebControllerService.VIEW_ROUND_SEQUENCE) {
+            if (candidateRound.endsWith("_match") && web.hasResultsData(tournament, candidateRound)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private CachedVisualization cachedVisualization(String tournament, boolean actualMode, String selectedTeam, String path,
+                                                    PathVisualizationService visualizer) throws IOException {
+        String cacheKey = tournament + "|" + actualMode + "|" + selectedTeam.toLowerCase(java.util.Locale.ROOT)
+                + "|" + WebText.trim(path).toLowerCase(java.util.Locale.ROOT);
+        String signature = visualizationSignature(tournament, actualMode);
+        CachedVisualization cached = visualizationCache.get(cacheKey);
+        if (cached != null && signature.equals(cached.signature())) {
+            return cached;
+        }
+        List<PathVisualizationService.RoundRows> roundRows = visualizationRoundRows(tournament, actualMode);
+        List<Map<String, String>> routeInstanceRows = csvLinesToRows(routeInstanceService.buildLines(roundRows, selectedTeam));
+        PathVisualizationService.Graph graph = routeInstanceService.buildGraph(routeInstanceRows, selectedTeam, path);
+        CachedVisualization next = new CachedVisualization(signature, routeInstanceRows, graph,
+                visualizationTeamOptions(roundRows, routeInstanceRows), visualizer.toJson(graph));
+        visualizationCache.put(cacheKey, next);
+        return next;
+    }
+
+    private String visualizationSignature(String tournament, boolean actualMode) throws IOException {
+        StringBuilder signature = new StringBuilder();
+        for (String candidateRound : WebControllerService.VIEW_ROUND_SEQUENCE) {
+            if (!candidateRound.endsWith("_match")) continue;
+            Path candidateFile = web.roundFileForView(tournament, candidateRound);
+            appendFileSignature(signature, candidateFile);
+            if (actualMode) {
+                String resultsRound = candidateRound.substring(0, candidateRound.length() - "_match".length());
+                appendFileSignature(signature, web.resultsFile(tournament, resultsRound));
+            }
+        }
+        if (actualMode) {
+            appendFileSignature(signature, web.resultsFile(tournament, "groups"));
+        }
+        return signature.toString();
+    }
+
+    private void appendFileSignature(StringBuilder signature, Path path) throws IOException {
+        if (!web.generatedDataExists(path)) {
+            signature.append(path.getFileName()).append(":missing;");
+            return;
+        }
+        List<String> lines = web.readGeneratedLines(path);
+        signature.append(path.getFileName()).append(':')
+                .append(lines.size()).append(':')
+                .append(lines.hashCode()).append(';');
+    }
+
+    private List<String> visualizationTeamOptions(List<PathVisualizationService.RoundRows> roundRows, List<Map<String, String>> routeInstanceRows) {
+        EloCalculator elo = new EloCalculator();
+        Set<String> teams = new LinkedHashSet<>();
+        for (PathVisualizationService.RoundRows round : roundRows) {
+            for (Map<String, String> row : round.rows()) {
+                String team1 = elo.extractTeamName(row.getOrDefault("team1", ""));
+                String team2 = elo.extractTeamName(row.getOrDefault("team2", ""));
+                if (!team1.isBlank()) teams.add(team1);
+                if (!team2.isBlank()) teams.add(team2);
+            }
+        }
+        for (Map<String, String> row : routeInstanceRows) {
+            String team = WebText.trim(row.getOrDefault("team", ""));
+            String opponent = WebText.trim(row.getOrDefault("opponent", ""));
+            if (!team.isBlank()) teams.add(team);
+            if (!opponent.isBlank()) teams.add(opponent);
+        }
+        return teams.stream().sorted().toList();
+    }
+
+    private List<Map<String, String>> visualizationRowsForRound(String tournament, String round, boolean actualMode) throws IOException {
+        Path file = web.roundFileForView(tournament, round);
+        String resultsRound = round.endsWith("_match") ? round.substring(0, round.length() - "_match".length()) : round;
+        List<String> lines = web.readCachedLines(tournament, "matchup", resultsRound, file);
+        Path contextFile = web.matchupFile(tournament, resultsRound + ".csv");
+        if (web.generatedDataExists(contextFile)) {
+            lines = KnockoutViewRows.enrichPathContext(lines, web.readCachedLines(tournament, "matchup", resultsRound, contextFile), groupContextLines(tournament),
+                    fixtureSlotsByMatch(tournament, resultsRound));
+        }
+        if (actualMode) {
+            Map<String, String> predictedWinners = KnockoutViewRows.predictedWinnersByMatch(lines);
+            List<Map<String, String>> actualRows = web.loadActualRoundResultRows(tournament, resultsRound);
+            Map<String, String> actualResultLabels = web.loadActualRoundResultLabels(tournament, resultsRound);
+            List<String> actualLines = !actualRows.isEmpty()
+                    ? KnockoutViewRows.buildResultRows(lines, actualRows, predictedWinners)
+                    : !actualResultLabels.isEmpty()
+                            ? KnockoutViewRows.buildResultOnlyRows(lines, actualResultLabels)
+                            : List.of();
+            if (!actualLines.isEmpty()) {
+                lines = KnockoutViewRows.merge(lines, actualLines);
+            }
+        }
+        List<Map<String, String>> rows = csvLinesToRows(lines);
+        enrichVisualizationFixtureSlots(tournament, resultsRound, rows);
+        enrichVisualizationMatchupLikelihoods(tournament, resultsRound, rows);
+        return rows;
+    }
+
+    private void enrichVisualizationFixtureSlots(String tournament, String round, List<Map<String, String>> rows) {
+        if (rows.isEmpty()) return;
+        Map<String, String[]> slots = fixtureSlotsByMatch(tournament, round);
+        if (slots.isEmpty()) return;
+        for (Map<String, String> row : rows) {
+            String[] matchSlots = slots.get(WebText.trim(row.getOrDefault("match_id", "")));
+            if (matchSlots == null || matchSlots.length < 2) continue;
+            row.putIfAbsent("team1_bracket_seed", matchSlots[0]);
+            row.putIfAbsent("team2_bracket_seed", matchSlots[1]);
+        }
+    }
+
+    private void enrichVisualizationMatchupLikelihoods(String tournament, String round, List<Map<String, String>> rows) throws IOException {
+        if (rows.isEmpty()) return;
+        EloCalculator elo = new EloCalculator();
+        Map<String, MatchupLikelihood> likelihoods = new LinkedHashMap<>(matchupLikelihoodsFromScorelines(tournament, round, elo));
+        if ("last_32".equals(round)) {
+            matchupLikelihoodsFromGroupSlotProbabilities(tournament, rows, elo)
+                    .forEach(likelihoods::putIfAbsent);
+        }
+        if (likelihoods.isEmpty()) return;
+        for (Map<String, String> row : rows) {
+            if (!WebText.trim(row.getOrDefault("matchup_pct", "")).isBlank()) continue;
+            String matchId = WebText.trim(row.getOrDefault("match_id", ""));
+            String team1 = elo.extractTeamName(row.getOrDefault("team1", ""));
+            String team2 = elo.extractTeamName(row.getOrDefault("team2", ""));
+            MatchupLikelihood likelihood = likelihoods.get(matchupKey(matchId, team1, team2));
+            if (likelihood == null) continue;
+            row.put("matchup_pct", likelihood.percent());
+            row.putIfAbsent("matchup_runs", likelihood.runs());
+        }
+    }
+
+    private Map<String, MatchupLikelihood> matchupLikelihoodsFromScorelines(String tournament, String round, EloCalculator elo) throws IOException {
+        String simulationRound = "last_32".equals(round) ? "last_32" : round;
+        Path scorelines = web.simulationFile(tournament, "simulation_scorelines_" + simulationRound + ".csv");
+        if (!web.generatedDataExists(scorelines)) return Map.of();
+        Map<String, MatchupLikelihood> likelihoods = new LinkedHashMap<>();
+        for (Map<String, String> row : web.readCsv(scorelines).rows()) {
+            if (!round.equalsIgnoreCase(WebText.trim(row.getOrDefault("stage", "")))) continue;
+            String matchId = WebText.trim(row.getOrDefault("match_id", ""));
+            String team1 = elo.extractTeamName(row.getOrDefault("team1", ""));
+            String team2 = elo.extractTeamName(row.getOrDefault("team2", ""));
+            String pct = WebText.trim(row.getOrDefault("matchup_pct", ""));
+            if (matchId.isBlank() || team1.isBlank() || team2.isBlank() || pct.isBlank()) continue;
+            likelihoods.putIfAbsent(matchupKey(matchId, team1, team2),
+                    new MatchupLikelihood(pct, WebText.trim(row.getOrDefault("matchup_runs", ""))));
+        }
+        return likelihoods;
+    }
+
+    private Map<String, MatchupLikelihood> matchupLikelihoodsFromGroupSlotProbabilities(
+            String tournament, List<Map<String, String>> rows, EloCalculator elo) throws IOException {
+        Path groups = web.predictionFile(tournament, "groups.csv");
+        if (!web.generatedDataExists(groups)) return Map.of();
+        Map<String, String> weighted = RouteLikelihoodService.matchupLikelihoodMap(rows, web.readCsv(groups).rows());
+        if (weighted.isEmpty()) return Map.of();
+        Map<String, MatchupLikelihood> likelihoods = new LinkedHashMap<>();
+        for (Map<String, String> row : rows) {
+            String matchId = WebText.trim(row.getOrDefault("match_id", ""));
+            String team1 = elo.extractTeamName(row.getOrDefault("team1", ""));
+            String team2 = elo.extractTeamName(row.getOrDefault("team2", ""));
+            String pct = weighted.get(RouteLikelihoodService.matchupLikelihoodKey(matchId, team1, team2));
+            if (pct == null || pct.isBlank()) continue;
+            likelihoods.put(matchupKey(matchId, team1, team2), new MatchupLikelihood(pct, ""));
+        }
+        return likelihoods;
+    }
+
+    private String matchupKey(String matchId, String team1, String team2) {
+        String left = normalizeTeamKey(team1);
+        String right = normalizeTeamKey(team2);
+        if (left.compareTo(right) > 0) {
+            String tmp = left;
+            left = right;
+            right = tmp;
+        }
+        return WebText.trim(matchId).toUpperCase(java.util.Locale.ROOT) + "|" + left + "|" + right;
+    }
+
+    private String normalizeTeamKey(String team) {
+        return WebText.trim(team).toLowerCase(java.util.Locale.ROOT);
+    }
+
+    private record MatchupLikelihood(String percent, String runs) {}
+
+    private record CachedVisualization(String signature, List<Map<String, String>> routeInstanceRows,
+                                       PathVisualizationService.Graph graph, List<String> teamOptions, String graphJson) {
+        CachedVisualization(List<Map<String, String>> routeInstanceRows, PathVisualizationService.Graph graph,
+                            List<String> teamOptions, String graphJson) {
+            this("", routeInstanceRows, graph, teamOptions, graphJson);
+        }
+    }
+
+
+    private List<String> matchupTeamNameLines(List<String> displayLines, List<String> teams) {
+        String header = displayLines == null || displayLines.isEmpty()
+                ? "match_id,team1,team2,path,prediction"
+                : displayLines.get(0);
+        List<String> lines = new ArrayList<>();
+        lines.add(header);
+        for (String team : teams) {
+            lines.add("," + team + ",,,");
+        }
+        return lines;
+    }
+
+    private List<String> groupContextLines(String tournament) throws IOException {
+        Path groupsFile = web.predictionFile(tournament, "groups.csv");
+        return web.generatedDataExists(groupsFile) ? web.readGeneratedLines(groupsFile) : List.of();
+    }
+
+    private List<Map<String, String>> csvLinesToRows(List<String> lines) throws IOException {
+        String csv = String.join("\n", lines);
+        try (CSVParser parser = CSVFormat.DEFAULT.builder()
+                .setHeader()
+                .setSkipHeaderRecord(true)
+                .build()
+                .parse(new java.io.StringReader(csv))) {
+            List<Map<String, String>> rows = new ArrayList<>();
+            for (CSVRecord record : parser) {
+                if (record.size() == 0 || record.get(0).isBlank()) continue;
+                Map<String, String> row = new LinkedHashMap<>();
+                for (Map.Entry<String, Integer> header : parser.getHeaderMap().entrySet()) {
+                    int idx = header.getValue();
+                    row.put(header.getKey(), idx < record.size() ? record.get(idx) : "");
+                }
+                rows.add(row);
+            }
+            return rows;
         }
     }
 
@@ -531,7 +852,7 @@ public class ViewController {
         if ("last_16".equals(safeSimulationRound)
                 && !web.bracketHasStage(safeTournament, "LAST_32")
                 && web.bracketHasStage(safeTournament, "LAST_16")
-                && Files.exists(web.matchupFile(safeTournament, "last_16.csv"))) {
+                && web.generatedDataExists(web.matchupFile(safeTournament, "last_16.csv"))) {
             return "redirect:/view/last_16_match?tournament=" + safeTournament;
         }
         List<Map<String, String>> rows = web.readCsv(web.simulationFile(safeTournament,

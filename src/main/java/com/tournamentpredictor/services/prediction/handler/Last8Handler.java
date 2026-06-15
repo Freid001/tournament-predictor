@@ -10,6 +10,7 @@ import com.tournamentpredictor.services.prediction.validation.PredictionsFileVal
 import com.tournamentpredictor.services.report.ConsoleReporter;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,7 @@ public class Last8Handler {
             return;
         }
 
-        roundFiles.validatePredictionFile(predictionDir.resolve("last_8.csv"), "last_16");
+        ensurePredictionExists(predictionDir.resolve("last_8.csv"), "last_16");
         List<String> last16Rows = roundFiles.readRequiredSimulationRows(tournament, "last_16", "last_16");
         KnockoutRoundFileService.RoundContext context = roundFiles.loadRoundContext(tournament);
 
@@ -60,4 +61,11 @@ public class Last8Handler {
         List<String> allLines = last4LineBuilder.buildLast4Lines(context.eloRatings(), context.brackets(), last8Output, context.snapshots());
         roundFiles.writePredictionRows(tournament, "last_4.csv", allLines);
     }
+
+    private void ensurePredictionExists(Path predictionFile, String previousMode) throws IOException {
+        if (!roundFiles.generatedDataExists(predictionFile)) {
+            throw new IOException("Predictions data not found: " + predictionFile + ". Run mode=" + previousMode + " first.");
+        }
+    }
+
 }

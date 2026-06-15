@@ -15,8 +15,8 @@ class ResultLineServiceTest {
     @Test
     void predictedWinnersByMatchParsesWinnerFromPredictionText() {
         Map<String, String> winners = ResultLineService.predictedWinnersByMatch(List.of(
-                "match_id,team1,team2,path,prediction",
-                "1,A1(France),B2(Spain),predicted,France (55%)"
+                "match_id,team1,team2,path,prediction,team1_team,team1_group_finish,team1_bracket_slot,team2_team,team2_group_finish,team2_bracket_slot",
+                "1,France,Spain,predicted,France (55%),France,A1,A1,Spain,B2,B2"
         ));
 
         assertEquals("France", winners.get(KnockoutViewRows.matchKey("France", "Spain")));

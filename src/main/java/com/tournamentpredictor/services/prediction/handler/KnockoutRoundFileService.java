@@ -7,6 +7,7 @@ import com.tournamentpredictor.services.io.CsvHelper;
 import com.tournamentpredictor.services.io.CsvLoader;
 import com.tournamentpredictor.services.prediction.validation.PredictionsFileValidator;
 import com.tournamentpredictor.services.report.ConsoleReporter;
+import com.tournamentpredictor.services.storage.GeneratedDataStore;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,6 +21,7 @@ class KnockoutRoundFileService {
     private final CsvHelper csvHelper;
     private final PredictionsFileValidator predictionsFileValidator;
     private final PredictionScorer predictionScorer;
+    private final GeneratedDataStore generatedDataStore;
 
     KnockoutRoundFileService(CsvLoader loader, Path projectRoot, CsvHelper csvHelper,
                              PredictionsFileValidator predictionsFileValidator,
@@ -29,6 +31,7 @@ class KnockoutRoundFileService {
         this.csvHelper = csvHelper;
         this.predictionsFileValidator = predictionsFileValidator;
         this.predictionScorer = predictionScorer;
+        this.generatedDataStore = new GeneratedDataStore(projectRoot);
     }
 
     Path simulationDir(String tournament) {
@@ -42,27 +45,36 @@ class KnockoutRoundFileService {
     boolean reportLockedMatchups(Path matchupFile, String title, Path nextPredictionFile,
                                  Map<String, String> odds, ConsoleReporter consoleReporter,
                                  EloCalculator eloCalculator, String lockedMessage) throws IOException {
-        if (!csvHelper.isLocked(matchupFile)) {
+        if (!generatedDataStore.exists(matchupFile)) {
             return false;
         }
         System.out.println(lockedMessage + matchupFile + " — delete to re-run");
-        consoleReporter.printMatchups(title, Files.readAllLines(matchupFile), eloCalculator, nextPredictionFile, odds);
+        consoleReporter.printMatchups(title, generatedDataStore.readLines(matchupFile), eloCalculator, nextPredictionFile, odds);
         return true;
     }
 
     void validatePredictionFile(Path predictionFile, String previousMode) throws IOException {
-        if (!Files.exists(predictionFile)) {
-            throw new IOException("Predictions file not found: " + predictionFile + ". Run mode=" + previousMode + " first.");
+        if (!generatedDataStore.exists(predictionFile)) {
+            throw new IOException("Predictions data not found: " + predictionFile + ". Run mode=" + previousMode + " first.");
         }
-        predictionsFileValidator.validatePredictionsFile(predictionFile);
+        predictionsFileValidator.validatePredictionLines(predictionFile.getFileName().toString(), generatedDataStore.readLines(predictionFile));
     }
 
     List<String> readRequiredSimulationRows(String tournament, String round, String previousMode) throws IOException {
         Path file = simulationDir(tournament).resolve("matchup_paths_" + round + ".csv");
-        if (!Files.exists(file)) {
+        if (!generatedDataStore.exists(file)) {
             throw new IOException(round + " matchups not found: " + file + ". Run mode=" + previousMode + " first.");
         }
-        return Files.readAllLines(file);
+        return generatedDataStore.readLines(file);
+    }
+
+
+    boolean generatedDataExists(Path path) throws IOException {
+        return generatedDataStore.exists(path);
+    }
+
+    List<String> readGeneratedLines(Path path) throws IOException {
+        return generatedDataStore.readLines(path);
     }
 
     RoundContext loadRoundContext(String tournament) throws IOException {
@@ -92,14 +104,14 @@ class KnockoutRoundFileService {
         predictionScorer.setSnapshots(snapshots);
         List<String> output = predictionScorer.scoreLines(rawLines);
         List<String> sortedOutput = csvHelper.sortGroupsPrimaryFirst(output);
-        Files.write(simulationDir.resolve("matchup_paths_" + round + ".csv"), sortedOutput);
+        generatedDataStore.writeLines(simulationDir.resolve("matchup_paths_" + round + ".csv"), sortedOutput);
         return new ScoredRows(output, sortedOutput);
     }
 
     void writePredictionRows(String tournament, String fileName, List<String> rows) throws IOException {
         Path predictionDir = predictionDir(tournament);
         Files.createDirectories(predictionDir);
-        Files.write(predictionDir.resolve(fileName), rows);
+        generatedDataStore.writeLines(predictionDir.resolve(fileName), rows);
     }
 
     record RoundContext(Map<String, Integer> eloRatings,
